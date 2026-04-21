@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIS — Content Calendar Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Bricolage+Grotesque:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0D0F14;
+    --surface: #13161E;
+    --surface2: #1A1E28;
+    --border: #252A38;
+    --accent: #F5A623;
+    --accent2: #2EC4A9;
+    --accent3: #7B61FF;
+    --text: #E8EAF0;
+    --muted: #5A6080;
+    --muted2: #3A4060;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* NOISE TEXTURE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.4;
+  }
+
+  /* HEADER */
+  .header {
+    padding: 40px 48px 32px;
+    max-width: 1320px; margin: 0 auto;
+    position: relative; z-index: 1;
+    display: flex; align-items: flex-end; justify-content: space-between;
+    flex-wrap: wrap; gap: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .logo-row { display: flex; align-items: center; gap: 14px; }
+  .logo-mark {
+    width: 44px; height: 44px;
+    background: var(--accent);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 18px; color: #0D0F14;
+  }
+  .logo-text {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px; font-weight: 800;
+    color: var(--text); letter-spacing: -0.5px;
+  }
+  .logo-sub {
+    font-size: 12px; color: var(--muted);
+    letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 400;
+  }
+  .header-right {
+    display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+  }
+  .header-stat {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 7px 16px;
+    font-size: 12px; color: var(--muted);
+    font-weight: 500;
+  }
+  .header-stat span { color: var(--accent); font-weight: 700; margin-right: 4px; }
+
+  /* SEARCH + FILTER BAR */
+  .toolbar {
+    max-width: 1320px; margin: 32px auto 0;
+    padding: 0 48px;
+    display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+    position: relative; z-index: 1;
+  }
+  .search-wrap {
+    position: relative; flex: 1; min-width: 200px;
+  }
+  .search-icon {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    font-size: 14px; color: var(--muted);
+  }
+  .search-input {
+    width: 100%; padding: 10px 14px 10px 38px;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; color: var(--text); font-size: 13px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    outline: none; transition: border 0.15s;
+  }
+  .search-input:focus { border-color: var(--accent); }
+  .search-input::placeholder { color: var(--muted); }
+
+  .filter-chip {
+    padding: 8px 16px; border-radius: 50px;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid var(--border);
+    background: var(--surface2); color: var(--muted);
+    cursor: pointer; transition: all 0.15s;
+    font-family: 'Bricolage Grotesque', sans-serif;
+  }
+  .filter-chip:hover { border-color: var(--accent); color: var(--accent); }
+  .filter-chip.active { background: var(--accent); color: #0D0F14; border-color: var(--accent); font-weight: 700; }
+
+  /* ADD CLIENT BUTTON */
+  .add-btn {
+    padding: 9px 20px; border-radius: 10px;
+    background: var(--accent); color: #0D0F14;
+    font-size: 13px; font-weight: 700;
+    border: none; cursor: pointer;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    display: flex; align-items: center; gap: 6px;
+    transition: opacity 0.15s;
+  }
+  .add-btn:hover { opacity: 0.85; }
+
+  /* MAIN GRID */
+  .main {
+    max-width: 1320px; margin: 36px auto 60px;
+    padding: 0 48px;
+    position: relative; z-index: 1;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-title::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 20px;
+  }
+
+  /* CLIENT CARD */
+  .client-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    animation: fadeUp 0.4s ease both;
+  }
+  .client-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.3);
+    border-color: var(--muted2);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .client-card-header {
+    padding: 22px 24px 18px;
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .client-avatar {
+    width: 42px; height: 42px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 19px; flex-shrink: 0;
+  }
+  .client-info { flex: 1; }
+  .client-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px; font-weight: 700;
+    color: var(--text); margin-bottom: 3px;
+  }
+  .client-meta {
+    font-size: 11px; color: var(--muted);
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .client-meta-dot { width: 3px; height: 3px; background: var(--muted2); border-radius: 50%; }
+
+  .active-badge {
+    padding: 3px 10px; border-radius: 50px;
+    font-size: 10px; font-weight: 700;
+    background: rgba(46,196,169,0.12);
+    color: var(--accent2); border: 1px solid rgba(46,196,169,0.25);
+    letter-spacing: 0.5px;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .active-dot { width: 5px; height: 5px; background: var(--accent2); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  /* PHASES LIST */
+  .phases-list {
+    padding: 16px 24px 20px;
+  }
+  .phases-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--muted2);
+    margin-bottom: 12px;
+  }
+  .phase-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px; border-radius: 12px;
+    text-decoration: none;
+    transition: background 0.15s;
+    margin-bottom: 6px;
+    border: 1px solid transparent;
+  }
+  .phase-row:hover { background: var(--surface2); border-color: var(--border); }
+  .phase-row:last-child { margin-bottom: 0; }
+
+  .phase-icon {
+    width: 30px; height: 30px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; flex-shrink: 0;
+  }
+  .phase-info { flex: 1; }
+  .phase-name {
+    font-size: 13px; font-weight: 600; color: var(--text);
+    margin-bottom: 2px;
+  }
+  .phase-desc { font-size: 11px; color: var(--muted); }
+
+  .phase-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+  .phase-tag {
+    padding: 2px 8px; border-radius: 50px;
+    font-size: 9px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .tag-active   { background: rgba(46,196,169,0.15); color: #2EC4A9; }
+  .tag-planning { background: rgba(245,166,35,0.12); color: #F5A623; }
+  .tag-done     { background: rgba(255,255,255,0.06); color: var(--muted); }
+
+  .phase-arrow {
+    font-size: 14px; color: var(--muted2);
+    transition: color 0.15s, transform 0.15s;
+  }
+  .phase-row:hover .phase-arrow { color: var(--accent); transform: translateX(3px); }
+
+  /* EMPTY PHASE SLOT */
+  .phase-add {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px; border-radius: 12px;
+    border: 1px dashed var(--border);
+    cursor: pointer; transition: all 0.15s;
+    margin-top: 8px;
+  }
+  .phase-add:hover { border-color: var(--accent); }
+  .phase-add-text { font-size: 12px; color: var(--muted); }
+  .phase-add:hover .phase-add-text { color: var(--accent); }
+
+  /* CARD FOOTER STATS */
+  .client-card-footer {
+    padding: 14px 24px;
+    border-top: 1px solid var(--border);
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+  .card-stat { text-align: center; }
+  .card-stat-n { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: var(--text); display: block; line-height: 1; }
+  .card-stat-l { font-size: 10px; color: var(--muted); letter-spacing: 0.5px; }
+
+  /* EMPTY STATE */
+  .empty-card {
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    border-radius: 20px;
+    padding: 48px 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .empty-card:hover { border-color: var(--accent); }
+  .empty-icon { font-size: 32px; margin-bottom: 12px; }
+  .empty-title { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+  .empty-sub { font-size: 12px; color: var(--muted2); }
+  .empty-card:hover .empty-title { color: var(--accent); }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 9999;
+    align-items: center; justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 32px 36px;
+    width: 480px; max-width: 94vw;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+  }
+  .modal-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px; font-weight: 800;
+    color: var(--text); margin-bottom: 6px;
+  }
+  .modal-sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+  .modal-field { margin-bottom: 16px; }
+  .modal-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; display: block; }
+  .modal-input {
+    width: 100%; padding: 10px 14px;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; color: var(--text); font-size: 13px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    outline: none; transition: border 0.15s;
+  }
+  .modal-input:focus { border-color: var(--accent); }
+  .modal-input::placeholder { color: var(--muted2); }
+  .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 24px; }
+  .modal-cancel {
+    padding: 9px 20px; border-radius: 10px;
+    background: var(--surface2); border: 1px solid var(--border);
+    color: var(--muted); font-size: 13px; font-weight: 600;
+    cursor: pointer; font-family: 'Bricolage Grotesque', sans-serif;
+  }
+  .modal-save {
+    padding: 9px 22px; border-radius: 10px;
+    background: var(--accent); border: none;
+    color: #0D0F14; font-size: 13px; font-weight: 700;
+    cursor: pointer; font-family: 'Bricolage Grotesque', sans-serif;
+  }
+  .modal-save:hover { opacity: 0.88; }
+
+  /* TOAST */
+  .toast {
+    position: fixed; bottom: 28px; right: 28px;
+    background: var(--surface2); border: 1px solid var(--border);
+    color: var(--text); padding: 12px 20px; border-radius: 12px;
+    font-size: 13px; font-weight: 500;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    z-index: 99999; animation: fadeUp 0.3s ease;
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .header, .toolbar, .main { padding: 0 20px; }
+    .header { padding: 28px 20px 24px; }
+    .clients-grid { grid-template-columns: 1fr; }
+    .header-right { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div>
+    <div class="logo-row" style="margin-bottom:8px;">
+      <div class="logo-mark">S</div>
+      <div>
+        <div class="logo-text">Say It Social</div>
+        <div class="logo-sub">Content Calendar Hub</div>
+      </div>
+    </div>
+  </div>
+  <div class="header-right" id="headerStats">
+    <!-- Populated by JS -->
+  </div>
+</div>
+
+<!-- TOOLBAR -->
+<div class="toolbar">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" type="text" placeholder="Search clients or campaigns..." oninput="filterClients(this.value)" />
+  </div>
+  <button class="filter-chip active" onclick="filterStatus('all', this)">All</button>
+  <button class="filter-chip" onclick="filterStatus('active', this)">Active</button>
+  <button class="filter-chip" onclick="filterStatus('planning', this)">Planning</button>
+  <button class="filter-chip" onclick="filterStatus('done', this)">Completed</button>
+  <button class="add-btn" onclick="openAddModal()">+ Add Client</button>
+</div>
+
+<!-- MAIN GRID -->
+<div class="main">
+  <div class="section-title">Clients</div>
+  <div class="clients-grid" id="clientsGrid">
+    <!-- Populated by JS -->
+  </div>
+</div>
+
+<!-- ADD CLIENT MODAL -->
+<div class="modal-overlay" id="addModal">
+  <div class="modal">
+    <div class="modal-title">Add New Client</div>
+    <div class="modal-sub">Fill in the details to add a new client to the hub.</div>
+    <div class="modal-field">
+      <label class="modal-label">Client Name</label>
+      <input class="modal-input" id="inp-name" type="text" placeholder="e.g. BSFC_Thaltej" />
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Brand Full Name</label>
+      <input class="modal-input" id="inp-brand" type="text" placeholder="e.g. Bright Start Foundation Centre" />
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Location</label>
+      <input class="modal-input" id="inp-location" type="text" placeholder="e.g. Thaltej, Ahmedabad" />
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Platforms</label>
+      <input class="modal-input" id="inp-platforms" type="text" placeholder="e.g. IG + FB" />
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Emoji / Icon</label>
+      <input class="modal-input" id="inp-emoji" type="text" placeholder="e.g. 🌟" maxlength="4" />
+    </div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeAddModal()">Cancel</button>
+      <button class="modal-save" onclick="addClient()">Add Client</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // ── BASE URL ──────────────────────────────────────────────────
+  const BASE = 'https://say-it-social.github.io/SIS-Content-Calendars';
+
+  // ── CLIENT DATA ───────────────────────────────────────────────
+  // Add new clients here — phases auto-render as cards
+  let clients = [
+    {
+      id: 'bsfc-thaltej',
+      name: 'BSFC_Thaltej',
+      brand: 'Bright Start Foundation Centre',
+      location: 'Thaltej, Ahmedabad',
+      platforms: 'IG + FB',
+      emoji: '🌟',
+      color: '#2EC4A9',
+      phases: [
+        {
+          name: 'Phase 1 — Admission Open',
+          desc: 'Brand awareness & lead generation',
+          url: `${BASE}/bsfc-thaltej/phase1.html`,
+          status: 'done',
+          posts: 9, stories: 0, weeks: 0,
+        },
+        {
+          name: 'Phase 2 — Build Trust',
+          desc: 'Interim campaign · School under construction',
+          url: `${BASE}/bsfc-thaltej/phase2.html`,
+          status: 'active',
+          posts: 12, stories: 16, weeks: 4,
+        },
+        {
+          name: 'Phase 3 — School is Live',
+          desc: 'Show campus, daily activities & community',
+          url: `${BASE}/bsfc-thaltej/phase3.html`,
+          status: 'planning',
+          posts: 12, stories: 16, weeks: 4,
+        },
+      ]
+    }
+  ];
+
+  // ── COLOUR PALETTE FOR NEW CLIENTS ───────────────────────────
+  const colorPool = ['#F5A623','#7B61FF','#F4655A','#38BEFF','#E8638C','#3ECF8E','#FB923C','#A78BFA'];
+  let colorIdx = 1;
+
+  // ── STATUS CONFIG ─────────────────────────────────────────────
+  const statusConfig = {
+    active:   { label: 'Active',    cls: 'tag-active',   icon: '🟢' },
+    planning: { label: 'Planning',  cls: 'tag-planning', icon: '🟡' },
+    done:     { label: 'Done',      cls: 'tag-done',     icon: '⚪' },
+  };
+
+  // ── RENDER ────────────────────────────────────────────────────
+  function render(data) {
+    const grid = document.getElementById('clientsGrid');
+    grid.innerHTML = '';
+
+    if (data.length === 0) {
+      grid.innerHTML = `
+        <div class="empty-card" onclick="openAddModal()">
+          <div class="empty-icon">🔍</div>
+          <div class="empty-title">No clients found</div>
+          <div class="empty-sub">Try a different search or add a new client</div>
+        </div>`;
+      return;
+    }
+
+    data.forEach((client, i) => {
+      const totalPosts   = client.phases.reduce((a, p) => a + (p.posts || 0), 0);
+      const totalStories = client.phases.reduce((a, p) => a + (p.stories || 0), 0);
+      const activePhase  = client.phases.find(p => p.status === 'active');
+
+      const phasesHTML = client.phases.map(phase => {
+        const sc = statusConfig[phase.status] || statusConfig.done;
+        return `
+          <a class="phase-row" href="${phase.url}" target="_blank">
+            <div class="phase-icon" style="background:${client.color}18;">
+              ${phase.status === 'active' ? '▶️' : phase.status === 'planning' ? '📋' : '✅'}
+            </div>
+            <div class="phase-info">
+              <div class="phase-name">${phase.name}</div>
+              <div class="phase-desc">${phase.desc}</div>
+            </div>
+            <div class="phase-tags">
+              <span class="phase-tag ${sc.cls}">${sc.label}</span>
+              ${phase.weeks ? `<span class="phase-tag" style="background:rgba(255,255,255,0.05);color:var(--muted);">${phase.weeks}W</span>` : ''}
+            </div>
+            <span class="phase-arrow">→</span>
+          </a>`;
+      }).join('');
+
+      const card = document.createElement('div');
+      card.className = 'client-card';
+      card.dataset.client = client.id;
+      card.dataset.status = activePhase ? 'active' : 'done';
+      card.style.animationDelay = `${i * 0.06}s`;
+
+      card.innerHTML = `
+        <div class="client-card-header">
+          <div class="client-avatar" style="background:${client.color}18; font-size:20px;">${client.emoji}</div>
+          <div class="client-info">
+            <div class="client-name">${client.name}</div>
+            <div class="client-meta">
+              <span>${client.brand}</span>
+              <span class="client-meta-dot"></span>
+              <span>${client.location}</span>
+              <span class="client-meta-dot"></span>
+              <span>${client.platforms}</span>
+            </div>
+          </div>
+          ${activePhase ? `<div class="active-badge"><span class="active-dot"></span> Live</div>` : ''}
+        </div>
+        <div class="phases-list">
+          <div class="phases-label">Campaigns & Phases</div>
+          ${phasesHTML}
+          <div class="phase-add" onclick="openPhaseModal('${client.id}')">
+            <span style="font-size:16px;color:var(--muted);">+</span>
+            <span class="phase-add-text">Add new phase</span>
+          </div>
+        </div>
+        <div class="client-card-footer">
+          <div class="card-stat">
+            <span class="card-stat-n">${client.phases.length}</span>
+            <span class="card-stat-l">Phases</span>
+          </div>
+          <div class="card-stat">
+            <span class="card-stat-n">${totalPosts}</span>
+            <span class="card-stat-l">Posts</span>
+          </div>
+          <div class="card-stat">
+            <span class="card-stat-n">${totalStories}</span>
+            <span class="card-stat-l">Stories</span>
+          </div>
+          <div class="card-stat" style="margin-left:auto;">
+            <span class="card-stat-n" style="color:${client.color};">${activePhase ? activePhase.name.split('—')[0].trim() : 'Completed'}</span>
+            <span class="card-stat-l">Current Phase</span>
+          </div>
+        </div>`;
+
+      grid.appendChild(card);
+    });
+
+    // Add empty "new client" card at end
+    const addCard = document.createElement('div');
+    addCard.className = 'empty-card';
+    addCard.onclick = openAddModal;
+    addCard.innerHTML = `
+      <div class="empty-icon">➕</div>
+      <div class="empty-title">Add New Client</div>
+      <div class="empty-sub">Click to add a new client to the hub</div>`;
+    grid.appendChild(addCard);
+
+    updateHeaderStats();
+  }
+
+  // ── HEADER STATS ──────────────────────────────────────────────
+  function updateHeaderStats() {
+    const totalClients = clients.length;
+    const activeClients = clients.filter(c => c.phases.some(p => p.status === 'active')).length;
+    const totalPhases = clients.reduce((a, c) => a + c.phases.length, 0);
+    document.getElementById('headerStats').innerHTML = `
+      <div class="header-stat"><span>${totalClients}</span> Clients</div>
+      <div class="header-stat"><span>${activeClients}</span> Active</div>
+      <div class="header-stat"><span>${totalPhases}</span> Total Phases</div>
+    `;
+  }
+
+  // ── FILTER BY STATUS ──────────────────────────────────────────
+  let currentStatus = 'all';
+  let currentSearch = '';
+
+  function filterStatus(val, btn) {
+    currentStatus = val;
+    document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilters();
+  }
+
+  function filterClients(val) {
+    currentSearch = val.toLowerCase();
+    applyFilters();
+  }
+
+  function applyFilters() {
+    let filtered = clients;
+    if (currentStatus !== 'all') {
+      filtered = filtered.filter(c =>
+        currentStatus === 'active'
+          ? c.phases.some(p => p.status === 'active')
+          : currentStatus === 'planning'
+          ? c.phases.some(p => p.status === 'planning') && !c.phases.some(p => p.status === 'active')
+          : !c.phases.some(p => p.status === 'active' || p.status === 'planning')
+      );
+    }
+    if (currentSearch) {
+      filtered = filtered.filter(c =>
+        c.name.toLowerCase().includes(currentSearch) ||
+        c.brand.toLowerCase().includes(currentSearch) ||
+        c.location.toLowerCase().includes(currentSearch)
+      );
+    }
+    render(filtered);
+  }
+
+  // ── ADD CLIENT MODAL ──────────────────────────────────────────
+  function openAddModal() {
+    document.getElementById('addModal').classList.add('open');
+  }
+  function closeAddModal() {
+    document.getElementById('addModal').classList.remove('open');
+    ['inp-name','inp-brand','inp-location','inp-platforms','inp-emoji'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+  }
+  function addClient() {
+    const name      = document.getElementById('inp-name').value.trim();
+    const brand     = document.getElementById('inp-brand').value.trim();
+    const location  = document.getElementById('inp-location').value.trim();
+    const platforms = document.getElementById('inp-platforms').value.trim() || 'IG + FB';
+    const emoji     = document.getElementById('inp-emoji').value.trim() || '🏢';
+    if (!name || !brand) { showToast('⚠️ Client name and brand are required'); return; }
+
+    const id    = name.toLowerCase().replace(/[^a-z0-9]/g, '-');
+    const color = colorPool[colorIdx % colorPool.length];
+    colorIdx++;
+
+    clients.push({
+      id, name, brand,
+      location: location || '—',
+      platforms, emoji, color,
+      phases: [
+        {
+          name: 'Phase 1 — Campaign',
+          desc: 'First campaign — add calendar link',
+          url: `${BASE}/${id}/phase1.html`,
+          status: 'planning',
+          posts: 0, stories: 0, weeks: 0,
+        }
+      ]
+    });
+
+    closeAddModal();
+    applyFilters();
+    showToast(`✅ ${name} added successfully!`);
+  }
+
+  // ── ADD PHASE MODAL ───────────────────────────────────────────
+  function openPhaseModal(clientId) {
+    const client = clients.find(c => c.id === clientId);
+    if (!client) return;
+    const nextNum = client.phases.length + 1;
+    const url = `${BASE}/${clientId}/phase${nextNum}.html`;
+
+    const phaseName = prompt(`New phase name for ${client.name}:`, `Phase ${nextNum} — `);
+    if (!phaseName) return;
+    const phaseDesc = prompt('Short description:', '');
+
+    client.phases.push({
+      name: phaseName,
+      desc: phaseDesc || '',
+      url,
+      status: 'planning',
+      posts: 0, stories: 0, weeks: 0,
+    });
+
+    applyFilters();
+    showToast(`✅ Phase added to ${client.name}`);
+  }
+
+  // ── TOAST ─────────────────────────────────────────────────────
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.style.display = 'block';
+    setTimeout(() => { t.style.display = 'none'; }, 2800);
+  }
+
+  // ── CLOSE MODAL ON BACKDROP ───────────────────────────────────
+  document.getElementById('addModal').addEventListener('click', function(e) {
+    if (e.target === this) closeAddModal();
+  });
+
+  // ── INIT ──────────────────────────────────────────────────────
+  render(clients);
+</script>
+</body>
+</html>
