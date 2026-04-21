@@ -1,1 +1,1513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BSFC_Thaltej — Phase 2 Content Calendar</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --navy: #1C2B4A;
+    --navy-light: #2A3D63;
+    --sun: #F5A623;
+    --sun-light: #FFF3DC;
+    --mint: #2EC4A9;
+    --mint-light: #E0F7F4;
+    --coral: #F4655A;
+    --coral-light: #FEF0EF;
+    --violet: #7B61FF;
+    --violet-light: #F0EDFF;
+    --rose: #E8638C;
+    --rose-light: #FEF0F5;
+    --card: #FFFFFF;
+    --border: #EDE9E0;
+    --muted: #7A8099;
+    --text: #2D3651;
+  }
 
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--navy);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .header-bg {
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(ellipse at 80% 50%, rgba(245,166,35,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(46,196,169,0.10) 0%, transparent 50%);
+  }
+  .header-content {
+    position: relative; z-index: 1;
+    max-width: 1280px; margin: 0 auto;
+    padding: 36px 40px 32px;
+    display: flex; align-items: flex-start; justify-content: space-between;
+    flex-wrap: wrap; gap: 24px;
+  }
+  .header-left {}
+  .phase-badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: rgba(245,166,35,0.15);
+    border: 1px solid rgba(245,166,35,0.3);
+    border-radius: 50px;
+    padding: 5px 14px;
+    font-size: 11px; font-weight: 700;
+    color: var(--sun); letter-spacing: 1.5px;
+    text-transform: uppercase; margin-bottom: 14px;
+  }
+  .phase-dot { width: 6px; height: 6px; background: var(--sun); border-radius: 50%; }
+  .header-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px; color: #fff; line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .header-sub {
+    font-size: 13px; color: rgba(255,255,255,0.45);
+    line-height: 1.6;
+  }
+  .header-right {
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+  .stat-box {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 16px 22px;
+    text-align: center; min-width: 100px;
+  }
+  .stat-n {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px; color: var(--sun);
+    display: block; line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-l { font-size: 10px; color: rgba(255,255,255,0.4); letter-spacing: 1px; text-transform: uppercase; }
+
+  /* STRATEGY BANNER */
+  .strategy {
+    max-width: 1280px; margin: 32px auto 0; padding: 0 40px;
+  }
+  .strategy-inner {
+    background: var(--navy-light);
+    border-radius: 20px; padding: 22px 28px;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 16px;
+  }
+  .str-item { display: flex; align-items: flex-start; gap: 12px; }
+  .str-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; flex-shrink: 0;
+  }
+  .str-text { }
+  .str-title { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.9); margin-bottom: 2px; }
+  .str-desc { font-size: 11px; color: rgba(255,255,255,0.4); line-height: 1.5; }
+
+  /* FILTERS */
+  .filters {
+    max-width: 1280px; margin: 32px auto 0; padding: 0 40px;
+    display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+  }
+  .f-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-right: 4px; }
+  .chip {
+    padding: 7px 16px; border-radius: 50px;
+    font-size: 12px; font-weight: 600; cursor: pointer;
+    border: 1.5px solid var(--border); background: white;
+    color: var(--muted); transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .chip:hover { border-color: var(--navy); color: var(--navy); }
+  .chip.active { background: var(--navy); color: white; border-color: var(--navy); }
+  .chip.w1.active { background: #2EC4A9; border-color: #2EC4A9; }
+  .chip.w2.active { background: #7B61FF; border-color: #7B61FF; }
+  .chip.w3.active { background: #F5A623; border-color: #F5A623; }
+  .chip.w4.active { background: #F4655A; border-color: #F4655A; }
+
+  /* WEEK SECTIONS */
+  .week-section {
+    max-width: 1280px; margin: 36px auto 0; padding: 0 40px;
+  }
+  .week-section.hidden { display: none; }
+
+  .week-header {
+    display: flex; align-items: center; gap: 16px; margin-bottom: 20px;
+  }
+  .week-pill {
+    padding: 6px 18px; border-radius: 50px;
+    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: white;
+  }
+  .week-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px; color: var(--navy);
+  }
+  .week-goal {
+    font-size: 12px; color: var(--muted); font-weight: 500;
+    margin-left: auto;
+  }
+
+  /* POSTS GRID */
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 18px;
+    margin-bottom: 16px;
+  }
+
+  /* POST CARD */
+  .post-card {
+    background: white;
+    border-radius: 18px;
+    border: 1.5px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: rise 0.4s ease both;
+  }
+  .post-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(28,43,74,0.10);
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-top {
+    padding: 18px 20px 14px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .post-index {
+    width: 30px; height: 30px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: white;
+  }
+  .format-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .ftag {
+    padding: 3px 10px; border-radius: 50px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+  .ftag-reel { background: #EDE9FE; color: #5B21B6; }
+  .ftag-carousel { background: #E0F2F1; color: #065F46; }
+  .ftag-poster { background: #FEF3C7; color: #92400E; }
+  .ftag-story { background: #FCE7F3; color: #9D174D; }
+  .ftag-ig { background: #FFF0F6; color: #BE185D; }
+  .ftag-fb { background: #EFF6FF; color: #1E40AF; }
+
+  .card-body { padding: 0 20px 14px; }
+  .post-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px; line-height: 1.35; color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .post-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
+
+  .divider { height: 1px; background: var(--border); margin: 0 20px 14px; }
+
+  .card-caption {
+    margin: 0 20px 14px;
+    background: var(--cream);
+    border-radius: 12px; padding: 12px 14px;
+    font-size: 12px; line-height: 1.65; color: var(--text);
+    border-left: 3px solid var(--sun);
+    font-style: italic;
+  }
+
+  .story-box {
+    margin: 0 20px 14px;
+    border-radius: 12px; padding: 12px 14px;
+    font-size: 12px; line-height: 1.65;
+  }
+  .story-box-title {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.2px;
+    text-transform: uppercase; margin-bottom: 6px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .story-icon { font-size: 13px; }
+
+  .card-meta {
+    padding: 0 20px 14px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  }
+  .meta-k { font-size: 9px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #C5CADB; margin-bottom: 2px; }
+  .meta-v { font-size: 12px; font-weight: 600; color: var(--navy); }
+
+  .expand-btn {
+    background: none; border: none; cursor: pointer;
+    font-size: 11px; color: var(--mint); font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    padding: 0; margin: 0 20px 14px; display: block;
+  }
+  .extra { display: none; margin: 0 20px 14px; background: var(--mint-light); border-radius: 12px; padding: 12px 14px; font-size: 12px; line-height: 1.7; color: #065F46; }
+  .extra.open { display: block; }
+  .extra strong { display: block; margin-bottom: 4px; color: var(--navy); }
+
+  .card-footer {
+    padding: 0 20px 18px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 8px;
+  }
+  .cta-btn {
+    padding: 7px 16px; border-radius: 50px;
+    font-size: 11px; font-weight: 700; color: white;
+    background: linear-gradient(135deg, var(--sun), #F4655A);
+    letter-spacing: 0.3px;
+  }
+  .hashtag-preview {
+    font-size: 10px; color: var(--muted); font-weight: 500;
+  }
+
+  /* ASSET LINKS */
+  .asset-links {
+    display: flex; gap: 6px; align-items: center;
+    padding: 0 20px 14px;
+    flex-wrap: wrap;
+  }
+  .asset-link-label {
+    font-size: 9px; font-weight: 700; letter-spacing: 1.2px;
+    text-transform: uppercase; color: #C5CADB;
+    margin-right: 2px;
+  }
+  .asset-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 5px 12px; border-radius: 50px;
+    font-size: 10px; font-weight: 700;
+    text-decoration: none; cursor: pointer;
+    border: 1.5px solid; transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+    white-space: nowrap;
+  }
+  .asset-btn:hover { opacity: 0.8; transform: scale(1.03); }
+  .asset-btn-gdrive {
+    background: #F0FDF4; color: #166534;
+    border-color: #BBF7D0;
+  }
+  .asset-btn-onedrive {
+    background: #EFF6FF; color: #1E40AF;
+    border-color: #BFDBFE;
+  }
+  .asset-btn-empty {
+    background: #F7F7F8; color: #C5CADB;
+    border-color: #E8E4DC; border-style: dashed;
+    cursor: pointer;
+  }
+  .asset-btn-empty:hover {
+    border-color: var(--navy); color: var(--navy);
+    background: #F0F0F5;
+  }
+  .asset-icon { font-size: 11px; }
+
+  /* STORY CARDS ROW */
+  .stories-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+  .story-card {
+    background: white;
+    border-radius: 16px;
+    border: 1.5px dashed var(--border);
+    padding: 18px 20px;
+    animation: rise 0.4s ease both;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .story-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(28,43,74,0.08);
+  }
+  .story-card-header {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+  }
+  .story-num {
+    width: 28px; height: 28px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: white;
+    background: linear-gradient(135deg, #E8638C, #A78BFA);
+  }
+  .story-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--rose); }
+  .story-title { font-family: 'DM Serif Display', serif; font-size: 14px; color: var(--navy); margin-bottom: 6px; line-height: 1.3; }
+  .story-idea { font-size: 11px; color: var(--muted); line-height: 1.55; margin-bottom: 10px; }
+  .story-type-tag {
+    display: inline-block; padding: 3px 10px; border-radius: 50px;
+    font-size: 10px; font-weight: 700; background: var(--rose-light); color: var(--rose);
+  }
+
+  /* SECTION LABELS */
+  .section-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--muted);
+    margin: 0 0 12px; display: flex; align-items: center; gap: 8px;
+  }
+  .section-label::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  /* HASHTAGS SECTION */
+  .hashtags-section {
+    max-width: 1280px; margin: 36px auto 48px; padding: 0 40px;
+  }
+  .hashtags-box {
+    background: white; border-radius: 20px;
+    border: 1.5px solid var(--border); padding: 28px 32px;
+  }
+  .htags-title { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--navy); margin-bottom: 20px; }
+  .htag-groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 20px; }
+  .htag-group { }
+  .htag-group-name { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .htag-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .htag {
+    padding: 5px 12px; border-radius: 50px;
+    font-size: 11px; font-weight: 600; cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  /* FOOTER NOTE */
+  .footer-note {
+    max-width: 1280px; margin: 0 auto 48px; padding: 0 40px;
+  }
+  .footer-inner {
+    background: var(--navy); border-radius: 20px; padding: 28px 32px;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 18px;
+  }
+  .fn-item { }
+  .fn-title { font-size: 12px; font-weight: 700; color: var(--sun); margin-bottom: 6px; }
+  .fn-text { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+  /* STATUS BADGES */
+  .status-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 12px; border-radius: 50px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+    text-transform: uppercase; cursor: pointer;
+    border: none; font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s; user-select: none;
+  }
+  .status-badge:hover { opacity: 0.85; transform: scale(1.04); }
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+  /* Status colour themes */
+  .status-not-started   { background: #F1F2F6; color: #7A8099; }
+  .status-not-started .status-dot { background: #C5CADB; }
+
+  .status-in-progress   { background: #FFF3DC; color: #B45309; }
+  .status-in-progress .status-dot { background: #F5A623; }
+
+  .status-ready         { background: #E0F7F4; color: #065F46; }
+  .status-ready .status-dot { background: #2EC4A9; }
+
+  .status-posted        { background: #DCFCE7; color: #166534; }
+  .status-posted .status-dot { background: #22C55E; }
+
+  /* Status row inside card footer */
+  .card-footer { flex-wrap: wrap; gap: 8px; }
+
+  /* Story card status */
+  .story-card-footer {
+    margin-top: 10px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 6px;
+  }
+
+  /* Status legend */
+  .status-legend {
+    max-width: 1280px; margin: 0 auto 0; padding: 0 40px;
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    margin-top: 24px;
+  }
+  .legend-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-right: 4px; }
+
+  @media (max-width: 768px) {
+    .header-content, .strategy, .filters, .week-section, .hashtags-section, .footer-note { padding: 0 20px; }
+    .header-content { padding: 24px 20px; }
+    .posts-grid { grid-template-columns: 1fr; }
+    .stories-row { grid-template-columns: 1fr 1fr; }
+    .header-title { font-size: 24px; }
+    .status-legend { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-bg"></div>
+  <div class="header-content">
+    <div class="header-left">
+      <div class="phase-badge"><span class="phase-dot"></span>Phase 2 · Interim Campaign</div>
+      <div class="header-title">Build Trust While We<br><em>Build the School</em></div>
+      <div class="header-sub">BSFC_Thaltej · 4-Week Content Calendar · IG + FB + Stories<br>Theme: Early Childhood Education | Brand Authority | Admissions Warmup</div>
+    </div>
+    <div class="header-right">
+      <div class="stat-box"><span class="stat-n">4</span><span class="stat-l">Weeks</span></div>
+      <div class="stat-box"><span class="stat-n">12</span><span class="stat-l">Main Posts</span></div>
+      <div class="stat-box"><span class="stat-n">16</span><span class="stat-l">Stories</span></div>
+      <div class="stat-box"><span class="stat-n">28</span><span class="stat-l">Total Content</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- STRATEGY BAR -->
+<div class="strategy">
+  <div class="strategy-inner">
+    <div class="str-item">
+      <div class="str-icon" style="background:rgba(46,196,169,0.15);">🧠</div>
+      <div class="str-text">
+        <div class="str-title">Educate to Convert</div>
+        <div class="str-desc">Parenting & milestone content builds trust before school opens</div>
+      </div>
+    </div>
+    <div class="str-item">
+      <div class="str-icon" style="background:rgba(245,166,35,0.15);">🏗️</div>
+      <div class="str-text">
+        <div class="str-title">No Campus? No Problem</div>
+        <div class="str-desc">Zero campus visuals needed — brand-first, value-driven approach</div>
+      </div>
+    </div>
+    <div class="str-item">
+      <div class="str-icon" style="background:rgba(123,97,255,0.15);">📱</div>
+      <div class="str-text">
+        <div class="str-title">Stories = Daily Touchpoints</div>
+        <div class="str-desc">4 stories/week keep BSFC top-of-mind with warm leads</div>
+      </div>
+    </div>
+    <div class="str-item">
+      <div class="str-icon" style="background:rgba(244,101,90,0.15);">🎯</div>
+      <div class="str-text">
+        <div class="str-title">Week 4 = Conversion Push</div>
+        <div class="str-desc">Urgency + Holi festive + teaser timed with school completion</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTERS -->
+<div class="filters" style="margin-top:32px;">
+  <span class="f-label">Week:</span>
+  <button class="chip active" onclick="filterWeek('all',this)">All Weeks</button>
+  <button class="chip w1" onclick="filterWeek('w1',this)">Week 1</button>
+  <button class="chip w2" onclick="filterWeek('w2',this)">Week 2</button>
+  <button class="chip w3" onclick="filterWeek('w3',this)">Week 3</button>
+  <button class="chip w4" onclick="filterWeek('w4',this)">Week 4</button>
+</div>
+
+<!-- STATUS LEGEND -->
+<div class="status-legend">
+  <span class="legend-label">Status:</span>
+  <span class="status-badge status-not-started"><span class="status-dot"></span>Not Started</span>
+  <span class="status-badge status-in-progress"><span class="status-dot"></span>In Progress</span>
+  <span class="status-badge status-ready"><span class="status-dot"></span>Ready to Post</span>
+  <span class="status-badge status-posted"><span class="status-dot"></span>Posted</span>
+  <span style="font-size:11px;color:var(--muted);margin-left:8px;">← Click any badge on a card to cycle status</span>
+</div>
+
+<!-- ════════════════════════════ WEEK 1 ════════════════════════════ -->
+<div class="week-section" id="sec-w1">
+  <div class="week-header">
+    <div class="week-pill" style="background:#2EC4A9;">Week 1</div>
+    <div class="week-title">Child Development & Milestones</div>
+    <div class="week-goal">🎯 Goal: Educate parents, build page authority</div>
+  </div>
+
+  <div class="section-label">Main Posts</div>
+  <div class="posts-grid">
+
+    <!-- POST 1 -->
+    <div class="post-card">
+      <div class="card-top">
+        <div class="post-index" style="background:linear-gradient(135deg,#2EC4A9,#059669);">1</div>
+        <div class="format-tags">
+          <span class="ftag ftag-carousel">Carousel</span>
+          <span class="ftag ftag-ig">IG</span><span class="ftag ftag-fb">FB</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="post-title">5 Key Milestones Every 3-Year-Old Should Hit</div>
+        <div class="post-desc">Educational carousel that parents will save & share. Positions BSFC as an expert in early childhood development.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="card-caption">
+        "Is your child hitting these milestones? 🌱 Every child grows at their own pace — but here are 5 key signs of healthy development at age 3. At Bright Start, we nurture each milestone with care. 📞 Admissions Open — Register Today!"
+      </div>
+      <div class="story-box" style="background:var(--rose-light);">
+        <div class="story-box-title" style="color:var(--rose);"><span class="story-icon">📱</span> Linked Story</div>
+        <div style="font-size:12px;color:#374151;line-height:1.6;"><strong style="color:var(--navy);">Poll Story:</strong> "Does your child speak in full sentences yet? 👶" — Yes / Still learning. Swipe up to read more. Drives engagement + saves the post.</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Focus</div><div class="meta-v">Education & Trust</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">Save This Post</div></div>
+        <div><div class="meta-k">Slides</div><div class="meta-v">6 slides (1 per milestone + CTA)</div></div>
+        <div><div class="meta-k">Visual</div><div class="meta-v">Illustrated icons, pastel tones</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        Soft mint & cream palette. One milestone per slide with icon illustration. Clean typography, no photos needed. Final slide: "At Bright Start, we celebrate every milestone 🌟 — Admissions Open!"
+      </div>
+      <div class="asset-links">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">Save This Post</span>
+        <button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button>
+      </div>
+    </div>
+
+    <!-- POST 2 -->
+    <div class="post-card">
+      <div class="card-top">
+        <div class="post-index" style="background:linear-gradient(135deg,#2EC4A9,#0891B2);">2</div>
+        <div class="format-tags">
+          <span class="ftag ftag-carousel">Carousel</span>
+          <span class="ftag ftag-ig">IG</span><span class="ftag ftag-fb">FB</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="post-title">Is Your Child Ready for Preschool? ✅ Checklist</div>
+        <div class="post-desc">Checklist-style carousel — highly saveable content. Helps parents self-assess and naturally leads to enquiry.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="card-caption">
+        "Thinking about preschool? Here's a simple checklist to know if your little one is ready 🎒 Don't worry if they're not ticking every box — that's exactly what we're here for! 📞 Bright Start — Admissions Open."
+      </div>
+      <div class="story-box" style="background:var(--rose-light);">
+        <div class="story-box-title" style="color:var(--rose);"><span class="story-icon">📱</span> Linked Story</div>
+        <div style="font-size:12px;color:#374151;line-height:1.6;"><strong style="color:var(--navy);">Quiz Story:</strong> "How many boxes does your child tick? 🙌" — Slider emoji reaction (1–10). CTA: "DM us for a free readiness consultation!"</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Focus</div><div class="meta-v">Parent Awareness</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">DM for Consultation</div></div>
+        <div><div class="meta-k">Slides</div><div class="meta-v">7 slides (checklist items)</div></div>
+        <div><div class="meta-k">Visual</div><div class="meta-v">Tick icons, clean layout</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        Each slide = one checklist item with a ✅ or 🔲 icon. Warm yellow & white palette. Keep it conversational and reassuring — not scary. Last slide soft CTA with logo.
+      </div>
+      <div class="asset-links">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">DM for Consultation</span>
+        <button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button>
+      </div>
+    </div>
+
+    <!-- POST 3 -->
+    <div class="post-card">
+      <div class="card-top">
+        <div class="post-index" style="background:linear-gradient(135deg,#38BDF8,#2EC4A9);">3</div>
+        <div class="format-tags">
+          <span class="ftag ftag-reel">Reel</span>
+          <span class="ftag ftag-ig">IG</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="post-title">Why Age 2–6 is the Golden Period of Learning</div>
+        <div class="post-desc">Text-based educational reel. Maximum organic reach. Positions BSFC as an authority without needing campus footage.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="card-caption">
+        "80% of brain development happens before age 6. 🧠 This is the window that shapes your child's future — their curiosity, confidence, and love for learning. At Bright Start by Udgamverse, we make every moment count. 🌟"
+      </div>
+      <div class="story-box" style="background:var(--rose-light);">
+        <div class="story-box-title" style="color:var(--rose);"><span class="story-icon">📱</span> Linked Story</div>
+        <div style="font-size:12px;color:#374151;line-height:1.6;"><strong style="color:var(--navy);">Share Story:</strong> Re-share the Reel to Stories with text overlay: "Did you know this? 🤯 Tag a parent who needs to see this!" — boosts reel reach organically.</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Focus</div><div class="meta-v">Education & Reach</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">Share / Register</div></div>
+        <div><div class="meta-k">Style</div><div class="meta-v">Text-based, bold typography</div></div>
+        <div><div class="meta-k">Music</div><div class="meta-v">Soft trending background</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        Dark navy background with bold white text — each fact appears with smooth fade-in. Stats in large font (80%, Age 2–6). End frame: Bright Start logo + "Admissions Open | Register Now."
+      </div>
+      <div class="asset-links">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">Share & Register</span>
+        <button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- WEEK 1 STORIES -->
+  <div class="section-label">Instagram & Facebook Stories — Week 1</div>
+  <div class="stories-row">
+    <div class="story-card">
+      <div class="story-card-header">
+        <div class="story-num">S1</div>
+        <div class="story-label">Monday Story</div>
+      </div>
+      <div class="story-title">📊 Poll: "At what age did your child start speaking?" </div>
+      <div class="story-idea">Before/after age 2 poll. Drives interaction, shows BSFC cares about milestones. Comment reply CTA: "DM us your child's age for a free learning tip!"</div>
+      <span class="story-type-tag">Poll Story</span>
+      <div class="asset-links" style="padding:8px 0 4px;">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="story-card-footer"><button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button></div>
+    </div>
+    <div class="story-card">
+      <div class="story-card-header">
+        <div class="story-num">S2</div>
+        <div class="story-label">Wednesday Story</div>
+      </div>
+      <div class="story-title">💬 Quote Card: "The first 5 years last a lifetime."</div>
+      <div class="story-idea">Shareable quote story with BSFC branding. Swipe up / link in bio CTA for admission registration. Simple, elegant design.</div>
+      <span class="story-type-tag">Quote Story</span>
+      <div class="asset-links" style="padding:8px 0 4px;">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="story-card-footer"><button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button></div>
+    </div>
+    <div class="story-card">
+      <div class="story-card-header">
+        <div class="story-num">S3</div>
+        <div class="story-label">Friday Story</div>
+      </div>
+      <div class="story-title">🎯 Quiz: "Which skill develops first in toddlers?"</div>
+      <div class="story-idea">Multiple choice quiz story — fun & educational. Correct answer reveals a learning tip. Ends with: "We build all of these at Bright Start 🌟"</div>
+      <span class="story-type-tag">Quiz Story</span>
+      <div class="asset-links" style="padding:8px 0 4px;">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="story-card-footer"><button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button></div>
+    </div>
+    <div class="story-card">
+      <div class="story-card-header">
+        <div class="story-num">S4</div>
+        <div class="story-label">Weekend Story</div>
+      </div>
+      <div class="story-title">📋 Swipe Up: "Download your free Milestone Checklist"</div>
+      <div class="story-idea">Lead magnet story — direct to WhatsApp or landing page. Drives DMs and warm leads. Great retargeting audience builder.</div>
+      <span class="story-type-tag">Lead Story</span>
+      <div class="asset-links" style="padding:8px 0 4px;">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="story-card-footer"><button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════ WEEK 2 ════════════════════════════ -->
+<div class="week-section" id="sec-w2">
+  <div class="week-header">
+    <div class="week-pill" style="background:#7B61FF;">Week 2</div>
+    <div class="week-title">Parenting Tips & Value Content</div>
+    <div class="week-goal">🎯 Goal: Build community, increase saves & shares</div>
+  </div>
+
+  <div class="section-label">Main Posts</div>
+  <div class="posts-grid">
+
+    <!-- POST 4 -->
+    <div class="post-card">
+      <div class="card-top">
+        <div class="post-index" style="background:linear-gradient(135deg,#7B61FF,#A78BFA);">4</div>
+        <div class="format-tags">
+          <span class="ftag ftag-carousel">Carousel</span>
+          <span class="ftag ftag-ig">IG</span><span class="ftag ftag-fb">FB</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="post-title">5 Activities to Do at Home Before Preschool Starts</div>
+        <div class="post-desc">Practical, actionable value for parents. High save rate. Subtly reinforces what BSFC does — making school feel familiar.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="card-caption">
+        "Starting preschool soon? 🎒 Help your child feel confident and excited with these 5 simple home activities! 🎨🎵📚 Fun, easy & effective — try one today! At Bright Start, we continue this journey of joyful learning."
+      </div>
+      <div class="story-box" style="background:var(--rose-light);">
+        <div class="story-box-title" style="color:var(--rose);"><span class="story-icon">📱</span> Linked Story</div>
+        <div style="font-size:12px;color:#374151;line-height:1.6;"><strong style="color:var(--navy);">UGC Story:</strong> "Try activity #3 with your child & tag us! 🎨" — encourages parents to share content, creates community. Repost user content to Stories.</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Focus</div><div class="meta-v">Value & Engagement</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">Save & Try</div></div>
+        <div><div class="meta-k">Slides</div><div class="meta-v">6 slides (activity each)</div></div>
+        <div><div class="meta-k">Visual</div><div class="meta-v">Playful, illustrated, bright</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        Each slide = 1 activity with a fun illustration. Violet & cream palette. Activity name bold, 2-line description below. Last slide: "We do all this & more at Bright Start!" + registration CTA.
+      </div>
+      <div class="asset-links">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">Save & Try</span>
+        <button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button>
+      </div>
+    </div>
+
+    <!-- POST 5 -->
+    <div class="post-card">
+      <div class="card-top">
+        <div class="post-index" style="background:linear-gradient(135deg,#7B61FF,#6366F1);">5</div>
+        <div class="format-tags">
+          <span class="ftag ftag-reel">Reel</span>
+          <span class="ftag ftag-ig">IG</span><span class="ftag ftag-fb">FB</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="post-title">How to Reduce Your Child's First Day Anxiety</div>
+        <div class="post-desc">Highly shareable emotional reel. Parents search for this content. Positions BSFC as empathetic and child-first.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="card-caption">
+        "First day of school tears? 😢 It's completely normal — for both of you! Here are 3 things you can do to make the transition easier 💛 Because at Bright Start, we make every child feel safe, seen and loved. 📞 Admissions Open!"
+      </div>
+      <div class="story-box" style="background:var(--rose-light);">
+        <div class="story-box-title" style="color:var(--rose);"><span class="story-icon">📱</span> Linked Story</div>
+        <div style="font-size:12px;color:#374151;line-height:1.6;"><strong style="color:var(--navy);">Emotion Story:</strong> "First day drop-off — who cried more? 😅" — Parent / Child / Both options poll. Highly relatable, drives shares and saves.</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Focus</div><div class="meta-v">Emotional Value</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">Share / Register</div></div>
+        <div><div class="meta-k">Style</div><div class="meta-v">Text + soft visuals</div></div>
+        <div><div class="meta-k">Tone</div><div class="meta-v">Warm, empathetic</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        Warm golden tones. 3 tips shown one by one with soft transitions. Voice-over friendly script. End with: "At Bright Start, the first day is full of smiles 😊" — brand logo fade-in.
+      </div>
+      <div class="asset-links">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">Share This</span>
+        <button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button>
+      </div>
+    </div>
+
+    <!-- POST 6 -->
+    <div class="post-card">
+      <div class="card-top">
+        <div class="post-index" style="background:linear-gradient(135deg,#A78BFA,#7B61FF);">6</div>
+        <div class="format-tags">
+          <span class="ftag ftag-poster">Poster</span>
+          <span class="ftag ftag-ig">IG</span><span class="ftag ftag-fb">FB</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="post-title">Screen Time vs Play Time — What Research Says</div>
+        <div class="post-desc">Informative infographic-style poster. Sparks conversation and comments. Parents share this with other parents.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="card-caption">
+        "📱 vs 🧸 — Which wins for your child's development? Research says children aged 2–5 should have less than 1 hour of screen time daily. Play is how children learn. At Bright Start, play IS the curriculum. 📞 Register Now!"
+      </div>
+      <div class="story-box" style="background:var(--rose-light);">
+        <div class="story-box-title" style="color:var(--rose);"><span class="story-icon">📱</span> Linked Story</div>
+        <div style="font-size:12px;color:#374151;line-height:1.6;"><strong style="color:var(--navy);">Poll Story:</strong> "How much screen time does your child get daily?" — Under 1 hr / 1-2 hrs / More than 2 hrs. No judgment — educational follow-up tip in next story.</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Focus</div><div class="meta-v">Education & Debate</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">Comment & Share</div></div>
+        <div><div class="meta-k">Format</div><div class="meta-v">Single infographic poster</div></div>
+        <div><div class="meta-k">Visual</div><div class="meta-v">Split design, bold contrast</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        Split poster — left side phone/screen (cool blue), right side toys/play (warm yellow). Research stat in bold center. BSFC logo at bottom. Clean, shareable layout.
+      </div>
+      <div class="asset-links">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">Comment Below</span>
+        <button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label">Instagram & Facebook Stories — Week 2</div>
+  <div class="stories-row">
+    <div class="story-card">
+      <div class="story-card-header"><div class="story-num">S5</div><div class="story-label">Monday Story</div></div>
+      <div class="story-title">🎨 "Try this with your child tonight!" — Activity tip</div>
+      <div class="story-idea">Simple 30-second activity idea (e.g. sorting colored blocks). Bright, fun visual. CTA: "Save this for tonight!" Ties to Post 4.</div>
+      <span class="story-type-tag">Value Story</span>
+      <div class="asset-links" style="padding:8px 0 4px;">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="story-card-footer"><button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button></div>
+    </div>
+    <div class="story-card">
+      <div class="story-card-header"><div class="story-num">S6</div><div class="story-label">Wednesday Story</div></div>
+      <div class="story-title">😅 Relatable meme: "Preschool drop-off be like..."</div>
+      <div class="story-idea">Light-hearted parent relatable content. Builds community, increases DMs and follows. Brand logo subtle in corner.</div>
+      <span class="story-type-tag">Relatable Story</span>
+      <div class="asset-links" style="padding:8px 0 4px;">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="story-card-footer"><button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button></div>
+    </div>
+    <div class="story-card">
+      <div class="story-card-header"><div class="story-num">S7</div><div class="story-label">Friday Story</div></div>
+      <div class="story-title">📱 Swipe Poll: Screen time habits this week?</div>
+      <div class="story-idea">Ties to Post 6. Non-judgmental poll. Follow-up story gives 1 tip to reduce screen time. Ends with BSFC brand message.</div>
+      <span class="story-type-tag">Poll Story</span>
+      <div class="asset-links" style="padding:8px 0 4px;">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="story-card-footer"><button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button></div>
+    </div>
+    <div class="story-card">
+      <div class="story-card-header"><div class="story-num">S8</div><div class="story-label">Weekend Story</div></div>
+      <div class="story-title">📣 Admission Reminder: "Only limited seats left!"</div>
+      <div class="story-idea">Urgency story with countdown feel. Bold design. CTA button: "Register Now" linked to WhatsApp or form. Keep warm leads warm.</div>
+      <span class="story-type-tag">Conversion Story</span>
+      <div class="asset-links" style="padding:8px 0 4px;">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="story-card-footer"><button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════ WEEK 3 ════════════════════════════ -->
+<div class="week-section" id="sec-w3">
+  <div class="week-header">
+    <div class="week-pill" style="background:#F5A623;">Week 3</div>
+    <div class="week-title">Udgamverse Brand Legacy & Trust</div>
+    <div class="week-goal">🎯 Goal: Reinforce credibility, warm up leads</div>
+  </div>
+
+  <div class="section-label">Main Posts</div>
+  <div class="posts-grid">
+
+    <!-- POST 7 -->
+    <div class="post-card">
+      <div class="card-top">
+        <div class="post-index" style="background:linear-gradient(135deg,#F5A623,#F4655A);">7</div>
+        <div class="format-tags">
+          <span class="ftag ftag-carousel">Carousel</span>
+          <span class="ftag ftag-ig">IG</span><span class="ftag ftag-fb">FB</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="post-title">60+ Years of Shaping Young Minds — The Udgamverse Story</div>
+        <div class="post-desc">Brand legacy carousel. Builds massive trust with parents who care about school credibility and heritage.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="card-caption">
+        "For over 60 years, Udgamverse has been shaping the minds and hearts of young learners. 🏫 Today, that legacy comes to Thaltej through Bright Start Foundation Centre. 📞 Be part of this journey — Admissions Open!"
+      </div>
+      <div class="story-box" style="background:var(--rose-light);">
+        <div class="story-box-title" style="color:var(--rose);"><span class="story-icon">📱</span> Linked Story</div>
+        <div style="font-size:12px;color:#374151;line-height:1.6;"><strong style="color:var(--navy);">Trust Story:</strong> "Did you know Udgamverse has been in education since the 1960s? 🏛️" — Legacy fact with brand visual. Link to carousel in bio.</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Focus</div><div class="meta-v">Brand Trust</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">Enquire Now</div></div>
+        <div><div class="meta-k">Slides</div><div class="meta-v">5 slides (legacy timeline)</div></div>
+        <div><div class="meta-k">Visual</div><div class="meta-v">Classic, warm, prestigious</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        Deep navy & gold palette. Timeline style — decade by decade. Feels premium and established. Avoid modern flat design here — go for a slightly editorial, prestigious feel. End slide: "Now in Thaltej 📍 — Bright Start."
+      </div>
+      <div class="asset-links">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">Enquire Now</span>
+        <button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button>
+      </div>
+    </div>
+
+    <!-- POST 8 -->
+    <div class="post-card">
+      <div class="card-top">
+        <div class="post-index" style="background:linear-gradient(135deg,#F5A623,#FBBF24);">8</div>
+        <div class="format-tags">
+          <span class="ftag ftag-reel">Reel</span>
+          <span class="ftag ftag-ig">IG</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="post-title">What Makes NCERT-Aligned Curriculum Special?</div>
+        <div class="post-desc">Education-focused text reel. Answers a question every parent has. Builds academic credibility without campus visuals.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="card-caption">
+        "Not all preschool curriculums are equal. 📚 NCERT-aligned learning means your child builds a strong foundation that grows with them through school. At Bright Start by Udgamverse — we don't just teach, we prepare. 📞 Register Now."
+      </div>
+      <div class="story-box" style="background:var(--rose-light);">
+        <div class="story-box-title" style="color:var(--rose);"><span class="story-icon">📱</span> Linked Story</div>
+        <div style="font-size:12px;color:#374151;line-height:1.6;"><strong style="color:var(--navy);">Q&A Story:</strong> "What is NCERT curriculum? Ask us anything 👇" — Question box sticker. Respond to answers in the next story — drives DMs and trust.</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Focus</div><div class="meta-v">Academic Credibility</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">Register Now</div></div>
+        <div><div class="meta-k">Style</div><div class="meta-v">Bold text reel</div></div>
+        <div><div class="meta-k">Tone</div><div class="meta-v">Confident, authoritative</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        Clean white or cream background. Black + gold text. Each benefit appears with a smooth animation. Keep it under 30 seconds. No stock video needed — pure text motion reel.
+      </div>
+      <div class="asset-links">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">Register Now</span>
+        <button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button>
+      </div>
+    </div>
+
+    <!-- POST 9 -->
+    <div class="post-card">
+      <div class="card-top">
+        <div class="post-index" style="background:linear-gradient(135deg,#FB923C,#F5A623);">9</div>
+        <div class="format-tags">
+          <span class="ftag ftag-carousel">Carousel</span>
+          <span class="ftag ftag-ig">IG</span><span class="ftag ftag-fb">FB</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="post-title">Why Small Batch Learning Changes Everything</div>
+        <div class="post-desc">Key USP of BSFC. Parents love the idea of individual attention. This answers a core concern: "Will my child get noticed?"</div>
+      </div>
+      <div class="divider"></div>
+      <div class="card-caption">
+        "In a class of 30, does your child get noticed? 🤔 At Bright Start, we believe in small batches — because every child deserves individual attention, care and encouragement. 🌟 Small class. Big impact. 📞 Admissions Open!"
+      </div>
+      <div class="story-box" style="background:var(--rose-light);">
+        <div class="story-box-title" style="color:var(--rose);"><span class="story-icon">📱</span> Linked Story</div>
+        <div style="font-size:12px;color:#374151;line-height:1.6;"><strong style="color:var(--navy);">Poll Story:</strong> "Would you prefer small batch or large batch learning for your child?" — Drives comments. Follow up with: "That's why we keep our batches small at Bright Start 💛"</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Focus</div><div class="meta-v">USP & Differentiation</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">Enquire Now</div></div>
+        <div><div class="meta-k">Slides</div><div class="meta-v">5 slides (benefits of small batch)</div></div>
+        <div><div class="meta-k">Visual</div><div class="meta-v">Warm, child-centric icons</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        Contrast visual: crowded vs. small warm classroom (illustrated, not real). Sun yellow & white. Show benefits: "More attention, faster learning, better social skills." Logo on final CTA slide.
+      </div>
+      <div class="asset-links">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">Enquire Now</span>
+        <button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label">Instagram & Facebook Stories — Week 3</div>
+  <div class="stories-row">
+    <div class="story-card">
+      <div class="story-card-header"><div class="story-num">S9</div><div class="story-label">Monday Story</div></div>
+      <div class="story-title">🏛️ "Did you know? Udgamverse has been educating since the 1960s"</div>
+      <div class="story-idea">Heritage fact card. Simple, bold. Swipe up for more info. Builds instant trust with parents considering BSFC.</div>
+      <span class="story-type-tag">Trust Story</span>
+      <div class="asset-links" style="padding:8px 0 4px;">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="story-card-footer"><button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button></div>
+    </div>
+    <div class="story-card">
+      <div class="story-card-header"><div class="story-num">S10</div><div class="story-label">Wednesday Story</div></div>
+      <div class="story-title">❓ Q&A Box: "Ask us anything about BSFC Thaltej!"</div>
+      <div class="story-idea">Open question box — parents ask about admissions, fees, timing, programs. Team answers in next story. Drives warm DMs.</div>
+      <span class="story-type-tag">Q&A Story</span>
+      <div class="asset-links" style="padding:8px 0 4px;">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="story-card-footer"><button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button></div>
+    </div>
+    <div class="story-card">
+      <div class="story-card-header"><div class="story-num">S11</div><div class="story-label">Thursday Story</div></div>
+      <div class="story-title">✅ "Answers to your top questions about BSFC!"</div>
+      <div class="story-idea">FAQ answer story — responds to questions from S10. Shows responsiveness. Builds relationship. CTA: "Still have questions? DM us!"</div>
+      <span class="story-type-tag">FAQ Story</span>
+      <div class="asset-links" style="padding:8px 0 4px;">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="story-card-footer"><button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button></div>
+    </div>
+    <div class="story-card">
+      <div class="story-card-header"><div class="story-num">S12</div><div class="story-label">Weekend Story</div></div>
+      <div class="story-title">📍 "Coming soon to Thaltej — Bright Start is almost ready!"</div>
+      <div class="story-idea">Teaser story about school opening. Build excitement and FOMO. "Register now to secure your child's seat before we open!" — Countdown feel.</div>
+      <span class="story-type-tag">Teaser Story</span>
+      <div class="asset-links" style="padding:8px 0 4px;">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="story-card-footer"><button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════ WEEK 4 ════════════════════════════ -->
+<div class="week-section" id="sec-w4">
+  <div class="week-header">
+    <div class="week-pill" style="background:#F4655A;">Week 4</div>
+    <div class="week-title">Admissions Urgency + Holi Special + Coming Soon</div>
+    <div class="week-goal">🎯 Goal: Convert warm audience before school opens</div>
+  </div>
+
+  <div class="section-label">Main Posts</div>
+  <div class="posts-grid">
+
+    <!-- POST 10 -->
+    <div class="post-card">
+      <div class="card-top">
+        <div class="post-index" style="background:linear-gradient(135deg,#F4655A,#F472B6);">10</div>
+        <div class="format-tags">
+          <span class="ftag ftag-poster">Poster</span>
+          <span class="ftag ftag-ig">IG</span><span class="ftag ftag-fb">FB</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="post-title">🎨 Holi Special — "Colours of Learning"</div>
+        <div class="post-desc">Festive post tied to brand messaging. Feels celebratory, gets high organic reach during Holi. Brand stays top-of-mind.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="card-caption">
+        "This Holi, may your child's world be filled with the colours of curiosity, joy and learning! 🌈 Wishing all families a bright and colourful celebration from Bright Start Foundation Centre, Thaltej 💛 #HappyHoli"
+      </div>
+      <div class="story-box" style="background:var(--rose-light);">
+        <div class="story-box-title" style="color:var(--rose);"><span class="story-icon">📱</span> Linked Story</div>
+        <div style="font-size:12px;color:#374151;line-height:1.6;"><strong style="color:var(--navy);">Festive Story:</strong> Animated Holi colours story with BSFC branding. Add: "What's your child's favourite colour? 🎨" — colour emoji poll. Fun & high-engagement.</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Focus</div><div class="meta-v">Brand Awareness</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">Share & Celebrate</div></div>
+        <div><div class="meta-k">Format</div><div class="meta-v">Festive poster</div></div>
+        <div><div class="meta-k">Visual</div><div class="meta-v">Vibrant, colourful, joyful</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        Splash of colours — pink, yellow, green, orange. Bright Start logo centred. "Colours of Learning" as headline. Festive but still on-brand. Keep it warm and child-friendly, not too party-like.
+      </div>
+      <div class="asset-links">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">Share & Celebrate</span>
+        <button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button>
+      </div>
+    </div>
+
+    <!-- POST 11 -->
+    <div class="post-card">
+      <div class="card-top">
+        <div class="post-index" style="background:linear-gradient(135deg,#F4655A,#EF4444);">11</div>
+        <div class="format-tags">
+          <span class="ftag ftag-carousel">Carousel</span>
+          <span class="ftag ftag-ig">IG</span><span class="ftag ftag-fb">FB</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="post-title">⚠️ Admissions Closing Soon — Secure Your Child's Seat</div>
+        <div class="post-desc">Urgency conversion carousel. Targets warm audience who've been following for 3 weeks. Time to push for registration.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="card-caption">
+        "Admissions are almost full! 🎒 Don't miss your child's chance to join Bright Start Foundation Centre — Thaltej's newest and most exciting preschool. ✔ Playgroup to Sr. KG ✔ Morning & Noon Shifts ✔ Udgamverse certified 📞 Call now!"
+      </div>
+      <div class="story-box" style="background:var(--rose-light);">
+        <div class="story-box-title" style="color:var(--rose);"><span class="story-icon">📱</span> Linked Story</div>
+        <div style="font-size:12px;color:#374151;line-height:1.6;"><strong style="color:var(--navy);">Urgency Story:</strong> Bold countdown graphic — "Admissions closing soon! Only X seats left." CTA button: "Register Now" → WhatsApp. Run as a paid Story ad for maximum reach.</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Focus</div><div class="meta-v">Conversion</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">Call / Register Now</div></div>
+        <div><div class="meta-k">Slides</div><div class="meta-v">5 slides (urgency-driven)</div></div>
+        <div><div class="meta-k">Visual</div><div class="meta-v">Bold, warm urgency tones</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        Deep coral + white. Bold "Limited Seats" stamp. Slide 1: urgency hook. Slides 2–4: remind them of USPs (Udgamverse, curriculum, small batch). Slide 5: big CTA with phone number + WhatsApp link.
+      </div>
+      <div class="asset-links">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">Register Now</span>
+        <button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button>
+      </div>
+    </div>
+
+    <!-- POST 12 -->
+    <div class="post-card">
+      <div class="card-top">
+        <div class="post-index" style="background:linear-gradient(135deg,#1C2B4A,#2A3D63);">12</div>
+        <div class="format-tags">
+          <span class="ftag ftag-reel">Reel</span>
+          <span class="ftag ftag-ig">IG</span><span class="ftag ftag-fb">FB</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="post-title">🏫 Coming Soon — Your Child's Second Home</div>
+        <div class="post-desc">Teaser reel for school opening. Builds massive FOMO and excitement. Can use construction photos, renders, or animated teaser.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="card-caption">
+        "Something beautiful is being built for your little one. 🏗️✨ Bright Start Foundation Centre, Thaltej — Opening Soon. A place where every child is seen, heard and celebrated. 📞 Admissions Open Now — don't wait!"
+      </div>
+      <div class="story-box" style="background:var(--rose-light);">
+        <div class="story-box-title" style="color:var(--rose);"><span class="story-icon">📱</span> Linked Story</div>
+        <div style="font-size:12px;color:#374151;line-height:1.6;"><strong style="color:var(--navy);">Countdown Story:</strong> "We're opening in [X] days! 🎉" with countdown timer sticker. CTA: "Register before we open!" — Creates urgency + excitement simultaneously.</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Focus</div><div class="meta-v">Excitement & FOMO</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">Register Before We Open</div></div>
+        <div><div class="meta-k">Visual</div><div class="meta-v">Construction teaser or render</div></div>
+        <div><div class="meta-k">Tone</div><div class="meta-v">Cinematic, hopeful</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        If construction photos available — use them with text overlays. If not — use animated text reel: "Something is coming to Thaltej..." reveal style. Navy + gold palette. Cinematic music. Build anticipation slide by slide.
+      </div>
+      <div class="asset-links">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">Register Now</span>
+        <button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label">Instagram & Facebook Stories — Week 4</div>
+  <div class="stories-row">
+    <div class="story-card">
+      <div class="story-card-header"><div class="story-num">S13</div><div class="story-label">Holi Story</div></div>
+      <div class="story-title">🎨 Animated Holi greeting with colour splash</div>
+      <div class="story-idea">Festive animated story. Add a colour emoji poll: "What's your child's fav colour? 🌈" Fun, shareable, high reach on Holi day.</div>
+      <span class="story-type-tag">Festive Story</span>
+      <div class="asset-links" style="padding:8px 0 4px;">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="story-card-footer"><button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button></div>
+    </div>
+    <div class="story-card">
+      <div class="story-card-header"><div class="story-num">S14</div><div class="story-label">Mid-Week Story</div></div>
+      <div class="story-title">⏳ Countdown: "X days until we open our doors!"</div>
+      <div class="story-idea">Countdown timer sticker story. Creates FOMO. "Register now before the rush!" CTA button to WhatsApp. Post 2–3 days before opening.</div>
+      <span class="story-type-tag">Countdown Story</span>
+      <div class="asset-links" style="padding:8px 0 4px;">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="story-card-footer"><button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button></div>
+    </div>
+    <div class="story-card">
+      <div class="story-card-header"><div class="story-num">S15</div><div class="story-label">Thursday Story</div></div>
+      <div class="story-title">📞 "Last chance to register — seats almost full!"</div>
+      <div class="story-idea">Final urgency push. Bold red/coral design. Phone number + WhatsApp link front and centre. Simple and direct — no fluff.</div>
+      <span class="story-type-tag">Urgency Story</span>
+      <div class="asset-links" style="padding:8px 0 4px;">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="story-card-footer"><button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button></div>
+    </div>
+    <div class="story-card">
+      <div class="story-card-header"><div class="story-num">S16</div><div class="story-label">Weekend Story</div></div>
+      <div class="story-title">🎉 "We're almost ready — see you soon, Thaltej!"</div>
+      <div class="story-idea">Excitement story — thank followers for their support. "Stay tuned for our grand opening!" Builds community goodwill before launch day.</div>
+      <span class="story-type-tag">Launch Teaser Story</span>
+      <div class="asset-links" style="padding:8px 0 4px;">
+        <span class="asset-link-label">Assets</span>
+        <a class="asset-btn asset-btn-gdrive" href="#" onclick="openAsset(event, this, 'gdrive')" title="Google Drive"><span class="asset-icon">📁</span> G Drive</a>
+        <a class="asset-btn asset-btn-onedrive" href="#" onclick="openAsset(event, this, 'onedrive')" title="OneDrive"><span class="asset-icon">☁️</span> OneDrive</a>
+      </div>
+      <div class="story-card-footer"><button class="status-badge status-not-started" onclick="cycleStatus(this)"><span class="status-dot"></span><span class="status-text">Not Started</span></button></div>
+    </div>
+  </div>
+</div>
+
+<!-- HASHTAGS -->
+<div class="hashtags-section">
+  <div class="hashtags-box">
+    <div class="htags-title">📌 Master Hashtag Bank — BSFC_Thaltej</div>
+    <div class="htag-groups">
+      <div class="htag-group">
+        <div class="htag-group-name">Brand & School</div>
+        <div class="htag-list">
+          <span class="htag" style="background:#FFF3DC;color:#92400E;">#BrightStartThaltej</span>
+          <span class="htag" style="background:#FFF3DC;color:#92400E;">#BSFCThaltej</span>
+          <span class="htag" style="background:#FFF3DC;color:#92400E;">#Udgamverse</span>
+          <span class="htag" style="background:#FFF3DC;color:#92400E;">#BrightStartFoundation</span>
+          <span class="htag" style="background:#FFF3DC;color:#92400E;">#PreschoolThaltej</span>
+        </div>
+      </div>
+      <div class="htag-group">
+        <div class="htag-group-name">Admissions</div>
+        <div class="htag-list">
+          <span class="htag" style="background:#FEF0EF;color:#9A3412;">#AdmissionsOpen</span>
+          <span class="htag" style="background:#FEF0EF;color:#9A3412;">#PreschoolAdmissions</span>
+          <span class="htag" style="background:#FEF0EF;color:#9A3412;">#NurseryAdmission</span>
+          <span class="htag" style="background:#FEF0EF;color:#9A3412;">#SchoolAdmission2025</span>
+          <span class="htag" style="background:#FEF0EF;color:#9A3412;">#AhmedabadSchools</span>
+        </div>
+      </div>
+      <div class="htag-group">
+        <div class="htag-group-name">Parenting & Education</div>
+        <div class="htag-list">
+          <span class="htag" style="background:#E0F7F4;color:#065F46;">#EarlyChildhoodEducation</span>
+          <span class="htag" style="background:#E0F7F4;color:#065F46;">#ParentingTips</span>
+          <span class="htag" style="background:#E0F7F4;color:#065F46;">#ToddlerLearning</span>
+          <span class="htag" style="background:#E0F7F4;color:#065F46;">#PlayBasedLearning</span>
+          <span class="htag" style="background:#E0F7F4;color:#065F46;">#ChildDevelopment</span>
+        </div>
+      </div>
+      <div class="htag-group">
+        <div class="htag-group-name">Location</div>
+        <div class="htag-list">
+          <span class="htag" style="background:#EFF6FF;color:#1E40AF;">#Thaltej</span>
+          <span class="htag" style="background:#EFF6FF;color:#1E40AF;">#Ahmedabad</span>
+          <span class="htag" style="background:#EFF6FF;color:#1E40AF;">#AhmedabadMoms</span>
+          <span class="htag" style="background:#EFF6FF;color:#1E40AF;">#AhmedabadParents</span>
+          <span class="htag" style="background:#EFF6FF;color:#1E40AF;">#ThaltejAhmedabad</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER NOTES -->
+<div class="footer-note">
+  <div class="footer-inner">
+    <div class="fn-item">
+      <div class="fn-title">📅 Posting Schedule</div>
+      <div class="fn-text">Mon, Wed, Fri for main posts. Stories: Mon, Wed, Fri + Weekend. Total: 3 posts + 4 stories per week.</div>
+    </div>
+    <div class="fn-item">
+      <div class="fn-title">⏰ Best Posting Times</div>
+      <div class="fn-text">Carousels & Posters: 9–11 AM. Reels: 6–9 PM. Stories: Throughout the day. Weekend stories: 10 AM–12 PM.</div>
+    </div>
+    <div class="fn-item">
+      <div class="fn-title">💰 Ad Strategy</div>
+      <div class="fn-text">Boost Posts 1, 3, 5 for reach. Run paid ads on Posts 11 & 12 for conversion. Use existing 60+ leads for Custom Audience retargeting.</div>
+    </div>
+    <div class="fn-item">
+      <div class="fn-title">🚀 Phase 3 Trigger</div>
+      <div class="fn-text">Once construction completes → Launch "Grand Opening" campaign with campus reveal content, open house invite, and video tour reel.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function filterWeek(val, btn) {
+    document.querySelectorAll('[onclick^="filterWeek"]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    ['w1','w2','w3','w4'].forEach(w => {
+      const sec = document.getElementById('sec-' + w);
+      sec.style.display = (val === 'all' || val === w) ? 'block' : 'none';
+    });
+  }
+
+  function toggleDetail(btn) {
+    const el = btn.nextElementSibling;
+    el.classList.toggle('open');
+    btn.textContent = el.classList.contains('open') ? '− Hide Creative Direction' : '+ Creative Direction';
+  }
+
+  // ── STATUS BADGE ──────────────────────────────────────────────
+  const statusCycle = [
+    { cls: 'status-not-started', label: 'Not Started' },
+    { cls: 'status-in-progress', label: 'In Progress' },
+    { cls: 'status-ready',       label: 'Ready to Post' },
+    { cls: 'status-posted',      label: 'Posted' },
+  ];
+
+  function cycleStatus(btn) {
+    const current = statusCycle.findIndex(s => btn.classList.contains(s.cls));
+    const next = (current + 1) % statusCycle.length;
+    statusCycle.forEach(s => btn.classList.remove(s.cls));
+    btn.classList.add(statusCycle[next].cls);
+    btn.querySelector('.status-text').textContent = statusCycle[next].label;
+    const card = btn.closest('.post-card') || btn.closest('.story-card');
+    if (card) {
+      card.style.borderColor = {
+        'status-not-started': '#EDE9E0',
+        'status-in-progress': '#F5A623',
+        'status-ready':       '#2EC4A9',
+        'status-posted':      '#22C55E',
+      }[statusCycle[next].cls];
+    }
+  }
+
+  // ── ASSET LINKS ───────────────────────────────────────────────
+  function openAsset(e, btn, type) {
+    e.preventDefault();
+    const currentHref = btn.getAttribute('data-url') || '';
+
+    // If URL already set — open it
+    if (currentHref && currentHref !== '#') {
+      window.open(currentHref, '_blank');
+      return;
+    }
+
+    // Otherwise show input prompt to paste link
+    showLinkModal(btn, type);
+  }
+
+  function showLinkModal(btn, type) {
+    // Remove any existing modal
+    const existing = document.getElementById('link-modal');
+    if (existing) existing.remove();
+
+    const label = type === 'gdrive' ? '📁 Google Drive' : '☁️ OneDrive';
+    const color = type === 'gdrive' ? '#166534' : '#1E40AF';
+
+    const modal = document.createElement('div');
+    modal.id = 'link-modal';
+    modal.style.cssText = `
+      position: fixed; inset: 0; background: rgba(28,43,74,0.45);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9999; animation: fadeIn 0.15s ease;
+    `;
+    modal.innerHTML = `
+      <div style="background:white; border-radius:20px; padding:28px 32px; width:420px; max-width:90vw; box-shadow:0 24px 60px rgba(0,0,0,0.18);">
+        <div style="font-family:'DM Serif Display',serif; font-size:18px; color:#1C2B4A; margin-bottom:6px;">${label} Link</div>
+        <div style="font-size:12px; color:#7A8099; margin-bottom:18px;">Paste your folder link below. It will open directly from this card.</div>
+        <input id="link-input" type="url" placeholder="https://drive.google.com/..." style="
+          width:100%; padding:10px 14px; border-radius:10px;
+          border:1.5px solid #EDE9E0; font-size:13px;
+          font-family:'DM Sans',sans-serif; color:#1C2B4A;
+          outline:none; margin-bottom:16px;
+        " />
+        <div style="display:flex; gap:10px; justify-content:flex-end;">
+          <button onclick="document.getElementById('link-modal').remove()" style="
+            padding:8px 18px; border-radius:50px; border:1.5px solid #EDE9E0;
+            background:white; font-size:12px; font-weight:700; color:#7A8099;
+            cursor:pointer; font-family:'DM Sans',sans-serif;
+          ">Cancel</button>
+          <button onclick="saveLink('${type}')" style="
+            padding:8px 20px; border-radius:50px; border:none;
+            background:${color}; font-size:12px; font-weight:700; color:white;
+            cursor:pointer; font-family:'DM Sans',sans-serif;
+          ">Save Link</button>
+        </div>
+      </div>
+    `;
+
+    // Store reference to the button being edited
+    modal._targetBtn = btn;
+    modal._targetType = type;
+    document.body.appendChild(modal);
+
+    // Focus input
+    setTimeout(() => document.getElementById('link-input').focus(), 50);
+
+    // Close on backdrop click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.remove();
+    });
+  }
+
+  function saveLink(type) {
+    const modal = document.getElementById('link-modal');
+    const url = document.getElementById('link-input').value.trim();
+    if (!url) return;
+
+    const btn = modal._targetBtn;
+    btn.setAttribute('data-url', url);
+
+    // Update button appearance to show link is set
+    btn.classList.remove('asset-btn-empty');
+    if (type === 'gdrive') {
+      btn.classList.add('asset-btn-gdrive');
+      btn.innerHTML = '<span class="asset-icon">📁</span> G Drive ✓';
+    } else {
+      btn.classList.add('asset-btn-onedrive');
+      btn.innerHTML = '<span class="asset-icon">☁️</span> OneDrive ✓';
+    }
+
+    // Update onclick to open directly next time
+    btn.setAttribute('onclick', `openAsset(event, this, '${type}')`);
+
+    modal.remove();
+  }
+</script>
+</body>
+</html>
