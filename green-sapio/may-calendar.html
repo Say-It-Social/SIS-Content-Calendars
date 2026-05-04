@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green Sapio — May Full Content Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#2C4A2E;--sage:#7A9E7E;--wheat:#C8A96E;
+  --cream:#F5F0E8;--bark:#5C3D2E;--clay:#C4714A;
+  --leaf:#4E7C51;--mist:#E8EDE5;--dark:#1A2E1B;--white:#FDFAF5;
+  --ig:#E1306C;--fb:#1877F2;--li:#0A66C2;--yt:#FF0000;--tw:#000;
+  --story:#C13584;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);}
+
+/* HEADER */
+header{background:var(--forest);padding:44px 60px 36px;position:relative;overflow:hidden;}
+header::before{content:'';position:absolute;top:-80px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(200,169,110,0.12) 0%,transparent 70%);border-radius:50%;}
+.h-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:24px;}
+.h-logo{display:flex;align-items:center;gap:14px;}
+.h-icon{width:42px;height:42px;background:var(--wheat);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.h-name{font-family:'Playfair Display',serif;font-size:20px;color:var(--white);}
+.h-sub{font-size:10px;color:var(--sage);letter-spacing:2.5px;text-transform:uppercase;}
+.h-badge{background:rgba(200,169,110,0.15);border:1px solid rgba(200,169,110,0.3);padding:8px 18px;border-radius:100px;font-family:'DM Mono',monospace;font-size:11px;color:var(--wheat);letter-spacing:2px;}
+header h1{font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,34px);color:var(--white);line-height:1.2;}
+header h1 em{color:var(--wheat);font-style:italic;}
+header p{color:var(--sage);font-size:13px;margin-top:10px;font-weight:300;}
+
+/* CONTROLS */
+.controls{background:var(--white);padding:14px 60px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(44,74,46,0.1);box-shadow:0 2px 20px rgba(44,74,46,0.07);}
+.ctrl-label{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--forest);margin-right:4px;}
+.pill{padding:6px 14px;border-radius:100px;border:1.5px solid transparent;font-size:12px;font-weight:500;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;background:var(--mist);color:var(--forest);}
+.pill:hover{background:var(--sage);color:#fff;}
+.pill.active{background:var(--forest);color:#fff;}
+.pill.f-ig.active{background:var(--ig);}
+.pill.f-li.active{background:var(--li);}
+.pill.f-yt.active{background:var(--yt);}
+.pill.f-tw.active{background:#000;}
+.pill.f-story.active{background:var(--story);}
+.sep{width:1px;height:22px;background:rgba(44,74,46,0.15);margin:0 2px;}
+
+/* WEEK HEADER */
+.week-hdr{padding:32px 60px 6px;display:flex;align-items:center;gap:16px;}
+.wk-tag{font-family:'DM Mono',monospace;font-size:10px;color:var(--wheat);letter-spacing:2px;text-transform:uppercase;white-space:nowrap;}
+.wk-line{flex:1;height:1px;background:linear-gradient(to right,rgba(200,169,110,0.25),transparent);}
+.wk-mix{font-size:11px;color:var(--sage);font-family:'DM Mono',monospace;white-space:nowrap;}
+
+/* POST CARD */
+.post{background:var(--white);border-radius:18px;border:1px solid rgba(44,74,46,0.08);overflow:hidden;margin:0 60px 28px;}
+.post:hover{box-shadow:0 12px 40px rgba(44,74,46,0.09);}
+.post.hidden{display:none;}
+.post.tw-post{background:#fafafa;border:1px solid #e5e5e5;}
+.post.story-post{border:2px solid rgba(193,53,132,0.2);background:rgba(193,53,132,0.02);}
+
+/* POST HEADER STRIP */
+.post-hdr{display:flex;align-items:stretch;}
+.post-day{background:var(--forest);color:var(--wheat);font-family:'Playfair Display',serif;font-size:28px;font-weight:700;writing-mode:vertical-lr;text-orientation:mixed;transform:rotate(180deg);padding:18px 12px;display:flex;align-items:center;justify-content:center;min-width:48px;flex-shrink:0;letter-spacing:1px;}
+.post-story-day{background:var(--story);}
+.post-meta{flex:1;padding:18px 22px 16px;border-bottom:1px solid rgba(44,74,46,0.07);}
+.post-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;}
+.ptag{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:100px;font-family:'DM Mono',monospace;}
+.ptag.ig{background:rgba(225,48,108,0.1);color:var(--ig);}
+.ptag.fb{background:rgba(24,119,242,0.1);color:var(--fb);}
+.ptag.li{background:rgba(10,102,194,0.1);color:var(--li);}
+.ptag.yt{background:rgba(255,0,0,0.1);color:var(--yt);}
+.ptag.tw{background:#111;color:#fff;}
+.ptag.story{background:rgba(193,53,132,0.12);color:var(--story);}
+.fmt-badge{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:6px;font-family:'DM Mono',monospace;}
+.fmt-badge.reel{background:rgba(225,48,108,0.08);color:var(--ig);}
+.fmt-badge.static{background:rgba(78,124,81,0.1);color:var(--leaf);}
+.fmt-badge.carousel{background:rgba(200,169,110,0.15);color:var(--bark);}
+.fmt-badge.li{background:rgba(10,102,194,0.08);color:var(--li);}
+.fmt-badge.yt{background:rgba(255,0,0,0.08);color:var(--yt);}
+.fmt-badge.tw{background:#f0f0f0;color:#333;}
+.fmt-badge.story{background:rgba(193,53,132,0.1);color:var(--story);}
+.post-title{font-family:'Playfair Display',serif;font-size:19px;color:var(--forest);font-weight:700;line-height:1.3;margin-top:8px;}
+.post.tw-post .post-title,.post.story-post .post-title{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;}
+
+/* SECTIONS GRID */
+.sections{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.sec{padding:20px 22px;border-right:1px solid rgba(44,74,46,0.06);border-bottom:1px solid rgba(44,74,46,0.06);}
+.sec:nth-child(even){border-right:none;}
+.sec.full{grid-column:1/-1;border-right:none;}
+.sec.dark{background:var(--forest);grid-column:1/-1;border-right:none;}
+.sec.li-bg{background:rgba(10,102,194,0.03);grid-column:1/-1;border-right:none;}
+.sec.story-bg{background:rgba(193,53,132,0.03);grid-column:1/-1;border-right:none;}
+
+.sec-label{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;font-family:'DM Mono',monospace;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.sec-label.light{color:rgba(200,169,110,0.7);}
+.sec-label.default{color:var(--sage);}
+.sec-label.story-col{color:var(--story);}
+.sec-label.li-col{color:var(--li);}
+
+/* CAPTION */
+.caption{font-size:13.5px;line-height:1.85;color:#3d5c3e;white-space:pre-wrap;font-weight:300;}
+.caption strong{font-weight:600;color:var(--forest);}
+
+/* SCENE LIST */
+.scene-list{display:flex;flex-direction:column;gap:8px;}
+.scene{background:var(--mist);border-radius:8px;padding:11px 13px;display:flex;gap:10px;}
+.scene-time{font-family:'DM Mono',monospace;font-size:10px;color:var(--wheat);font-weight:600;flex-shrink:0;margin-top:1px;white-space:nowrap;}
+.scene-body{}
+.scene-vo{font-size:12.5px;color:rgba(255,255,255,0.85);line-height:1.65;font-style:italic;margin-bottom:4px;}
+.scene-overlay{display:inline-block;background:rgba(200,169,110,0.2);color:var(--wheat);font-family:'DM Mono',monospace;font-size:10px;padding:2px 8px;border-radius:4px;margin-top:2px;}
+.scene-note{font-size:12px;color:#4a5e4b;line-height:1.6;}
+.scene-note strong{font-weight:600;color:var(--forest);}
+.dark .scene{background:rgba(255,255,255,0.05);border-left:3px solid var(--wheat);border-radius:0 8px 8px 0;}
+.dark .scene-note{color:rgba(255,255,255,0.7);}
+
+/* DESIGNER BOX */
+.designer-box{display:flex;flex-direction:column;gap:7px;}
+.di{display:flex;gap:9px;padding:8px 10px;background:var(--mist);border-radius:8px;font-size:12.5px;color:#4a5e4b;line-height:1.6;}
+.di-icon{flex-shrink:0;font-size:14px;margin-top:1px;}
+.di strong{font-weight:600;color:var(--forest);}
+
+/* SLIDE GUIDE */
+.slide-guide{display:flex;flex-direction:column;gap:6px;}
+.slide{display:flex;gap:10px;padding:10px 12px;background:var(--mist);border-radius:8px;}
+.slide-num{font-family:'DM Mono',monospace;font-size:11px;font-weight:600;color:var(--wheat);flex-shrink:0;margin-top:1px;}
+.slide-body{font-size:12.5px;color:#4a5e4b;line-height:1.6;}
+.slide-body strong{font-weight:600;color:var(--forest);}
+
+/* HASHTAGS */
+.hashtags{font-size:11px;color:var(--sage);font-family:'DM Mono',monospace;line-height:1.9;padding-top:12px;border-top:1px dashed rgba(44,74,46,0.1);}
+
+/* TWEET */
+.tweet-box{background:#fff;border:1px solid #e1e8ed;border-radius:12px;padding:16px 18px;}
+.tweet-text{font-size:15px;color:#0f0f0f;line-height:1.65;}
+.tweet-text strong{font-weight:700;}
+.tweet-footer{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:10px;border-top:1px solid #f5f5f5;}
+.tweet-chars{font-family:'DM Mono',monospace;font-size:10px;color:#aaa;}
+.tweet-tip{font-size:10px;color:#888;font-style:italic;}
+
+/* STORY BOX */
+.story-box{background:rgba(193,53,132,0.05);border:1px solid rgba(193,53,132,0.15);border-radius:12px;padding:16px 18px;}
+.story-type{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--story);margin-bottom:8px;font-weight:600;}
+.story-copy{font-size:13.5px;color:#3d2a3a;line-height:1.7;white-space:pre-wrap;}
+.story-note{font-size:12px;color:#7a5a72;margin-top:10px;padding-top:10px;border-top:1px dashed rgba(193,53,132,0.15);line-height:1.6;}
+.story-note strong{color:var(--story);font-weight:600;}
+
+/* ARTICLE */
+.article-body{font-size:14px;line-height:1.9;color:#3a4e3b;white-space:pre-wrap;font-weight:300;}
+.article-body strong{font-weight:600;color:var(--forest);}
+
+/* CTA STRIP */
+.cta-strip{background:rgba(196,113,74,0.08);border-top:1px solid rgba(196,113,74,0.15);padding:10px 22px;font-size:12px;color:var(--clay);font-weight:500;display:flex;align-items:center;gap:8px;}
+
+footer{text-align:center;padding:28px;font-size:11px;color:var(--sage);background:var(--forest);font-family:'DM Mono',monospace;letter-spacing:1px;}
+footer span{color:var(--wheat);}
+
+@media(max-width:768px){
+  header,.controls,.week-hdr,.post{padding-left:20px;padding-right:20px;}
+  .post{margin-left:0;margin-right:0;}
+  .sections{grid-template-columns:1fr;}
+  .sec,.sec.full,.sec.dark,.sec.li-bg,.sec.story-bg{grid-column:1/-1;border-right:none;}
+  .script-grid{grid-template-columns:1fr;}
+}
+.script-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.script-col{padding:20px 22px;}
+.script-col:first-child{border-right:1px solid rgba(200,169,110,0.1);}
+.script-col-head{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--wheat);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(200,169,110,0.15);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-top">
+    <div class="h-logo">
+      <div class="h-icon">🌿</div>
+      <div><div class="h-name">Green Sapio</div><div class="h-sub">Harvested from Nature</div></div>
+    </div>
+    <div class="h-badge">📋 MAY 2025 · FULL CONTENT BRIEF · FINAL</div>
+  </div>
+  <h1>May Content Brief —<br><em>Captions · Designer Notes · Scripts · Stories · Articles</em></h1>
+  <p>Every post. Every scene. Every word. Instagram + Facebook · LinkedIn · YouTube · X (Twitter) · Stories</p>
+</header>
+
+<div class="controls">
+  <span class="ctrl-label">Filter</span>
+  <button class="pill active" onclick="filterAll(this)">All</button>
+  <button class="pill f-ig" onclick="filterPlat('ig',this)">📸 IG + FB</button>
+  <button class="pill f-li" onclick="filterPlat('li',this)">💼 LinkedIn</button>
+  <button class="pill f-yt" onclick="filterPlat('yt',this)">▶️ YouTube</button>
+  <button class="pill f-tw" onclick="filterPlat('tw',this)">𝕏 Twitter</button>
+  <button class="pill f-story" onclick="filterPlat('story',this)">📖 Stories</button>
+  <div class="sep"></div>
+  <button class="pill" onclick="filterFmt('reel',this)">🎬 Reels</button>
+  <button class="pill" onclick="filterFmt('static',this)">🖼️ Static</button>
+  <button class="pill" onclick="filterFmt('carousel',this)">📱 Carousels</button>
+  <button class="pill" onclick="filterFmt('article',this)">📰 Articles</button>
+</div>
+
+<!-- ═══════════════════════════════════
+     WEEK 1 · MAY 1–7
+═══════════════════════════════════ -->
+<div class="week-hdr"><span class="wk-tag">Week 1 · May 1–7</span><div class="wk-line"></div><span class="wk-mix">1 Reel · 1 Static · 1 Carousel</span></div>
+
+<!-- ─── DAY 1 · REEL · TEXTURE ASMR ─── -->
+<div class="post" data-plat="ig" data-fmt="reel">
+  <div class="post-hdr">
+    <div class="post-day">01</div>
+    <div class="post-meta">
+      <div class="post-tags">
+        <span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span>
+        <span class="fmt-badge reel">🎬 Reel · 20–25 sec</span>
+      </div>
+      <div class="post-title">The Most Satisfying Leather You've Never Touched</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec">
+      <div class="sec-label default">✍️ Instagram Caption</div>
+      <div class="caption">What does sustainable luxury feel like?
+
+Like this. 🌿
+
+Green Sapio leather — crafted from wheat crop and rice straw waste. 100% biodegradable. Plastic-free. Cruelty-free.
+
+And it feels exactly like the real thing.
+
+📦 DM <strong>SAMPLE</strong> to feel it for yourself.
+
+<strong>#GreenSapio #NatureReMade #VeganLeather #ASMR #TextureCheck #SustainableLuxury #BioBased #EcoFashion #LeatherAlternative #CrueltyFree</strong></div>
+    </div>
+    <div class="sec">
+      <div class="sec-label default">🎨 Designer Notes</div>
+      <div class="designer-box">
+        <div class="di"><span class="di-icon">📱</span><div><strong>Size:</strong> 1080×1920px (9:16 vertical)</div></div>
+        <div class="di"><span class="di-icon">📷</span><div><strong>Camera:</strong> Macro lens or close-up mode. Film at eye level, 2–3cm from the leather surface.</div></div>
+        <div class="di"><span class="di-icon">💡</span><div><strong>Lighting:</strong> Soft natural light from a window. No ring light — too harsh for texture. Golden hour or overcast = ideal.</div></div>
+        <div class="di"><span class="di-icon">🎨</span><div><strong>Colour grade:</strong> Warm, rich tones. Boost texture contrast slightly. No filters that flatten the grain.</div></div>
+        <div class="di"><span class="di-icon">🎵</span><div><strong>Sound:</strong> No music. Only the ambient sound of fingers on leather — the slight drag, the texture. If ambient sound is too quiet, layer a soft ASMR-style room tone.</div></div>
+        <div class="di"><span class="di-icon">✍️</span><div><strong>Text overlays:</strong> None on screen. Let the visual breathe. Green Sapio logo appears bottom-right at 0:18.</div></div>
+      </div>
+    </div>
+    <div class="sec dark">
+      <div class="script-grid">
+        <div class="script-col">
+          <div class="script-col-head">🎙️ Scene-by-Scene Shot List</div>
+          <div class="scene-list">
+            <div class="scene"><span class="scene-time">0:00–0:04</span><div class="scene-body"><div class="scene-note"><strong>Scene 1:</strong> Extreme close-up — index finger enters frame from the right, touches smooth grain leather. Camera is static. Hold on the texture.</div></div></div>
+            <div class="scene"><span class="scene-time">0:04–0:08</span><div class="scene-body"><div class="scene-note"><strong>Scene 2:</strong> Slow pan across croco-embossed grain. The raised pattern catches the light. Finger traces one scale slowly.</div></div></div>
+            <div class="scene"><span class="scene-time">0:08–0:13</span><div class="scene-body"><div class="scene-note"><strong>Scene 3:</strong> Cut to fine-scale grain — different colour (deep burgundy). Thumb presses down gently and releases. Leather springs back.</div></div></div>
+            <div class="scene"><span class="scene-time">0:13–0:18</span><div class="scene-body"><div class="scene-note"><strong>Scene 4:</strong> Overhead pull-back shot — three leather sheets fanned out on a white surface. Different textures side by side. Hand in frame, touching all three.</div></div></div>
+            <div class="scene"><span class="scene-time">0:18–0:22</span><div class="scene-body"><div class="scene-note"><strong>Scene 5 (end):</strong> Green Sapio logo fades in bottom-right. Text: "DM SAMPLE to feel this yourself." Fade to cream.</div></div></div>
+          </div>
+        </div>
+        <div class="script-col">
+          <div class="script-col-head">📺 On-Screen Text Overlays</div>
+          <div class="scene-list">
+            <div class="scene"><span class="scene-time">0:00</span><div class="scene-body"><div class="scene-overlay">No text. Let the texture speak.</div></div></div>
+            <div class="scene"><span class="scene-time">0:13</span><div class="scene-body"><div class="scene-overlay">Wheat straw → Premium leather.</div></div></div>
+            <div class="scene"><span class="scene-time">0:18</span><div class="scene-body"><div class="scene-overlay">DM SAMPLE to feel it yourself 🌿</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-strip">🎯 CTA: DM "SAMPLE"</div>
+</div>
+
+<!-- ─── DAY 1 · STORY ─── -->
+<div class="post story-post" data-plat="story" data-fmt="story">
+  <div class="post-hdr">
+    <div class="post-day post-story-day">01</div>
+    <div class="post-meta">
+      <div class="post-tags"><span class="ptag story">📖 Instagram Story</span><span class="fmt-badge story">Story-Only · Poll</span></div>
+      <div class="post-title">Goes up same day as the Texture Reel</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec story-bg full">
+      <div class="sec-label story-col">📖 Story Content</div>
+      <div class="story-box">
+        <div class="story-type">Format: Poll Sticker on Product Image</div>
+        <div class="story-copy">Background: Close-up macro shot of the croco grain leather (warm orange/tan).
+
+Top text overlay (white, bold):
+"Guess what this is made from 👇"
+
+Poll sticker below centre:
+✅ Cow leather
+🌾 Wheat straw
+
+Add countdown or swipe-up after poll closes:
+"It's wheat straw. And it feels this good. 🌿"</div>
+        <div class="story-note"><strong>Designer note:</strong> 1080×1920px. Warm leather texture fills the frame. Text overlays in white DM Sans bold. Poll sticker centred bottom half. Green Sapio logo top-right corner. No extra graphics — keep it clean and tactile.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── DAY 3 · STATIC · IMPACT STATS ─── -->
+<div class="post" data-plat="ig" data-fmt="static">
+  <div class="post-hdr">
+    <div class="post-day">03</div>
+    <div class="post-meta">
+      <div class="post-tags">
+        <span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span>
+        <span class="fmt-badge static">🖼️ Static Post · 1080×1080</span>
+      </div>
+      <div class="post-title">87% Less Emissions. 72% Less Water. Zero Plastic.</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec">
+      <div class="sec-label default">✍️ Instagram Caption</div>
+      <div class="caption">The numbers don't need a filter. 📊
+
+<strong>87%</strong> fewer carbon emissions than conventional leather.
+<strong>72%</strong> less water used in production.
+<strong>0</strong> plastic in the entire material.
+
+One material switch. Numbers that actually move your ESG report.
+
+This is what Green Sapio's bio-based leather delivers — verified by Eurofins, built from wheat straw waste that would otherwise have been burned.
+
+Save this for your next sustainability conversation. 👆
+
+📦 Request our sample kit — link in bio.
+
+<strong>#GreenSapio #ESGData #SustainableLeather #BioBased #NatureReMade #ClimateAction #VeganLeather #PlasticFree #SustainableMaterials #EcoInnovation</strong></div>
+    </div>
+    <div class="sec">
+      <div class="sec-label default">🎨 Designer Notes</div>
+      <div class="designer-box">
+        <div class="di"><span class="di-icon">📐</span><div><strong>Size:</strong> 1080×1080px</div></div>
+        <div class="di"><span class="di-icon">🎨</span><div><strong>Background:</strong> Deep forest green (#2C4A2E). No imagery — pure typographic design.</div></div>
+        <div class="di"><span class="di-icon">✍️</span><div><strong>Layout:</strong> Three equal vertical thirds. Each third: one large number in Playfair Display (wheat gold, 96pt), one-line label below in DM Sans light (white, 14pt).</div></div>
+        <div class="di"><span class="di-icon">📊</span><div><strong>Three stats:</strong> "87% less emissions" · "72% less water" · "0 plastic"</div></div>
+        <div class="di"><span class="di-icon">〰️</span><div><strong>Dividers:</strong> Thin vertical lines in sage green between each third. Subtle, not heavy.</div></div>
+        <div class="di"><span class="di-icon">🏷️</span><div><strong>Bottom bar:</strong> Thin wheat-gold line. Below: "Verified by Eurofins · greensapio.com" in DM Mono, 10pt, sage green.</div></div>
+        <div class="di"><span class="di-icon">🌿</span><div><strong>Logo:</strong> Green Sapio logo top-centre, white version, small.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-strip">🎯 CTA: "Save this for your next sustainability meeting."</div>
+</div>
+
+<!-- ─── DAY 3 · STORY ─── -->
+<div class="post story-post" data-plat="story" data-fmt="story">
+  <div class="post-hdr">
+    <div class="post-day post-story-day">03</div>
+    <div class="post-meta">
+      <div class="post-tags"><span class="ptag story">📖 Instagram Story</span><span class="fmt-badge story">Repurposed Post + Question Box</span></div>
+      <div class="post-title">Goes up same day as the Impact Stats Post</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec story-bg full">
+      <div class="sec-label story-col">📖 Story Content</div>
+      <div class="story-box">
+        <div class="story-type">Format: Repurposed static post + Question Box sticker</div>
+        <div class="story-copy">Share the stats post to story (tap share → add to story).
+
+Add question box sticker below:
+"Which of these numbers surprised you most?"
+
+After 24hrs, share the most common answer in the next story frame:
+"Most of you said [X]. Here's why that matters 👇"
+→ Swipe up / link to greensapio.com</div>
+        <div class="story-note"><strong>Designer note:</strong> Post image fills the story frame. Question box sticker centred below the image. Keep the sticker green or neutral — don't clash with the forest green graphic.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── DAY 6 · CAROUSEL · GRAIN SHOWCASE ─── -->
+<div class="post" data-plat="ig" data-fmt="carousel">
+  <div class="post-hdr">
+    <div class="post-day">06</div>
+    <div class="post-meta">
+      <div class="post-tags">
+        <span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span>
+        <span class="fmt-badge carousel">📱 Carousel · 5 Slides</span>
+      </div>
+      <div class="post-title">One Material. Every Texture You Need.</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec">
+      <div class="sec-label default">✍️ Instagram Caption</div>
+      <div class="caption">Sustainability shouldn't mean settling for less. 🌿
+
+At Green Sapio, we offer premium bio-based leather in a range of grains and textures — each as beautiful as it is responsible.
+
+From croco-embossed to smooth grain, in shades from deep burgundy to warm tan — our material is designed for brands that refuse to choose between luxury and conscience.
+
+Swipe through to explore our range →
+
+Every texture is available in your brand's colourways.
+Every sheet gives waste a new life.
+
+📦 DM <strong>SAMPLE</strong> to request your free sample kit.
+🌐 greensapio.com
+
+<strong>#GreenSapio #VeganLeather #TextureDesign #SustainableMaterials #NatureReMade #EcoElegance #LeatherAlternative #BioBased #SustainableLuxury #GrainLeather</strong></div>
+    </div>
+    <div class="sec">
+      <div class="sec-label default">🎨 Slide-by-Slide Designer Guide</div>
+      <div class="slide-guide">
+        <div class="slide"><span class="slide-num">S1</span><div class="slide-body"><strong>Cover slide:</strong> "One Material. Every Texture." — Playfair serif, white on forest green. Bottom-right: 2×2 mosaic of texture thumbnails as a teaser. Green Sapio logo top-left.</div></div>
+        <div class="slide"><span class="slide-num">S2</span><div class="slide-body"><strong>Smooth Grain (red/burgundy):</strong> Full-bleed macro texture photo. Bottom overlay bar (dark, 30% opacity): "Smooth Grain · Fashion & Apparel" — DM Mono, white.</div></div>
+        <div class="slide"><span class="slide-num">S3</span><div class="slide-body"><strong>Croco Embossed (dark charcoal):</strong> Same layout. Label: "Croco Embossed · Accessories & Bags"</div></div>
+        <div class="slide"><span class="slide-num">S4</span><div class="slide-body"><strong>Burnt Orange Croco:</strong> Warm, rich orange. Label: "Burnt Orange · Automotive Interiors"</div></div>
+        <div class="slide"><span class="slide-num">S5</span><div class="slide-body"><strong>CTA slide:</strong> Forest green background. Centre text: "Ask for our sample kit." Wheat serif headline, DM Sans body. "DM SAMPLE or visit greensapio.com" below. Logo centred bottom.</div></div>
+      </div>
+    </div>
+    <div class="sec full">
+      <div class="sec-label default">🏷️ Hashtags</div>
+      <div class="hashtags">#GreenSapio #VeganLeather #TextureDesign #SustainableMaterials #NatureReMade #EcoElegance #LeatherAlternative #BioBased #SustainableLuxury #GrainLeather #EcoFashion #ConsciousDesign</div>
+    </div>
+  </div>
+  <div class="cta-strip">🎯 CTA: DM "SAMPLE" to request free sample kit</div>
+</div>
+
+<!-- ─── DAY 6 · STORY ─── -->
+<div class="post story-post" data-plat="story" data-fmt="story">
+  <div class="post-hdr">
+    <div class="post-day post-story-day">06</div>
+    <div class="post-meta">
+      <div class="post-tags"><span class="ptag story">📖 Instagram Story</span><span class="fmt-badge story">Story-Only · Swipe Poll</span></div>
+      <div class="post-title">Goes up same day as the Grain Carousel</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec story-bg full">
+      <div class="sec-label story-col">📖 Story Content</div>
+      <div class="story-box">
+        <div class="story-type">Format: 2-frame story sequence</div>
+        <div class="story-copy">Frame 1 — Poll:
+Background: Croco embossed texture close-up (dark grain)
+Top text: "Which grain is your favourite? 👇"
+Poll options: "🐊 Croco" vs "✨ Smooth"
+
+Frame 2 — Swipe CTA (post after 6hrs):
+Background: CTA slide from the carousel (forest green)
+Text: "Both available in your brand's colourway."
+Link sticker: "Request your sample kit →" → greensapio.com</div>
+        <div class="story-note"><strong>Designer note:</strong> Keep frame 1 tactile and visual. Frame 2 clean and conversion-focused. Both frames: 1080×1920px. Logo top-right on both.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── WEEK 1 · LINKEDIN POSTS ─── -->
+<div class="post" data-plat="li" data-fmt="article">
+  <div class="post-hdr">
+    <div class="post-day">02</div>
+    <div class="post-meta">
+      <div class="post-tags"><span class="ptag li">LinkedIn</span><span class="fmt-badge li">📝 Post · Monday</span></div>
+      <div class="post-title">Month 1 Is Done. Here's What We Learned — And What May Looks Like.</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec li-bg full">
+      <div class="sec-label li-col">✍️ Full LinkedIn Post Copy</div>
+      <div class="caption">30 days ago, Green Sapio posted for the first time.
+
+Zero followers. Zero brand presence. Just a product, a mission, and a belief that the materials industry was ready to change.
+
+Here's what Month 1 told us.
+
+The content that performed best wasn't the polished product photography. It was the process Reels. The texture close-ups. The material in motion.
+
+Which tells us something important: people don't just want to know about sustainable leather. They want to see it. Feel it — even through a screen.
+
+That's what May is built around.
+
+This month, we're going deeper into the material — the science behind it, the process that makes it, and the industries it's built for. We're also going to introduce you to the farmers whose crop residue becomes our raw material. And the founders who walked away from established careers to build this.
+
+If you've been following Green Sapio since Day 1 — thank you. You're watching something being built in real time.
+
+If you're new here: welcome. We make premium bio-based leather from wheat crop and rice straw waste. 87% fewer emissions. 72% less water. Zero plastic. Fully biodegradable. Eurofins verified.
+
+And we're just getting started.
+
+One question to kick off May: what do you most want to understand about sustainable materials? Drop it in the comments — I'll answer every one personally.
+
+<strong>CA Tarun Sharma</strong>
+Co-founder & CEO, Green Sapio
+catarun@greensapio.com
+
+<strong>#GreenSapio #Month2 #SustainableMaterials #ESG #NatureReMade #StartupJourney #BioBased #VeganLeather #FounderStory</strong></div>
+    </div>
+  </div>
+  <div class="cta-strip">🎯 CTA: Comment with questions for Tarun to answer personally</div>
+</div>
+
+<div class="post" data-plat="li" data-fmt="article">
+  <div class="post-hdr">
+    <div class="post-day">05</div>
+    <div class="post-meta">
+      <div class="post-tags"><span class="ptag li">LinkedIn</span><span class="fmt-badge li">📰 Article · Friday</span></div>
+      <div class="post-title">What Makes a Material "Truly" Biodegradable? Most Brands Get This Wrong.</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec li-bg full">
+      <div class="sec-label li-col">✍️ Full LinkedIn Article</div>
+      <div class="article-body">If you've ever heard a supplier describe their product as "biodegradable" and felt vaguely reassured — this article is for you.
+
+The term is everywhere. Packaging, textiles, leather alternatives, retail bags. It has become a comfort word — the kind that lands in a product description and makes the problem feel solved.
+
+It rarely is.
+
+<strong>The Three Categories Most People Don't Know Exist</strong>
+
+When a material is described as biodegradable, it typically falls into one of three very different categories. The distinction between them determines whether a sustainability claim is credible — or a liability.
+
+<strong>Category 1: Partially Bio-Based</strong>
+This is the most common category — and the most misrepresented. A partially bio-based material contains some plant or agricultural content, but is blended with synthetic polymers (usually polyurethane or polyester) to achieve the performance properties required for commercial use.
+
+Many of the "cactus leather," "apple leather," and "mushroom leather" alternatives currently on the market fall here. They are innovations — genuinely — but their biodegradation is incomplete. The natural component breaks down. The synthetic binder does not. What's left is microplastic residue.
+
+Claiming a partially bio-based material is "biodegradable" is technically inaccurate. In several EU markets, it is now approaching the territory of an unsubstantiated green claim.
+
+<strong>Category 2: Compostable Under Industrial Conditions</strong>
+Some materials are genuinely free of synthetic polymers and will break down — but only under specific conditions: temperatures above 55°C, controlled humidity, active microbial environments. These conditions exist in industrial composting facilities. They do not exist in landfill, in the ocean, or in the average consumer's environment.
+
+"Compostable" and "biodegradable" are not the same thing. A material that requires an industrial composting facility to break down is not biodegradable in any meaningful real-world sense.
+
+<strong>Category 3: Fully Biodegradable — End to End</strong>
+This is the category that actually warrants the claim. A fully biodegradable material breaks down in natural environmental conditions — soil, water, ambient temperature — without leaving synthetic residue. The entire material, not just the surface layer. Not just the natural component. All of it.
+
+This is the category Green Sapio's leather sits in.
+
+Our material is 100% bio-based from source to finished product. No polyurethane binders. No polyester backing. No synthetic components at any stage of production. It is processed through a bio-based technology developed in partnership with CSIR-NIIST, India's premier R&D institute, and has been independently verified by Eurofins.
+
+<strong>Three Questions to Ask Your Supplier</strong>
+
+If you're a brand evaluating a sustainable leather alternative — from any supplier, not just Green Sapio — here are the three questions that will immediately clarify whether their biodegradability claim holds:
+
+1. Is the entire material bio-based — including binders, backings, and coatings — or only the surface layer?
+2. Under what specific conditions does it biodegrade? Does it require industrial composting infrastructure?
+3. Has it been independently verified by a recognised third-party laboratory? Can you share that documentation?
+
+If the answers are "mostly," "industrial composting," and "not yet" — the claim is not what it appears to be.
+
+<strong>Why This Matters for Your Brand</strong>
+
+The EU Green Claims Directive is already in motion. It requires brands operating in EU markets to substantiate environmental claims with verifiable, third-party evidence. The framework for enforcement is being built now, and brands that have built marketing narratives around loosely defined sustainability terms are beginning to understand the exposure that creates.
+
+Beyond regulation, there is the simpler issue of trust. Consumers — particularly B2B buyers making supply chain commitments — are becoming more sophisticated. The question is no longer "is this better than animal leather?" The question is "can you prove it's actually sustainable?"
+
+The brands that can answer yes — with data, with third-party verification, with supply chain transparency — will be in a fundamentally stronger position in three years.
+
+The brands that can't will be managing that story instead of building on it.
+
+<strong>A Note on Green Sapio</strong>
+
+We built our material around the intent to be genuinely, verifiably biodegradable — not because the marketing required it, but because we believed that was the only honest starting point.
+
+Our leather is available to B2B brand partners across fashion, automotive, furniture, and accessories. If you want the technical datasheet, the Eurofins verification, or simply a sample kit to feel the material before deciding — reach out.
+
+📩 catarun@greensapio.com
+🌐 greensapio.com
+
+What questions do you still have about biodegradable materials? I'm happy to go deeper on any of this in the comments.
+
+<strong>#GreenSapio #Biodegradable #SustainableMaterials #ESG #CircularEconomy #BioBased #VeganLeather #Greenwashing #SustainableFashion #MaterialInnovation</strong></div>
+    </div>
+  </div>
+  <div class="cta-strip">🎯 CTA: Datasheet request + comment engagement</div>
+</div>
+
+<!-- WEEK 1 X TWEETS -->
+<div class="post tw-post" data-plat="tw" data-fmt="tw">
+  <div class="post-hdr">
+    <div class="post-day">02</div>
+    <div class="post-meta">
+      <div class="post-tags"><span class="ptag tw">𝕏 Twitter</span><span class="fmt-badge tw">Tweet · Tue</span></div>
+      <div class="post-title">Week 1 Tweet #1</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec full">
+      <div class="tweet-box">
+        <div class="tweet-text">Conventional leather uses <strong>17,000 litres of water</strong> per kilogram.<br><br>Ours uses 72% less.<br><br>Same luxury. Very different footprint. <strong>#GreenSapio</strong></div>
+        <div class="tweet-footer"><span class="tweet-chars">~105 chars</span><span class="tweet-tip">No image needed. Post between 9–11am IST.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="post tw-post" data-plat="tw" data-fmt="tw">
+  <div class="post-hdr">
+    <div class="post-day">04</div>
+    <div class="post-meta">
+      <div class="post-tags"><span class="ptag tw">𝕏 Twitter</span><span class="fmt-badge tw">Tweet · Thu</span></div>
+      <div class="post-title">Week 1 Tweet #2</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec full">
+      <div class="tweet-box">
+        <div class="tweet-text">Most "vegan leather" is just <strong>polyurethane plastic</strong>.<br><br>Petroleum-based. Takes 500+ years to break down. Sheds microplastics.<br><br>The label says vegan. The material says fossil fuel. <strong>#GreenSapio #NatureReMade</strong></div>
+        <div class="tweet-footer"><span class="tweet-chars">~148 chars</span><span class="tweet-tip">Post day after the texture Reel for maximum reach overlap.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     WEEK 2 · MAY 8–14
+═══════════════════════════════════ -->
+<div class="week-hdr"><span class="wk-tag">Week 2 · May 8–14</span><div class="wk-line"></div><span class="wk-mix">1 Reel · 2 Static · 1 Carousel</span></div>
+
+<!-- ─── DAY 8 · REEL · WATER TEST ─── -->
+<div class="post" data-plat="ig" data-fmt="reel">
+  <div class="post-hdr">
+    <div class="post-day">08</div>
+    <div class="post-meta">
+      <div class="post-tags">
+        <span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span>
+        <span class="fmt-badge reel">🎬 Reel · 20 sec</span>
+      </div>
+      <div class="post-title">We Poured Water on It. Watch What Happens.</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec">
+      <div class="sec-label default">✍️ Instagram Caption</div>
+      <div class="caption">Still think sustainable means fragile? 💧
+
+Watch what happens when water meets Green Sapio leather.
+
+Water-resistant. Tear-proof. Fully biodegradable.
+Eurofins verified. Made from wheat straw.
+
+That's not a compromise — that's an upgrade.
+
+📦 DM <strong>SAMPLE</strong> to request your free kit.
+
+<strong>#GreenSapio #WaterResistant #VeganLeather #SustainableQuality #BioBased #NatureReMade #EcoLuxury #Eurofins #DurabilityTest #CrueltyFree</strong></div>
+    </div>
+    <div class="sec">
+      <div class="sec-label default">🎨 Designer Notes</div>
+      <div class="designer-box">
+        <div class="di"><span class="di-icon">📱</span><div><strong>Size:</strong> 1080×1920px vertical</div></div>
+        <div class="di"><span class="di-icon">🎥</span><div><strong>Camera:</strong> Film at 120fps (slow motion). Mount camera directly above the leather sheet — top-down perspective.</div></div>
+        <div class="di"><span class="di-icon">💡</span><div><strong>Lighting:</strong> Overhead diffused light. Avoid direct flash — creates glare on the water droplets. Soft box or natural light from above.</div></div>
+        <div class="di"><span class="di-icon">💧</span><div><strong>Water:</strong> Pour slowly and steadily from a small jug or glass — not a tap. The pour itself should be visible entering frame from the top.</div></div>
+        <div class="di"><span class="di-icon">🎵</span><div><strong>Sound:</strong> Water sound only — no music. The sound of water beading and rolling off is the entire point. Amplify in post if needed.</div></div>
+        <div class="di"><span class="di-icon">🎨</span><div><strong>Leather choice:</strong> Use a mid-tone leather (tan or warm brown) — water beads show up clearly against mid-tones, less clearly on very dark or very light.</div></div>
+      </div>
+    </div>
+    <div class="sec dark">
+      <div class="script-grid">
+        <div class="script-col">
+          <div class="script-col-head">🎙️ Scene-by-Scene Shot List</div>
+          <div class="scene-list">
+            <div class="scene"><span class="scene-time">0:00–0:04</span><div class="scene-body"><div class="scene-note"><strong>Scene 1:</strong> Top-down shot. Leather sheet fills the frame. Still. Water jug enters frame from top. Slow pour begins. Slow motion — 120fps played at 30fps = 4x slow.</div></div></div>
+            <div class="scene"><span class="scene-time">0:04–0:10</span><div class="scene-body"><div class="scene-note"><strong>Scene 2:</strong> Water hits leather surface — beads form immediately, roll to the edges. Close-up holds steady. The surface stays perfectly dry beneath the water.</div></div></div>
+            <div class="scene"><span class="scene-time">0:10–0:15</span><div class="scene-body"><div class="scene-note"><strong>Scene 3:</strong> Tilt to side — water runs off cleanly. Leather is completely dry. Hand enters frame to tilt the sheet, showing clean underside.</div></div></div>
+            <div class="scene"><span class="scene-time">0:15–0:20</span><div class="scene-body"><div class="scene-note"><strong>Scene 4 (end):</strong> Return to top-down. Three text lines appear one by one. Fade out to Green Sapio logo on cream.</div></div></div>
+          </div>
+        </div>
+        <div class="script-col">
+          <div class="script-col-head">📺 On-Screen Text Overlays</div>
+          <div class="scene-list">
+            <div class="scene"><span class="scene-time">0:00</span><div class="scene-body"><div class="scene-overlay">No text.</div></div></div>
+            <div class="scene"><span class="scene-time">0:10</span><div class="scene-body"><div class="scene-overlay">Water-resistant. ✓</div></div></div>
+            <div class="scene"><span class="scene-time">0:13</span><div class="scene-body"><div class="scene-overlay">Tear-proof. ✓</div></div></div>
+            <div class="scene"><span class="scene-time">0:15</span><div class="scene-body"><div class="scene-overlay">Fully biodegradable. ✓</div></div></div>
+            <div class="scene"><span class="scene-time">0:18</span><div class="scene-body"><div class="scene-overlay">Tag a brand that needs to see this. 👇</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-strip">🎯 CTA: "Tag a brand that needs to see this."</div>
+</div>
+
+<!-- ─── DAY 8 · STORY ─── -->
+<div class="post story-post" data-plat="story" data-fmt="story">
+  <div class="post-hdr">
+    <div class="post-day post-story-day">08</div>
+    <div class="post-meta">
+      <div class="post-tags"><span class="ptag story">📖 Instagram Story</span><span class="fmt-badge story">Repurposed Reel + CTA</span></div>
+      <div class="post-title">Goes up same day as Water Test Reel</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec story-bg full">
+      <div class="sec-label story-col">📖 Story Content</div>
+      <div class="story-box">
+        <div class="story-type">Format: 2-frame story</div>
+        <div class="story-copy">Frame 1 — Reel clip shared to story:
+Share the water test Reel to story.
+Add text sticker at top: "We poured water on it 💧"
+Add poll sticker: "Impressed?" → Yes 🌊 / Already knew 🙄
+
+Frame 2 — BTS still (post 2–3hrs after frame 1):
+Photo: The leather sheet from above, slightly wet at edges but dry in centre.
+Top text: "The Eurofins certification means this isn't just a claim."
+Link sticker: "See our full material specs →" → greensapio.com</div>
+        <div class="story-note"><strong>Designer note:</strong> Frame 2 is a still image — shoot it during the same session as the Reel. Simple overhead shot. White or cream surface underneath the leather. No extra graphics needed.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── DAY 10 · STATIC · CREDENTIALS ─── -->
+<div class="post" data-plat="ig" data-fmt="static">
+  <div class="post-hdr">
+    <div class="post-day">10</div>
+    <div class="post-meta">
+      <div class="post-tags">
+        <span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span>
+        <span class="fmt-badge static">🖼️ Static Post · 1080×1080</span>
+      </div>
+      <div class="post-title">Refined Luxury. Superior Performance. Authentically Sustainable.</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec">
+      <div class="sec-label default">✍️ Instagram Caption</div>
+      <div class="caption">Three things you don't have to compromise on. 🌿
+
+<strong>Refined Luxury</strong>
+Soft, durable, and indistinguishable from high-end leather. Available in 9+ grains and colourways.
+
+<strong>Superior Performance</strong>
+Water-resistant, tear-proof, and built to last. Verified by Eurofins.
+
+<strong>Authentically Sustainable</strong>
+100% bio-based. Plastic-free. Chemical-free. Fully biodegradable. Made from crop waste — not fossil fuels.
+
+This is what Green Sapio delivers.
+
+📦 Request your sample kit — link in bio.
+
+<strong>#GreenSapio #VeganLeather #EcoLuxury #SustainableMaterials #NatureReMade #BioBased #Eurofins #SustainableLuxury #LeatherAlternative #CrueltyFree</strong></div>
+    </div>
+    <div class="sec">
+      <div class="sec-label default">🎨 Designer Notes</div>
+      <div class="designer-box">
+        <div class="di"><span class="di-icon">📐</span><div><strong>Size:</strong> 1080×1080px</div></div>
+        <div class="di"><span class="di-icon">🖼️</span><div><strong>Background:</strong> Full-bleed macro leather texture photo at 25% opacity. Warm tan grain. Overlay: white card panel centred, 80% width, rounded corners (16px).</div></div>
+        <div class="di"><span class="di-icon">📊</span><div><strong>Layout inside panel:</strong> Three rows. Each: small icon (line art, forest green) + bold heading (Playfair, forest green, 18pt) + 1–2 line description (DM Sans light, dark, 12pt).</div></div>
+        <div class="di"><span class="di-icon">🎨</span><div><strong>Icons:</strong> Row 1: star/luxury icon. Row 2: upward arrow/performance. Row 3: leaf/nature. Keep icon style consistent — all outline, same weight.</div></div>
+        <div class="di"><span class="di-icon">🏷️</span><div><strong>Bottom of panel:</strong> "Verified by Eurofins" — Eurofins logo + DM Mono text. Sage green colour.</div></div>
+        <div class="di"><span class="di-icon">🌿</span><div><strong>Logo:</strong> Top-right of the overall image, outside the white panel. White version on the texture background.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-strip">🎯 CTA: "Request your sample kit — link in bio."</div>
+</div>
+
+<!-- ─── DAY 12 · STATIC · FARMER STORY ─── -->
+<div class="post" data-plat="ig" data-fmt="static">
+  <div class="post-hdr">
+    <div class="post-day">12</div>
+    <div class="post-meta">
+      <div class="post-tags">
+        <span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span>
+        <span class="fmt-badge static">🖼️ Static Post · 1080×1080</span>
+      </div>
+      <div class="post-title">This Straw Was Going to Be Burned. We Offered to Buy It Instead.</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec">
+      <div class="sec-label default">✍️ Instagram Caption</div>
+      <div class="caption">Every sheet of Green Sapio leather starts here. 🌾
+
+A farmer. A field. Crop residue that the world had written off as waste.
+
+Before Green Sapio, this straw had two options: burn it and choke the air, or leave it and block the next crop.
+
+We offered a third option: sell it to us.
+
+Now that farmer earns from what was once a disposal problem. The air stays cleaner. And the straw becomes something beautiful.
+
+This is what circular economy looks like in practice — not on a slide deck.
+
+Every sheet gives waste a new life.
+
+🌐 greensapio.com
+
+<strong>#GreenSapio #FarmerFirst #CircularEconomy #IndianFarmer #NatureReMade #SustainableSupplyChain #AgriWaste #BioBased #CropWaste #ImpactBusiness</strong></div>
+    </div>
+    <div class="sec">
+      <div class="sec-label default">🎨 Designer Notes</div>
+      <div class="designer-box">
+        <div class="di"><span class="di-icon">📷</span><div><strong>Photo:</strong> Real farmer in a wheat or rice field — golden hour lighting preferred. If using Green Sapio's actual supplier farmer, great. Otherwise: authentic-looking stock (Indian farmer, natural, non-staged).</div></div>
+        <div class="di"><span class="di-icon">✍️</span><div><strong>Text overlay:</strong> Bottom-left corner only. White text, DM Sans, small. Two lines: "This straw was going to be burned." / "We offered to buy it instead." Subtle text shadow for legibility.</div></div>
+        <div class="di"><span class="di-icon">🎨</span><div><strong>Colour grade:</strong> Warm, golden. Slightly desaturate the background. Keep the farmer and straw in focus — bokeh on the field behind if possible.</div></div>
+        <div class="di"><span class="di-icon">🌿</span><div><strong>Logo:</strong> Bottom-right. White. Small. Don't let it compete with the photo.</div></div>
+        <div class="di"><span class="di-icon">⚠️</span><div><strong>Important:</strong> No graphic overlays, no infographics. This post is 100% photographic. Let the image carry the emotion.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-strip">🎯 CTA: "This is what circular economy feels like. Follow for more."</div>
+</div>
+
+<!-- ─── DAY 13 · CAROUSEL · MYTH BUSTING ─── -->
+<div class="post" data-plat="ig" data-fmt="carousel">
+  <div class="post-hdr">
+    <div class="post-day">13</div>
+    <div class="post-meta">
+      <div class="post-tags">
+        <span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span>
+        <span class="fmt-badge carousel">📱 Carousel · 5 Slides</span>
+      </div>
+      <div class="post-title">"Sustainable Leather Can't Match Real Quality." Let's Settle This.</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec">
+      <div class="sec-label default">✍️ Instagram Caption</div>
+      <div class="caption">We've heard every excuse not to switch. 
+
+So let's settle this once and for all. 🌿
+
+Swipe through the 4 biggest myths about sustainable leather alternatives — and what the data actually says.
+
+Spoiler: the excuses are running out.
+
+📦 Still not convinced? DM <strong>SAMPLE</strong> — feel the difference yourself.
+
+<strong>#GreenSapio #MythBusting #VeganLeather #SustainableQuality #NatureReMade #BioBased #EcoFashion #NoExcuses #SustainableMaterials #LeatherAlternative</strong></div>
+    </div>
+    <div class="sec">
+      <div class="sec-label default">🎨 Slide-by-Slide Designer Guide</div>
+      <div class="slide-guide">
+        <div class="slide"><span class="slide-num">S1</span><div class="slide-body"><strong>Cover:</strong> "4 Myths About Sustainable Leather. Debunked." — Dark forest green bg. Bold Playfair title in white. Two small icons: red ✗ left, green ✓ right. Wheat-gold underline below title.</div></div>
+        <div class="slide"><span class="slide-num">S2</span><div class="slide-body"><strong>Myth 1 — "It's fragile":</strong> Top half: "MYTH" in red + myth text in bold. Horizontal divider line. Bottom half: "FACT" in forest green + "Water-resistant, tear-proof, and Eurofins-verified for durability." Cream background.</div></div>
+        <div class="slide"><span class="slide-num">S3</span><div class="slide-body"><strong>Myth 2 — "It looks fake":</strong> Same layout. Fact: "Available in 9+ grain textures. Soft, rich, and indistinguishable from high-end leather." Add a small texture thumbnail bottom-right.</div></div>
+        <div class="slide"><span class="slide-num">S4</span><div class="slide-body"><strong>Myth 3 — "It won't last":</strong> Same layout. Fact: "Built for performance. Fully biodegradable only at end of life — not during it."</div></div>
+        <div class="slide"><span class="slide-num">S5</span><div class="slide-body"><strong>CTA slide:</strong> Forest green bg. Centre: "Still not sure? Feel it first." Wheat serif. Below: "DM SAMPLE for your free kit." Logo centred bottom.</div></div>
+      </div>
+    </div>
+    <div class="sec full">
+      <div class="sec-label default">🏷️ Hashtags</div>
+      <div class="hashtags">#GreenSapio #MythBusting #VeganLeather #SustainableQuality #NatureReMade #BioBased #EcoFashion #SustainableLuxury #LeatherAlternative #Eurofins</div>
+    </div>
+  </div>
+  <div class="cta-strip">🎯 CTA: DM "SAMPLE" to feel the difference</div>
+</div>
+
+<!-- ─── DAY 13 · STORY ─── -->
+<div class="post story-post" data-plat="story" data-fmt="story">
+  <div class="post-hdr">
+    <div class="post-day post-story-day">13</div>
+    <div class="post-meta">
+      <div class="post-tags"><span class="ptag story">📖 Instagram Story</span><span class="fmt-badge story">Story-Only · Question Box</span></div>
+      <div class="post-title">Goes up same day as Myth-Busting Carousel</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec story-bg full">
+      <div class="sec-label story-col">📖 Story Content</div>
+      <div class="story-box">
+        <div class="story-type">Format: 2-frame story sequence</div>
+        <div class="story-copy">Frame 1 — Myth teaser:
+Background: Cover slide from the carousel (forest green).
+Text sticker: "Which myth did you believe? 👀"
+Poll: "It's fragile 😬" vs "I always knew it works ✅"
+
+Frame 2 — Question box (post 3hrs later):
+Background: Cream with the Green Sapio logo centred.
+Text: "What's YOUR biggest concern about switching to sustainable leather?"
+Question box sticker below.
+Small text: "We answer every single one. 👇"</div>
+        <div class="story-note"><strong>Designer note:</strong> Frame 1 reuses the carousel cover — no new design needed. Frame 2: clean, minimal, cream background. Logo centred top. Question box sticker prominent and large. This story drives DMs that become B2B leads.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WEEK 2 LINKEDIN -->
+<div class="post" data-plat="li" data-fmt="article">
+  <div class="post-hdr">
+    <div class="post-day">09</div>
+    <div class="post-meta">
+      <div class="post-tags"><span class="ptag li">LinkedIn</span><span class="fmt-badge li">📰 Article · Monday</span></div>
+      <div class="post-title">The EU Green Claims Directive Is Coming. Is Your Brand's Leather Story Ready?</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec li-bg full">
+      <div class="sec-label li-col">✍️ Full LinkedIn Article</div>
+      <div class="article-body">There is a regulatory shift underway in Europe that will affect every brand making environmental claims — about their packaging, their materials, their supply chains, and their products.
+
+It is called the EU Green Claims Directive. And if your brand sells into European markets and uses the words "eco-friendly," "sustainable," "natural," "green," or "biodegradable" in any context — including your leather — you need to understand what it means.
+
+<strong>What the Green Claims Directive Actually Requires</strong>
+
+The directive, adopted by the European Parliament in early 2024, establishes a binding legal framework for environmental marketing claims across EU member states. It requires that any environmental claim made by a brand must be:
+
+1. Substantiated by independent, scientific evidence
+2. Verified by an accredited third-party body before it is made publicly
+3. Specific — broad terms like "eco-friendly" or "sustainable" without qualification are prohibited
+4. Comparative claims (e.g., "more sustainable than conventional leather") must be based on equivalent methodology applied to both products
+
+The enforcement timeline varies by member state, but brands are already being advised to audit their claims now. The window for proactive compliance is open. The window for reactive damage control is narrowing.
+
+<strong>What This Means for Your Leather</strong>
+
+If your brand uses animal leather: the environmental footprint of animal leather production — water use, methane emissions, chemical tanning, land use — is now the subject of scrutiny that is difficult to counter without a clear transition roadmap.
+
+If your brand uses PU vegan leather and markets it as sustainable: this is the highest-risk position under the directive. Polyurethane is petroleum-derived, does not biodegrade, and sheds microplastics. A claim of sustainability or eco-friendliness attached to PU leather is — under the directive's framework — almost certainly unsubstantiated. Brands in this position should seek legal and sustainability counsel urgently.
+
+If your brand uses a partially bio-based leather alternative: the risk depends entirely on the specific claim being made. "Made with plant-based materials" may be defensible if accurate. "Biodegradable" or "sustainable" applied to a material with synthetic polymer content is likely not.
+
+<strong>What a Defensible Position Looks Like</strong>
+
+A brand that can demonstrate the following is in a strong position under the directive:
+
+— Materials sourced from verified, renewable or recycled origins (documented supply chain)
+— Independent third-party testing confirming the specific claims made (e.g., Eurofins, Bureau Veritas, SGS)
+— Claims that are specific and measurable (e.g., "87% fewer carbon emissions than conventional leather in production" rather than "sustainable")
+— Full lifecycle transparency, including end-of-life behaviour of the material
+
+Green Sapio's bio-based leather is designed to meet each of these criteria. Our material is 100% bio-based. It is independently verified by Eurofins. Our emissions and water reduction data is specific and measured. And the material fully biodegrades at end of life — in natural conditions, not only under industrial composting.
+
+We are not sharing this to suggest our material is the only option. We are sharing it because we believe brands deserve a clear-eyed picture of where the regulatory landscape is heading — and what genuine compliance looks like in practice.
+
+<strong>What to Do Now</strong>
+
+If you haven't already, conduct an audit of every environmental claim attached to your current materials. For each claim, ask: can we substantiate this with independent, third-party evidence? If the answer is no — or not yet — that is worth prioritising before the enforcement window closes.
+
+If you'd like to understand what a material switch to a genuinely verifiable, third-party-tested bio-based leather looks like in practice, we're happy to walk through it.
+
+📩 catarun@greensapio.com
+🌐 greensapio.com
+
+Is your brand's materials claim ready for the Green Claims Directive? Genuinely curious what people are finding when they audit this.
+
+<strong>#ESGCompliance #GreenClaimsDirective #SustainableFashion #GreenSapio #Greenwashing #EURegulation #BioBased #MaterialInnovation #SustainableMaterials #B2B</strong></div>
+    </div>
+  </div>
+  <div class="cta-strip">🎯 CTA: Audit prompt + direct email for consultation</div>
+</div>
+
+<!-- ═══════════════════════════════════
+     WEEK 3 · MAY 15–21
+═══════════════════════════════════ -->
+<div class="week-hdr"><span class="wk-tag">Week 3 · May 15–21</span><div class="wk-line"></div><span class="wk-mix">1 Reel · 1 Static · 1 Carousel</span></div>
+
+<!-- ─── DAY 15 · REEL · MICROPLASTICS ─── -->
+<div class="post" data-plat="ig" data-fmt="reel">
+  <div class="post-hdr">
+    <div class="post-day">15</div>
+    <div class="post-meta">
+      <div class="post-tags">
+        <span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span>
+        <span class="fmt-badge reel">🎬 Reel · 35 sec</span>
+      </div>
+      <div class="post-title">Your "Vegan" Leather Bag Is Shedding Microplastics Right Now.</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec">
+      <div class="sec-label default">✍️ Instagram Caption</div>
+      <div class="caption">Not all vegan leather is what it seems. 🚨
+
+The majority of vegan leather on the market is made from polyurethane — a petroleum-based plastic. It doesn't biodegrade. It sheds microplastics with every use and every wash.
+
+Microplastics have now been found in:
+— Human blood
+— Breast milk
+— The deep ocean floor
+— Arctic sea ice
+
+Your bag. Your car seat. Your sofa. All potentially contributing.
+
+Green Sapio leather contains <strong>zero plastic</strong>. From source to finished sheet — no polyurethane, no polyester, no fossil-fuel derivatives.
+
+This is what a real alternative looks like.
+
+Share this. Someone you know needs to see it. 👇
+
+<strong>#Microplastics #VeganLeather #PULeather #GreenSapio #PlasticFree #SustainableFashion #NatureReMade #ClimateAction #BioBased #ConsciousConsumer</strong></div>
+    </div>
+    <div class="sec">
+      <div class="sec-label default">🎨 Designer Notes</div>
+      <div class="designer-box">
+        <div class="di"><span class="di-icon">📱</span><div><strong>Size:</strong> 1080×1920px vertical</div></div>
+        <div class="di"><span class="di-icon">🎨</span><div><strong>Visual style:</strong> Dark, high-contrast. Black or very dark navy background. Bold white text. Red accent for danger/warning moments. This is the most serious Reel of the month — the design should reflect that.</div></div>
+        <div class="di"><span class="di-icon">🎬</span><div><strong>Footage:</strong> No product shots until the end. Open with abstract dark footage — murky water, close-up of plastic material, microscopic-style textures (stock footage acceptable). Transition to product at 0:25.</div></div>
+        <div class="di"><span class="di-icon">✍️</span><div><strong>Text style:</strong> Bold, uppercase, fast reveal. Each stat appears in 0.5 seconds. No animation — hard cut on each line.</div></div>
+        <div class="di"><span class="di-icon">🎵</span><div><strong>Sound:</strong> Low, ominous ambient drone for first 25 seconds. Transitions to clean, hopeful tone when Green Sapio appears. No music with lyrics.</div></div>
+      </div>
+    </div>
+    <div class="sec dark">
+      <div class="script-grid">
+        <div class="script-col">
+          <div class="script-col-head">🎙️ Voiceover Script</div>
+          <div class="scene-list">
+            <div class="scene"><span class="scene-time">0:00–0:06</span><div class="scene-body"><div class="scene-vo">[No VO. Dark abstract footage. Silence for 2 seconds then ambient drone begins.]</div></div></div>
+            <div class="scene"><span class="scene-time">0:06–0:14</span><div class="scene-body"><div class="scene-vo">"The vegan leather market is worth billions. Most of it is polyurethane — a petroleum plastic that takes over 500 years to break down."</div></div></div>
+            <div class="scene"><span class="scene-time">0:14–0:22</span><div class="scene-body"><div class="scene-vo">"As it degrades, it sheds microplastics. Particles now found in human blood, breast milk, and the deepest parts of the ocean."</div></div></div>
+            <div class="scene"><span class="scene-time">0:22–0:30</span><div class="scene-body"><div class="scene-vo">"Green Sapio contains zero plastic. Bio-based from source to finished sheet. No fossil fuels. No microplastics. Just wheat straw — remade."</div></div></div>
+            <div class="scene"><span class="scene-time">0:30–0:35</span><div class="scene-body"><div class="scene-vo">"Share this. Someone you know needs to see it."</div></div></div>
+          </div>
+        </div>
+        <div class="script-col">
+          <div class="script-col-head">📺 On-Screen Text Overlays</div>
+          <div class="scene-list">
+            <div class="scene"><span class="scene-time">0:00</span><div class="scene-body"><div class="scene-overlay">Most "vegan leather" is plastic.</div></div></div>
+            <div class="scene"><span class="scene-time">0:06</span><div class="scene-body"><div class="scene-overlay">Polyurethane. Petroleum-based. 500+ years to break down.</div></div></div>
+            <div class="scene"><span class="scene-time">0:14</span><div class="scene-body"><div class="scene-overlay">Microplastics found in: Human blood · Breast milk · Arctic ice · Deep ocean</div></div></div>
+            <div class="scene"><span class="scene-time">0:22</span><div class="scene-body"><div class="scene-overlay">Green Sapio: ZERO plastic. ✓</div></div></div>
+            <div class="scene"><span class="scene-time">0:30</span><div class="scene-body"><div class="scene-overlay">Share this. 👇</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-strip">🎯 CTA: "Share this. Someone you know needs to see it."</div>
+</div>
+
+<!-- ─── DAY 15 · STORY ─── -->
+<div class="post story-post" data-plat="story" data-fmt="story">
+  <div class="post-hdr">
+    <div class="post-day post-story-day">15</div>
+    <div class="post-meta">
+      <div class="post-tags"><span class="ptag story">📖 Instagram Story</span><span class="fmt-badge story">Story-Only · Quiz + Swipe</span></div>
+      <div class="post-title">Goes up same day as Microplastics Reel</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec story-bg full">
+      <div class="sec-label story-col">📖 Story Content</div>
+      <div class="story-box">
+        <div class="story-type">Format: 3-frame story sequence</div>
+        <div class="story-copy">Frame 1 — Quiz:
+Dark background (matches Reel aesthetic).
+Text: "Quick quiz 👇"
+Quiz sticker: "What is most 'vegan leather' made from?"
+Options: A) Plant fibres  B) Petroleum plastic  C) Recycled materials
+Correct answer: B
+
+Frame 2 — Answer reveal (auto after quiz):
+Same dark bg.
+Text: "It's B. Petroleum plastic."
+Sub-text: "Most vegan leather = polyurethane. A fossil-fuel product."
+Emoji: 😳
+
+Frame 3 — Solution (post 1hr later):
+Background: Close-up Green Sapio leather, warm and rich.
+Text: "Ours has zero plastic. Ever."
+Link sticker: "See how we make it →" → greensapio.com</div>
+        <div class="story-note"><strong>Designer note:</strong> Frames 1 & 2 match the dark, serious aesthetic of the Reel. Frame 3 is a deliberate contrast — warm, tactile, hopeful. The tonal shift is intentional and effective.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── DAY 17 · STATIC · STUBBLE BURNING ─── -->
+<div class="post" data-plat="ig" data-fmt="static">
+  <div class="post-hdr">
+    <div class="post-day">17</div>
+    <div class="post-meta">
+      <div class="post-tags">
+        <span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span>
+        <span class="fmt-badge static">🖼️ Static Post · 1080×1080</span>
+      </div>
+      <div class="post-title">500 Million Tonnes Burned Every Year. We Found a Better Use for It.</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec">
+      <div class="sec-label default">✍️ Instagram Caption</div>
+      <div class="caption">Every post-harvest season, the skies above North India turn grey. 🌫️
+
+Farmers burn crop residue — wheat straw, rice straw — because no one has given them a better option. The result: hazardous air quality, health crises, and millions of tonnes of CO₂ released into the atmosphere.
+
+Green Sapio's model is simple:
+We buy the straw. Farmers earn. The air stays cleaner.
+
+That straw becomes premium, fully biodegradable leather — used by brands in fashion, automotive, furniture, and accessories.
+
+One decision. One supply chain. A completely different outcome.
+
+🌐 greensapio.com
+
+<strong>#StubbleBurning #CropWaste #GreenSapio #CircularEconomy #NatureReMade #SustainableIndia #BioBased #AgriWaste #FarmerFirst #ClimateAction</strong></div>
+    </div>
+    <div class="sec">
+      <div class="sec-label default">🎨 Designer Notes</div>
+      <div class="designer-box">
+        <div class="di"><span class="di-icon">🖼️</span><div><strong>Layout:</strong> Split-panel. Left half: burning field photo (dark, smoky, moody — desaturated). Right half: Green Sapio leather sheet macro (warm, rich, full saturation). Vertical dividing line centred.</div></div>
+        <div class="di"><span class="di-icon">✍️</span><div><strong>Text:</strong> Left panel bottom: "Before" in small DM Mono, white. Right panel bottom: "After" in small DM Mono, white. Centre on the dividing line: Green Sapio logo (small, white).</div></div>
+        <div class="di"><span class="di-icon">🎨</span><div><strong>Colour treatment:</strong> Left photo: desaturate by 60%, add slight cool blue tone. Right photo: warm, boost saturation 20%. The contrast between panels should be dramatic and immediate.</div></div>
+        <div class="di"><span class="di-icon">📝</span><div><strong>Bottom bar:</strong> Full-width forest green strip. White text: "500M+ tonnes burned annually. We buy it instead." DM Sans, 12pt.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-strip">🎯 CTA: "Follow to see how we make it happen."</div>
+</div>
+
+<!-- ─── DAY 20 · CAROUSEL · ESG COMPARISON ─── -->
+<div class="post" data-plat="ig" data-fmt="carousel">
+  <div class="post-hdr">
+    <div class="post-day">20</div>
+    <div class="post-meta">
+      <div class="post-tags">
+        <span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span>
+        <span class="fmt-badge carousel">📱 Carousel · 4 Slides</span>
+      </div>
+      <div class="post-title">Animal Leather vs PU Vegan vs Green Sapio — The Honest Comparison</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec">
+      <div class="sec-label default">✍️ Instagram Caption</div>
+      <div class="caption">Not all leather is created equal. 🌿
+
+We get asked constantly: how does Green Sapio compare to other leather alternatives?
+
+So here's the honest answer — no spin, just the data.
+
+Swipe to see how animal leather, PU vegan leather, and Green Sapio bio-based leather stack up across the metrics that actually matter for ESG.
+
+The comparison table your procurement team needs to see. ➡️
+
+📦 Want to go deeper? Request our full material datasheet at greensapio.com.
+
+<strong>#GreenSapio #ESG #SustainableLeather #VeganLeather #BioBased #NatureReMade #MaterialComparison #SustainableMaterials #EcoFashion #SupplyChain</strong></div>
+    </div>
+    <div class="sec">
+      <div class="sec-label default">🎨 Slide-by-Slide Designer Guide</div>
+      <div class="slide-guide">
+        <div class="slide"><span class="slide-num">S1</span><div class="slide-body"><strong>Cover:</strong> "The Honest Comparison" — three columns previewed in miniature below the title. Bold Playfair, forest green bg. Subtext: "Animal Leather · PU Vegan · Green Sapio"</div></div>
+        <div class="slide"><span class="slide-num">S2</span><div class="slide-body"><strong>Rows 1–3:</strong> Water use (🔴 17K L · 🟡 ~8K L · 🟢 4.8K L) · Emissions (🔴 High · 🟡 Moderate · 🟢 87% less) · Biodegradable (🔴 Partial · 🔴 No · 🟢 Yes fully). Three-column table. Clean, scannable. Red/amber/green badge dots.</div></div>
+        <div class="slide"><span class="slide-num">S3</span><div class="slide-body"><strong>Rows 4–6:</strong> Plastic-free (🔴 No · 🔴 No · 🟢 Yes) · Chemical-free (🔴 No · 🔴 No · 🟢 Yes) · Farmer income (🔴 No · 🔴 No · 🟢 Yes). Same layout. Green Sapio column highlighted with subtle forest green left border.</div></div>
+        <div class="slide"><span class="slide-num">S4</span><div class="slide-body"><strong>CTA:</strong> Forest green bg. "Ready to see the full data?" Wheat serif headline. "Request our material datasheet at greensapio.com" DM Sans body. Logo centred bottom.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-strip">🎯 CTA: Request full material datasheet at greensapio.com</div>
+</div>
+
+<!-- ─── DAY 20 · STORY ─── -->
+<div class="post story-post" data-plat="story" data-fmt="story">
+  <div class="post-hdr">
+    <div class="post-day post-story-day">20</div>
+    <div class="post-meta">
+      <div class="post-tags"><span class="ptag story">📖 Instagram Story</span><span class="fmt-badge story">Repurposed Carousel + Countdown</span></div>
+      <div class="post-title">Goes up same day as ESG Comparison Carousel</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec story-bg full">
+      <div class="sec-label story-col">📖 Story Content</div>
+      <div class="story-box">
+        <div class="story-type">Format: 2-frame story</div>
+        <div class="story-copy">Frame 1 — Share carousel to story:
+Share the carousel cover slide to story.
+Add text: "Swipe on our post for the full comparison 👆"
+Add poll: "Did you know PU leather doesn't biodegrade?"
+Poll: "Yes 🙄" vs "Wait, what? 😳"
+
+Frame 2 — Story-only BTS (post same evening):
+Background: Clean cream or white.
+Text: "We get asked this question a lot:"
+Large question box quote: "Is Green Sapio leather actually as durable as animal leather?"
+Below: "Answer is in our post. But DM us for the full datasheet."
+Link sticker: greensapio.com</div>
+        <div class="story-note"><strong>Designer note:</strong> Frame 2 is the most important — it drives DMs. Keep it very clean. Just the quote, the question box graphic feel, and the link. No clutter.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     WEEK 4 · MAY 22–31
+═══════════════════════════════════ -->
+<div class="week-hdr"><span class="wk-tag">Week 4 · May 22–31</span><div class="wk-line"></div><span class="wk-mix">1 Reel · 1 Static · 1 Carousel · Month Close</span></div>
+
+<!-- ─── DAY 22 · REEL · FOUNDER DAY ─── -->
+<div class="post" data-plat="ig" data-fmt="reel">
+  <div class="post-hdr">
+    <div class="post-day">22</div>
+    <div class="post-meta">
+      <div class="post-tags">
+        <span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span>
+        <span class="fmt-badge reel">🎬 Reel · 45 sec</span>
+      </div>
+      <div class="post-title">A Day Building the Future of Leather — With Our Founder</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec">
+      <div class="sec-label default">✍️ Instagram Caption</div>
+      <div class="caption">This is what building Green Sapio looks like on a Tuesday. 🌿
+
+5:30AM. First call. Material review. Team standup. Lab check. Outreach call. Late email.
+
+Somewhere in between all of that — the reason we do this.
+
+A leather that doesn't cost the earth. A supply chain that gives farmers income instead of smoke. A material that a brand can choose without having to compromise.
+
+It's not glamorous every day. But it's worth it every day.
+
+Follow along. We're building this in the open. 👇
+
+<strong>#GreenSapio #FounderLife #DayInTheLife #StartupLife #NatureReMade #BehindTheScenes #SustainableStartup #BuildingInPublic</strong></div>
+    </div>
+    <div class="sec">
+      <div class="sec-label default">🎨 Designer / Director Notes</div>
+      <div class="designer-box">
+        <div class="di"><span class="di-icon">📱</span><div><strong>Size:</strong> 1080×1920px vertical</div></div>
+        <div class="di"><span class="di-icon">🎬</span><div><strong>Shooting style:</strong> Handheld, candid. No tripod. Film on a phone — feels more authentic. Tarun should not look at the camera unless it's a direct-to-camera moment.</div></div>
+        <div class="di"><span class="di-icon">🕐</span><div><strong>Shot list across the day:</strong> Early morning desk/phone moment · Team meeting room wide shot · Walking into lab · Hands examining a leather sheet · Quick coffee moment · Evening — writing or laptop. 6–8 clips total, 4–6 seconds each.</div></div>
+        <div class="di"><span class="di-icon">✍️</span><div><strong>Text overlays:</strong> Each clip gets a one-line time/context label. White text, DM Sans, top-left corner. E.g., "5:30AM — First call." / "10AM — Material review." / "4PM — Still going."</div></div>
+        <div class="di"><span class="di-icon">🎵</span><div><strong>Music:</strong> Lo-fi, warm, slightly melancholic but optimistic. Something indie-acoustic that doesn't distract. Lower the volume — it's atmospheric, not dominant.</div></div>
+        <div class="di"><span class="di-icon">🔚</span><div><strong>End frame:</strong> Tarun looking directly at camera, natural. One second. Then fade to Green Sapio logo on cream.</div></div>
+      </div>
+    </div>
+    <div class="sec dark">
+      <div class="script-grid">
+        <div class="script-col">
+          <div class="script-col-head">🎙️ Voiceover Script (Tarun — direct, conversational)</div>
+          <div class="scene-list">
+            <div class="scene"><span class="scene-time">0:00–0:08</span><div class="scene-body"><div class="scene-vo">[No VO. Music only. Morning clip — phone, coffee, desk.]</div></div></div>
+            <div class="scene"><span class="scene-time">0:08–0:18</span><div class="scene-body"><div class="scene-vo">"Most days at Green Sapio start early and end late. Materials don't build themselves. Neither do supply chains, or brands, or trust."</div></div></div>
+            <div class="scene"><span class="scene-time">0:18–0:30</span><div class="scene-body"><div class="scene-vo">"But every day there's a moment — usually in the lab, usually when I hold a new sheet — where the reason for all of it becomes very clear."</div></div></div>
+            <div class="scene"><span class="scene-time">0:30–0:40</span><div class="scene-body"><div class="scene-vo">"A leather that doesn't cost the earth. That's the thing we're building. And we're building it in the open."</div></div></div>
+            <div class="scene"><span class="scene-time">0:40–0:45</span><div class="scene-body"><div class="scene-vo">[Direct to camera.] "Follow along."</div></div></div>
+          </div>
+        </div>
+        <div class="script-col">
+          <div class="script-col-head">📺 On-Screen Text Overlays</div>
+          <div class="scene-list">
+            <div class="scene"><span class="scene-time">0:00</span><div class="scene-body"><div class="scene-overlay">5:30AM. First call of the day.</div></div></div>
+            <div class="scene"><span class="scene-time">0:10</span><div class="scene-body"><div class="scene-overlay">10AM. Material review with the team.</div></div></div>
+            <div class="scene"><span class="scene-time">0:20</span><div class="scene-body"><div class="scene-overlay">2PM. Lab. Every sheet starts here.</div></div></div>
+            <div class="scene"><span class="scene-time">0:32</span><div class="scene-body"><div class="scene-overlay">We're building this in the open. Follow along. 🌿</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-strip">🎯 CTA: "Follow along — we're building this in the open."</div>
+</div>
+
+<!-- ─── DAY 22 · STORY ─── -->
+<div class="post story-post" data-plat="story" data-fmt="story">
+  <div class="post-hdr">
+    <div class="post-day post-story-day">22</div>
+    <div class="post-meta">
+      <div class="post-tags"><span class="ptag story">📖 Instagram Story</span><span class="fmt-badge story">Story-Only · BTS Candid</span></div>
+      <div class="post-title">Goes up same day as Founder Day-in-Life Reel</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec story-bg full">
+      <div class="sec-label story-col">📖 Story Content</div>
+      <div class="story-box">
+        <div class="story-type">Format: 3-frame BTS story sequence</div>
+        <div class="story-copy">Frame 1 — Morning BTS still:
+Candid photo: Tarun at his desk, early morning, coffee visible.
+Text sticker: "Day started. Let's go. ☕"
+No poll needed — keep it casual and human.
+
+Frame 2 — Lab moment still (post midday):
+Candid photo: Hands holding a leather sheet in the lab or workspace.
+Text: "This is the part that makes everything else worth it."
+Poll: "Would you switch to bio-based leather?" → Yes, always 🌿 / Need to know more 🤔
+
+Frame 3 — Evening wrap (post evening):
+Simple cream background.
+Text: "That's a wrap on today."
+Sub-text: "Questions about what we do? Drop them 👇"
+Question box sticker open.</div>
+        <div class="story-note"><strong>Designer note:</strong> All three frames should feel genuinely candid — no polish, no graphics beyond the stickers. This story series lives or dies on authenticity. Frame 3 question box drives the most DMs of any story this month — make sure it goes up.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── DAY 25 · STATIC · TEAM ─── -->
+<div class="post" data-plat="ig" data-fmt="static">
+  <div class="post-hdr">
+    <div class="post-day">25</div>
+    <div class="post-meta">
+      <div class="post-tags">
+        <span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span>
+        <span class="fmt-badge static">🖼️ Static Post · 1080×1080</span>
+      </div>
+      <div class="post-title">Three Founders. One Direction. Zero Compromise.</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec">
+      <div class="sec-label default">✍️ Instagram Caption</div>
+      <div class="caption">Meet the people building Green Sapio. 🌿
+
+<strong>CA Tarun Sharma</strong> — Co-founder & CEO
+15+ years corporate strategy. Former Samsung. Now: making leather from crop waste.
+
+<strong>Himanshu Sisodia</strong> — Co-founder, Business Development
+17+ years building global textile brands. Now: getting that leather into the world's best brands.
+
+<strong>CA Shikha Pandey</strong> — Co-founder & CFO
+12+ years financial strategy. Former CA firm partner. Now: making sure the numbers work as well as the material.
+
+Three careers. One direction.
+
+They didn't build Green Sapio because it was easy. They built it because it needed to exist.
+
+Follow to watch them build it. 👇
+
+<strong>#GreenSapio #MeetTheTeam #FounderStory #NatureReMade #SustainableStartup #Teamwork #WomenInBusiness #StartupFounders</strong></div>
+    </div>
+    <div class="sec">
+      <div class="sec-label default">🎨 Designer Notes</div>
+      <div class="designer-box">
+        <div class="di"><span class="di-icon">📷</span><div><strong>Photo:</strong> All three founders together — candid, warm, natural. Not a formal headshot or corporate portrait. Standing together in the office, lab, or outdoors. Natural light. Laughing or in conversation if possible.</div></div>
+        <div class="di"><span class="di-icon">✍️</span><div><strong>Name overlays:</strong> Subtle labels for each founder — DM Mono, 10pt, white, positioned below each person with a small dot indicator. Keep it light — don't obscure faces.</div></div>
+        <div class="di"><span class="di-icon">🎨</span><div><strong>Colour grade:</strong> Warm and natural. No heavy filters. Lift the shadows slightly for an open, approachable feel.</div></div>
+        <div class="di"><span class="di-icon">🌿</span><div><strong>Logo + tagline:</strong> Bottom centre. "Green Sapio · Harvested from Nature" in white. Small and clean.</div></div>
+        <div class="di"><span class="di-icon">⚠️</span><div><strong>Key rule:</strong> This must not look like a corporate photo. The more human it feels, the better it will perform.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-strip">🎯 CTA: "Follow each founder on LinkedIn — handles in bio."</div>
+</div>
+
+<!-- ─── DAY 28 · CAROUSEL · MONTH 2 WRAP ─── -->
+<div class="post" data-plat="ig" data-fmt="carousel">
+  <div class="post-hdr">
+    <div class="post-day">28</div>
+    <div class="post-meta">
+      <div class="post-tags">
+        <span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span>
+        <span class="fmt-badge carousel">📱 Carousel · 5 Slides</span>
+      </div>
+      <div class="post-title">2 Months. Here's What Green Sapio Has Built So Far.</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec">
+      <div class="sec-label default">✍️ Instagram Caption</div>
+      <div class="caption">Two months ago: zero presence. Zero followers. Zero noise.
+
+Today: a material the world is starting to notice. 🌿
+
+This carousel is a snapshot of what Green Sapio has built, and what the mission is made of.
+
+Month 3 is where we start turning interest into partnerships.
+
+If you've been here from the start — thank you.
+If you're new — welcome. You're just in time.
+
+📦 greensapio.com — request your sample, start a conversation.
+
+<strong>#GreenSapio #Month2 #NatureReMade #SustainableFuture #BioBased #VeganLeather #StartupJourney #EcoLuxury</strong></div>
+    </div>
+    <div class="sec">
+      <div class="sec-label default">🎨 Slide-by-Slide Designer Guide</div>
+      <div class="slide-guide">
+        <div class="slide"><span class="slide-num">S1</span><div class="slide-body"><strong>Cover:</strong> "2 Months." — single bold line. Playfair, huge, wheat-gold on forest green. Below in small DM Mono: "Here's what we've built." Clean, confident, striking.</div></div>
+        <div class="slide"><span class="slide-num">S2</span><div class="slide-body"><strong>The Material:</strong> Macro leather texture as background. Two large stats centre: "87% less emissions · 72% less water · 0 plastic." Eurofins badge bottom-right. White text.</div></div>
+        <div class="slide"><span class="slide-num">S3</span><div class="slide-body"><strong>The Credentials:</strong> Cream background. Four credential badges arranged 2×2: NABARD Winner · CSIR-NIIST Partner · MANAGE Incubated · Eurofins Verified. Forest green icons, wheat accents.</div></div>
+        <div class="slide"><span class="slide-num">S4</span><div class="slide-body"><strong>The People:</strong> Farmer photo (same as Day 12 if possible). Text overlay: "Farmers earn. Fields don't burn. Leather gets made." Simple, emotional, human.</div></div>
+        <div class="slide"><span class="slide-num">S5</span><div class="slide-body"><strong>Month 3 Tease:</strong> Forest green bg. Wheat text: "Month 3: Partnerships. Conversations. Conversions." Below: "greensapio.com · catarun@greensapio.com" Logo centred bottom.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-strip">🎯 CTA: greensapio.com — request sample or start a conversation</div>
+</div>
+
+<!-- ─── DAY 28 · STORY ─── -->
+<div class="post story-post" data-plat="story" data-fmt="story">
+  <div class="post-hdr">
+    <div class="post-day post-story-day">28</div>
+    <div class="post-meta">
+      <div class="post-tags"><span class="ptag story">📖 Instagram Story</span><span class="fmt-badge story">Month Close Story · Countdown</span></div>
+      <div class="post-title">Goes up same day as Month 2 Wrap Carousel</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec story-bg full">
+      <div class="sec-label story-col">📖 Story Content</div>
+      <div class="story-box">
+        <div class="story-type">Format: 2-frame close story</div>
+        <div class="story-copy">Frame 1 — Month recap:
+Share carousel cover slide (S1 — "2 Months.") to story.
+Add text sticker: "Two months. Thank you for being here. 🌿"
+Add: emoji slider "How are you feeling about sustainable materials?" 🌱➡️🌳
+
+Frame 2 — Month 3 tease (post same evening):
+Background: Forest green.
+Text (Playfair serif, wheat gold): "Month 3."
+Sub-text (DM Sans, white): "This is where things get serious."
+Below: "Partnerships. Case studies. Conversions."
+Countdown sticker: Set to June 1 — "Month 3 Starts"
+Link sticker: greensapio.com</div>
+        <div class="story-note"><strong>Designer note:</strong> Frame 2 countdown sticker is key — it drives return visits and builds anticipation for Month 3. Make sure the countdown is set correctly to June 1. Forest green background, gold text. Should feel like a teaser, not a conclusion.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WEEK 4 LINKEDIN POSTS -->
+<div class="post" data-plat="li" data-fmt="article">
+  <div class="post-hdr">
+    <div class="post-day">22</div>
+    <div class="post-meta">
+      <div class="post-tags"><span class="ptag li">LinkedIn</span><span class="fmt-badge li">📰 Article · Monday</span></div>
+      <div class="post-title">We're Looking for Brand Partners Who Want to Lead This Transition — Not Follow It</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec li-bg full">
+      <div class="sec-label li-col">✍️ Full LinkedIn Post Copy</div>
+      <div class="caption">Two months into building Green Sapio's public presence, it's time to be direct about what we're looking for.
+
+We are not looking for customers.
+
+We are looking for partners — brands in fashion, automotive, furniture, or accessories who are serious about making a genuine, verifiable shift to sustainable materials, and who want to be part of how that story gets told.
+
+The distinction matters. A customer buys a product. A partner builds something with you.
+
+<strong>What partnership with Green Sapio looks like:</strong>
+
+→ Priority access to our sample kit before wider market availability
+→ Direct engagement with our founding team on material customisation for your specific application
+→ Co-branding and announcement support when your switch to bio-based leather goes public
+→ A supply chain story your ESG report will actually be proud of — not just defensible, but genuinely differentiated
+→ Early-adopter pricing for first-wave partners
+
+<strong>What we're looking for in a partner brand:</strong>
+
+→ An active procurement or sustainability decision-maker at the table — not an exploratory brief that will sit in an inbox
+→ A genuine ESG commitment, publicly stated or actively in-progress
+→ Operating in fashion, automotive, furniture, or accessories at any scale
+→ Openness to real material innovation — not just a compliance checkbox
+
+We have won national recognition at the AgriSure Greenathon. We have a Technology MoU with CSIR-NIIST. We are Eurofins verified. We are incubated at MANAGE under the Ministry of Agriculture.
+
+We are not a concept. We are not a pitch deck. We are a company with a verified product and a supply chain that is live.
+
+If this describes your brand — or someone you know — I'd like to start a conversation this week.
+
+Comment <strong>PARTNER</strong> below, or email me directly.
+
+<strong>CA Tarun Sharma</strong>
+CEO, Green Sapio
+catarun@greensapio.com · +91-9650032229
+
+<strong>#B2BPartnership #GreenSapio #SustainableMaterials #ESG #VeganLeather #BioBased #NatureReMade #SustainableLuxury #CircularEconomy</strong></div>
+    </div>
+  </div>
+  <div class="cta-strip">🎯 CTA: Comment PARTNER or email catarun@greensapio.com</div>
+</div>
+
+<div class="post" data-plat="li" data-fmt="article">
+  <div class="post-hdr">
+    <div class="post-day">28</div>
+    <div class="post-meta">
+      <div class="post-tags"><span class="ptag li">LinkedIn</span><span class="fmt-badge li">📝 Post · Friday</span></div>
+      <div class="post-title">Two Months In. The Audience Is Growing. Month 3 Is the Conversion Push.</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec li-bg full">
+      <div class="sec-label li-col">✍️ Full LinkedIn Post Copy</div>
+      <div class="caption">Two months ago I made a commitment: to build Green Sapio's presence transparently, in public, sharing what we're learning as we learn it.
+
+So here's the Month 2 update.
+
+<strong>What worked:</strong>
+The content that generated the most engagement wasn't the credentials posts or the awards. It was the education — specifically the posts that gave B2B readers a framework for thinking about their own supply chains. The "5 questions to ask your leather supplier" approach. The regulatory breakdown. The material comparison.
+
+This tells us something important: the audience we're building isn't just curious about Green Sapio. They're trying to solve a real problem. They need the information to make the case internally, to their procurement leads or sustainability teams or boards.
+
+That's who we're writing for. And that's the audience we want.
+
+<strong>What's coming in Month 3:</strong>
+
+Month 3 is the conversion push. We stop building awareness and start building relationships.
+
+This means:
+→ Our first B2B case study — a brand walking through the sample evaluation process
+→ Direct outreach to brands we've identified through two months of audience signals
+→ More sector-specific content — automotive, furniture, accessories, not just general fashion
+→ A deeper dive into the technology — what CSIR-NIIST partnership enables in practice
+
+If you've been reading these posts and thinking "we should talk" — Month 3 is the moment.
+
+I'm reachable directly: catarun@greensapio.com
+
+One last question for the comments: what has been the most useful thing we've shared in the past two months? Helps us build Month 3 better.
+
+<strong>CA Tarun Sharma</strong>
+Co-founder & CEO, Green Sapio
+
+<strong>#GreenSapio #Month2 #StartupJourney #NatureReMade #B2B #SustainableMaterials #BioBased #Month3 #ESG #VeganLeather</strong></div>
+    </div>
+  </div>
+  <div class="cta-strip">🎯 CTA: Email + comment engagement for Month 3 planning</div>
+</div>
+
+<!-- YOUTUBE WEEK 3 -->
+<div class="post" data-plat="yt" data-fmt="yt">
+  <div class="post-hdr">
+    <div class="post-day">21</div>
+    <div class="post-meta">
+      <div class="post-tags"><span class="ptag yt">YouTube</span><span class="fmt-badge yt">🎥 Long-form · 10–12 mins</span></div>
+      <div class="post-title">The Leather Industry's Dirty Secret — And the Material That's Changing It</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec">
+      <div class="sec-label default">✍️ YouTube Description</div>
+      <div class="caption">The leather industry is one of the most polluting in the world — and most of its "sustainable" alternatives are still made from plastic.
+
+In this video, we break down the full environmental footprint of conventional leather from farm to landfill: water usage, greenhouse gas emissions, chemical tanning, and end-of-life waste.
+
+Then we show you what a genuinely sustainable alternative looks like — and what it takes to build one.
+
+This is the video to share with your procurement or sustainability team before your next materials review.
+
+📦 Request samples: greensapio.com
+📩 B2B partnerships: catarun@greensapio.com
+
+<strong>#LeatherIndustry #SustainableLeather #GreenSapio #ESG #CircularFashion #VeganLeather #BioBased #NatureReMade</strong></div>
+    </div>
+    <div class="sec">
+      <div class="sec-label default">🎨 Designer / Editor Notes</div>
+      <div class="designer-box">
+        <div class="di"><span class="di-icon">🖼️</span><div><strong>Thumbnail:</strong> Split image — left: tannery/industrial leather process (dark, moody). Right: clean Green Sapio leather sheet (warm, natural). Text: "The Leather Industry's Dirty Secret." Bold red on dark left panel.</div></div>
+        <div class="di"><span class="di-icon">📊</span><div><strong>Graphics needed:</strong> Animated bar chart — water usage comparison · Emissions comparison pie chart · End-of-life timeline (animal leather vs bio-based). All in Green Sapio brand colours.</div></div>
+        <div class="di"><span class="di-icon">🎵</span><div><strong>Music:</strong> Serious and measured for the first half (problem section). Transitions to something warmer and more optimistic when the solution is introduced at the halfway point.</div></div>
+      </div>
+    </div>
+    <div class="sec dark">
+      <div class="script-grid">
+        <div class="script-col">
+          <div class="script-col-head">🎙️ Full Voiceover Script</div>
+          <div class="scene-list">
+            <div class="scene"><span class="scene-time">0:00–0:45 · HOOK</span><div class="scene-body"><div class="scene-vo">"The leather industry produces more pollution than most people realise. And the sustainable alternatives that most brands have switched to? The majority are still made from petroleum. Today we're going to look at the full picture — the problem, the failed solutions, and what a genuine alternative actually looks like."</div></div></div>
+            <div class="scene"><span class="scene-time">0:45–3:00 · THE PROBLEM</span><div class="scene-body"><div class="scene-vo">"Let's start with conventional animal leather. To produce one kilogram of finished leather, you need approximately 17,000 litres of water — accounting for the livestock's lifetime water consumption, slaughter, and the tanning process. That tanning process uses chromium sulphate and formaldehyde. In countries where regulations are loose, tannery effluent contaminates rivers and groundwater for decades. And the livestock sector that supplies the raw material accounts for roughly 14.5% of global greenhouse gas emissions — more than all transportation combined."</div></div></div>
+            <div class="scene"><span class="scene-time">3:00–5:00 · THE FAILED SOLUTION</span><div class="scene-body"><div class="scene-vo">"So brands switched to vegan leather. Sounds better, right? The problem is that most vegan leather is polyurethane — a petroleum product. It takes between 500 and 1,000 years to break down. As it degrades, it releases microplastic particles that are now found in human blood, breast milk, and the deep ocean floor. Switching from animal leather to PU vegan leather is, in many ways, trading one environmental problem for another. And yet it's being marketed as a sustainable solution."</div></div></div>
+            <div class="scene"><span class="scene-time">5:00–7:30 · THE REAL SOLUTION</span><div class="scene-body"><div class="scene-vo">"Green Sapio's approach started with a different question. Instead of asking 'how do we make leather without animals,' we asked 'what agricultural waste is already being produced at scale, and how do we turn it into something valuable?' The answer was crop residue — specifically the wheat straw and rice straw left behind after harvest in North India. Every post-harvest season, farmers burn millions of tonnes of this residue because they have no better option. We buy it from them instead. They earn a new income stream. The air quality improves. And we have our raw material."</div></div></div>
+            <div class="scene"><span class="scene-time">7:30–9:30 · THE DATA</span><div class="scene-body"><div class="scene-vo">"The environmental comparison is significant. Our production process uses 72% less water than conventional leather. Carbon emissions are 87% lower. There is no plastic in the material — not in the surface layer, not in the binder, not in the backing. And at end of life, the material fully biodegrades in natural conditions. This has been independently verified by Eurofins — one of the world's leading materials testing laboratories. This is not a claim we make. It is a claim we have tested and documented."</div></div></div>
+            <div class="scene"><span class="scene-time">9:30–10:30 · CLOSE</span><div class="scene-body"><div class="scene-vo">"The leather industry doesn't have to stay the way it is. The technology exists to do it differently. The supply chain is live. The material is verified. What's needed now are brands willing to make the switch — genuinely, verifiably, without the greenwash. If that's your brand, we'd like to talk. Subscribe for more on sustainable materials, and find us at greensapio.com."</div></div></div>
+          </div>
+        </div>
+        <div class="script-col">
+          <div class="script-col-head">📺 On-Screen Text Overlays</div>
+          <div class="scene-list">
+            <div class="scene"><span class="scene-time">0:00</span><div class="scene-body"><div class="scene-overlay">The Leather Industry's Dirty Secret</div></div></div>
+            <div class="scene"><span class="scene-time">0:45</span><div class="scene-body"><div class="scene-overlay">Animal Leather: 17,000L water per kg</div></div></div>
+            <div class="scene"><span class="scene-time">1:30</span><div class="scene-body"><div class="scene-overlay">Chemical tanning: chromium sulphate + formaldehyde</div></div></div>
+            <div class="scene"><span class="scene-time">2:00</span><div class="scene-body"><div class="scene-overlay">Livestock: 14.5% of global GHG emissions</div></div></div>
+            <div class="scene"><span class="scene-time">3:00</span><div class="scene-body"><div class="scene-overlay">PU Vegan Leather = Petroleum plastic ⚠️</div></div></div>
+            <div class="scene"><span class="scene-time">4:00</span><div class="scene-body"><div class="scene-overlay">500–1,000 years to break down. Sheds microplastics.</div></div></div>
+            <div class="scene"><span class="scene-time">5:00</span><div class="scene-body"><div class="scene-overlay">The Green Sapio Approach: Start with the waste.</div></div></div>
+            <div class="scene"><span class="scene-time">6:30</span><div class="scene-body"><div class="scene-overlay">Farmers earn. Air stays cleaner. We get our material.</div></div></div>
+            <div class="scene"><span class="scene-time">7:30</span><div class="scene-body"><div class="scene-overlay">72% less water · 87% less emissions · 0 plastic</div></div></div>
+            <div class="scene"><span class="scene-time">8:30</span><div class="scene-body"><div class="scene-overlay">Verified by Eurofins ✓</div></div></div>
+            <div class="scene"><span class="scene-time">9:30</span><div class="scene-body"><div class="scene-overlay">greensapio.com · catarun@greensapio.com</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-strip">🎯 End screen: Subscribe + sample request + email for partnerships</div>
+</div>
+
+<!-- MONTH CLOSE X TWEET -->
+<div class="post tw-post" data-plat="tw" data-fmt="tw">
+  <div class="post-hdr">
+    <div class="post-day">31</div>
+    <div class="post-meta">
+      <div class="post-tags"><span class="ptag tw">𝕏 Twitter</span><span class="fmt-badge tw">Tweet · Month Close · 📌 Pin</span></div>
+      <div class="post-title">May Close Tweet — Pin to Profile for First Week of June</div>
+    </div>
+  </div>
+  <div class="sections">
+    <div class="sec full">
+      <div class="tweet-box">
+        <div class="tweet-text">Month 2 done.<br><br>Leather from crop waste. 87% less emissions. 72% less water. Zero plastic. Eurofins verified.<br><br>Month 3: we turn audience into partners.<br><br>Watch this space. <strong>#GreenSapio #NatureReMade</strong></div>
+        <div class="tweet-footer"><span class="tweet-chars">~185 chars</span><span class="tweet-tip">📌 Pin this tweet to the Green Sapio X profile on June 1. Remove the existing pinned tweet first.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Prepared by <span>Say It Social</span> &nbsp;·&nbsp; Green Sapio · May Full Content Brief · Final &nbsp;·&nbsp; <span>#NatureReMade</span> &nbsp;·&nbsp; greensapio.com
+</footer>
+
+<script>
+function filterAll(btn){
+  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active','f-ig','f-li','f-yt','f-tw','f-story'));
+  btn.classList.add('active');
+  document.querySelectorAll('.post').forEach(c=>c.classList.remove('hidden'));
+}
+function filterPlat(plat,btn){
+  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active','f-ig','f-li','f-yt','f-tw','f-story'));
+  btn.classList.add('active');btn.classList.add('f-'+plat);
+  document.querySelectorAll('.post').forEach(c=>{
+    const p=c.dataset.plat||'';
+    c.classList.toggle('hidden',p!==plat);
+  });
+}
+function filterFmt(fmt,btn){
+  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active','f-ig','f-li','f-yt','f-tw','f-story'));
+  btn.classList.add('active');
+  document.querySelectorAll('.post').forEach(c=>{
+    c.classList.toggle('hidden',(c.dataset.fmt||'')!==fmt);
+  });
+}
+</script>
+</body>
+</html>
