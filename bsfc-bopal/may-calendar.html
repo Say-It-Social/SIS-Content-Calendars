@@ -1,0 +1,1739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BSFC South Bopal — May 2025 Content Calendar</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fraunces:ital,wght@0,700;0,900;1,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sun: #F5A623;
+    --sun-light: #FFD580;
+    --sun-pale: #FFF8E7;
+    --sky: #4BAFD6;
+    --sky-light: #B3DFF0;
+    --sky-pale: #EEF8FC;
+    --grass: #5BAD72;
+    --grass-light: #A8D8B2;
+    --coral: #F06B50;
+    --coral-light: #FABFB4;
+    --violet: #7B68C8;
+    --violet-light: #C5BEEF;
+    --charcoal: #1E1E2E;
+    --mid: #5A5A72;
+    --light: #E8E6F0;
+    --white: #FFFFFF;
+    --cream: #FFFDF6;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--charcoal);
+    padding: 52px 64px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header-bubbles span {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.12;
+  }
+  .b1 { width:320px;height:320px;background:var(--sun);top:-80px;right:-60px; }
+  .b2 { width:180px;height:180px;background:var(--sky);bottom:-60px;left:20%; }
+  .b3 { width:100px;height:100px;background:var(--grass);top:20px;left:42%; }
+
+  .header-inner { position:relative;z-index:1; }
+
+  .month-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--sun);
+    color: var(--charcoal);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 30px;
+    margin-bottom: 18px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .header h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 50px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.08;
+    margin-bottom: 8px;
+  }
+
+  .header h1 em {
+    font-style: italic;
+    color: var(--sun-light);
+  }
+
+  .header-sub {
+    color: rgba(255,255,255,0.55);
+    font-size: 13px;
+    margin-bottom: 36px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .header-stats {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-num {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--sun-light);
+    line-height: 1;
+    font-family: 'Fraunces', serif;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-family: 'DM Mono', monospace;
+    margin-top: 3px;
+  }
+
+  /* ── CAMP BANNER ── */
+  .camp-banner {
+    background: linear-gradient(135deg, var(--sky) 0%, var(--violet) 100%);
+    margin: 0;
+    padding: 24px 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .camp-banner-left h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    color: white;
+    font-weight: 900;
+  }
+
+  .camp-banner-left p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+    margin-top: 4px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .camp-activities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    max-width: 560px;
+  }
+
+  .act-chip {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  .camp-meta {
+    text-align: right;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .camp-meta .big { font-size: 20px; font-weight: 900; font-family: 'Fraunces', serif; }
+  .camp-meta .small { font-size: 11px; opacity: 0.75; font-family: 'DM Mono', monospace; margin-top: 3px; }
+
+  /* ── STRATEGY ROW ── */
+  .strategy-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 2px solid var(--light);
+  }
+
+  .strat-cell {
+    padding: 20px 28px;
+    border-right: 1px solid var(--light);
+  }
+  .strat-cell:last-child { border-right: none; }
+
+  .strat-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--mid);
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 5px;
+  }
+
+  .strat-value {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--charcoal);
+    line-height: 1.4;
+  }
+
+  /* ── WEEK BLOCKS ── */
+  .week-block {
+    margin: 0 0 0 0;
+    border-bottom: 3px solid var(--light);
+  }
+
+  .week-title-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 64px 16px;
+    border-bottom: 1px solid var(--light);
+  }
+
+  .week-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+    margin-right: 14px;
+  }
+
+  .w1 .week-num { background: #FFF3CC; color: #A07000; }
+  .w2 .week-num { background: #CCF0FF; color: #005E8A; }
+  .w3 .week-num { background: #D4F5DC; color: #1A6632; }
+  .w4 .week-num { background: #F5D4F0; color: #6A1960; }
+
+  .week-theme {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--charcoal);
+  }
+
+  .week-goal-tag {
+    font-size: 11px;
+    color: var(--mid);
+    font-style: italic;
+    text-align: right;
+    max-width: 280px;
+    line-height: 1.5;
+  }
+
+  /* ── POST CARDS ── */
+  .posts-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--light);
+  }
+
+  .post-card {
+    border-right: 1px solid var(--light);
+    display: flex;
+    flex-direction: column;
+  }
+  .post-card:last-child { border-right: none; }
+
+  .pc-top {
+    padding: 16px 22px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--light);
+  }
+
+  .pc-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--mid);
+  }
+
+  .format-pill {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .fmt-reel    { background:#FFE0DC; color:#C0392B; }
+  .fmt-carousel{ background:#DCF0FF; color:#1A5C8A; }
+  .fmt-static  { background:#DCF5E0; color:#1A6632; }
+  .fmt-story   { background:#F5E6DC; color:#7A3E0A; }
+
+  .pc-body {
+    padding: 16px 22px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .pc-title {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--charcoal);
+    line-height: 1.3;
+  }
+
+  .pc-hook {
+    font-size: 11.5px;
+    font-style: italic;
+    color: var(--mid);
+    background: var(--cream);
+    border-left: 3px solid var(--sun);
+    padding: 8px 10px;
+    border-radius: 0 6px 6px 0;
+    line-height: 1.55;
+  }
+
+  .pc-section-label {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--mid);
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 2px;
+  }
+
+  .pc-caption {
+    font-size: 11.5px;
+    color: var(--charcoal);
+    line-height: 1.7;
+  }
+
+  .slide-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .slide-row {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .sn {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    font-size: 9px;
+    font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .sn-sun   { background: var(--sun-light); color: #7A5000; }
+  .sn-sky   { background: var(--sky-light); color: #005580; }
+  .sn-grass { background: var(--grass-light); color: #1A5A2A; }
+  .sn-violet{ background: var(--violet-light); color: #3A2880; }
+
+  .st { font-size: 11.5px; color: var(--charcoal); line-height: 1.5; }
+
+  /* CREATIVE BRIEF BOX */
+  .creative-brief {
+    background: var(--charcoal);
+    border-radius: 0;
+    padding: 14px 22px;
+    margin-top: auto;
+  }
+
+  .cb-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--sun-light);
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 6px;
+  }
+
+  .cb-items {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cb-item {
+    font-size: 11px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.5;
+    display: flex;
+    gap: 6px;
+  }
+
+  .cb-item::before {
+    content: '▸';
+    color: var(--sun);
+    flex-shrink: 0;
+    font-size: 10px;
+    margin-top: 1px;
+  }
+
+  .pc-footer {
+    padding: 10px 22px;
+    background: var(--cream);
+    border-top: 1px solid var(--light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cta-btn {
+    font-size: 10px;
+    font-weight: 800;
+    padding: 5px 14px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .cta-sun    { background: var(--sun); color: var(--charcoal); }
+  .cta-sky    { background: var(--sky); color: white; }
+  .cta-grass  { background: var(--grass); color: white; }
+  .cta-coral  { background: var(--coral); color: white; }
+  .cta-violet { background: var(--violet); color: white; }
+
+  .tone-note {
+    font-size: 10px;
+    font-style: italic;
+    color: var(--mid);
+  }
+
+  /* ── STORIES ROW ── */
+  .stories-section {
+    padding: 20px 64px 28px;
+    border-top: 1px dashed var(--light);
+    background: var(--sky-pale);
+  }
+
+  .stories-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--mid);
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 12px;
+  }
+
+  .stories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .story-card {
+    background: white;
+    border-radius: 10px;
+    padding: 14px 16px;
+    border: 1px solid var(--sky-light);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .sc-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sc-title {
+    font-size: 12.5px;
+    font-weight: 800;
+    color: var(--charcoal);
+    line-height: 1.35;
+  }
+
+  .sc-desc {
+    font-size: 11px;
+    color: var(--mid);
+    line-height: 1.55;
+  }
+
+  .sc-cta {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--sky);
+    font-family: 'DM Mono', monospace;
+    margin-top: 2px;
+  }
+
+  /* ── HASHTAG SECTION ── */
+  .hashtag-wrap {
+    background: var(--charcoal);
+    padding: 32px 64px;
+  }
+
+  .hashtag-wrap h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    color: var(--sun-light);
+    margin-bottom: 20px;
+    font-weight: 900;
+  }
+
+  .htag-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .htag-group h4 {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 10px;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .htag {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.85);
+    font-size: 10.5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+
+  /* ── DESIGNER NOTES ── */
+  .designer-notes {
+    padding: 36px 64px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    background: var(--sun-pale);
+    border-top: 2px solid var(--sun-light);
+  }
+
+  .dn-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px 22px;
+    border: 1px solid #EEE;
+  }
+
+  .dn-card h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 12px;
+  }
+
+  .dn-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .dn-card li {
+    font-size: 11.5px;
+    color: var(--mid);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .dn-card li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--sun);
+    font-size: 11px;
+  }
+
+
+  /* PRODUCTION BLOCK */
+  .card-production { padding:10px 22px 13px; background:#F8F8F8; border-top:1px dashed rgba(0,0,0,0.1); display:flex; flex-direction:column; gap:7px; }
+  .prod-row { display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+  .prod-label { font-size:9px; letter-spacing:1.5px; text-transform:uppercase; font-family:'DM Mono',monospace; color:var(--mid); min-width:46px; flex-shrink:0; }
+  .status-btn { font-size:9px; font-weight:700; padding:3px 9px; border-radius:20px; border:1.5px solid; font-family:'DM Mono',monospace; white-space:nowrap; display:inline-block; }
+  .s-not-started { background:#F3F3F3; color:#999; border-color:#DDD; }
+  .s-in-progress { background:#FFF3DC; color:#B06000; border-color:#F5C84A; }
+  .s-ready       { background:#DCF8F0; color:#0A7A55; border-color:#3ECFA0; }
+  .s-posted      { background:#E0F5E0; color:#1A6B1A; border-color:#4CAF50; }
+  .asset-link { display:inline-flex; align-items:center; gap:4px; font-size:9px; font-weight:700; padding:3px 9px; border-radius:20px; text-decoration:none; font-family:'DM Mono',monospace; border:1.5px solid; background:white; }
+  .asset-gdrive   { color:#1A73E8; border-color:#BDDAF7; }
+  .asset-onedrive { color:#0078D4; border-color:#B3D6F5; }
+  .sc-prod { padding-top:8px; border-top:1px solid rgba(0,0,0,0.08); display:flex; flex-direction:column; gap:6px; margin-top:2px; }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: #13131F;
+    color: rgba(255,255,255,0.5);
+    padding: 20px 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    color: var(--sun-light);
+    font-weight: 700;
+  }
+
+  .footer-note {
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-bubbles">
+    <span class="b1"></span>
+    <span class="b2"></span>
+    <span class="b3"></span>
+  </div>
+  <div class="header-inner">
+    <div class="month-badge">☀️ May 2025 · Content Calendar</div>
+    <h1>Summer Isn't a Break.<br><em>It's the Best Part.</em></h1>
+    <p class="header-sub">BSFC South Bopal · Managed by Say It Social · 3 Posts/Week + Stories · All of May</p>
+    <div class="header-stats">
+      <div class="stat"><span class="stat-num">13</span><span class="stat-label">Main Posts</span></div>
+      <div class="stat"><span class="stat-num">12</span><span class="stat-label">Stories</span></div>
+      <div class="stat"><span class="stat-num">4</span><span class="stat-label">Weeks</span></div>
+      <div class="stat"><span class="stat-num">2</span><span class="stat-label">Pillars</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMER CAMP BANNER -->
+<div class="camp-banner">
+  <div class="camp-banner-left">
+    <h2>🏕️ Summer Camp — Starting 4th May</h2>
+    <p>Age Group: 3–6 yrs & 7–10 yrs · South Bopal Campus · 081287 59260</p>
+  </div>
+  <div class="camp-activities">
+    <span class="act-chip">Art & Craft</span>
+    <span class="act-chip">Sand Play</span>
+    <span class="act-chip">Water Activity</span>
+    <span class="act-chip">Happy Movie Hour</span>
+    <span class="act-chip">Physical Activity</span>
+    <span class="act-chip">Dance</span>
+    <span class="act-chip">Yoga</span>
+    <span class="act-chip">Non-Fire Cooking</span>
+    <span class="act-chip">Story Telling</span>
+    <span class="act-chip">Tote Bag Painting</span>
+    <span class="act-chip">Canvas Painting</span>
+    <span class="act-chip">Mountaineering</span>
+  </div>
+  <div class="camp-meta">
+    <div class="big">Where Learning<br>Meets Fun!</div>
+    <div class="small">BSFC South Bopal Summer Camp</div>
+  </div>
+</div>
+
+<!-- STRATEGY ROW -->
+<div class="strategy-row">
+  <div class="strat-cell">
+    <div class="strat-label">Content Pillars</div>
+    <div class="strat-value">Summer Camp Promo + Vacation Activities + School Prep</div>
+  </div>
+  <div class="strat-cell">
+    <div class="strat-label">Audience</div>
+    <div class="strat-value">Parents of 3–10 yr olds in South Bopal & nearby areas</div>
+  </div>
+  <div class="strat-cell">
+    <div class="strat-label">Tone</div>
+    <div class="strat-value">Playful · Energetic · Warm · Helpful · Summer-Coded</div>
+  </div>
+  <div class="strat-cell">
+    <div class="strat-label">Monthly Arc</div>
+    <div class="strat-value">W1: Camp Launch → W2: Activity Ideas → W3: School Prep → W4: Nostalgia + Next Step</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════ -->
+<!--  WEEK 1                                   -->
+<!-- ══════════════════════════════════════════ -->
+<div class="week-block w1">
+  <div class="week-title-bar">
+    <div style="display:flex;align-items:center;gap:0;">
+      <span class="week-num">Week 1</span>
+      <span class="week-theme" style="margin-left:14px;">Summer Camp Is Here — Come Play With Us!</span>
+    </div>
+    <div class="week-goal-tag">Goal: Announce camp launch, drive enquiries &amp; registrations from local parents</div>
+  </div>
+
+  <div class="posts-row">
+
+    <!-- W1 P1 -->
+    <div class="post-card">
+      <div class="pc-top">
+        <span class="pc-date">Mon · May 5</span>
+        <span class="format-pill fmt-reel">Reel</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-title">🎉 Summer Camp Is OPEN — South Bopal, This One's For Your Kids!</div>
+        <div class="pc-hook">"School's out. Adventure's in. BSFC Summer Camp starts NOW."</div>
+        <div class="pc-section-label">Caption</div>
+        <div class="pc-caption">
+          Vacations just got a serious upgrade. 🌞<br><br>
+          BSFC South Bopal's Summer Camp is officially open — and we've packed it with everything your child will absolutely love.<br><br>
+          🎨 Art & Craft · 💃 Dance · 🧘 Yoga · 🍳 Non-Fire Cooking<br>
+          🏔️ Mountaineering · 🎬 Movie Hour · 🖌️ Canvas Painting + more!<br><br>
+          Age Group: 3–6 yrs & 7–10 yrs<br>
+          📍 South Bopal Campus<br>
+          📞 Call or DM to register: 081287 59260<br><br>
+          Limited spots. Don't let this summer be ordinary. 🌈
+        </div>
+        <div class="creative-brief">
+          <div class="cb-label">🎨 Designer Creative Brief</div>
+          <div class="cb-items">
+            <div class="cb-item">Fast-cut Reel: quick 1-sec clips of each activity with bold text overlay per activity</div>
+            <div class="cb-item">Colour palette: bright yellow, orange, sky blue — summer splash energy</div>
+            <div class="cb-item">Font: Bold chunky display, all caps for activity names. Bubbly, playful</div>
+            <div class="cb-item">End frame: Camp poster with logo, date, phone number, "Enquire Now" CTA</div>
+            <div class="cb-item">Audio: Upbeat, fun kids BGM. No voiceover needed — text does the work</div>
+          </div>
+        </div>
+      </div>
+      <div class="pc-footer">
+        <span class="cta-btn cta-sun">📞 Call to Register</span>
+        <span class="tone-note">High energy launch</span>
+      </div>
+      <div class="card-production">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-in-progress">● In Progress</span>
+          <span class="status-btn s-ready">● Ready to Post</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- W1 P2 -->
+    <div class="post-card">
+      <div class="pc-top">
+        <span class="pc-date">Wed · May 7</span>
+        <span class="format-pill fmt-carousel">Carousel</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-title">12 Things Your Child Will Do At Our Summer Camp ☀️</div>
+        <div class="pc-hook">"Each one is a skill. Each one is a memory. Each one is a little bit of magic."</div>
+        <div class="pc-section-label">Slides</div>
+        <div class="slide-list">
+          <div class="slide-row"><div class="sn sn-sun">1</div><div class="st">Cover: "12 things your child will learn, create & discover this summer at BSFC South Bopal"</div></div>
+          <div class="slide-row"><div class="sn sn-sun">2</div><div class="st">🎨 Art & Craft — "Express, create, imagine"</div></div>
+          <div class="slide-row"><div class="sn sn-sun">3</div><div class="st">🏖️ Sand Play — "Tactile, sensory, therapeutic"</div></div>
+          <div class="slide-row"><div class="sn sn-sun">4</div><div class="st">💧 Water Activity — "Cool, fun, science in action"</div></div>
+          <div class="slide-row"><div class="sn sn-sun">5</div><div class="st">🍳 Non-Fire Cooking — "Real skills, zero risk, all confidence"</div></div>
+          <div class="slide-row"><div class="sn sn-sun">6</div><div class="st">📖 Story Telling — "Words, imagination, confidence"</div></div>
+          <div class="slide-row"><div class="sn sn-sun">7</div><div class="st">🎬 Movie Hour — "Sit back, relax, learn through stories"</div></div>
+          <div class="slide-row"><div class="sn sn-sun">8</div><div class="st">💃 Dance — "Movement, rhythm, joy"</div></div>
+          <div class="slide-row"><div class="sn sn-sun">9</div><div class="st">🧘 Yoga — "Calm, focus, body awareness"</div></div>
+          <div class="slide-row"><div class="sn sn-sun">10</div><div class="st">🖌️ Tote Bag + Canvas Painting — "They take home what they made"</div></div>
+          <div class="slide-row"><div class="sn sn-sun">11</div><div class="st">🏃 Physical Activity — "Energy, strength, teamwork"</div></div>
+          <div class="slide-row"><div class="sn sn-sun">12</div><div class="st">🏔️ Mountaineering — "Courage, challenge, achievement"</div></div>
+          <div class="slide-row"><div class="sn sn-sun">13</div><div class="st">Last slide CTA: "Join the camp — DM or call 081287 59260. Age: 3–10 yrs"</div></div>
+        </div>
+        <div class="creative-brief">
+          <div class="cb-label">🎨 Designer Creative Brief</div>
+          <div class="cb-items">
+            <div class="cb-item">One activity per slide — large emoji/icon + bold activity name + 3-word descriptor</div>
+            <div class="cb-item">Each slide: different pastel background block — rotate sun yellow, sky blue, mint green, coral</div>
+            <div class="cb-item">Consistent layout: icon top-centre, activity name bold below, descriptor in lighter weight</div>
+            <div class="cb-item">BSFC logo watermark bottom-right on every slide</div>
+            <div class="cb-item">Last slide: full camp poster style with all info</div>
+          </div>
+        </div>
+      </div>
+      <div class="pc-footer">
+        <span class="cta-btn cta-sky">DM to Join</span>
+        <span class="tone-note">Save-worthy, shareable</span>
+      </div>
+      <div class="card-production">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-in-progress">● In Progress</span>
+          <span class="status-btn s-ready">● Ready to Post</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- W1 P3 -->
+    <div class="post-card">
+      <div class="pc-top">
+        <span class="pc-date">Fri · May 9</span>
+        <span class="format-pill fmt-static">Static</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-title">Two Age Groups. One Amazing Summer. 🌟</div>
+        <div class="pc-hook">"Whether they're 3 or 10 — there's a camp built just for them."</div>
+        <div class="pc-section-label">Caption</div>
+        <div class="pc-caption">
+          Every child deserves a summer they'll remember. 🌈<br><br>
+          That's why BSFC South Bopal's Summer Camp runs two specially designed programmes:<br><br>
+          🟡 Age 3–6 yrs — Play-first, sensory-rich, safe & nurturing<br>
+          🔵 Age 7–10 yrs — Skill-building, challenge-based, confidence-boosting<br><br>
+          Same joy. Same energy. Tailored for where your child is right now.<br><br>
+          📍 BSFC South Bopal, Shivam Bunglows, SOBO Centre Rd<br>
+          📞 081287 59260 · Limited seats — call today!
+        </div>
+        <div class="creative-brief">
+          <div class="cb-label">🎨 Designer Creative Brief</div>
+          <div class="cb-items">
+            <div class="cb-item">Split-screen design: left half = younger kids (soft yellows, playful), right half = older kids (bolder blues, energetic)</div>
+            <div class="cb-item">Each side shows age group + 3 activity icons relevant to that group</div>
+            <div class="cb-item">Centre divider: BSFC logo or a sun icon</div>
+            <div class="cb-item">Bottom strip: address, phone, "Limited Seats" urgency badge in coral/red</div>
+            <div class="cb-item">Aspect ratio: 1:1 for feed. Also export 9:16 story version</div>
+          </div>
+        </div>
+      </div>
+      <div class="pc-footer">
+        <span class="cta-btn cta-coral">📞 081287 59260</span>
+        <span class="tone-note">Informative + urgent</span>
+      </div>
+      <div class="card-production">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-in-progress">● In Progress</span>
+          <span class="status-btn s-ready">● Ready to Post</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- W1 STORIES -->
+  <div class="stories-section">
+    <div class="stories-label">Stories — Week 1 (3 stories across the week)</div>
+    <div class="stories-grid">
+      <div class="story-card">
+        <div class="sc-top">
+          <span class="format-pill fmt-story">Story · Mon</span>
+        
+      <div class="sc-prod">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-ready">● Ready</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+  </div>
+        <div class="sc-title">🚨 Summer Camp Launch Announcement</div>
+        <div class="sc-desc">Camp poster (already designed) shared as story. Add "Swipe Up" or "DM Us" sticker. Caption: "It's here! BSFC Summer Camp starts 4th May — tap to know more."</div>
+        <div class="sc-cta">→ Link / DM sticker</div>
+      </div>
+      <div class="story-card">
+        <div class="sc-top">
+          <span class="format-pill fmt-story">Story · Wed</span>
+        
+      <div class="sc-prod">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-ready">● Ready</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+  </div>
+        <div class="sc-title">Poll: Which Activity Would Your Child Love Most?</div>
+        <div class="sc-desc">Poll sticker — Option A: "Art & Craft 🎨" vs Option B: "Dance & Yoga 💃". Drives engagement, tells you what content to push harder next week.</div>
+        <div class="sc-cta">→ Poll sticker</div>
+      </div>
+      <div class="story-card">
+        <div class="sc-top">
+          <span class="format-pill fmt-story">Story · Fri</span>
+        
+      <div class="sc-prod">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-ready">● Ready</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+  </div>
+        <div class="sc-title">⏰ "Only X Seats Left" Urgency Story</div>
+        <div class="sc-desc">Text-on-background: "We only have limited seats for Summer Camp. Don't wait — your child's spot might already be gone. Call 081287 59260." Add countdown sticker if possible.</div>
+        <div class="sc-cta">→ WhatsApp / Call CTA</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════ -->
+<!--  WEEK 2                                   -->
+<!-- ══════════════════════════════════════════ -->
+<div class="week-block w2">
+  <div class="week-title-bar">
+    <div style="display:flex;align-items:center;">
+      <span class="week-num">Week 2</span>
+      <span class="week-theme" style="margin-left:14px;">Fun Things Kids Can Do This Vacation 🌴</span>
+    </div>
+    <div class="week-goal-tag">Goal: Value content for parents — position BSFC as the thoughtful choice, keep camp top-of-mind</div>
+  </div>
+
+  <div class="posts-row">
+
+    <!-- W2 P1 -->
+    <div class="post-card">
+      <div class="pc-top">
+        <span class="pc-date">Mon · May 12</span>
+        <span class="format-pill fmt-carousel">Carousel</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-title">10 Screen-Free Summer Activities Your Child Will Actually Love 🎯</div>
+        <div class="pc-hook">"Put the tablet down. These are way more fun — and we promise they'll agree."</div>
+        <div class="pc-section-label">Slides</div>
+        <div class="slide-list">
+          <div class="slide-row"><div class="sn sn-sky">1</div><div class="st">Cover: "10 screen-free summer activities your child will beg to do again"</div></div>
+          <div class="slide-row"><div class="sn sn-sky">2</div><div class="st">🫙 Make a sensory jar — water, glitter, food colour. Shake & watch.</div></div>
+          <div class="slide-row"><div class="sn sn-sky">3</div><div class="st">🎭 Put on a home puppet show — socks, paper bags, old boxes</div></div>
+          <div class="slide-row"><div class="sn sn-sky">4</div><div class="st">🌱 Plant something together — a seed, a pot, anything growing</div></div>
+          <div class="slide-row"><div class="sn sn-sky">5</div><div class="st">🎨 Handprint art — paint + paper = forever memory</div></div>
+          <div class="slide-row"><div class="sn sn-sky">6</div><div class="st">🍋 Make lemonade or a simple no-cook snack together</div></div>
+          <div class="slide-row"><div class="sn sn-sky">7</div><div class="st">🗺️ Indoor treasure hunt — hide clues around the house</div></div>
+          <div class="slide-row"><div class="sn sn-sky">8</div><div class="st">📖 Story-building game — each person adds one sentence</div></div>
+          <div class="slide-row"><div class="sn sn-sky">9</div><div class="st">🎵 Dance to 3 songs — make up the moves as you go</div></div>
+          <div class="slide-row"><div class="sn sn-sky">10</div><div class="st">🏕️ Backyard/balcony picnic — blanket + snacks + sunshine</div></div>
+          <div class="slide-row"><div class="sn sn-sky">11</div><div class="st">Last slide: "We do all of this + so much more at BSFC Summer Camp. Join us!"</div></div>
+        </div>
+        <div class="creative-brief">
+          <div class="cb-label">🎨 Designer Creative Brief</div>
+          <div class="cb-items">
+            <div class="cb-item">Illustrated / icon-led style — one large icon + activity name + 1-line tip per slide</div>
+            <div class="cb-item">Warm sky-blue background throughout — consistent week 2 palette</div>
+            <div class="cb-item">Handwritten-style accent font for the activity name; clean sans for the tip</div>
+            <div class="cb-item">Last slide: connects back to camp with BSFC branding + CTA</div>
+          </div>
+        </div>
+      </div>
+      <div class="pc-footer">
+        <span class="cta-btn cta-sky">Save This Post</span>
+        <span class="tone-note">High saves, shareable</span>
+      </div>
+      <div class="card-production">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-in-progress">● In Progress</span>
+          <span class="status-btn s-ready">● Ready to Post</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- W2 P2 -->
+    <div class="post-card">
+      <div class="pc-top">
+        <span class="pc-date">Wed · May 14</span>
+        <span class="format-pill fmt-reel">Reel</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-title">A Day at BSFC Summer Camp 🎬 — What It Actually Looks Like</div>
+        <div class="pc-hook">"This is what your child's summer could look like. Every. Single. Day."</div>
+        <div class="pc-section-label">Caption</div>
+        <div class="pc-caption">
+          Curious what happens at BSFC South Bopal's Summer Camp? 🌞<br><br>
+          Morning warmup → Art session → Story time → Water play → Cooking activity → Dance off → Take-home craft<br><br>
+          Every day is different. Every day is something new.<br>
+          And every evening, your child comes home with a story to tell. 💛<br><br>
+          🎒 Age 3–6 & 7–10 · 📍 South Bopal<br>
+          📞 081287 59260 to secure a spot
+        </div>
+        <div class="creative-brief">
+          <div class="cb-label">🎨 Designer Creative Brief</div>
+          <div class="cb-items">
+            <div class="cb-item">Reel: "Day in the life" format — morning to afternoon, chronological clips</div>
+            <div class="cb-item">Text overlay per clip: "9 AM — Art Time 🎨", "11 AM — Water Play 💧" etc.</div>
+            <div class="cb-item">Real camp footage if available; else use cheerful stock + BSFC graphic overlays</div>
+            <div class="cb-item">End card: BSFC logo + "Join the camp" + phone number. Bright coral background</div>
+            <div class="cb-item">Duration: 25–35 seconds. Upbeat BGM — something kids would bop to</div>
+          </div>
+        </div>
+      </div>
+      <div class="pc-footer">
+        <span class="cta-btn cta-sun">🏕️ Join the Camp</span>
+        <span class="tone-note">FOMO + excitement</span>
+      </div>
+      <div class="card-production">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-in-progress">● In Progress</span>
+          <span class="status-btn s-ready">● Ready to Post</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- W2 P3 -->
+    <div class="post-card">
+      <div class="pc-top">
+        <span class="pc-date">Fri · May 16</span>
+        <span class="format-pill fmt-static">Static</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-title">Why Unstructured Summer Time Is Actually Great For Kids 🧠</div>
+        <div class="pc-hook">"Boredom is not the enemy. Here's what the science says."</div>
+        <div class="pc-section-label">Caption</div>
+        <div class="pc-caption">
+          Here's something counterintuitive: letting your child be "bored" this summer might be the best thing you do for them. 🌿<br><br>
+          When children have unscheduled time, they:<br>
+          ✅ Develop creativity and problem-solving<br>
+          ✅ Learn to self-regulate emotions<br>
+          ✅ Build imaginative play skills<br>
+          ✅ Become more independent<br><br>
+          The trick? Mix free time with gentle structured activities — like what we do at BSFC Summer Camp. 💛<br><br>
+          Balance is the magic word this summer.
+        </div>
+        <div class="creative-brief">
+          <div class="cb-label">🎨 Designer Creative Brief</div>
+          <div class="cb-items">
+            <div class="cb-item">Calm, editorial static — cream/off-white background, not loud</div>
+            <div class="cb-item">Large quote-style text: "Boredom is a superpower." as hero element</div>
+            <div class="cb-item">4 benefit points as small icon+text rows below the quote</div>
+            <div class="cb-item">Subtle BSFC logo + "Summer Camp" small mention at the bottom</div>
+            <div class="cb-item">Tone: thoughtful parenting content — not a promo post. Keep it clean.</div>
+          </div>
+        </div>
+      </div>
+      <div class="pc-footer">
+        <span class="cta-btn cta-grass">💬 Share With a Parent</span>
+        <span class="tone-note">Educational, trust-building</span>
+      </div>
+      <div class="card-production">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-in-progress">● In Progress</span>
+          <span class="status-btn s-ready">● Ready to Post</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- W2 STORIES -->
+  <div class="stories-section">
+    <div class="stories-label">Stories — Week 2</div>
+    <div class="stories-grid">
+      <div class="story-card">
+        <div class="sc-top"><span class="format-pill fmt-story">Story · Mon</span>
+      <div class="sc-prod">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-ready">● Ready</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+  </div>
+        <div class="sc-title">💬 "Which activity do you wish YOU had at school?"</div>
+        <div class="sc-desc">Question box sticker. Gets adult parents nostalgic and sharing — great organic reach. Reply to top answers with a fun comment.</div>
+        <div class="sc-cta">→ Question sticker</div>
+      </div>
+      <div class="story-card">
+        <div class="sc-top"><span class="format-pill fmt-story">Story · Wed</span>
+      <div class="sc-prod">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-ready">● Ready</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+  </div>
+        <div class="sc-title">🎬 Behind-the-Scenes: Camp Day Sneak Peek</div>
+        <div class="sc-desc">Quick raw video from camp — kids doing an activity. No polish needed. Authenticity wins. Caption: "This is what your child's Tuesday could look like 👀"</div>
+        <div class="sc-cta">→ Raw video clip</div>
+      </div>
+      <div class="story-card">
+        <div class="sc-top"><span class="format-pill fmt-story">Story · Fri</span>
+      <div class="sc-prod">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-ready">● Ready</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+  </div>
+        <div class="sc-title">📊 Poll: How is your child spending their vacation?</div>
+        <div class="sc-desc">Options: "Lots of screen time 😅" vs "Mostly outdoor / activities 🌿". Relatable for parents. High engagement. Follow up next week with what's better.</div>
+        <div class="sc-cta">→ Poll sticker</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════ -->
+<!--  WEEK 3                                   -->
+<!-- ══════════════════════════════════════════ -->
+<div class="week-block w3">
+  <div class="week-title-bar">
+    <div style="display:flex;align-items:center;">
+      <span class="week-num">Week 3</span>
+      <span class="week-theme" style="margin-left:14px;">Get School-Ready This Summer 🎒</span>
+    </div>
+    <div class="week-goal-tag">Goal: Admission intent — connect summer to school prep, drive enquiries for AY 2025–26</div>
+  </div>
+
+  <div class="posts-row">
+
+    <!-- W3 P1 -->
+    <div class="post-card">
+      <div class="pc-top">
+        <span class="pc-date">Mon · May 19</span>
+        <span class="format-pill fmt-carousel">Carousel</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-title">Is Your Child Ready For School? 5 Signs To Look For 👀</div>
+        <div class="pc-hook">"It's not about ABCs. Here's what actually matters before Day 1."</div>
+        <div class="pc-section-label">Slides</div>
+        <div class="slide-list">
+          <div class="slide-row"><div class="sn sn-grass">1</div><div class="st">Cover: "5 signs your child might be ready for school — summer checklist for parents"</div></div>
+          <div class="slide-row"><div class="sn sn-grass">2</div><div class="st">✅ They can sit focused for 5–10 mins during an activity</div></div>
+          <div class="slide-row"><div class="sn sn-grass">3</div><div class="st">✅ They show curiosity — ask "why?" and "what's that?"</div></div>
+          <div class="slide-row"><div class="sn sn-grass">4</div><div class="st">✅ They can follow a simple 2-step instruction</div></div>
+          <div class="slide-row"><div class="sn sn-grass">5</div><div class="st">✅ They enjoy being around other children</div></div>
+          <div class="slide-row"><div class="sn sn-grass">6</div><div class="st">✅ They can express basic needs — hungry, tired, bathroom</div></div>
+          <div class="slide-row"><div class="sn sn-grass">7</div><div class="st">Last slide: "All these skills grow at BSFC Summer Camp — and at BSFC South Bopal when school starts. Admissions open!"</div></div>
+        </div>
+        <div class="creative-brief">
+          <div class="cb-label">🎨 Designer Creative Brief</div>
+          <div class="cb-items">
+            <div class="cb-item">Checklist aesthetic — each slide has a large green tick + bold statement</div>
+            <div class="cb-item">Fresh mint green + white palette — feels optimistic and clean</div>
+            <div class="cb-item">Child illustration or icon per slide (curious child, group play, etc.)</div>
+            <div class="cb-item">Last slide: dual CTA — Summer Camp + School Admissions 2025–26</div>
+          </div>
+        </div>
+      </div>
+      <div class="pc-footer">
+        <span class="cta-btn cta-grass">🎒 Book a Visit</span>
+        <span class="tone-note">High saves, admission bridge</span>
+      </div>
+      <div class="card-production">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-in-progress">● In Progress</span>
+          <span class="status-btn s-ready">● Ready to Post</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- W3 P2 -->
+    <div class="post-card">
+      <div class="pc-top">
+        <span class="pc-date">Wed · May 21</span>
+        <span class="format-pill fmt-reel">Reel</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-title">5 Ways To Prep Your Child For School This Summer 🌞</div>
+        <div class="pc-hook">"Use these holidays to give your child a head start — without making it feel like homework."</div>
+        <div class="pc-section-label">Caption</div>
+        <div class="pc-caption">
+          School starts soon. But the prep starts now — and it doesn't have to feel like studying. 📚✨<br><br>
+          Here's what actually helps your child transition smoothly:<br>
+          1️⃣ Establish a sleep & wake routine now<br>
+          2️⃣ Practice sitting for short activities (5–10 mins)<br>
+          3️⃣ Read together every day — even picture books count<br>
+          4️⃣ Encourage independent eating & dressing<br>
+          5️⃣ Let them play with other kids — socialising is a skill<br><br>
+          At BSFC South Bopal, we take it from here. 💛<br>
+          Admissions open for 2025–26 — DM us to know more.
+        </div>
+        <div class="creative-brief">
+          <div class="cb-label">🎨 Designer Creative Brief</div>
+          <div class="cb-items">
+            <div class="cb-item">Reel: 5-tip listicle format — each tip appears on screen with a matching visual/icon</div>
+            <div class="cb-item">Talking-head style OR text-only kinetic typography — both work well</div>
+            <div class="cb-item">Warm, morning-light feel — soft greens and cream backgrounds</div>
+            <div class="cb-item">End card: "Admissions Open at BSFC South Bopal" + school logo + phone</div>
+            <div class="cb-item">Duration: 20–30 secs. Calm, reassuring music — not too loud</div>
+          </div>
+        </div>
+      </div>
+      <div class="pc-footer">
+        <span class="cta-btn cta-grass">📩 DM to Know More</span>
+        <span class="tone-note">Helpful + soft admission push</span>
+      </div>
+      <div class="card-production">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-in-progress">● In Progress</span>
+          <span class="status-btn s-ready">● Ready to Post</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- W3 P3 -->
+    <div class="post-card">
+      <div class="pc-top">
+        <span class="pc-date">Fri · May 23</span>
+        <span class="format-pill fmt-static">Static</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-title">Admissions Open for 2025–26 🎒 — South Bopal, Your School Is Ready.</div>
+        <div class="pc-hook">"A new school year. A new chapter. And the best start possible — right here in your neighbourhood."</div>
+        <div class="pc-section-label">Caption</div>
+        <div class="pc-caption">
+          The summer's flying by — and the new school year is closer than you think. 🌟<br><br>
+          BSFC South Bopal is now accepting admissions for 2025–26.<br><br>
+          ✅ Playgroup · Nursery · Junior KG · Senior KG<br>
+          ✅ Small batches — every child known by name<br>
+          ✅ Activity-first, NCERT-aligned curriculum<br>
+          ✅ Daily parent updates<br>
+          ✅ Right here in South Bopal 📍<br><br>
+          Seats are filling fast. Book your child's spot before the summer ends.<br>
+          📞 081287 59260
+        </div>
+        <div class="creative-brief">
+          <div class="cb-label">🎨 Designer Creative Brief</div>
+          <div class="cb-items">
+            <div class="cb-item">Clean admissions announcement poster — premium feel, not loud</div>
+            <div class="cb-item">Hero text: "Admissions Open 2025–26" in large Fraunces/serif display font</div>
+            <div class="cb-item">5 checkpoints as icon rows — neat, readable at a glance</div>
+            <div class="cb-item">Colour: deep navy or forest green background — feels established and trustworthy</div>
+            <div class="cb-item">Bottom strip: address + phone + "Limited Seats" badge in gold/amber</div>
+          </div>
+        </div>
+      </div>
+      <div class="pc-footer">
+        <span class="cta-btn cta-violet">📞 Secure Your Seat</span>
+        <span class="tone-note">Direct admission push</span>
+      </div>
+      <div class="card-production">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-in-progress">● In Progress</span>
+          <span class="status-btn s-ready">● Ready to Post</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- W3 STORIES -->
+  <div class="stories-section">
+    <div class="stories-label">Stories — Week 3</div>
+    <div class="stories-grid">
+      <div class="story-card">
+        <div class="sc-top"><span class="format-pill fmt-story">Story · Mon</span>
+      <div class="sc-prod">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-ready">● Ready</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+  </div>
+        <div class="sc-title">✅ "Save this school-readiness checklist"</div>
+        <div class="sc-desc">Story version of the checklist carousel — 5 quick tips as a vertical graphic. Add "Save this for later 📌" as text overlay. Great for shares.</div>
+        <div class="sc-cta">→ Swipe / Save prompt</div>
+      </div>
+      <div class="story-card">
+        <div class="sc-top"><span class="format-pill fmt-story">Story · Wed</span>
+      <div class="sc-prod">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-ready">● Ready</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+  </div>
+        <div class="sc-title">🎥 Summer Camp Highlight Clip</div>
+        <div class="sc-desc">Best 10-second moment from camp this week — a fun activity, kids laughing, something real. Raw clip with text: "This could be your child's summer too 🌈"</div>
+        <div class="sc-cta">→ DM "CAMP" to join</div>
+      </div>
+      <div class="story-card">
+        <div class="sc-top"><span class="format-pill fmt-story">Story · Fri</span>
+      <div class="sc-prod">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-ready">● Ready</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+  </div>
+        <div class="sc-title">📢 Admissions Open — Tap to Enquire</div>
+        <div class="sc-desc">Admissions post reshared as story. Add link sticker or "DM ADMIT" call to action. Keep it simple — the feed post does the heavy lifting.</div>
+        <div class="sc-cta">→ DM "ADMIT"</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════ -->
+<!--  WEEK 4                                   -->
+<!-- ══════════════════════════════════════════ -->
+<div class="week-block w4">
+  <div class="week-title-bar">
+    <div style="display:flex;align-items:center;">
+      <span class="week-num">Week 4</span>
+      <span class="week-theme" style="margin-left:14px;">What A Summer It's Been — See You In June! 🌅</span>
+    </div>
+    <div class="week-goal-tag">Goal: Emotional close, camp wrap-up, final admission push before new year</div>
+  </div>
+
+  <div class="posts-row">
+
+    <!-- W4 P1 -->
+    <div class="post-card">
+      <div class="pc-top">
+        <span class="pc-date">Mon · May 26</span>
+        <span class="format-pill fmt-carousel">Carousel</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-title">Things Your Child Learned This Summer (That No Textbook Teaches) 📖</div>
+        <div class="pc-hook">"This summer, your child grew in ways you might not have even noticed."</div>
+        <div class="pc-section-label">Slides</div>
+        <div class="slide-list">
+          <div class="slide-row"><div class="sn sn-violet">1</div><div class="st">Cover: "The real lessons of summer — things no textbook can teach"</div></div>
+          <div class="slide-row"><div class="sn sn-violet">2</div><div class="st">🎨 Creativity — "They didn't colour inside the lines. Good."</div></div>
+          <div class="slide-row"><div class="sn sn-violet">3</div><div class="st">🤝 Friendship — "They learned to share, wait, and include others"</div></div>
+          <div class="slide-row"><div class="sn sn-violet">4</div><div class="st">💪 Confidence — "They tried something scary and did it anyway"</div></div>
+          <div class="slide-row"><div class="sn sn-violet">5</div><div class="st">🌿 Curiosity — "They asked questions nobody had answers to"</div></div>
+          <div class="slide-row"><div class="sn sn-violet">6</div><div class="st">😌 Patience — "They waited for their turn. Eventually."</div></div>
+          <div class="slide-row"><div class="sn sn-violet">7</div><div class="st">Last slide: "These are exactly the skills we nurture at BSFC South Bopal. School starts soon — admissions still open. 📞 081287 59260"</div></div>
+        </div>
+        <div class="creative-brief">
+          <div class="cb-label">🎨 Designer Creative Brief</div>
+          <div class="cb-items">
+            <div class="cb-item">Warm, nostalgic feel — golden hour palette, soft amber and lavender tones</div>
+            <div class="cb-item">Each slide: large keyword (CREATIVITY, FRIENDSHIP etc.) in display font + witty one-liner below</div>
+            <div class="cb-item">Light watercolour texture in background — handcrafted, artful mood</div>
+            <div class="cb-item">Last slide transitions to school messaging — slight palette shift to BSFC brand colours</div>
+          </div>
+        </div>
+      </div>
+      <div class="pc-footer">
+        <span class="cta-btn cta-violet">💛 Tag a Parent</span>
+        <span class="tone-note">Emotional, shareable</span>
+      </div>
+      <div class="card-production">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-in-progress">● In Progress</span>
+          <span class="status-btn s-ready">● Ready to Post</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- W4 P2 -->
+    <div class="post-card">
+      <div class="pc-top">
+        <span class="pc-date">Wed · May 28</span>
+        <span class="format-pill fmt-reel">Reel</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-title">Summer Camp Wrap — The Moments That Made It Magic ✨</div>
+        <div class="pc-hook">"Rewind. These were your child's 30 best seconds this summer."</div>
+        <div class="pc-section-label">Caption</div>
+        <div class="pc-caption">
+          What a summer it's been. 🌅<br><br>
+          From paint-covered hands to mountaineering challenges, from kitchen experiments to canvas masterpieces — every day at BSFC Summer Camp was something new, something brave, something beautiful.<br><br>
+          Thank you to every child who brought their spark this season. 💛<br><br>
+          And for those who missed it — school's almost here, and BSFC South Bopal is ready for you.<br>
+          📞 081287 59260 · Admissions Open · South Bopal
+        </div>
+        <div class="creative-brief">
+          <div class="cb-label">🎨 Designer Creative Brief</div>
+          <div class="cb-items">
+            <div class="cb-item">Montage Reel: best clips from the whole camp — 1-sec each, fast cut</div>
+            <div class="cb-item">Warm golden grade on all footage — nostalgic, emotional tone</div>
+            <div class="cb-item">Text overlay at start: "What a summer." Minimal text, let the footage speak</div>
+            <div class="cb-item">End card: BSFC logo + "Admissions Open 2025–26" + phone number</div>
+            <div class="cb-item">Audio: emotional/uplifting instrumental. No lyrics. Duration: 30–45 secs.</div>
+          </div>
+        </div>
+      </div>
+      <div class="pc-footer">
+        <span class="cta-btn cta-sun">🌅 Thank You Post</span>
+        <span class="tone-note">Emotional close + soft CTA</span>
+      </div>
+      <div class="card-production">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-in-progress">● In Progress</span>
+          <span class="status-btn s-ready">● Ready to Post</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- W4 P3 -->
+    <div class="post-card">
+      <div class="pc-top">
+        <span class="pc-date">Fri · May 30</span>
+        <span class="format-pill fmt-static">Static</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-title">June Is Almost Here. Is Your Child's School Sorted? 🎒</div>
+        <div class="pc-hook">"The summer's almost over. Don't let the admission list close without your child's name on it."</div>
+        <div class="pc-section-label">Caption</div>
+        <div class="pc-caption">
+          June knocks at the door and a new school year begins. 🌟<br><br>
+          If you've been thinking about enrolling your child at BSFC South Bopal — this is your nudge. 💛<br><br>
+          ✅ Admissions open for Playgroup to Sr. KG<br>
+          ✅ Small batches — personal attention guaranteed<br>
+          ✅ Activity-based, joy-led learning<br>
+          ✅ Right here in South Bopal, Ahmedabad<br><br>
+          Don't let another year go by. Your child deserves this start.<br>
+          📞 081287 59260 · Book your visit today.
+        </div>
+        <div class="creative-brief">
+          <div class="cb-label">🎨 Designer Creative Brief</div>
+          <div class="cb-items">
+            <div class="cb-item">Urgency poster but warm — not aggressive. "June is around the corner" as hero text</div>
+            <div class="cb-item">Calendar visual element — May flipping to June, or a school bag graphic</div>
+            <div class="cb-item">Sunset/golden hour colour palette — end of summer, start of something new</div>
+            <div class="cb-item">4 checkpoints as clean icon rows, CTA button at bottom: "Call Now"</div>
+            <div class="cb-item">Both 1:1 and 9:16 versions. This one goes as a story too.</div>
+          </div>
+        </div>
+      </div>
+      <div class="pc-footer">
+        <span class="cta-btn cta-coral">📞 Final Admission Push</span>
+        <span class="tone-note">Urgency — kind, not pushy</span>
+      </div>
+      <div class="card-production">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-in-progress">● In Progress</span>
+          <span class="status-btn s-ready">● Ready to Post</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- W4 STORIES -->
+  <div class="stories-section">
+    <div class="stories-label">Stories — Week 4</div>
+    <div class="stories-grid">
+      <div class="story-card">
+        <div class="sc-top"><span class="format-pill fmt-story">Story · Mon</span>
+      <div class="sc-prod">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-ready">● Ready</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+  </div>
+        <div class="sc-title">💛 "What was your child's favourite summer moment?"</div>
+        <div class="sc-desc">Question sticker — invites parents to share their child's summer highlight. Reply publicly to the sweet ones. Builds community, gets shares.</div>
+        <div class="sc-cta">→ Question sticker</div>
+      </div>
+      <div class="story-card">
+        <div class="sc-top"><span class="format-pill fmt-story">Story · Wed</span>
+      <div class="sc-prod">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-ready">● Ready</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+  </div>
+        <div class="sc-title">🏕️ Camp Wrap — Best Photo Dump</div>
+        <div class="sc-desc">5–7 photo slides from the camp — kids' activities, crafts they made, group moments. Text: "What a summer 🌈 Thank you to every little camper." Raw, real, heartwarming.</div>
+        <div class="sc-cta">→ Photo story series</div>
+      </div>
+      <div class="story-card">
+        <div class="sc-top"><span class="format-pill fmt-story">Story · Fri</span>
+      <div class="sc-prod">
+        <div class="prod-row">
+          <span class="prod-label">Status</span>
+          <span class="status-btn s-not-started">● Not Started</span>
+          <span class="status-btn s-ready">● Ready</span>
+          <span class="status-btn s-posted">● Posted</span>
+        </div>
+        <div class="prod-row">
+          <span class="prod-label">Assets</span>
+          <a class="asset-link asset-gdrive" href="#" target="_blank">📁 G Drive</a>
+          <a class="asset-link asset-onedrive" href="#" target="_blank">☁️ OneDrive</a>
+        </div>
+      </div>
+  </div>
+        <div class="sc-title">⏰ Last Chance — Admissions Closing Soon</div>
+        <div class="sc-desc">"June is here. Seats for 2025–26 are almost gone. If your child's spot isn't confirmed yet — call us today. 📞 081287 59260." Add countdown sticker to June 1.</div>
+        <div class="sc-cta">→ Call / WhatsApp link</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- HASHTAGS -->
+<div class="hashtag-wrap">
+  <h3>☀️ May Hashtag Bank — South Bopal</h3>
+  <div class="htag-grid">
+    <div class="htag-group">
+      <h4>Summer Camp Tags</h4>
+      <div class="tag-list">
+        <span class="htag">#BSFCSummerCamp</span>
+        <span class="htag">#SummerCampAhmedabad</span>
+        <span class="htag">#SummerCamp2025</span>
+        <span class="htag">#KidsSummerCamp</span>
+        <span class="htag">#WherelearningMeetsFun</span>
+      </div>
+    </div>
+    <div class="htag-group">
+      <h4>Vacation Content Tags</h4>
+      <div class="tag-list">
+        <span class="htag">#SummerVacation</span>
+        <span class="htag">#KidsActivities</span>
+        <span class="htag">#ScreenFreeKids</span>
+        <span class="htag">#ParentingTips</span>
+        <span class="htag">#SummerWithKids</span>
+        <span class="htag">#HolidayActivities</span>
+      </div>
+    </div>
+    <div class="htag-group">
+      <h4>School Prep Tags</h4>
+      <div class="tag-list">
+        <span class="htag">#AdmissionsOpen2025</span>
+        <span class="htag">#PreschoolReady</span>
+        <span class="htag">#SchoolPrep</span>
+        <span class="htag">#EarlyChildhoodEducation</span>
+        <span class="htag">#PlaygroupAhmedabad</span>
+      </div>
+    </div>
+    <div class="htag-group">
+      <h4>Local Tags</h4>
+      <div class="tag-list">
+        <span class="htag">#BrightStartSouthBopal</span>
+        <span class="htag">#BSFCSouthBopal</span>
+        <span class="htag">#SouthBopal</span>
+        <span class="htag">#SouthBopalAhmedabad</span>
+        <span class="htag">#SouthBopalParents</span>
+        <span class="htag">#AhmedabadKids</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DESIGNER MASTER NOTES -->
+<div class="designer-notes">
+  <div class="dn-card">
+    <h4>🎨 Overall Visual Identity — May</h4>
+    <ul>
+      <li>Primary palette: Bright yellow (sun), sky blue, coral orange — full summer energy</li>
+      <li>Secondary: mint green for school-prep content; lavender/violet for emotional/wrap content</li>
+      <li>Fonts: Chunky playful display (Nunito Black / Fredoka) for headings; clean sans for body</li>
+      <li>Avoid: Cold blues, corporate greys, anything that looks like a formal school brochure</li>
+      <li>Every creative should feel like summer — warm, bright, joyful</li>
+    </ul>
+  </div>
+  <div class="dn-card">
+    <h4>📐 Format Specs for Designers</h4>
+    <ul>
+      <li>Feed posts: 1080×1080px (1:1) — primary</li>
+      <li>Reels cover: 1080×1350px (4:5) — for feed thumbnail</li>
+      <li>Stories: 1080×1920px (9:16) — always export a story version for key posts</li>
+      <li>Reel video: 1080×1920px, 25–45 secs, subtitles on for silent viewers</li>
+      <li>Carousels: Up to 10 slides — keep each slide text minimal, one idea per slide</li>
+    </ul>
+  </div>
+  <div class="dn-card">
+    <h4>📌 Differentiation From Thaltej</h4>
+    <ul>
+      <li>Thaltej has no summer camp content — this is 100% unique to South Bopal</li>
+      <li>All local area tags are South Bopal specific — zero overlap</li>
+      <li>School prep angle (W3) uses different hooks than Thaltej's milestone posts</li>
+      <li>Emotional wrap content (W4) is South Bopal-only — Thaltej had no such arc</li>
+      <li>Summer palette is a total visual departure from Thaltej's sage-green brand codes</li>
+    </ul>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-brand">Say It Social — Digital Marketing</div>
+  <div class="footer-note">BSFC South Bopal · May 2025 Content Calendar · Confidential Client Document</div>
+</div>
+
+</body>
+</html>
