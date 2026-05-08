@@ -1,1 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Say It Social — April/May 2026 Content Calendar</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080D0B;--surface:#0D1912;--surface2:#122018;--surface3:#1A2E22;
+  --border:#1E3028;--border2:#243828;
+  --teal:#00C9A7;--teal-dim:#00C9A720;--gold:#E8A020;--gold-dim:#E8A02018;
+  --white:#FFFFFF;--text:#E8F0EC;--muted:#5A7A68;--muted2:#3A5248;
+  --ig:#C13584;--li:#0077B5;
+  --posted-bg:#0A2218;--posted-text:#00C9A7;--posted-border:#0A3D28;
+  --not-started-bg:#12100A;--not-started-text:#7A8A80;--not-started-border:#252E28;
+  --in-progress-bg:#0E1A2A;--in-progress-text:#5BA4CF;--in-progress-border:#1A3050;
+  --ready-bg:#1F1505;--ready-text:#E8A020;--ready-border:#3D2A05;
+  --rest-bg:#0D1510;--rest-text:#3A5248;--rest-border:#1A2E22;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;line-height:1.6}
 
+.topbar{position:sticky;top:0;z-index:200;background:rgba(8,13,11,0.94);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:58px;border-bottom:1px solid var(--border)}
+.tb-brand{display:flex;align-items:center;gap:14px}
+.tb-logo{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--white)}
+.tb-logo span{color:var(--teal);font-style:italic}
+.tb-divider{width:1px;height:18px;background:var(--border)}
+.tb-tag{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase}
+.tb-right{display:flex;align-items:center;gap:10px}
+.tb-prog-wrap{display:flex;align-items:center;gap:10px}
+.tb-prog-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.12em}
+.tb-prog-bar{width:120px;height:3px;background:var(--surface3);border-radius:2px;overflow:hidden}
+.tb-prog-fill{height:100%;background:linear-gradient(90deg,var(--teal),#00E5C5);border-radius:2px;transition:width 0.4s ease}
+.tb-prog-pct{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--teal)}
+
+.hero{background:var(--bg);padding:56px 32px 48px;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero::before{content:'APR · MAY';position:absolute;right:-40px;top:50%;transform:translateY(-50%);font-family:'Playfair Display',serif;font-size:130px;font-weight:800;color:var(--teal);opacity:0.03;letter-spacing:-0.03em;white-space:nowrap;pointer-events:none}
+.hero-inner{max-width:1400px;margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--teal);letter-spacing:0.22em;text-transform:uppercase;margin-bottom:14px}
+.hero-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(30px,4vw,54px);font-weight:800;color:var(--white);line-height:1.05;margin-bottom:6px}
+.hero-title em{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;color:var(--teal)}
+.hero-sub{font-size:13px;color:var(--muted);max-width:520px;line-height:1.7;margin-top:12px}
+.offer-pill{display:inline-flex;align-items:center;gap:8px;background:var(--ready-bg);border:1px solid var(--ready-border);border-radius:100px;padding:6px 16px;margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase}
+.offer-pill::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.hero-stats{display:flex;gap:28px;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat-n{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--white);line-height:1}
+.hero-stat-l{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted2);text-transform:uppercase;letter-spacing:0.14em;margin-top:4px}
+
+.tabs-wrap{background:rgba(8,13,11,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);position:sticky;top:58px;z-index:190}
+.tabs-inner{max-width:1400px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between}
+.tabs-left{display:flex}
+.tab{padding:0 20px;height:50px;display:flex;align-items:center;gap:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;border:none;background:transparent;border-bottom:2px solid transparent;transition:all 0.18s;white-space:nowrap}
+.tab:hover{color:var(--text)}
+.tab.active{color:var(--white);border-bottom-color:var(--tc)}
+.tab[data-p="all"]{--tc:var(--teal)}
+.tab[data-p="ig"]{--tc:var(--ig)}
+.tab[data-p="li"]{--tc:var(--li)}
+.tab-dot{width:6px;height:6px;border-radius:50%;background:var(--tc);flex-shrink:0}
+.tabs-right{display:flex;align-items:center;gap:6px;padding:8px 0}
+.filt{padding:5px 14px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--muted);transition:all 0.15s}
+.filt:hover{border-color:var(--surface3);color:var(--text)}
+.filt.active-f{background:var(--surface2);color:var(--white);border-color:var(--surface3)}
+.filt.f-posted.active-f{background:var(--posted-bg);color:var(--posted-text);border-color:var(--posted-border)}
+.filt.f-not-started.active-f{background:var(--not-started-bg);color:var(--not-started-text);border-color:var(--not-started-border)}
+.filt.f-in-progress.active-f{background:var(--in-progress-bg);color:var(--in-progress-text);border-color:var(--in-progress-border)}
+.filt.f-ready.active-f{background:var(--ready-bg);color:var(--ready-text);border-color:var(--ready-border)}
+
+.main{max-width:1400px;margin:0 auto;padding:36px 32px}
+
+.week-section{margin-bottom:52px}
+.week-head{display:flex;align-items:center;gap:16px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.week-num{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;background:var(--surface);color:var(--teal);border:1px solid var(--posted-border);padding:3px 12px;letter-spacing:0.15em;text-transform:uppercase;border-radius:100px}
+.week-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;color:var(--text)}
+.week-strategy{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;background:var(--ready-bg);border:1px solid var(--ready-border);padding:3px 10px;border-radius:100px}
+.week-count{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted2);letter-spacing:0.1em}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden;transition:border-color 0.18s,box-shadow 0.18s}
+.card:hover{border-color:var(--surface3);box-shadow:0 4px 24px rgba(0,201,167,0.06)}
+.card.hidden{display:none}
+.card-strip{height:2px;background:var(--pc)}
+.card[data-p="ig"] .card-strip,.card[data-p="ig"] .card-pname{--pc:var(--ig)}
+.card[data-p="li"] .card-strip,.card[data-p="li"] .card-pname{--pc:var(--li)}
+
+.card-header{display:grid;grid-template-columns:180px 80px 100px 1fr auto;align-items:center;gap:0;padding:14px 20px;cursor:pointer;user-select:none}
+.card-header:hover .card-title{color:var(--teal)}
+.card-date{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;color:var(--white)}
+.card-theme-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted2);letter-spacing:0.08em;text-transform:uppercase;margin-top:2px}
+.card-pname{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;color:var(--pc);text-transform:uppercase;letter-spacing:0.1em;padding:0 12px}
+.card-fmt-badge{display:inline-flex;align-items:center;background:var(--surface2);border:1px solid var(--border2);border-radius:100px;padding:3px 10px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.05em;width:fit-content}
+.card-title{font-size:13px;font-weight:600;color:var(--text);line-height:1.4;padding:0 16px;transition:color 0.15s}
+.card-right{display:flex;align-items:center;gap:10px;padding-left:16px}
+
+.spill{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap;border:1px solid}
+.spill::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0}
+.spill.posted      {background:var(--posted-bg);color:var(--posted-text);border-color:var(--posted-border)}
+.spill.not-started {background:var(--not-started-bg);color:var(--not-started-text);border-color:var(--not-started-border)}
+.spill.in-progress {background:var(--in-progress-bg);color:var(--in-progress-text);border-color:var(--in-progress-border)}
+.spill.ready-to-post{background:var(--ready-bg);color:var(--ready-text);border-color:var(--ready-border)}
+.spill.rest{background:var(--rest-bg);color:var(--rest-text);border-color:var(--rest-border)}
+.spill.toggleable{cursor:pointer;transition:transform 0.1s,box-shadow 0.1s;user-select:none}
+.spill.toggleable:hover{transform:scale(1.06);box-shadow:0 2px 10px rgba(0,201,167,0.2)}
+.spill.toggleable:active{transform:scale(0.97)}
+
+.status-toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--surface2);color:var(--white);padding:10px 22px;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;opacity:0;transition:opacity 0.2s,transform 0.2s;pointer-events:none;z-index:9999;white-space:nowrap;border:1px solid var(--border);border-left:3px solid var(--teal);box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+.status-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.expand-btn{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;background:var(--surface2);border:1px solid var(--border2);color:var(--muted);font-size:12px;transition:all 0.15s;flex-shrink:0;cursor:pointer}
+.card.open .expand-btn{background:var(--teal);color:var(--bg);border-color:var(--teal);transform:rotate(180deg)}
+
+.card-body{display:none;border-top:1px solid var(--border)}
+.card.open .card-body{display:block}
+.card-body-inner{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.cb-section{padding:20px 24px;border-right:1px solid var(--border)}
+.cb-section:last-child{border-right:none}
+.cb-section:nth-child(2){border-right:none}
+.cb-section:nth-child(3){border-top:1px solid var(--border)}
+.cb-section:nth-child(4){border-top:1px solid var(--border)}
+.cb-label{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.cb-label::before{content:'';display:block;width:3px;height:3px;border-radius:50%;background:var(--teal)}
+.cb-full{padding:20px 24px;border-top:1px solid var(--border);background:var(--bg)}
+
+.slides-grid{display:flex;flex-direction:column;gap:8px}
+.slide-row{display:flex;align-items:flex-start;gap:12px;padding:10px 14px;background:var(--surface2);border:1px solid var(--border2);border-radius:8px}
+.slide-num{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--surface3);line-height:1;flex-shrink:0;min-width:24px}
+.slide-content{flex:1}
+.slide-headline{font-size:12px;font-weight:600;color:var(--white);margin-bottom:3px}
+.slide-body{font-size:11px;color:var(--muted);line-height:1.5}
+.slide-visual{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--teal);margin-top:4px}
+
+.story-slides{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}
+.story-slide{flex-shrink:0;width:150px;background:var(--surface2);border-radius:10px;padding:14px 12px;border:1px solid var(--border2)}
+.story-slide-n{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--surface3);margin-bottom:6px;line-height:1}
+.story-slide-txt{font-size:11px;color:var(--text);line-height:1.4;margin-bottom:8px}
+.story-slide-type{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:0.08em}
+
+.caption-block{background:var(--bg);border-radius:8px;border:1px solid var(--border);padding:16px 18px;position:relative}
+.caption-text{font-size:12px;color:var(--text);line-height:1.8;white-space:pre-wrap}
+.copy-btn{position:absolute;top:10px;right:10px;padding:4px 11px;background:transparent;border:1px solid var(--border2);border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);cursor:pointer;transition:all 0.15s}
+.copy-btn:hover{background:var(--surface2);color:var(--text)}
+.copy-btn.copied{color:var(--teal);border-color:var(--posted-border)}
+
+.cta-pill{display:inline-flex;align-items:center;gap:6px;background:var(--ready-bg);border:1px solid var(--ready-border);border-radius:100px;padding:4px 12px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-top:12px}
+.cta-pill::before{content:'→';color:var(--gold)}
+
+.hashtag-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.htag{padding:4px 11px;background:var(--surface2);border:1px solid var(--border2);border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);transition:color 0.15s,border-color 0.15s}
+.htag:hover{color:var(--teal);border-color:var(--posted-border)}
+
+.design-notes{display:flex;flex-direction:column;gap:10px}
+.dn-row{display:flex;gap:12px;align-items:flex-start}
+.dn-key{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:500;color:var(--muted2);text-transform:uppercase;letter-spacing:0.1em;min-width:80px;padding-top:2px}
+.dn-val{font-size:12px;color:var(--text);line-height:1.5}
+
+.card-rest .card-header{opacity:0.3;cursor:default}
+.card-rest .expand-btn{display:none}
+
+@media(max-width:900px){
+  .card-header{grid-template-columns:1fr auto auto;gap:8px}
+  .card-pname,.card-fmt-badge{display:none}
+  .card-body-inner{grid-template-columns:1fr}
+  .topbar,.main,.tabs-inner{padding-left:16px;padding-right:16px}
+}
+</style>
+</head>
+<body>
+
+<div class="status-toast" id="status-toast"></div>
+
+<header class="topbar">
+  <div class="tb-brand">
+    <div class="tb-logo">Say It <span>Social</span></div>
+    <div class="tb-divider"></div>
+    <div class="tb-tag">Apr 13 – May 12 · Content Calendar</div>
+  </div>
+  <div class="tb-right">
+    <div class="tb-prog-wrap">
+      <div class="tb-prog-label">Posted</div>
+      <div class="tb-prog-bar"><div class="tb-prog-fill" id="top-prog-fill" style="width:0%"></div></div>
+      <div class="tb-prog-pct" id="top-prog-pct">0%</div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Content Calendar · Apr 13 – May 12, 2026</div>
+      <div class="hero-title">30 Days.<br><em>Full-Service Push.</em></div>
+      <div class="hero-sub">Instagram + LinkedIn · Every post drives toward the full-service retainer. Mix of education, proof, and direct conversion — no filler.</div>
+      <div class="offer-pill">Offer: Full-Service Retainer · CTA on every post</div>
+    </div>
+    <div class="hero-stats" id="hero-stats"></div>
+  </div>
+</section>
+
+<div class="tabs-wrap">
+  <div class="tabs-inner">
+    <div class="tabs-left">
+      <button class="tab active" data-p="all"><div class="tab-dot"></div>All</button>
+      <button class="tab" data-p="ig"><div class="tab-dot"></div>Instagram</button>
+      <button class="tab" data-p="li"><div class="tab-dot"></div>LinkedIn</button>
+    </div>
+    <div class="tabs-right" id="filter-bar"></div>
+  </div>
+</div>
+
+<main class="main" id="main-cal"></main>
+
+<script>
+// ═══════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════
+const WEEKS = [
+  {
+    id:"w1", label:"Week 1", theme:"Re-Introduction & Authority Reset",
+    strategy:"Seed the retainer",
+    days:[
+      {
+        date:"Sun, Apr 13", theme:"🔁 Fresh Start",
+        posts:[
+          {p:"ig",fmt:"Carousel",status:"not-started",
+           title:"March Was Just the Warm-Up — Here's What April Looks Like",
+           hook:"March is done. The brands that grew didn't get lucky. They got strategic.",
+           brief:"5-slide carousel. Recap of what great social media execution looked like in March (use aggregate data/visuals). Then pivot to what April's strategy looks like. Positioned as Say It Social revealing their own playbook — builds authority and seeds the retainer conversation.",
+           slides:[
+             {n:1,head:"Cover",body:"March Was the Warm-Up. April Is the Game.",visual:"Dark bold cover, teal accent. Month transition visual."},
+             {n:2,head:"What worked in March",body:"Consistency won. The brands posting 4-5x/week saw 3x more profile visits than those posting 1-2x. Strategy + execution = results.",visual:"Simple bar chart or stat visual"},
+             {n:3,head:"What didn't work",body:"Random posting. Generic captions. No CTA. Accounts with no content strategy saw engagement drop 40% vs January.",visual:"Red flag icons, honest tone"},
+             {n:4,head:"What April demands",body:"More intentional content. Platform-specific strategy. A system — not a schedule. Every post working toward a business goal.",visual:"Arrow/roadmap visual"},
+             {n:5,head:"CTA",body:"We manage all of this for you. Full-service retainer — strategy, content, execution, reporting. DM RETAINER to learn more.",visual:"Teal bg, bold CTA, logo"}
+           ],
+           caption:`March is done. How did your social media perform? 📊
+
+The brands that grew in March didn't post more.
+They posted with intention.
+
+Here's what the data showed us 👆 (swipe through)
+
+And here's what April demands from every serious brand online:
+
+→ A content strategy that serves business goals
+→ Platform-specific content — not copy-paste
+→ Consistency that builds trust, not just presence
+→ Every post with a clear next step
+
+This is exactly what we do for our retainer clients — every single month.
+
+Ready to hand it over and focus on running your business?
+
+💬 DM us RETAINER — let's talk about what full-service looks like for you.
+🔗 sayitsocial.digital`,
+           hashtags:["#SocialMediaStrategy","#ContentMarketing","#SayItSocial","#DigitalMarketing","#April2026","#FullService"],
+           design_notes:{size:"1:1 (1080×1080px)",palette:"Dark navy bg cover + alternating light/dark slides. Teal accent throughout. Red for 'what didn't work' slide.",font:"Plus Jakarta Sans bold for headlines. Clean regular for descriptions.",visual:"Slide 2: bar chart comparing posting frequency vs results. Slide 3: red flag icons. Slide 4: upward arrow roadmap. Slide 5: full teal bg CTA.",cta:"DM RETAINER",audio:"N/A"}},
+          {p:"li",fmt:"Text Post",status:"not-started",
+           title:"What Separates Brands That Grew in March From Those That Didn't",
+           hook:"I looked at 50+ brand accounts in March. The gap between those that grew and those that stalled came down to one thing.",
+           brief:"Data-backed LinkedIn text post. Hook with a bold observation, then 4-5 specific behaviours that separated growing brands from stalling ones. End with a direct CTA to enquire about the retainer.",
+           slides:[],
+           caption:`I looked at 50+ brand accounts in March.
+
+The gap between those that grew and those that stalled came down to one thing.
+
+Not budget. Not follower count. Not even content quality.
+
+It was whether or not they had a system.
+
+The brands that grew had:
+→ A content calendar mapped to business goals
+→ Platform-specific content (not the same post everywhere)
+→ A CTA on every single post
+→ Someone accountable for execution
+
+The brands that stalled had:
+→ Good intentions
+→ No system
+→ Posting when they remembered
+
+The uncomfortable truth: most businesses treat social media like a task.
+The ones that win treat it like a channel.
+
+A channel needs a strategy. A strategy needs a system. A system needs someone to run it.
+
+That's what our full-service retainer is built for.
+
+If you're running your social media alongside everything else your business demands — let's talk about what handing it over looks like.
+
+💬 DM me RETAINER or visit sayitsocial.digital`,
+           hashtags:["#SocialMediaMarketing","#ContentStrategy","#SayItSocial","#DigitalMarketing","#B2BMarketing","#FullServiceAgency"],
+           design_notes:{size:"N/A — text post",palette:"N/A",font:"N/A",visual:"Text only. Use → arrows for lists. Strong formatting for readability.",cta:"DM RETAINER",audio:"N/A"}}
+        ]
+      },
+      {
+        date:"Mon, Apr 14", theme:"🏆 Authority",
+        posts:[
+          {p:"ig",fmt:"Static",status:"not-started",
+           title:"What a Full-Service Retainer Actually Includes",
+           hook:"People always ask: what exactly do you get with a full-service retainer?",
+           brief:"Bold, clean static graphic. Lists everything included in a full-service retainer in a structured, premium-looking layout. Not a boring price list — a value statement. Should feel like opening a luxury brand catalogue.",
+           slides:[],
+           caption:`People always ask what a full-service retainer actually includes.
+
+Here's the honest answer 👆
+
+This isn't a social media management package.
+It's an entire digital growth system — handed over to people who do this every day.
+
+While you focus on running your business, we handle:
+✅ Content strategy & monthly planning
+✅ All content creation — design, copy, video direction
+✅ Scheduling & posting across platforms
+✅ Community management & DM responses
+✅ Monthly analytics & strategy calls
+✅ Website updates & SEO maintenance
+✅ Ad campaign management
+✅ Brand identity consistency checks
+
+One retainer. Zero content stress. Real results.
+
+Ready to see what this looks like for your brand specifically?
+
+💬 DM us RETAINER — we'll send you a custom scope in 24 hours.
+🔗 sayitsocial.digital`,
+           hashtags:["#FullService","#SocialMediaManagement","#SayItSocial","#DigitalMarketing","#MarketingAgency","#ContentStrategy"],
+           design_notes:{size:"1:1",palette:"Dark surface bg. Teal checkmark icons. White text. Gold accent on 'full-service retainer' label top.",font:"Plus Jakarta Sans bold for heading. Clean list layout.",visual:"Premium checklist layout. Each item with teal ✅. Bottom: 'One retainer. Zero content stress.' bold. Logo bottom right.",cta:"DM RETAINER",audio:"N/A"}},
+          {p:"li",fmt:"Doc Carousel",status:"not-started",
+           title:"The 6 Things Every B2B Brand Needs From Their Social Media in 2026",
+           hook:"Most B2B brands are using social media to exist online. The ones winning are using it to sell.",
+           brief:"6-slide document carousel. Professional, data-driven. Each slide = one thing B2B brands need. Positions Say It Social as the obvious solution on the final slide.",
+           slides:[
+             {n:1,head:"Cover",body:"6 Things Every B2B Brand Needs From Their Social Media in 2026",visual:"Dark professional cover. Say It Social branding."},
+             {n:2,head:"01 — A Content Strategy Tied to Revenue Goals",body:"Not 'post 3x a week'. A documented strategy where every content pillar maps to a business outcome — awareness, leads, or retention.",visual:"Strategy → Revenue arrow diagram"},
+             {n:3,head:"02 — Platform-Specific Positioning",body:"LinkedIn is not Instagram. Your tone, format, and CTA should be completely different. Cross-posting kills reach and brand perception.",visual:"Platform icons with different content examples"},
+             {n:4,head:"03 — Consistent Thought Leadership",body:"Your audience should see your name and immediately think 'expert'. This requires showing up weekly — not monthly.",visual:"Authority graph"},
+             {n:5,head:"04 — Social Proof at Every Stage",body:"Case studies, testimonials, and results content need to be on your feed regularly. Buyers research before they reach out.",visual:"Funnel with proof points"},
+             {n:6,head:"05 — A Clear CTA on Every Post",body:"Every piece of content should tell the reader what to do next. Even thought leadership posts. Even educational content.",visual:"CTA arrow icons"},
+             {n:7,head:"06 — A System, Not a Schedule",body:"A system means: strategy + creation + posting + engagement + reporting. All running consistently. This is what our retainer delivers.",visual:"System diagram. CTA to DM RETAINER at bottom."}
+           ],
+           caption:`Most B2B brands treat social media as an obligation.
+
+The ones winning treat it as a sales channel.
+
+Here are the 6 things your social media needs to actually drive business in 2026 👆 (save this)
+
+The honest observation after working with 25+ B2B brands:
+
+Most have the intention. Almost none have the system.
+
+A system is what turns content into enquiries.
+And enquiries into revenue.
+
+This is exactly what our full-service retainer is designed to deliver.
+
+Strategy. Creation. Execution. Reporting. All handled.
+
+Interested in what this looks like for your business?
+💬 DM me RETAINER — I'll send you a custom scope within 24 hours.`,
+           hashtags:["#B2BMarketing","#SocialMediaStrategy","#SayItSocial","#LinkedInMarketing","#ContentMarketing","#DigitalMarketing"],
+           design_notes:{size:"1:1",palette:"Clean professional dark bg. Numbered slides with teal accent numbers. White headline, muted description.",font:"Syne/Plus Jakarta bold for numbers and headlines.",visual:"Each slide: large number top left (01-06), bold headline, 2-line description, small diagram or icon. Final slide: full system diagram.",cta:"DM RETAINER on final slide",audio:"N/A"}}
+        ]
+      },
+      {
+        date:"Wed, Apr 16", theme:"📚 Education + Seed",
+        posts:[
+          {p:"ig",fmt:"Reel",status:"not-started",
+           title:"The Real Cost of DIY Social Media (Nobody Talks About This)",
+           hook:"DIY social media feels free. Here's what it's actually costing you.",
+           brief:"Talking head or text-overlay Reel. 45-60 sec. Break down the hidden costs of doing your own social media — time, opportunity cost, inconsistency tax, and the compounding disadvantage vs competitors who have professional management. End with retainer CTA.",
+           slides:[],
+           caption:`DIY social media feels free. 👀
+
+Here's what it's actually costing you:
+
+⏱ 8-12 hours per week creating content
+🧠 Mental bandwidth you could spend on your business
+📉 Inconsistency that slowly erodes audience trust
+🎯 Missed trends because you're not watching them daily
+💸 Opportunity cost of every lead who chose a competitor with better content
+
+Add that up over 12 months.
+
+Now compare it to a full-service retainer where a specialist team handles everything — strategy, content, posting, reporting — while you focus on actually running the business that pays for it.
+
+The math isn't even close.
+
+💬 DM us RETAINER — let's show you what full-service costs vs what DIY is really costing you.
+🔗 sayitsocial.digital`,
+           hashtags:["#SocialMediaManagement","#DIYMarketing","#SayItSocial","#DigitalMarketing","#ContentStrategy","#MarketingROI"],
+           design_notes:{size:"9:16",palette:"Dark bg. Red accents for the 'costs'. Teal for the solution section.",font:"Bold text overlays throughout. Each cost point appears on screen as mentioned.",visual:"Text-overlay style or presenter on camera. Each cost point appears as text. Final section: pivot to solution with teal color shift.",cta:"End card: DM RETAINER",audio:"Trending conversational audio or no music — serious tone"}},
+          {p:"li",fmt:"Text Post",status:"not-started",
+           title:"Why Most Businesses Are Overpaying for Social Media Results They're Not Getting",
+           hook:"You're either spending time or money on social media. Most businesses are spending both and still not seeing results.",
+           brief:"Contrarian LinkedIn text post. Challenges the 'boost a post' mentality. Positions proper retainer management as the only logical solution for serious businesses.",
+           slides:[],
+           caption:`You're either spending time or money on social media.
+
+Most businesses are spending both — and still not seeing results.
+
+Here's why:
+
+Spending time without strategy = content that doesn't convert
+Spending money without strategy = ads that don't perform
+
+The missing piece in both cases isn't budget or hours.
+It's a system built by people who do this every day.
+
+The businesses I see winning on social media in 2026 have one thing in common:
+
+They stopped treating social media as something they fit around everything else.
+They treated it as a dedicated channel with dedicated people running it.
+
+This isn't a sales pitch for more spending.
+It's an honest observation after working with businesses that went from sporadic posting to consistent pipelines.
+
+The ROI conversation changes completely when social media is managed properly.
+
+If you're curious what 'properly' looks like for your specific business — 
+💬 DM me RETAINER. Happy to walk you through it.`,
+           hashtags:["#SocialMediaROI","#DigitalMarketing","#SayItSocial","#MarketingStrategy","#B2BMarketing","#ContentMarketing"],
+           design_notes:{size:"N/A",palette:"N/A",font:"N/A",visual:"Text only. Strong opening hook. Use line breaks aggressively for LinkedIn readability.",cta:"DM RETAINER",audio:"N/A"}}
+        ]
+      },
+      {
+        date:"Fri, Apr 18", theme:"🎯 Direct Offer",
+        posts:[
+          {p:"ig",fmt:"Static",status:"not-started",
+           title:"We Have 3 Retainer Spots Open in April",
+           hook:"3 spots. April only. Here's what's included.",
+           brief:"Urgency-driven static. Limited availability. Clean, premium design. Not pushy — confident. The visual should feel like an exclusive announcement, not a sale banner.",
+           slides:[],
+           caption:`We have 3 retainer spots opening in April. 📋
+
+Not a limited-time discount. Not a promotion.
+Just the honest reality that we take on a small number of clients and give each one our full attention.
+
+If you've been thinking about handing over your social media — this is the moment.
+
+What the full-service retainer includes:
+→ Complete social media strategy & calendar
+→ All content creation (design, copy, video direction)
+→ Posting, scheduling & community management
+→ Monthly analytics + strategy call
+→ Website maintenance & updates
+→ Brand identity oversight
+
+One team. Every platform. Every month.
+
+3 spots available for April onboarding.
+
+💬 DM us RETAINER right now to start the conversation.
+🔗 sayitsocial.digital`,
+           hashtags:["#OpenToWork","#DigitalMarketing","#SayItSocial","#SocialMediaManagement","#MarketingAgency","#ContentStrategy"],
+           design_notes:{size:"1:1",palette:"Dark bg. Gold accent on '3 spots'. Clean premium layout — not salesy.",font:"Bold headline. Clean list. Confident, not desperate.",visual:"'3 SPOTS OPEN' as hero text. Below: clean checklist of inclusions. Bottom: DM RETAINER CTA. Logo.",cta:"DM RETAINER",audio:"N/A"}},
+          {p:"li",fmt:"Text Post",status:"not-started",
+           title:"We're Taking On 3 New Retainer Clients in April",
+           hook:"We're selective about who we work with. Here's why — and how to find out if we're the right fit.",
+           brief:"Transparent LinkedIn post about capacity and selectivity. Builds desire through scarcity and standards rather than desperation.",
+           slides:[],
+           caption:`We're selective about who we take on as retainer clients.
+
+Not because we're trying to be exclusive.
+Because great work requires genuine focus — and focus has limits.
+
+We're opening 3 retainer spots in April.
+
+Here's what we look for in the businesses we work with best:
+
+→ You're serious about growth, not just presence
+→ You understand that good content is an investment, not a cost
+→ You're ready to trust a team and let go of DIY
+→ You want a long-term partner, not a one-month experiment
+
+If that sounds like your business — I'd like to talk.
+
+Here's what we bring to the table:
+Full strategy + content creation + posting + community management + reporting. All platforms. Every month. One point of contact.
+
+No guessing. No chasing. No 'we'll get to it this week'.
+
+3 spots. April onboarding.
+
+💬 DM me RETAINER or connect at sayitsocial.digital`,
+           hashtags:["#AgencyLife","#SayItSocial","#DigitalMarketing","#SocialMediaManagement","#MarketingAgency","#B2BMarketing"],
+           design_notes:{size:"N/A",palette:"N/A",font:"N/A",visual:"Text only. Selective/premium tone.",cta:"DM RETAINER",audio:"N/A"}}
+        ]
+      }
+    ]
+  },
+  {
+    id:"w2", label:"Week 2", theme:"Problem Agitation — Make Them Feel the Pain",
+    strategy:"Deepen the need",
+    days:[
+      {
+        date:"Mon, Apr 21", theme:"😩 Pain Point",
+        posts:[
+          {p:"ig",fmt:"Carousel",status:"not-started",
+           title:"7 Signs You've Outgrown DIY Social Media",
+           hook:"There's a point where doing your own social media stops being scrappy and starts being a liability.",
+           brief:"7-slide carousel. Each sign is something the target audience will recognise and wince at. Honest, direct, not condescending. The final slide is the pivot to the solution.",
+           slides:[
+             {n:1,head:"Cover",body:"7 Signs You've Outgrown DIY Social Media",visual:"Dark bold cover. Slightly uncomfortable energy — real talk tone."},
+             {n:2,head:"Sign 1",body:"You haven't posted in 2+ weeks because you 'didn't have time'",visual:"Calendar with gaps"},
+             {n:3,head:"Sign 2",body:"Your last 9 posts all look different — no brand, no theme, no visual consistency",visual:"Inconsistent grid mockup"},
+             {n:4,head:"Sign 3",body:"You're getting engagement but zero enquiries — your content entertains but doesn't convert",visual:"Likes going up, revenue flat"},
+             {n:5,head:"Sign 4",body:"You're spending Sunday nights stressed about what to post tomorrow",visual:"Clock at 11pm, phone in hand"},
+             {n:6,head:"Sign 5",body:"Your competitors' feeds look more professional than yours and you know it",visual:"Two profile grids side by side"},
+             {n:7,head:"Sign 6",body:"You've boosted posts hoping it'll fix organic reach. It hasn't.",visual:"Ad spend going up, results flat"},
+             {n:8,head:"Sign 7 + CTA",body:"You're reading this and nodding along. That's the biggest sign.\n\nDM us RETAINER — let's fix this.",visual:"Teal bg. Mirror emoji. Bold CTA."}
+           ],
+           caption:`There's a point where doing your own social media stops being scrappy and starts being a liability.
+
+7 signs you've hit that point 👆 (swipe through — honestly)
+
+If 3 or more of those landed — you already know what needs to change.
+
+The question is whether you're ready to actually change it.
+
+Full-service retainer → strategy, content, posting, management. All handled. All month.
+
+💬 DM us RETAINER — we'll come back to you within 24 hours with a custom scope for your business.
+🔗 sayitsocial.digital`,
+           hashtags:["#SocialMediaTips","#ContentStrategy","#SayItSocial","#DigitalMarketing","#MarketingHelp","#SmallBusiness"],
+           design_notes:{size:"1:1",palette:"Dark bg throughout. Each sign slide: large sign number, honest statement, small relatable illustration. Final slide: teal bg with bold CTA.",font:"Big bold sign number as background element. Clean statement text.",visual:"Slide 2-7: consistent template — number, sign, small icon/illustration. Slide 8: high contrast CTA.",cta:"DM RETAINER",audio:"N/A"}},
+          {p:"li",fmt:"Text Post",status:"not-started",
+           title:"The Sunday Night Social Media Dread Is a Strategy Problem",
+           hook:"If you're spending Sunday night stressed about what to post this week — that's not a time management problem. That's a strategy problem.",
+           brief:"Empathetic but direct LinkedIn post. Validates the pain, diagnoses the root cause, positions the retainer as the logical fix.",
+           slides:[],
+           caption:`If you're spending Sunday night stressed about what to post this week —
+
+That's not a time management problem.
+That's a strategy problem.
+
+When you have a strategy:
+→ You know what you're posting 4 weeks in advance
+→ Every post has a purpose before it has a design
+→ Content creation takes hours, not days
+→ You post with confidence, not desperation
+
+When you don't:
+→ Sunday nights become content panic
+→ Posts go up because something needed to go up
+→ The feed looks like 3 different brands on the same page
+→ Results are random because the inputs are random
+
+I've worked with enough business owners to know that the Sunday dread is usually the moment they decide to hand it over.
+
+If that moment is now — or if you want it to be soon —
+
+💬 DM me RETAINER. Let's talk about what full management looks like for your business specifically.`,
+           hashtags:["#ContentStrategy","#SocialMediaMarketing","#SayItSocial","#DigitalMarketing","#MarketingTips","#BusinessGrowth"],
+           design_notes:{size:"N/A",palette:"N/A",font:"N/A",visual:"Text post. Sunday night energy in the writing — relatable, honest.",cta:"DM RETAINER",audio:"N/A"}}
+        ]
+      },
+      {
+        date:"Wed, Apr 23", theme:"🔍 Myth Busting",
+        posts:[
+          {p:"ig",fmt:"Reel",status:"not-started",
+           title:"'We Can't Afford an Agency' — Let's Do the Math",
+           hook:"'We can't afford an agency' — let's actually do the math on that.",
+           brief:"Fast-paced Reel breaking down the real cost of DIY vs retainer. Use actual numbers. Show that the total cost (time × hourly rate + tools + inconsistency cost) often exceeds a retainer. Shift the framing from expense to investment.",
+           slides:[],
+           caption:`'We can't afford an agency.'
+
+Let's actually do the math 👇
+
+DIY social media cost (per month):
+⏱ 40 hours of your time × your hourly value = ₹?
+🛠 Canva Pro + scheduling tool + analytics = ₹3,000+
+📉 Inconsistency penalty (missed leads, lower reach) = ₹?
+
+Full-service retainer cost:
+✅ Everything handled by specialists
+✅ Strategy + content + posting + reporting
+✅ No tools to manage, no Sundays lost
+
+The math usually surprises people.
+
+Because the question was never 'can we afford an agency?'
+
+It was 'what is inconsistent, unfocused social media actually costing us?'
+
+💬 DM us RETAINER — we'll give you a straight answer on what full-service costs for your business.
+🔗 sayitsocial.digital`,
+           hashtags:["#MarketingROI","#SocialMediaManagement","#SayItSocial","#DigitalMarketing","#AgencyLife","#ContentMarketing"],
+           design_notes:{size:"9:16",palette:"Dark bg. Numbers in teal for retainer side, muted for DIY side. Visual calculator/comparison feel.",font:"Bold numbers. Clean breakdown text.",visual:"Split comparison — DIY costs on left, retainer value on right. Fast cuts. Number animations.",cta:"End card: DM RETAINER",audio:"Confident, slightly punchy audio"}},
+          {p:"li",fmt:"Doc Carousel",status:"not-started",
+           title:"What Full-Service Actually Means (And What It Doesn't)",
+           hook:"'Full-service agency' is one of the most overused and least explained terms in digital marketing. Here's what it actually means.",
+           brief:"Transparency carousel. Break down what full-service means at Say It Social specifically — and what it doesn't mean (setting expectations honestly). Builds trust and pre-qualifies leads.",
+           slides:[
+             {n:1,head:"Cover",body:"What Full-Service Actually Means (And What It Doesn't)",visual:"Clean dark cover. Honest tone."},
+             {n:2,head:"It means: Strategy first, always",body:"Every month starts with a strategy session. Not design. Not posting. Strategy. What are we trying to achieve? What does success look like?",visual:"Strategy icon"},
+             {n:3,head:"It means: One team, all channels",body:"You have one point of contact. We handle Instagram, LinkedIn, Facebook, YouTube, website, ads — whatever your scope includes. No juggling multiple vendors.",visual:"All platform icons connected to one point"},
+             {n:4,head:"It means: Proactive, not reactive",body:"We bring ideas to you. You don't chase us for updates. Monthly calls, weekly check-ins, always-on reporting.",visual:"Calendar with proactive touchpoints"},
+             {n:5,head:"It doesn't mean: Instant results",body:"Social media compounds. Month 1 builds the system. Month 3 shows traction. Month 6 shows revenue impact. We don't promise overnight miracles.",visual:"Compound growth curve — honest"},
+             {n:6,head:"It doesn't mean: You disappear",body:"We need your voice, your stories, your client wins. We build the system. You stay the face. That partnership is what makes the content real.",visual:"Partnership handshake icon"},
+             {n:7,head:"Is this right for you?",body:"If you want a partner who treats your brand like their own — let's talk.\n💬 DM RETAINER",visual:"Teal CTA slide"}
+           ],
+           caption:`'Full-service agency' is one of the most overused terms in digital marketing.
+
+Here's exactly what it means at Say It Social — and what it doesn't 👆
+
+I believe the best client relationships start with radical clarity.
+
+So before you DM us about a retainer, read through this.
+
+If it still sounds like what you need — then let's talk.
+
+💬 DM me RETAINER — happy to walk you through what full-service looks like for your specific business and goals.`,
+           hashtags:["#AgencyLife","#SayItSocial","#DigitalMarketing","#FullService","#TransparencyInMarketing","#SocialMediaManagement"],
+           design_notes:{size:"1:1",palette:"Clean professional slides. Dark bg. Teal for 'it means' slides, slightly different tone for 'it doesn't mean' slides.",font:"Consistent slide template. Number + headline + description.",visual:"Slides 2-4: teal left border. Slides 5-6: gold left border (honesty/caution). Slide 7: full teal CTA.",cta:"DM RETAINER on final slide",audio:"N/A"}}
+        ]
+      },
+      {
+        date:"Fri, Apr 25", theme:"💬 Social Proof",
+        posts:[
+          {p:"ig",fmt:"Carousel",status:"not-started",
+           title:"Client Story: From Invisible to Fully Booked",
+           hook:"6 months ago this client was posting twice a month and getting zero enquiries from social. Here's what changed.",
+           brief:"Client transformation carousel. 6 slides telling the story of a real client journey (use a real client — anonymise if needed, or use with permission). Before state, intervention, what was done, results. Very specific numbers where possible.",
+           slides:[
+             {n:1,head:"Cover",body:"From Invisible to Fully Booked — A Client Story",visual:"Dark cover. Client industry tag top left."},
+             {n:2,head:"Before we started",body:"Posting 2x/month. No content strategy. No brand consistency. 0 enquiries from social media in 6 months. Great business — invisible online.",visual:"Muted, quiet aesthetic — before state"},
+             {n:3,head:"Month 1: Foundation",body:"Built content pillars. Established brand visual identity. Created a 4-week content calendar. Set up analytics tracking from day one.",visual:"Building blocks / foundation icon"},
+             {n:4,head:"Month 2-3: Momentum",body:"Posting 5x/week. Engagement rate went from 0.8% to 3.2%. First 3 enquiries came directly from Instagram. Team expanded by 1 person to handle incoming leads.",visual:"Growth chart — real-looking"},
+             {n:5,head:"Month 4-6: Compound growth",body:"Consistent enquiry flow from social. Organic reach grew 340%. Reduced paid ad spend by 40% — organic was converting better.",visual:"Compound curve"},
+             {n:6,head:"The lesson",body:"The business didn't change. The strategy behind the content did. This is what a proper retainer delivers — not just content, but a growth system.\n\n💬 DM RETAINER",visual:"Teal bg. Bold lesson. CTA."}
+           ],
+           caption:`6 months ago, this client had never received a single enquiry from social media.
+
+Last month, they had to pause new client onboarding to catch up with demand.
+
+Nothing about their business changed.
+The strategy behind their content did.
+
+Swipe to see exactly what happened month by month 👆
+
+This is what full-service looks like in practice — not just pretty content, but a system that builds a pipeline.
+
+3 retainer spots available in April.
+
+💬 DM us RETAINER — let's build this for your brand.
+🔗 sayitsocial.digital`,
+           hashtags:["#ClientResults","#SocialProof","#SayItSocial","#SocialMediaMarketing","#CaseStudy","#DigitalMarketing"],
+           design_notes:{size:"1:1",palette:"Slide 1: dark muted cover. Slides 2-5: consistent template, muted for 'before', progressively warmer/teal for results. Slide 6: full teal.",font:"Month labels as chapter headers. Clean metrics in bold.",visual:"Progress feel — each slide feels like the next chapter. Real metrics displayed large.",cta:"DM RETAINER",audio:"N/A"}},
+          {p:"li",fmt:"Text Post",status:"not-started",
+           title:"Testimonial + Context",
+           hook:"[Client name] told us something last month that stuck with us.",
+           brief:"Short LinkedIn post sharing a client quote with context. Let the testimonial speak, then add 2-3 sentences of what it represents. End with retainer CTA.",
+           slides:[],
+           caption:`A client told us something last month that I keep thinking about.
+
+'I used to spend every Sunday night anxious about what to post. Now I spend Sundays with my family. You've given me that back.'
+
+That's not the metric we put in reports.
+But it's the one I'm most proud of.
+
+When social media is managed well — by people who actually know what they're doing — it stops being a source of stress and starts being a growth engine.
+
+That's what a full-service retainer delivers.
+Not just content. Peace of mind. And results.
+
+If you want both — 
+💬 DM me RETAINER.`,
+           hashtags:["#ClientTestimonial","#SayItSocial","#SocialMediaManagement","#AgencyLife","#DigitalMarketing","#MarketingResults"],
+           design_notes:{size:"N/A",palette:"N/A",font:"N/A",visual:"Text post. Quote-forward. Short and impactful.",cta:"DM RETAINER",audio:"N/A"}}
+        ]
+      }
+    ]
+  },
+  {
+    id:"w3", label:"Week 3", theme:"Proof, Process & Results",
+    strategy:"Show the system working",
+    days:[
+      {
+        date:"Mon, Apr 28", theme:"🔬 Process",
+        posts:[
+          {p:"ig",fmt:"Reel",status:"not-started",
+           title:"How We Build a Month of Content in 3 Days",
+           hook:"We manage social media for multiple brands at once. Here's the system that makes it possible.",
+           brief:"Process transparency Reel. Behind-the-scenes look at the Say It Social content creation process. Shows professionalism, efficiency, and the depth of what's covered. Builds confidence that handing over is safe.",
+           slides:[],
+           caption:`We manage social media for multiple brands simultaneously.
+
+Here's the 3-day system that makes it possible 👀
+
+Day 1 — Strategy session
+→ Review last month's analytics
+→ Identify what worked, what didn't
+→ Set goals for the coming month
+→ Build the content calendar
+
+Day 2 — Creation
+→ All designs briefed and produced
+→ All captions written and reviewed
+→ Video content briefed to creator
+→ Client review round
+
+Day 3 — Scheduling
+→ All approved content scheduled
+→ Stories and engagement prompts set
+→ Ad copy finalised if applicable
+→ Report template updated
+
+Then we execute, monitor, and adapt all month.
+
+This is what you get when you stop doing it yourself and bring in a team that does this every day.
+
+3 retainer spots still open in April.
+
+💬 DM us RETAINER — we'll walk you through what this looks like for your brand.
+🔗 sayitsocial.digital`,
+           hashtags:["#AgencyProcess","#ContentCreation","#SayItSocial","#BehindTheScenes","#SocialMediaManagement","#ContentStrategy"],
+           design_notes:{size:"9:16",palette:"BTS aesthetic — warm, real, professional. Office/desk shots or clean process text overlays.",font:"Day labels bold. Process steps clean list.",visual:"Day 1/2/3 structure. Each day shown as a section. Could be text-overlay or talking head.",cta:"End card: DM RETAINER",audio:"Calm, focused, professional audio"}},
+          {p:"li",fmt:"Text Post",status:"not-started",
+           title:"What We Review Before We Post Anything for a Client",
+           hook:"Before any piece of content goes live for a client, it passes through 7 checkpoints. Here they are.",
+           brief:"Process transparency post. Shows the rigour behind what looks like 'just posting on social media'. Builds confidence and positions the retainer as a professional service.",
+           slides:[],
+           caption:`Before any piece of content goes live for a client, it passes through 7 checkpoints.
+
+01. Does it align with this month's strategic goal?
+02. Is the hook strong enough to stop the scroll in 2 seconds?
+03. Is the format right for this platform and this audience?
+04. Is the CTA clear — one action, not three?
+05. Does it sound like the client's brand voice, not ours?
+06. Has it been reviewed for accuracy and brand consistency?
+07. Is it scheduled at the optimal time for this platform?
+
+7 questions. Every post. Every client. Every time.
+
+This is why 'just posting' and 'managed social media' are completely different things.
+
+One is content.
+The other is a system.
+
+Our retainer clients don't think about any of these questions.
+They get the results of someone else asking them — consistently, every month.
+
+💬 DM me RETAINER if you want the same.`,
+           hashtags:["#SocialMediaManagement","#ContentStrategy","#SayItSocial","#AgencyProcess","#DigitalMarketing","#MarketingTips"],
+           design_notes:{size:"N/A",palette:"N/A",font:"N/A",visual:"Numbered list format. Each checkpoint clear and specific.",cta:"DM RETAINER",audio:"N/A"}}
+        ]
+      },
+      {
+        date:"Wed, Apr 30", theme:"📊 Data & Results",
+        posts:[
+          {p:"ig",fmt:"Carousel",status:"not-started",
+           title:"Real Numbers From Our Retainer Clients — Q1 2026",
+           hook:"Here's what actually happened across our retainer client accounts in Q1 2026.",
+           brief:"Aggregate data carousel from retainer client performance. Real numbers — even if averaged across clients. Shows what a managed social media presence delivers vs DIY. Be specific, be honest.",
+           slides:[
+             {n:1,head:"Cover",body:"What Retainer Management Actually Delivered — Q1 2026",visual:"Dark data-forward cover. Numbers prominent."},
+             {n:2,head:"Consistency",body:"Our retainer clients posted an average of 22 times per month across platforms. Industry average for self-managed accounts: 6.",visual:"Bar chart comparison"},
+             {n:3,head:"Engagement",body:"Average engagement rate across retainer accounts: 4.2%. Industry benchmark for self-managed business accounts: 1.1%.",visual:"Engagement rate comparison"},
+             {n:4,head:"Enquiries",body:"87% of retainer clients reported receiving direct enquiries from social media in Q1. Up from 23% before starting the retainer.",visual:"Before/after percentage"},
+             {n:5,head:"Reach",body:"Average organic reach growth: +240% in the first 90 days of management. No paid spend included.",visual:"Growth curve — organic only label"},
+             {n:6,head:"What this means for your business",body:"These aren't vanity metrics. Enquiries convert to revenue. Consistency builds trust. This is what managed social media delivers.\n\n💬 DM RETAINER",visual:"Teal CTA slide"}
+           ],
+           caption:`Here's what actually happened across our retainer client accounts in Q1 2026. 📊
+
+Not projections. Not best-case scenarios.
+Real numbers from real managed accounts.
+
+Swipe through 👆
+
+The difference between self-managed and professionally managed social media isn't subtle.
+It's measurable. And it compounds.
+
+3 retainer spots available in April.
+
+💬 DM us RETAINER — let's talk about what these numbers could look like for your brand.
+🔗 sayitsocial.digital`,
+           hashtags:["#SocialMediaResults","#ContentMarketing","#SayItSocial","#DigitalMarketing","#MarketingROI","#SocialMediaManagement"],
+           design_notes:{size:"1:1",palette:"Data-forward slides. Dark bg. Large bold numbers in teal. Source note small at bottom of each slide.",font:"Large numbers as hero. Clean label text.",visual:"Bar charts, before/after percentages, growth curves — all designed in brand style. Simple, not overcrowded.",cta:"DM RETAINER on final slide",audio:"N/A"}},
+          {p:"li",fmt:"Text Post",status:"not-started",
+           title:"The Metric That Predicts Whether Social Media Will Drive Revenue",
+           hook:"After working with 25+ brands on their social media, I've found one metric that predicts — more than any other — whether social will drive real revenue.",
+           brief:"Thought leadership text post. The metric is 'save rate' or 'enquiry-to-follower ratio' — something specific and non-obvious. Positions Say It Social as experts who understand social at a deeper level.",
+           slides:[],
+           caption:`After working with 25+ brands on their social media, I've found one metric that predicts — more than any other — whether it will drive real revenue.
+
+It's not followers.
+It's not likes.
+It's not even engagement rate.
+
+It's save rate.
+
+Here's why:
+
+A save means someone found your content valuable enough to return to.
+That's intent. And intent converts.
+
+Brands with a save rate above 3% consistently outperform those with high likes and low saves — because saves indicate a warmer, more qualified audience.
+
+When we take over a client account, save rate is one of the first metrics we optimise for.
+The content we create is designed to be referenced, not just consumed.
+
+Educational carousels. Process breakdowns. Frameworks. Data. Tools.
+
+Content that earns saves earns trust. Trust earns clients.
+
+This is the thinking behind every piece of content we create for our retainer clients.
+
+If you want social media that's managed with this level of intentionality —
+💬 DM me RETAINER.`,
+           hashtags:["#SocialMediaMetrics","#ContentStrategy","#SayItSocial","#DigitalMarketing","#MarketingInsights","#B2BMarketing"],
+           design_notes:{size:"N/A",palette:"N/A",font:"N/A",visual:"Text post. Expert insight forward. The 'save rate' hook is specific enough to earn credibility.",cta:"DM RETAINER",audio:"N/A"}}
+        ]
+      },
+      {
+        date:"Fri, May 2", theme:"🌟 Client Win",
+        posts:[
+          {p:"ig",fmt:"Static",status:"not-started",
+           title:"Client Testimonial — Full Service Retainer",
+           hook:"We let our clients speak.",
+           brief:"Premium testimonial static. Full quote from a retainer client. Clean, bold, screenshot-worthy. The quote should speak to the transformation — not just the service.",
+           slides:[],
+           caption:`We let our clients speak. 🙏
+
+[Client quote about the transformation — results, peace of mind, or business impact]
+
+— [Client Name], [Business Type]
+
+This is what full-service management delivers.
+Not just content. A partnership.
+
+3 spots open in April.
+
+💬 DM us RETAINER to start the conversation.
+🔗 sayitsocial.digital`,
+           hashtags:["#ClientTestimonial","#SocialProof","#SayItSocial","#SocialMediaManagement","#DigitalMarketing","#AgencyLife"],
+           design_notes:{size:"1:1",palette:"Dark bg. Large quote marks as design element. Gold accent on client name/business.",font:"Playfair Display serif for the quote — adds weight and credibility. Clean sans for attribution.",visual:"Oversized quotation marks background. Quote centered with generous space. Attribution line below. Logo bottom right.",cta:"Caption CTA only",audio:"N/A"}},
+          {p:"li",fmt:"Doc Carousel",status:"not-started",
+           title:"A Month in Our Retainer — What We Actually Did",
+           hook:"What does a full-service retainer month actually look like in practice? Here's a real breakdown.",
+           brief:"Transparency carousel showing a month in the life of a retainer client. Specific deliverables, touchpoints, and outputs. Shows the scope of what's covered.",
+           slides:[
+             {n:1,head:"Cover",body:"A Month Inside Our Full-Service Retainer — Real Breakdown",visual:"Professional dark cover"},
+             {n:2,head:"Week 1",body:"Strategy call (60 min). Content calendar finalised. 20 designs briefed. 20 captions written. All content scheduled. Ads reviewed and optimised.",visual:"Week 1 deliverables list"},
+             {n:3,head:"Week 2",body:"All Week 1 content live. Community management daily (comments, DMs, Story responses). Performance check-in. Week 3 content briefed.",visual:"Week 2 execution"},
+             {n:4,head:"Week 3",body:"Mid-month analytics review. Content adjustments based on performance. Trend monitoring and reactive content if applicable. Week 4 content approved.",visual:"Week 3 analytics"},
+             {n:5,head:"Week 4",body:"Final content week live. Monthly report compiled. Next month strategy preparation begins. Client call booked.",visual:"Week 4 close-out"},
+             {n:6,head:"End of Month Deliverables",body:"20-25 posts published · Analytics report · Next month calendar draft · Strategy recommendations · All assets archived",visual:"Deliverable checklist"},
+             {n:7,head:"The investment",body:"This is what full-service looks like. One team. Everything covered. Every month.\n💬 DM RETAINER to discuss your scope.",visual:"Teal CTA"}
+           ],
+           caption:`What does a full-service retainer month actually look like?
+
+Not in theory. In practice.
+
+Here's a real breakdown of what we deliver each month for our retainer clients 👆
+
+The question I always get: 'Is it worth it?'
+
+After seeing what an unmanaged social media presence costs businesses in missed leads, wasted time, and lost ground to competitors — the question becomes: 'Can you afford not to?'
+
+3 spots available for April onboarding.
+
+💬 DM me RETAINER — I'll send you a custom scope for your business within 24 hours.`,
+           hashtags:["#AgencyLife","#SayItSocial","#SocialMediaManagement","#FullService","#DigitalMarketing","#Transparency"],
+           design_notes:{size:"1:1",palette:"Professional clean slides. Week structure. Teal for active/live items.",font:"Week labels as bold headers. Deliverables as clean list.",visual:"Week-by-week breakdown slides. Final slide: full deliverable list + CTA.",cta:"DM RETAINER",audio:"N/A"}}
+        ]
+      }
+    ]
+  },
+  {
+    id:"w4", label:"Week 4", theme:"Conversion Push — Close the Month Strong",
+    strategy:"Final push — urgency + objection handling",
+    days:[
+      {
+        date:"Mon, May 5", theme:"🎯 Objection Handling",
+        posts:[
+          {p:"ig",fmt:"Carousel",status:"not-started",
+           title:"Every Objection to Hiring a Social Media Agency — Answered Honestly",
+           hook:"Let's address every reason you've been putting off getting help with your social media.",
+           brief:"Objection-handling carousel. 6 most common objections with honest, direct answers. Not defensive — confident. The kind of content that makes someone forward it to their business partner.",
+           slides:[
+             {n:1,head:"Cover",body:"Every Objection to Hiring a Social Media Agency — Answered Honestly",visual:"Dark cover. Direct, honest tone."},
+             {n:2,head:"'It's too expensive'",body:"Cheaper than hiring in-house. Cheaper than the leads you're losing to competitors with better content. Ask us to show you the math.",visual:"Cost comparison"},
+             {n:3,head:"'We'll lose our brand voice'",body:"We spend the first week learning your voice before we write a single word. Our best retainer clients are indistinguishable from self-managed accounts — except the results are better.",visual:"Voice icon"},
+             {n:4,head:"'We've tried agencies before'",body:"Most agencies deliver content. We deliver strategy + content + results. If you've been burned before, ask us specifically what we do differently. We'll show you.",visual:"Differentiation icon"},
+             {n:5,head:"'We're not ready yet'",body:"The brands that wait until they're 'ready' usually wait until they're behind. The best time to fix your social media is before you desperately need it.",visual:"Timeline — acting early vs late"},
+             {n:6,head:"'We don't have enough content'",body:"Content creation is what we do. You don't need to come to us with ideas — you need to come to us with your goals.",visual:"Content creation icon"},
+             {n:7,head:"Still not convinced?",body:"💬 DM us RETAINER and ask us anything. We'd rather answer your questions than have you stay stuck.\n\nsayitsocial.digital",visual:"Teal CTA bg"}
+           ],
+           caption:`Let's address every reason you've been putting off getting help with your social media.
+
+Honestly. Directly. No sales pressure.
+
+Swipe through 👆
+
+The objections are valid. But so are the answers.
+
+If you have a question that's not in here — just ask us directly.
+
+💬 DM us RETAINER — we'd rather answer your questions and lose the conversation than have you stay stuck.
+🔗 sayitsocial.digital`,
+           hashtags:["#SocialMediaMarketing","#AgencyLife","#SayItSocial","#DigitalMarketing","#MarketingHelp","#ContentStrategy"],
+           design_notes:{size:"1:1",palette:"Dark throughout. Each objection slide: gold question text, teal answer text. Final: full teal CTA.",font:"Objection in bold. Answer in clean regular. Clear visual hierarchy.",visual:"Consistent template — objection box top half, answer bottom half with divider. Final: CTA slide.",cta:"DM RETAINER",audio:"N/A"}},
+          {p:"li",fmt:"Text Post",status:"not-started",
+           title:"The Real Reason Businesses Don't Hire a Marketing Agency",
+           hook:"It's not budget. It's not timing. Here's the real reason most businesses don't hire a marketing agency — even when they know they should.",
+           brief:"Honest, slightly provocative LinkedIn post. The real reason is fear of losing control/voice. Address it head-on.",
+           slides:[],
+           caption:`The real reason most businesses don't hire a marketing agency isn't budget.
+
+It's not timing either.
+
+It's fear.
+
+Fear that someone else won't understand their brand.
+Fear that the content will sound generic.
+Fear that they'll hand it over and lose the thing that made them different.
+
+That fear is completely understandable.
+And also — if addressed properly — completely solvable.
+
+The best retainer relationships I've seen work because of one thing:
+
+A genuine handover process. Not just a brief. A real conversation about voice, values, stories, and what makes the brand irreplaceable.
+
+At Say It Social, the first two weeks of any retainer are entirely about learning the client's brand before we create anything.
+
+The result? Clients who look at their content and say 'that sounds exactly like us' — except more consistent, more strategic, and performing better than before.
+
+If fear is what's holding you back — let's talk about what a proper handover looks like.
+
+💬 DM me RETAINER.`,
+           hashtags:["#MarketingAgency","#SayItSocial","#DigitalMarketing","#BrandVoice","#ContentStrategy","#AgencyLife"],
+           design_notes:{size:"N/A",palette:"N/A",font:"N/A",visual:"Text post. Emotionally intelligent tone — validates the fear before resolving it.",cta:"DM RETAINER",audio:"N/A"}}
+        ]
+      },
+      {
+        date:"Wed, May 7", theme:"⏰ Urgency",
+        posts:[
+          {p:"ig",fmt:"Static",status:"not-started",
+           title:"Last Call — April Retainer Spots Closing This Week",
+           hook:"We're closing April retainer onboarding at the end of this week.",
+           brief:"Urgency static. Clean, confident — not desperate. Matter-of-fact about capacity closing. Should feel like a genuine announcement, not a manufactured countdown.",
+           slides:[],
+           caption:`Closing April retainer onboarding at the end of this week. 📋
+
+Not a countdown timer. Not a fake deadline.
+We genuinely start new clients in batches to ensure proper onboarding — and this batch closes Friday.
+
+If you've been thinking about it — now is the time to start the conversation.
+
+What you get:
+→ Full social media strategy
+→ All content creation
+→ Posting, scheduling, community management
+→ Monthly analytics + strategy call
+→ Website maintenance
+→ One team. Everything covered.
+
+Next onboarding batch: June.
+
+💬 DM us RETAINER before Friday.
+🔗 sayitsocial.digital`,
+           hashtags:["#SocialMediaManagement","#SayItSocial","#DigitalMarketing","#ContentStrategy","#MarketingAgency","#FullService"],
+           design_notes:{size:"1:1",palette:"Dark bg. Gold 'LAST CALL' label top. Clean checklist. Confident, not desperate.",font:"Bold 'LAST CALL' as hero. Clean list below.",visual:"Minimal. Text-forward. End of April date prominent. Logo bottom right.",cta:"DM RETAINER before Friday",audio:"N/A"}},
+          {p:"li",fmt:"Text Post",status:"not-started",
+           title:"Closing April Retainer Spots — Final Note",
+           hook:"Closing April onboarding this Friday. Here's a direct note for anyone still on the fence.",
+           brief:"Short, direct LinkedIn close. No manipulation. Honest statement about capacity and a genuine invitation to connect.",
+           slides:[],
+           caption:`Closing April retainer onboarding this Friday.
+
+A direct note for anyone who's been considering it:
+
+If you've read our content this month and thought 'this is what we need' — trust that.
+
+If you've been on the fence about whether now is the right time — it usually is.
+
+The cost of waiting is rarely the agency fee.
+It's another month of inconsistent content, missed leads, and ground given to competitors.
+
+We're a small team that takes on a limited number of clients precisely because we believe in doing this properly. That's not a pitch — it's just how we work.
+
+If you want to have a conversation before Friday — 
+💬 DM me RETAINER. I'll come back to you the same day.
+
+If not, next onboarding opens in June. I'll be here.`,
+           hashtags:["#SayItSocial","#SocialMediaManagement","#DigitalMarketing","#AgencyLife","#FullService","#MarketingAgency"],
+           design_notes:{size:"N/A",palette:"N/A",font:"N/A",visual:"Text post. Genuine, human closing tone — not a hard sell.",cta:"DM RETAINER",audio:"N/A"}}
+        ]
+      },
+      {
+        date:"Fri, May 9", theme:"🌱 Value + Long Game",
+        posts:[
+          {p:"ig",fmt:"Reel",status:"not-started",
+           title:"What Happens to Your Brand When Social Media Is Managed Properly for 6 Months",
+           hook:"Month 1 feels slow. Month 6 feels like compound interest.",
+           brief:"Inspiring, honest Reel about the compound nature of consistent social media management. Shows the long-term picture. Not a hard close — a vision of what's possible. CTA is still there but softer.",
+           slides:[],
+           caption:`Month 1 feels slow. 📈
+
+You're building the foundation. The content is consistent but the results are quiet.
+
+Month 2-3 — momentum starts.
+
+Engagement is up. Comments are coming in. The audience is growing. The first DM enquiry comes from Instagram.
+
+Month 4-5 — the compound effect.
+
+Profile visits up 200%+. Organic reach growing without ad spend. The brand feels established. Competitors start following you.
+
+Month 6 — it's a channel.
+
+Social media is now generating consistent pipeline. The business has shifted from 'we need to post something' to 'social is one of our top lead sources'.
+
+This isn't a pitch.
+It's what happens when great strategy meets consistent execution — every single month.
+
+If you want to start this journey for your brand:
+
+💬 DM us RETAINER.
+🔗 sayitsocial.digital`,
+           hashtags:["#SocialMediaGrowth","#ContentMarketing","#SayItSocial","#DigitalMarketing","#LongGame","#MarketingStrategy"],
+           design_notes:{size:"9:16",palette:"Progressive color treatment — starts muted/quiet for Month 1, builds to vibrant/teal by Month 6.",font:"Month labels as chapter markers. Clean progression.",visual:"Month-by-month progression. Each month builds. Could use simple text overlays or animated timeline feel.",cta:"End card: DM RETAINER",audio:"Build track — starts slow, builds energy"}},
+          {p:"li",fmt:"Text Post",status:"not-started",
+           title:"The Long Game — Why Compound Social Media Always Wins",
+           hook:"The most dangerous competitor you have isn't the one spending the most on ads. It's the one showing up consistently on social media every single week.",
+           brief:"Strategic insight post about compounding. Positions consistent, managed social media as a long-term competitive moat. Ends with the retainer as the vehicle to build that moat.",
+           slides:[],
+           caption:`The most dangerous competitor you have isn't the one spending the most on ads.
+
+It's the one showing up consistently on social media every single week.
+
+Here's why:
+
+Social media compounds.
+
+Every post builds algorithmic equity.
+Every consistent appearance builds audience trust.
+Every valuable piece of content builds authority.
+
+After 6 months of consistency, these things are very hard to undo — even for well-funded competitors who show up late.
+
+After 12 months, you've built a moat.
+
+The businesses that understand this aren't asking 'can we afford to invest in social media management?'
+
+They're asking 'how quickly can we start building this moat before our competitors do?'
+
+That's the right question.
+
+And our full-service retainer is built to answer it.
+
+Strategy. Content. Execution. Every month. Compounding.
+
+💬 DM me RETAINER — let's start building.`,
+           hashtags:["#CompoundGrowth","#SocialMediaStrategy","#SayItSocial","#DigitalMarketing","#LongTermStrategy","#ContentMarketing"],
+           design_notes:{size:"N/A",palette:"N/A",font:"N/A",visual:"Text post. Strategic, thoughtful tone. The 'moat' metaphor is the centrepiece.",cta:"DM RETAINER",audio:"N/A"}}
+        ]
+      },
+      {
+        date:"Mon, May 12", theme:"🔄 Month Close + April Preview",
+        posts:[
+          {p:"ig",fmt:"Carousel",status:"not-started",
+           title:"30 Days of Content — What We Built This Month",
+           hook:"30 days. 2 platforms. One consistent offer. Here's what we created.",
+           brief:"Month wrap carousel. Recap of the content themes covered, the strategy behind the month, and what's coming next. Also serves as a meta-lesson about content strategy — showing the work as the proof.",
+           slides:[
+             {n:1,head:"Cover",body:"30 Days. 2 Platforms. One Offer. Here's What We Built.",visual:"Dark cover. Month recap energy."},
+             {n:2,head:"The strategy",body:"Every piece of content this month pointed toward one thing: helping the right businesses understand what full-service management delivers. Here's how we structured it.",visual:"Strategy arc visual"},
+             {n:3,head:"Week 1 — Authority",body:"Re-established expertise. Showed what great execution looks like. Seeded the retainer conversation.",visual:"W1 theme icons"},
+             {n:4,head:"Week 2 — Pain Points",body:"Called out the real costs of DIY. Addressed objections before they became barriers. Made the need undeniable.",visual:"W2 theme icons"},
+             {n:5,head:"Week 3 — Proof",body:"Case studies, real numbers, process transparency. Showed the retainer working in practice.",visual:"W3 theme icons"},
+             {n:6,head:"Week 4 — Conversion",body:"Direct offer. Urgency. Objection handling. Long game vision. Made the decision easy for the right people.",visual:"W4 theme icons"},
+             {n:7,head:"The lesson",body:"This is what strategic content looks like. Every post with a purpose. Every month with an arc. Every CTA pointing somewhere specific.\n\nThis is what we do for our retainer clients.\n\n💬 DM RETAINER",visual:"Teal CTA. Meta-lesson landing."}
+           ],
+           caption:`30 days. 2 platforms. One consistent offer. Here's exactly what we built — and why. 👆
+
+Swipe through to see the strategy behind our own content this month.
+
+Because here's the thing:
+
+The best way to show you what great social media management looks like is to do it ourselves — in public, with full transparency.
+
+Every carousel, every Reel, every LinkedIn post this month was planned with intention.
+
+This is what we do for our retainer clients every single month.
+
+And if you've been following along and thinking 'I want this for my brand' —
+
+💬 DM us RETAINER. June onboarding is now open.
+🔗 sayitsocial.digital`,
+           hashtags:["#ContentStrategy","#SayItSocial","#SocialMediaMarketing","#DigitalMarketing","#MarketingStrategy","#BehindTheStrategy"],
+           design_notes:{size:"1:1",palette:"Dark throughout. Week themes as distinct colour accents. Final slide: teal.",font:"Week labels as bold chapter headers. Clean descriptions.",visual:"4-week arc visual on slide 2. Week theme slides 3-6. Meta-lesson final slide.",cta:"DM RETAINER — June onboarding open",audio:"N/A"}},
+          {p:"li",fmt:"Text Post",status:"not-started",
+           title:"What 30 Days of Intentional Content Taught Us (And What It Should Teach You)",
+           hook:"We just spent 30 days creating content with one specific goal — and the results confirmed everything we tell our clients.",
+           brief:"Reflective month-close LinkedIn post. Shares the meta-lesson from running a focused content campaign. Shows the results of intentionality. Transitions to June retainer opening.",
+           slides:[],
+           caption:`We just spent 30 days creating content with one specific goal.
+
+Not awareness. Not engagement. Not reach.
+
+One goal: help the right businesses understand what full-service social media management delivers.
+
+Here's what the month confirmed:
+
+Intentional content outperforms volume.
+Every time.
+
+When every post serves a strategy — even the educational ones, even the value-add ones — the audience responds differently.
+
+They don't just engage. They enquire.
+
+That's the difference between content and a content system.
+
+And that's exactly what we build for our retainer clients every month.
+
+If this month's content made you think 'I want this working for my brand' — that's exactly the right takeaway.
+
+June retainer onboarding is now open. We have 4 spots available.
+
+💬 DM me RETAINER — I'll come back to you same day with a custom scope.`,
+           hashtags:["#ContentStrategy","#SayItSocial","#SocialMediaMarketing","#DigitalMarketing","#IntentionalMarketing","#FullService"],
+           design_notes:{size:"N/A",palette:"N/A",font:"N/A",visual:"Reflective, strategic close. The month's work is the proof.",cta:"DM RETAINER — June now open",audio:"N/A"}}
+        ]
+      }
+    ]
+  }
+];
+
+// ═══════════════════════════════════════
+// PERSISTENCE
+// ═══════════════════════════════════════
+const STORAGE_KEY = "sis_cal_apr_may2026";
+function getStored(){ try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}")}catch(e){return{}} }
+function saveStatus(key,status){ const s=getStored(); s[key]=status; localStorage.setItem(STORAGE_KEY,JSON.stringify(s)); }
+function pKey(weekId,date,p){ return `${weekId}__${date.replace(/[^a-z0-9]/gi,"_")}__${p}`; }
+function applyStored(){
+  const stored=getStored();
+  WEEKS.forEach(w=>w.days.forEach(d=>d.posts.forEach(post=>{
+    if(post.status==="rest") return;
+    const k=pKey(w.id,d.date,post.p);
+    if(stored[k]) post.status=stored[k];
+  })));
+}
+
+// ═══════════════════════════════════════
+// STATUS
+// ═══════════════════════════════════════
+const STATUS_CYCLE={"not-started":"in-progress","in-progress":"ready-to-post","ready-to-post":"posted","posted":"not-started"};
+const STATUS_LABELS={"not-started":"Not Started","in-progress":"In Progress","ready-to-post":"Ready to Post","posted":"Posted ✓","rest":"Rest"};
+
+let toastTimer=null;
+function showToast(msg){
+  const t=document.getElementById("status-toast");
+  t.textContent=msg; t.classList.add("show");
+  clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove("show"),2200);
+}
+
+function toggleStatus(btn,weekId,dayDate,platform){
+  event.stopPropagation();
+  const week=WEEKS.find(w=>w.id===weekId);
+  if(!week) return;
+  const day=week.days.find(d=>d.date===dayDate);
+  if(!day) return;
+  const post=day.posts.find(p=>p.p===platform);
+  if(!post||post.status==="rest") return;
+  const newStatus=STATUS_CYCLE[post.status]||"not-started";
+  post.status=newStatus;
+  saveStatus(pKey(weekId,dayDate,platform),newStatus);
+  btn.className=`spill ${newStatus} toggleable`;
+  btn.innerHTML=STATUS_LABELS[newStatus];
+  const card=btn.closest(".card");
+  if(card) card.dataset.status=newStatus;
+  updateProgress(); renderHeroStats();
+  const labels={"posted":"✓ Posted","in-progress":"▶ In Progress","ready-to-post":"✔ Ready to Post","not-started":"○ Not Started"};
+  const pNames={ig:"Instagram",li:"LinkedIn"};
+  showToast(`${labels[newStatus]||newStatus} · ${pNames[platform]||platform}`);
+}
+
+function statusHTML(s,weekId,dayDate,platform){
+  if(s==="rest") return `<span class="spill rest">Rest</span>`;
+  const wId=(weekId||"").replace(/"/g,"&quot;");
+  const dDate=(dayDate||"").replace(/"/g,"&quot;");
+  return `<span class="spill ${s} toggleable" title="Click to change status" onclick="toggleStatus(this,'${wId}','${dDate}','${platform}')">${STATUS_LABELS[s]||s}</span>`;
+}
+
+// ═══════════════════════════════════════
+// STATS
+// ═══════════════════════════════════════
+function calcStats(){
+  let total=0,posted=0,inProgress=0,ready=0,notStarted=0;
+  WEEKS.forEach(w=>w.days.forEach(d=>d.posts.forEach(p=>{
+    if(p.status==="rest") return;
+    total++;
+    if(p.status==="posted") posted++;
+    else if(p.status==="in-progress") inProgress++;
+    else if(p.status==="ready-to-post") ready++;
+    else notStarted++;
+  })));
+  return{total,posted,inProgress,ready,notStarted};
+}
+function updateProgress(){
+  const{total,posted}=calcStats();
+  const pct=Math.round((posted/total)*100);
+  document.getElementById("top-prog-fill").style.width=pct+"%";
+  document.getElementById("top-prog-pct").textContent=pct+"%";
+}
+function renderHeroStats(){
+  const{total,posted,inProgress,ready,notStarted}=calcStats();
+  document.getElementById("hero-stats").innerHTML=`
+    <div class="hero-stat"><div class="hero-stat-n">${total}</div><div class="hero-stat-l">Total Posts</div></div>
+    <div class="hero-stat"><div class="hero-stat-n" style="color:var(--posted-text)">${posted}</div><div class="hero-stat-l">Posted</div></div>
+    <div class="hero-stat"><div class="hero-stat-n" style="color:var(--in-progress-text)">${inProgress}</div><div class="hero-stat-l">In Progress</div></div>
+    <div class="hero-stat"><div class="hero-stat-n" style="color:var(--ready-text)">${ready}</div><div class="hero-stat-l">Ready to Post</div></div>
+    <div class="hero-stat"><div class="hero-stat-n" style="color:var(--not-started-text)">${notStarted}</div><div class="hero-stat-l">Not Started</div></div>`;
+}
+
+// ═══════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════
+let activePlatform="all", activeFilter="all";
+
+function makeDesignNotes(dn){
+  if(!dn||!Object.keys(dn).length) return "";
+  return `<div class="design-notes">${Object.entries(dn).map(([k,v])=>`<div class="dn-row"><div class="dn-key">${k}</div><div class="dn-val">${v}</div></div>`).join("")}</div>`;
+}
+function makeSlides(slides,fmt){
+  if(!slides||!slides.length) return "";
+  if(fmt&&fmt.toLowerCase().includes("stor")){
+    return `<div class="story-slides">${slides.map(s=>`<div class="story-slide"><div class="story-slide-n">${String(s.n).padStart(2,"0")}</div><div class="story-slide-txt">${s.body}</div><div class="story-slide-type">${s.visual}</div></div>`).join("")}</div>`;
+  }
+  return `<div class="slides-grid">${slides.map(s=>`<div class="slide-row"><div class="slide-num">${s.n}</div><div class="slide-content"><div class="slide-headline">${s.head}</div><div class="slide-body">${s.body}</div>${s.visual?`<div class="slide-visual">🎨 ${s.visual}</div>`:""}</div></div>`).join("")}</div>`;
+}
+
+function makeCard(post,weekId,dayDate){
+  const pNames={ig:"Instagram",li:"LinkedIn"};
+  const pName=pNames[post.p]||post.p;
+  if(post.status==="rest") return "";
+  const hasSlides=post.slides&&post.slides.length>0;
+  const hasCaption=post.caption&&post.caption.trim();
+  const hasBrief=post.brief&&post.brief.trim();
+  const hasDN=post.design_notes&&Object.keys(post.design_notes).length>0;
+  const hasTags=post.hashtags&&post.hashtags.length>0;
+  return `<div class="card" data-p="${post.p}" data-status="${post.status}">
+    <div class="card-strip"></div>
+    <div class="card-header" onclick="toggleCard(this)">
+      <div><div class="card-date">${dayDate}</div><div class="card-theme-lbl" style="font-size:9px;margin-top:2px">${post.fmt}</div></div>
+      <div class="card-pname">${pName}</div>
+      <div><span class="card-fmt-badge">${post.fmt}</span></div>
+      <div class="card-title">${post.hook||post.title}</div>
+      <div class="card-right">
+        ${statusHTML(post.status,weekId,dayDate,post.p)}
+        <div class="expand-btn">▾</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-body-inner">
+        <div class="cb-section">
+          <div class="cb-label">Post Title & Concept</div>
+          <div style="font-size:14px;font-weight:600;color:var(--white);margin-bottom:8px">${post.title}</div>
+          ${hasBrief?`<div style="font-size:12px;color:var(--muted);line-height:1.7;margin-top:6px">${post.brief}</div>`:""}
+        </div>
+        <div class="cb-section">
+          <div class="cb-label">Designer Brief & Specs</div>
+          ${hasDN?makeDesignNotes(post.design_notes):`<div style="font-size:12px;color:var(--muted2);font-style:italic">No design notes yet.</div>`}
+        </div>
+        ${hasSlides?`<div class="cb-section" style="grid-column:1/-1"><div class="cb-label">Slide Breakdown</div>${makeSlides(post.slides,post.fmt)}</div>`:""}
+        ${hasCaption?`<div class="cb-full">
+          <div class="cb-label">Caption Copy</div>
+          <div class="caption-block">
+            <button class="copy-btn" onclick="copyCaption(this)">Copy</button>
+            <div class="caption-text">${post.caption.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}</div>
+          </div>
+          <div class="cta-pill">CTA: ${post.design_notes&&post.design_notes.cta?post.design_notes.cta:"DM RETAINER"}</div>
+          ${hasTags?`<div class="hashtag-wrap">${post.hashtags.map(h=>`<span class="htag">${h}</span>`).join("")}</div>`:""}
+        </div>`:""}
+      </div>
+    </div>
+  </div>`;
+}
+
+function toggleCard(header){
+  header.closest(".card").classList.toggle("open");
+}
+function copyCaption(btn){
+  event.stopPropagation();
+  const text=btn.nextElementSibling.textContent;
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent="Copied!"; btn.classList.add("copied");
+    setTimeout(()=>{btn.textContent="Copy";btn.classList.remove("copied");},2000);
+  });
+}
+
+function renderFilters(){
+  const bar=document.getElementById("filter-bar");
+  bar.innerHTML=`
+    <button class="filt ${activeFilter==="all"?"active-f":""}" data-f="all">All</button>
+    <button class="filt f-not-started ${activeFilter==="not-started"?"active-f":""}" data-f="not-started">Not Started</button>
+    <button class="filt f-in-progress ${activeFilter==="in-progress"?"active-f":""}" data-f="in-progress">In Progress</button>
+    <button class="filt f-ready ${activeFilter==="ready-to-post"?"active-f":""}" data-f="ready-to-post">Ready to Post</button>
+    <button class="filt f-posted ${activeFilter==="posted"?"active-f":""}" data-f="posted">Posted ✓</button>`;
+  bar.querySelectorAll(".filt").forEach(b=>b.addEventListener("click",()=>{activeFilter=b.dataset.f;renderFilters();render();}));
+}
+
+function render(){
+  const main=document.getElementById("main-cal");
+  main.innerHTML="";
+  WEEKS.forEach(week=>{
+    const sec=document.createElement("section");
+    sec.className="week-section";
+    sec.innerHTML=`<div class="week-head">
+      <div class="week-num">${week.label}</div>
+      <div class="week-title">${week.theme}</div>
+      <div class="week-strategy">${week.strategy}</div>
+      <div class="week-count">${week.days.flatMap(d=>d.posts).filter(p=>p.status!=="rest"&&(activeFilter==="all"||p.status===activeFilter)&&(activePlatform==="all"||p.p===activePlatform)).length} posts</div>
+    </div>`;
+    week.days.forEach(day=>{
+      const dayPosts=day.posts.filter(p=>
+        p.status!=="rest"&&
+        (activePlatform==="all"||p.p===activePlatform)&&
+        (activeFilter==="all"||p.status===activeFilter)
+      );
+      if(!dayPosts.length) return;
+      const wrap=document.createElement("div");
+      wrap.style.cssText="margin-bottom:24px";
+      wrap.innerHTML=`<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;color:var(--white)">${day.date}</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted2);letter-spacing:0.08em">${day.theme}</div>
+        <div style="flex:1;height:1px;background:var(--border)"></div>
+      </div>${dayPosts.map(p=>makeCard(p,week.id,day.date)).join("")}`;
+      sec.appendChild(wrap);
+    });
+    main.appendChild(sec);
+  });
+}
+
+document.querySelectorAll(".tab").forEach(t=>{
+  t.addEventListener("click",()=>{
+    document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+    t.classList.add("active"); activePlatform=t.dataset.p;
+    renderFilters(); render();
+    document.querySelector(".main").scrollIntoView({behavior:"smooth",block:"start"});
+  });
+});
+
+applyStored();
+renderHeroStats();
+updateProgress();
+renderFilters();
+render();
+</script>
+</body>
+</html>
