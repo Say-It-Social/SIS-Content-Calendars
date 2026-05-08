@@ -21,7 +21,6 @@
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;line-height:1.6}
-
 .topbar{position:sticky;top:0;z-index:200;background:rgba(8,13,11,0.94);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:58px;border-bottom:1px solid var(--border)}
 .tb-brand{display:flex;align-items:center;gap:14px}
 .tb-logo{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--white)}
@@ -34,7 +33,6 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans
 .tb-prog-bar{width:120px;height:3px;background:var(--surface3);border-radius:2px;overflow:hidden}
 .tb-prog-fill{height:100%;background:linear-gradient(90deg,var(--teal),#00E5C5);border-radius:2px;transition:width 0.4s ease}
 .tb-prog-pct{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--teal)}
-
 .hero{background:var(--bg);padding:56px 32px 48px;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
 .hero::before{content:'APR · MAY';position:absolute;right:-40px;top:50%;transform:translateY(-50%);font-family:'Playfair Display',serif;font-size:130px;font-weight:800;color:var(--teal);opacity:0.03;letter-spacing:-0.03em;white-space:nowrap;pointer-events:none}
 .hero-inner{max-width:1400px;margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap}
@@ -48,7 +46,6 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans
 .hero-stat{text-align:center}
 .hero-stat-n{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--white);line-height:1}
 .hero-stat-l{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted2);text-transform:uppercase;letter-spacing:0.14em;margin-top:4px}
-
 .tabs-wrap{background:rgba(8,13,11,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);position:sticky;top:58px;z-index:190}
 .tabs-inner{max-width:1400px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between}
 .tabs-left{display:flex}
@@ -67,23 +64,19 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans
 .filt.f-not-started.active-f{background:var(--not-started-bg);color:var(--not-started-text);border-color:var(--not-started-border)}
 .filt.f-in-progress.active-f{background:var(--in-progress-bg);color:var(--in-progress-text);border-color:var(--in-progress-border)}
 .filt.f-ready.active-f{background:var(--ready-bg);color:var(--ready-text);border-color:var(--ready-border)}
-
 .main{max-width:1400px;margin:0 auto;padding:36px 32px}
-
 .week-section{margin-bottom:52px}
 .week-head{display:flex;align-items:center;gap:16px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border)}
 .week-num{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;background:var(--surface);color:var(--teal);border:1px solid var(--posted-border);padding:3px 12px;letter-spacing:0.15em;text-transform:uppercase;border-radius:100px}
 .week-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;color:var(--text)}
 .week-strategy{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;background:var(--ready-bg);border:1px solid var(--ready-border);padding:3px 10px;border-radius:100px}
 .week-count{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted2);letter-spacing:0.1em}
-
 .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden;transition:border-color 0.18s,box-shadow 0.18s}
 .card:hover{border-color:var(--surface3);box-shadow:0 4px 24px rgba(0,201,167,0.06)}
 .card.hidden{display:none}
 .card-strip{height:2px;background:var(--pc)}
 .card[data-p="ig"] .card-strip,.card[data-p="ig"] .card-pname{--pc:var(--ig)}
 .card[data-p="li"] .card-strip,.card[data-p="li"] .card-pname{--pc:var(--li)}
-
 .card-header{display:grid;grid-template-columns:180px 80px 100px 1fr auto;align-items:center;gap:0;padding:14px 20px;cursor:pointer;user-select:none}
 .card-header:hover .card-title{color:var(--teal)}
 .card-date{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;color:var(--white)}
@@ -92,7 +85,6 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans
 .card-fmt-badge{display:inline-flex;align-items:center;background:var(--surface2);border:1px solid var(--border2);border-radius:100px;padding:3px 10px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.05em;width:fit-content}
 .card-title{font-size:13px;font-weight:600;color:var(--text);line-height:1.4;padding:0 16px;transition:color 0.15s}
 .card-right{display:flex;align-items:center;gap:10px;padding-left:16px}
-
 .spill{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap;border:1px solid}
 .spill::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0}
 .spill.posted      {background:var(--posted-bg);color:var(--posted-text);border-color:var(--posted-border)}
@@ -103,13 +95,10 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans
 .spill.toggleable{cursor:pointer;transition:transform 0.1s,box-shadow 0.1s;user-select:none}
 .spill.toggleable:hover{transform:scale(1.06);box-shadow:0 2px 10px rgba(0,201,167,0.2)}
 .spill.toggleable:active{transform:scale(0.97)}
-
 .status-toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--surface2);color:var(--white);padding:10px 22px;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;opacity:0;transition:opacity 0.2s,transform 0.2s;pointer-events:none;z-index:9999;white-space:nowrap;border:1px solid var(--border);border-left:3px solid var(--teal);box-shadow:0 8px 32px rgba(0,0,0,0.4)}
 .status-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
 .expand-btn{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;background:var(--surface2);border:1px solid var(--border2);color:var(--muted);font-size:12px;transition:all 0.15s;flex-shrink:0;cursor:pointer}
 .card.open .expand-btn{background:var(--teal);color:var(--bg);border-color:var(--teal);transform:rotate(180deg)}
-
 .card-body{display:none;border-top:1px solid var(--border)}
 .card.open .card-body{display:block}
 .card-body-inner{display:grid;grid-template-columns:1fr 1fr;gap:0}
@@ -121,7 +110,6 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans
 .cb-label{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:6px}
 .cb-label::before{content:'';display:block;width:3px;height:3px;border-radius:50%;background:var(--teal)}
 .cb-full{padding:20px 24px;border-top:1px solid var(--border);background:var(--bg)}
-
 .slides-grid{display:flex;flex-direction:column;gap:8px}
 .slide-row{display:flex;align-items:flex-start;gap:12px;padding:10px 14px;background:var(--surface2);border:1px solid var(--border2);border-radius:8px}
 .slide-num{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--surface3);line-height:1;flex-shrink:0;min-width:24px}
@@ -129,34 +117,27 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans
 .slide-headline{font-size:12px;font-weight:600;color:var(--white);margin-bottom:3px}
 .slide-body{font-size:11px;color:var(--muted);line-height:1.5}
 .slide-visual{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--teal);margin-top:4px}
-
 .story-slides{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}
 .story-slide{flex-shrink:0;width:150px;background:var(--surface2);border-radius:10px;padding:14px 12px;border:1px solid var(--border2)}
 .story-slide-n{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--surface3);margin-bottom:6px;line-height:1}
 .story-slide-txt{font-size:11px;color:var(--text);line-height:1.4;margin-bottom:8px}
 .story-slide-type{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:0.08em}
-
 .caption-block{background:var(--bg);border-radius:8px;border:1px solid var(--border);padding:16px 18px;position:relative}
 .caption-text{font-size:12px;color:var(--text);line-height:1.8;white-space:pre-wrap}
 .copy-btn{position:absolute;top:10px;right:10px;padding:4px 11px;background:transparent;border:1px solid var(--border2);border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);cursor:pointer;transition:all 0.15s}
 .copy-btn:hover{background:var(--surface2);color:var(--text)}
 .copy-btn.copied{color:var(--teal);border-color:var(--posted-border)}
-
 .cta-pill{display:inline-flex;align-items:center;gap:6px;background:var(--ready-bg);border:1px solid var(--ready-border);border-radius:100px;padding:4px 12px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-top:12px}
 .cta-pill::before{content:'→';color:var(--gold)}
-
 .hashtag-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .htag{padding:4px 11px;background:var(--surface2);border:1px solid var(--border2);border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);transition:color 0.15s,border-color 0.15s}
 .htag:hover{color:var(--teal);border-color:var(--posted-border)}
-
 .design-notes{display:flex;flex-direction:column;gap:10px}
 .dn-row{display:flex;gap:12px;align-items:flex-start}
 .dn-key{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:500;color:var(--muted2);text-transform:uppercase;letter-spacing:0.1em;min-width:80px;padding-top:2px}
 .dn-val{font-size:12px;color:var(--text);line-height:1.5}
-
 .card-rest .card-header{opacity:0.3;cursor:default}
 .card-rest .expand-btn{display:none}
-
 @media(max-width:900px){
   .card-header{grid-template-columns:1fr auto auto;gap:8px}
   .card-pname,.card-fmt-badge{display:none}
@@ -1129,20 +1110,11 @@ June retainer onboarding is now open. We have 4 spots available.
 ];
 
 // ═══════════════════════════════════════
-// PERSISTENCE
+// PERSISTENCE — Firebase Firestore
 // ═══════════════════════════════════════
-const STORAGE_KEY = "sis_cal_apr_may2026";
-function getStored(){ try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}")}catch(e){return{}} }
-function saveStatus(key,status){ const s=getStored(); s[key]=status; localStorage.setItem(STORAGE_KEY,JSON.stringify(s)); }
+const CAMPAIGN_ID = "say-it-social-apr-may-2026";
+
 function pKey(weekId,date,p){ return `${weekId}__${date.replace(/[^a-z0-9]/gi,"_")}__${p}`; }
-function applyStored(){
-  const stored=getStored();
-  WEEKS.forEach(w=>w.days.forEach(d=>d.posts.forEach(post=>{
-    if(post.status==="rest") return;
-    const k=pKey(w.id,d.date,post.p);
-    if(stored[k]) post.status=stored[k];
-  })));
-}
 
 // ═══════════════════════════════════════
 // STATUS
@@ -1167,7 +1139,11 @@ function toggleStatus(btn,weekId,dayDate,platform){
   if(!post||post.status==="rest") return;
   const newStatus=STATUS_CYCLE[post.status]||"not-started";
   post.status=newStatus;
-  saveStatus(pKey(weekId,dayDate,platform),newStatus);
+
+  // Save to Firebase
+  const key = pKey(weekId,dayDate,platform);
+  if(window._fbSaveStatus) window._fbSaveStatus(key, newStatus);
+
   btn.className=`spill ${newStatus} toggleable`;
   btn.innerHTML=STATUS_LABELS[newStatus];
   const card=btn.closest(".card");
@@ -1242,7 +1218,8 @@ function makeCard(post,weekId,dayDate){
   const hasBrief=post.brief&&post.brief.trim();
   const hasDN=post.design_notes&&Object.keys(post.design_notes).length>0;
   const hasTags=post.hashtags&&post.hashtags.length>0;
-  return `<div class="card" data-p="${post.p}" data-status="${post.status}">
+  const fbKey=pKey(weekId,dayDate,post.p);
+  return `<div class="card" data-p="${post.p}" data-status="${post.status}" data-fbkey="${fbKey}">
     <div class="card-strip"></div>
     <div class="card-header" onclick="toggleCard(this)">
       <div><div class="card-date">${dayDate}</div><div class="card-theme-lbl" style="font-size:9px;margin-top:2px">${post.fmt}</div></div>
@@ -1344,11 +1321,105 @@ document.querySelectorAll(".tab").forEach(t=>{
   });
 });
 
-applyStored();
+// Initial render (statuses loaded from Firebase below)
 renderHeroStats();
 updateProgress();
 renderFilters();
 render();
 </script>
+
+<!-- ── FIREBASE SDK ── -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, collection, getDocs, setDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
+    authDomain: "sayitsocial-calendar.firebaseapp.com",
+    projectId: "sayitsocial-calendar",
+    storageBucket: "sayitsocial-calendar.firebasestorage.app",
+    messagingSenderId: "232081824561",
+    appId: "1:232081824561:web:0131d5e91d96ce8ea9ae10"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db  = getFirestore(app);
+  const CID = "say-it-social-apr-may-2026";
+
+  // ── Expose save function to main script ───────────────────────
+  window._fbSaveStatus = async function(key, status) {
+    try {
+      await setDoc(doc(db,"campaigns",CID,"statuses",key), { status }, { merge:true });
+    } catch(e) { console.error("Firebase write error:", e); }
+  };
+
+  // ── Load all saved statuses on startup ────────────────────────
+  async function loadStatuses() {
+    try {
+      const snap = await getDocs(collection(db,"campaigns",CID,"statuses"));
+      const stored = {};
+      snap.forEach(d => { stored[d.id] = d.data().status; });
+
+      // Apply to WEEKS data array
+      WEEKS.forEach(w => w.days.forEach(d => d.posts.forEach(post => {
+        if(post.status === "rest") return;
+        const k = pKey(w.id, d.date, post.p);
+        if(stored[k]) post.status = stored[k];
+      })));
+
+      // Re-render with loaded statuses
+      render();
+      renderHeroStats();
+      updateProgress();
+    } catch(e) { console.error("Firebase load error:", e); }
+  }
+
+  // ── Real-time listener — syncs status changes across team ─────
+  function listenRealtime() {
+    onSnapshot(collection(db,"campaigns",CID,"statuses"), snap => {
+      let anyChange = false;
+      snap.docChanges().forEach(change => {
+        if(change.type === "removed") return;
+        const key       = change.doc.id;
+        const newStatus = change.doc.data().status;
+
+        // Update WEEKS data
+        WEEKS.forEach(w => w.days.forEach(d => d.posts.forEach(post => {
+          if(post.status === "rest") return;
+          if(pKey(w.id, d.date, post.p) === key && post.status !== newStatus) {
+            post.status = newStatus;
+            anyChange = true;
+
+            // Update badge in DOM without full re-render
+            const card = document.querySelector(`.card[data-fbkey="${key}"]`);
+            if(card) {
+              const badge = card.querySelector(".spill.toggleable");
+              if(badge) {
+                badge.className = `spill ${newStatus} toggleable`;
+                badge.innerHTML = STATUS_LABELS[newStatus] || newStatus;
+              }
+              card.dataset.status = newStatus;
+            }
+          }
+        })));
+      });
+      if(anyChange) { updateProgress(); renderHeroStats(); }
+    });
+  }
+
+  // ── Init ──────────────────────────────────────────────────────
+  await loadStatuses();
+  listenRealtime();
+
+  // Show connected toast
+  const t = document.createElement("div");
+  t.style.cssText = "position:fixed;bottom:28px;right:28px;background:var(--surface2);color:var(--white);padding:11px 20px;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;border:1px solid var(--border);border-left:3px solid var(--teal);box-shadow:0 8px 32px rgba(0,0,0,.4);z-index:9999;opacity:0;transition:opacity 0.3s;";
+  t.textContent = "🔄 Connected — syncing live with your team";
+  document.body.appendChild(t);
+  setTimeout(() => t.style.opacity = "1", 100);
+  setTimeout(() => t.style.opacity = "0", 3500);
+  setTimeout(() => t.remove(), 4000);
+</script>
+
 </body>
 </html>
