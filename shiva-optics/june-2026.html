@@ -1,1 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shiva Optics — Content Tracker June 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Syne:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0B0B0E;--bg2:#121218;--bg3:#1A1A22;--border:#252530;
+  --gold:#D4A843;--gold2:#F0C060;--text:#E8E2D8;--muted:#585460;--dim:#2A2830;
+  --s-none-t:#555;--s-prog-t:#5BA3D9;--s-ready-t:#4DC880;--s-post-t:#D4A843;
+  --offer:#C8400A;--reel:#6B35A8;--sales:#B8001F;--engage:#1A6B3A;--brand:#0A4A7A;
+  --luxury:#8B6914;--summer:#C47A00;--fathers:#1A4A2A;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
 
+/* HEADER */
+header{padding:48px 52px 36px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;position:relative;overflow:hidden;}
+header::before{content:'JUNE';position:absolute;right:-20px;top:-28px;font-family:'Playfair Display',serif;font-size:180px;font-weight:900;color:rgba(212,168,67,0.035);letter-spacing:-4px;pointer-events:none;user-select:none;}
+.brand-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.brand-tag::before{content:'';display:inline-block;width:24px;height:1px;background:var(--gold);}
+h1{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,52px);font-weight:700;color:var(--text);line-height:1.05;letter-spacing:-0.5px;}
+h1 em{color:var(--gold);font-style:italic;}
+.header-meta{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-top:10px;letter-spacing:0.1em;}
+.summary-bar{display:flex;gap:8px;flex-wrap:wrap;}
+.s-pill{display:flex;flex-direction:column;gap:3px;padding:12px 18px;border:1px solid var(--border);background:var(--bg2);min-width:90px;}
+.s-pill .count{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1;}
+.s-pill .label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);}
+.s-pill.total .count{color:var(--text);}
+.s-pill.not-started .count{color:var(--s-none-t);}
+.s-pill.in-progress .count{color:var(--s-prog-t);}
+.s-pill.ready .count{color:var(--s-ready-t);}
+.s-pill.posted .count{color:var(--gold);}
+
+/* BRAND LEGEND */
+.brand-legend{padding:16px 52px;border-bottom:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.bl-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-right:4px;}
+.brand-chip{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.1em;padding:4px 10px;border:1px solid;text-transform:uppercase;}
+.bc-luxury{background:rgba(139,105,20,0.15);color:#D4A843;border-color:rgba(139,105,20,0.4);}
+.bc-premium{background:rgba(107,53,168,0.12);color:#A070E0;border-color:rgba(107,53,168,0.3);}
+.bc-sport{background:rgba(26,107,58,0.12);color:#50C880;border-color:rgba(26,107,58,0.3);}
+.bc-lifestyle{background:rgba(184,0,31,0.12);color:#E05070;border-color:rgba(184,0,31,0.3);}
+.bc-fathers{background:rgba(26,74,42,0.2);color:#60C870;border-color:rgba(26,74,42,0.5);}
+.bc-summer{background:rgba(196,122,0,0.15);color:#E8A030;border-color:rgba(196,122,0,0.3);}
+
+/* PROGRESS */
+.progress-section{padding:18px 52px 18px;}
+.prog-track{height:4px;background:var(--border);display:flex;overflow:hidden;margin-top:8px;}
+.prog-seg{height:100%;transition:width 0.4s ease;}
+.prog-none{background:var(--s-none-t);}
+.prog-prog{background:var(--s-prog-t);}
+.prog-ready{background:var(--s-ready-t);}
+.prog-post{background:var(--gold);}
+.prog-legend{display:flex;gap:20px;margin-top:8px;flex-wrap:wrap;}
+.prog-item{display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);}
+.prog-dot{width:8px;height:8px;border-radius:0;flex-shrink:0;}
+
+/* CONTROLS */
+.controls{padding:16px 52px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100;}
+.filter-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-right:4px;}
+.filter-btn{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 12px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all 0.15s;}
+.filter-btn:hover{border-color:var(--gold);color:var(--gold);}
+.filter-btn.active{background:var(--gold);border-color:var(--gold);color:#000;}
+.divider{width:1px;height:20px;background:var(--border);margin:0 4px;}
+
+/* WEEK */
+.week-block{}
+.week-header{padding:14px 52px;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:16px;}
+.week-num{font-family:'Playfair Display',serif;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;}
+.week-theme{font-family:'Syne',sans-serif;font-size:11px;color:var(--text);font-weight:600;}
+.week-dates{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);}
+.week-bar{flex:1;height:1px;background:var(--border);}
+.week-post-count{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.1em;}
+
+/* CARDS WRAP */
+.cards-wrap{padding:24px 52px;display:flex;flex-direction:column;gap:16px;}
+.rest-day{display:flex;align-items:center;gap:14px;padding:9px 20px;border:1px solid #161616;background:#0D0D0D;opacity:0.45;}
+.rest-date{font-family:'JetBrains Mono',monospace;font-size:10px;color:#2A2A2A;width:80px;flex-shrink:0;}
+.rest-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:#222;letter-spacing:0.15em;text-transform:uppercase;}
+
+/* CARD */
+.card{border:1px solid var(--border);background:var(--bg2);transition:border-color 0.2s,box-shadow 0.2s;position:relative;overflow:hidden;}
+.card:hover{border-color:rgba(212,168,67,0.4);box-shadow:0 4px 32px rgba(0,0,0,0.5);}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
+.card.type-offer::before{background:var(--offer);}
+.card.type-reel::before{background:var(--reel);}
+.card.type-sales::before{background:var(--sales);}
+.card.type-engage::before{background:var(--engage);}
+.card.type-brand::before{background:var(--brand);}
+.card.type-luxury::before{background:var(--luxury);}
+.card.type-fathers::before{background:var(--fathers);}
+.card.type-summer::before{background:var(--summer);}
+.card.hidden{display:none;}
+.rest-day.hidden{display:none;}
+
+/* CARD TOP */
+.card-top{padding:18px 22px 14px 26px;display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;}
+.card-date-col{display:flex;flex-direction:column;gap:4px;min-width:80px;flex-shrink:0;}
+.card-date{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);font-weight:500;}
+.card-day{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;}
+.card-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;flex:1;}
+.type-pill{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.15em;text-transform:uppercase;padding:3px 10px;font-weight:500;border:1px solid;}
+.pill-offer{background:rgba(200,64,10,0.15);color:#F07040;border-color:rgba(200,64,10,0.3);}
+.pill-reel{background:rgba(107,53,168,0.15);color:#A070E0;border-color:rgba(107,53,168,0.3);}
+.pill-sales{background:rgba(184,0,31,0.15);color:#E05070;border-color:rgba(184,0,31,0.3);}
+.pill-engage{background:rgba(26,107,58,0.15);color:#50C880;border-color:rgba(26,107,58,0.3);}
+.pill-brand{background:rgba(10,74,122,0.15);color:#50A0D8;border-color:rgba(10,74,122,0.3);}
+.pill-luxury{background:rgba(139,105,20,0.2);color:#D4A843;border-color:rgba(139,105,20,0.4);}
+.pill-fathers{background:rgba(26,74,42,0.2);color:#60C870;border-color:rgba(26,74,42,0.4);}
+.pill-summer{background:rgba(196,122,0,0.15);color:#E8A030;border-color:rgba(196,122,0,0.3);}
+.format-tag{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:0.1em;border:1px solid var(--border);padding:3px 10px;}
+.brand-tag-card{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.12em;padding:3px 10px;border:1px solid;text-transform:uppercase;font-weight:600;}
+
+/* STATUS */
+.status-wrap{margin-left:auto;display:flex;align-items:center;gap:8px;}
+.status-label-txt{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;}
+.status-select{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;padding:5px 10px;border:1px solid var(--border);background:var(--bg3);color:var(--text);cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;min-width:140px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23585460'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px;transition:border-color 0.15s;}
+.status-select:hover,.status-select:focus{border-color:var(--gold);}
+.status-none{border-color:var(--border);color:var(--s-none-t);}
+.status-prog{border-color:var(--s-prog-t);color:var(--s-prog-t);background-color:rgba(26,58,92,0.3);}
+.status-ready{border-color:var(--s-ready-t);color:var(--s-ready-t);background-color:rgba(26,60,42,0.3);}
+.status-post{border-color:var(--gold);color:var(--gold);background-color:rgba(60,42,16,0.4);}
+
+/* CARD BODY */
+.card-body{border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.card-field{padding:14px 22px 14px 26px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
+.card-field:nth-child(even){border-right:none;}
+.card-field.full-width{grid-column:1/-1;border-right:none;}
+.card-field.no-bottom{border-bottom:none;}
+.field-key{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.field-key::before{content:'';display:inline-block;width:10px;height:1px;background:var(--dim);}
+.field-val{font-family:'Syne',sans-serif;font-size:12px;color:var(--text);line-height:1.6;}
+.field-val.hook-txt{font-family:'Playfair Display',serif;font-size:14px;font-style:italic;color:var(--gold2);line-height:1.5;}
+.field-val.caption-txt{font-size:11.5px;color:#BDB8B0;white-space:pre-line;line-height:1.7;}
+.field-val.visual-txt{font-size:11.5px;color:#A0A8B8;line-height:1.6;}
+.reel-badge{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9px;color:#A070E0;border:1px solid rgba(107,53,168,0.3);background:rgba(107,53,168,0.1);padding:3px 10px;margin-bottom:8px;}
+
+/* OCCASION BANNER */
+.occasion-banner{margin:0 52px 0;padding:10px 20px;border:1px solid;display:flex;align-items:center;gap:12px;font-family:'JetBrains Mono',monospace;font-size:10px;}
+.ob-fathers{background:rgba(26,74,42,0.15);border-color:rgba(26,74,42,0.4);color:#60C870;}
+.ob-summer{background:rgba(196,122,0,0.12);border-color:rgba(196,122,0,0.3);color:#E8A030;}
+
+/* ASSET LINK ROW */
+.card-asset-row{display:flex;align-items:center;gap:8px;padding:10px 22px 10px 26px;border-top:1px solid var(--border);background:rgba(212,168,67,0.03);flex-wrap:wrap;}
+.asset-lbl{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-right:4px;}
+.asset-btn{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;padding:4px 12px;border:1px solid;cursor:pointer;text-decoration:none;transition:all 0.15s;background:none;display:inline-flex;align-items:center;gap:4px;}
+.asset-btn.gdrive{color:#1A73E8;border-color:rgba(26,115,232,0.4);background:rgba(26,115,232,0.08);}
+.asset-btn.onedrive{color:#0078D4;border-color:rgba(0,120,212,0.4);background:rgba(0,120,212,0.08);}
+.asset-btn:hover{opacity:.75;}
+.asset-btn.linked.gdrive{background:#1A73E8;color:#fff;border-color:#1A73E8;}
+.asset-btn.linked.onedrive{background:#0078D4;color:#fff;border-color:#0078D4;}
+
+/* ASSET MODAL */
+.asset-modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9998;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
+.asset-modal-bg.show{display:flex;}
+.asset-modal{background:var(--bg2);border:1px solid var(--border);padding:28px;width:440px;max-width:92vw;position:relative;animation:amIn .16s ease;box-shadow:0 24px 60px rgba(0,0,0,0.7);}
+@keyframes amIn{from{transform:scale(.93);opacity:0}to{transform:scale(1);opacity:1}}
+.asset-modal h3{font-family:'Playfair Display',serif;font-size:18px;color:var(--gold2);margin-bottom:4px;}
+.asset-modal p{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:16px;letter-spacing:0.05em;}
+.asset-modal input{width:100%;background:var(--bg3);border:1px solid var(--border);padding:10px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text);outline:none;transition:border-color .2s;}
+.asset-modal input:focus{border-color:var(--gold);}
+.asset-modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px;}
+.am-cancel{font-family:'JetBrains Mono',monospace;font-size:10px;padding:7px 16px;border:1px solid var(--border);background:none;color:var(--muted);cursor:pointer;}
+.am-save{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;padding:7px 18px;border:none;cursor:pointer;color:#000;}
+.am-save.gdrive-s{background:#1A73E8;color:#fff;}
+.am-save.onedrive-s{background:#0078D4;color:#fff;}
+.am-x{position:absolute;top:12px;right:14px;background:none;border:none;font-size:14px;color:var(--muted);cursor:pointer;}
+
+@media(max-width:700px){
+  header,.controls,.cards-wrap,.week-header,.progress-section,.brand-legend,.occasion-banner{padding-left:20px;padding-right:20px;}
+  .card-body{grid-template-columns:1fr;}
+  .card-field{border-right:none!important;}
+  .status-wrap{margin-left:0;width:100%;margin-top:8px;}
+  .card-top{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <div class="brand-tag">Say It Social — Content Tracker</div>
+    <h1>Shiva Optics<br><em>June 2026</em></h1>
+    <div class="header-meta">13 posts · Mon / Wed / Fri · Brand Showcase + Summer + Father's Day</div>
+  </div>
+  <div class="summary-bar">
+    <div class="s-pill total"><span class="count" id="cnt-total">13</span><span class="label">Total Posts</span></div>
+    <div class="s-pill not-started"><span class="count" id="cnt-none">13</span><span class="label">Not Started</span></div>
+    <div class="s-pill in-progress"><span class="count" id="cnt-prog">0</span><span class="label">In Progress</span></div>
+    <div class="s-pill ready"><span class="count" id="cnt-ready">0</span><span class="label">Ready</span></div>
+    <div class="s-pill posted"><span class="count" id="cnt-post">0</span><span class="label">Posted</span></div>
+  </div>
+</header>
+
+<div class="brand-legend">
+  <span class="bl-label">Brands Featured:</span>
+  <span class="brand-chip bc-luxury">Gucci</span>
+  <span class="brand-chip bc-luxury">Prada</span>
+  <span class="brand-chip bc-luxury">Burberry</span>
+  <span class="brand-chip bc-premium">Carrera</span>
+  <span class="brand-chip bc-premium">Police</span>
+  <span class="brand-chip bc-premium">Diesel</span>
+  <span class="brand-chip bc-premium">Opium</span>
+  <span class="brand-chip bc-sport">Ray-Ban</span>
+  <span class="brand-chip bc-sport">Oakley</span>
+  <span class="brand-chip bc-summer">+ Summer Offers</span>
+  <span class="brand-chip bc-fathers">+ Father's Day</span>
+</div>
+
+<div class="progress-section">
+  <div class="prog-track">
+    <div class="prog-seg prog-post"  id="bar-post"  style="width:0%"></div>
+    <div class="prog-seg prog-ready" id="bar-ready" style="width:0%"></div>
+    <div class="prog-seg prog-prog"  id="bar-prog"  style="width:0%"></div>
+    <div class="prog-seg prog-none"  id="bar-none"  style="width:100%"></div>
+  </div>
+  <div class="prog-legend">
+    <div class="prog-item"><div class="prog-dot" style="background:var(--gold)"></div>Posted</div>
+    <div class="prog-item"><div class="prog-dot" style="background:var(--s-ready-t)"></div>Ready to Post</div>
+    <div class="prog-item"><div class="prog-dot" style="background:var(--s-prog-t)"></div>In Progress</div>
+    <div class="prog-item"><div class="prog-dot" style="background:var(--s-none-t)"></div>Not Started</div>
+  </div>
+</div>
+
+<div class="controls">
+  <span class="filter-label">Status:</span>
+  <button class="filter-btn active" onclick="filter('all',this)">All</button>
+  <button class="filter-btn" onclick="filter('not-started',this)">Not Started</button>
+  <button class="filter-btn" onclick="filter('in-progress',this)">In Progress</button>
+  <button class="filter-btn" onclick="filter('ready-to-post',this)">Ready to Post</button>
+  <button class="filter-btn" onclick="filter('posted',this)">Posted</button>
+  <div class="divider"></div>
+  <span class="filter-label">Type:</span>
+  <button class="filter-btn" onclick="filterType('reel',this)">Reels</button>
+  <button class="filter-btn" onclick="filterType('luxury',this)">Luxury</button>
+  <button class="filter-btn" onclick="filterType('sales',this)">Sales</button>
+  <button class="filter-btn" onclick="filterType('offer',this)">Offers</button>
+  <button class="filter-btn" onclick="filterType('fathers',this)">Father's Day</button>
+  <button class="filter-btn" onclick="filterType('summer',this)">Summer</button>
+</div>
+
+<!-- WEEK 1 -->
+<div class="week-block">
+  <div class="week-header">
+    <span class="week-num">Week 1</span>
+    <span class="week-theme">— Sport Icons: Ray-Ban &amp; Oakley</span>
+    <span class="week-dates">1 Jun – 7 Jun</span>
+    <div class="week-bar"></div>
+    <span class="week-post-count">3 posts</span>
+  </div>
+  <div class="cards-wrap">
+
+    <div class="card type-reel" data-status="not-started" data-type="reel" id="card1">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">01 Jun</span><span class="card-day">Monday</span></div>
+        <div class="card-meta">
+          <span class="type-pill pill-reel">Reel / Video</span>
+          <span class="format-tag">Instagram Reel · 25s</span>
+          <span class="brand-tag-card bc-sport">Ray-Ban</span>
+        </div>
+        <div class="status-wrap">
+          <span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card1')">
+            <option value="not-started">⬜ Not Started</option>
+            <option value="in-progress">🔵 In Progress</option>
+            <option value="ready-to-post">🟢 Ready to Post</option>
+            <option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Post Idea</div><div class="field-val">June opener — Ray-Ban collection showcase Reel. "The icon is here." Kick off the month with the most recognisable brand in eyewear.</div></div>
+        <div class="card-field"><div class="field-key">Hook</div><div class="field-val hook-txt">"Some things never go out of style. Ray-Ban is one of them."</div></div>
+        <div class="card-field"><div class="field-key">Visual Direction</div><div class="field-val visual-txt">Cinematic Reel: slow close-ups of Aviator, Wayfarer, Clubmaster. Each frame on a different surface — dark marble, sand, sunlit stone. Bold on-screen titles per style. Premium feel throughout.</div></div>
+        <div class="card-field full-width">
+          <div class="field-key">Reel Script / Flow</div>
+          <div class="field-val visual-txt">
+            <div class="reel-badge">🎬 Reel Flow</div>
+            <b>0–2s:</b> Black screen → "The Icon." text fades in<br>
+            <b>2–7s:</b> Aviator close-up — "Aviator · Since 1937"<br>
+            <b>7–12s:</b> Wayfarer on face — "Wayfarer · Born Rebellious"<br>
+            <b>12–18s:</b> Clubmaster flat-lay — "Clubmaster · Eternally Cool"<br>
+            <b>18–22s:</b> All three together — "Ray-Ban. Now at Shiva Optics."<br>
+            <b>22–25s:</b> Store CTA — "Visit us or DM to explore the collection 📍"
+          </div>
+        </div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">Some things never go out of style. Ray-Ban is one of them. 🕶️
+
+Aviator. Wayfarer. Clubmaster. Three icons, one collection — now at Shiva Optics.
+
+Whether you're a classic or a rebel, there's a Ray-Ban made for you.
+
+Visit us in-store or DM to explore the full collection 👇
+
+#RayBan #ShivaOptics #RayBanIndia #IconicFrames #SuratFashion #EyewearReels #Sunglasses2026</div></div>
+      </div>
+      <div class="card-asset-row">
+        <span class="asset-lbl">Assets</span>
+        <a href="#" class="asset-btn gdrive">G Drive</a>
+        <a href="#" class="asset-btn onedrive">OneDrive</a>
+      </div>
+    </div>
+
+    <div class="rest-day"><span class="rest-date">02 Jun · Tue</span><span class="rest-label">— Rest Day</span></div>
+
+    <div class="card type-sales" data-status="not-started" data-type="sales" id="card2">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">03 Jun</span><span class="card-day">Wednesday</span></div>
+        <div class="card-meta">
+          <span class="type-pill pill-sales">Brand Showcase</span>
+          <span class="format-tag">Carousel · 5 Slides</span>
+          <span class="brand-tag-card bc-sport">Oakley</span>
+        </div>
+        <div class="status-wrap">
+          <span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card2')">
+            <option value="not-started">⬜ Not Started</option>
+            <option value="in-progress">🔵 In Progress</option>
+            <option value="ready-to-post">🟢 Ready to Post</option>
+            <option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Post Idea</div><div class="field-val">Oakley Sport Collection Carousel — Built for performance, worn for style. Showcases polarised, sport-wrap, and lifestyle Oakley styles available in-store.</div></div>
+        <div class="card-field"><div class="field-key">Hook</div><div class="field-val hook-txt">"Built for athletes. Worn by everyone. Oakley is in the building. 💪"</div></div>
+        <div class="card-field"><div class="field-key">Visual Direction</div><div class="field-val visual-txt">Slide 1: Bold Oakley hero graphic — dark bg, sharp angles, brand feel. Slides 2–4: One style per slide, action-lifestyle image, frame name + key feature. Slide 5: "All Oakley styles at Shiva Optics" + DM CTA.</div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">Built for athletes. Worn by everyone. 💪
+
+Oakley's at Shiva Optics — and the collection is 🔥
+
+Whether you're hitting the road, the gym, or just living your best life — Oakley has a frame for every version of you.
+
+Swipe to explore. DM us to grab your pair 👇
+
+#Oakley #OakleySunglasses #ShivaOptics #SportEyewear #PolarisedLenses #SuratStyle #SummerEyewear</div></div>
+      </div>
+      <div class="card-asset-row">
+        <span class="asset-lbl">Assets</span>
+        <a href="#" class="asset-btn gdrive">G Drive</a>
+        <a href="#" class="asset-btn onedrive">OneDrive</a>
+      </div>
+    </div>
+
+    <div class="rest-day"><span class="rest-date">04 Jun · Thu</span><span class="rest-label">— Rest Day</span></div>
+
+    <div class="card type-summer" data-status="not-started" data-type="summer" id="card3">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">06 Jun</span><span class="card-day">Friday</span></div>
+        <div class="card-meta">
+          <span class="type-pill pill-summer">Summer Offer</span>
+          <span class="format-tag">Static Post + Story</span>
+          <span class="brand-tag-card bc-summer">Summer Drop</span>
+        </div>
+        <div class="status-wrap">
+          <span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card3')">
+            <option value="not-started">⬜ Not Started</option>
+            <option value="in-progress">🔵 In Progress</option>
+            <option value="ready-to-post">🟢 Ready to Post</option>
+            <option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Post Idea</div><div class="field-val">June Summer Offer Launch — Surat summers demand protection. Weekend offer to drive foot traffic from day one of the month.</div></div>
+        <div class="card-field"><div class="field-key">Hook</div><div class="field-val hook-txt">"Surat summers don't wait — and neither should you. ☀️"</div></div>
+        <div class="card-field"><div class="field-key">Visual Direction</div><div class="field-val visual-txt">Bright warm-toned graphic. Sun motif in background. 3 frames from different price ranges shown. "Summer Ready" badge. Offer detail bold and centre. Story: swipe-up or DM sticker.</div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">Surat summers don't wait ☀️ — and neither should your eye protection.
+
+June is here and we're kicking it off with a Summer Offer you'll love:
+
+🕶️ Buy any sunglasses this weekend → Get FREE lens cleaning kit worth ₹300
+
+From Ray-Ban to Oakley to budget-friendly picks — we've got something for every face and every budget.
+
+Visit Shiva Optics this weekend. Your eyes will thank you 🙏
+
+#SummerEyewear #ShivaOptics #SuratSummer #SunglassOffer #UV400 #WeekendDeal #EyewearSale</div></div>
+      </div>
+      <div class="card-asset-row">
+        <span class="asset-lbl">Assets</span>
+        <a href="#" class="asset-btn gdrive">G Drive</a>
+        <a href="#" class="asset-btn onedrive">OneDrive</a>
+      </div>
+    </div>
+
+    <div class="rest-day"><span class="rest-date">07 Jun · Sat</span><span class="rest-label">— Rest Day</span></div>
+  </div>
+</div>
+
+<!-- WEEK 2 -->
+<div class="occasion-banner ob-fathers">
+  <span>👔</span>
+  <span><strong>Father's Day Week</strong> — Father's Day falls on Sunday 15 June. Posts this week build up to it.</span>
+</div>
+<div class="week-block">
+  <div class="week-header">
+    <span class="week-num">Week 2</span>
+    <span class="week-theme">— Luxury Tier: Gucci &amp; Prada · Father's Day Build-up</span>
+    <span class="week-dates">8 Jun – 14 Jun</span>
+    <div class="week-bar"></div>
+    <span class="week-post-count">3 posts</span>
+  </div>
+  <div class="cards-wrap">
+
+    <div class="card type-luxury" data-status="not-started" data-type="luxury" id="card4">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">09 Jun</span><span class="card-day">Monday</span></div>
+        <div class="card-meta">
+          <span class="type-pill pill-luxury">Luxury Showcase</span>
+          <span class="format-tag">Carousel · 4 Slides</span>
+          <span class="brand-tag-card bc-luxury">Gucci</span>
+        </div>
+        <div class="status-wrap">
+          <span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card4')">
+            <option value="not-started">⬜ Not Started</option>
+            <option value="in-progress">🔵 In Progress</option>
+            <option value="ready-to-post">🟢 Ready to Post</option>
+            <option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Post Idea</div><div class="field-val">Gucci Eyewear Collection Spotlight — Luxury positioning. "Not just sunglasses. A statement." Targets aspirational buyers and gift-givers ahead of Father's Day.</div></div>
+        <div class="card-field"><div class="field-key">Hook</div><div class="field-val hook-txt">"Not just sunglasses. A Gucci statement. ✦"</div></div>
+        <div class="card-field"><div class="field-key">Visual Direction</div><div class="field-val visual-txt">Dark, editorial aesthetic. Gold accents. Each slide: one Gucci frame, extreme close-up, frame name + one-word descriptor ("Bold", "Refined", "Iconic"). Slide 4: "Now at Shiva Optics" — understated, elegant CTA.</div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">When you wear Gucci, the world notices. ✦
+
+Gucci eyewear is not just about sun protection — it's about the story you tell before you say a word.
+
+Now available at Shiva Optics, Surat.
+
+Swipe to explore the collection → DM us to check availability and pricing 👇
+
+#Gucci #GucciEyewear #GucciSunglasses #ShivaOptics #LuxuryEyewear #SuratFashion #DesignerSunglasses #FashionSurat</div></div>
+      </div>
+      <div class="card-asset-row">
+        <span class="asset-lbl">Assets</span>
+        <a href="#" class="asset-btn gdrive">G Drive</a>
+        <a href="#" class="asset-btn onedrive">OneDrive</a>
+      </div>
+    </div>
+
+    <div class="rest-day"><span class="rest-date">10 Jun · Tue</span><span class="rest-label">— Rest Day</span></div>
+
+    <div class="card type-reel" data-status="not-started" data-type="reel" id="card5">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">11 Jun</span><span class="card-day">Wednesday</span></div>
+        <div class="card-meta">
+          <span class="type-pill pill-reel">Reel / Video</span>
+          <span class="format-tag">Instagram Reel · 20s</span>
+          <span class="brand-tag-card bc-luxury">Prada</span>
+        </div>
+        <div class="status-wrap">
+          <span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card5')">
+            <option value="not-started">⬜ Not Started</option>
+            <option value="in-progress">🔵 In Progress</option>
+            <option value="ready-to-post">🟢 Ready to Post</option>
+            <option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Post Idea</div><div class="field-val">Prada Eyewear Reel — Cinematic, slow-motion product shots. "Effortless luxury." High-aspiration content targeting premium buyers and gift buyers before Father's Day.</div></div>
+        <div class="card-field"><div class="field-key">Hook</div><div class="field-val hook-txt">"Effortless. Precise. Unmistakably Prada."</div></div>
+        <div class="card-field"><div class="field-key">Visual Direction</div><div class="field-val visual-txt">Slow, cinematic Reel. Minimal cuts — let each frame breathe. Black or white marble surface. Soft natural light. Elegant ambient audio (no lyrics). Text fades in and out gracefully.</div></div>
+        <div class="card-field full-width">
+          <div class="field-key">Reel Script / Flow</div>
+          <div class="field-val visual-txt">
+            <div class="reel-badge">🎬 Reel Flow</div>
+            <b>0–3s:</b> Slow reveal of Prada frame on marble — "Prada." fades in<br>
+            <b>3–8s:</b> Close-up of logo on temple — "Detail is everything."<br>
+            <b>8–13s:</b> Frame placed on face — side profile, natural light<br>
+            <b>13–17s:</b> Second style — overhead flat-lay with soft shadow<br>
+            <b>17–20s:</b> End card — "Prada Eyewear. Now at Shiva Optics, Surat."
+          </div>
+        </div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">Effortless. Precise. Unmistakably Prada. 🖤
+
+Some frames don't just sit on your face — they complete the look entirely.
+
+Prada eyewear is now available at Shiva Optics, Surat.
+
+Looking for the perfect Father's Day gift? A Prada frame says everything 🎁
+
+DM us to explore styles and pricing → in-store viewing available 📍
+
+#Prada #PradaSunglasses #PradaEyewear #ShivaOptics #LuxuryGifts #FathersDay2026 #DesignerEyewear #SuratFashion</div></div>
+      </div>
+      <div class="card-asset-row">
+        <span class="asset-lbl">Assets</span>
+        <a href="#" class="asset-btn gdrive">G Drive</a>
+        <a href="#" class="asset-btn onedrive">OneDrive</a>
+      </div>
+    </div>
+
+    <div class="rest-day"><span class="rest-date">12 Jun · Thu</span><span class="rest-label">— Rest Day</span></div>
+
+    <div class="card type-fathers" data-status="not-started" data-type="fathers" id="card6">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">13 Jun</span><span class="card-day">Friday</span></div>
+        <div class="card-meta">
+          <span class="type-pill pill-fathers">Father's Day</span>
+          <span class="format-tag">Carousel · 5 Slides</span>
+          <span class="brand-tag-card bc-fathers">Gift Guide</span>
+        </div>
+        <div class="status-wrap">
+          <span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card6')">
+            <option value="not-started">⬜ Not Started</option>
+            <option value="in-progress">🔵 In Progress</option>
+            <option value="ready-to-post">🟢 Ready to Post</option>
+            <option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Post Idea</div><div class="field-val">Father's Day Gift Guide — "The Dad Edit." Curated carousel of frames from different brands by dad personality type. Posted Friday before Father's Day Sunday for last-minute gifters.</div></div>
+        <div class="card-field"><div class="field-key">Hook</div><div class="field-val hook-txt">"Dad deserves better than a card. Get him frames he'll actually wear. 👔"</div></div>
+        <div class="card-field"><div class="field-key">Visual Direction</div><div class="field-val visual-txt">Slide 1: "The Dad Edit — Father's Day Gift Guide 👔" warm toned header. Slide 2: The Cool Dad → Ray-Ban Wayfarer. Slide 3: The Classy Dad → Prada/Gucci. Slide 4: The Active Dad → Oakley. Slide 5: The Understated Dad → Carrera/Police.</div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">Dad deserves better than a card. 👔
+
+This Father's Day — gift him a pair of frames he'll actually wear every day.
+
+We've put together The Dad Edit — a curated collection by dad personality:
+
+😎 The Cool Dad → Ray-Ban Wayfarer
+🤵 The Classy Dad → Prada / Gucci
+💪 The Active Dad → Oakley
+🧳 The Understated Dad → Carrera / Police
+
+All available at Shiva Optics. Father's Day is Sunday — come in this weekend!
+
+We'll help you pick the perfect pair 🎁
+
+#FathersDay2026 #FathersDayGift #DadGift #ShivaOptics #GiftIdeas #SunglassGift #SuratShopping #TheDADEdit</div></div>
+      </div>
+      <div class="card-asset-row">
+        <span class="asset-lbl">Assets</span>
+        <a href="#" class="asset-btn gdrive">G Drive</a>
+        <a href="#" class="asset-btn onedrive">OneDrive</a>
+      </div>
+    </div>
+
+    <div class="rest-day"><span class="rest-date">14 Jun · Sat</span><span class="rest-label">— Rest Day</span></div>
+    <div class="rest-day" style="border-color:#1A3A1A;"><span class="rest-date" style="color:#2A4A2A;">15 Jun · Sun</span><span class="rest-label" style="color:#2A4A2A;">— Father's Day 👔</span></div>
+  </div>
+</div>
+
+<!-- WEEK 3 -->
+<div class="week-block">
+  <div class="week-header">
+    <span class="week-num">Week 3</span>
+    <span class="week-theme">— Burberry · Diesel · Carrera</span>
+    <span class="week-dates">16 Jun – 22 Jun</span>
+    <div class="week-bar"></div>
+    <span class="week-post-count">3 posts</span>
+  </div>
+  <div class="cards-wrap">
+
+    <div class="card type-luxury" data-status="not-started" data-type="luxury" id="card7">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">16 Jun</span><span class="card-day">Monday</span></div>
+        <div class="card-meta">
+          <span class="type-pill pill-luxury">Luxury Showcase</span>
+          <span class="format-tag">Static Post + Story</span>
+          <span class="brand-tag-card bc-luxury">Burberry</span>
+        </div>
+        <div class="status-wrap">
+          <span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card7')">
+            <option value="not-started">⬜ Not Started</option>
+            <option value="in-progress">🔵 In Progress</option>
+            <option value="ready-to-post">🟢 Ready to Post</option>
+            <option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Post Idea</div><div class="field-val">Burberry Heritage Spotlight — The iconic check pattern. British luxury meets everyday wear. Single-frame hero post, editorial style.</div></div>
+        <div class="card-field"><div class="field-key">Hook</div><div class="field-val hook-txt">"The check pattern that changed British fashion — now on your face. 🇬🇧"</div></div>
+        <div class="card-field"><div class="field-key">Visual Direction</div><div class="field-val visual-txt">Hero close-up of Burberry frame — focus on the iconic check detail on temple. Muted, editorial background. Overlay text: "Heritage. Craft. Burberry." Story: brand history one-liner + price range CTA.</div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">The check that changed fashion — now on your frame. 🇬🇧
+
+Burberry eyewear carries 165 years of British luxury craftsmanship in every detail. The iconic check. The signature quality. The unmistakable confidence.
+
+Now at Shiva Optics, Surat — because great style shouldn't be a flight away.
+
+DM us to explore Burberry styles and pricing 👇
+
+#Burberry #BurberryEyewear #BurberrySunglasses #ShivaOptics #BritishLuxury #LuxuryEyewear #SuratFashion #DesignerFrames</div></div>
+      </div>
+      <div class="card-asset-row">
+        <span class="asset-lbl">Assets</span>
+        <a href="#" class="asset-btn gdrive">G Drive</a>
+        <a href="#" class="asset-btn onedrive">OneDrive</a>
+      </div>
+    </div>
+
+    <div class="rest-day"><span class="rest-date">17 Jun · Tue</span><span class="rest-label">— Rest Day</span></div>
+
+    <div class="card type-reel" data-status="not-started" data-type="reel" id="card8">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">18 Jun</span><span class="card-day">Wednesday</span></div>
+        <div class="card-meta">
+          <span class="type-pill pill-reel">Reel / Video</span>
+          <span class="format-tag">Instagram Reel · 25s</span>
+          <span class="brand-tag-card bc-premium">Diesel</span>
+        </div>
+        <div class="status-wrap">
+          <span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card8')">
+            <option value="not-started">⬜ Not Started</option>
+            <option value="in-progress">🔵 In Progress</option>
+            <option value="ready-to-post">🟢 Ready to Post</option>
+            <option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Post Idea</div><div class="field-val">Diesel Bold Collection Reel — Edgy, raw, unapologetic. Targets younger audience (18–30). High energy Reel showcasing Diesel's chunky, statement frames.</div></div>
+        <div class="card-field"><div class="field-key">Hook</div><div class="field-val hook-txt">"For the ones who don't follow the rules. This is Diesel. 🔩"</div></div>
+        <div class="card-field"><div class="field-key">Visual Direction</div><div class="field-val visual-txt">High-energy Reel. Fast cuts. Industrial aesthetic — concrete, metal surfaces. Frames shot from bold angles. Trending loud audio. On-screen text punchy and short ("BOLD." "RAW." "DIESEL.") Each word = one cut.</div></div>
+        <div class="card-field full-width">
+          <div class="field-key">Reel Script / Flow</div>
+          <div class="field-val visual-txt">
+            <div class="reel-badge">🎬 Reel Flow</div>
+            <b>0–1s:</b> Flash cut — "BOLD." on black<br>
+            <b>1–5s:</b> Diesel frame 1 — extreme close-up, industrial bg<br>
+            <b>5–8s:</b> "RAW." flash cut<br>
+            <b>8–13s:</b> Frame 2 on face — side angle, confident expression<br>
+            <b>13–16s:</b> "DIESEL." full screen<br>
+            <b>16–22s:</b> Frames 3 fast montage — 3 quick cuts<br>
+            <b>22–25s:</b> CTA — "Now at Shiva Optics. Are you bold enough? 🔩"
+          </div>
+        </div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">For those who don't follow the rules. 🔩
+
+Diesel eyewear is for the bold. The raw. The ones who make a statement without saying a word.
+
+Chunky frames. Strong lines. Zero compromises.
+
+Now at Shiva Optics — come in and try them on. You'll understand immediately.
+
+DM us or visit us in-store 👇
+
+#Diesel #DieselSunglasses #DieselEyewear #ShivaOptics #BoldEyewear #StatementFrames #SuratStyle #EyewearReels</div></div>
+      </div>
+      <div class="card-asset-row">
+        <span class="asset-lbl">Assets</span>
+        <a href="#" class="asset-btn gdrive">G Drive</a>
+        <a href="#" class="asset-btn onedrive">OneDrive</a>
+      </div>
+    </div>
+
+    <div class="rest-day"><span class="rest-date">19 Jun · Thu</span><span class="rest-label">— Rest Day</span></div>
+
+    <div class="card type-sales" data-status="not-started" data-type="sales" id="card9">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">20 Jun</span><span class="card-day">Friday</span></div>
+        <div class="card-meta">
+          <span class="type-pill pill-sales">Brand Showcase</span>
+          <span class="format-tag">Carousel · 5 Slides</span>
+          <span class="brand-tag-card bc-premium">Carrera</span>
+        </div>
+        <div class="status-wrap">
+          <span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card9')">
+            <option value="not-started">⬜ Not Started</option>
+            <option value="in-progress">🔵 In Progress</option>
+            <option value="ready-to-post">🟢 Ready to Post</option>
+            <option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Post Idea</div><div class="field-val">Carrera Speed Collection — Born from motorsport, made for everyday. Dynamic energy. Showcases sporty-meets-stylish Carrera frames with racing heritage angle.</div></div>
+        <div class="card-field"><div class="field-key">Hook</div><div class="field-val hook-txt">"Born on the racetrack. Made for real life. Carrera. 🏎️"</div></div>
+        <div class="card-field"><div class="field-key">Visual Direction</div><div class="field-val visual-txt">Dynamic carousel. Slide 1: Racing-inspired hero graphic with speed lines. Slides 2–4: Carrera frames — action-inspired angles, outdoor lifestyle shots. Slide 5: "Carrera at Shiva Optics — Your pace. Your style." + DM CTA.</div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">Born on the racetrack. Made for real life. 🏎️
+
+Carrera's DNA is speed, precision, and fearless design — and it shows in every frame.
+
+From classic aviator-inspired styles to bold modern shapes — Carrera is for those who move with purpose.
+
+Swipe to see our current Carrera collection at Shiva Optics 👇
+
+DM us or visit in-store to try them on this weekend!
+
+#Carrera #CarreraSunglasses #ShivaOptics #SpeedStyle #EyewearFashion #SuratFashion #PremiumSunglasses #WeekendVibes</div></div>
+      </div>
+      <div class="card-asset-row">
+        <span class="asset-lbl">Assets</span>
+        <a href="#" class="asset-btn gdrive">G Drive</a>
+        <a href="#" class="asset-btn onedrive">OneDrive</a>
+      </div>
+    </div>
+
+    <div class="rest-day"><span class="rest-date">21 Jun · Sat</span><span class="rest-label">— Rest Day</span></div>
+    <div class="rest-day"><span class="rest-date">22 Jun · Sun</span><span class="rest-label">— Rest Day</span></div>
+  </div>
+</div>
+
+<!-- WEEK 4 -->
+<div class="week-block">
+  <div class="week-header">
+    <span class="week-num">Week 4</span>
+    <span class="week-theme">— Police · Opium · Brand Comparison</span>
+    <span class="week-dates">23 Jun – 29 Jun</span>
+    <div class="week-bar"></div>
+    <span class="week-post-count">3 posts</span>
+  </div>
+  <div class="cards-wrap">
+
+    <div class="card type-sales" data-status="not-started" data-type="sales" id="card10">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">23 Jun</span><span class="card-day">Monday</span></div>
+        <div class="card-meta">
+          <span class="type-pill pill-sales">Brand Showcase</span>
+          <span class="format-tag">Carousel · 4 Slides</span>
+          <span class="brand-tag-card bc-premium">Police</span>
+        </div>
+        <div class="status-wrap">
+          <span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card10')">
+            <option value="not-started">⬜ Not Started</option>
+            <option value="in-progress">🔵 In Progress</option>
+            <option value="ready-to-post">🟢 Ready to Post</option>
+            <option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Post Idea</div><div class="field-val">Police Eyewear — Dark, edgy, masculine. Celebrity-endorsed heritage. Targets men who want a premium frame with attitude without the full luxury price tag.</div></div>
+        <div class="card-field"><div class="field-key">Hook</div><div class="field-val hook-txt">"The frame that commands attention. Police. 🚔"</div></div>
+        <div class="card-field"><div class="field-key">Visual Direction</div><div class="field-val visual-txt">Dark, dramatic aesthetic. Low-key lighting. Close-up of Police frame — angular, confident. On-screen: "Authority. Style. Police." Slide 4: Collection overview + pricing range + Shiva Optics CTA.</div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">Some frames walk into a room. Police frames own it. 🚔
+
+Police eyewear has been the choice of those who don't follow — they lead. Dark, angular, and entirely unapologetic.
+
+Perfect for the man who knows exactly who he is.
+
+Police collection now at Shiva Optics → DM us for styles and pricing 👇
+
+#Police #PoliceSunglasses #PoliceEyewear #ShivaOptics #MensFashion #MensEyewear #SuratStyle #PremiumFrames</div></div>
+      </div>
+      <div class="card-asset-row">
+        <span class="asset-lbl">Assets</span>
+        <a href="#" class="asset-btn gdrive">G Drive</a>
+        <a href="#" class="asset-btn onedrive">OneDrive</a>
+      </div>
+    </div>
+
+    <div class="rest-day"><span class="rest-date">24 Jun · Tue</span><span class="rest-label">— Rest Day</span></div>
+
+    <div class="card type-reel" data-status="not-started" data-type="reel" id="card11">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">25 Jun</span><span class="card-day">Wednesday</span></div>
+        <div class="card-meta">
+          <span class="type-pill pill-reel">Reel / Video</span>
+          <span class="format-tag">Instagram Reel · 20s</span>
+          <span class="brand-tag-card bc-premium">Opium</span>
+        </div>
+        <div class="status-wrap">
+          <span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card11')">
+            <option value="not-started">⬜ Not Started</option>
+            <option value="in-progress">🔵 In Progress</option>
+            <option value="ready-to-post">🟢 Ready to Post</option>
+            <option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Post Idea</div><div class="field-val">Opium Eyewear Reel — India's homegrown premium brand. "Made for India. Worn with pride." Taps local pride and value-for-money premium angle.</div></div>
+        <div class="card-field"><div class="field-key">Hook</div><div class="field-val hook-txt">"India's own premium eyewear brand — and it's stunning. 🇮🇳"</div></div>
+        <div class="card-field"><div class="field-key">Visual Direction</div><div class="field-val visual-txt">Warm, confident Reel. India-inspired colour palette — warm golds, deep reds in background. Frames shown in outdoor Surat lifestyle setting. On-screen: "Made for India." Pride angle throughout.</div></div>
+        <div class="card-field full-width">
+          <div class="field-key">Reel Script / Flow</div>
+          <div class="field-val visual-txt">
+            <div class="reel-badge">🎬 Reel Flow</div>
+            <b>0–2s:</b> Hook — "India's own premium eyewear. Opium." on screen<br>
+            <b>2–7s:</b> Opium frame 1 — warm outdoor lighting, close-up<br>
+            <b>7–12s:</b> Frame 2 — on face, confident expression, natural setting<br>
+            <b>12–16s:</b> Frame 3 flat-lay — warm surface, elegant<br>
+            <b>16–20s:</b> CTA — "Opium Eyewear. Now at Shiva Optics, Surat 🇮🇳"
+          </div>
+        </div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">India's own premium eyewear brand — and it deserves your attention. 🇮🇳
+
+Opium Eyewear is crafted for Indian faces, Indian conditions, and Indian style sensibilities. Premium quality. Real craftsmanship. Proudly homegrown.
+
+At a price point that makes luxury feel accessible.
+
+Now at Shiva Optics, Surat 👓 Come in and see why Opium has a devoted following across India.
+
+DM us for styles and availability 👇
+
+#Opium #OpiumEyewear #MadeInIndia #ShivaOptics #IndianBrand #PremiumEyewear #SuratFashion #ProudlyIndian</div></div>
+      </div>
+      <div class="card-asset-row">
+        <span class="asset-lbl">Assets</span>
+        <a href="#" class="asset-btn gdrive">G Drive</a>
+        <a href="#" class="asset-btn onedrive">OneDrive</a>
+      </div>
+    </div>
+
+    <div class="rest-day"><span class="rest-date">26 Jun · Thu</span><span class="rest-label">— Rest Day</span></div>
+
+    <div class="card type-reel" data-status="not-started" data-type="reel" id="card12">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">27 Jun</span><span class="card-day">Friday</span></div>
+        <div class="card-meta">
+          <span class="type-pill pill-reel">Reel / Video</span>
+          <span class="format-tag">Instagram Reel · 30s</span>
+          <span class="brand-tag-card bc-premium">All Brands</span>
+        </div>
+        <div class="status-wrap">
+          <span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card12')">
+            <option value="not-started">⬜ Not Started</option>
+            <option value="in-progress">🔵 In Progress</option>
+            <option value="ready-to-post">🟢 Ready to Post</option>
+            <option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Post Idea</div><div class="field-val">Brand Comparison Mega Reel — "Which brand are YOU?" Personality-match format. All 8 brands shown in one Reel. Huge shareability + positions Shiva Optics as the one-stop destination for every brand.</div></div>
+        <div class="card-field"><div class="field-key">Hook</div><div class="field-val hook-txt">"8 brands. One store. Which one is YOU? 👀"</div></div>
+        <div class="card-field"><div class="field-key">Visual Direction</div><div class="field-val visual-txt">Fast-paced montage Reel. Each brand gets 2–3 seconds with its name on-screen + one personality descriptor. Builds to final reveal: "All of them. One place. Shiva Optics." High energy, most shareable Reel of the month.</div></div>
+        <div class="card-field full-width">
+          <div class="field-key">Reel Script / Flow</div>
+          <div class="field-val visual-txt">
+            <div class="reel-badge">🎬 Reel Flow</div>
+            <b>0–2s:</b> Hook — "8 brands. Which one are you?" on screen<br>
+            <b>2–5s:</b> Ray-Ban — "The Classic"<br>
+            <b>5–8s:</b> Oakley — "The Athlete"<br>
+            <b>8–11s:</b> Gucci — "The Icon"<br>
+            <b>11–14s:</b> Prada — "The Minimalist"<br>
+            <b>14–17s:</b> Burberry — "The Heritage"<br>
+            <b>17–20s:</b> Diesel — "The Rebel"<br>
+            <b>20–23s:</b> Carrera — "The Speed Lover"<br>
+            <b>23–26s:</b> Police — "The Commander"<br>
+            <b>26–30s:</b> All frames together — "All brands. One store. Shiva Optics 📍"
+          </div>
+        </div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">8 brands. One store. Which one are YOU? 👀
+
+Ray-Ban · Oakley · Gucci · Prada · Burberry · Diesel · Carrera · Police · Opium
+
+Whether you're The Classic, The Rebel, The Icon, or The Athlete — we have your brand at Shiva Optics.
+
+Tag the friend who matches each style 👇 (you know who they are 😂)
+
+Visit us or DM to explore any brand this weekend 🕶️
+
+#ShivaOptics #AllBrands #RayBan #Oakley #Gucci #Prada #Burberry #Diesel #Carrera #SuratFashion #EyewearReels</div></div>
+      </div>
+      <div class="card-asset-row">
+        <span class="asset-lbl">Assets</span>
+        <a href="#" class="asset-btn gdrive">G Drive</a>
+        <a href="#" class="asset-btn onedrive">OneDrive</a>
+      </div>
+    </div>
+
+    <div class="rest-day"><span class="rest-date">28 Jun · Sat</span><span class="rest-label">— Rest Day</span></div>
+    <div class="rest-day"><span class="rest-date">29 Jun · Sun</span><span class="rest-label">— Rest Day</span></div>
+  </div>
+</div>
+
+<!-- WEEK 5 -->
+<div class="week-block">
+  <div class="week-header">
+    <span class="week-num">Week 5</span>
+    <span class="week-theme">— June Close + July Teaser</span>
+    <span class="week-dates">30 Jun</span>
+    <div class="week-bar"></div>
+    <span class="week-post-count">1 post</span>
+  </div>
+  <div class="cards-wrap">
+
+    <div class="card type-summer" data-status="not-started" data-type="summer" id="card13">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">30 Jun</span><span class="card-day">Monday</span></div>
+        <div class="card-meta">
+          <span class="type-pill pill-summer">End of Month</span>
+          <span class="format-tag">Carousel · 5 Slides</span>
+          <span class="brand-tag-card bc-summer">June Recap</span>
+        </div>
+        <div class="status-wrap">
+          <span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card13')">
+            <option value="not-started">⬜ Not Started</option>
+            <option value="in-progress">🔵 In Progress</option>
+            <option value="ready-to-post">🟢 Ready to Post</option>
+            <option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Post Idea</div><div class="field-val">June Brand Showcase Recap — "You met the brands. Now meet your pair." Recap all 8 brands featured this month + drive final June conversions + tease July arrivals.</div></div>
+        <div class="card-field"><div class="field-key">Hook</div><div class="field-val hook-txt">"9 brands. 30 days. Did you find your pair yet? 🕶️"</div></div>
+        <div class="card-field"><div class="field-key">Visual Direction</div><div class="field-val visual-txt">Elegant recap carousel. Slide 1: "June at Shiva Optics" header with all brand logos/names. Slides 2–4: Best frame from 3 top brands — brief recap. Slide 5: "July is coming with new arrivals. Stay tuned ✦"</div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">9 brands. 30 days. Did you find your pair yet? 🕶️
+
+June at Shiva Optics was all about giving you the best — from Ray-Ban to Gucci to India's own Opium.
+
+If you've been waiting, consider this your final nudge — visit us before June ends and explore every brand we carry in one place.
+
+And July? We've got something new coming. Follow us so you don't miss it 👀
+
+Thank you for an amazing June. See you in store ❤️
+
+#ShivaOptics #JuneRecap #Sunglasses #Eyewear #SuratFashion #ComingSoon #BrandShowcase #AllBrandsOneStore</div></div>
+      </div>
+      <div class="card-asset-row">
+        <span class="asset-lbl">Assets</span>
+        <a href="#" class="asset-btn gdrive">G Drive</a>
+        <a href="#" class="asset-btn onedrive">OneDrive</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div style="height:60px;"></div>
+
+<!-- Asset Modal -->
+<div class="asset-modal-bg" id="assetModalBg">
+  <div class="asset-modal">
+    <button class="am-x" onclick="closeAssetModal()">&#x2715;</button>
+    <h3 id="amTitle">Google Drive Link</h3>
+    <p id="amSub">Paste your folder or file link — syncs to the whole team instantly</p>
+    <input type="url" id="amInput" placeholder="https://drive.google.com/..." autocomplete="off" />
+    <div class="asset-modal-actions">
+      <button class="am-cancel" onclick="closeAssetModal()">Cancel</button>
+      <button class="am-save gdrive-s" id="amSave" onclick="saveAssetLink()">Save &amp; Sync</button>
+    </div>
+  </div>
+</div>
+
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const app = initializeApp({
+    apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
+    authDomain:"sayitsocial-calendar.firebaseapp.com",
+    projectId:"sayitsocial-calendar",
+    storageBucket:"sayitsocial-calendar.firebasestorage.app",
+    messagingSenderId:"232081824561",
+    appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
+  });
+  const db  = getFirestore(app);
+  const CID = "shiva-optics-june-2026";
+
+  // Set immediately so setStatus() can call it
+  window._fbSaveStatus = function(cardId, status) {
+    setDoc(doc(db,"campaigns",CID,"posts",cardId), { status }, { merge:true })
+      .catch(e => console.error("Firebase write error:", e));
+  };
+
+  window._fbSaveLink = async function(cardId, url, type) {
+    await setDoc(doc(db,"campaigns",CID,"posts",cardId), { [type]: url }, { merge:true })
+      .catch(e => console.error("Firebase link error:", e));
+  };
+
+  function applyStatus(cardId, status) {
+    const card = document.getElementById(cardId); if(!card) return;
+    card.dataset.status = status;
+    const sel = card.querySelector('.status-select'); if(!sel) return;
+    sel.value = status;
+    sel.className = 'status-select';
+    if(status==='not-started')  sel.classList.add('status-none');
+    if(status==='in-progress')  sel.classList.add('status-prog');
+    if(status==='ready-to-post')sel.classList.add('status-ready');
+    if(status==='posted')       sel.classList.add('status-post');
+    if(window.updateCounts) window.updateCounts();
+  }
+
+  function applyLinks(cardId, data) {
+    const card = document.getElementById(cardId); if(!card) return;
+    ["gdrive","onedrive"].forEach(type => {
+      const url = data[type] || ""; if(!url) return;
+      const btn = card.querySelector(".asset-btn."+type); if(!btn) return;
+      btn.setAttribute("data-url", url); btn.classList.add("linked");
+      btn.textContent = type==="gdrive" ? "G Drive ✓" : "OneDrive ✓";
+      btn.onclick = function(e){ e.preventDefault(); window.open(url,"_blank"); };
+    });
+  }
+
+  function initCard(cardId) {
+    onSnapshot(doc(db,"campaigns",CID,"posts",cardId), snap => {
+      if(!snap.exists()) return;
+      const data = snap.data();
+      if(data.status) applyStatus(cardId, data.status);
+      applyLinks(cardId, data);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    for(let i=1; i<=13; i++) initCard("card"+i);
+    document.querySelectorAll(".asset-btn").forEach(btn => {
+      if(!btn.getAttribute("data-url")) {
+        const type = btn.classList.contains("gdrive") ? "gdrive" : "onedrive";
+        btn.onclick = function(e){ e.preventDefault(); openAssetModal(btn, type); };
+      }
+    });
+    const t = document.createElement("div");
+    t.style.cssText = "position:fixed;bottom:24px;right:24px;background:var(--bg2);color:var(--gold);border:1px solid rgba(212,168,67,0.3);padding:10px 18px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;z-index:9997;box-shadow:0 8px 32px rgba(0,0,0,.5);";
+    t.textContent = "Connected — syncing live";
+    document.body.appendChild(t);
+    setTimeout(()=>t.remove(), 3000);
+  });
+</script>
+
+<script>
+const TOTAL=13;
+function setStatus(sel,cardId){
+  const card=document.getElementById(cardId);
+  const val=sel.value;
+  card.dataset.status=val;
+  sel.className='status-select';
+  if(val==='not-started') sel.classList.add('status-none');
+  if(val==='in-progress') sel.classList.add('status-prog');
+  if(val==='ready-to-post')sel.classList.add('status-ready');
+  if(val==='posted')      sel.classList.add('status-post');
+  updateCounts();
+  if(window._fbSaveStatus) window._fbSaveStatus(cardId, val);
+}
+function updateCounts(){
+  const cards=document.querySelectorAll('.card[id]');
+  let none=0,prog=0,ready=0,post=0;
+  cards.forEach(c=>{
+    const s=c.dataset.status;
+    if(s==='not-started') none++;
+    if(s==='in-progress') prog++;
+    if(s==='ready-to-post')ready++;
+    if(s==='posted')      post++;
+  });
+  document.getElementById('cnt-none').textContent=none;
+  document.getElementById('cnt-prog').textContent=prog;
+  document.getElementById('cnt-ready').textContent=ready;
+  document.getElementById('cnt-post').textContent=post;
+  document.getElementById('bar-none').style.width=(none/TOTAL*100)+'%';
+  document.getElementById('bar-prog').style.width=(prog/TOTAL*100)+'%';
+  document.getElementById('bar-ready').style.width=(ready/TOTAL*100)+'%';
+  document.getElementById('bar-post').style.width=(post/TOTAL*100)+'%';
+}
+let activeStatus='all',activeType=null;
+function filter(status,btn){
+  activeStatus=status;
+  document.querySelectorAll('.controls .filter-btn').forEach(b=>{
+    const m=b.getAttribute('onclick').match(/'([^']+)'/);
+    if(m&&['all','not-started','in-progress','ready-to-post','posted'].includes(m[1]))b.classList.remove('active');
+  });
+  btn.classList.add('active');applyFilters();
+}
+function filterType(type,btn){
+  if(activeType===type){activeType=null;btn.classList.remove('active');}
+  else{
+    document.querySelectorAll('.controls .filter-btn').forEach(b=>{
+      const m=b.getAttribute('onclick').match(/'([^']+)'/);
+      if(m&&['reel','luxury','sales','offer','fathers','summer'].includes(m[1]))b.classList.remove('active');
+    });
+    activeType=type;btn.classList.add('active');
+  }
+  applyFilters();
+}
+function applyFilters(){
+  document.querySelectorAll('.card[id]').forEach(card=>{
+    const sOk=activeStatus==='all'||card.dataset.status===activeStatus;
+    const tOk=!activeType||card.dataset.type===activeType;
+    card.classList.toggle('hidden',!(sOk&&tOk));
+  });
+  document.querySelectorAll('.rest-day').forEach(rd=>rd.classList.toggle('hidden',!!activeType));
+}
+// Asset modal
+let _amBtn=null,_amType=null;
+function openAssetModal(btn,type){
+  const saved=btn.getAttribute("data-url");
+  if(saved){window.open(saved,"_blank");return;}
+  _amBtn=btn;_amType=type;
+  const g=type==="gdrive";
+  document.getElementById("amTitle").textContent  = g?"Google Drive Link":"OneDrive Link";
+  document.getElementById("amInput").value        = "";
+  document.getElementById("amInput").placeholder  = g?"https://drive.google.com/...":"https://onedrive.live.com/...";
+  document.getElementById("amSave").className     = "am-save "+(g?"gdrive-s":"onedrive-s");
+  document.getElementById("assetModalBg").classList.add("show");
+  setTimeout(()=>document.getElementById("amInput").focus(),80);
+}
+function closeAssetModal(){
+  document.getElementById("assetModalBg").classList.remove("show");
+  _amBtn=null;_amType=null;
+}
+async function saveAssetLink(){
+  const url=document.getElementById("amInput").value.trim();
+  if(!url){document.getElementById("amInput").style.borderColor='#D4A843';return;}
+  _amBtn.setAttribute("data-url",url);
+  _amBtn.classList.add("linked");
+  _amBtn.textContent=_amType==="gdrive"?"G Drive ✓":"OneDrive ✓";
+  _amBtn.onclick=function(e){e.preventDefault();window.open(url,"_blank");};
+  const card=_amBtn.closest(".card");
+  if(card&&window._fbSaveLink) await window._fbSaveLink(card.id,url,_amType);
+  closeAssetModal();
+}
+document.addEventListener("DOMContentLoaded",()=>{
+  document.getElementById("assetModalBg").addEventListener("click",function(e){if(e.target===this)closeAssetModal();});
+  document.getElementById("amInput").addEventListener("keydown",function(e){if(e.key==="Enter")saveAssetLink();if(e.key==="Escape")closeAssetModal();});
+});
+updateCounts();
+</script>
+</body>
+</html>
