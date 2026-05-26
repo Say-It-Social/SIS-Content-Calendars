@@ -381,7 +381,7 @@ footer { border-top: 1px solid var(--border); padding: 20px 0; text-align: cente
 </div>
 
 <script>
-const BASE = 'https://say-it-social.github.io/SIS-Content-Calendars';
+const BASE = 'https://sis-content-calendars.vercel.app';
 
 let clients = [
   {
@@ -567,7 +567,7 @@ function updateStats() {
   document.getElementById('sCals').textContent    = totalCals;
   document.getElementById('sActive').textContent  = activeCamp;
 }
-  
+
 document.getElementById('footerYear').textContent = new Date().getFullYear();
 render(clients);
 updateStats();
