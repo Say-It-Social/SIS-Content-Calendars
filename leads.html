@@ -208,8 +208,44 @@ footer{border-top:1px solid var(--border);padding:18px 0;text-align:center;posit
   .toolbar{gap:8px;}
 }
 </style>
+<!-- Firebase Auth Guard -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+  const app = initializeApp({
+    apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
+    authDomain:"sayitsocial-calendar.firebaseapp.com",
+    projectId:"sayitsocial-calendar",
+    storageBucket:"sayitsocial-calendar.firebasestorage.app",
+    messagingSenderId:"232081824561",
+    appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
+  });
+
+  const ALLOWED = [
+    "darshilsoni10@gmail.com",
+    "aayushimulay0903@gmail.com",
+    "sparmar1317@gmail.com",
+    "bikashsahooclg09@gmail.com",
+    "niyatiparikh98@gmail.com"
+  ];
+
+  const auth = getAuth(app);
+  onAuthStateChanged(auth, user => {
+    if(!user || !ALLOWED.includes(user.email.toLowerCase())) {
+      window.location.href = "login.html";
+      return;
+    }
+    document.body.style.visibility = "visible";
+  });
+
+  window._signOut = async function() {
+    await signOut(auth);
+    window.location.href = "login.html";
+  };
+</script>
 </head>
-<body>
+<body style="visibility:hidden;">
 
 <!-- NAV -->
 <nav>
@@ -226,6 +262,7 @@ footer{border-top:1px solid var(--border);padding:18px 0;text-align:center;posit
       <input type="file" id="csvFileInput" accept=".csv" style="display:none" onchange="handleCSVImport(event)" />
       <button class="add-btn" style="background:var(--surface);border:1px solid var(--border);color:var(--muted);" onclick="document.getElementById('csvFileInput').click()">⬆ Import CSV</button>
       <button class="add-btn" onclick="openModal()">+ Add Lead</button>
+      <div onclick="_signOut()" style="width:32px;height:32px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;cursor:pointer;flex-shrink:0;border:none;" title="Sign out">→</div>
     </div>
   </div>
 </nav>
