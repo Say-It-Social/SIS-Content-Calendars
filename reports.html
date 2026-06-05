@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Say It Social — Reports Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --navy:#0B1220;--navy2:#111827;--navy3:#1A2540;
+  --surface:#161E30;--surface2:#1E2A42;
+  --blue:#1E6FFF;--blue-dim:rgba(30,111,255,0.08);
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);
+  --text:#E8EDF8;--muted:#6B7A99;--muted2:#3A4560;--white:#FFFFFF;
+  --green:#22C55E;--amber:#F5A623;--red:#EF4444;--purple:#A78BFA;--pink:#F472B6;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--navy);color:var(--text);min-height:100vh;overflow-x:hidden;visibility:hidden;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(30,111,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(30,111,255,0.03) 1px,transparent 1px);
+  background-size:48px 48px;}
+nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 40px;height:62px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nav-mark{width:38px;height:38px;border-radius:10px;background:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#fff;box-shadow:0 0 24px rgba(30,111,255,0.4);}
+.nav-brand-top{font-size:13px;font-weight:700;color:var(--white);}
+.nav-brand-sub{font-size:9px;font-weight:500;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:1px;}
+.nav-back{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;padding:7px 14px;border:1px solid var(--border);border-radius:8px;background:var(--surface);transition:all .15s;}
+.nav-back:hover{color:var(--text);border-color:var(--border2);}
+.share-banner{background:linear-gradient(135deg,var(--blue),#7B61FF);padding:10px 40px;text-align:center;font-size:12px;font-weight:600;color:#fff;display:none;}
+.share-banner.show{display:block;}
+.wrap{max-width:1280px;margin:0 auto;padding:0 40px;position:relative;z-index:1;}
+.hero{padding:44px 0 28px;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;background:rgba(30,111,255,0.1);border:1px solid rgba(30,111,255,0.2);border-radius:100px;padding:4px 14px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#7BB3FF;margin-bottom:16px;}
+.hero-dot{width:5px;height:5px;background:var(--blue);border-radius:50%;animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-title{font-family:'Instrument Serif',serif;font-size:clamp(28px,3.5vw,42px);color:var(--white);line-height:1.12;letter-spacing:-.02em;margin-bottom:8px;}
+.hero-title em{color:#7BB3FF;font-style:italic;}
+.hero-sub{font-size:13px;color:var(--muted);line-height:1.6;}
+.selector-bar{background:var(--navy2);border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin-bottom:28px;display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap;}
+.sel-field{display:flex;flex-direction:column;gap:5px;flex:1;min-width:150px;}
+.sel-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);}
+.sel-input{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 14px;font-size:13px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;outline:none;transition:border-color .2s;width:100%;}
+.sel-input:focus{border-color:var(--blue);}
+.sel-input option{background:var(--navy2);}
+.sel-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 22px;border-radius:8px;background:var(--blue);color:#fff;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;box-shadow:0 0 20px rgba(30,111,255,.25);transition:background .15s;white-space:nowrap;height:40px;}
+.sel-btn:hover{background:#2979FF;}
+#reportArea{display:none;}
+#reportArea.show{display:block;}
+.client-header{background:var(--navy2);border:1px solid var(--border);border-radius:16px;padding:24px 28px;margin-bottom:20px;}
+.ch-top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:16px;}
+.ch-client{font-family:'Instrument Serif',serif;font-size:32px;color:var(--white);margin-bottom:4px;}
+.ch-period{font-size:12px;color:var(--muted);}
+.ch-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.ch-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:none;font-family:'Plus Jakarta Sans',sans-serif;transition:all .15s;}
+.ch-btn-share{background:var(--surface2);color:var(--text);border:1px solid var(--border);}
+.ch-btn-share:hover{border-color:var(--border2);}
+.ch-btn-pdf{background:var(--blue);color:#fff;}
+.ch-btn-pdf:hover{background:#2979FF;}
+.ch-btn-entry{background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.3);}
+.ch-btn-entry:hover{background:rgba(34,197,94,.2);}
+.month-tabs{display:flex;gap:6px;flex-wrap:wrap;}
+.month-tab{padding:6px 16px;border-radius:100px;font-size:11px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--surface);color:var(--muted);transition:all .15s;font-family:'Plus Jakarta Sans',sans-serif;}
+.month-tab:hover{border-color:var(--border2);color:var(--text);}
+.month-tab.active{background:var(--blue);border-color:var(--blue);color:#fff;}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px;margin-bottom:20px;}
+.kpi-card{background:var(--navy2);border:1px solid var(--border);border-radius:14px;padding:18px 20px;}
+.kpi-icon{font-size:18px;margin-bottom:10px;display:block;}
+.kpi-val{font-family:'Instrument Serif',serif;font-size:26px;color:var(--white);line-height:1;display:block;margin-bottom:4px;}
+.kpi-label{font-size:10px;color:var(--muted);font-weight:600;letter-spacing:.3px;text-transform:uppercase;}
+.kpi-change{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:700;margin-top:6px;padding:2px 7px;border-radius:100px;}
+.kpi-up{background:rgba(34,197,94,.12);color:var(--green);}
+.kpi-down{background:rgba(239,68,68,.12);color:var(--red);}
+.kpi-neutral{background:rgba(107,122,153,.12);color:var(--muted);}
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+.chart-card{background:var(--navy2);border:1px solid var(--border);border-radius:14px;padding:20px 22px;}
+.chart-title{font-size:12px;font-weight:700;color:var(--white);margin-bottom:4px;letter-spacing:.3px;}
+.chart-sub{font-size:10px;color:var(--muted);margin-bottom:16px;}
+.chart-wrap{position:relative;height:200px;}
+.breakdown-card{background:var(--navy2);border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin-bottom:20px;}
+.breakdown-title{font-size:12px;font-weight:700;color:var(--white);margin-bottom:16px;}
+.breakdown-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.br-label{font-size:12px;font-weight:600;color:var(--text);min-width:90px;}
+.br-bar-wrap{flex:1;background:var(--surface);border-radius:100px;height:8px;overflow:hidden;}
+.br-bar{height:100%;border-radius:100px;transition:width .6s ease;}
+.br-val{font-size:12px;font-weight:700;color:var(--white);min-width:80px;text-align:right;}
+.entry-panel{background:var(--navy2);border:1px solid rgba(34,197,94,.2);border-radius:16px;padding:28px;margin-bottom:20px;}
+.entry-title{font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px;}
+.entry-sub{font-size:12px;color:var(--muted);margin-bottom:20px;}
+.entry-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-bottom:20px;}
+.entry-field{display:flex;flex-direction:column;gap:5px;}
+.entry-label{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);}
+.entry-label span{font-size:9px;color:var(--muted2);font-weight:400;letter-spacing:0;text-transform:none;display:block;margin-top:1px;}
+.entry-input{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 13px;font-size:13px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;outline:none;transition:border-color .2s;width:100%;}
+.entry-input:focus{border-color:var(--blue);}
+.entry-input::placeholder{color:var(--muted2);}
+.entry-actions{display:flex;gap:10px;justify-content:flex-end;}
+.entry-save{padding:10px 24px;border-radius:9px;border:none;background:var(--blue);font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:background .15s;}
+.entry-save:hover{background:#2979FF;}
+.entry-cancel{padding:10px 18px;border-radius:9px;border:1px solid var(--border);background:none;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;}
+.history-card{background:var(--navy2);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:28px;}
+.history-head{padding:16px 20px;border-bottom:1px solid var(--border);font-size:12px;font-weight:700;color:var(--white);}
+.history-table{width:100%;border-collapse:collapse;font-size:12px;}
+.history-table th{padding:10px 16px;text-align:left;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);background:var(--surface);white-space:nowrap;}
+.history-table td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text);}
+.history-table tr:last-child td{border-bottom:none;}
+.history-table tr:hover td{background:rgba(30,111,255,.03);}
+.td-month{font-weight:700;color:var(--white);}
+.td-num{font-weight:600;color:#7BB3FF;}
+.toast{display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--navy2);border:1px solid var(--border2);border-radius:100px;padding:12px 22px;font-size:12px;font-weight:600;color:var(--text);box-shadow:0 8px 32px rgba(0,0,0,.5);z-index:9999;}
+.toast.show{display:block;}
+@media print{nav,.selector-bar,.entry-panel,.ch-btn-entry,.ch-btn-share,.share-banner{display:none!important;}body{background:#fff;color:#000;visibility:visible!important;}.client-header,.kpi-card,.chart-card,.breakdown-card,.history-card{background:#f5f5f5;border:1px solid #ddd;}.ch-client,.kpi-val{color:#000;}}
+@media(max-width:900px){.charts-grid{grid-template-columns:1fr;}.wrap,.nav-inner{padding-left:20px;padding-right:20px;}.kpi-grid{grid-template-columns:repeat(2,1fr);}}
+</style>
+</head>
+<body>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  import { getFirestore, doc, setDoc, collection, getDocs }
+    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const app = initializeApp({
+    apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
+    authDomain:"sayitsocial-calendar.firebaseapp.com",
+    projectId:"sayitsocial-calendar",
+    storageBucket:"sayitsocial-calendar.firebasestorage.app",
+    messagingSenderId:"232081824561",
+    appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
+  });
+
+  const ALLOWED = ["darshilsoni10@gmail.com","aayushimulay0903@gmail.com","sparmar1317@gmail.com","bikashsahooclg09@gmail.com","niyatiparikh98@gmail.com"];
+  const auth = getAuth(app);
+  const db   = getFirestore(app);
+  const isShare = new URLSearchParams(window.location.search).get("view") === "share";
+
+  onAuthStateChanged(auth, user => {
+    if(!isShare && (!user || !ALLOWED.includes(user.email.toLowerCase()))) {
+      window.location.href = "login.html"; return;
+    }
+    document.body.style.visibility = "visible";
+  });
+  if(isShare) document.body.style.visibility = "visible";
+
+  window._signOut = async () => { await signOut(auth); window.location.href = "login.html"; };
+
+  window._saveMonthData = async (clientId, monthKey, data) => {
+    await setDoc(doc(db,"reports",clientId,"months",monthKey), data, {merge:true});
+  };
+
+  window._loadClientData = async (clientId) => {
+    const snap = await getDocs(collection(db,"reports",clientId,"months"));
+    const months = {};
+    snap.forEach(d => months[d.id] = d.data());
+    return months;
+  };
+</script>
+
+<div class="share-banner" id="shareBanner">📊 Shared report from <strong>Say It Social</strong>. Contact your account manager for details.</div>
+
+<nav id="mainNav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">
+      <div class="nav-mark">SIS</div>
+      <div><div class="nav-brand-top">Say It Social</div><div class="nav-brand-sub">Reports Hub</div></div>
+    </a>
+    <div style="display:flex;gap:10px;align-items:center;">
+      <a class="nav-back" href="index.html">← Client Hub</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="hero" id="heroArea">
+    <div class="hero-eyebrow"><span class="hero-dot"></span>Performance Reports</div>
+    <h1 class="hero-title">Reports Hub —<br><em>Every metric. Every month.</em></h1>
+    <p class="hero-sub">Enter monthly Meta data, visualise trends across 3–6 months, and share clean reports with clients.</p>
+  </div>
+
+  <div class="selector-bar" id="selectorBar">
+    <div class="sel-field">
+      <label class="sel-label">Client</label>
+      <select class="sel-input" id="selClient">
+        <option value="">— Select Client —</option>
+        <option value="say-it-social">Say It Social</option>
+        <option value="green-sapio">Green Sapio</option>
+        <option value="bsfc-thaltej">BSFC Thaltej</option>
+        <option value="bsfc-bopal">BSFC Bopal</option>
+        <option value="shiva-optics">Shiva Optics</option>
+        <option value="rcsl">RCSL</option>
+      </select>
+    </div>
+    <button class="sel-btn" onclick="loadReport()">Load Report →</button>
+  </div>
+
+  <div id="reportArea">
+    <div class="client-header">
+      <div class="ch-top">
+        <div>
+          <div class="ch-client" id="rClientName">—</div>
+          <div class="ch-period" id="rPeriod">—</div>
+        </div>
+        <div class="ch-actions" id="chActions">
+          <button class="ch-btn ch-btn-entry" onclick="toggleEntry()" id="entryToggleBtn">+ Add Month Data</button>
+          <button class="ch-btn ch-btn-share" onclick="copyShareLink()">🔗 Share</button>
+          <button class="ch-btn ch-btn-pdf" onclick="window.print()">⬇ PDF</button>
+        </div>
+      </div>
+      <div class="month-tabs" id="monthTabs"></div>
+    </div>
+
+    <div class="entry-panel" id="entryPanel" style="display:none;">
+      <div class="entry-title">Add / Edit Month Data</div>
+      <div class="entry-sub">Enter combined IG + Facebook numbers. Leave blank if unavailable.</div>
+      <div class="entry-grid">
+        <div class="entry-field"><label class="entry-label">Month<span>Format: YYYY-MM</span></label><input class="entry-input" id="eMonth" type="month"/></div>
+        <div class="entry-field"><label class="entry-label">Reach<span>Unique accounts</span></label><input class="entry-input" id="eReach" type="number" placeholder="e.g. 45000"/></div>
+        <div class="entry-field"><label class="entry-label">Impressions<span>Total views</span></label><input class="entry-input" id="eImpressions" type="number" placeholder="e.g. 120000"/></div>
+        <div class="entry-field"><label class="entry-label">Likes<span>Post reactions</span></label><input class="entry-input" id="eLikes" type="number" placeholder="e.g. 1200"/></div>
+        <div class="entry-field"><label class="entry-label">Comments<span>Post comments</span></label><input class="entry-input" id="eComments" type="number" placeholder="e.g. 340"/></div>
+        <div class="entry-field"><label class="entry-label">Shares / Saves<span>Combined</span></label><input class="entry-input" id="eShares" type="number" placeholder="e.g. 560"/></div>
+        <div class="entry-field"><label class="entry-label">Followers<span>Total count</span></label><input class="entry-input" id="eFollowers" type="number" placeholder="e.g. 8400"/></div>
+        <div class="entry-field"><label class="entry-label">Link Clicks<span>Bio + post links</span></label><input class="entry-input" id="eLinkClicks" type="number" placeholder="e.g. 890"/></div>
+        <div class="entry-field"><label class="entry-label">Ad Spend ₹<span>Total spent</span></label><input class="entry-input" id="eAdSpend" type="number" placeholder="e.g. 15000"/></div>
+        <div class="entry-field"><label class="entry-label">Ad Reach<span>Paid reach</span></label><input class="entry-input" id="eAdReach" type="number" placeholder="e.g. 32000"/></div>
+        <div class="entry-field"><label class="entry-label">Ad Results<span>Leads / actions</span></label><input class="entry-input" id="eAdResults" type="number" placeholder="e.g. 45"/></div>
+        <div class="entry-field"><label class="entry-label">Posts Published<span>That month</span></label><input class="entry-input" id="ePosts" type="number" placeholder="e.g. 12"/></div>
+      </div>
+      <div class="entry-actions">
+        <button class="entry-cancel" onclick="toggleEntry()">Cancel</button>
+        <button class="entry-save" onclick="saveMonthData()">Save Data →</button>
+      </div>
+    </div>
+
+    <div class="kpi-grid" id="kpiGrid"></div>
+
+    <div class="charts-grid">
+      <div class="chart-card"><div class="chart-title">Reach & Impressions</div><div class="chart-sub">Monthly trend — combined IG + FB</div><div class="chart-wrap"><canvas id="chartReach"></canvas></div></div>
+      <div class="chart-card"><div class="chart-title">Follower Growth</div><div class="chart-sub">Total followers over time</div><div class="chart-wrap"><canvas id="chartFollowers"></canvas></div></div>
+      <div class="chart-card"><div class="chart-title">Engagement Breakdown</div><div class="chart-sub">Likes + Comments + Shares/Saves</div><div class="chart-wrap"><canvas id="chartEngagement"></canvas></div></div>
+      <div class="chart-card"><div class="chart-title">Ad Performance</div><div class="chart-sub">Spend (₹) vs Results</div><div class="chart-wrap"><canvas id="chartAds"></canvas></div></div>
+    </div>
+
+    <div class="breakdown-card">
+      <div class="breakdown-title">Engagement Breakdown — Latest Month</div>
+      <div id="breakdownRows"></div>
+    </div>
+
+    <div class="history-card">
+      <div class="history-head">Month-by-Month History</div>
+      <div style="overflow-x:auto;">
+        <table class="history-table">
+          <thead><tr>
+            <th>Month</th><th>Reach</th><th>Impressions</th><th>Likes</th><th>Comments</th>
+            <th>Shares/Saves</th><th>Followers</th><th>Link Clicks</th><th>Ad Spend</th><th>Ad Reach</th><th>Ad Results</th><th>Posts</th>
+          </tr></thead>
+          <tbody id="historyBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer style="border-top:1px solid var(--border);padding:18px 0;text-align:center;position:relative;z-index:1;margin-top:20px;">
+  <p style="font-size:11px;color:var(--muted2);">Say It Social · Reports Hub · Built by Apexis Technologies</p>
+</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const CLIENT_NAMES={'say-it-social':'Say It Social','green-sapio':'Green Sapio','bsfc-thaltej':'BSFC Thaltej','bsfc-bopal':'BSFC Bopal','shiva-optics':'Shiva Optics','rcsl':'RCSL'};
+const C={blue:'rgba(30,111,255,1)',blueDim:'rgba(30,111,255,0.15)',green:'rgba(34,197,94,1)',greenDim:'rgba(34,197,94,0.15)',amber:'rgba(245,166,35,1)',amberDim:'rgba(245,166,35,0.15)',purple:'rgba(167,139,250,1)',purpleDim:'rgba(167,139,250,0.15)',pink:'rgba(244,114,182,1)'};
+const CD={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:'#111827',titleColor:'#E8EDF8',bodyColor:'#6B7A99',borderColor:'rgba(255,255,255,0.07)',borderWidth:1,padding:10,cornerRadius:8}},scales:{x:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#6B7A99',font:{size:10,family:'Plus Jakarta Sans'}}},y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#6B7A99',font:{size:10,family:'Plus Jakarta Sans'}}}}};
+
+let _cid=null,_months={},_active=null,_charts={};
+
+async function loadReport(){
+  const cid=document.getElementById('selClient').value;
+  if(!cid){showToast('Please select a client');return;}
+  _cid=cid;
+  document.getElementById('rClientName').textContent=CLIENT_NAMES[cid]||cid;
+  document.getElementById('reportArea').style.display='block';
+  if(window._loadClientData) _months=await window._loadClientData(cid);
+  renderAll();
+}
+
+function renderAll(){
+  const keys=Object.keys(_months).sort().reverse();
+  const tabs=document.getElementById('monthTabs');
+  if(!keys.length){
+    tabs.innerHTML='<span style="font-size:12px;color:var(--muted);">No data yet — click "+ Add Month Data" to begin.</span>';
+    document.getElementById('kpiGrid').innerHTML='';
+    document.getElementById('historyBody').innerHTML='<tr><td colspan="12" style="text-align:center;padding:24px;color:var(--muted);">No data yet</td></tr>';
+    renderCharts([]);return;
+  }
+  _active=keys[0];
+  tabs.innerHTML=keys.map(k=>`<button class="month-tab ${k===_active?'active':''}" onclick="setTab('${k}',this)">${fmtMonth(k)}</button>`).join('');
+  const sorted=Object.keys(_months).sort();
+  document.getElementById('rPeriod').textContent=`${fmtMonth(sorted[0])} — ${fmtMonth(sorted[sorted.length-1])} · ${keys.length} month${keys.length>1?'s':''}`;
+  renderKPIs();renderCharts(sorted);renderBreakdown();renderHistory(keys);
+}
+
+function setTab(k,btn){
+  _active=k;
+  document.querySelectorAll('.month-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderKPIs();renderBreakdown();
+}
+
+function renderKPIs(){
+  const d=_months[_active]||{};
+  const sorted=Object.keys(_months).sort();
+  const pi=sorted.indexOf(_active)-1;
+  const prev=pi>=0?_months[sorted[pi]]:null;
+  const eng=(+d.likes||0)+(+d.comments||0)+(+d.shares||0);
+  const peng=prev?(+prev.likes||0)+(+prev.comments||0)+(+prev.shares||0):null;
+  const kpis=[
+    {icon:'👁️',label:'Reach',val:fmt(d.reach),change:pct(d.reach,prev?.reach),accent:'#1E6FFF'},
+    {icon:'📢',label:'Impressions',val:fmt(d.impressions),change:pct(d.impressions,prev?.impressions),accent:'#A78BFA'},
+    {icon:'❤️',label:'Engagement',val:fmt(eng),change:pct(eng,peng),accent:'#F472B6'},
+    {icon:'👥',label:'Followers',val:fmt(d.followers),change:pct(d.followers,prev?.followers),accent:'#22C55E'},
+    {icon:'🔗',label:'Link Clicks',val:fmt(d.link_clicks),change:pct(d.link_clicks,prev?.link_clicks),accent:'#F5A623'},
+    {icon:'💰',label:'Ad Spend',val:d.ad_spend?'₹'+fmt(d.ad_spend):'—',change:null,accent:'#EF4444'},
+    {icon:'🎯',label:'Ad Results',val:fmt(d.ad_results),change:pct(d.ad_results,prev?.ad_results),accent:'#06B6D4'},
+    {icon:'📝',label:'Posts',val:d.posts||'—',change:null,accent:'#F5A623'},
+  ];
+  document.getElementById('kpiGrid').innerHTML=kpis.map(k=>{
+    const chg=k.change;
+    const chgHtml=chg!=null?`<span class="kpi-change ${chg>0?'kpi-up':chg<0?'kpi-down':'kpi-neutral'}">${chg>0?'↑':'↓'} ${Math.abs(chg)}%</span>`:'';
+    return `<div class="kpi-card" style="border-top:2px solid ${k.accent}22;border-color:${k.accent}22;">
+      <span class="kpi-icon">${k.icon}</span>
+      <span class="kpi-val">${k.val||'—'}</span>
+      <span class="kpi-label">${k.label}</span>
+      ${chgHtml}
+    </div>`;
+  }).join('');
+}
+
+function renderCharts(sortedKeys){
+  Object.values(_charts).forEach(c=>c.destroy());_charts={};
+  if(!sortedKeys.length) return;
+  const labels=sortedKeys.map(fmtMonth);
+  const g=(field)=>sortedKeys.map(k=>+(_months[k]?.[field]||0));
+
+  const mk=(id,datasets,type='line')=>{
+    const ctx=document.getElementById(id)?.getContext('2d');
+    if(!ctx)return;
+    _charts[id]=new Chart(ctx,{type,data:{labels,datasets},options:{...JSON.parse(JSON.stringify(CD))}});
+  };
+
+  mk('chartReach',[
+    {label:'Reach',data:g('reach'),borderColor:C.blue,backgroundColor:C.blueDim,fill:true,tension:.4,borderWidth:2,pointRadius:3,pointBackgroundColor:C.blue},
+    {label:'Impressions',data:g('impressions'),borderColor:C.purple,backgroundColor:'transparent',tension:.4,borderWidth:2,pointRadius:3,pointBackgroundColor:C.purple,borderDash:[4,4]},
+  ]);
+  mk('chartFollowers',[
+    {label:'Followers',data:g('followers'),borderColor:C.green,backgroundColor:C.greenDim,fill:true,tension:.4,borderWidth:2,pointRadius:3,pointBackgroundColor:C.green},
+  ]);
+  mk('chartEngagement',[
+    {label:'Likes',data:g('likes'),backgroundColor:C.pink,borderRadius:6,borderSkipped:false},
+    {label:'Comments',data:g('comments'),backgroundColor:C.amber,borderRadius:6,borderSkipped:false},
+    {label:'Shares',data:g('shares'),backgroundColor:C.purple,borderRadius:6,borderSkipped:false},
+  ],'bar');
+
+  // Ads dual axis
+  const adOpts=JSON.parse(JSON.stringify(CD));
+  adOpts.scales.y1={position:'right',grid:{drawOnChartArea:false},ticks:{color:'#6B7A99',font:{size:10}}};
+  const ctx=document.getElementById('chartAds')?.getContext('2d');
+  if(ctx) _charts['chartAds']=new Chart(ctx,{type:'line',data:{labels,datasets:[
+    {label:'Ad Spend ₹',data:g('ad_spend'),borderColor:C.amber,backgroundColor:C.amberDim,fill:true,tension:.4,borderWidth:2,pointRadius:3,pointBackgroundColor:C.amber,yAxisID:'y'},
+    {label:'Results',data:g('ad_results'),borderColor:C.green,backgroundColor:'transparent',tension:.4,borderWidth:2,pointRadius:3,pointBackgroundColor:C.green,yAxisID:'y1'},
+  ]},options:adOpts});
+}
+
+function renderBreakdown(){
+  const d=_months[_active]||{};
+  const likes=+d.likes||0,comments=+d.comments||0,shares=+d.shares||0;
+  const total=likes+comments+shares;
+  if(!total){document.getElementById('breakdownRows').innerHTML='<div style="font-size:12px;color:var(--muted);">No engagement data for this month.</div>';return;}
+  const rows=[{label:'Likes',val:likes,color:C.pink},{label:'Comments',val:comments,color:C.amber},{label:'Shares/Saves',val:shares,color:C.purple}];
+  document.getElementById('breakdownRows').innerHTML=rows.map(r=>`
+    <div class="breakdown-row">
+      <span class="br-label">${r.label}</span>
+      <div class="br-bar-wrap"><div class="br-bar" style="width:${Math.round(r.val/total*100)}%;background:${r.color}"></div></div>
+      <span class="br-val">${fmt(r.val)} <span style="color:var(--muted);font-size:10px;">(${Math.round(r.val/total*100)}%)</span></span>
+    </div>`).join('');
+}
+
+function renderHistory(keys){
+  document.getElementById('historyBody').innerHTML=keys.map(k=>{
+    const d=_months[k]||{};
+    return `<tr>
+      <td class="td-month">${fmtMonth(k)}</td>
+      <td class="td-num">${fmt(d.reach)||'—'}</td><td class="td-num">${fmt(d.impressions)||'—'}</td>
+      <td class="td-num">${fmt(d.likes)||'—'}</td><td class="td-num">${fmt(d.comments)||'—'}</td>
+      <td class="td-num">${fmt(d.shares)||'—'}</td><td class="td-num">${fmt(d.followers)||'—'}</td>
+      <td class="td-num">${fmt(d.link_clicks)||'—'}</td>
+      <td class="td-num">${d.ad_spend?'₹'+fmt(d.ad_spend):'—'}</td>
+      <td class="td-num">${fmt(d.ad_reach)||'—'}</td><td class="td-num">${fmt(d.ad_results)||'—'}</td>
+      <td class="td-num">${d.posts||'—'}</td>
+    </tr>`;
+  }).join('');
+}
+
+function toggleEntry(){
+  const p=document.getElementById('entryPanel');
+  const showing=p.style.display!=='none';
+  p.style.display=showing?'none':'block';
+  document.getElementById('entryToggleBtn').textContent=showing?'+ Add Month Data':'✕ Close';
+  if(!showing){
+    const d=_months[_active]||{};
+    document.getElementById('eMonth').value=_active||'';
+    ['Reach','Impressions','Likes','Comments','Shares','Followers','LinkClicks','AdSpend','AdReach','AdResults','Posts'].forEach(f=>{
+      const key=f.toLowerCase().replace('linkclicks','link_clicks').replace('adspend','ad_spend').replace('adreach','ad_reach').replace('adresults','ad_results');
+      document.getElementById('e'+f).value=d[key]||'';
+    });
+  }
+}
+
+async function saveMonthData(){
+  const monthKey=document.getElementById('eMonth').value;
+  if(!monthKey){showToast('Please select a month');return;}
+  if(!_cid){showToast('No client selected');return;}
+  const data={
+    reach:+document.getElementById('eReach').value||0,
+    impressions:+document.getElementById('eImpressions').value||0,
+    likes:+document.getElementById('eLikes').value||0,
+    comments:+document.getElementById('eComments').value||0,
+    shares:+document.getElementById('eShares').value||0,
+    followers:+document.getElementById('eFollowers').value||0,
+    link_clicks:+document.getElementById('eLinkClicks').value||0,
+    ad_spend:+document.getElementById('eAdSpend').value||0,
+    ad_reach:+document.getElementById('eAdReach').value||0,
+    ad_results:+document.getElementById('eAdResults').value||0,
+    posts:+document.getElementById('ePosts').value||0,
+  };
+  if(window._saveMonthData) await window._saveMonthData(_cid,monthKey,data);
+  _months[monthKey]=data;_active=monthKey;
+  toggleEntry();renderAll();
+  showToast('✅ Data saved!');
+}
+
+function copyShareLink(){
+  const url=`${location.origin}${location.pathname}?client=${_cid}&view=share`;
+  navigator.clipboard.writeText(url).then(()=>showToast('🔗 Share link copied!')).catch(()=>prompt('Copy this link:',url));
+}
+
+function fmt(n){if(!n&&n!==0)return null;n=+n;if(n>=1000000)return(n/1000000).toFixed(1)+'M';if(n>=1000)return(n/1000).toFixed(1)+'K';return n.toLocaleString();}
+function pct(cur,prev){if(!prev||!cur)return null;return Math.round(((+cur-+prev)/+prev)*100);}
+function fmtMonth(k){if(!k)return'—';const[y,m]=k.split('-');const ms=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return`${ms[+m-1]} ${y}`;}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+
+window.addEventListener('DOMContentLoaded',()=>{
+  const p=new URLSearchParams(location.search);
+  const isShare=p.get('view')==='share';
+  if(isShare){
+    document.getElementById('shareBanner').classList.add('show');
+    document.getElementById('heroArea').style.display='none';
+    document.getElementById('selectorBar').style.display='none';
+    document.getElementById('chActions').innerHTML='<button class="ch-btn ch-btn-pdf" onclick="window.print()">⬇ PDF</button>';
+  }
+  const client=p.get('client');
+  if(client){document.getElementById('selClient').value=client;setTimeout(loadReport,900);}
+});
+
+window.loadReport=loadReport;window.toggleEntry=toggleEntry;window.saveMonthData=saveMonthData;
+window.copyShareLink=copyShareLink;window.setTab=setTab;
+</script>
+</body>
+</html>
