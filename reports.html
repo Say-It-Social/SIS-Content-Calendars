@@ -151,6 +151,29 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
 
 .toast{display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--navy2);border:1px solid var(--border2);border-radius:100px;padding:12px 22px;font-size:12px;font-weight:600;color:var(--text);box-shadow:0 8px 32px rgba(0,0,0,.5);z-index:9999;}
 .toast.show{display:block;}
+.import-modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;align-items:center;justify-content:center;backdrop-filter:blur(6px);}
+.import-modal-bg.show{display:flex;}
+.import-modal{background:var(--navy2);border:1px solid var(--border2);border-radius:18px;padding:32px;width:600px;max-width:95vw;max-height:88vh;overflow-y:auto;position:relative;box-shadow:0 32px 80px rgba(0,0,0,.6);}
+.im-title{font-family:"Instrument Serif",serif;font-size:22px;color:var(--white);margin-bottom:4px;}
+.im-sub{font-size:12px;color:var(--muted);margin-bottom:20px;line-height:1.6;}
+.im-files{display:flex;flex-direction:column;gap:8px;margin-bottom:18px;}
+.im-file-row{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;}
+.im-file-icon{font-size:14px;flex-shrink:0;}
+.im-file-name{font-size:12px;font-weight:600;color:var(--text);flex:1;}
+.im-file-status{font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;}
+.im-file-ok{background:rgba(34,197,94,.12);color:var(--green);}
+.im-file-pending{background:rgba(107,122,153,.12);color:var(--muted);}
+.im-preview{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:16px;font-size:11px;overflow-x:auto;}
+.im-preview table{width:100%;border-collapse:collapse;}
+.im-preview th{color:var(--muted);font-weight:700;padding:4px 10px;border-bottom:1px solid var(--border);text-align:left;white-space:nowrap;}
+.im-preview td{padding:4px 10px;color:var(--text);border-bottom:1px solid rgba(255,255,255,.03);}
+.im-progress-wrap{background:var(--surface);border-radius:100px;height:6px;margin:10px 0;overflow:hidden;display:none;}
+.im-progress-fill{height:100%;background:var(--blue);border-radius:100px;transition:width .2s;width:0%;}
+.im-status-txt{font-size:11px;color:var(--muted);text-align:center;min-height:16px;}
+.im-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:16px;padding-top:14px;border-top:1px solid var(--border);}
+.im-cancel{padding:9px 18px;border-radius:9px;border:1px solid var(--border);background:none;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;font-family:"Plus Jakarta Sans",sans-serif;}
+.im-save{padding:9px 22px;border-radius:9px;border:none;background:var(--blue);font-size:12px;font-weight:700;color:#fff;cursor:pointer;font-family:"Plus Jakarta Sans",sans-serif;display:none;}
+.im-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:16px;color:var(--muted);cursor:pointer;}
 
 @media print{nav,.selector-bar,.entry-panel,.ch-btn-entry,.ch-btn-share,.share-banner{display:none!important;}body{background:#fff;color:#000;visibility:visible!important;}.client-header,.kpi-card,.chart-card,.platform-card,.breakdown-card,.history-card{background:#f5f5f5;border:1px solid #ddd;}.ch-client,.kpi-val{color:#000;}}
 @media(max-width:900px){.charts-grid,.platform-row{grid-template-columns:1fr;}.wrap,.nav-inner{padding-left:20px;padding-right:20px;}.kpi-grid{grid-template-columns:repeat(2,1fr);}}
@@ -238,6 +261,8 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
         </div>
         <div class="ch-actions" id="chActions">
           <button class="ch-btn ch-btn-entry" onclick="toggleEntry()" id="entryToggleBtn">+ Add Month Data</button>
+          <button class="ch-btn" onclick="document.getElementById('csvImportBtn').click()" style="background:rgba(167,139,250,.1);color:var(--purple);border:1px solid rgba(167,139,250,.3);">⬆ Import Meta CSVs</button>
+          <input type="file" id="csvImportBtn" multiple accept=".csv" style="display:none" onchange="handleMetaCSVImport(event)"/>
           <button class="ch-btn ch-btn-share" onclick="copyShareLink()">🔗 Share</button>
           <button class="ch-btn ch-btn-pdf" onclick="window.print()">⬇ PDF</button>
         </div>
@@ -648,6 +673,191 @@ window.addEventListener('DOMContentLoaded',()=>{
 
 window.loadReport=loadReport;window.toggleEntry=toggleEntry;
 window.saveMonthData=saveMonthData;window.copyShareLink=copyShareLink;window.setTab=setTab;
+</script>
+
+<!-- Meta CSV Import Modal -->
+<div class="import-modal-bg" id="importModalBg">
+  <div class="import-modal">
+    <button class="im-close" onclick="closeImportModal()">✕</button>
+    <div class="im-title">Import Meta CSV Files</div>
+    <div class="im-sub">Select multiple CSV files exported from Meta Insights (Views, Reach, Interactions, Link clicks, Visits, Follows). Daily data is automatically aggregated into monthly totals.</div>
+    <div class="im-files" id="imFileList"></div>
+    <div id="imPreviewWrap" style="display:none">
+      <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Preview — Monthly Totals</div>
+      <div class="im-preview"><table><thead id="imPreviewHead"></thead><tbody id="imPreviewBody"></tbody></table></div>
+    </div>
+    <div class="im-progress-wrap" id="imProgressWrap"><div class="im-progress-fill" id="imProgressFill"></div></div>
+    <div class="im-status-txt" id="imStatusTxt"></div>
+    <div class="im-actions">
+      <button class="im-cancel" onclick="closeImportModal()">Cancel</button>
+      <button class="im-save" id="imSaveBtn" onclick="confirmMetaImport()">Import All Months →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── META CSV IMPORT ───────────────────────────────────────────
+const META_FILE_MAP = {
+  'views':              'ig_views',
+  'reach':              'ig_reach',
+  'content interactions':'ig_interactions',
+  'instagram link clicks':'ig_link_clicks',
+  'instagram profile visits':'ig_profile_visits',
+  'instagram follows':  'ig_follows',
+  'link clicks':        'ig_link_clicks',
+  'profile visits':     'ig_profile_visits',
+  'follows':            'ig_follows',
+  'interactions':       'ig_interactions',
+};
+
+let _importData = {}; // monthKey → {field: value}
+let _importFiles = [];
+
+async function handleMetaCSVImport(event) {
+  if(!_cid){ showToast('Please select a client first'); return; }
+  const files = Array.from(event.target.files);
+  event.target.value = '';
+  if(!files.length) return;
+
+  _importData = {};
+  _importFiles = [];
+
+  // Parse all files
+  for(const file of files) {
+    const result = await parseMetaCSV(file);
+    _importFiles.push({ name: file.name, field: result.field, months: Object.keys(result.data).length, ok: !!result.field });
+    if(result.field) {
+      for(const [month, val] of Object.entries(result.data)) {
+        if(!_importData[month]) _importData[month] = {};
+        _importData[month][result.field] = val;
+      }
+    }
+  }
+
+  showImportModal();
+}
+
+async function parseMetaCSV(file) {
+  return new Promise(resolve => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      let text = '';
+      // Handle UTF-16 LE (Meta's format)
+      const bytes = new Uint8Array(e.target.result);
+      if(bytes[0]===0xFF && bytes[1]===0xFE) {
+        text = new TextDecoder('utf-16le').decode(e.target.result);
+      } else {
+        text = new TextDecoder('utf-8').decode(e.target.result);
+      }
+      // Remove BOM
+      text = text.replace(/^﻿/, '').replace(/^sep=,
+?
+/i,'');
+      const lines = text.replace(/
+/g,'
+').replace(/
+/g,'
+').split('
+').filter(l=>l.trim());
+
+      // Line 0 = metric name, Line 1 = "Date,Primary", Line 2+ = data
+      const metricName = lines[0].replace(/"/g,'').trim().toLowerCase();
+      const field = META_FILE_MAP[metricName] || null;
+
+      const monthly = {};
+      for(let i=2; i<lines.length; i++) {
+        const parts = lines[i].replace(/"/g,'').split(',');
+        if(parts.length < 2) continue;
+        const dateStr = parts[0].trim();
+        const val = parseInt(parts[1].trim()) || 0;
+        if(!dateStr || dateStr==='Date') continue;
+        const monthKey = dateStr.substring(0,7); // "2026-01"
+        if(monthKey.length!==7||monthKey[4]!=='-') continue;
+        monthly[monthKey] = (monthly[monthKey]||0) + val;
+      }
+
+      resolve({ field, data: monthly, metricName });
+    };
+    reader.readAsArrayBuffer(file);
+  });
+}
+
+function showImportModal() {
+  // File list
+  const fileList = document.getElementById('imFileList');
+  fileList.innerHTML = _importFiles.map(f => `
+    <div class="im-file-row">
+      <span class="im-file-icon">${f.ok ? '✅' : '⚠️'}</span>
+      <span class="im-file-name">${f.name}</span>
+      <span class="im-file-status ${f.ok?'im-file-ok':'im-file-pending'}">${f.ok ? f.field.replace('ig_','IG ') : 'Unrecognised'}</span>
+      ${f.ok ? `<span style="font-size:10px;color:var(--muted)">${f.months} months</span>` : ''}
+    </div>`).join('');
+
+  // Preview table
+  const months = Object.keys(_importData).sort();
+  if(months.length) {
+    const fields = ['ig_views','ig_reach','ig_interactions','ig_link_clicks','ig_profile_visits','ig_follows'];
+    const labels = ['Views','Reach','Interactions','Link Clicks','Profile Visits','Follows'];
+    document.getElementById('imPreviewHead').innerHTML = '<tr><th>Month</th>' + labels.map(l=>`<th>${l}</th>`).join('') + '</tr>';
+    document.getElementById('imPreviewBody').innerHTML = months.map(m => {
+      const d = _importData[m]||{};
+      return '<tr><td style="font-weight:600;color:var(--white)">' + fmtMonth(m) + '</td>' + fields.map(f=>`<td>${fmt(d[f]||0)}</td>`).join('') + '</tr>';
+    }).join('');
+    document.getElementById('imPreviewWrap').style.display = 'block';
+    document.getElementById('imSaveBtn').style.display = 'inline-flex';
+    document.getElementById('imSaveBtn').textContent = `Import ${months.length} Month${months.length>1?'s':''} →`;
+  }
+
+  document.getElementById('importModalBg').classList.add('show');
+}
+
+async function confirmMetaImport() {
+  if(!window._saveMonthData){ showToast('Firebase not ready'); return; }
+  const months = Object.keys(_importData).sort();
+  const btn = document.getElementById('imSaveBtn');
+  btn.disabled = true;
+  const progressWrap = document.getElementById('imProgressWrap');
+  const progressFill = document.getElementById('imProgressFill');
+  const statusTxt    = document.getElementById('imStatusTxt');
+  progressWrap.style.display = 'block';
+
+  let done = 0;
+  for(const month of months) {
+    // Merge with existing data
+    const existing = _months[month] || {};
+    const merged   = { ...existing, ..._importData[month] };
+    await window._saveMonthData(_cid, month, merged);
+    _months[month] = merged;
+    done++;
+    progressFill.style.width = Math.round(done/months.length*100)+'%';
+    statusTxt.textContent = `Saving ${done} of ${months.length}...`;
+  }
+
+  statusTxt.textContent = `✅ ${months.length} months imported successfully!`;
+  btn.textContent = 'Done!';
+  setTimeout(() => { closeImportModal(); renderAll(); }, 1200);
+}
+
+function closeImportModal() {
+  document.getElementById('importModalBg').classList.remove('show');
+  document.getElementById('imProgressWrap').style.display = 'none';
+  document.getElementById('imProgressFill').style.width = '0%';
+  document.getElementById('imStatusTxt').textContent = '';
+  document.getElementById('imSaveBtn').disabled = false;
+  document.getElementById('imSaveBtn').style.display = 'none';
+  document.getElementById('imPreviewWrap').style.display = 'none';
+  _importData = {}; _importFiles = [];
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('importModalBg').addEventListener('click', e => {
+    if(e.target === document.getElementById('importModalBg')) closeImportModal();
+  });
+});
+
+window.closeImportModal   = closeImportModal;
+window.confirmMetaImport  = confirmMetaImport;
+window.handleMetaCSVImport= handleMetaCSVImport;
 </script>
 </body>
 </html>
