@@ -262,14 +262,12 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
           <div class="ps-divider"></div>
         </div>
         <div class="entry-grid">
-          <div class="entry-field"><label class="entry-label">Reach<span>Accounts reached</span></label><input class="entry-input" id="ig_reach" type="number" placeholder="e.g. 28000"/></div>
-          <div class="entry-field"><label class="entry-label">Impressions<span>Total views</span></label><input class="entry-input" id="ig_impressions" type="number" placeholder="e.g. 72000"/></div>
-          <div class="entry-field"><label class="entry-label">Likes<span>Post likes</span></label><input class="entry-input" id="ig_likes" type="number" placeholder="e.g. 980"/></div>
-          <div class="entry-field"><label class="entry-label">Comments</label><input class="entry-input" id="ig_comments" type="number" placeholder="e.g. 145"/></div>
-          <div class="entry-field"><label class="entry-label">Shares / Saves</label><input class="entry-input" id="ig_shares" type="number" placeholder="e.g. 320"/></div>
-          <div class="entry-field"><label class="entry-label">Followers<span>Total count</span></label><input class="entry-input" id="ig_followers" type="number" placeholder="e.g. 4200"/></div>
-          <div class="entry-field"><label class="entry-label">Link Clicks<span>Bio + sticker</span></label><input class="entry-input" id="ig_link_clicks" type="number" placeholder="e.g. 560"/></div>
-          <div class="entry-field"><label class="entry-label">Posts Published</label><input class="entry-input" id="ig_posts" type="number" placeholder="e.g. 10"/></div>
+          <div class="entry-field"><label class="entry-label">Views<span>Total impressions</span></label><input class="entry-input" id="ig_views" type="number" placeholder="e.g. 99300"/></div>
+          <div class="entry-field"><label class="entry-label">Reach<span>Unique accounts</span></label><input class="entry-input" id="ig_reach" type="number" placeholder="e.g. 36400"/></div>
+          <div class="entry-field"><label class="entry-label">Content Interactions<span>Likes+comments+shares</span></label><input class="entry-input" id="ig_interactions" type="number" placeholder="e.g. 4800"/></div>
+          <div class="entry-field"><label class="entry-label">Link Clicks<span>Bio + story links</span></label><input class="entry-input" id="ig_link_clicks" type="number" placeholder="e.g. 497"/></div>
+          <div class="entry-field"><label class="entry-label">Profile Visits</label><input class="entry-input" id="ig_profile_visits" type="number" placeholder="e.g. 618"/></div>
+          <div class="entry-field"><label class="entry-label">Follows<span>New followers gained</span></label><input class="entry-input" id="ig_follows" type="number" placeholder="e.g. 47"/></div>
         </div>
       </div>
 
@@ -280,14 +278,12 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
           <div class="ps-divider"></div>
         </div>
         <div class="entry-grid">
-          <div class="entry-field"><label class="entry-label">Reach<span>Accounts reached</span></label><input class="entry-input" id="fb_reach" type="number" placeholder="e.g. 17000"/></div>
-          <div class="entry-field"><label class="entry-label">Impressions<span>Total views</span></label><input class="entry-input" id="fb_impressions" type="number" placeholder="e.g. 46000"/></div>
-          <div class="entry-field"><label class="entry-label">Likes / Reactions</label><input class="entry-input" id="fb_likes" type="number" placeholder="e.g. 640"/></div>
-          <div class="entry-field"><label class="entry-label">Comments</label><input class="entry-input" id="fb_comments" type="number" placeholder="e.g. 95"/></div>
-          <div class="entry-field"><label class="entry-label">Shares</label><input class="entry-input" id="fb_shares" type="number" placeholder="e.g. 190"/></div>
-          <div class="entry-field"><label class="entry-label">Page Followers<span>Total count</span></label><input class="entry-input" id="fb_followers" type="number" placeholder="e.g. 2000"/></div>
-          <div class="entry-field"><label class="entry-label">Link Clicks</label><input class="entry-input" id="fb_link_clicks" type="number" placeholder="e.g. 300"/></div>
-          <div class="entry-field"><label class="entry-label">Posts Published</label><input class="entry-input" id="fb_posts" type="number" placeholder="e.g. 8"/></div>
+          <div class="entry-field"><label class="entry-label">Views<span>Total impressions</span></label><input class="entry-input" id="fb_views" type="number" placeholder="e.g. 54000"/></div>
+          <div class="entry-field"><label class="entry-label">Reach<span>Unique accounts</span></label><input class="entry-input" id="fb_reach" type="number" placeholder="e.g. 22000"/></div>
+          <div class="entry-field"><label class="entry-label">Content Interactions<span>Reactions+comments+shares</span></label><input class="entry-input" id="fb_interactions" type="number" placeholder="e.g. 2100"/></div>
+          <div class="entry-field"><label class="entry-label">Link Clicks</label><input class="entry-input" id="fb_link_clicks" type="number" placeholder="e.g. 280"/></div>
+          <div class="entry-field"><label class="entry-label">Profile Visits<span>Page visits</span></label><input class="entry-input" id="fb_profile_visits" type="number" placeholder="e.g. 340"/></div>
+          <div class="entry-field"><label class="entry-label">Follows<span>New page likes/follows</span></label><input class="entry-input" id="fb_follows" type="number" placeholder="e.g. 28"/></div>
         </div>
       </div>
 
@@ -329,17 +325,17 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
     <!-- CHARTS -->
     <div class="charts-grid">
       <div class="chart-card">
-        <div class="chart-title">Reach — IG vs FB</div>
-        <div class="chart-sub">Monthly trend by platform</div>
+        <div class="chart-title">Views & Reach — IG vs FB</div>
+        <div class="chart-sub">Solid = Views, Dashed = Reach</div>
         <div class="chart-legend">
-          <span class="cl-item"><span class="cl-dot" style="background:var(--ig)"></span>Instagram</span>
-          <span class="cl-item"><span class="cl-dot" style="background:var(--fb)"></span>Facebook</span>
+          <span class="cl-item"><span class="cl-dot" style="background:var(--ig)"></span>IG Views</span>
+          <span class="cl-item"><span class="cl-dot" style="background:var(--fb)"></span>FB Views</span>
         </div>
         <div class="chart-wrap"><canvas id="chartReach" role="img" aria-label="Reach comparison IG vs FB">Reach comparison.</canvas></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title">Follower Growth</div>
-        <div class="chart-sub">IG + FB combined over time</div>
+        <div class="chart-title">New Follows — IG vs FB</div>
+        <div class="chart-sub">New followers gained each month</div>
         <div class="chart-legend">
           <span class="cl-item"><span class="cl-dot" style="background:var(--ig)"></span>Instagram</span>
           <span class="cl-item"><span class="cl-dot" style="background:var(--fb)"></span>Facebook</span>
@@ -347,8 +343,8 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
         <div class="chart-wrap"><canvas id="chartFollowers" role="img" aria-label="Follower growth IG vs FB">Follower growth.</canvas></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title">Engagement — IG vs FB</div>
-        <div class="chart-sub">Combined likes + comments + shares</div>
+        <div class="chart-title">Content Interactions — IG vs FB</div>
+        <div class="chart-sub">Total interactions per platform</div>
         <div class="chart-legend">
           <span class="cl-item"><span class="cl-dot" style="background:var(--ig)"></span>Instagram</span>
           <span class="cl-item"><span class="cl-dot" style="background:var(--fb)"></span>Facebook</span>
@@ -379,12 +375,11 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
         <table class="history-table">
           <thead><tr>
             <th>Month</th>
-            <th>Total Reach</th>
-            <th class="ig-col">IG Reach</th><th class="fb-col">FB Reach</th>
-            <th>Total Eng.</th>
-            <th class="ig-col">IG Eng.</th><th class="fb-col">FB Eng.</th>
-            <th>IG Followers</th><th>FB Followers</th>
-            <th>Link Clicks</th>
+            <th>IG Views</th><th>FB Views</th>
+            <th>IG Reach</th><th>FB Reach</th>
+            <th>IG Interact.</th><th>FB Interact.</th>
+            <th>IG Clicks</th><th>FB Clicks</th>
+            <th>IG Follows</th><th>FB Follows</th>
             <th>Ad Spend</th><th>Ad Results</th><th>CPA ₹</th>
           </tr></thead>
           <tbody id="historyBody"></tbody>
@@ -407,7 +402,7 @@ let _cid=null,_months={},_active=null,_charts={};
 const fmtMonth=k=>{if(!k)return'—';const[y,m]=k.split('-');return['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m-1]+' '+y;};
 const fmt=n=>{if(!n&&n!==0)return'—';n=+n;if(n>=1000000)return(n/1000000).toFixed(1)+'M';if(n>=1000)return(n/1000).toFixed(1)+'K';return Math.round(n).toLocaleString();};
 const pct=(c,p)=>{if(!p||!c)return null;return Math.round(((+c-+p)/+p)*100);};
-const total=(d,pre)=>['reach','impressions','likes','comments','shares','followers','link_clicks','posts'].reduce((acc,f)=>{acc[f]=(+d['ig_'+f]||0)+(+d['fb_'+f]||0);return acc;},{});
+const total=d=>['views','reach','interactions','link_clicks','profile_visits','follows'].reduce((acc,f)=>{acc[f]=(+d['ig_'+f]||0)+(+d['fb_'+f]||0);return acc;},{});
 
 async function loadReport(){
   const cid=document.getElementById('selClient').value;
@@ -452,20 +447,14 @@ function renderKPIs(){
   const peng=prev?prev.likes+prev.comments+prev.shares:null;
 
   const kpis=[
-    {icon:'👁️',label:'Total Reach',val:fmt(t.reach),ch:pct(t.reach,prev?.reach),
-     ig:d.ig_reach,fb:d.fb_reach},
-    {icon:'📢',label:'Impressions',val:fmt(t.impressions),ch:pct(t.impressions,prev?.impressions),
-     ig:d.ig_impressions,fb:d.fb_impressions},
-    {icon:'❤️',label:'Engagement',val:fmt(eng),ch:pct(eng,peng),
-     ig:(+d.ig_likes||0)+(+d.ig_comments||0)+(+d.ig_shares||0),
-     fb:(+d.fb_likes||0)+(+d.fb_comments||0)+(+d.fb_shares||0)},
-    {icon:'👥',label:'Followers',val:fmt(t.followers),ch:pct(t.followers,prev?.followers),
-     ig:d.ig_followers,fb:d.fb_followers},
-    {icon:'🔗',label:'Link Clicks',val:fmt(t.link_clicks),ch:pct(t.link_clicks,prev?.link_clicks),
-     ig:d.ig_link_clicks,fb:d.fb_link_clicks},
+    {icon:'👁️',label:'Total Views',val:fmt(t.views),ch:pct(t.views,prev?.views),ig:d.ig_views,fb:d.fb_views},
+    {icon:'📡',label:'Total Reach',val:fmt(t.reach),ch:pct(t.reach,prev?.reach),ig:d.ig_reach,fb:d.fb_reach},
+    {icon:'❤️',label:'Interactions',val:fmt(t.interactions),ch:pct(t.interactions,prev?.interactions),ig:d.ig_interactions,fb:d.fb_interactions},
+    {icon:'🔗',label:'Link Clicks',val:fmt(t.link_clicks),ch:pct(t.link_clicks,prev?.link_clicks),ig:d.ig_link_clicks,fb:d.fb_link_clicks},
+    {icon:'👤',label:'Profile Visits',val:fmt(t.profile_visits),ch:pct(t.profile_visits,prev?.profile_visits),ig:d.ig_profile_visits,fb:d.fb_profile_visits},
+    {icon:'➕',label:'New Follows',val:fmt(t.follows),ch:pct(t.follows,prev?.follows),ig:d.ig_follows,fb:d.fb_follows},
     {icon:'💰',label:'Ad Spend',val:d.ad_spend?'₹'+fmt(d.ad_spend):'—',ch:null,ig:null,fb:null},
     {icon:'🎯',label:'Ad Results',val:fmt(d.ad_results),ch:pct(d.ad_results,(_months[sorted[pi]]||{}).ad_results),ig:null,fb:null},
-    {icon:'💸',label:'Cost/Result',val:d.ad_cpr?'₹'+fmt(d.ad_cpr):'—',ch:null,ig:null,fb:null},
   ];
 
   document.getElementById('kpiGrid').innerHTML=kpis.map(k=>{
@@ -488,16 +477,18 @@ function renderKPIs(){
 function renderPlatform(){
   const d=_months[_active]||{};
   const igFields=[
-    {label:'Reach',val:d.ig_reach},{label:'Impressions',val:d.ig_impressions},
-    {label:'Likes',val:d.ig_likes},{label:'Comments',val:d.ig_comments},
-    {label:'Shares/Saves',val:d.ig_shares},{label:'Followers',val:d.ig_followers},
-    {label:'Link Clicks',val:d.ig_link_clicks},{label:'Posts',val:d.ig_posts},
+    {label:'Views',val:d.ig_views},{label:'Reach',val:d.ig_reach},
+    {label:'Content Interactions',val:d.ig_interactions},
+    {label:'Link Clicks',val:d.ig_link_clicks},
+    {label:'Profile Visits',val:d.ig_profile_visits},
+    {label:'New Follows',val:d.ig_follows},
   ];
   const fbFields=[
-    {label:'Reach',val:d.fb_reach},{label:'Impressions',val:d.fb_impressions},
-    {label:'Likes/Reactions',val:d.fb_likes},{label:'Comments',val:d.fb_comments},
-    {label:'Shares',val:d.fb_shares},{label:'Page Followers',val:d.fb_followers},
-    {label:'Link Clicks',val:d.fb_link_clicks},{label:'Posts',val:d.fb_posts},
+    {label:'Views',val:d.fb_views},{label:'Reach',val:d.fb_reach},
+    {label:'Content Interactions',val:d.fb_interactions},
+    {label:'Link Clicks',val:d.fb_link_clicks},
+    {label:'Page Visits',val:d.fb_profile_visits},
+    {label:'New Follows',val:d.fb_follows},
   ];
   const render=fields=>fields.map(f=>`
     <div class="platform-metric">
@@ -529,19 +520,21 @@ function renderCharts(sk){
 
   // Reach IG vs FB
   mk('chartReach',[
-    {label:'IG Reach',data:gi('reach'),borderColor:'#E1306C',backgroundColor:'rgba(225,48,108,0.12)',fill:true,tension:.4,borderWidth:2,pointRadius:3,pointBackgroundColor:'#E1306C'},
-    {label:'FB Reach',data:gf('reach'),borderColor:'#1877F2',backgroundColor:'rgba(24,119,242,0.12)',fill:true,tension:.4,borderWidth:2,pointRadius:3,pointBackgroundColor:'#1877F2',borderDash:[4,4]},
+    {label:'IG Views',data:gi('views'),borderColor:'#E1306C',backgroundColor:'rgba(225,48,108,0.12)',fill:true,tension:.4,borderWidth:2,pointRadius:3,pointBackgroundColor:'#E1306C'},
+    {label:'FB Views',data:gf('views'),borderColor:'#1877F2',backgroundColor:'rgba(24,119,242,0.12)',fill:true,tension:.4,borderWidth:2,pointRadius:3,pointBackgroundColor:'#1877F2',borderDash:[4,4]},
+    {label:'IG Reach',data:gi('reach'),borderColor:'rgba(225,48,108,0.5)',backgroundColor:'transparent',tension:.4,borderWidth:1.5,pointRadius:2,borderDash:[2,3]},
+    {label:'FB Reach',data:gf('reach'),borderColor:'rgba(24,119,242,0.5)',backgroundColor:'transparent',tension:.4,borderWidth:1.5,pointRadius:2,borderDash:[2,3]},
   ]);
 
   // Followers IG vs FB
   mk('chartFollowers',[
-    {label:'IG Followers',data:gi('followers'),borderColor:'#E1306C',backgroundColor:'rgba(225,48,108,0.12)',fill:true,tension:.4,borderWidth:2,pointRadius:3,pointBackgroundColor:'#E1306C'},
-    {label:'FB Followers',data:gf('followers'),borderColor:'#1877F2',backgroundColor:'rgba(24,119,242,0.12)',fill:true,tension:.4,borderWidth:2,pointRadius:3,pointBackgroundColor:'#1877F2',borderDash:[4,4]},
+    {label:'IG Follows',data:gi('follows'),borderColor:'#E1306C',backgroundColor:'rgba(225,48,108,0.12)',fill:true,tension:.4,borderWidth:2,pointRadius:3,pointBackgroundColor:'#E1306C'},
+    {label:'FB Follows',data:gf('follows'),borderColor:'#1877F2',backgroundColor:'rgba(24,119,242,0.12)',fill:true,tension:.4,borderWidth:2,pointRadius:3,pointBackgroundColor:'#1877F2',borderDash:[4,4]},
   ]);
 
   // Engagement IG vs FB
-  const igEng=sk.map(k=>(+(_months[k]?.ig_likes||0))+(+(_months[k]?.ig_comments||0))+(+(_months[k]?.ig_shares||0)));
-  const fbEng=sk.map(k=>(+(_months[k]?.fb_likes||0))+(+(_months[k]?.fb_comments||0))+(+(_months[k]?.fb_shares||0)));
+  const igEng=sk.map(k=>+(_months[k]?.ig_interactions||0));
+  const fbEng=sk.map(k=>+(_months[k]?.fb_interactions||0));
   mk('chartEngagement',[
     {label:'IG Engagement',data:igEng,backgroundColor:'rgba(225,48,108,0.8)',borderRadius:5,borderSkipped:false},
     {label:'FB Engagement',data:fbEng,backgroundColor:'rgba(24,119,242,0.8)',borderRadius:5,borderSkipped:false},
@@ -559,20 +552,20 @@ function renderCharts(sk){
 
 function renderBreakdown(){
   const d=_months[_active]||{};
-  const igEng=(+d.ig_likes||0)+(+d.ig_comments||0)+(+d.ig_shares||0);
-  const fbEng=(+d.fb_likes||0)+(+d.fb_comments||0)+(+d.fb_shares||0);
+  const igEng=+d.ig_interactions||0;
+  const fbEng=+d.fb_interactions||0;
   const total=igEng+fbEng;
-  if(!total){document.getElementById('breakdownRows').innerHTML='<div style="font-size:12px;color:var(--muted);">No engagement data for this month.</div>';return;}
+  if(!total){document.getElementById('breakdownRows').innerHTML='<div style="font-size:12px;color:var(--muted);">No interaction data for this month.</div>';return;}
 
   const rows=[
     {label:'Instagram',val:igEng,color:'#E1306C'},
     {label:'Facebook',val:fbEng,color:'#1877F2'},
-    {label:'IG Likes',val:+d.ig_likes||0,color:'rgba(225,48,108,0.5)'},
-    {label:'IG Comments',val:+d.ig_comments||0,color:'rgba(225,48,108,0.4)'},
-    {label:'IG Saves',val:+d.ig_shares||0,color:'rgba(225,48,108,0.3)'},
-    {label:'FB Reactions',val:+d.fb_likes||0,color:'rgba(24,119,242,0.5)'},
-    {label:'FB Comments',val:+d.fb_comments||0,color:'rgba(24,119,242,0.4)'},
-    {label:'FB Shares',val:+d.fb_shares||0,color:'rgba(24,119,242,0.3)'},
+    {label:'IG Reach',val:+d.ig_reach||0,color:'rgba(225,48,108,0.5)'},
+    {label:'IG Link Clicks',val:+d.ig_link_clicks||0,color:'rgba(225,48,108,0.4)'},
+    {label:'IG Profile Visits',val:+d.ig_profile_visits||0,color:'rgba(225,48,108,0.3)'},
+    {label:'FB Reach',val:+d.fb_reach||0,color:'rgba(24,119,242,0.5)'},
+    {label:'FB Link Clicks',val:+d.fb_link_clicks||0,color:'rgba(24,119,242,0.4)'},
+    {label:'FB Profile Visits',val:+d.fb_profile_visits||0,color:'rgba(24,119,242,0.3)'},
   ];
   document.getElementById('breakdownRows').innerHTML=rows.map(r=>`
     <div class="breakdown-row">
@@ -585,17 +578,13 @@ function renderBreakdown(){
 function renderHistory(keys){
   document.getElementById('historyBody').innerHTML=keys.map(k=>{
     const d=_months[k]||{};
-    const tr=(+d.ig_reach||0)+(+d.fb_reach||0);
-    const tige=(+d.ig_likes||0)+(+d.ig_comments||0)+(+d.ig_shares||0);
-    const tfbe=(+d.fb_likes||0)+(+d.fb_comments||0)+(+d.fb_shares||0);
     return`<tr>
       <td class="td-month">${fmtMonth(k)}</td>
-      <td class="td-total">${fmt(tr)}</td>
+      <td class="td-ig">${fmt(d.ig_views)}</td><td class="td-fb">${fmt(d.fb_views)}</td>
       <td class="td-ig">${fmt(d.ig_reach)}</td><td class="td-fb">${fmt(d.fb_reach)}</td>
-      <td class="td-total">${fmt(tige+tfbe)}</td>
-      <td class="td-ig">${fmt(tige)}</td><td class="td-fb">${fmt(tfbe)}</td>
-      <td class="td-ig">${fmt(d.ig_followers)}</td><td class="td-fb">${fmt(d.fb_followers)}</td>
-      <td>${fmt((+d.ig_link_clicks||0)+(+d.fb_link_clicks||0))}</td>
+      <td class="td-ig">${fmt(d.ig_interactions)}</td><td class="td-fb">${fmt(d.fb_interactions)}</td>
+      <td class="td-ig">${fmt(d.ig_link_clicks)}</td><td class="td-fb">${fmt(d.fb_link_clicks)}</td>
+      <td class="td-ig">${fmt(d.ig_follows)}</td><td class="td-fb">${fmt(d.fb_follows)}</td>
       <td>${d.ad_spend?'₹'+fmt(d.ad_spend):'—'}</td>
       <td>${fmt(d.ad_results)||'—'}</td>
       <td>${d.ad_cpr?'₹'+fmt(d.ad_cpr):'—'}</td>
@@ -611,8 +600,8 @@ function toggleEntry(){
   if(!showing){
     const d=_months[_active]||{};
     document.getElementById('eMonth').value=_active||'';
-    const fields=['ig_reach','ig_impressions','ig_likes','ig_comments','ig_shares','ig_followers','ig_link_clicks','ig_posts',
-                  'fb_reach','fb_impressions','fb_likes','fb_comments','fb_shares','fb_followers','fb_link_clicks','fb_posts',
+    const fields=['ig_views','ig_reach','ig_interactions','ig_link_clicks','ig_profile_visits','ig_follows',
+                  'fb_views','fb_reach','fb_interactions','fb_link_clicks','fb_profile_visits','fb_follows',
                   'ad_spend','ad_reach','ad_results','ad_cpr'];
     fields.forEach(f=>{ const el=document.getElementById(f); if(el) el.value=d[f]||''; });
   }
@@ -622,8 +611,8 @@ async function saveMonthData(){
   const mk=document.getElementById('eMonth').value;
   if(!mk){showToast('Please select a month');return;}
   if(!_cid){showToast('No client selected');return;}
-  const fields=['ig_reach','ig_impressions','ig_likes','ig_comments','ig_shares','ig_followers','ig_link_clicks','ig_posts',
-                'fb_reach','fb_impressions','fb_likes','fb_comments','fb_shares','fb_followers','fb_link_clicks','fb_posts',
+  const fields=['ig_views','ig_reach','ig_interactions','ig_link_clicks','ig_profile_visits','ig_follows',
+                'fb_views','fb_reach','fb_interactions','fb_link_clicks','fb_profile_visits','fb_follows',
                 'ad_spend','ad_reach','ad_results','ad_cpr'];
   const data={};
   fields.forEach(f=>{ const el=document.getElementById(f); if(el) data[f]=+el.value||0; });
