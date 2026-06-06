@@ -302,7 +302,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
         </div>
         <div class="ch-actions" id="chActions">
           <button class="ch-btn ch-btn-entry" onclick="toggleEntry()" id="entryToggleBtn">+ Add Month Data</button>
-          <button class="ch-btn" onclick="document.getElementById('csvImportBtn').click()" style="background:rgba(167,139,250,.1);color:var(--purple);border:1px solid rgba(167,139,250,.3);">⬆ Import Meta CSVs</button>
+          <button class="ch-btn" onclick="openImportModal()" style="background:rgba(167,139,250,.1);color:var(--purple);border:1px solid rgba(167,139,250,.3);">⬆ Import Meta CSVs</button>
           <input type="file" id="csvImportBtn" multiple accept=".csv" style="display:none" onchange="handleMetaCSVImport(event)"/>
           <button class="ch-btn ch-btn-share" onclick="copyShareLink()">🔗 Share</button>
           <button class="ch-btn ch-btn-pdf" onclick="window.print()">⬇ PDF</button>
@@ -721,7 +721,19 @@ window.saveMonthData=saveMonthData;window.copyShareLink=copyShareLink;window.set
   <div class="import-modal">
     <button class="im-close" onclick="closeImportModal()">✕</button>
     <div class="im-title">Import Meta CSV Files</div>
-    <div class="im-sub">Select multiple CSV files exported from Meta Insights (Views, Reach, Interactions, Link clicks, Visits, Follows). Daily data is automatically aggregated into monthly totals.</div>
+    <div class="im-sub">Select platform first, then upload all CSV files exported from Meta Insights for that platform. Daily data is automatically aggregated into monthly totals.</div>
+
+    <!-- Platform selector -->
+    <div style="display:flex;gap:10px;margin-bottom:18px;">
+      <button id="imBtnIG" onclick="setImportPlatform('ig')" style="flex:1;padding:12px;border-radius:10px;border:1.5px solid rgba(225,48,108,0.4);background:rgba(225,48,108,0.1);color:#E1306C;font-size:13px;font-weight:700;cursor:pointer;font-family:Plus Jakarta Sans,sans-serif;transition:all .15s;">
+        📸 Instagram
+      </button>
+      <button id="imBtnFB" onclick="setImportPlatform('fb')" style="flex:1;padding:12px;border-radius:10px;border:1.5px solid rgba(24,119,242,0.4);background:rgba(24,119,242,0.1);color:#1877F2;font-size:13px;font-weight:700;cursor:pointer;font-family:Plus Jakarta Sans,sans-serif;transition:all .15s;">
+        📘 Facebook
+      </button>
+    </div>
+    <div id="imPlatformHint" style="font-size:11px;color:var(--muted);text-align:center;margin-bottom:14px;">Select a platform above before uploading files</div>
+
     <div class="im-files" id="imFileList"></div>
     <div id="imPreviewWrap" style="display:none">
       <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Preview — Monthly Totals</div>
@@ -738,42 +750,114 @@ window.saveMonthData=saveMonthData;window.copyShareLink=copyShareLink;window.set
 
 <script>
 // ── META CSV IMPORT ───────────────────────────────────────────
-const META_FILE_MAP = {
+const META_IG_MAP = {
   'views':                    'ig_views',
+  'instagram views':          'ig_views',
+  'impressions':              'ig_views',
   'reach':                    'ig_reach',
+  'instagram reach':          'ig_reach',
+  'accounts reached':         'ig_reach',
   'content interactions':     'ig_interactions',
   'interactions':             'ig_interactions',
   'instagram link clicks':    'ig_link_clicks',
   'link clicks':              'ig_link_clicks',
   'instagram profile visits': 'ig_profile_visits',
+  'instagram profile visit':  'ig_profile_visits',
   'profile visits':           'ig_profile_visits',
   'visits':                   'ig_profile_visits',
-  'instagram profile visit':  'ig_profile_visits',
   'instagram follows':        'ig_follows',
   'follows':                  'ig_follows',
-  'instagram follow':         'ig_follows',
-  'viewers':                  'ig_reach',
-  'instagram reach':          'ig_reach',
-  'instagram views':          'ig_views',
-  'accounts reached':         'ig_reach',
-  'impressions':              'ig_views',
 };
 
-let _importData = {}; // monthKey → {field: value}
+const META_FB_MAP = {
+  'views':                    'fb_views',
+  'facebook views':           'fb_views',
+  'impressions':              'fb_views',
+  'viewers':                  'fb_reach',
+  'facebook viewers':         'fb_reach',
+  'facebook reach':           'fb_reach',
+  'reach':                    'fb_reach',
+  'content interactions':     'fb_interactions',
+  'interactions':             'fb_interactions',
+  'facebook interactions':    'fb_interactions',
+  'facebook link clicks':     'fb_link_clicks',
+  'link clicks':              'fb_link_clicks',
+  'facebook visits':          'fb_profile_visits',
+  'facebook page visits':     'fb_profile_visits',
+  'profile visits':           'fb_profile_visits',
+  'visits':                   'fb_profile_visits',
+  'facebook follows':         'fb_follows',
+  'follows':                  'fb_follows',
+};
+
+let _importData = {};
 let _importFiles = [];
+let _importPlatform = null; // 'ig' or 'fb'
+
+function openImportModal() {
+  if(!_cid){ showToast('Please select a client first'); return; }
+  _importPlatform = null;
+  _importData = {};
+  _importFiles = [];
+  document.getElementById('imFileList').innerHTML = '';
+  document.getElementById('imPreviewWrap').style.display = 'none';
+  document.getElementById('imSaveBtn').style.display = 'none';
+  document.getElementById('imProgressWrap').style.display = 'none';
+  document.getElementById('imStatusTxt').textContent = '';
+  document.getElementById('imPlatformHint').textContent = 'Select a platform above before uploading files';
+  // Reset button styles
+  setImportPlatform(null, true);
+  document.getElementById('importModalBg').classList.add('show');
+}
+
+function setImportPlatform(platform, resetOnly) {
+  _importPlatform = platform;
+  const igBtn = document.getElementById('imBtnIG');
+  const fbBtn = document.getElementById('imBtnFB');
+  const hint  = document.getElementById('imPlatformHint');
+
+  // Reset both
+  igBtn.style.opacity = '0.5';
+  fbBtn.style.opacity = '0.5';
+  igBtn.style.border  = '1.5px solid rgba(225,48,108,0.4)';
+  fbBtn.style.border  = '1.5px solid rgba(24,119,242,0.4)';
+
+  if(resetOnly) return;
+
+  if(platform === 'ig') {
+    igBtn.style.opacity = '1';
+    igBtn.style.border  = '2px solid #E1306C';
+    hint.textContent = '📸 Instagram selected — now upload your Instagram CSV files';
+    hint.style.color = '#E1306C';
+  } else {
+    fbBtn.style.opacity = '1';
+    fbBtn.style.border  = '2px solid #1877F2';
+    hint.textContent = '📘 Facebook selected — now upload your Facebook CSV files';
+    hint.style.color = '#1877F2';
+  }
+
+  // Trigger file picker
+  _importData = {};
+  _importFiles = [];
+  document.getElementById('imFileList').innerHTML = '';
+  document.getElementById('imPreviewWrap').style.display = 'none';
+  document.getElementById('imSaveBtn').style.display = 'none';
+  setTimeout(() => document.getElementById('csvImportBtn').click(), 100);
+}
 
 async function handleMetaCSVImport(event) {
-  if(!_cid){ showToast('Please select a client first'); return; }
+  if(!_importPlatform){ showToast('Please select Instagram or Facebook first'); return; }
   const files = Array.from(event.target.files);
   event.target.value = '';
   if(!files.length) return;
 
   _importData = {};
   _importFiles = [];
+  const MAP = _importPlatform === 'ig' ? META_IG_MAP : META_FB_MAP;
+  const prefix = _importPlatform;
 
-  // Parse all files
   for(const file of files) {
-    const result = await parseMetaCSV(file);
+    const result = await parseMetaCSV(file, MAP, prefix);
     _importFiles.push({ name: file.name, field: result.field, months: Object.keys(result.data).length, ok: !!result.field });
     if(result.field) {
       for(const [month, val] of Object.entries(result.data)) {
@@ -783,30 +867,26 @@ async function handleMetaCSVImport(event) {
     }
   }
 
-  showImportModal();
+  showImportPreview();
 }
 
-
-async function parseMetaCSV(file) {
+async function parseMetaCSV(file, MAP, prefix) {
   return new Promise(resolve => {
     const reader = new FileReader();
     reader.onload = e => {
       let text = '';
       const bytes = new Uint8Array(e.target.result);
-      // Handle UTF-16 LE (Meta default)
       if(bytes[0]===0xFF && bytes[1]===0xFE) {
         text = new TextDecoder('utf-16le').decode(e.target.result);
       } else {
         text = new TextDecoder('utf-8').decode(e.target.result);
       }
-      // Remove BOM character
       if(text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
-      // Remove sep=, line if present
       if(text.toLowerCase().startsWith('sep=,')) {
         const nl = text.indexOf('\n');
         text = nl >= 0 ? text.slice(nl+1) : text;
       }
-      // Split into lines - handle all line ending types
+      // Split lines character by character
       const lines = [];
       let current = '';
       for(let ci=0; ci<text.length; ci++) {
@@ -816,43 +896,36 @@ async function parseMetaCSV(file) {
           if(text[ci+1] === '\n') ci++;
         } else if(ch === '\n') {
           lines.push(current); current = '';
-        } else {
-          current += ch;
-        }
+        } else { current += ch; }
       }
       if(current.trim()) lines.push(current);
-
-      // Filter empty lines
       const clean = lines.map(l => l.trim()).filter(l => l.length > 0);
 
-      // Line 0 = metric name
       const metricRaw = clean[0] || '';
-      // Remove all double-quote characters safely
       const metricName = metricRaw.split('"').join('').trim().toLowerCase();
-      let field = META_FILE_MAP[metricName] || null;
-      // Fuzzy fallback — check if metric name contains known keywords
+      let field = MAP[metricName] || null;
+
+      // Fuzzy fallback using platform prefix
       if(!field) {
-        if(metricName.includes('view') || metricName.includes('impression')) field = 'ig_views';
-        else if(metricName.includes('reach') || metricName.includes('viewer')) field = 'ig_reach';
-        else if(metricName.includes('interaction') || metricName.includes('engagement')) field = 'ig_interactions';
-        else if(metricName.includes('link') || metricName.includes('click')) field = 'ig_link_clicks';
-        else if(metricName.includes('visit') || metricName.includes('profile')) field = 'ig_profile_visits';
-        else if(metricName.includes('follow')) field = 'ig_follows';
+        const pre = prefix + '_';
+        if(metricName.includes('view') || metricName.includes('impression')) field = pre+'views';
+        else if(metricName.includes('viewer') || metricName.includes('reach')) field = pre+'reach';
+        else if(metricName.includes('interaction') || metricName.includes('engagement')) field = pre+'interactions';
+        else if(metricName.includes('link') || metricName.includes('click')) field = pre+'link_clicks';
+        else if(metricName.includes('visit') || metricName.includes('profile')) field = pre+'profile_visits';
+        else if(metricName.includes('follow')) field = pre+'follows';
       }
 
       const monthly = {};
       for(let i=2; i<clean.length; i++) {
-        // Split on comma, removing quotes
         const row = clean[i].split('"').join('');
         const commaIdx = row.indexOf(',');
         if(commaIdx < 0) continue;
-        const dateStr = row.slice(0, commaIdx).trim();
+        const dateStr = row.slice(0, commaIdx).trim().slice(0, 7);
         const valStr  = row.slice(commaIdx+1).trim();
-        if(!dateStr || dateStr === 'Date' || dateStr.length < 7) continue;
-        const monthKey = dateStr.slice(0, 7);
-        if(monthKey.length !== 7 || monthKey[4] !== '-') continue;
+        if(!dateStr || dateStr === 'Date' || dateStr.length !== 7 || dateStr[4] !== '-') continue;
         const val = parseInt(valStr) || 0;
-        monthly[monthKey] = (monthly[monthKey] || 0) + val;
+        monthly[dateStr] = (monthly[dateStr] || 0) + val;
       }
 
       resolve({ field, data: monthly, metricName });
@@ -861,34 +934,33 @@ async function parseMetaCSV(file) {
   });
 }
 
-
-function showImportModal() {
-  // File list
+function showImportPreview() {
   const fileList = document.getElementById('imFileList');
+  const platformLabel = _importPlatform === 'ig' ? 'IG' : 'FB';
   fileList.innerHTML = _importFiles.map(f => `
     <div class="im-file-row">
       <span class="im-file-icon">${f.ok ? '✅' : '⚠️'}</span>
       <span class="im-file-name">${f.name}</span>
-      <span class="im-file-status ${f.ok?'im-file-ok':'im-file-pending'}">${f.ok ? f.field.replace('ig_','IG ') : 'Unrecognised'}</span>
+      <span class="im-file-status ${f.ok?'im-file-ok':'im-file-pending'}">${f.ok ? f.field.replace('ig_','IG ').replace('fb_','FB ') : 'Unrecognised'}</span>
       ${f.ok ? `<span style="font-size:10px;color:var(--muted)">${f.months} months</span>` : ''}
     </div>`).join('');
 
-  // Preview table
   const months = Object.keys(_importData).sort();
   if(months.length) {
-    const fields = ['ig_views','ig_reach','ig_interactions','ig_link_clicks','ig_profile_visits','ig_follows'];
+    const isIG = _importPlatform === 'ig';
+    const fields = isIG
+      ? ['ig_views','ig_reach','ig_interactions','ig_link_clicks','ig_profile_visits','ig_follows']
+      : ['fb_views','fb_reach','fb_interactions','fb_link_clicks','fb_profile_visits','fb_follows'];
     const labels = ['Views','Reach','Interactions','Link Clicks','Profile Visits','Follows'];
     document.getElementById('imPreviewHead').innerHTML = '<tr><th>Month</th>' + labels.map(l=>`<th>${l}</th>`).join('') + '</tr>';
     document.getElementById('imPreviewBody').innerHTML = months.map(m => {
       const d = _importData[m]||{};
-      return '<tr><td style="font-weight:600;color:var(--white)">' + fmtMonth(m) + '</td>' + fields.map(f=>`<td>${fmt(d[f]||0)}</td>`).join('') + '</tr>';
+      return '<tr><td style="font-weight:600;color:var(--white)">'+fmtMonth(m)+'</td>'+fields.map(f=>`<td>${fmt(d[f]||0)}</td>`).join('')+'</tr>';
     }).join('');
     document.getElementById('imPreviewWrap').style.display = 'block';
     document.getElementById('imSaveBtn').style.display = 'inline-flex';
-    document.getElementById('imSaveBtn').textContent = `Import ${months.length} Month${months.length>1?'s':''} →`;
+    document.getElementById('imSaveBtn').textContent = `Import ${months.length} Month${months.length>1?'s':''} (${_importPlatform.toUpperCase()}) →`;
   }
-
-  document.getElementById('importModalBg').classList.add('show');
 }
 
 async function confirmMetaImport() {
@@ -903,7 +975,6 @@ async function confirmMetaImport() {
 
   let done = 0;
   for(const month of months) {
-    // Merge with existing data
     const existing = _months[month] || {};
     const merged   = { ...existing, ..._importData[month] };
     await window._saveMonthData(_cid, month, merged);
@@ -913,7 +984,7 @@ async function confirmMetaImport() {
     statusTxt.textContent = `Saving ${done} of ${months.length}...`;
   }
 
-  statusTxt.textContent = `✅ ${months.length} months imported successfully!`;
+  statusTxt.textContent = `✅ ${months.length} months imported (${_importPlatform.toUpperCase()})!`;
   btn.textContent = 'Done!';
   setTimeout(() => { closeImportModal(); renderAll(); }, 1200);
 }
@@ -926,7 +997,7 @@ function closeImportModal() {
   document.getElementById('imSaveBtn').disabled = false;
   document.getElementById('imSaveBtn').style.display = 'none';
   document.getElementById('imPreviewWrap').style.display = 'none';
-  _importData = {}; _importFiles = [];
+  _importData = {}; _importFiles = []; _importPlatform = null;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -935,9 +1006,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-window.closeImportModal   = closeImportModal;
-window.confirmMetaImport  = confirmMetaImport;
-window.handleMetaCSVImport= handleMetaCSVImport;
+window.closeImportModal    = closeImportModal;
+window.confirmMetaImport   = confirmMetaImport;
+window.handleMetaCSVImport = handleMetaCSVImport;
+window.openImportModal     = openImportModal;
+window.setImportPlatform   = setImportPlatform;
 </script>
 </body>
 </html>
