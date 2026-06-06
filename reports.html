@@ -511,13 +511,13 @@ async function loadReport(){
   document.getElementById('rClientName').textContent=CLIENT_NAMES[cid]||cid;
   document.getElementById('reportArea').classList.add('show');
   if(window._loadClientData) _months=await window._loadClientData(cid);
-  // Load ads data
+  // Reset ads data for this client
+  _adsData = null;
+  document.getElementById('adsSection').style.display = 'none';
+  // Load ads data specific to this client
   const adsDoc = _months['_ads'];
   if(adsDoc && adsDoc.adsData) {
     try { _adsData = JSON.parse(adsDoc.adsData); renderAds(); } catch(e) { _adsData = null; }
-  } else {
-    _adsData = null;
-    document.getElementById('adsSection').style.display = 'none';
   }
   delete _months['_ads']; // Don't show in month tabs
   renderAll();
