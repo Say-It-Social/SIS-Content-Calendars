@@ -739,16 +739,24 @@ window.saveMonthData=saveMonthData;window.copyShareLink=copyShareLink;window.set
 <script>
 // ── META CSV IMPORT ───────────────────────────────────────────
 const META_FILE_MAP = {
-  'views':              'ig_views',
-  'reach':              'ig_reach',
-  'content interactions':'ig_interactions',
-  'instagram link clicks':'ig_link_clicks',
-  'instagram profile visits':'ig_profile_visits',
-  'instagram follows':  'ig_follows',
-  'link clicks':        'ig_link_clicks',
-  'profile visits':     'ig_profile_visits',
-  'follows':            'ig_follows',
-  'interactions':       'ig_interactions',
+  'views':                    'ig_views',
+  'reach':                    'ig_reach',
+  'content interactions':     'ig_interactions',
+  'interactions':             'ig_interactions',
+  'instagram link clicks':    'ig_link_clicks',
+  'link clicks':              'ig_link_clicks',
+  'instagram profile visits': 'ig_profile_visits',
+  'profile visits':           'ig_profile_visits',
+  'visits':                   'ig_profile_visits',
+  'instagram profile visit':  'ig_profile_visits',
+  'instagram follows':        'ig_follows',
+  'follows':                  'ig_follows',
+  'instagram follow':         'ig_follows',
+  'viewers':                  'ig_reach',
+  'instagram reach':          'ig_reach',
+  'instagram views':          'ig_views',
+  'accounts reached':         'ig_reach',
+  'impressions':              'ig_views',
 };
 
 let _importData = {}; // monthKey → {field: value}
@@ -821,7 +829,16 @@ async function parseMetaCSV(file) {
       const metricRaw = clean[0] || '';
       // Remove all double-quote characters safely
       const metricName = metricRaw.split('"').join('').trim().toLowerCase();
-      const field = META_FILE_MAP[metricName] || null;
+      let field = META_FILE_MAP[metricName] || null;
+      // Fuzzy fallback — check if metric name contains known keywords
+      if(!field) {
+        if(metricName.includes('view') || metricName.includes('impression')) field = 'ig_views';
+        else if(metricName.includes('reach') || metricName.includes('viewer')) field = 'ig_reach';
+        else if(metricName.includes('interaction') || metricName.includes('engagement')) field = 'ig_interactions';
+        else if(metricName.includes('link') || metricName.includes('click')) field = 'ig_link_clicks';
+        else if(metricName.includes('visit') || metricName.includes('profile')) field = 'ig_profile_visits';
+        else if(metricName.includes('follow')) field = 'ig_follows';
+      }
 
       const monthly = {};
       for(let i=2; i<clean.length; i++) {
