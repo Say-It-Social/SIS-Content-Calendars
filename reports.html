@@ -430,8 +430,13 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
 
     <!-- ENGAGEMENT BREAKDOWN -->
     <div class="breakdown-card">
-      <div class="breakdown-title">Engagement Breakdown — Latest Month</div>
-      <div id="breakdownRows"></div>
+      <div class="chart-title">Platform Comparison — Latest Month</div>
+      <div class="chart-sub" style="margin-bottom:16px;">All 6 metrics side by side — Instagram vs Facebook</div>
+      <div class="chart-legend" style="margin-bottom:12px;">
+        <span class="cl-item"><span class="cl-dot" style="background:var(--ig)"></span>Instagram</span>
+        <span class="cl-item"><span class="cl-dot" style="background:var(--fb)"></span>Facebook</span>
+      </div>
+      <div style="position:relative;height:220px;"><canvas id="chartComparison" role="img" aria-label="Platform comparison bar chart">Platform comparison.</canvas></div>
     </div>
 
     <!-- HISTORY TABLE -->
@@ -617,28 +622,47 @@ function renderCharts(sk){
 }
 
 function renderBreakdown(){
-  const d=_months[_active]||{};
-  const igEng=+d.ig_interactions||0;
-  const fbEng=+d.fb_interactions||0;
-  const total=igEng+fbEng;
-  if(!total){document.getElementById('breakdownRows').innerHTML='<div style="font-size:12px;color:var(--muted);">No interaction data for this month.</div>';return;}
-
-  const rows=[
-    {label:'Instagram',val:igEng,color:'#E1306C'},
-    {label:'Facebook',val:fbEng,color:'#1877F2'},
-    {label:'IG Reach',val:+d.ig_reach||0,color:'rgba(225,48,108,0.5)'},
-    {label:'IG Link Clicks',val:+d.ig_link_clicks||0,color:'rgba(225,48,108,0.4)'},
-    {label:'IG Profile Visits',val:+d.ig_profile_visits||0,color:'rgba(225,48,108,0.3)'},
-    {label:'FB Reach',val:+d.fb_reach||0,color:'rgba(24,119,242,0.5)'},
-    {label:'FB Link Clicks',val:+d.fb_link_clicks||0,color:'rgba(24,119,242,0.4)'},
-    {label:'FB Profile Visits',val:+d.fb_profile_visits||0,color:'rgba(24,119,242,0.3)'},
+  const d = _months[_active]||{};
+  const metrics = [
+    {label:'Views',       ig: +d.ig_views||0,        fb: +d.fb_views||0},
+    {label:'Reach',       ig: +d.ig_reach||0,        fb: +d.fb_reach||0},
+    {label:'Interactions',ig: +d.ig_interactions||0, fb: +d.fb_interactions||0},
+    {label:'Link Clicks', ig: +d.ig_link_clicks||0,  fb: +d.fb_link_clicks||0},
+    {label:'Visits',      ig: +d.ig_profile_visits||0,fb:+d.fb_profile_visits||0},
+    {label:'Follows',     ig: +d.ig_follows||0,       fb: +d.fb_follows||0},
   ];
-  document.getElementById('breakdownRows').innerHTML=rows.map(r=>`
-    <div class="breakdown-row">
-      <span class="br-label">${r.label}</span>
-      <div class="br-bar-wrap"><div class="br-bar" style="width:${Math.round(r.val/total*100)}%;background:${r.color}"></div></div>
-      <span class="br-val">${fmt(r.val)} <span style="color:var(--muted);font-size:10px;">(${Math.round(r.val/total*100)}%)</span></span>
-    </div>`).join('');
+
+  const ctx = document.getElementById('chartComparison')?.getContext('2d');
+  if(!ctx) return;
+  if(_charts['chartComparison']) _charts['chartComparison'].destroy();
+
+  _charts['chartComparison'] = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: metrics.map(m=>m.label),
+      datasets: [
+        {label:'Instagram', data: metrics.map(m=>m.ig), backgroundColor:'rgba(225,48,108,0.85)', borderRadius:5, borderSkipped:false},
+        {label:'Facebook',  data: metrics.map(m=>m.fb), backgroundColor:'rgba(24,119,242,0.85)',  borderRadius:5, borderSkipped:false},
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: {display:false},
+        tooltip: {
+          backgroundColor:'#111827', titleColor:'#E8EDF8', bodyColor:'#6B7A99',
+          borderColor:'rgba(255,255,255,0.07)', borderWidth:1, padding:10, cornerRadius:8,
+          callbacks: {
+            label: ctx => ` ${ctx.dataset.label}: ${fmt(ctx.raw)}`
+          }
+        }
+      },
+      scales: {
+        x: {grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#6B7A99',font:{size:11,family:'Plus Jakarta Sans'}}},
+        y: {grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#6B7A99',font:{size:10,family:'Plus Jakarta Sans'},callback: v=>fmt(v)}}
+      }
+    }
+  });
 }
 
 function renderHistory(keys){
