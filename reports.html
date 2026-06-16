@@ -466,7 +466,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
         <span class="cl-item"><span class="cl-dot" style="background:var(--amber)"></span>Leads</span>
         <span class="cl-item"><span class="cl-dot" style="background:var(--blue)"></span>Reach ÷ 100</span>
       </div>
-      <div style="position:relative;height:180px;"><canvas id="chartCampaigns" role="img" aria-label="Campaign performance">Campaign comparison.</canvas></div>
+      <div style="position:relative;height:240px;"><canvas id="chartCampaigns" role="img" aria-label="Campaign performance">Campaign comparison.</canvas></div>
     </div>
 
         <div class="history-card">
@@ -623,21 +623,23 @@ function renderPlatform(){
   document.getElementById('fbMetrics').innerHTML=render(fbFields);
 }
 
-// Peak annotation plugin — highlights the highest value point on line charts
+// Peak annotation plugin — highlights the highest value point on line charts only
 const peakPlugin = {
   id: 'peakPlugin',
   afterDraw(chart) {
+    // Only run on line charts
+    if(chart.config.type !== 'line') return;
+    // Skip campaign chart
+    if(chart.canvas && chart.canvas.id === 'chartCampaigns') return;
     const ctx = chart.ctx;
     chart.data.datasets.forEach((dataset, di) => {
-      if(chart.getDatasetMeta(di).type !== 'line') return;
       const meta = chart.getDatasetMeta(di);
-      if(!meta.visible) return;
+      if(!meta.visible || meta.type !== 'line') return;
       let maxVal = -Infinity, maxIdx = -1;
       dataset.data.forEach((v,i) => { if(+v > maxVal){ maxVal=+v; maxIdx=i; } });
       if(maxIdx < 0 || maxVal <= 0) return;
       const pt = meta.data[maxIdx];
       if(!pt) return;
-      // Draw larger circle
       ctx.save();
       ctx.beginPath();
       ctx.arc(pt.x, pt.y, 6, 0, Math.PI*2);
@@ -646,7 +648,6 @@ const peakPlugin = {
       ctx.strokeStyle = '#fff';
       ctx.lineWidth = 2;
       ctx.stroke();
-      // Draw value label
       const label = maxVal >= 1000 ? (maxVal/1000).toFixed(1)+'K' : Math.round(maxVal).toLocaleString();
       ctx.fillStyle = '#fff';
       ctx.font = 'bold 10px Plus Jakarta Sans, sans-serif';
