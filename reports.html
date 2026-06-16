@@ -535,7 +535,22 @@ function renderAll(){
   _active=keys[0];
   const sorted=Object.keys(_months).sort();
   document.getElementById('rPeriod').textContent=`${fmtMonth(sorted[0])} — ${fmtMonth(sorted[sorted.length-1])} · ${keys.length} month${keys.length>1?'s':''}`;
-  tabs.innerHTML=keys.map(k=>`<button class="month-tab ${k===_active?'active':''}" onclick="setTab('${k}',this)">${fmtMonth(k)}</button>`).join('');
+
+  // Find best months for each metric
+  const bestMonths = {};
+  const metrics = ['ig_views','ig_reach','ig_interactions','ig_link_clicks','ig_follows',
+                   'fb_views','fb_reach','fb_interactions','fb_follows'];
+  metrics.forEach(m => {
+    let best = null, bestVal = -1;
+    keys.forEach(k => { const v = +(_months[k]?.[m]||0); if(v > bestVal){ bestVal=v; best=k; } });
+    if(best && bestVal > 0) bestMonths[best] = (bestMonths[best]||0) + 1;
+  });
+
+  tabs.innerHTML=keys.map(k=>{
+    const count = bestMonths[k]||0;
+    const badge = count > 0 ? `<span style="font-size:9px;margin-left:4px;">🏆${count>1?'×'+count:''}</span>` : '';
+    return `<button class="month-tab ${k===_active?'active':''}" onclick="setTab('${k}',this)">${fmtMonth(k)}${badge}</button>`;
+  }).join('');
   renderKPIs();renderPlatform();renderCharts(sorted);renderBreakdown();renderHistory(keys);
 }
 
@@ -607,6 +622,41 @@ function renderPlatform(){
   document.getElementById('igMetrics').innerHTML=render(igFields);
   document.getElementById('fbMetrics').innerHTML=render(fbFields);
 }
+
+// Peak annotation plugin — highlights the highest value point on line charts
+const peakPlugin = {
+  id: 'peakPlugin',
+  afterDraw(chart) {
+    const ctx = chart.ctx;
+    chart.data.datasets.forEach((dataset, di) => {
+      if(chart.getDatasetMeta(di).type !== 'line') return;
+      const meta = chart.getDatasetMeta(di);
+      if(!meta.visible) return;
+      let maxVal = -Infinity, maxIdx = -1;
+      dataset.data.forEach((v,i) => { if(+v > maxVal){ maxVal=+v; maxIdx=i; } });
+      if(maxIdx < 0 || maxVal <= 0) return;
+      const pt = meta.data[maxIdx];
+      if(!pt) return;
+      // Draw larger circle
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(pt.x, pt.y, 6, 0, Math.PI*2);
+      ctx.fillStyle = dataset.borderColor || '#fff';
+      ctx.fill();
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      // Draw value label
+      const label = maxVal >= 1000 ? (maxVal/1000).toFixed(1)+'K' : Math.round(maxVal).toLocaleString();
+      ctx.fillStyle = '#fff';
+      ctx.font = 'bold 10px Plus Jakarta Sans, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('▲ '+label, pt.x, pt.y - 12);
+      ctx.restore();
+    });
+  }
+};
+Chart.register(peakPlugin);
 
 function renderCharts(sk){
   Object.values(_charts).forEach(c=>c.destroy());_charts={};
