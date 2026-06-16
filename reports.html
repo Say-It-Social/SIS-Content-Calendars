@@ -463,10 +463,16 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
         </table>
       </div>
       <div class="chart-legend" style="margin-bottom:10px;">
-        <span class="cl-item"><span class="cl-dot" style="background:var(--amber)"></span>Leads</span>
-        <span class="cl-item"><span class="cl-dot" style="background:var(--blue)"></span>Reach ÷ 100</span>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:4px;">
+        <div>
+          <div style="font-size:10px;font-weight:700;color:var(--amber);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">🎯 Leads per Campaign</div>
+          <div style="position:relative;height:120px;"><canvas id="chartCampaignLeads" role="img" aria-label="Leads per campaign">Leads chart.</canvas></div>
+        </div>
+        <div>
+          <div style="font-size:10px;font-weight:700;color:var(--blue);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">📡 Reach per Campaign</div>
+          <div style="position:relative;height:120px;"><canvas id="chartCampaignReach" role="img" aria-label="Reach per campaign">Reach chart.</canvas></div>
+        </div>
       </div>
-      <div style="position:relative;height:240px;"><canvas id="chartCampaigns" role="img" aria-label="Campaign performance">Campaign comparison.</canvas></div>
     </div>
 
         <div class="history-card">
@@ -991,41 +997,40 @@ function renderAds() {
     </tr>`;
   }).join('');
 
-  // Campaign bar chart
-  const ctx = document.getElementById('chartCampaigns')?.getContext('2d');
-  if(ctx) {
-    if(_charts['chartCampaigns']) _charts['chartCampaigns'].destroy();
-    // Shorten campaign names
-    const labels = campaigns.map(c => c.name.length > 22 ? c.name.substring(0,20)+'…' : c.name);
-    _charts['chartCampaigns'] = new Chart(ctx, {
-      type:'bar',
-      data:{
-        labels,
-        datasets:[
-          {label:'Leads', data:campaigns.map(c=>c.leads), backgroundColor:'rgba(245,166,35,0.85)', borderRadius:5, borderSkipped:false, yAxisID:'y'},
-          {label:'Reach ÷ 100', data:campaigns.map(c=>Math.round(c.reach/100)), backgroundColor:'rgba(30,111,255,0.7)', borderRadius:5, borderSkipped:false, yAxisID:'y1'},
-        ]
-      },
-      options:{
-        responsive:true, maintainAspectRatio:false,
-        plugins:{
-          legend:{display:false},
-          tooltip:{
-            backgroundColor:'#111827',titleColor:'#E8EDF8',bodyColor:'#6B7A99',
-            borderColor:'rgba(255,255,255,0.07)',borderWidth:1,padding:10,cornerRadius:8,
-            callbacks:{
-              label: ctx => ctx.dataset.label==='Reach ÷ 100'
-                ? ` Reach: ${fmt(ctx.raw*100)}`
-                : ` Leads: ${ctx.raw}`
-            }
-          }
-        },
-        scales:{
-          x:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#6B7A99',font:{size:10,family:'Plus Jakarta Sans'},maxRotation:20}},
-          y:{position:'left',grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#F5A623',font:{size:10}},title:{display:true,text:'Leads',color:'#F5A623',font:{size:10}}},
-          y1:{position:'right',grid:{drawOnChartArea:false},ticks:{color:'#1E6FFF',font:{size:10}},title:{display:true,text:'Reach',color:'#1E6FFF',font:{size:10}}},
-        }
-      }
+  // Campaign charts — two separate simple charts side by side
+  const leadsCtx = document.getElementById('chartCampaignLeads')?.getContext('2d');
+  const reachCtx = document.getElementById('chartCampaignReach')?.getContext('2d');
+
+  if(_charts['chartCampaignLeads']) _charts['chartCampaignLeads'].destroy();
+  if(_charts['chartCampaignReach']) _charts['chartCampaignReach'].destroy();
+
+  const labels = campaigns.map(c => c.name.length > 25 ? c.name.substring(0,23)+'…' : c.name);
+
+  const baseOpts = {
+    indexAxis:'y',
+    responsive:true, maintainAspectRatio:false,
+    plugins:{
+      legend:{display:false},
+      tooltip:{backgroundColor:'#111827',titleColor:'#E8EDF8',bodyColor:'#6B7A99',borderColor:'rgba(255,255,255,0.07)',borderWidth:1,padding:10,cornerRadius:8}
+    },
+    scales:{
+      x:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#6B7A99',font:{size:10,family:'Plus Jakarta Sans'}}},
+      y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#E8EDF8',font:{size:11,family:'Plus Jakarta Sans'}}}
+    }
+  };
+
+  if(leadsCtx) {
+    _charts['chartCampaignLeads'] = new Chart(leadsCtx, {
+      type:'bar', indexAxis:'y',
+      data:{ labels, datasets:[{label:'Leads', data:campaigns.map(c=>c.leads), backgroundColor:'rgba(245,166,35,0.85)', borderRadius:4, borderSkipped:false}]},
+      options:{...baseOpts, plugins:{...baseOpts.plugins, tooltip:{...baseOpts.plugins.tooltip, callbacks:{label:c=>` Leads: ${c.raw}`}}}}
+    });
+  }
+  if(reachCtx) {
+    _charts['chartCampaignReach'] = new Chart(reachCtx, {
+      type:'bar', indexAxis:'y',
+      data:{ labels, datasets:[{label:'Reach', data:campaigns.map(c=>c.reach), backgroundColor:'rgba(30,111,255,0.85)', borderRadius:4, borderSkipped:false}]},
+      options:{...baseOpts, plugins:{...baseOpts.plugins, tooltip:{...baseOpts.plugins.tooltip, callbacks:{label:c=>` Reach: ${fmt(c.raw)}`}}}}
     });
   }
 }
