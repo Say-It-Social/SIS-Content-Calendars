@@ -269,14 +269,41 @@ footer { border-top: 1px solid var(--border); padding: 20px 0; text-align: cente
 .footer-text a:hover { color: var(--blue); }
 
 /* RESPONSIVE */
-@media (max-width: 768px) {
-  .wrap { padding: 0 20px; }
-  .nav-inner { padding: 0 20px; }
-  .nav-search { width: 150px; }
-  .clients-grid { grid-template-columns: 1fr; }
-  .stats-row { gap: 10px; }
-  .hero { padding: 36px 0 24px; }
+
+
+@media(max-width:768px){
+  .nav-inner{padding:0 16px;height:56px;gap:8px;}
+  .nav-mark{width:32px;height:32px;font-size:12px;}
+  .nav-brand-sub{display:none;}
+  .nav-right{gap:6px;}
+  .hero-title{font-size:clamp(22px,6vw,32px);}
+  .hero-sub{font-size:12px;}
+  .stat-pill{padding:10px 12px;}
+  .stat-n{font-size:18px;}
+  .stat-l{font-size:8px;}
+  .stats-row{gap:8px;}
+  .wrap,.nav-inner,.strategy,.filters,.week-section,.hashtags-section,.footer-note{padding-left:16px;padding-right:16px;}
+  .client-grid{grid-template-columns:1fr!important;}
+  .selector-bar{flex-direction:column;gap:10px;padding:16px;}
+  .sel-btn{width:100%;justify-content:center;}
+  .toolbar{gap:6px;flex-wrap:wrap;}
+  .search-wrap{min-width:100%;order:-1;}
+  .view-toggle{margin-left:0;}
+  .cards-grid,.posts-grid{grid-template-columns:1fr;}
+  .modal{padding:20px 16px;width:95vw;}
+  .form-grid{grid-template-columns:1fr;}
+  .form-field.full{grid-column:1;}
+  .modal-actions{flex-direction:column-reverse;}
+  .modal-save,.modal-cancel{width:100%;text-align:center;}
+  .footer-inner{grid-template-columns:1fr;}
 }
+@media(max-width:480px){
+  .stats-row{display:grid;grid-template-columns:1fr 1fr;}
+  .nav-right a[href="leads.html"]>span:last-child,
+  .nav-right a[href="team.html"]>span:last-child,
+  .nav-right a[href="reports.html"]>span:last-child{display:none;}
+}
+
 </style>
 <!-- Firebase Auth Guard -->
 <script type="module">
@@ -492,7 +519,8 @@ let clients = [
     emoji: '🏭',
     color: '#C8102E',
     phases: [
-      { name: 'Month 1 — Foundation Phase', desc: 'Transportation & 3PL spotlight · 25 posts', url: `${BASE}/rcsl/month1.html`, status: 'active', posts: 25, weeks: 4 }
+      { name: 'Month 1 — Foundation Phase', desc: 'Transportation & 3PL spotlight · 25 posts', url: `${BASE}/rcsl/month1.html`, status: 'active', posts: 25, weeks: 4 },
+      { name: 'CXO LinkedIn — Month 1', desc: 'Alpit Gor · Jash Gor · Nehal Kargatia · 36 posts · 3 profiles', url: `${BASE}/rcsl/cxo-month1.html`, status: 'active', posts: 36, weeks: 4 }
     ]
   },
   {
