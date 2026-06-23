@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>RCSL CXO LinkedIn Calendars — Month 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#15233f;--navy-soft:#22335a;--ink:#1d2433;--muted:#5d6577;--hair:#e7e9ef;--paper:#f6f7fa;--white:#fff;--red:#c8102e;--radius:12px;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"IBM Plex Sans",-apple-system,Segoe UI,sans-serif;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:"Archivo",-apple-system,Segoe UI,sans-serif;letter-spacing:-.01em}
+.hero{background:var(--navy);color:#fff;padding:44px 0 38px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;top:-60px;right:-40px;width:280px;height:280px;border:36px solid rgba(255,255,255,.04);transform:rotate(45deg)}
+.kicker{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#9fb3d6;font-weight:600;margin-bottom:10px}
+.hero h1{font-size:40px;line-height:1.04;font-weight:800}
+.hero h1 .accent{color:#7fa8e8}
+.hero .sub{font-size:15px;color:#c7d2e6;max-width:680px;margin-top:12px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.tag{font-size:12px;font-weight:500;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:4px 11px;border-radius:999px;color:#dde6f4}
+.brandline{position:absolute;top:24px;right:26px;text-align:right;font-family:"Archivo";font-weight:700;font-size:15px;color:#fff}
+.brandline span{color:var(--red)}
+.brandline small{display:block;font-weight:400;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#9fb3d6;margin-top:2px}
+.back-btn{position:absolute;top:24px;left:26px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:7px 14px;font-size:12px;font-weight:600;color:#fff;text-decoration:none;font-family:"Archivo";}
+.back-btn:hover{background:rgba(255,255,255,.18);}
+.tabs-bar{background:var(--white);border-bottom:2px solid var(--hair);position:sticky;top:0;z-index:50;padding:0 24px}
+.tabs-inner{max-width:1180px;margin:0 auto;display:flex;gap:0}
+.tab-btn{background:none;border:none;cursor:pointer;padding:18px 28px 16px;font-family:"Archivo",sans-serif;font-size:14px;font-weight:700;color:var(--muted);border-bottom:3px solid transparent;display:flex;flex-direction:column;align-items:center;gap:3px;transition:color .15s,border-color .15s}
+.tab-btn.active{color:var(--tc);border-bottom-color:var(--tc)}
+.tab-btn:hover{color:var(--tc)}
+.tab-role{font-family:"IBM Plex Sans";font-weight:400;font-size:10.5px;color:var(--muted)}
+.tab-btn.active .tab-role{color:var(--tc)}
+.profile-section{display:none;padding:28px 0}
+.profile-section.active{display:block}
+.profile-hero{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);border-left:6px solid;padding:20px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:14px}
+.ph-avatar{width:54px;height:54px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:"Archivo";font-weight:800;font-size:18px;color:#fff}
+.ph-name{font-family:"Archivo";font-weight:800;font-size:20px;color:var(--navy)}
+.ph-title{font-size:13px;color:var(--muted);margin-top:2px}
+.ph-link{font-size:12px;color:#0A66C2;text-decoration:none;margin-top:3px;display:block}
+.ph-count{margin-left:auto;text-align:right}
+.ph-num{font-family:"Archivo";font-weight:800;font-size:32px;color:var(--navy);display:block;line-height:1}
+.ph-label{font-size:11px;color:var(--muted)}
+.voice-box{background:var(--paper);border:1px solid var(--hair);border-radius:10px;padding:14px 18px;font-size:13px;color:var(--ink);line-height:1.6;margin-bottom:10px}
+.voice-box b{color:var(--navy)}
+.cadence-tag{display:inline-flex;align-items:center;gap:6px;background:var(--white);border:1px solid var(--hair);border-radius:999px;padding:5px 14px;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:22px}
+.week{margin-bottom:26px}
+.week-head{display:flex;align-items:flex-start;gap:14px;background:var(--navy-soft);color:#fff;border-radius:var(--radius);padding:14px 20px;margin-bottom:14px;flex-wrap:wrap}
+.week-head .wk{font-family:"Archivo";font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;background:var(--red);padding:5px 10px;border-radius:6px;white-space:nowrap}
+.week-head .focus{font-size:13px;color:#c7d2e6;line-height:1.5}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.card{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);overflow:hidden;border-top:5px solid;display:flex;flex-direction:column}
+.card .top{padding:12px 14px 8px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.day-label{font-family:"Archivo";font-weight:700;font-size:12px;color:var(--navy);background:var(--paper);border:1px solid var(--hair);padding:3px 10px;border-radius:6px;white-space:nowrap}
+.pill{font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:999px;color:#fff;white-space:nowrap}
+.art-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;background:#6D28D9;color:#fff}
+.fmt{font-size:10.5px;font-weight:600;color:var(--navy);background:var(--paper);border:1px solid var(--hair);padding:3px 8px;border-radius:6px;white-space:nowrap}
+.card .body{padding:4px 14px 12px;flex:1}
+.card h3{font-family:"Archivo";font-size:15px;font-weight:700;line-height:1.25;margin:7px 0 10px}
+.field{margin-bottom:8px}
+.field .lab{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.field p{font-size:12.5px;line-height:1.5;color:var(--ink)}
+.field.hook p{font-style:italic;color:var(--navy);font-weight:500}
+.dep{margin-top:8px;font-size:11px;color:#C2410C;background:#fbeee7;border:1px solid #f3d9c9;padding:6px 10px;border-radius:8px;display:flex;gap:6px}
+.dep b{font-weight:700;white-space:nowrap}
+.card-status{display:flex;align-items:center;gap:8px;padding:9px 14px;border-top:1px solid var(--hair);cursor:pointer;user-select:none;transition:filter .15s}
+.card-status:hover{filter:brightness(.96)}
+.s-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.s-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.asset-row{display:flex;gap:6px;padding:8px 14px;border-top:1px dashed var(--hair);flex-wrap:wrap;align-items:center}
+.asset-lbl{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-right:2px}
+.asset-btn{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;border:none;cursor:pointer;font-family:"IBM Plex Sans",sans-serif;text-decoration:none}
+.asset-gdrive{background:#e8f0fe;color:#1a73e8}
+.asset-gdrive:hover{background:#d2e3fc}
+.asset-onedrive{background:#e6f2fb;color:#0078d4}
+.asset-onedrive:hover{background:#cce4f6}
+.asset-add{background:var(--paper);color:var(--muted);border:1px solid var(--hair)}
+.asset-add:hover{background:var(--hair)}
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:center;justify-content:center}
+.modal-bg.open{display:flex}
+.modal{background:#fff;border-radius:14px;padding:24px;width:440px;max-width:95vw;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.modal h4{font-family:"Archivo";font-size:16px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.modal p{font-size:12px;color:var(--muted);margin-bottom:14px}
+.modal label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);display:block;margin-bottom:4px;margin-top:12px}
+.modal input{width:100%;border:1px solid var(--hair);border-radius:8px;padding:9px 12px;font-size:13px;font-family:"IBM Plex Sans",sans-serif;outline:none;color:var(--ink)}
+.modal input:focus{border-color:#0A66C2}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
+.modal-save{background:var(--navy);color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:"IBM Plex Sans",sans-serif}
+.modal-cancel{background:none;border:1px solid var(--hair);border-radius:8px;padding:9px 14px;font-size:13px;color:var(--muted);cursor:pointer;font-family:"IBM Plex Sans",sans-serif}
+.foot{background:var(--navy);color:#cdd8ea;padding:30px 0 36px;margin-top:24px}
+.foot h2{color:#fff;font-size:18px;margin-bottom:12px;font-weight:700}
+.foot ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.foot li{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 14px;font-size:12.5px}
+.foot li b{color:#fff;font-family:"Archivo";display:block;margin-bottom:3px}
+.foot .fin{margin-top:18px;font-size:11.5px;color:#8ea3c6}
+@media(max-width:768px){.hero h1{font-size:26px}.tab-btn{padding:14px 14px 12px;font-size:12px}.cards{grid-template-columns:1fr}.brandline,.back-btn{font-size:10px;padding:5px 8px}}
+@media print{body{background:#fff}.hero,.foot,.week-head{-webkit-print-color-adjust:exact;print-color-adjust:exact}.card,.week{break-inside:avoid}.tabs-bar{position:relative}}
+</style>
+</head>
+<body>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+const app = initializeApp({
+  apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
+  authDomain:"sayitsocial-calendar.firebaseapp.com",
+  projectId:"sayitsocial-calendar",
+  storageBucket:"sayitsocial-calendar.firebasestorage.app",
+  messagingSenderId:"232081824561",
+  appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
+});
+const db = getFirestore(app);
+const CID = "rcsl-cxo-month1";
+
+window._fbSaveStatus = async (postId, status) => {
+  await setDoc(doc(db,"campaigns",CID,"posts",postId),{status},{merge:true});
+};
+window._fbSaveAssets = async (postId, gdrive, onedrive) => {
+  await setDoc(doc(db,"campaigns",CID,"posts",postId),{gdrive,onedrive},{merge:true});
+};
+
+onSnapshot(collection(db,"campaigns",CID,"posts"), snap => {
+  snap.forEach(d => {
+    const data = d.data();
+    if(data.status){
+      const el = document.querySelector('[data-id="'+d.id+'"]');
+      if(el) applyStatus(el, data.status);
+    }
+    if(data.gdrive !== undefined || data.onedrive !== undefined){
+      updateAssetRow(d.id, data.gdrive||"", data.onedrive||"");
+    }
+  });
+});
+</script>
+
+<header class="hero">
+  <div class="wrap">
+    <a class="back-btn" href="../index.html">← Client Hub</a>
+    <div class="brandline">Say It <span>Social</span><small>Strategize · Innovate · Socialize</small></div>
+    <div class="kicker">CXO LinkedIn Calendars · Pilot — Month 1 · Three Profiles</div>
+    <h1>Riddhi Corporate Services<br><span class="accent">CXO LinkedIn — Month 1</span></h1>
+    <p class="sub">Three separate calendars, three distinct voices — all in one place. Switch between profiles using the tabs below. Each calendar is built around the individual's background, seniority, and audience.</p>
+    <div class="meta">
+      <span class="tag">Alpit Gor · Whole Time Director</span>
+      <span class="tag">Jash Gor · Group Director</span>
+      <span class="tag">Nehal Kargatia · CEO</span>
+      <span class="tag">3 posts/week per profile</span>
+      <span class="tag">36 posts total</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs-bar">
+  <div class="tabs-inner">
+    <button class="tab-btn" data-tab="alpit" onclick="switchTab(this)" style="--tc:#1B4D8E">Alpit Gor<span class="tab-role">Whole Time Director</span></button>
+    <button class="tab-btn" data-tab="jash" onclick="switchTab(this)" style="--tc:#0891B2">Jash Gor<span class="tab-role">Group Director</span></button>
+    <button class="tab-btn" data-tab="nehal" onclick="switchTab(this)" style="--tc:#0E7C66">Nehal Kargatia<span class="tab-role">Chief Executive Officer</span></button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- ALPIT -->
+<div class="profile-section" id="tab-alpit">
+  <div class="profile-hero" style="border-left-color:#1B4D8E">
+    <div class="ph-avatar" style="background:#1B4D8E">AG</div>
+    <div>
+      <div class="ph-name">Alpit Gor</div>
+      <div class="ph-title">Whole Time Director · Riddhi Corporate Services Limited</div>
+      <a class="ph-link" href="https://www.linkedin.com/in/alpit-gor/" target="_blank">linkedin.com/in/alpit-gor</a>
+    </div>
+    <div class="ph-count"><span class="ph-num">12</span><span class="ph-label">posts this month</span></div>
+  </div>
+  <div class="voice-box"><b>Voice brief:</b> The founder-entrepreneur. Started with a courier franchise in Ahmedabad, built RCSL from a data-entry startup into a 20,000+ deployed workforce company. His LinkedIn should feel like the promoter's unfiltered view — operational, candid, builder-minded. Not a polished corporate executive; a builder who happens to run a listed company.</div>
+  <div class="cadence-tag">🗓 3 posts/week — Mon, Wed, Fri</div>
+  <div class="week">
+  <div class="week-head"><span class="wk">Week 1</span><span class="focus">Introduce the founder voice. The story behind RCSL, in Alpit's own words.</span></div>
+  <div class="cards"><div class="card" style="border-top-color:#1B4D8E">
+  <div class="top"><span class="day-label">Monday</span><span class="pill" style="background:#1B4D8E">Industry Voice</span><span class="fmt">Text post</span></div>
+  <div class="body">
+    <h3>What building a B2B company from a courier franchise taught me about India</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>The formal economy runs on informal trust. Nobody tells you that.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>200-word personal text post. Alpit shares a specific early-career memory from running the Riddhi Worldwide Express franchise — what it taught him about the gap between enterprise promises and on-ground reality. Sets the founder-voice tone immediately. CTA: follow.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Text-only. Authentic, no polish needed.</p></div>
+    <div class="dep"><b>Needs:</b><span>Alpit: specific memory from the courier franchise days. SIS shapes; Alpit approves.</span></div>
+  </div>
+  <div class="asset-row" id="asset-alpit-1-1">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('alpit-1-1')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="alpit-1-1" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#0E7C66">
+  <div class="top"><span class="day-label">Wednesday</span><span class="pill" style="background:#0E7C66">Company &amp; Ops</span><span class="fmt">Carousel</span></div>
+  <div class="body">
+    <h3>From 1 telecom client in Rajasthan to 28 states — what scaling actually looks like</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>Slide 1: 2011. One client. Four states. No HRMS. One team.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>5-slide carousel. Each slide: one growth milestone in RCSL's journey — told not as a company timeline but as a series of problems they had to solve. Humanises the scale story.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Carousel: dark navy, one milestone per slide, minimal text, bold numbers. RCSL red accents.</p></div>
+    <div class="dep"><b>Needs:</b><span>Verify year-by-year milestones with RCSL.</span></div>
+  </div>
+  <div class="asset-row" id="asset-alpit-1-2">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('alpit-1-2')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="alpit-1-2" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#C2410C">
+  <div class="top"><span class="day-label">Friday</span><span class="pill" style="background:#C2410C">Personal &amp; Story</span><span class="fmt">Text post</span></div>
+  <div class="body">
+    <h3>Why I still visit sites, even now</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>Because if you stop going to the ground, the ground stops talking to you.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>150-word post. Alpit on why he personally does site visits — a specific recent visit, what he observed. Humanises a Director-level figure, builds trust with operations-buying audiences.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Text post. Optional: a candid site photo.</p></div>
+    <div class="dep"><b>Needs:</b><span>Alpit: recent site visit detail. SIS writes; Alpit approves.</span></div>
+  </div>
+  <div class="asset-row" id="asset-alpit-1-3">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('alpit-1-3')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="alpit-1-3" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div></div>
+</div><div class="week">
+  <div class="week-head"><span class="wk">Week 2</span><span class="focus">Deepen operational credibility. First industry POV. Engage the peer community.</span></div>
+  <div class="cards"><div class="card" style="border-top-color:#1B4D8E">
+  <div class="top"><span class="day-label">Monday</span><span class="pill" style="background:#1B4D8E">Industry Voice</span><span class="fmt">Text post</span></div>
+  <div class="body">
+    <h3>India's compliance burden on organized workforce companies is both a threat and a moat</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>Every unorganized competitor I've watched fail, failed at compliance. Not at operations.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>200-word POV. Alpit on how RCSL's 100% compliance posture — while expensive — is now a competitive moat as regulations tighten. Engages peer CXOs and procurement heads.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Text post. Optional: one compliance-stat graphic.</p></div>
+    <div class="dep"><b>Needs:</b><span>Alpit: validate the compliance observation.</span></div>
+  </div>
+  <div class="asset-row" id="asset-alpit-2-1">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('alpit-2-1')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="alpit-2-1" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#0E7C66">
+  <div class="top"><span class="day-label">Wednesday</span><span class="pill" style="background:#0E7C66">Company &amp; Ops</span><span class="fmt">Carousel</span></div>
+  <div class="body">
+    <h3>The tech we built ourselves — and why we didn't buy it</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>Buying HRMS felt like borrowing someone else's brain.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>4-slide carousel. RCSL's in-house platforms — why RCSL built instead of bought, one real operational problem per slide that an off-the-shelf product couldn't solve.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Carousel: clean, icon-led, one problem/solution per slide.</p></div>
+    <div class="dep"><b>Needs:</b><span>Confirm platform names cleared for public use.</span></div>
+  </div>
+  <div class="asset-row" id="asset-alpit-2-2">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('alpit-2-2')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="alpit-2-2" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#475569">
+  <div class="top"><span class="day-label">Friday</span><span class="pill" style="background:#475569">Engagement</span><span class="fmt">Poll / Question</span></div>
+  <div class="body">
+    <h3>What breaks first in enterprise workforce operations at scale?</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>I've seen all four of these fail. Curious which one your teams fight most.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>Poll with 4 options: Compliance &amp; statutory filings / Payroll accuracy at scale / Attendance &amp; shift management / Attrition and re-deployment. Alpit comments with his own answer post-close.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Native LinkedIn poll. No design needed.</p></div>
+    <div class="dep"><b>Needs:</b><span>Alpit: approve poll options and write the follow-up comment.</span></div>
+  </div>
+  <div class="asset-row" id="asset-alpit-2-3">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('alpit-2-3')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="alpit-2-3" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div></div>
+</div><div class="week">
+  <div class="week-head"><span class="wk">Week 3</span><span class="focus">LinkedIn Article week. IR-visible post. Build the investor-credibility layer.</span></div>
+  <div class="cards"><div class="card" style="border-top-color:#1B4D8E">
+  <div class="top"><span class="day-label">Monday</span><span class="pill" style="background:#1B4D8E">Industry Voice</span><span class="art-badge">&#9998; Article</span><span class="fmt">LinkedIn Article</span></div>
+  <div class="body">
+    <h3>What 15 years of building RCSL taught me about India's B2B services market</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>Year 1 taught me the market exists. Year 5 taught me it's harder than it looks. Year 15 taught me why that's an advantage.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>700–900 word article. Alpit's 5 lessons from 15 years of running an operations company in India. Candid, specific, not promotional. The Manish Sabharwal model — writes like a practitioner, not a marketer.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Article cover: founder + operations imagery. Author photo prominent.</p></div>
+    <div class="dep"><b>Needs:</b><span>SIS drafts from brief; Alpit adds personal observations and approves.</span></div>
+  </div>
+  <div class="asset-row" id="asset-alpit-3-1">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('alpit-3-1')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="alpit-3-1" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#6D28D9">
+  <div class="top"><span class="day-label">Wednesday</span><span class="pill" style="background:#6D28D9">Milestones &amp; IR</span><span class="fmt">Text post</span></div>
+  <div class="body">
+    <h3>Why we chose to list on BSE — and stay debt-free</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>We had options. We chose accountability.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>150-word post. Alpit on the decision to list and maintain a zero-debt posture — the philosophy behind it, not just the outcome. Speaks to investors and enterprise procurement heads simultaneously.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Text-led. Optional: one financial-philosophy graphic.</p></div>
+    <div class="dep"><b>Needs:</b><span>Company secretary to review before publishing. RCSL is listed.</span></div>
+  </div>
+  <div class="asset-row" id="asset-alpit-3-2">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('alpit-3-2')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="alpit-3-2" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#C2410C">
+  <div class="top"><span class="day-label">Friday</span><span class="pill" style="background:#C2410C">Personal &amp; Story</span><span class="fmt">Carousel</span></div>
+  <div class="body">
+    <h3>5 things I'd tell my 2010 self about running a B2B company</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>Lesson 1: Your first client will teach you more than your MBA ever did.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>5-slide personal-lessons carousel. Real, specific, slightly uncomfortable lessons from the early RCSL years. Designed for saves and shares.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Carousel: one lesson per slide, clean light background, Alpit's photo on the cover slide.</p></div>
+    <div class="dep"><b>Needs:</b><span>Alpit: 5 real lessons — SIS shapes into carousel copy.</span></div>
+  </div>
+  <div class="asset-row" id="asset-alpit-3-3">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('alpit-3-3')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="alpit-3-3" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div></div>
+</div><div class="week">
+  <div class="week-head"><span class="wk">Week 4</span><span class="focus">Full cadence. Community month-close. Set up Month 2.</span></div>
+  <div class="cards"><div class="card" style="border-top-color:#1B4D8E">
+  <div class="top"><span class="day-label">Monday</span><span class="pill" style="background:#1B4D8E">Industry Voice</span><span class="fmt">Text post</span></div>
+  <div class="body">
+    <h3>The one question enterprise clients always ask before they sign</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>It's not about price. It's not even about scale. It's about what happens when something goes wrong.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>200-word post on RCSL's approach to accountability — the 'what happens when it breaks' question that separates serious operators from vendors. CTA: what's your team's answer?</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Text post. Optional: one supporting visual.</p></div>
+    <div class="dep"><b>Needs:</b><span>Alpit: approve the core argument.</span></div>
+  </div>
+  <div class="asset-row" id="asset-alpit-4-1">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('alpit-4-1')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="alpit-4-1" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#C2410C">
+  <div class="top"><span class="day-label">Wednesday</span><span class="pill" style="background:#C2410C">Personal &amp; Story</span><span class="fmt">Text post</span></div>
+  <div class="body">
+    <h3>30 days on LinkedIn — honest review from a builder who's usually heads-down</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>I'm more comfortable on a site visit than on this platform. Here's what I learned.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>150-word month-close reflection. Genuine, slightly self-deprecating. Builds authenticity, invites followers to shape Month 2.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Text-only.</p></div>
+    <div class="dep"><b>Needs:</b><span>Alpit: genuine reflection including what surprised him.</span></div>
+  </div>
+  <div class="asset-row" id="asset-alpit-4-2">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('alpit-4-2')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="alpit-4-2" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#0E7C66">
+  <div class="top"><span class="day-label">Friday</span><span class="pill" style="background:#0E7C66">Company &amp; Ops</span><span class="fmt">Carousel</span></div>
+  <div class="body">
+    <h3>Transportation &amp; 3PL — how RCSL runs it (the real version)</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>It's not about having the most trucks. It's about what happens between the first call and final delivery.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>4-slide capability carousel aligned with the Month 1 company-page spotlight. Alpit's voice, not brand language.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Carousel: operational imagery, RCSL branding subtle, one real process per slide.</p></div>
+    
+  </div>
+  <div class="asset-row" id="asset-alpit-4-3">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('alpit-4-3')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="alpit-4-3" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div></div>
+</div>
+</div>
+
+<!-- JASH -->
+<div class="profile-section" id="tab-jash">
+  <div class="profile-hero" style="border-left-color:#0891B2">
+    <div class="ph-avatar" style="background:#0891B2">JG</div>
+    <div>
+      <div class="ph-name">Jash Gor</div>
+      <div class="ph-title">Group Director · Riddhi Corporate Services Limited</div>
+      <a class="ph-link" href="https://www.linkedin.com/in/jash-gor-630a51224/" target="_blank">linkedin.com/in/jash-gor-630a51224</a>
+    </div>
+    <div class="ph-count"><span class="ph-num">12</span><span class="ph-label">posts this month</span></div>
+  </div>
+  <div class="voice-box"><b>Voice brief:</b> The next-generation voice. Jash brings the energy of a young, internationally educated entrepreneur who is building inside a family business while expanding it outward. His LinkedIn should feel different from Alpit's — more conversational, more curious, more experimental. He bridges RCSL's traditional strengths with new-business thinking, investment logic, and a millennial perspective on India's economy.</div>
+  <div class="cadence-tag">🗓 3 posts/week — Tue, Thu, Sat</div>
+  <div class="week">
+  <div class="week-head"><span class="wk">Week 1</span><span class="focus">Introduce the next-gen voice. Establish that RCSL has a generation of leadership behind it.</span></div>
+  <div class="cards"><div class="card" style="border-top-color:#C2410C">
+  <div class="top"><span class="day-label">Tuesday</span><span class="pill" style="background:#C2410C">Personal &amp; Story</span><span class="fmt">Text post</span></div>
+  <div class="body">
+    <h3>Growing up inside a company — and why I'm grateful it was RCSL</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>Most MBAs learn business in a classroom. I learned it on the floor of a warehouse at 16.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>200-word post. Jash on growing up in the Riddhi Group — specific memories from watching RCSL be built, what it shaped in him as a leader. Humanises the second-generation narrative.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Text-only. Authentic, first-person.</p></div>
+    <div class="dep"><b>Needs:</b><span>Jash: personal memory. SIS shapes; Jash approves.</span></div>
+  </div>
+  <div class="asset-row" id="asset-jash-1-1">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('jash-1-1')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="jash-1-1" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#0891B2">
+  <div class="top"><span class="day-label">Thursday</span><span class="pill" style="background:#0891B2">Next-Gen &amp; Innovation</span><span class="fmt">Carousel</span></div>
+  <div class="body">
+    <h3>3 things India's logistics sector will look like in 2030 — from someone building inside it</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>The companies that win 2030 are making decisions now that look wrong today.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>3-slide forward-looking carousel. Jash's predictions for how logistics, workforce, and B2B services will evolve — specific, opinionated, not generic. Positions him as a next-gen thinker.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Carousel: bold slides, one prediction per slide, conversational tone.</p></div>
+    <div class="dep"><b>Needs:</b><span>Jash: validate the 3 predictions. SIS writes.</span></div>
+  </div>
+  <div class="asset-row" id="asset-jash-1-2">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('jash-1-2')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="jash-1-2" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#C2410C">
+  <div class="top"><span class="day-label">Saturday</span><span class="pill" style="background:#C2410C">Personal &amp; Story</span><span class="fmt">Text post</span></div>
+  <div class="body">
+    <h3>What my MBA taught me about RCSL — and what RCSL taught me that my MBA couldn't</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>Supply chain theory is fascinating. Running a supply chain at 3am is different.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>150-word post. Light, self-aware comparison of classroom learning vs RCSL ground reality. Appeals to the young professional and MBA audience.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Text-only.</p></div>
+    <div class="dep"><b>Needs:</b><span>Jash: 1-2 real examples of the classroom vs ground contrast.</span></div>
+  </div>
+  <div class="asset-row" id="asset-jash-1-3">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('jash-1-3')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="jash-1-3" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div></div>
+</div><div class="week">
+  <div class="week-head"><span class="wk">Week 2</span><span class="focus">New business thinking. International lens. Engage with startup/VC/business community.</span></div>
+  <div class="cards"><div class="card" style="border-top-color:#0891B2">
+  <div class="top"><span class="day-label">Tuesday</span><span class="pill" style="background:#0891B2">Next-Gen &amp; Innovation</span><span class="fmt">Text post</span></div>
+  <div class="body">
+    <h3>Why I think RCSL's biggest opportunity isn't in logistics — it's in the data we collect running logistics</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>Every shipment is a data point. Most companies treat it as a cost. We're starting to treat it as an asset.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>200-word post. Jash on RCSL's data opportunity — the by-product of running operations at scale. A modern, VC-adjacent angle that opens RCSL to a different category of follower.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Text post. Optional: one data-angle graphic.</p></div>
+    <div class="dep"><b>Needs:</b><span>Jash: validate the data-asset argument. SIS writes.</span></div>
+  </div>
+  <div class="asset-row" id="asset-jash-2-1">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('jash-2-1')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="jash-2-1" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#0E7C66">
+  <div class="top"><span class="day-label">Thursday</span><span class="pill" style="background:#0E7C66">Company &amp; Ops</span><span class="fmt">Carousel</span></div>
+  <div class="body">
+    <h3>New business I'm building inside RCSL — and the thinking behind it</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>I could have joined a startup. I decided to build one inside a listed company. Here's why.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>4-slide carousel on Jash's new business initiatives at RCSL — the mandate, the logic, one initiative currently underway (no confidential detail, conceptual level only).</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Carousel: conversational tone, Jash-forward personal framing, RCSL context.</p></div>
+    <div class="dep"><b>Needs:</b><span>Jash: confirm what can be disclosed publicly about new business directions.</span></div>
+  </div>
+  <div class="asset-row" id="asset-jash-2-2">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('jash-2-2')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="jash-2-2" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#475569">
+  <div class="top"><span class="day-label">Saturday</span><span class="pill" style="background:#475569">Engagement</span><span class="fmt">Poll / Question</span></div>
+  <div class="body">
+    <h3>If you were building a new B2B business inside an existing listed company, what would be your first move?</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>I'm genuinely doing this. Curious what others would prioritize.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>Poll: 4 options — Prove a new revenue stream fast / Build the team first / Find external partners / Fix internal systems. Jash comments with what he actually chose.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Native LinkedIn poll.</p></div>
+    <div class="dep"><b>Needs:</b><span>Jash: approve and write the follow-up comment.</span></div>
+  </div>
+  <div class="asset-row" id="asset-jash-2-3">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('jash-2-3')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="jash-2-3" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div></div>
+</div><div class="week">
+  <div class="week-head"><span class="wk">Week 3</span><span class="focus">Article week. International/investment angle. Expand audience beyond the RCSL orbit.</span></div>
+  <div class="cards"><div class="card" style="border-top-color:#0891B2">
+  <div class="top"><span class="day-label">Tuesday</span><span class="pill" style="background:#0891B2">Next-Gen &amp; Innovation</span><span class="art-badge">&#9998; Article</span><span class="fmt">LinkedIn Article</span></div>
+  <div class="body">
+    <h3>Why the next wave of Indian B2B conglomerates will look nothing like the last</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>The companies that scale in India over the next decade will combine family-business trust with startup speed. Most won't know how to do both.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>600–800 word article. Jash's perspective on the evolution of Indian B2B conglomerates — the challenge of being next-gen inside an established family business, and what makes RCSL different.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Article cover: modern, forward-looking visual.</p></div>
+    <div class="dep"><b>Needs:</b><span>SIS drafts framework; Jash adds personal perspective. His most personal and differentiated content.</span></div>
+  </div>
+  <div class="asset-row" id="asset-jash-3-1">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('jash-3-1')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="jash-3-1" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#C2410C">
+  <div class="top"><span class="day-label">Thursday</span><span class="pill" style="background:#C2410C">Personal &amp; Story</span><span class="fmt">Text post</span></div>
+  <div class="body">
+    <h3>The business lesson my father taught me that no MBA covers</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>He said: the client doesn't care what you promised last month. They care what you delivered this morning.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>150-word post. A specific business lesson from Alpit Gor — told by Jash as a son, not as a corporate quote. Humanises both of them, reinforces the RCSL family-leadership story.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Text-only.</p></div>
+    <div class="dep"><b>Needs:</b><span>Jash: a real moment/lesson. SIS shapes.</span></div>
+  </div>
+  <div class="asset-row" id="asset-jash-3-2">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('jash-3-2')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="jash-3-2" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#0E7C66">
+  <div class="top"><span class="day-label">Saturday</span><span class="pill" style="background:#0E7C66">Company &amp; Ops</span><span class="fmt">Carousel</span></div>
+  <div class="body">
+    <h3>RCSL at 15 years — what it looks like from the next generation's seat</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>Some days I'm proud. Some days I'm impatient. Always both.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>4-slide carousel on what RCSL's 15-year journey looks like through Jash's eyes — milestones he witnessed, moments that shaped him, what he's pushing for next.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Carousel: mix of personal reflection and business data. Emotional and factual in equal parts.</p></div>
+    <div class="dep"><b>Needs:</b><span>Jash: 4 real observations or moments. SIS writes.</span></div>
+  </div>
+  <div class="asset-row" id="asset-jash-3-3">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('jash-3-3')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="jash-3-3" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div></div>
+</div><div class="week">
+  <div class="week-head"><span class="wk">Week 4</span><span class="focus">Full cadence. Build community. Set up Month 2 narrative.</span></div>
+  <div class="cards"><div class="card" style="border-top-color:#0891B2">
+  <div class="top"><span class="day-label">Tuesday</span><span class="pill" style="background:#0891B2">Next-Gen &amp; Innovation</span><span class="fmt">Text post</span></div>
+  <div class="body">
+    <h3>I spent this month on LinkedIn talking about RCSL. Here's what surprised me.</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>I expected people to engage with the business stuff. They engaged with the honest stuff.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>150-word month-close reflection from Jash. What content performed, what surprised him, what he'll do differently in Month 2. Transparent, builds audience trust.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Text-only.</p></div>
+    <div class="dep"><b>Needs:</b><span>Jash: genuine data and reaction.</span></div>
+  </div>
+  <div class="asset-row" id="asset-jash-4-1">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('jash-4-1')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="jash-4-1" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#475569">
+  <div class="top"><span class="day-label">Thursday</span><span class="pill" style="background:#475569">Engagement</span><span class="fmt">Text post</span></div>
+  <div class="body">
+    <h3>Commenting more than posting this week — here's why</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>The best LinkedIn ROI I've found isn't in your own posts. It's in being genuinely useful in someone else's comments.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>100-word engagement-philosophy post. Positions Jash as someone who uses the platform intelligently, not just broadcasts.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Text-only.</p></div>
+    
+  </div>
+  <div class="asset-row" id="asset-jash-4-2">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('jash-4-2')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="jash-4-2" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#0E7C66">
+  <div class="top"><span class="day-label">Saturday</span><span class="pill" style="background:#0E7C66">Company &amp; Ops</span><span class="fmt">Text post</span></div>
+  <div class="body">
+    <h3>The question I ask in every new business conversation at RCSL</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>Not 'can we do this?' but 'should we be the ones doing this?'</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>150-word post on Jash's new-business evaluation philosophy at RCSL. Builds the 'disciplined next-gen leader' persona alongside the entrepreneurial one.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Text-only.</p></div>
+    <div class="dep"><b>Needs:</b><span>Jash: approve the core framing.</span></div>
+  </div>
+  <div class="asset-row" id="asset-jash-4-3">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('jash-4-3')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="jash-4-3" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div></div>
+</div>
+</div>
+
+<!-- NEHAL -->
+<div class="profile-section" id="tab-nehal">
+  <div class="profile-hero" style="border-left-color:#0E7C66">
+    <div class="ph-avatar" style="background:#0E7C66">NK</div>
+    <div>
+      <div class="ph-name">Nehal Kargatia</div>
+      <div class="ph-title">Chief Executive Officer · Riddhi Corporate Services Limited</div>
+      <a class="ph-link" href="https://www.linkedin.com/in/nehal-kargatia/" target="_blank">linkedin.com/in/nehal-kargatia</a>
+    </div>
+    <div class="ph-count"><span class="ph-num">12</span><span class="ph-label">posts this month</span></div>
+  </div>
+  <div class="voice-box"><b>Voice brief:</b> The professional CEO. Newly appointed (August 2025), which is actually a content opportunity: the "new CEO setting the direction" narrative is one of the strongest entry points on LinkedIn. Nehal's voice should feel strategic, execution-focused, and client-oriented. Speaks to procurement heads, operational leaders, and the investor community.</div>
+  <div class="cadence-tag">🗓 3 posts/week — Mon, Wed, Fri</div>
+  <div class="week">
+  <div class="week-head"><span class="wk">Week 1</span><span class="focus">Introduce the CEO. Set the direction. Give the market a reason to follow.</span></div>
+  <div class="cards"><div class="card" style="border-top-color:#6D28D9">
+  <div class="top"><span class="day-label">Monday</span><span class="pill" style="background:#6D28D9">Milestones &amp; IR</span><span class="fmt">Text post</span></div>
+  <div class="body">
+    <h3>90 days in as CEO of RCSL — what I've learned, what I'm changing, what I'm keeping</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>New CEOs are expected to say everything is great. I'd rather say what's real.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>250-word post. Nehal's honest 90-day reflection — one thing he's reinforcing, one thing he's changing, one thing that surprised him. The 'new CEO in public' post is one of the highest-engagement formats on LinkedIn.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Text-dominant. Optional: Nehal's photo from a site/office visit.</p></div>
+    <div class="dep"><b>Needs:</b><span>Nehal: the 3 honest observations. SIS shapes; Nehal approves. Company secretary aware.</span></div>
+  </div>
+  <div class="asset-row" id="asset-nehal-1-1">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('nehal-1-1')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="nehal-1-1" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#0E7C66">
+  <div class="top"><span class="day-label">Wednesday</span><span class="pill" style="background:#0E7C66">Company &amp; Ops</span><span class="fmt">Carousel</span></div>
+  <div class="body">
+    <h3>What RCSL does — explained the way I'd explain it to a client in 5 minutes</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>Most companies that could use RCSL don't know RCSL exists. That's a problem I'm fixing.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>5-slide capability carousel written from Nehal's CEO perspective — what RCSL solves, for whom, and why it's different. Not a product brochure; a CEO's conviction statement.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Carousel: clean, strategic framing, navy/white, one service angle per slide.</p></div>
+    <div class="dep"><b>Needs:</b><span>Align with the company-page service taxonomy once locked.</span></div>
+  </div>
+  <div class="asset-row" id="asset-nehal-1-2">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('nehal-1-2')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="nehal-1-2" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#1B4D8E">
+  <div class="top"><span class="day-label">Friday</span><span class="pill" style="background:#1B4D8E">Industry Voice</span><span class="fmt">Text post</span></div>
+  <div class="body">
+    <h3>The enterprise operations problem nobody pitches to the board — until it breaks</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>By the time compliance risk reaches the boardroom, it's already a crisis.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>200-word post. Nehal on the gap between enterprise operational risk and boardroom awareness — a problem RCSL is specifically built to solve. Speaks directly to CXO peers and procurement heads.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Text post. Optional: one risk-framework graphic.</p></div>
+    <div class="dep"><b>Needs:</b><span>Nehal: validate with a real client-side observation.</span></div>
+  </div>
+  <div class="asset-row" id="asset-nehal-1-3">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('nehal-1-3')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="nehal-1-3" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div></div>
+</div><div class="week">
+  <div class="week-head"><span class="wk">Week 2</span><span class="focus">Strategic direction. Client-facing credibility. Connect CEO voice to company momentum.</span></div>
+  <div class="cards"><div class="card" style="border-top-color:#0E7C66">
+  <div class="top"><span class="day-label">Monday</span><span class="pill" style="background:#0E7C66">Company &amp; Ops</span><span class="fmt">Text post</span></div>
+  <div class="body">
+    <h3>Three things I'm prioritising in RCSL's next phase of growth</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>Scale is not the goal. Scalable quality is.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>200-word post. Nehal's 3 strategic priorities for the coming year — without confidential detail, but specific enough to be substantive. Positions the CEO as having a clear, communicated direction.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Text-dominant. Optional: simple priorities graphic.</p></div>
+    <div class="dep"><b>Needs:</b><span>Nehal: 3 real priorities. SIS writes. Company secretary aware.</span></div>
+  </div>
+  <div class="asset-row" id="asset-nehal-2-1">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('nehal-2-1')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="nehal-2-1" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#1B4D8E">
+  <div class="top"><span class="day-label">Wednesday</span><span class="pill" style="background:#1B4D8E">Industry Voice</span><span class="fmt">Carousel</span></div>
+  <div class="body">
+    <h3>How India's enterprise outsourcing market is changing — and what it means for buyers</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>Three years ago, clients asked 'can you do this?' Today they ask 'can you prove you've done this?'</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>4-slide carousel. Nehal on the shift in how enterprise buyers evaluate outsourcing partners — more accountability, more compliance focus, more technology expectation. Positions RCSL's model as the answer.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Carousel: strategic, buyer-facing, clean layout.</p></div>
+    <div class="dep"><b>Needs:</b><span>Nehal: validate the 3-year market shift observation.</span></div>
+  </div>
+  <div class="asset-row" id="asset-nehal-2-2">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('nehal-2-2')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="nehal-2-2" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#475569">
+  <div class="top"><span class="day-label">Friday</span><span class="pill" style="background:#475569">Engagement</span><span class="fmt">Poll / Question</span></div>
+  <div class="body">
+    <h3>What's the biggest gap between what enterprise clients expect from an outsourcing partner and what they usually get?</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>I ask a version of this in every sales conversation. Genuinely curious about the broader view.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>Poll: 4 options — SLA accountability / Compliance &amp; statutory / Technology integration / Communication &amp; transparency. Nehal follows up with RCSL's answer.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Native LinkedIn poll.</p></div>
+    <div class="dep"><b>Needs:</b><span>Nehal: approve options and write the follow-up.</span></div>
+  </div>
+  <div class="asset-row" id="asset-nehal-2-3">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('nehal-2-3')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="nehal-2-3" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div></div>
+</div><div class="week">
+  <div class="week-head"><span class="wk">Week 3</span><span class="focus">Article week. CEO thought leadership peaks. IR-visible post.</span></div>
+  <div class="cards"><div class="card" style="border-top-color:#1B4D8E">
+  <div class="top"><span class="day-label">Monday</span><span class="pill" style="background:#1B4D8E">Industry Voice</span><span class="art-badge">&#9998; Article</span><span class="fmt">LinkedIn Article</span></div>
+  <div class="body">
+    <h3>Why the next 5 years will determine which B2B operations companies actually matter</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>The market is separating. Organised, compliant, tech-enabled operators on one side. Everyone else on the other.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>700–900 word article. Nehal's view on the B2B operations market bifurcation — where RCSL is positioned, what the separation means for enterprise buyers, and why organized operators win long-term. His flagship piece of Month 1 content.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Article: professional cover image, strategic framing, Nehal's byline prominent.</p></div>
+    <div class="dep"><b>Needs:</b><span>SIS drafts; Nehal adds CEO perspective and approves.</span></div>
+  </div>
+  <div class="asset-row" id="asset-nehal-3-1">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('nehal-3-1')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="nehal-3-1" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#6D28D9">
+  <div class="top"><span class="day-label">Wednesday</span><span class="pill" style="background:#6D28D9">Milestones &amp; IR</span><span class="fmt">Text post</span></div>
+  <div class="body">
+    <h3>What it means to lead a listed, debt-free company in 2026 — from the CEO seat</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>My job is to make sure that 'listed' and 'debt-free' are still true in 5 years.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>150-word post. Nehal on the discipline of running RCSL — debt-free posture, public accountability, long-term thinking. Appeals to IR-adjacent audiences and enterprise procurement.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Text-dominant. Optional: financial-philosophy visual.</p></div>
+    <div class="dep"><b>Needs:</b><span>Company secretary review required before publishing.</span></div>
+  </div>
+  <div class="asset-row" id="asset-nehal-3-2">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('nehal-3-2')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="nehal-3-2" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#0E7C66">
+  <div class="top"><span class="day-label">Friday</span><span class="pill" style="background:#0E7C66">Company &amp; Ops</span><span class="fmt">Carousel</span></div>
+  <div class="body">
+    <h3>How RCSL delivers at scale — the operating model, simplified</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>20,000+ people deployed, 28 states, 15+ years. The system behind the number.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>4-slide carousel. Nehal breaks down RCSL's delivery model — how it actually works at scale. CEO-level explanation of what makes RCSL reliable.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Carousel: systems/process visual, strategic tone.</p></div>
+    <div class="dep"><b>Needs:</b><span>Align with company-page content for the month.</span></div>
+  </div>
+  <div class="asset-row" id="asset-nehal-3-3">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('nehal-3-3')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="nehal-3-3" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div></div>
+</div><div class="week">
+  <div class="week-head"><span class="wk">Week 4</span><span class="focus">Month close. CEO builds community. Sets the narrative for Month 2.</span></div>
+  <div class="cards"><div class="card" style="border-top-color:#1B4D8E">
+  <div class="top"><span class="day-label">Monday</span><span class="pill" style="background:#1B4D8E">Industry Voice</span><span class="fmt">Text post</span></div>
+  <div class="body">
+    <h3>What enterprise buyers should demand from operations partners in 2026 (but rarely do)</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>Ask for the audit trail, not just the SLA report.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>200-word post. Nehal on what sophisticated buyers should be asking — essentially an argument for the kind of operations partner RCSL is. Positions CEO as an advisor, not a salesperson.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Text post. Optional: buyer-checklist graphic.</p></div>
+    <div class="dep"><b>Needs:</b><span>Nehal: approve the buyer-demand framing.</span></div>
+  </div>
+  <div class="asset-row" id="asset-nehal-4-1">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('nehal-4-1')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="nehal-4-1" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#475569">
+  <div class="top"><span class="day-label">Wednesday</span><span class="pill" style="background:#475569">Engagement</span><span class="fmt">Text post</span></div>
+  <div class="body">
+    <h3>I spent this month showing up on LinkedIn as a CEO for the first time. Here's what I noticed.</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>More people are watching than commenting. That's fine. Keep going.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>150-word honest reflection. Nehal on his first month of consistent LinkedIn presence as CEO — what engaged, what surprised him, what he'll do differently. Transparency builds long-term trust.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Text-only.</p></div>
+    <div class="dep"><b>Needs:</b><span>Nehal: genuine data and reaction.</span></div>
+  </div>
+  <div class="asset-row" id="asset-nehal-4-2">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('nehal-4-2')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="nehal-4-2" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div><div class="card" style="border-top-color:#0E7C66">
+  <div class="top"><span class="day-label">Friday</span><span class="pill" style="background:#0E7C66">Company &amp; Ops</span><span class="fmt">Text post</span></div>
+  <div class="body">
+    <h3>To every RCSL client reading this — here's what I'm committed to as your CEO</h3>
+    <div class="field hook"><div class="lab">Opening line</div><p>I'm easy to reach. And I'm paying attention.</p></div>
+    <div class="field"><div class="lab">Content direction</div><p>150-word direct-to-client post. Nehal states his personal commitment to client accountability — specific and actionable. High-trust signal to procurement heads and existing clients.</p></div>
+    <div class="field"><div class="lab">Format &amp; visual</div><p>Text-only. Possibly the highest-engagement post of the month — don't over-design it.</p></div>
+    <div class="dep"><b>Needs:</b><span>Nehal: approve. This one must be genuinely in his voice.</span></div>
+  </div>
+  <div class="asset-row" id="asset-nehal-4-3">
+    <span class="asset-lbl">Assets:</span>
+    <button class="asset-btn asset-add" onclick="openAssetModal('nehal-4-3')">+ Add link</button>
+  </div>
+  <div class="card-status" onclick="cycleStatus(this)" data-id="nehal-4-3" data-status="not-started" style="background:#f0f1f3;cursor:pointer">
+    <span class="s-dot" style="background:#9ca3af"></span>
+    <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+  </div>
+</div></div>
+</div>
+</div>
+
+</div><!-- /wrap -->
+
+<footer class="foot">
+  <div class="wrap">
+    <h2>How these three calendars work together</h2>
+    <ul>
+      <li><b>Three voices, not three copies</b>Alpit is the founder-builder. Jash is the next-gen entrepreneur. Nehal is the professional CEO. Each has a different audience, a different tone, and different content that would sound wrong from either of the other two.</li>
+      <li><b>Coordination rule</b>On weeks with a company-page spotlight, each CXO references it once from their personal angle — not as a company ad, but as a genuine POV on the topic.</li>
+      <li><b>Differentiated posting days</b>Alpit: Mon/Wed/Fri. Jash: Tue/Thu/Sat. Nehal: Mon/Wed/Fri. Staggering avoids the three profiles posting simultaneously and maximises RCSL presence across the weekly feed.</li>
+      <li><b>IR-sensitive posts</b>Any post touching RCSL financials, listed-company status, or forward-looking statements must be reviewed by the company secretary before publishing.</li>
+      <li><b>Personal anecdotes cannot be ghostwritten</b>Posts marked "Needs: CXO: personal memory..." require a real memory or data point from the individual. SIS shapes the language, but the source must come from the person.</li>
+    </ul>
+    <p class="fin">Prepared by Say It Social for Riddhi Corporate Services Limited · CXO LinkedIn Calendars · Month 1 · Three personal profiles — distinct from the company page calendar.</p>
+  </div>
+</footer>
+
+<!-- Asset modal -->
+<div class="modal-bg" id="assetModal">
+  <div class="modal">
+    <h4>Add Asset Links</h4>
+    <p>Paste Google Drive or OneDrive links for this post's creative assets.</p>
+    <input type="hidden" id="modalPostId"/>
+    <label>Google Drive link</label>
+    <input type="url" id="modalGdrive" placeholder="https://drive.google.com/..."/>
+    <label>OneDrive link</label>
+    <input type="url" id="modalOnedrive" placeholder="https://onedrive.live.com/..."/>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeAssetModal()">Cancel</button>
+      <button class="modal-save" onclick="saveAssetLinks()">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const STATUSES=[
+  {key:"not-started",label:"NOT STARTED",bg:"#f0f1f3",dot:"#9ca3af",txt:"#6b7280"},
+  {key:"in-progress",label:"IN PROGRESS",bg:"#fff7ed",dot:"#f59e0b",txt:"#d97706"},
+  {key:"ready",label:"READY TO POST",bg:"#ecfeff",dot:"#06b6d4",txt:"#0891b2"},
+  {key:"posted",label:"POSTED",bg:"#f0fdf4",dot:"#22c55e",txt:"#16a34a"},
+];
+
+function applyStatus(el, key){
+  const s = STATUSES.find(x=>x.key===key) || STATUSES[0];
+  el.dataset.status = s.key;
+  el.style.background = s.bg;
+  el.querySelector(".s-dot").style.background = s.dot;
+  el.querySelector(".s-label").style.color = s.txt;
+  el.querySelector(".s-label").textContent = s.label;
+}
+
+function cycleStatus(el){
+  const cur = el.dataset.status;
+  const idx = STATUSES.findIndex(s=>s.key===cur);
+  const next = STATUSES[(idx+1)%STATUSES.length];
+  applyStatus(el, next.key);
+  if(window._fbSaveStatus) window._fbSaveStatus(el.dataset.id, next.key);
+}
+
+function switchTab(btn){
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll(".profile-section").forEach(s=>s.classList.remove("active"));
+  btn.classList.add("active");
+  document.getElementById("tab-"+btn.dataset.tab).classList.add("active");
+}
+
+function openAssetModal(postId){
+  document.getElementById("modalPostId").value = postId;
+  const row = document.getElementById("asset-"+postId);
+  const gdBtn = row ? row.querySelector(".asset-gdrive") : null;
+  const odBtn = row ? row.querySelector(".asset-onedrive") : null;
+  document.getElementById("modalGdrive").value = gdBtn ? gdBtn.href : "";
+  document.getElementById("modalOnedrive").value = odBtn ? odBtn.href : "";
+  document.getElementById("assetModal").classList.add("open");
+}
+
+function closeAssetModal(){
+  document.getElementById("assetModal").classList.remove("open");
+}
+
+function saveAssetLinks(){
+  const postId = document.getElementById("modalPostId").value;
+  const gdrive = document.getElementById("modalGdrive").value.trim();
+  const onedrive = document.getElementById("modalOnedrive").value.trim();
+  updateAssetRow(postId, gdrive, onedrive);
+  if(window._fbSaveAssets) window._fbSaveAssets(postId, gdrive, onedrive);
+  closeAssetModal();
+}
+
+function updateAssetRow(postId, gdrive, onedrive){
+  const row = document.getElementById("asset-"+postId);
+  if(!row) return;
+  let html = '<span class="asset-lbl">Assets:</span>';
+  if(gdrive) html += `<a class="asset-btn asset-gdrive" href="${gdrive}" target="_blank">&#128196; Google Drive</a>`;
+  if(onedrive) html += `<a class="asset-btn asset-onedrive" href="${onedrive}" target="_blank">&#9729; OneDrive</a>`;
+  html += `<button class="asset-btn asset-add" onclick="openAssetModal('${postId}')">${(gdrive||onedrive)?'Edit':'+ Add link'}</button>`;
+  row.innerHTML = html;
+}
+
+document.getElementById("assetModal").addEventListener("click", e=>{
+  if(e.target===document.getElementById("assetModal")) closeAssetModal();
+});
+
+document.addEventListener("DOMContentLoaded",()=>{
+  document.querySelector(".tab-btn").click();
+});
+</script>
+</body>
+</html>
