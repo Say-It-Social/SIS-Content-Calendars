@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BSFC Thaltej — July 2025 Content Calendar</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F6F4EF;
+  --white: #FFFFFF;
+  --navy: #18284A;
+  --navy-mid: #253A60;
+  --gold: #E8A020;
+  --gold-light: #FFF6E0;
+  --leaf: #3BAF7E;
+  --leaf-light: #E4F7EE;
+  --sky: #3D8EE8;
+  --sky-light: #E8F2FD;
+  --coral: #E8604A;
+  --coral-light: #FDECEA;
+  --plum: #8B5CF6;
+  --plum-light: #F3EEFF;
+  --rose: #D95F8A;
+  --rose-light: #FCEEF5;
+  --border: #E8E3D8;
+  --muted: #8A8FA8;
+  --text: #2C3250;
+  --w1: #3BAF7E;
+  --w2: #3D8EE8;
+  --w3: #E8A020;
+  --w4: #E8604A;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+/* HERO */
+.hero { background: var(--navy); position: relative; overflow: hidden; }
+.hero-orbs { position: absolute; inset: 0; pointer-events: none; }
+.orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.16; }
+.orb-1 { width: 480px; height: 480px; background: #E8A020; top: -140px; right: -80px; }
+.orb-2 { width: 320px; height: 320px; background: #3BAF7E; bottom: -80px; left: 20px; }
+.orb-3 { width: 180px; height: 180px; background: #8B5CF6; top: 30%; left: 38%; }
+.hero-inner {
+  position: relative; z-index: 2;
+  max-width: 1300px; margin: 0 auto;
+  padding: 52px 48px 44px;
+  display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: start;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(232,160,32,0.14); border: 1px solid rgba(232,160,32,0.28);
+  border-radius: 100px; padding: 5px 16px;
+  font-size: 10px; font-weight: 800; letter-spacing: 2px; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 18px;
+}
+.hero-eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+.hero-title { font-family: 'Playfair Display', serif; font-size: 40px; color: #fff; line-height: 1.15; margin-bottom: 10px; font-weight: 800; }
+.hero-title em { color: var(--gold); font-style: italic; }
+.hero-sub { font-size: 13px; color: rgba(255,255,255,0.42); line-height: 1.7; max-width: 480px; }
+.hero-stats { display: flex; flex-direction: column; gap: 10px; padding-top: 4px; }
+.stat-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; padding: 14px 22px; text-align: center; min-width: 108px; }
+.stat-n { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--gold); display: block; line-height: 1; margin-bottom: 4px; }
+.stat-l { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.32); }
+
+/* PILLARS */
+.pillars { max-width: 1300px; margin: 28px auto 0; padding: 0 48px; }
+.pillars-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
+.pillar { background: var(--navy-mid); border-radius: 14px; padding: 16px 18px; display: flex; align-items: flex-start; gap: 11px; }
+.pillar-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+.pillar-title { font-size: 11px; font-weight: 800; color: #fff; margin-bottom: 3px; }
+.pillar-desc { font-size: 10.5px; color: rgba(255,255,255,0.36); line-height: 1.5; }
+
+/* OCCASIONS */
+.occ-strip { max-width: 1300px; margin: 16px auto 0; padding: 0 48px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.occ-badge { display: inline-flex; align-items: center; gap: 7px; background: var(--white); border: 1.5px solid var(--border); border-radius: 100px; padding: 6px 14px; font-size: 11px; font-weight: 700; color: var(--text); }
+.occ-date { font-size: 9px; font-weight: 600; color: var(--muted); }
+.f-label-sm { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+
+/* FILTERS */
+.filters { max-width: 1300px; margin: 24px auto 0; padding: 0 48px; display: flex; gap: 7px; flex-wrap: wrap; align-items: center; }
+.f-sep { width: 1px; height: 18px; background: var(--border); margin: 0 3px; }
+.chip { padding: 6px 16px; border-radius: 100px; font-size: 11px; font-weight: 700; cursor: pointer; border: 1.5px solid var(--border); background: var(--white); color: var(--muted); transition: all 0.15s; font-family: 'Plus Jakarta Sans', sans-serif; }
+.chip:hover { border-color: var(--navy); color: var(--navy); }
+.chip.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+.chip.w1.active { background: var(--w1); border-color: var(--w1); }
+.chip.w2.active { background: var(--w2); border-color: var(--w2); }
+.chip.w3.active { background: var(--w3); border-color: var(--w3); }
+.chip.w4.active { background: var(--w4); border-color: var(--w4); }
+.chip.type-reel.active { background: var(--plum); border-color: var(--plum); }
+.chip.type-carousel.active { background: var(--leaf); border-color: var(--leaf); }
+.chip.type-poster.active { background: var(--sky); border-color: var(--sky); }
+
+/* WEEK SECTION */
+.week-section { max-width: 1300px; margin: 38px auto 0; padding: 0 48px; }
+.week-header { display: flex; align-items: center; gap: 13px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1.5px solid var(--border); }
+.week-pill { padding: 5px 15px; border-radius: 100px; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: white; }
+.week-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--navy); font-weight: 700; }
+.week-dates { font-size: 10px; color: var(--muted); font-weight: 700; letter-spacing: 0.5px; }
+.week-goal { margin-left: auto; font-size: 11.5px; color: var(--muted); font-weight: 600; }
+
+/* SECTION LABEL */
+.sec-label { font-size: 9px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: var(--muted); margin: 0 0 13px; display: flex; align-items: center; gap: 10px; }
+.sec-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* POSTS GRID */
+.posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(365px,1fr)); gap: 15px; margin-bottom: 14px; }
+
+/* POST CARD */
+.post-card { background: var(--white); border: 1.5px solid var(--border); border-radius: 20px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; animation: rise 0.35s ease both; display: flex; flex-direction: column; }
+.post-card:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(24,40,74,0.10); }
+@keyframes rise { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+.card-accent { height: 4px; width: 100%; }
+.card-top { padding: 15px 18px 11px; display: flex; align-items: center; justify-content: space-between; }
+.post-num { width: 30px; height: 30px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: white; flex-shrink: 0; }
+.ftags { display: flex; gap: 5px; flex-wrap: wrap; }
+.ftag { padding: 3px 9px; border-radius: 100px; font-size: 9px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; }
+.ftag-reel    { background: var(--plum-light); color: #6D28D9; }
+.ftag-carousel{ background: var(--leaf-light); color: #166534; }
+.ftag-poster  { background: var(--sky-light); color: #1E40AF; }
+.ftag-ig      { background: #FFF0F6; color: #9D174D; }
+.ftag-fb      { background: #EFF6FF; color: #1E40AF; }
+.ftag-special { background: var(--gold-light); color: #92400E; }
+.card-body { padding: 0 18px 11px; }
+.post-day { font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+.post-title { font-family: 'Playfair Display', serif; font-size: 15px; line-height: 1.35; color: var(--navy); margin-bottom: 6px; font-weight: 700; }
+.post-desc { font-size: 11.5px; color: var(--muted); line-height: 1.6; }
+.divider { height: 1px; background: var(--border); margin: 0 18px 11px; }
+.caption-box { margin: 0 18px 11px; background: var(--bg); border-radius: 11px; padding: 11px 13px; font-size: 11.5px; line-height: 1.7; color: var(--text); border-left: 3px solid var(--gold); font-style: italic; }
+.caption-label { font-size: 8px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; font-style: normal; display: block; }
+.story-tie { margin: 0 18px 11px; border-radius: 11px; padding: 10px 13px; }
+.story-tie-label { font-size: 8px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 5px; display: flex; align-items: center; gap: 5px; }
+.story-tie-body { font-size: 11px; line-height: 1.6; color: #374151; }
+.card-meta { padding: 0 18px 11px; display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.meta-k { font-size: 8px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #C5CADB; margin-bottom: 2px; }
+.meta-v { font-size: 11px; font-weight: 700; color: var(--navy); }
+.card-status-row { padding: 0 18px 9px; display: flex; align-items: center; justify-content: space-between; }
+.status-badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; border-radius: 100px; font-size: 9px; font-weight: 800; letter-spacing: 0.5px; cursor: pointer; transition: all 0.15s; user-select: none; text-transform: uppercase; }
+.status-planned   { background: #F3F4F6; color: #6B7280; }
+.status-designing { background: var(--sky-light); color: #1E40AF; }
+.status-ready     { background: var(--gold-light); color: #92400E; }
+.status-scheduled { background: var(--leaf-light); color: #166534; }
+.status-posted    { background: #F0FDF4; color: #15803D; }
+.asset-link { font-size: 9px; font-weight: 700; color: var(--sky); text-decoration: none; display: flex; align-items: center; gap: 4px; }
+.asset-link:hover { color: var(--navy); }
+.expand-btn { background: none; border: none; cursor: pointer; font-size: 10px; color: var(--leaf); font-weight: 800; font-family: 'Plus Jakarta Sans', sans-serif; padding: 0 18px 9px; display: block; text-align: left; }
+.extra { display: none; margin: 0 18px 11px; background: var(--leaf-light); border-radius: 11px; padding: 11px 13px; font-size: 11px; line-height: 1.7; color: #065F46; }
+.extra.open { display: block; }
+.extra strong { display: block; margin-bottom: 5px; color: var(--navy); font-size: 11.5px; }
+.card-footer { padding: 0 18px 15px; display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
+.cta-btn { padding: 6px 14px; border-radius: 100px; font-size: 10px; font-weight: 800; color: white; background: linear-gradient(135deg, var(--gold), var(--coral)); letter-spacing: 0.3px; white-space: nowrap; }
+.hashtag-prev { font-size: 9.5px; color: var(--muted); font-weight: 600; }
+
+/* REEL CARD */
+.reel-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 13px; margin-bottom: 14px; }
+.reel-card { background: var(--navy); border-radius: 18px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; animation: rise 0.35s ease both; }
+.reel-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(24,40,74,0.24); }
+.reel-top { padding: 17px 20px 12px; display: flex; align-items: center; justify-content: space-between; }
+.reel-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(139,92,246,0.22); border: 1px solid rgba(139,92,246,0.38); border-radius: 100px; padding: 4px 12px; font-size: 9px; font-weight: 800; letter-spacing: 1px; color: #C4B5FD; text-transform: uppercase; }
+.reel-week { font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.28); }
+.reel-body { padding: 0 20px 12px; }
+.reel-day { font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.32); margin-bottom: 5px; }
+.reel-title { font-family: 'Playfair Display', serif; font-size: 15px; color: #fff; line-height: 1.35; margin-bottom: 6px; font-weight: 700; }
+.reel-hook { font-size: 11px; color: rgba(255,255,255,0.46); line-height: 1.6; font-style: italic; }
+.reel-divider { height: 1px; background: rgba(255,255,255,0.07); margin: 0 20px 11px; }
+.reel-caption { margin: 0 20px 12px; background: rgba(255,255,255,0.05); border-left: 3px solid var(--plum); border-radius: 10px; padding: 10px 13px; font-size: 11px; line-height: 1.65; color: rgba(255,255,255,0.62); font-style: italic; }
+.reel-meta { padding: 0 20px 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.reel-meta .meta-k { color: rgba(255,255,255,0.18); }
+.reel-meta .meta-v { color: rgba(255,255,255,0.82); font-size: 11px; }
+.reel-status-row { padding: 0 20px 12px; display: flex; align-items: center; justify-content: space-between; }
+.reel-cta-row { padding: 0 20px 17px; display: flex; align-items: center; justify-content: space-between; }
+.reel-cta { padding: 6px 14px; border-radius: 100px; font-size: 10px; font-weight: 800; color: white; background: linear-gradient(135deg, #8B5CF6, #EC4899); }
+.reel-music { font-size: 9px; color: rgba(255,255,255,0.28); font-weight: 600; }
+
+/* STORIES */
+.stories-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(248px,1fr)); gap: 11px; margin-bottom: 44px; }
+.story-card { background: var(--white); border: 1.5px dashed var(--border); border-radius: 15px; padding: 15px 17px; transition: transform 0.2s, box-shadow 0.2s; animation: rise 0.35s ease both; }
+.story-card:hover { transform: translateY(-2px); box-shadow: 0 7px 22px rgba(24,40,74,0.08); }
+.story-header { display: flex; align-items: center; gap: 9px; margin-bottom: 9px; }
+.story-num { width: 26px; height: 26px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; color: white; background: linear-gradient(135deg, var(--rose), var(--plum)); }
+.story-day-label { font-size: 9px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--rose); }
+.story-title { font-family: 'Playfair Display', serif; font-size: 13px; color: var(--navy); margin-bottom: 5px; line-height: 1.35; font-weight: 700; }
+.story-idea { font-size: 10.5px; color: var(--muted); line-height: 1.55; margin-bottom: 9px; }
+.story-type { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 9px; font-weight: 800; background: var(--rose-light); color: var(--rose); }
+
+/* HASHTAG */
+.htags-section { max-width: 1300px; margin: 32px auto 0; padding: 0 48px; }
+.htags-box { background: var(--white); border-radius: 18px; border: 1.5px solid var(--border); padding: 26px 30px; }
+.htags-title { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--navy); margin-bottom: 18px; }
+.htags-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 18px; }
+.htag-group-name { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 9px; }
+.htag-list { display: flex; flex-wrap: wrap; gap: 5px; }
+.htag { padding: 4px 11px; border-radius: 100px; font-size: 10px; font-weight: 700; cursor: pointer; }
+
+/* FOOTER */
+.footer-section { max-width: 1300px; margin: 28px auto 50px; padding: 0 48px; }
+.footer-inner { background: var(--navy); border-radius: 18px; padding: 26px 30px; display: grid; grid-template-columns: repeat(auto-fill, minmax(210px,1fr)); gap: 16px; }
+.fn-title { font-size: 11px; font-weight: 800; color: var(--gold); margin-bottom: 5px; }
+.fn-text { font-size: 11px; color: rgba(255,255,255,0.4); line-height: 1.7; }
+
+/* PILLAR TAG inside card */
+.pillar-tag { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 100px; font-size: 9px; font-weight: 800; margin-bottom: 8px; }
+
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; padding: 30px 22px; }
+  .hero-stats { flex-direction: row; flex-wrap: wrap; }
+  .pillars-grid { grid-template-columns: 1fr 1fr; }
+  .pillars, .occ-strip, .filters, .week-section, .htags-section, .footer-section { padding: 0 18px; }
+  .posts-grid, .reel-row { grid-template-columns: 1fr; }
+  .stories-grid { grid-template-columns: 1fr 1fr; }
+  .hero-title { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-orbs">
+    <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+  </div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span>July 2025 · Brand Building Month</div>
+      <div class="hero-title">School Is Running.<br><em>Now Tell the Story.</em></div>
+      <div class="hero-sub">BSFC Thaltej · July 2025 Content Calendar · IG + FB + Stories + Reels<br>Pillars: Classroom Life · Teacher Stories · Child Moments · Festive Occasions</div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card"><span class="stat-n">4</span><span class="stat-l">Weeks</span></div>
+      <div class="stat-card"><span class="stat-n">12</span><span class="stat-l">Main Posts</span></div>
+      <div class="stat-card"><span class="stat-n">4</span><span class="stat-l">Reels</span></div>
+      <div class="stat-card"><span class="stat-n">16</span><span class="stat-l">Stories</span></div>
+      <div class="stat-card"><span class="stat-n">32</span><span class="stat-l">Total</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- PILLARS -->
+<div class="pillars">
+  <div class="pillars-grid">
+    <div class="pillar">
+      <div class="pillar-icon">🎨</div>
+      <div><div class="pillar-title">Classroom Life</div><div class="pillar-desc">Real moments, real activities — give followers a window into what BSFC feels like every day</div></div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">👩‍🏫</div>
+      <div><div class="pillar-title">Teacher Stories</div><div class="pillar-desc">Candid BTS + short interviews — humanise the school through the people who run it</div></div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">👧</div>
+      <div><div class="pillar-title">Child Moments</div><div class="pillar-desc">Candid joy, discovery, friendship — content that makes parents feel proud and connected</div></div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">🌸</div>
+      <div><div class="pillar-title">Occasions & Values</div><div class="pillar-desc">Chocolate Day, Guru Purnima — woven into brand messaging, not just festive filler</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- OCCASIONS -->
+<div class="occ-strip">
+  <span class="f-label-sm">Key July Dates:</span>
+  <div class="occ-badge">🍫 World Chocolate Day <span class="occ-date">Jul 7</span></div>
+  <div class="occ-badge">🙏 Guru Purnima <span class="occ-date">Jul 10</span></div>
+  <div class="occ-badge">📸 Teacher Shoot <span class="occ-date">Ongoing</span></div>
+  <div class="occ-badge">🎒 School Running <span class="occ-date">Full Month</span></div>
+</div>
+
+<!-- FILTERS -->
+<div class="filters">
+  <span class="f-label-sm">Week</span>
+  <button class="chip active" onclick="filterWeek('all',this)">All</button>
+  <button class="chip w1" onclick="filterWeek('w1',this)">Week 1</button>
+  <button class="chip w2" onclick="filterWeek('w2',this)">Week 2</button>
+  <button class="chip w3" onclick="filterWeek('w3',this)">Week 3</button>
+  <button class="chip w4" onclick="filterWeek('w4',this)">Week 4</button>
+  <div class="f-sep"></div>
+  <span class="f-label-sm">Format</span>
+  <button class="chip type-carousel" onclick="filterType('carousel',this)">Carousels</button>
+  <button class="chip type-reel" onclick="filterType('reel',this)">Reels</button>
+  <button class="chip type-poster" onclick="filterType('poster',this)">Posters</button>
+</div>
+
+
+<!-- ══════════ WEEK 1 — Jul 1–5 ══════════ -->
+<div class="week-section" id="sec-w1">
+  <div class="week-header">
+    <div class="week-pill" style="background:var(--w1);">Week 1</div>
+    <div class="week-title">Classroom Life Begins</div>
+    <div class="week-dates">Jul 1 – 5</div>
+    <div class="week-goal">🎯 Show the energy of a live, running school</div>
+  </div>
+
+  <div class="sec-label">Main Posts</div>
+  <div class="posts-grid" data-week="w1">
+
+    <!-- POST 1 -->
+    <div class="post-card" data-type="carousel">
+      <div class="card-accent" style="background:linear-gradient(90deg,var(--w1),#059669);"></div>
+      <div class="card-top">
+        <div class="post-num" style="background:linear-gradient(135deg,var(--w1),#059669);">1</div>
+        <div class="ftags"><span class="ftag ftag-carousel">Carousel</span><span class="ftag ftag-ig">IG</span><span class="ftag ftag-fb">FB</span></div>
+      </div>
+      <div class="card-body">
+        <div class="post-day">Monday, Jul 1 — Classroom Life</div>
+        <div class="post-title">This Is What Monday Morning Looks Like at Bright Start ☀️</div>
+        <div class="post-desc">Candid classroom activity carousel — shows real children engaged in different activities across the school day. Energy-driven, warm, and deeply shareable with enrolled parents.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="caption-box">
+        <span class="caption-label">📝 Caption</span>
+        Monday? We love Mondays. 🌟 While the rest of the world is still waking up, our little learners are already building, creating, exploring — and having the best time doing it. This is what a regular morning looks like at Bright Start, Thaltej. 📸 Swipe to see the magic. #BrightStartThaltej #ClassroomLife
+      </div>
+      <div class="story-tie" style="background:var(--rose-light);">
+        <div class="story-tie-label" style="color:var(--rose);">📱 Linked Story</div>
+        <div class="story-tie-body"><strong style="color:var(--navy);">Poll Story:</strong> "Which activity does your child love most?" — Painting / Building Blocks / Storytime / Outdoor Play. High engagement, helps parents feel involved. Reshare best responses.</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Pillar</div><div class="meta-v">Classroom Life</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">Save & Share</div></div>
+        <div><div class="meta-k">Slides</div><div class="meta-v">6–7 activity shots</div></div>
+        <div><div class="meta-k">Visual</div><div class="meta-v">Candid classroom photos</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        Each slide = one candid activity moment with a minimal text overlay (just the activity name — "Art Exploration", "Circle Time", "Sensory Play"). Warm natural light preferred. No staged photos. Keep borders or frames consistent using mint green accent. Final slide: BSFC logo with "Monday never looked this good."
+      </div>
+      <div class="card-status-row">
+        <span class="status-badge status-planned" onclick="cycleStatus(this)">⬤ Planned</span>
+        <a class="asset-link" href="#" onclick="return false;">📁 Add Asset Link</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">Save & Share</span>
+        <span class="hashtag-prev">#ClassroomLife #BrightStartThaltej</span>
+      </div>
+    </div>
+
+    <!-- POST 2 -->
+    <div class="post-card" data-type="carousel">
+      <div class="card-accent" style="background:linear-gradient(90deg,#38BDF8,var(--w1));"></div>
+      <div class="card-top">
+        <div class="post-num" style="background:linear-gradient(135deg,#38BDF8,var(--w1));">2</div>
+        <div class="ftags"><span class="ftag ftag-carousel">Carousel</span><span class="ftag ftag-ig">IG</span><span class="ftag ftag-fb">FB</span></div>
+      </div>
+      <div class="card-body">
+        <div class="post-day">Wednesday, Jul 3 — Teacher Story</div>
+        <div class="post-title">Before the Bell Rings — A Teacher's Morning at Bright Start 🌅</div>
+        <div class="post-desc">BTS teacher carousel — captures what teachers do before students arrive. Sets up classroom, arranges materials, writes on board. Deeply humanising. Parents love seeing this dedication.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="caption-box">
+        <span class="caption-label">📝 Caption</span>
+        Before the first little hand walks through the door, our teachers are already here. 🌅 Arranging the paint, setting up the stories, making sure every space feels just right. This is the invisible work behind every great school day at Bright Start. 💛 #BrightStartTeachers #Udgamverse
+      </div>
+      <div class="story-tie" style="background:var(--rose-light);">
+        <div class="story-tie-label" style="color:var(--rose);">📱 Linked Story</div>
+        <div class="story-tie-body"><strong style="color:var(--navy);">BTS Story:</strong> Short video clips or photos of teachers prepping — timelapse of classroom setup. "6:45 AM at Bright Start 👀" text overlay. Authentic and surprising — most parents have never seen this.</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Pillar</div><div class="meta-v">Teacher Stories</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">Tag Your Teacher</div></div>
+        <div><div class="meta-k">Slides</div><div class="meta-v">5–6 BTS prep shots</div></div>
+        <div><div class="meta-k">Shoot</div><div class="meta-v">Early morning BTS</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        Slightly warm, golden-hour style filter — the early morning light should feel soft and intentional. Photos: teacher writing on board, arranging art supplies, placing books in reading corner, stepping back to survey the room. Minimal text overlays — let the images carry emotion. Final slide: "This is why your child loves school" with teacher's name and BSFC logo.
+      </div>
+      <div class="card-status-row">
+        <span class="status-badge status-planned" onclick="cycleStatus(this)">⬤ Planned</span>
+        <a class="asset-link" href="#" onclick="return false;">📁 Add Asset Link</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">Tag Your Teacher 💛</span>
+        <span class="hashtag-prev">#BrightStartTeachers #TeacherLife</span>
+      </div>
+    </div>
+
+    <!-- POST 3 — World Chocolate Day -->
+    <div class="post-card" data-type="poster">
+      <div class="card-accent" style="background:linear-gradient(90deg,#92400E,#D97706);"></div>
+      <div class="card-top">
+        <div class="post-num" style="background:linear-gradient(135deg,#92400E,#D97706);">3</div>
+        <div class="ftags"><span class="ftag ftag-poster">Poster</span><span class="ftag ftag-special">🍫 Jul 7</span><span class="ftag ftag-ig">IG</span><span class="ftag ftag-fb">FB</span></div>
+      </div>
+      <div class="card-body">
+        <div class="post-day">Monday, Jul 7 — World Chocolate Day</div>
+        <div class="post-title">Some Days We Learn With Paint. Some Days With Chocolate. 🍫</div>
+        <div class="post-desc">Festive occasion tied directly to sensory learning — one of BSFC's core curriculum approaches. If possible, plan a small sensory chocolate activity on this day and photograph it. Extremely shareable.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="caption-box">
+        <span class="caption-label">📝 Caption</span>
+        Happy World Chocolate Day! 🍫 Did you know that messy, hands-on sensory play is one of the most powerful ways young children learn? Today, we took that very seriously. 😄 Because at Bright Start, even the sweetest moments have a purpose. #WorldChocolateDay #BrightStartThaltej #SensoryPlay
+      </div>
+      <div class="story-tie" style="background:var(--rose-light);">
+        <div class="story-tie-label" style="color:var(--rose);">📱 Linked Story</div>
+        <div class="story-tie-body"><strong style="color:var(--navy);">Activity Story:</strong> Short video clip of the sensory chocolate activity in class. "What did we do for World Chocolate Day? 🍫👀" — reveals the activity. Fun, shareable, shows curriculum in action. Poll: "Would your child love this?" Yes / They'd eat it all 😄</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Pillar</div><div class="meta-v">Occasions + Child Moments</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">Share the Sweet</div></div>
+        <div><div class="meta-k">Format</div><div class="meta-v">Poster or activity photo</div></div>
+        <div><div class="meta-k">Tip</div><div class="meta-v">Real activity photo > illustration</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        If activity photos available — use a real candid of children doing the sensory play as the hero image. Warm chocolate-brown overlay with cream text. If no activity — use rich brown illustrated poster with gold typography. Either way: "World Chocolate Day at Bright Start" headline. BSFC logo + sensory learning note at the bottom.
+      </div>
+      <div class="card-status-row">
+        <span class="status-badge status-planned" onclick="cycleStatus(this)">⬤ Planned</span>
+        <a class="asset-link" href="#" onclick="return false;">📁 Add Asset Link</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">Share the Sweet 🍫</span>
+        <span class="hashtag-prev">#WorldChocolateDay #SensoryPlay</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- WEEK 1 REEL -->
+  <div class="sec-label">Weekly Reel — Week 1</div>
+  <div class="reel-row" data-week="w1">
+    <div class="reel-card" data-type="reel">
+      <div class="reel-top">
+        <div class="reel-badge">🎬 Weekly Reel</div>
+        <div class="reel-week">Week 1 · Friday Jul 5</div>
+      </div>
+      <div class="reel-body">
+        <div class="reel-day">Friday, Jul 5 — Child Moments Reel</div>
+        <div class="reel-title">What Happens When You Give a 4-Year-Old Paint and No Rules 🎨</div>
+        <div class="reel-hook">"The best art has no instructions." — Fast-cut reel of children doing free creative play. Joyful, raw, authentic. Shows BSFC's philosophy in 30 seconds. Parents will tag each other in droves.</div>
+      </div>
+      <div class="reel-divider"></div>
+      <div class="reel-caption">
+        "No instructions. No wrong answers. Just pure, beautiful creativity. 🎨 This is what free expression looks like at Bright Start — and why we believe every child is already an artist. 🌟 #BrightStartThaltej #PlayBasedLearning"
+      </div>
+      <div class="reel-meta">
+        <div><div class="meta-k">Style</div><div class="meta-v">Fast-cut creative play</div></div>
+        <div><div class="meta-k">Duration</div><div class="meta-v">20–30 sec</div></div>
+        <div><div class="meta-k">Hook Frame</div><div class="meta-v">Child's paint-covered hands</div></div>
+        <div><div class="meta-k">Music</div><div class="meta-v">Fun, upbeat, trending</div></div>
+      </div>
+      <div class="reel-status-row">
+        <span class="status-badge status-planned" onclick="cycleStatus(this)">⬤ Planned</span>
+        <a class="asset-link" href="#" onclick="return false;" style="color:rgba(255,255,255,0.32);font-size:9px;font-weight:700;text-decoration:none;">📁 Add Asset Link</a>
+      </div>
+      <div class="reel-cta-row">
+        <span class="reel-cta">Boost This Reel</span>
+        <span class="reel-music">🎵 Upbeat trending audio</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 1 STORIES -->
+  <div class="sec-label">Stories — Week 1</div>
+  <div class="stories-grid">
+    <div class="story-card">
+      <div class="story-header"><div class="story-num">S1</div><div class="story-day-label">Monday Story</div></div>
+      <div class="story-title">🌅 "Good morning from Bright Start! Here's what we're up to today 👀"</div>
+      <div class="story-idea">Behind-the-scenes morning story — teacher prepping, children arriving, first activity of the day. Real-time feel. Makes followers feel like insiders.</div>
+      <span class="story-type">BTS Morning Story</span>
+    </div>
+    <div class="story-card">
+      <div class="story-header"><div class="story-num">S2</div><div class="story-day-label">Wednesday Story</div></div>
+      <div class="story-title">👩‍🏫 "Meet the person who sets up your child's classroom every single day"</div>
+      <div class="story-idea">Teacher spotlight teaser — 2–3 slides intro to one teacher. "Find out more on our next post 👀" — drives traffic to Post 2 carousel. Builds anticipation.</div>
+      <span class="story-type">Teacher Teaser</span>
+    </div>
+    <div class="story-card">
+      <div class="story-header"><div class="story-num">S3</div><div class="story-day-label">Friday Story</div></div>
+      <div class="story-title">🎨 "We just dropped a reel that will make you smile — go watch it now!"</div>
+      <div class="story-idea">Reel reshare story with hype text overlay. Add a reaction emoji poll: "Did this make you smile? 😄 / 😭" — drives engagement back to the reel and boosts its reach.</div>
+      <span class="story-type">Reel Hype</span>
+    </div>
+    <div class="story-card">
+      <div class="story-header"><div class="story-num">S4</div><div class="story-day-label">Sunday Story</div></div>
+      <div class="story-title">🍫 "Guess what we're doing in class for World Chocolate Day? 👀"</div>
+      <div class="story-idea">Teaser story before Jul 7. Question box — "What do you think we're planning?" Builds curiosity ahead of Post 3 and the in-class activity. High comment driver.</div>
+      <span class="story-type">Occasion Teaser</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════ WEEK 2 — Jul 8–12 ══════════ -->
+<div class="week-section" id="sec-w2">
+  <div class="week-header">
+    <div class="week-pill" style="background:var(--w2);">Week 2</div>
+    <div class="week-title">Teacher Spotlights + Guru Purnima</div>
+    <div class="week-dates">Jul 8 – 12</div>
+    <div class="week-goal">🎯 Put teacher personalities front and centre</div>
+  </div>
+
+  <div class="sec-label">Main Posts</div>
+  <div class="posts-grid" data-week="w2">
+
+    <!-- POST 4 -->
+    <div class="post-card" data-type="carousel">
+      <div class="card-accent" style="background:linear-gradient(90deg,var(--w2),#60A5FA);"></div>
+      <div class="card-top">
+        <div class="post-num" style="background:linear-gradient(135deg,var(--w2),#60A5FA);">4</div>
+        <div class="ftags"><span class="ftag ftag-carousel">Carousel</span><span class="ftag ftag-ig">IG</span><span class="ftag ftag-fb">FB</span></div>
+      </div>
+      <div class="card-body">
+        <div class="post-day">Tuesday, Jul 8 — Teacher Story</div>
+        <div class="post-title">"I Knew I Wanted to Teach the Moment a 3-Year-Old Said Thank You." 💛</div>
+        <div class="post-desc">Interview-style teacher spotlight carousel — one teacher per week. Pull quotes from actual interview woven with candid classroom photos of that teacher in action. Most emotional content of the month.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="caption-box">
+        <span class="caption-label">📝 Caption</span>
+        Every great school has teachers who chose it on purpose. 💛 This week, we're introducing you to [Teacher Name] — the person who has memorised every child's favourite colour, knows who needs an extra hug on Mondays, and genuinely loves every single morning here. Swipe to read her story. #BrightStartTeachers #BrightStartThaltej
+      </div>
+      <div class="story-tie" style="background:var(--rose-light);">
+        <div class="story-tie-label" style="color:var(--rose);">📱 Linked Story</div>
+        <div class="story-tie-body"><strong style="color:var(--navy);">Q&A Story:</strong> "Ask [Teacher Name] anything! 👇" — Question box. Teacher answers 3–4 questions in the next story. Incredibly engaging for enrolled parents who want to know the people teaching their children.</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Pillar</div><div class="meta-v">Teacher Stories</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">Save & Share</div></div>
+        <div><div class="meta-k">Slides</div><div class="meta-v">5–6 (quotes + action shots)</div></div>
+        <div><div class="meta-k">Shoot</div><div class="meta-v">Interview + candid in class</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        Sky blue & white palette. Slide 1: Portrait photo of teacher (candid, not posed stiffly — caught mid-laugh or engaged with a child). Slide 2–4: Pull quotes in large serif font against a white background. Alternate with action shots of that teacher in class. Slide 5: "Fun facts about [Name]" — 3 bullet points, warm and personal. Final slide: BSFC logo + "This is who your child learns from every day."
+      </div>
+      <div class="card-status-row">
+        <span class="status-badge status-planned" onclick="cycleStatus(this)">⬤ Planned</span>
+        <a class="asset-link" href="#" onclick="return false;">📁 Add Asset Link</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">Meet Our Teachers</span>
+        <span class="hashtag-prev">#BrightStartTeachers #PreschoolTeacher</span>
+      </div>
+    </div>
+
+    <!-- POST 5 — Guru Purnima -->
+    <div class="post-card" data-type="poster">
+      <div class="card-accent" style="background:linear-gradient(90deg,#F59E0B,#FCD34D);"></div>
+      <div class="card-top">
+        <div class="post-num" style="background:linear-gradient(135deg,#F59E0B,#FCD34D);">5</div>
+        <div class="ftags"><span class="ftag ftag-poster">Poster</span><span class="ftag ftag-special">🙏 Jul 10</span><span class="ftag ftag-ig">IG</span><span class="ftag ftag-fb">FB</span></div>
+      </div>
+      <div class="card-body">
+        <div class="post-day">Thursday, Jul 10 — Guru Purnima</div>
+        <div class="post-title">The First Guru Is Always the One Who Kneels Down to Your Level. 🙏</div>
+        <div class="post-desc">Guru Purnima celebrated through the lens of preschool teachers — the first gurus in a child's life outside home. Bridges the festive occasion with the teacher content theme of this week. Deep, emotional, highly shareable.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="caption-box">
+        <span class="caption-label">📝 Caption</span>
+        On Guru Purnima, we celebrate the teachers who shaped who we are. 🙏 But today, we also want to honour the gurus most people overlook — the ones who kneel down to your child's height, speak in their language, and make learning feel like the greatest adventure. Happy Guru Purnima from every teacher at Bright Start. 🌸 #GuruPurnima2025 #BrightStartThaltej #Udgamverse
+      </div>
+      <div class="story-tie" style="background:var(--rose-light);">
+        <div class="story-tie-label" style="color:var(--rose);">📱 Linked Story</div>
+        <div class="story-tie-body"><strong style="color:var(--navy);">Tribute Story:</strong> "Who was your first guru? Tag them. 🙏" — Simple, emotional, shareable. Huge organic reach on Guru Purnima day. BSFC branding subtle. Second story: real photo of BSFC teachers with "We're honoured to be your child's first guru."</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Pillar</div><div class="meta-v">Occasions + Teacher Stories</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">Tag & Share</div></div>
+        <div><div class="meta-k">Format</div><div class="meta-v">Premium festive poster</div></div>
+        <div><div class="meta-k">Visual</div><div class="meta-v">Marigold gold, reverent tone</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        Full marigold gold & ivory palette — no navy, go fully festive. Diya or lotus motif as a subtle background texture. Headline in a bold serif — "The First Guru Is Always the One Who Kneels Down to Your Level." Real photo of a BSFC teacher with a child as the background (teacher kneeling, speaking at child's eye level). This image IS the message. Udgamverse heritage line at the bottom: "60+ years of honouring this tradition."
+      </div>
+      <div class="card-status-row">
+        <span class="status-badge status-planned" onclick="cycleStatus(this)">⬤ Planned</span>
+        <a class="asset-link" href="#" onclick="return false;">📁 Add Asset Link</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">Tag Your Guru 🙏</span>
+        <span class="hashtag-prev">#GuruPurnima2025 #Udgamverse</span>
+      </div>
+    </div>
+
+    <!-- POST 6 -->
+    <div class="post-card" data-type="carousel">
+      <div class="card-accent" style="background:linear-gradient(90deg,var(--plum),var(--w2));"></div>
+      <div class="card-top">
+        <div class="post-num" style="background:linear-gradient(135deg,var(--plum),var(--w2));">6</div>
+        <div class="ftags"><span class="ftag ftag-carousel">Carousel</span><span class="ftag ftag-ig">IG</span><span class="ftag ftag-fb">FB</span></div>
+      </div>
+      <div class="card-body">
+        <div class="post-day">Saturday, Jul 12 — Child Moments</div>
+        <div class="post-title">Things We Overheard in Class This Week 👂😄</div>
+        <div class="post-desc">Funny and wholesome quotes from children in class this week. Every parent finds this irresistible. Maximum share rate. Positions BSFC as a place full of joy and genuine moments.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="caption-box">
+        <span class="caption-label">📝 Caption</span>
+        Our classrooms are full of the most unexpected wisdom. 😄 This week's highlights from our little philosophers at Bright Start, Thaltej. 💛 We couldn't make these up if we tried. Tag a parent who needs to see this. #BrightStartThaltej #KidsSayTheDarnestThings
+      </div>
+      <div class="story-tie" style="background:var(--rose-light);">
+        <div class="story-tie-label" style="color:var(--rose);">📱 Linked Story</div>
+        <div class="story-tie-body"><strong style="color:var(--navy);">UGC Story:</strong> "What's the funniest thing your child has said this week? 👇" — Question box. Collect parent responses and reshare the best ones. Builds community, generates content for next week automatically.</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Pillar</div><div class="meta-v">Child Moments</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">Tag a Parent</div></div>
+        <div><div class="meta-k">Slides</div><div class="meta-v">5–6 quotes (one per slide)</div></div>
+        <div><div class="meta-k">Visual</div><div class="meta-v">Bold quote cards + child photos</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        Playful violet & cream palette. Each slide: large quote in quotation marks, child's first name and age below (e.g. "— Aarav, age 4"). Small candid photo of a child (not necessarily the quote author — just a joyful shot). Keep it light, fun, and warm. Final slide: "We love our little thinkers 💛 — Bright Start, Thaltej."
+      </div>
+      <div class="card-status-row">
+        <span class="status-badge status-planned" onclick="cycleStatus(this)">⬤ Planned</span>
+        <a class="asset-link" href="#" onclick="return false;">📁 Add Asset Link</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">Tag a Parent 😄</span>
+        <span class="hashtag-prev">#KidsSayTheDarnestThings #BrightStartThaltej</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- WEEK 2 REEL -->
+  <div class="sec-label">Weekly Reel — Week 2</div>
+  <div class="reel-row" data-week="w2">
+    <div class="reel-card" data-type="reel">
+      <div class="reel-top">
+        <div class="reel-badge">🎬 Weekly Reel</div>
+        <div class="reel-week">Week 2 · Friday Jul 11</div>
+      </div>
+      <div class="reel-body">
+        <div class="reel-day">Friday, Jul 11 — Teacher Interview Reel</div>
+        <div class="reel-title">"Why Did You Become a Preschool Teacher?" — We Asked. She Answered. 💛</div>
+        <div class="reel-hook">"She could have done anything. She chose this." — Short interview-style reel with the teacher featured in Post 4. 3–4 rapid-cut answers from the interview. Raw, emotional, real. The highest engagement reel of the month.</div>
+      </div>
+      <div class="reel-divider"></div>
+      <div class="reel-caption">
+        "We asked [Teacher Name] why she chose to teach preschool. Her answer stopped us in our tracks. 💛 At Bright Start, our teachers aren't just qualified — they're called to this. And your child gets to learn from them every single day. #BrightStartTeachers #BrightStartThaltej"
+      </div>
+      <div class="reel-meta">
+        <div><div class="meta-k">Style</div><div class="meta-v">Talking-head interview cuts</div></div>
+        <div><div class="meta-k">Duration</div><div class="meta-v">30–45 sec</div></div>
+        <div><div class="meta-k">Hook Frame</div><div class="meta-v">Teacher mid-sentence, candid</div></div>
+        <div><div class="meta-k">Music</div><div class="meta-v">Soft emotional background</div></div>
+      </div>
+      <div class="reel-status-row">
+        <span class="status-badge status-planned" onclick="cycleStatus(this)">⬤ Planned</span>
+        <a class="asset-link" href="#" onclick="return false;" style="color:rgba(255,255,255,0.32);font-size:9px;font-weight:700;text-decoration:none;">📁 Add Asset Link</a>
+      </div>
+      <div class="reel-cta-row">
+        <span class="reel-cta">Boost This Reel</span>
+        <span class="reel-music">🎵 Soft emotional audio</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 2 STORIES -->
+  <div class="sec-label">Stories — Week 2</div>
+  <div class="stories-grid">
+    <div class="story-card">
+      <div class="story-header"><div class="story-num">S5</div><div class="story-day-label">Tuesday Story</div></div>
+      <div class="story-title">👩‍🏫 "3 things [Teacher Name] does that every child secretly loves"</div>
+      <div class="story-idea">Fun teacher spotlight story — 3 slides revealing small habits or rituals the teacher has with children (e.g. secret handshake, a special goodbye phrase). Warm and deeply personal.</div>
+      <span class="story-type">Teacher Story</span>
+    </div>
+    <div class="story-card">
+      <div class="story-header"><div class="story-num">S6</div><div class="story-day-label">Thursday Story</div></div>
+      <div class="story-title">🙏 "Guru Purnima — share this with the teacher who changed your life"</div>
+      <div class="story-idea">Shareable Guru Purnima story tied to Post 5. Bold graphic with BSFC logo. "Send this to a teacher who made a difference" — drives massive organic reshares on the festive day.</div>
+      <span class="story-type">Festive Story</span>
+    </div>
+    <div class="story-card">
+      <div class="story-header"><div class="story-num">S7</div><div class="story-day-label">Friday Story</div></div>
+      <div class="story-title">🎬 "Our teacher's interview reel just went up — go watch it. You'll cry. 💛"</div>
+      <div class="story-idea">Hype story for the Week 2 teacher interview reel. Screenshot of early comments if any. "Warning: emotionally dangerous content ahead 😭💛" — drives click-throughs to the reel.</div>
+      <span class="story-type">Reel Hype</span>
+    </div>
+    <div class="story-card">
+      <div class="story-header"><div class="story-num">S8</div><div class="story-day-label">Weekend Story</div></div>
+      <div class="story-title">😄 "This week's funniest thing a child said at Bright Start..."</div>
+      <div class="story-idea">One great child quote from the week — tease of Post 6 content. "Drop your child's funniest quote below 👇" — question box. Collects material for future posts and drives community engagement.</div>
+      <span class="story-type">Community Story</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════ WEEK 3 — Jul 15–19 ══════════ -->
+<div class="week-section" id="sec-w3">
+  <div class="week-header">
+    <div class="week-pill" style="background:var(--w3);">Week 3</div>
+    <div class="week-title">Second Teacher Spotlight + Learning in Action</div>
+    <div class="week-dates">Jul 15 – 19</div>
+    <div class="week-goal">🎯 Go deeper — show curriculum philosophy through real moments</div>
+  </div>
+
+  <div class="sec-label">Main Posts</div>
+  <div class="posts-grid" data-week="w3">
+
+    <!-- POST 7 -->
+    <div class="post-card" data-type="carousel">
+      <div class="card-accent" style="background:linear-gradient(90deg,var(--w3),#F59E0B);"></div>
+      <div class="card-top">
+        <div class="post-num" style="background:linear-gradient(135deg,var(--w3),#F59E0B);">7</div>
+        <div class="ftags"><span class="ftag ftag-carousel">Carousel</span><span class="ftag ftag-ig">IG</span><span class="ftag ftag-fb">FB</span></div>
+      </div>
+      <div class="card-body">
+        <div class="post-day">Tuesday, Jul 15 — Teacher Story</div>
+        <div class="post-title">"No Two Children Learn the Same Way — and That's the Whole Point." 🧠</div>
+        <div class="post-desc">Second teacher spotlight. Different teacher, different angle — this one focused on teaching philosophy and how they adapt for different children. Shows BSFC's depth of approach, not just warmth.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="caption-box">
+        <span class="caption-label">📝 Caption</span>
+        Meet [Teacher Name]. 👋 She's been working with young children for [X] years — and the one thing she knows for certain is that every child arrives with their own unique way of seeing the world. Her job? Figure it out, celebrate it, and build on it. Swipe to meet her. 💛 #BrightStartTeachers #BrightStartThaltej
+      </div>
+      <div class="story-tie" style="background:var(--rose-light);">
+        <div class="story-tie-label" style="color:var(--rose);">📱 Linked Story</div>
+        <div class="story-tie-body"><strong style="color:var(--navy);">BTS Story:</strong> Video of this teacher in the middle of a lesson — candid, unscripted. 15-sec clip with text overlay: "This is [Teacher Name] in her element 🌟" — pairs perfectly with the carousel and drives people to read the post.</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Pillar</div><div class="meta-v">Teacher Stories</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">Save & Share</div></div>
+        <div><div class="meta-k">Slides</div><div class="meta-v">5 (portrait + philosophy quotes + action)</div></div>
+        <div><div class="meta-k">Shoot</div><div class="meta-v">Mid-lesson candid + interview</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        Gold & white palette. Different visual treatment from Week 2 teacher post — use a warmer, more editorial look. Slide 1: Candid shot of teacher engaged with a child (not looking at camera). Quote in italic serif: "No two children learn the same way." Slide 2–4: Philosophy in their own words. Slide 5: Fun facts — "Favourite classroom activity / Can't teach without / Dream school trip destination." Final: BSFC logo.
+      </div>
+      <div class="card-status-row">
+        <span class="status-badge status-planned" onclick="cycleStatus(this)">⬤ Planned</span>
+        <a class="asset-link" href="#" onclick="return false;">📁 Add Asset Link</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">Meet the Team 👩‍🏫</span>
+        <span class="hashtag-prev">#BrightStartTeachers #TeachersOfInstagram</span>
+      </div>
+    </div>
+
+    <!-- POST 8 -->
+    <div class="post-card" data-type="carousel">
+      <div class="card-accent" style="background:linear-gradient(90deg,#FB923C,var(--w3));"></div>
+      <div class="card-top">
+        <div class="post-num" style="background:linear-gradient(135deg,#FB923C,var(--w3));">8</div>
+        <div class="ftags"><span class="ftag ftag-carousel">Carousel</span><span class="ftag ftag-ig">IG</span><span class="ftag ftag-fb">FB</span></div>
+      </div>
+      <div class="card-body">
+        <div class="post-day">Thursday, Jul 17 — Learning in Action</div>
+        <div class="post-title">5 Moments This Week That Reminded Us Why We Do This 🌟</div>
+        <div class="post-desc">Weekly highlight carousel — 5 real moments from classrooms this week. Not staged. Not curated perfection. Real joy, real mess, real learning. Parents of enrolled children will share this instantly.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="caption-box">
+        <span class="caption-label">📝 Caption</span>
+        Some weeks remind you exactly why this work matters. 🌟 This was one of them. Five moments from our classrooms this week that left us smiling long after the day ended. Swipe through — and if you recognise your child in there, tag them in the comments! 💛 #BrightStartThaltej #ClassroomLife
+      </div>
+      <div class="story-tie" style="background:var(--rose-light);">
+        <div class="story-tie-label" style="color:var(--rose);">📱 Linked Story</div>
+        <div class="story-tie-body"><strong style="color:var(--navy);">Community Story:</strong> "What was YOUR child's highlight this week? 💛" — Question box for enrolled parents. Responses get reshared with permission. Builds parent community and creates ongoing content pipeline automatically.</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Pillar</div><div class="meta-v">Child Moments + Classroom Life</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">Tag Your Child</div></div>
+        <div><div class="meta-k">Slides</div><div class="meta-v">5 real candid moments</div></div>
+        <div><div class="meta-k">Visual</div><div class="meta-v">Unfiltered, authentic, warm</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        Orange & cream. Each slide: one photo + a one-line caption describing the moment (e.g. "When Anaya decided her painting needed glitter. A lot of glitter. 🌟"). Keep it personal, specific, and real. Avoid generic shots — find the moments that tell a story. Final slide: "More moments next week — see you Monday. 💛" + BSFC logo.
+      </div>
+      <div class="card-status-row">
+        <span class="status-badge status-planned" onclick="cycleStatus(this)">⬤ Planned</span>
+        <a class="asset-link" href="#" onclick="return false;">📁 Add Asset Link</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">Tag Your Child 💛</span>
+        <span class="hashtag-prev">#ClassroomMoments #BrightStartThaltej</span>
+      </div>
+    </div>
+
+    <!-- POST 9 -->
+    <div class="post-card" data-type="poster">
+      <div class="card-accent" style="background:linear-gradient(90deg,var(--leaf),var(--w3));"></div>
+      <div class="card-top">
+        <div class="post-num" style="background:linear-gradient(135deg,var(--leaf),var(--w3));">9</div>
+        <div class="ftags"><span class="ftag ftag-poster">Poster</span><span class="ftag ftag-ig">IG</span><span class="ftag ftag-fb">FB</span></div>
+      </div>
+      <div class="card-body">
+        <div class="post-day">Saturday, Jul 19 — Thought Leadership</div>
+        <div class="post-title">The Myth of "Just Playing" — Why Play Is the Most Serious Thing a Child Can Do 🧩</div>
+        <div class="post-desc">Educational poster that validates BSFC's play-based philosophy. Speaks directly to parents who might worry their child isn't doing "real work" at preschool. High save rate, high share rate.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="caption-box">
+        <span class="caption-label">📝 Caption</span>
+        "They're just playing." 🤔 Actually — they're building neural pathways, negotiating with peers, developing fine motor skills, and learning to manage emotions. All at the same time. At Bright Start, play isn't a break from learning. It IS the learning. 🧩 Save this to share with someone who needs to hear it. #PlayBasedLearning #EarlyChildhoodEducation #BrightStartThaltej
+      </div>
+      <div class="story-tie" style="background:var(--rose-light);">
+        <div class="story-tie-label" style="color:var(--rose);">📱 Linked Story</div>
+        <div class="story-tie-body"><strong style="color:var(--navy);">Poll Story:</strong> "Did anyone ever tell you your child was 'just playing'? 🙄" — Yes, all the time / No, people get it. Taps into a shared parental experience. CTA: "Swipe to see why that's the biggest myth in early education."</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Pillar</div><div class="meta-v">Classroom Life + Brand Voice</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">Save & Share</div></div>
+        <div><div class="meta-k">Format</div><div class="meta-v">Bold typographic poster</div></div>
+        <div><div class="meta-k">Visual</div><div class="meta-v">Striking quote, child activity photo</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        Forest green & cream. Large, bold headline: "They're not 'just playing'." Below: 4 short lines showing what play actually develops (Neural pathways / Social skills / Motor skills / Emotional regulation). Real photo of a child deep in play as background — slightly darkened with text overlay. BSFC branding bottom right. Designed to be saved and shared by parents who've heard this comment.
+      </div>
+      <div class="card-status-row">
+        <span class="status-badge status-planned" onclick="cycleStatus(this)">⬤ Planned</span>
+        <a class="asset-link" href="#" onclick="return false;">📁 Add Asset Link</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">Save & Share 🧩</span>
+        <span class="hashtag-prev">#PlayBasedLearning #EarlyChildhoodEducation</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- WEEK 3 REEL -->
+  <div class="sec-label">Weekly Reel — Week 3</div>
+  <div class="reel-row" data-week="w3">
+    <div class="reel-card" data-type="reel">
+      <div class="reel-top">
+        <div class="reel-badge">🎬 Weekly Reel</div>
+        <div class="reel-week">Week 3 · Friday Jul 18</div>
+      </div>
+      <div class="reel-body">
+        <div class="reel-day">Friday, Jul 18 — BTS Teacher Reel</div>
+        <div class="reel-title">What Teachers Do at Bright Start That No One Sees 👀✨</div>
+        <div class="reel-hook">"The classroom is ready. The children don't know how much went into it." — BTS reel of teachers prepping before school. Mix of timelapse and candid clips. Emotionally surprising to most parents. Very high share potential.</div>
+      </div>
+      <div class="reel-divider"></div>
+      <div class="reel-caption">
+        "Before your child walks in — this is already done. 🌅 The books are arranged. The colours are laid out. The classroom is ready to say good morning. This is what our teachers do before the bell rings. 💛 #BrightStartTeachers #BrightStartThaltej"
+      </div>
+      <div class="reel-meta">
+        <div><div class="meta-k">Style</div><div class="meta-v">BTS timelapse + candid</div></div>
+        <div><div class="meta-k">Duration</div><div class="meta-v">25–35 sec</div></div>
+        <div><div class="meta-k">Hook Frame</div><div class="meta-v">Empty classroom being set up</div></div>
+        <div><div class="meta-k">Music</div><div class="meta-v">Calm, warm morning-feel audio</div></div>
+      </div>
+      <div class="reel-status-row">
+        <span class="status-badge status-planned" onclick="cycleStatus(this)">⬤ Planned</span>
+        <a class="asset-link" href="#" onclick="return false;" style="color:rgba(255,255,255,0.32);font-size:9px;font-weight:700;text-decoration:none;">📁 Add Asset Link</a>
+      </div>
+      <div class="reel-cta-row">
+        <span class="reel-cta">Boost This Reel</span>
+        <span class="reel-music">🎵 Calm morning-feel audio</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 3 STORIES -->
+  <div class="sec-label">Stories — Week 3</div>
+  <div class="stories-grid">
+    <div class="story-card">
+      <div class="story-header"><div class="story-num">S9</div><div class="story-day-label">Tuesday Story</div></div>
+      <div class="story-title">👩‍🏫 "A day in [Teacher Name]'s shoes — from her perspective"</div>
+      <div class="story-idea">5-slide story narrated from the teacher's POV — "7 AM: I'm already thinking about today's activity. 8:15 AM: First little one arrives..." Deeply humanising. Pairs with Post 7 carousel.</div>
+      <span class="story-type">Teacher POV Story</span>
+    </div>
+    <div class="story-card">
+      <div class="story-header"><div class="story-num">S10</div><div class="story-day-label">Thursday Story</div></div>
+      <div class="story-title">🧩 "Quick — what do you think a child learns from building blocks?"</div>
+      <div class="story-idea">Quiz story tied to Post 9's "play = learning" theme. Multiple choice — Fine motor / Math concepts / Spatial thinking / All of the above. Answer reveal + BSFC branding. Educational and shareable.</div>
+      <span class="story-type">Education Quiz</span>
+    </div>
+    <div class="story-card">
+      <div class="story-header"><div class="story-num">S11</div><div class="story-day-label">Friday Story</div></div>
+      <div class="story-title">🎬 "We filmed something this morning before school started — go watch it 👀"</div>
+      <div class="story-idea">Hype teaser for the Week 3 BTS reel. "We were here at 7 AM for this 🌅" — curiosity hook. Drives traffic to reel. Real behind-the-scenes stills as teaser frames.</div>
+      <span class="story-type">Reel Teaser</span>
+    </div>
+    <div class="story-card">
+      <div class="story-header"><div class="story-num">S12</div><div class="story-day-label">Weekend Story</div></div>
+      <div class="story-title">📸 "Your weekly photo dump from Bright Start ✨ — Week 3 highlights"</div>
+      <div class="story-idea">Casual 5–7 slide story dump of best candid classroom moments from the week. Light, warm, community-building. Ends with: "See you Monday 💛" — keeps followers engaged through the weekend.</div>
+      <span class="story-type">Weekly Recap</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════ WEEK 4 — Jul 22–28 ══════════ -->
+<div class="week-section" id="sec-w4">
+  <div class="week-header">
+    <div class="week-pill" style="background:var(--w4);">Week 4</div>
+    <div class="week-title">Month Wrap + Third Teacher + Community Love</div>
+    <div class="week-dates">Jul 22 – 28</div>
+    <div class="week-goal">🎯 Close July strong — celebrate the community, tease August</div>
+  </div>
+
+  <div class="sec-label">Main Posts</div>
+  <div class="posts-grid" data-week="w4">
+
+    <!-- POST 10 -->
+    <div class="post-card" data-type="carousel">
+      <div class="card-accent" style="background:linear-gradient(90deg,var(--w4),#F472B6);"></div>
+      <div class="card-top">
+        <div class="post-num" style="background:linear-gradient(135deg,var(--w4),#F472B6);">10</div>
+        <div class="ftags"><span class="ftag ftag-carousel">Carousel</span><span class="ftag ftag-ig">IG</span><span class="ftag ftag-fb">FB</span></div>
+      </div>
+      <div class="card-body">
+        <div class="post-day">Tuesday, Jul 22 — Teacher Story</div>
+        <div class="post-title">"The Moment a Child Gets It — There's Nothing Else Like It." ✨</div>
+        <div class="post-desc">Third teacher spotlight — brings the series to a trio. Different angle again: this teacher talks about the small breakthrough moments that make everything worth it. Universal emotional resonance.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="caption-box">
+        <span class="caption-label">📝 Caption</span>
+        There's a moment every teacher lives for. 🌟 When a child who's been struggling suddenly gets it — and their whole face changes. [Teacher Name] calls it "the light." She's seen it hundreds of times. And she says it never gets old. Swipe to read her story. 💛 #BrightStartTeachers #BrightStartThaltej
+      </div>
+      <div class="story-tie" style="background:var(--rose-light);">
+        <div class="story-tie-label" style="color:var(--rose);">📱 Linked Story</div>
+        <div class="story-tie-body"><strong style="color:var(--navy);">Reaction Story:</strong> "Our teachers are something else. 💛 Which one has your child mentioned at home?" — Name poll or open question. Makes enrolled parents feel seen and teachers feel valued. Great community-building moment.</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Pillar</div><div class="meta-v">Teacher Stories</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">Tag Your Teacher</div></div>
+        <div><div class="meta-k">Slides</div><div class="meta-v">5 (portrait + quotes + action)</div></div>
+        <div><div class="meta-k">Shoot</div><div class="meta-v">Interview + classroom candid</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        Coral & white palette — warmer and more energetic than the previous two teacher posts. Slide 1: Teacher in a moment of connection with a child (side profile, both absorbed in something). Slides 2–4: Interview quotes — keep them short, punchy, personal. Slide 5: "From [Teacher Name], with love 💛" + fun fact. Final: Full teacher series teaser — "You've now met three of our teachers. Come meet them in person."
+      </div>
+      <div class="card-status-row">
+        <span class="status-badge status-planned" onclick="cycleStatus(this)">⬤ Planned</span>
+        <a class="asset-link" href="#" onclick="return false;">📁 Add Asset Link</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">Tag Your Teacher 💛</span>
+        <span class="hashtag-prev">#BrightStartTeachers #TeacherAppreciation</span>
+      </div>
+    </div>
+
+    <!-- POST 11 -->
+    <div class="post-card" data-type="carousel">
+      <div class="card-accent" style="background:linear-gradient(90deg,var(--plum),var(--w4));"></div>
+      <div class="card-top">
+        <div class="post-num" style="background:linear-gradient(135deg,var(--plum),var(--w4));">11</div>
+        <div class="ftags"><span class="ftag ftag-carousel">Carousel</span><span class="ftag ftag-ig">IG</span><span class="ftag ftag-fb">FB</span></div>
+      </div>
+      <div class="card-body">
+        <div class="post-day">Thursday, Jul 24 — Child Moments</div>
+        <div class="post-title">A Month of Firsts at Bright Start 🌱 — July in Pictures</div>
+        <div class="post-desc">Month-one highlights carousel — the best child moments, activity photos, and classroom snapshots from all of July. Warm, celebratory, deeply shareable with enrolled families.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="caption-box">
+        <span class="caption-label">📝 Caption</span>
+        One month in. And what a month it's been. 💛 First paintings. First friendships. First times choosing their own books. First times running — not walking — through the door. Every single one of these firsts happened here, at Bright Start Thaltej. Swipe through your favourites. 🌱 #BrightStartThaltej #ClassroomLife #JulyAtBrightStart
+      </div>
+      <div class="story-tie" style="background:var(--rose-light);">
+        <div class="story-tie-label" style="color:var(--rose);">📱 Linked Story</div>
+        <div class="story-tie-body"><strong style="color:var(--navy);">Parent Moment Story:</strong> "What was your child's biggest 'first' this month? 💛" — Question box. Collect responses and compile into a future story or post. Enrolled parents love this — it celebrates their children publicly and builds community pride.</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Pillar</div><div class="meta-v">Child Moments + Classroom Life</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">Share Your Favourite</div></div>
+        <div><div class="meta-k">Slides</div><div class="meta-v">8–10 best July photos</div></div>
+        <div><div class="meta-k">Visual</div><div class="meta-v">Curated candids, consistent filter</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        Violet & cream palette. Curate only the most visually striking and emotionally resonant photos from the month. Apply a consistent warm filter across all slides for cohesion. Each slide: just the photo and a 3–5 word caption (e.g. "First real painting. 🎨" / "New best friends. 💛" / "This face. 🌟"). Final slide: "July was just the beginning — August has more firsts waiting. 💛" + BSFC logo.
+      </div>
+      <div class="card-status-row">
+        <span class="status-badge status-planned" onclick="cycleStatus(this)">⬤ Planned</span>
+        <a class="asset-link" href="#" onclick="return false;">📁 Add Asset Link</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">Share Your Favourite</span>
+        <span class="hashtag-prev">#JulyAtBrightStart #ClassroomLife</span>
+      </div>
+    </div>
+
+    <!-- POST 12 -->
+    <div class="post-card" data-type="poster">
+      <div class="card-accent" style="background:linear-gradient(90deg,var(--navy),var(--w4));"></div>
+      <div class="card-top">
+        <div class="post-num" style="background:linear-gradient(135deg,var(--navy),var(--w4));">12</div>
+        <div class="ftags"><span class="ftag ftag-poster">Poster</span><span class="ftag ftag-ig">IG</span><span class="ftag ftag-fb">FB</span></div>
+      </div>
+      <div class="card-body">
+        <div class="post-day">Sunday, Jul 27 — Month Close</div>
+        <div class="post-title">July, You Were Wonderful. August, We're Ready for You. 🌟</div>
+        <div class="post-desc">Month-closing post that celebrates the community, thanks enrolled families, and creates natural anticipation for August. Warm and memorable. The post everyone saves.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="caption-box">
+        <span class="caption-label">📝 Caption</span>
+        July. You were better than we imagined. 💛 To every child who walked through our doors this month, every parent who trusted us, every teacher who showed up with so much heart — thank you. August starts Monday. And we cannot wait to see what these little ones do next. 🌟 #BrightStartThaltej #Udgamverse #JulyAtBrightStart
+      </div>
+      <div class="story-tie" style="background:var(--rose-light);">
+        <div class="story-tie-label" style="color:var(--rose);">📱 Linked Story</div>
+        <div class="story-tie-body"><strong style="color:var(--navy);">Teaser Story:</strong> "Something new is coming to Bright Start in August 👀" — Mystery teaser without revealing. Could be a new activity, event, or theme. Drives curiosity and keeps followers engaged through the month transition.</div>
+      </div>
+      <div class="card-meta">
+        <div><div class="meta-k">Pillar</div><div class="meta-v">Community + Brand Voice</div></div>
+        <div><div class="meta-k">CTA</div><div class="meta-v">Share & Tag</div></div>
+        <div><div class="meta-k">Format</div><div class="meta-v">Premium closing poster</div></div>
+        <div><div class="meta-k">Visual</div><div class="meta-v">Navy + gold, cinematic and warm</div></div>
+      </div>
+      <button class="expand-btn" onclick="toggleDetail(this)">+ Creative Direction</button>
+      <div class="extra">
+        <strong>🎨 Visual Direction</strong>
+        Deep navy background, gold typography. "July, you were wonderful." in large Playfair Display italic. Soft bokeh or light-leak overlay. BSFC logo centred in gold. This should feel like a warm goodbye letter — premium, emotional, memorable. It's the post people screenshot and share in WhatsApp groups.
+      </div>
+      <div class="card-status-row">
+        <span class="status-badge status-planned" onclick="cycleStatus(this)">⬤ Planned</span>
+        <a class="asset-link" href="#" onclick="return false;">📁 Add Asset Link</a>
+      </div>
+      <div class="card-footer">
+        <span class="cta-btn">See You in August 🌟</span>
+        <span class="hashtag-prev">#BrightStartThaltej #Udgamverse</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- WEEK 4 REEL -->
+  <div class="sec-label">Weekly Reel — Week 4</div>
+  <div class="reel-row" data-week="w4">
+    <div class="reel-card" data-type="reel">
+      <div class="reel-top">
+        <div class="reel-badge">🎬 Weekly Reel</div>
+        <div class="reel-week">Week 4 · Friday Jul 25</div>
+      </div>
+      <div class="reel-body">
+        <div class="reel-day">Friday, Jul 25 — Month Highlights Reel</div>
+        <div class="reel-title">July at Bright Start — One Month of Magic in 45 Seconds ✨</div>
+        <div class="reel-hook">"We filmed this month so you wouldn't have to imagine it." — The definitive month highlights reel. Best clips from all 4 weeks: children, teachers, activities, Chocolate Day, Guru Purnima. Cinematic, emotional, shared by every enrolled parent.</div>
+      </div>
+      <div class="reel-divider"></div>
+      <div class="reel-caption">
+        "One month. One school. Hundreds of moments that mattered. 💛 This is July at Bright Start Foundation Centre, Thaltej. We're so proud of every single one of our children — and grateful for every family who chose us. August, we're coming for you. 🌟 #BrightStartThaltej #Udgamverse #JulyAtBrightStart"
+      </div>
+      <div class="reel-meta">
+        <div><div class="meta-k">Style</div><div class="meta-v">Month highlights montage</div></div>
+        <div><div class="meta-k">Duration</div><div class="meta-v">40–50 sec</div></div>
+        <div><div class="meta-k">Hook Frame</div><div class="meta-v">Best 3-sec clip of the month</div></div>
+        <div><div class="meta-k">Music</div><div class="meta-v">Cinematic, emotional, trending</div></div>
+      </div>
+      <div class="reel-status-row">
+        <span class="status-badge status-planned" onclick="cycleStatus(this)">⬤ Planned</span>
+        <a class="asset-link" href="#" onclick="return false;" style="color:rgba(255,255,255,0.32);font-size:9px;font-weight:700;text-decoration:none;">📁 Add Asset Link</a>
+      </div>
+      <div class="reel-cta-row">
+        <span class="reel-cta">Share This Reel 🌟</span>
+        <span class="reel-music">🎵 Cinematic emotional audio</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 4 STORIES -->
+  <div class="sec-label">Stories — Week 4</div>
+  <div class="stories-grid">
+    <div class="story-card">
+      <div class="story-header"><div class="story-num">S13</div><div class="story-day-label">Tuesday Story</div></div>
+      <div class="story-title">💛 "Your child mentioned their teacher by name today — here's why that matters"</div>
+      <div class="story-idea">Educational + emotional story about teacher-child bonding. When a child names their teacher unprompted, it signals genuine attachment and safety. Pairs with Week 4 teacher post. Very shareable with enrolled parents.</div>
+      <span class="story-type">Value Story</span>
+    </div>
+    <div class="story-card">
+      <div class="story-header"><div class="story-num">S14</div><div class="story-day-label">Thursday Story</div></div>
+      <div class="story-title">🌱 "Look how far they've come — a month of firsts at Bright Start"</div>
+      <div class="story-idea">Companion story to Post 11 — 4–5 slides of the most wholesome month moments. "Your child did all of this in just one month. 🥹" Celebratory, emotional. Enrolled parents will screenshot and share.</div>
+      <span class="story-type">Month Celebration</span>
+    </div>
+    <div class="story-card">
+      <div class="story-header"><div class="story-num">S15</div><div class="story-day-label">Friday Story</div></div>
+      <div class="story-title">🎬 "Our July recap reel just dropped — this one will stay with you 💛"</div>
+      <div class="story-idea">Reel hype story for the month highlights reel. Add a text overlay with a favourite moment from filming. "We cried a little editing this one 🥹" — authentic emotional hook drives maximum views.</div>
+      <span class="story-type">Reel Hype</span>
+    </div>
+    <div class="story-card">
+      <div class="story-header"><div class="story-num">S16</div><div class="story-day-label">Sunday Story</div></div>
+      <div class="story-title">🌟 "Thank you, July. See you Monday, August. — Love, Bright Start 💛"</div>
+      <div class="story-idea">Simple, beautiful month-close story. Photo of the school or classroom at end of day — golden-hour light. One line of text. BSFC logo. Nothing more needed. The quiet ending that makes people come back.</div>
+      <span class="story-type">Month-End Story</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- HASHTAG BANK -->
+<div class="htags-section">
+  <div class="htags-box">
+    <div class="htags-title">📌 Master Hashtag Bank — July 2025</div>
+    <div class="htags-grid">
+      <div>
+        <div class="htag-group-name">Brand & School</div>
+        <div class="htag-list">
+          <span class="htag" style="background:var(--gold-light);color:#92400E;">#BrightStartThaltej</span>
+          <span class="htag" style="background:var(--gold-light);color:#92400E;">#BSFCThaltej</span>
+          <span class="htag" style="background:var(--gold-light);color:#92400E;">#Udgamverse</span>
+          <span class="htag" style="background:var(--gold-light);color:#92400E;">#BrightStartFoundation</span>
+          <span class="htag" style="background:var(--gold-light);color:#92400E;">#JulyAtBrightStart</span>
+        </div>
+      </div>
+      <div>
+        <div class="htag-group-name">Teachers</div>
+        <div class="htag-list">
+          <span class="htag" style="background:var(--sky-light);color:#1E40AF;">#BrightStartTeachers</span>
+          <span class="htag" style="background:var(--sky-light);color:#1E40AF;">#PreschoolTeacher</span>
+          <span class="htag" style="background:var(--sky-light);color:#1E40AF;">#TeachersOfInstagram</span>
+          <span class="htag" style="background:var(--sky-light);color:#1E40AF;">#TeacherLife</span>
+          <span class="htag" style="background:var(--sky-light);color:#1E40AF;">#TeacherAppreciation</span>
+        </div>
+      </div>
+      <div>
+        <div class="htag-group-name">Classroom & Learning</div>
+        <div class="htag-list">
+          <span class="htag" style="background:var(--leaf-light);color:#166534;">#ClassroomLife</span>
+          <span class="htag" style="background:var(--leaf-light);color:#166534;">#PlayBasedLearning</span>
+          <span class="htag" style="background:var(--leaf-light);color:#166534;">#EarlyChildhoodEducation</span>
+          <span class="htag" style="background:var(--leaf-light);color:#166534;">#SensoryPlay</span>
+          <span class="htag" style="background:var(--leaf-light);color:#166534;">#ClassroomMoments</span>
+        </div>
+      </div>
+      <div>
+        <div class="htag-group-name">Location & Audience</div>
+        <div class="htag-list">
+          <span class="htag" style="background:var(--plum-light);color:#6D28D9;">#Thaltej</span>
+          <span class="htag" style="background:var(--plum-light);color:#6D28D9;">#AhmedabadParents</span>
+          <span class="htag" style="background:var(--plum-light);color:#6D28D9;">#AhmedabadMoms</span>
+          <span class="htag" style="background:var(--plum-light);color:#6D28D9;">#PreschoolAhmedabad</span>
+          <span class="htag" style="background:var(--plum-light);color:#6D28D9;">#ThaltejAhmedabad</span>
+        </div>
+      </div>
+      <div>
+        <div class="htag-group-name">Occasions</div>
+        <div class="htag-list">
+          <span class="htag" style="background:var(--coral-light);color:#9A3412;">#GuruPurnima2025</span>
+          <span class="htag" style="background:var(--coral-light);color:#9A3412;">#GuruPurnima</span>
+          <span class="htag" style="background:var(--coral-light);color:#9A3412;">#WorldChocolateDay</span>
+          <span class="htag" style="background:var(--coral-light);color:#9A3412;">#GuruPurnimaSpecial</span>
+        </div>
+      </div>
+      <div>
+        <div class="htag-group-name">Community & Child</div>
+        <div class="htag-list">
+          <span class="htag" style="background:var(--rose-light);color:#9D174D;">#KidsSayTheDarnestThings</span>
+          <span class="htag" style="background:var(--rose-light);color:#9D174D;">#ToddlerMom</span>
+          <span class="htag" style="background:var(--rose-light);color:#9D174D;">#PreschoolMom</span>
+          <span class="htag" style="background:var(--rose-light);color:#9D174D;">#ChildDevelopment</span>
+          <span class="htag" style="background:var(--rose-light);color:#9D174D;">#HappyLearners</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer-section">
+  <div class="footer-inner">
+    <div>
+      <div class="fn-title">📅 Posting Schedule</div>
+      <div class="fn-text">Mon + Wed/Thu + Sat for main posts. Friday for weekly reel. Stories: Mon, Wed/Thu, Fri, Weekend. No admissions pressure — pure brand building.</div>
+    </div>
+    <div>
+      <div class="fn-title">⏰ Best Times</div>
+      <div class="fn-text">Carousels: 9–11 AM. Reels: 6–9 PM. Stories: 8 AM daily + 8 PM. Guru Purnima post: 7–8 AM auspicious window. Weekend stories: 10 AM.</div>
+    </div>
+    <div>
+      <div class="fn-title">📸 Teacher Shoot Plan</div>
+      <div class="fn-text">3 teachers over 3 weeks (W2, W3, W4). Each needs: portrait, classroom candids, 20-min interview recording, BTS prep shots. Schedule early morning or after school.</div>
+    </div>
+    <div>
+      <div class="fn-title">🎬 Reel Shoot Notes</div>
+      <div class="fn-text">W1: creative play (horizontal + vertical). W2: teacher interview (tripod, good light, lapel mic if possible). W3: BTS morning timelapse. W4: compile best clips from all 4 weeks.</div>
+    </div>
+    <div>
+      <div class="fn-title">💡 Content Pipeline</div>
+      <div class="fn-text">Use story Q&A boxes to collect parent quotes (Post 6, 8), child's firsts (Post 11), and funny quotes (Post 6) — turns audience engagement into next month's content automatically.</div>
+    </div>
+    <div>
+      <div class="fn-title">🚀 August Bridge</div>
+      <div class="fn-text">S16 + Post 12 tease August. Plan: Independence Day (Aug 15), new classroom theme reveal, teacher series continuation, and community event if possible.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const STATUSES = [
+  { label: '⬤ Planned',    cls: 'status-planned'   },
+  { label: '✏️ Designing', cls: 'status-designing'  },
+  { label: '✅ Ready',      cls: 'status-ready'      },
+  { label: '📅 Scheduled', cls: 'status-scheduled'  },
+  { label: '🚀 Posted',    cls: 'status-posted'     },
+];
+function cycleStatus(el) {
+  const current = STATUSES.findIndex(s => el.classList.contains(s.cls));
+  const next = (current + 1) % STATUSES.length;
+  STATUSES.forEach(s => el.classList.remove(s.cls));
+  el.classList.add(STATUSES[next].cls);
+  el.textContent = STATUSES[next].label;
+}
+function filterWeek(val, btn) {
+  document.querySelectorAll('[onclick^="filterWeek"]').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('[onclick^="filterType"]').forEach(b => b.classList.remove('active'));
+  activeType = null;
+  document.querySelectorAll('.post-card, .reel-card').forEach(c => c.style.display = '');
+  ['w1','w2','w3','w4'].forEach(w => {
+    const sec = document.getElementById('sec-' + w);
+    if (sec) sec.style.display = (val === 'all' || val === w) ? 'block' : 'none';
+  });
+}
+let activeType = null;
+function filterType(type, btn) {
+  if (activeType === type) {
+    btn.classList.remove('active');
+    activeType = null;
+    document.querySelectorAll('.post-card, .reel-card').forEach(c => c.style.display = '');
+    return;
+  }
+  document.querySelectorAll('[onclick^="filterType"]').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeType = type;
+  ['w1','w2','w3','w4'].forEach(w => {
+    const sec = document.getElementById('sec-' + w);
+    if (sec) sec.style.display = 'block';
+  });
+  document.querySelectorAll('[onclick^="filterWeek"]').forEach(b => b.classList.remove('active'));
+  document.querySelector('[onclick="filterWeek(\'all\',this)"]').classList.add('active');
+  document.querySelectorAll('.post-card').forEach(c => {
+    c.style.display = (type === 'reel') ? 'none' : (c.dataset.type === type ? '' : 'none');
+  });
+  document.querySelectorAll('.reel-card').forEach(c => {
+    c.style.display = (type === 'reel') ? '' : 'none';
+  });
+}
+function toggleDetail(btn) {
+  const el = btn.nextElementSibling;
+  el.classList.toggle('open');
+  btn.textContent = el.classList.contains('open') ? '− Hide Creative Direction' : '+ Creative Direction';
+}
+</script>
+</body>
+</html>
