@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shiva Optics — Content Calendar Jun 24 – Jul 31</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Syne:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0B0B0E;--bg2:#121218;--bg3:#1A1A22;--border:#252530;--border2:#2E2E3A;
+  --gold:#D4A843;--gold2:#F0C060;--text:#E8E2D8;--muted:#585460;--dim:#28262E;
+  --s-none-t:#555;--s-prog-t:#5BA3D9;--s-ready-t:#4DC880;--s-post-t:#D4A843;
+  --reel:#6B35A8;--carousel:#0A4A7A;--stories:#1A6B3A;--static:#8A3A1A;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh;overflow-x:hidden;}
+
+.back-btn{position:absolute;top:20px;left:52px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(212,168,67,0.3);padding:5px 14px;text-decoration:none;background:rgba(212,168,67,0.05);z-index:10;transition:all 0.15s;}
+.back-btn:hover{background:rgba(212,168,67,0.12);border-color:var(--gold);}
+
+header{padding:56px 52px 36px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;position:relative;overflow:hidden;}
+header::before{content:'JULY';position:absolute;right:-20px;top:-28px;font-family:'Playfair Display',serif;font-size:180px;font-weight:900;color:rgba(212,168,67,0.03);letter-spacing:-4px;pointer-events:none;user-select:none;}
+.brand-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.brand-tag::before{content:'';display:inline-block;width:24px;height:1px;background:var(--gold);}
+h1{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,52px);font-weight:700;color:var(--text);line-height:1.05;letter-spacing:-0.5px;}
+h1 em{color:var(--gold);font-style:italic;}
+.header-meta{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-top:10px;letter-spacing:0.1em;}
+.summary-bar{display:flex;gap:8px;flex-wrap:wrap;}
+.s-pill{display:flex;flex-direction:column;gap:3px;padding:12px 18px;border:1px solid var(--border);background:var(--bg2);min-width:90px;}
+.s-pill .count{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1;}
+.s-pill .label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);}
+.s-pill.total .count{color:var(--text);}
+.s-pill.not-started .count{color:var(--s-none-t);}
+.s-pill.in-progress .count{color:var(--s-prog-t);}
+.s-pill.ready .count{color:var(--s-ready-t);}
+.s-pill.posted .count{color:var(--gold);}
+
+.strategy-strip{padding:0 52px;margin-bottom:0;}
+.strategy-inner{border:1px solid rgba(212,168,67,0.2);background:linear-gradient(90deg,rgba(212,168,67,0.06),rgba(212,168,67,0.02));padding:18px 24px;display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;}
+.strat-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.strat-val{font-family:'Syne',sans-serif;font-size:11px;color:var(--text);line-height:1.6;}
+.strat-block{flex:1;min-width:180px;}
+.strat-divider{width:1px;background:rgba(212,168,67,0.15);flex-shrink:0;}
+
+.phase-legend{padding:16px 52px;border-bottom:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.pl-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-right:6px;}
+.phase-chip{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.12em;text-transform:uppercase;padding:4px 12px;border:1px solid;}
+.pc-p1{background:rgba(139,34,82,0.15);color:#E060A0;border-color:rgba(139,34,82,0.4);}
+.pc-p2{background:rgba(26,90,58,0.15);color:#50C880;border-color:rgba(26,90,58,0.4);}
+.pc-p3{background:rgba(90,58,0,0.2);color:#D4A843;border-color:rgba(90,58,0,0.4);}
+.pc-p4{background:rgba(26,58,106,0.15);color:#70AAEE;border-color:rgba(26,58,106,0.4);}
+.pc-p5{background:rgba(106,26,26,0.15);color:#E07070;border-color:rgba(106,26,26,0.4);}
+
+.progress-section{padding:18px 52px;}
+.prog-track{height:4px;background:var(--border);display:flex;overflow:hidden;margin-top:8px;}
+.prog-seg{height:100%;transition:width 0.4s ease;}
+.prog-none{background:var(--s-none-t);}
+.prog-prog{background:var(--s-prog-t);}
+.prog-ready{background:var(--s-ready-t);}
+.prog-post{background:var(--gold);}
+.prog-legend{display:flex;gap:20px;margin-top:8px;flex-wrap:wrap;}
+.prog-item{display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);}
+.prog-dot{width:8px;height:8px;flex-shrink:0;}
+
+.controls{padding:16px 52px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100;}
+.filter-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-right:4px;}
+.filter-btn{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 12px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all 0.15s;}
+.filter-btn:hover{border-color:var(--gold);color:var(--gold);}
+.filter-btn.active{background:var(--gold);border-color:var(--gold);color:#000;}
+.divider{width:1px;height:20px;background:var(--border);margin:0 4px;}
+
+.week-block{}
+.phase-banner{margin:0 52px;padding:10px 20px;border:1px solid;display:flex;align-items:center;gap:12px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;}
+.pb-p1{background:rgba(139,34,82,0.1);border-color:rgba(139,34,82,0.3);color:#E060A0;}
+.pb-p2{background:rgba(26,90,58,0.1);border-color:rgba(26,90,58,0.3);color:#50C880;}
+.pb-p3{background:rgba(90,58,0,0.12);border-color:rgba(90,58,0,0.35);color:#D4A843;}
+.pb-p4{background:rgba(26,58,106,0.1);border-color:rgba(26,58,106,0.3);color:#70AAEE;}
+.pb-p5{background:rgba(106,26,26,0.12);border-color:rgba(106,26,26,0.35);color:#E07070;}
+
+.week-header{padding:14px 52px;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:16px;}
+.week-num{font-family:'Playfair Display',serif;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;}
+.week-theme{font-family:'Syne',sans-serif;font-size:11px;color:var(--text);font-weight:600;}
+.week-dates{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);}
+.week-bar{flex:1;height:1px;background:var(--border);}
+.week-post-count{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.1em;}
+
+.cards-wrap{padding:24px 52px;display:flex;flex-direction:column;gap:16px;}
+.rest-day{display:flex;align-items:center;gap:14px;padding:9px 20px;border:1px solid #161616;background:#0D0D0D;opacity:0.4;}
+.rest-date{font-family:'JetBrains Mono',monospace;font-size:10px;color:#2A2A2A;width:80px;flex-shrink:0;}
+.rest-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:#222;letter-spacing:0.15em;text-transform:uppercase;}
+
+.card{border:1px solid var(--border);background:var(--bg2);transition:border-color 0.2s,box-shadow 0.2s;position:relative;overflow:hidden;}
+.card:hover{border-color:rgba(212,168,67,0.4);box-shadow:0 4px 32px rgba(0,0,0,0.5);}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
+.card.tp-reel::before{background:var(--reel);}
+.card.tp-carousel::before{background:var(--carousel);}
+.card.tp-stories::before{background:var(--stories);}
+.card.tp-static::before{background:var(--static);}
+.card.tp-mixed::before{background:linear-gradient(180deg,var(--reel),var(--stories));}
+.card.hidden{display:none;}
+.rest-day.hidden{display:none;}
+
+.card-top{padding:18px 22px 14px 26px;display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;}
+.card-date-col{display:flex;flex-direction:column;gap:4px;min-width:80px;flex-shrink:0;}
+.card-date{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);font-weight:500;}
+.card-day{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;}
+.card-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;flex:1;}
+.type-pill{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.15em;text-transform:uppercase;padding:3px 10px;font-weight:500;border:1px solid;}
+.pill-reel{background:rgba(107,53,168,0.15);color:#A070E0;border-color:rgba(107,53,168,0.3);}
+.pill-carousel{background:rgba(10,74,122,0.15);color:#50A0D8;border-color:rgba(10,74,122,0.3);}
+.pill-stories{background:rgba(26,107,58,0.15);color:#50C880;border-color:rgba(26,107,58,0.3);}
+.pill-static{background:rgba(138,58,26,0.15);color:#E8904A;border-color:rgba(138,58,26,0.3);}
+.pill-mixed{background:rgba(107,53,168,0.1);color:#C090E8;border-color:rgba(107,53,168,0.25);}
+
+.phase-tag{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.1em;padding:3px 10px;border:1px solid;text-transform:uppercase;font-weight:600;}
+.pt-p1{background:rgba(139,34,82,0.12);color:#E060A0;border-color:rgba(139,34,82,0.35);}
+.pt-p2{background:rgba(26,90,58,0.12);color:#50C880;border-color:rgba(26,90,58,0.35);}
+.pt-p3{background:rgba(90,58,0,0.15);color:#D4A843;border-color:rgba(90,58,0,0.35);}
+.pt-p4{background:rgba(26,58,106,0.12);color:#70AAEE;border-color:rgba(26,58,106,0.35);}
+.pt-p5{background:rgba(106,26,26,0.12);color:#E07070;border-color:rgba(106,26,26,0.35);}
+.format-tag{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:0.1em;border:1px solid var(--border);padding:3px 10px;}
+
+.status-wrap{margin-left:auto;display:flex;align-items:center;gap:8px;}
+.status-label-txt{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;}
+.status-select{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;padding:5px 10px;border:1px solid var(--border);background:var(--bg3);color:var(--text);cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;min-width:140px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23585460'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px;transition:border-color 0.15s;}
+.status-select:hover,.status-select:focus{border-color:var(--gold);}
+.status-none{border-color:var(--border);color:var(--s-none-t);}
+.status-prog{border-color:var(--s-prog-t);color:var(--s-prog-t);background-color:rgba(26,58,92,0.3);}
+.status-ready{border-color:var(--s-ready-t);color:var(--s-ready-t);background-color:rgba(26,60,42,0.3);}
+.status-post{border-color:var(--gold);color:var(--gold);background-color:rgba(60,42,16,0.4);}
+
+.card-body{border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.card-field{padding:14px 22px 14px 26px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
+.card-field:nth-child(even){border-right:none;}
+.card-field.full-width{grid-column:1/-1;border-right:none;}
+.card-field.no-bottom{border-bottom:none;}
+.field-key{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.field-key::before{content:'';display:inline-block;width:10px;height:1px;background:var(--dim);}
+.field-val{font-family:'Syne',sans-serif;font-size:12px;color:var(--text);line-height:1.6;}
+.field-val.hook-txt{font-family:'Playfair Display',serif;font-size:14px;font-style:italic;color:var(--gold2);line-height:1.5;}
+.field-val.caption-txt{font-size:11.5px;color:#BDB8B0;white-space:pre-line;line-height:1.7;}
+.field-val.visual-txt{font-size:11.5px;color:#A0A8B8;line-height:1.6;}
+.cta-badge{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9px;padding:4px 12px;border:1px solid rgba(212,168,67,0.3);background:rgba(212,168,67,0.08);color:var(--gold);margin-top:6px;}
+.obj-badge{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9px;padding:4px 12px;border:1px solid rgba(90,160,216,0.3);background:rgba(90,160,216,0.08);color:#70AAEE;margin-top:6px;}
+
+.assets-row{padding:10px 26px;border-top:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.assets-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);}
+.asset-link{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold);border:1px solid rgba(212,168,67,0.25);padding:3px 12px;text-decoration:none;transition:all 0.15s;cursor:pointer;}
+.asset-link:hover{background:rgba(212,168,67,0.1);border-color:var(--gold);}
+.asset-link.linked{color:var(--s-ready-t);border-color:var(--s-ready-t);}
+
+@media(max-width:700px){
+  header,.controls,.cards-wrap,.week-header,.progress-section,.phase-legend,.phase-banner,.strategy-strip{padding-left:20px;padding-right:20px;}
+  .card-body{grid-template-columns:1fr;}
+  .card-field{border-right:none!important;}
+  .status-wrap{margin-left:0;width:100%;margin-top:8px;}
+  .card-top{flex-direction:column;}
+  .summary-bar .s-pill{min-width:70px;padding:10px 12px;}
+  .back-btn{left:20px;font-size:8px;}
+}
+</style>
+</head>
+<body>
+
+<!-- Firebase -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+const _app = initializeApp({
+  apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
+  authDomain:"sayitsocial-calendar.firebaseapp.com",
+  projectId:"sayitsocial-calendar",
+  storageBucket:"sayitsocial-calendar.firebasestorage.app",
+  messagingSenderId:"232081824561",
+  appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
+});
+const _db = getFirestore(_app);
+const CID = "shiva-optics-july-2025";
+
+window._fbSaveStatus = async (cardId, status) => {
+  try { await setDoc(doc(_db,"campaigns",CID,"posts",cardId),{status},{merge:true}); }
+  catch(e){ console.warn("Firebase save error:", e); }
+};
+
+window._fbSaveAsset = async (cardId, type, link) => {
+  try { await setDoc(doc(_db,"campaigns",CID,"posts",cardId),{["asset_"+type]:link},{merge:true}); }
+  catch(e){ console.warn("Firebase asset error:", e); }
+};
+
+onSnapshot(collection(_db,"campaigns",CID,"posts"), snap => {
+  snap.forEach(d => {
+    const data = d.data();
+    const card = document.getElementById(d.id);
+    if(!card) return;
+    if(data.status) {
+      card.dataset.status = data.status;
+      const sel = card.querySelector(".status-select");
+      if(sel){
+        sel.value = data.status;
+        sel.className = "status-select";
+        if(data.status==="not-started")  sel.classList.add("status-none");
+        if(data.status==="in-progress")  sel.classList.add("status-prog");
+        if(data.status==="ready-to-post")sel.classList.add("status-ready");
+        if(data.status==="posted")       sel.classList.add("status-post");
+      }
+    }
+    // Restore asset links
+    if(data.asset_gdrive) {
+      const btn = card.querySelector(".asset-link[data-type='gdrive']");
+      if(btn){ btn.dataset.link=data.asset_gdrive; btn.textContent="✓ G Drive"; btn.classList.add("linked"); }
+    }
+    if(data.asset_onedrive) {
+      const btn = card.querySelector(".asset-link[data-type='onedrive']");
+      if(btn){ btn.dataset.link=data.asset_onedrive; btn.textContent="✓ OneDrive"; btn.classList.add("linked"); }
+    }
+  });
+  if(typeof updateCounts === "function") updateCounts();
+});
+</script>
+
+<header>
+  <a class="back-btn" href="../index.html">&#8592; Client Hub</a>
+  <div class="header-left">
+    <div class="brand-tag">Say It Social — Content Tracker</div>
+    <h1>Shiva Optics<br><em>Jun 24 – Jul 31</em></h1>
+    <div class="header-meta">18 posts · Mon / Wed / Fri + Stories · Customer-first strategy</div>
+  </div>
+  <div class="summary-bar">
+    <div class="s-pill total"><span class="count" id="cnt-total">18</span><span class="label">Total Posts</span></div>
+    <div class="s-pill not-started"><span class="count" id="cnt-none">18</span><span class="label">Not Started</span></div>
+    <div class="s-pill in-progress"><span class="count" id="cnt-prog">0</span><span class="label">In Progress</span></div>
+    <div class="s-pill ready"><span class="count" id="cnt-ready">0</span><span class="label">Ready</span></div>
+    <div class="s-pill posted"><span class="count" id="cnt-post">0</span><span class="label">Posted</span></div>
+  </div>
+</header>
+
+<div class="strategy-strip" style="padding:20px 52px;">
+  <div class="strategy-inner">
+    <div class="strat-block"><div class="strat-label">Brand Story</div><div class="strat-val">Shiva Optics is not just an optical store — it is a style and vision consultant. The right frame doesn't just change your appearance. It changes your confidence.</div></div>
+    <div class="strat-divider"></div>
+    <div class="strat-block"><div class="strat-label">Strategy Shift</div><div class="strat-val">Moving away from brand-led product posts. This calendar is built around customer psychology — transformation, education, aspiration, proof, then conversion.</div></div>
+    <div class="strat-divider"></div>
+    <div class="strat-block"><div class="strat-label">Content Goal</div><div class="strat-val">Higher saves · Higher shares · More DMs · More consultations · More store visits · Stronger premium positioning for Shiva Optics as a brand in its own right.</div></div>
+  </div>
+</div>
+
+<div class="phase-legend">
+  <span class="pl-label">5 Phases:</span>
+  <span class="phase-chip pc-p1">Phase 1 · Reframe the Brand</span>
+  <span class="phase-chip pc-p2">Phase 2 · Build Expertise</span>
+  <span class="phase-chip pc-p3">Phase 3 · Create Aspiration</span>
+  <span class="phase-chip pc-p4">Phase 4 · Social Proof</span>
+  <span class="phase-chip pc-p5">Phase 5 · Conversion</span>
+</div>
+
+<div class="progress-section">
+  <div class="prog-track">
+    <div class="prog-seg prog-post"  id="bar-post"  style="width:0%"></div>
+    <div class="prog-seg prog-ready" id="bar-ready" style="width:0%"></div>
+    <div class="prog-seg prog-prog"  id="bar-prog"  style="width:0%"></div>
+    <div class="prog-seg prog-none"  id="bar-none"  style="width:100%"></div>
+  </div>
+  <div class="prog-legend">
+    <div class="prog-item"><div class="prog-dot" style="background:var(--gold)"></div>Posted</div>
+    <div class="prog-item"><div class="prog-dot" style="background:var(--s-ready-t)"></div>Ready to Post</div>
+    <div class="prog-item"><div class="prog-dot" style="background:var(--s-prog-t)"></div>In Progress</div>
+    <div class="prog-item"><div class="prog-dot" style="background:var(--s-none-t)"></div>Not Started</div>
+  </div>
+</div>
+
+<div class="controls">
+  <span class="filter-label">Status:</span>
+  <button class="filter-btn active" onclick="filter('all',this)">All</button>
+  <button class="filter-btn" onclick="filter('not-started',this)">Not Started</button>
+  <button class="filter-btn" onclick="filter('in-progress',this)">In Progress</button>
+  <button class="filter-btn" onclick="filter('ready-to-post',this)">Ready to Post</button>
+  <button class="filter-btn" onclick="filter('posted',this)">Posted</button>
+  <div class="divider"></div>
+  <span class="filter-label">Format:</span>
+  <button class="filter-btn" onclick="filterType('reel',this)">Reels</button>
+  <button class="filter-btn" onclick="filterType('carousel',this)">Carousels</button>
+  <button class="filter-btn" onclick="filterType('stories',this)">Stories</button>
+  <div class="divider"></div>
+  <span class="filter-label">Phase:</span>
+  <button class="filter-btn" onclick="filterPhase('p1',this)">Reframe</button>
+  <button class="filter-btn" onclick="filterPhase('p2',this)">Expertise</button>
+  <button class="filter-btn" onclick="filterPhase('p3',this)">Aspiration</button>
+  <button class="filter-btn" onclick="filterPhase('p4',this)">Proof</button>
+  <button class="filter-btn" onclick="filterPhase('p5',this)">Conversion</button>
+</div>
+
+<!-- Helper macro for asset rows -->
+<!-- Each asset-link has data-type="gdrive" or data-type="onedrive" and data-card pointing to parent card id -->
+
+<div class="phase-banner pb-p1" style="margin-top:24px;">
+  <span>●</span>
+  <span><strong>Phase 1 — Reframe the Brand</strong> · Customers see eyewear as a product. We want them to see it as a transformation tool. Objective: curiosity, authority, trust.</span>
+</div>
+
+<div class="week-block">
+  <div class="week-header">
+    <span class="week-num">Late June</span>
+    <span class="week-theme">— Brand Reframe</span>
+    <span class="week-dates">24 Jun – 30 Jun</span>
+    <div class="week-bar"></div>
+    <span class="week-post-count">4 posts</span>
+  </div>
+  <div class="cards-wrap">
+
+    <div class="card tp-reel" data-status="not-started" data-type="reel" data-phase="p1" id="card1">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">24 Jun</span><span class="card-day">Tuesday</span></div>
+        <div class="card-meta">
+          <span class="type-pill pill-reel">Reel</span>
+          <span class="format-tag">Transformation · 30–40s</span>
+          <span class="phase-tag pt-p1">Phase 1</span>
+        </div>
+        <div class="status-wrap">
+          <span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card1')">
+            <option value="not-started">⬜ Not Started</option>
+            <option value="in-progress">🔵 In Progress</option>
+            <option value="ready-to-post">🟢 Ready to Post</option>
+            <option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Content Angle</div><div class="field-val">Wrong Frame vs Right Frame — before and after transformation showing how the right frame changes someone's entire presence, not just their look.</div></div>
+        <div class="card-field"><div class="field-key">Hook / Opening Line</div><div class="field-val hook-txt">"Same face. Different frame. A completely different presence."</div></div>
+        <div class="card-field"><div class="field-key">Visual Direction</div><div class="field-val visual-txt">Split-screen or before/after cut. Same person, same outfit, same lighting. Frame A = wrong fit, wrong shape. Frame B = perfectly matched. Close-ups of face, posture change matters too.</div></div>
+        <div class="card-field"><div class="field-key">Core Objective</div><div class="field-val"><span class="obj-badge">Reach + Shares</span></div></div>
+        <div class="card-field"><div class="field-key">CTA</div><div class="field-val"><span class="cta-badge">→ "Book a styling trial."</span></div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">Same face. Different frame. A completely different presence. 👀
+
+Most people pick eyewear by brand or by price. Very few pick it by fit — and that is the only thing that actually matters.
+
+The wrong frame can make your face look wider, your features heavier, your confidence smaller.
+
+The right frame? It does the opposite.
+
+At Shiva Optics, we match you to your frame — not just hand you one off a shelf.
+
+DM us to book a styling trial. It changes everything. 🕶️
+
+#ShivaOptics #EyewearTransformation #RightFrame #AhmedabadFashion #FrameStyling</div></div>
+      </div>
+      <div class="assets-row">
+        <span class="assets-label">Assets</span>
+        <a class="asset-link" data-type="gdrive" data-card="card1" onclick="openDriveModal(this)">G Drive</a>
+        <a class="asset-link" data-type="onedrive" data-card="card1" onclick="openDriveModal(this)">OneDrive</a>
+      </div>
+    </div>
+
+    <div class="rest-day"><span class="rest-date">25 Jun · Wed</span><span class="rest-label">— Rest Day</span></div>
+
+    <div class="card tp-carousel" data-status="not-started" data-type="carousel" data-phase="p2" id="card2">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">26 Jun</span><span class="card-day">Thursday</span></div>
+        <div class="card-meta">
+          <span class="type-pill pill-carousel">Carousel</span>
+          <span class="format-tag">Education · 5–6 Slides</span>
+          <span class="phase-tag pt-p2">Phase 2</span>
+        </div>
+        <div class="status-wrap">
+          <span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card2')">
+            <option value="not-started">⬜ Not Started</option>
+            <option value="in-progress">🔵 In Progress</option>
+            <option value="ready-to-post">🟢 Ready to Post</option>
+            <option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Content Angle</div><div class="field-val">Monsoon-Proof Eyewear Care — timely, useful, save-worthy. How to protect frames and lenses during the monsoon season.</div></div>
+        <div class="card-field"><div class="field-key">Hook / Opening Line</div><div class="field-val hook-txt">"Rain is romantic. Foggy, dirty lenses are not."</div></div>
+        <div class="card-field"><div class="field-key">Visual Direction</div><div class="field-val visual-txt">Slide 1: Hook line on moody rain-toned background. Slides 2–5: One tip per slide. Slide 6: "Visit us for lens care advice" CTA. Muted blue-green palette.</div></div>
+        <div class="card-field"><div class="field-key">Core Objective</div><div class="field-val"><span class="obj-badge">Saves + Shares</span></div></div>
+        <div class="card-field"><div class="field-key">CTA</div><div class="field-val"><span class="cta-badge">→ "Visit for lens care advice."</span></div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">Rain is romantic. Foggy, dirty lenses are not. ☔
+
+Monsoon season is here — and your eyewear needs a little extra care right now.
+
+Swipe for 5 things to do (and not do) with your frames this season 👉
+
+Save this — you'll need it before the next shower.
+
+And if your lenses are already showing damage, come visit us at Shiva Optics. We'll sort it out. 🕶️
+
+#MonsoonEyewear #LensCare #ShivaOptics #EyewearTips #AhmedabadMonsoon</div></div>
+      </div>
+      <div class="assets-row">
+        <span class="assets-label">Assets</span>
+        <a class="asset-link" data-type="gdrive" data-card="card2" onclick="openDriveModal(this)">G Drive</a>
+        <a class="asset-link" data-type="onedrive" data-card="card2" onclick="openDriveModal(this)">OneDrive</a>
+      </div>
+    </div>
+
+    <div class="card tp-stories" data-status="not-started" data-type="stories" data-phase="p1" id="card3">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">28 Jun</span><span class="card-day">Saturday</span></div>
+        <div class="card-meta">
+          <span class="type-pill pill-stories">Stories</span>
+          <span class="format-tag">Interactive Poll</span>
+          <span class="phase-tag pt-p1">Phase 1</span>
+        </div>
+        <div class="status-wrap">
+          <span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card3')">
+            <option value="not-started">⬜ Not Started</option>
+            <option value="in-progress">🔵 In Progress</option>
+            <option value="ready-to-post">🟢 Ready to Post</option>
+            <option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Content Angle</div><div class="field-val">This or That — two frames side by side on the same face. "Which pair looks more expensive?" Triggers participation and reveals that presence matters more than price.</div></div>
+        <div class="card-field"><div class="field-key">Hook / Opening Line</div><div class="field-val hook-txt">"Which pair looks more expensive on the face?"</div></div>
+        <div class="card-field"><div class="field-key">Visual Direction</div><div class="field-val visual-txt">Story slide: two frames side by side on the same person. Add Instagram poll sticker: "A" or "B". Follow-up story after 24hrs revealing which was actually more expensive.</div></div>
+        <div class="card-field"><div class="field-key">Core Objective</div><div class="field-val"><span class="obj-badge">Poll Taps + Replies</span></div></div>
+        <div class="card-field"><div class="field-key">CTA</div><div class="field-val"><span class="cta-badge">→ "Vote A or B."</span></div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Story Copy</div><div class="field-val caption-txt">Which one looks more expensive? 👀
+[Poll: A · B]
+
+— Follow-up story (24hrs later) —
+You voted [X]% for B.
+B is actually ₹[price]. A is ₹[price].
+Presence > Price. Every time.
+Come experience the difference at Shiva Optics 📍</div></div>
+      </div>
+      <div class="assets-row">
+        <span class="assets-label">Assets</span>
+        <a class="asset-link" data-type="gdrive" data-card="card3" onclick="openDriveModal(this)">G Drive</a>
+        <a class="asset-link" data-type="onedrive" data-card="card3" onclick="openDriveModal(this)">OneDrive</a>
+      </div>
+    </div>
+
+    <div class="card tp-reel" data-status="not-started" data-type="reel" data-phase="p1" id="card4">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">30 Jun</span><span class="card-day">Monday</span></div>
+        <div class="card-meta">
+          <span class="type-pill pill-reel">Reel</span>
+          <span class="format-tag">Authority · 25–35s</span>
+          <span class="phase-tag pt-p1">Phase 1</span>
+        </div>
+        <div class="status-wrap">
+          <span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card4')">
+            <option value="not-started">⬜ Not Started</option>
+            <option value="in-progress">🔵 In Progress</option>
+            <option value="ready-to-post">🟢 Ready to Post</option>
+            <option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Content Angle</div><div class="field-val">Shiva Styling Consult — shows the in-store consultation process. Positions Shiva Optics not as a shop but as a place with genuine expertise and judgement.</div></div>
+        <div class="card-field"><div class="field-key">Hook / Opening Line</div><div class="field-val hook-txt">"Stop buying frames by logo. Start choosing them by fit."</div></div>
+        <div class="card-field"><div class="field-key">Visual Direction</div><div class="field-val visual-txt">Consultative process Reel. Staff member helping a customer — face shape assessment, trying different frames, narrowing down. Feels real and expert, not scripted.</div></div>
+        <div class="card-field"><div class="field-key">Core Objective</div><div class="field-val"><span class="obj-badge">Trust + DMs</span></div></div>
+        <div class="card-field"><div class="field-key">CTA</div><div class="field-val"><span class="cta-badge">→ "DM for a trial slot."</span></div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">Stop buying frames by logo. Start choosing them by fit. 🕶️
+
+The brand on the temple is not what makes you look good. The shape, the proportion, the fit on your specific face — that is what makes you look good.
+
+At Shiva Optics, we do this properly. We look at your face shape, your lifestyle, your colouring — and then we find your frame.
+
+Not a shelf. A consultation.
+
+DM us to book a styling trial slot. Walk in looking different. Walk out looking like yourself.
+
+#ShivaOptics #EyewearConsultation #FrameStyling #AhmedabadEyewear</div></div>
+      </div>
+      <div class="assets-row">
+        <span class="assets-label">Assets</span>
+        <a class="asset-link" data-type="gdrive" data-card="card4" onclick="openDriveModal(this)">G Drive</a>
+        <a class="asset-link" data-type="onedrive" data-card="card4" onclick="openDriveModal(this)">OneDrive</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="phase-banner pb-p2">
+  <span>●</span>
+  <span><strong>Phase 2 — Build Expertise</strong> · Position Shiva Optics as the authority. Save-worthy educational content. Objective: saves, shares, credibility.</span>
+</div>
+
+<div class="week-block">
+  <div class="week-header">
+    <span class="week-num">July · Week 1</span>
+    <span class="week-theme">— Expertise + Authority</span>
+    <span class="week-dates">2 Jul – 6 Jul</span>
+    <div class="week-bar"></div>
+    <span class="week-post-count">2 posts</span>
+  </div>
+  <div class="cards-wrap">
+
+    <div class="card tp-carousel" data-status="not-started" data-type="carousel" data-phase="p2" id="card5">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">02 Jul</span><span class="card-day">Wednesday</span></div>
+        <div class="card-meta">
+          <span class="type-pill pill-carousel">Carousel</span>
+          <span class="format-tag">Education · Face Shape Guide</span>
+          <span class="phase-tag pt-p2">Phase 2</span>
+        </div>
+        <div class="status-wrap">
+          <span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card5')">
+            <option value="not-started">⬜ Not Started</option>
+            <option value="in-progress">🔵 In Progress</option>
+            <option value="ready-to-post">🟢 Ready to Post</option>
+            <option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Content Angle</div><div class="field-val">Face First, Brand Later — educational carousel explaining face shape matching. The most save-worthy piece of the calendar.</div></div>
+        <div class="card-field"><div class="field-key">Hook / Opening Line</div><div class="field-val hook-txt">"Your face shape should choose the frame before the brand does."</div></div>
+        <div class="card-field"><div class="field-key">Visual Direction</div><div class="field-val visual-txt">Slide 1: Hook. Slide 2: How to identify face shape. Slides 3–6: One shape per slide with examples. Slide 7: "Visit Shiva Optics — we'll match you in minutes." Built to be saved.</div></div>
+        <div class="card-field"><div class="field-key">Core Objective</div><div class="field-val"><span class="obj-badge">Saves (primary metric)</span></div></div>
+        <div class="card-field"><div class="field-key">CTA</div><div class="field-val"><span class="cta-badge">→ "Save this for your next visit."</span></div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">Your face shape should choose the frame before the brand does. 💡
+
+Most people pick eyewear backwards. They choose a brand, then a style, then wonder why it doesn't look quite right on them.
+
+The correct order: face shape first. Brand second.
+
+Swipe to find your shape and the frames that actually work for it →
+
+Save this. You'll need it the next time you're in a store.
+
+#FaceShape #EyewearGuide #ShivaOptics #FrameAdvice #AhmedabadFashion</div></div>
+      </div>
+      <div class="assets-row">
+        <span class="assets-label">Assets</span>
+        <a class="asset-link" data-type="gdrive" data-card="card5" onclick="openDriveModal(this)">G Drive</a>
+        <a class="asset-link" data-type="onedrive" data-card="card5" onclick="openDriveModal(this)">OneDrive</a>
+      </div>
+    </div>
+
+    <div class="rest-day"><span class="rest-date">03 Jul · Thu</span><span class="rest-label">— Rest Day</span></div>
+
+    <div class="card tp-reel" data-status="not-started" data-type="reel" data-phase="p3" id="card6">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">04 Jul</span><span class="card-day">Friday</span></div>
+        <div class="card-meta">
+          <span class="type-pill pill-reel">Reel</span>
+          <span class="format-tag">Aspiration · Curation</span>
+          <span class="phase-tag pt-p3">Phase 3</span>
+        </div>
+        <div class="status-wrap">
+          <span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card6')">
+            <option value="not-started">⬜ Not Started</option>
+            <option value="in-progress">🔵 In Progress</option>
+            <option value="ready-to-post">🟢 Ready to Post</option>
+            <option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Content Angle</div><div class="field-val">Quiet Luxury Edit — curated selection of understated premium frames. Taps into the quiet luxury aesthetic trend.</div></div>
+        <div class="card-field"><div class="field-key">Hook / Opening Line</div><div class="field-val hook-txt">"Luxury is not loud. It is proportion, finish and fit."</div></div>
+        <div class="card-field"><div class="field-key">Visual Direction</div><div class="field-val visual-txt">Slow, cinematic Reel. Muted colour palette — cream, camel, dark tortoise. Minimal cuts. Close-ups emphasising material finish. Ambient audio. Feels editorial.</div></div>
+        <div class="card-field"><div class="field-key">Core Objective</div><div class="field-val"><span class="obj-badge">Reach + Profile Visits</span></div></div>
+        <div class="card-field"><div class="field-key">CTA</div><div class="field-val"><span class="cta-badge">→ "Try these in store."</span></div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">Luxury is not loud. It is proportion, finish and fit. ✦
+
+The quiet luxury edit at Shiva Optics — frames that don't need a logo to announce themselves.
+
+No flash. No noise. Just considered design, exceptional material, and the kind of confidence that comes from knowing exactly what suits you.
+
+Available in store. Come try them on.
+
+#QuietLuxury #LuxuryEyewear #ShivaOptics #EyewearEdit #AhmedabadStyle</div></div>
+      </div>
+      <div class="assets-row">
+        <span class="assets-label">Assets</span>
+        <a class="asset-link" data-type="gdrive" data-card="card6" onclick="openDriveModal(this)">G Drive</a>
+        <a class="asset-link" data-type="onedrive" data-card="card6" onclick="openDriveModal(this)">OneDrive</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="phase-banner pb-p3">
+  <span>●</span>
+  <span><strong>Phase 3 — Create Aspiration</strong> · People buy eyewear emotionally. Associate frames with identity, personality and self-expression. Objective: comments, engagement, aspiration.</span>
+</div>
+
+<div class="week-block">
+  <div class="week-header">
+    <span class="week-num">July · Week 2</span>
+    <span class="week-theme">— Social Proof + Education</span>
+    <span class="week-dates">7 Jul – 13 Jul</span>
+    <div class="week-bar"></div>
+    <span class="week-post-count">4 posts</span>
+  </div>
+  <div class="cards-wrap">
+
+    <div class="card tp-reel" data-status="not-started" data-type="reel" data-phase="p4" id="card7">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">07 Jul</span><span class="card-day">Monday</span></div>
+        <div class="card-meta"><span class="type-pill pill-reel">Reel</span><span class="format-tag">Social Proof · Transformation</span><span class="phase-tag pt-p4">Phase 4</span></div>
+        <div class="status-wrap"><span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card7')">
+            <option value="not-started">⬜ Not Started</option><option value="in-progress">🔵 In Progress</option><option value="ready-to-post">🟢 Ready to Post</option><option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Content Angle</div><div class="field-val">Customer Transformation — real customer, wrong frame in, right frame out. The most powerful proof content.</div></div>
+        <div class="card-field"><div class="field-key">Hook / Opening Line</div><div class="field-val hook-txt">"He did not need a new face. He needed the right frame."</div></div>
+        <div class="card-field"><div class="field-key">Visual Direction</div><div class="field-val visual-txt">Real customer (with permission). Before: old or wrong frame. Consultation process. After: the right frame, visible confidence shift. Genuine reaction matters more than perfect lighting.</div></div>
+        <div class="card-field"><div class="field-key">Core Objective</div><div class="field-val"><span class="obj-badge">Reach + Social Proof</span></div></div>
+        <div class="card-field"><div class="field-key">CTA</div><div class="field-val"><span class="cta-badge">→ "Book your transformation consult."</span></div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">He didn't need a new face. He needed the right frame. 🕶️
+
+[Customer name/initials] came in wearing frames he'd had for three years. They weren't wrong — they just weren't right.
+
+We spent 20 minutes finding his fit. Watch what happened.
+
+This is what we do at Shiva Optics. Not just selling eyewear. Finding the frame that changes how you see yourself.
+
+DM us to book your consultation. It's free. The change is not. 😄
+
+#EyewearTransformation #ShivaOptics #CustomerStory #RightFrame #AhmedabadEyewear</div></div>
+      </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a class="asset-link" data-type="gdrive" data-card="card7" onclick="openDriveModal(this)">G Drive</a><a class="asset-link" data-type="onedrive" data-card="card7" onclick="openDriveModal(this)">OneDrive</a></div>
+    </div>
+
+    <div class="rest-day"><span class="rest-date">08 Jul · Tue</span><span class="rest-label">— Rest Day</span></div>
+
+    <div class="card tp-carousel" data-status="not-started" data-type="carousel" data-phase="p2" id="card8">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">09 Jul</span><span class="card-day">Wednesday</span></div>
+        <div class="card-meta"><span class="type-pill pill-carousel">Carousel</span><span class="format-tag">Education · Lens Guide</span><span class="phase-tag pt-p2">Phase 2</span></div>
+        <div class="status-wrap"><span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card8')">
+            <option value="not-started">⬜ Not Started</option><option value="in-progress">🔵 In Progress</option><option value="ready-to-post">🟢 Ready to Post</option><option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Content Angle</div><div class="field-val">Lens Logic — for daily glasses wearers, lens choice matters more than frame brand. Breaks down lens types by lifestyle.</div></div>
+        <div class="card-field"><div class="field-key">Hook / Opening Line</div><div class="field-val hook-txt">"If you wear glasses every day, lens choice matters more than the logo."</div></div>
+        <div class="card-field"><div class="field-key">Core Objective</div><div class="field-val"><span class="obj-badge">Saves + Trust</span></div></div>
+        <div class="card-field"><div class="field-key">CTA</div><div class="field-val"><span class="cta-badge">→ "Ask us which lens suits your routine."</span></div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">If you wear glasses every day, lens choice matters more than the logo. 👓
+
+Most people spend 80% of their budget choosing a frame and 20% choosing a lens. It should probably be the other way around.
+
+Swipe to understand which lens type suits your lifestyle →
+
+Then DM us or visit Shiva Optics and we'll help you make the right call.
+
+#LensGuide #EyewearEducation #ShivaOptics #LensTypes #AhmedabadEyewear</div></div>
+      </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a class="asset-link" data-type="gdrive" data-card="card8" onclick="openDriveModal(this)">G Drive</a><a class="asset-link" data-type="onedrive" data-card="card8" onclick="openDriveModal(this)">OneDrive</a></div>
+    </div>
+
+    <div class="card tp-stories" data-status="not-started" data-type="stories" data-phase="p3" id="card9">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">11 Jul</span><span class="card-day">Friday</span></div>
+        <div class="card-meta"><span class="type-pill pill-stories">Stories</span><span class="format-tag">Interactive · Guess + Reveal</span><span class="phase-tag pt-p3">Phase 3</span></div>
+        <div class="status-wrap"><span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card9')">
+            <option value="not-started">⬜ Not Started</option><option value="in-progress">🔵 In Progress</option><option value="ready-to-post">🟢 Ready to Post</option><option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Content Angle</div><div class="field-val">Guess the Price / Guess the Better Fit — two frames, one question. Drives interaction and makes the reveal genuinely surprising.</div></div>
+        <div class="card-field"><div class="field-key">Hook / Opening Line</div><div class="field-val hook-txt">"Price is one thing. Presence is another."</div></div>
+        <div class="card-field"><div class="field-key">Core Objective</div><div class="field-val"><span class="obj-badge">Interactions + DMs</span></div></div>
+        <div class="card-field"><div class="field-key">CTA</div><div class="field-val"><span class="cta-badge">→ "Reply with your guess."</span></div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Story Copy</div><div class="field-val caption-txt">Story 1: One of these is ₹800. One is ₹4000. Which is which? [Quiz sticker: A / B]
+
+Story 2 (reveal): You guessed [result]. Surprised? The one that looks more expensive is actually [A/B] at ₹[price].
+
+The right fit changes everything. Price is one thing. Presence is another.
+
+Story 3: Come to Shiva Optics — we'll find the frame that looks like a million rupees on YOUR face. 📍</div></div>
+      </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a class="asset-link" data-type="gdrive" data-card="card9" onclick="openDriveModal(this)">G Drive</a><a class="asset-link" data-type="onedrive" data-card="card9" onclick="openDriveModal(this)">OneDrive</a></div>
+    </div>
+
+    <div class="rest-day"><span class="rest-date">12 Jul · Sat</span><span class="rest-label">— Rest Day</span></div>
+    <div class="rest-day"><span class="rest-date">13 Jul · Sun</span><span class="rest-label">— Rest Day</span></div>
+  </div>
+</div>
+
+<div class="week-block">
+  <div class="week-header">
+    <span class="week-num">July · Week 3</span>
+    <span class="week-theme">— Trends + Education + Aspiration</span>
+    <span class="week-dates">14 Jul – 20 Jul</span>
+    <div class="week-bar"></div>
+    <span class="week-post-count">3 posts</span>
+  </div>
+  <div class="cards-wrap">
+
+    <div class="card tp-reel" data-status="not-started" data-type="reel" data-phase="p3" id="card10">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">14 Jul</span><span class="card-day">Monday</span></div>
+        <div class="card-meta"><span class="type-pill pill-reel">Reel</span><span class="format-tag">Aspiration · Trend Showcase</span><span class="phase-tag pt-p3">Phase 3</span></div>
+        <div class="status-wrap"><span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card10')">
+            <option value="not-started">⬜ Not Started</option><option value="in-progress">🔵 In Progress</option><option value="ready-to-post">🟢 Ready to Post</option><option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Content Angle</div><div class="field-val">2026 Trend Edit — eyewear split between quiet minimal and bold statement. Makes viewers choose a side and comment.</div></div>
+        <div class="card-field"><div class="field-key">Hook / Opening Line</div><div class="field-val hook-txt">"This year's eyewear is split: quiet minimal or bold. Which one are you?"</div></div>
+        <div class="card-field"><div class="field-key">Core Objective</div><div class="field-val"><span class="obj-badge">Reach + Comments</span></div></div>
+        <div class="card-field"><div class="field-key">CTA</div><div class="field-val"><span class="cta-badge">→ "Comment your style."</span></div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">2026 eyewear is split — and there is no middle ground. 🕶️
+
+Team Quiet Minimal: clean lines, slim profiles, barely-there frames.
+
+Team Bold: oversized shapes, architectural frames, colours that walk into a room before you do.
+
+Both are right. Both are at Shiva Optics.
+
+Which one are you? Comment below ⬇️
+
+#EyewearTrends2026 #ShivaOptics #MinimalVsBold #AhmedabadFashion</div></div>
+      </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a class="asset-link" data-type="gdrive" data-card="card10" onclick="openDriveModal(this)">G Drive</a><a class="asset-link" data-type="onedrive" data-card="card10" onclick="openDriveModal(this)">OneDrive</a></div>
+    </div>
+
+    <div class="rest-day"><span class="rest-date">15 Jul · Tue</span><span class="rest-label">— Rest Day</span></div>
+
+    <div class="card tp-carousel" data-status="not-started" data-type="carousel" data-phase="p2" id="card11">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">16 Jul</span><span class="card-day">Wednesday</span></div>
+        <div class="card-meta"><span class="type-pill pill-carousel">Carousel</span><span class="format-tag">Education · Myth-Busting</span><span class="phase-tag pt-p2">Phase 2</span></div>
+        <div class="status-wrap"><span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card11')">
+            <option value="not-started">⬜ Not Started</option><option value="in-progress">🔵 In Progress</option><option value="ready-to-post">🟢 Ready to Post</option><option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Content Angle</div><div class="field-val">Blue-Light Myths vs What Actually Helps — cuts through the noise with honest, expert guidance. Positions Shiva Optics as trustworthy over sales-y.</div></div>
+        <div class="card-field"><div class="field-key">Hook / Opening Line</div><div class="field-val hook-txt">"Blue-light hype is bigger than science. Here is what actually matters."</div></div>
+        <div class="card-field"><div class="field-key">Core Objective</div><div class="field-val"><span class="obj-badge">Saves + Authority</span></div></div>
+        <div class="card-field"><div class="field-key">CTA</div><div class="field-val"><span class="cta-badge">→ "Share with your screen-tired friend."</span></div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">Blue-light glasses are everywhere. The science is not quite keeping up. 👀
+
+We're not saying they don't help anyone. We're saying you deserve honest advice rather than a product pushed at you.
+
+Swipe for what the research actually says →
+
+At Shiva Optics, we tell you what you need. Not just what we can sell you.
+
+#BlueLightMyths #EyeCare #ShivaOptics #HonestAdvice #AhmedabadEyecare</div></div>
+      </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a class="asset-link" data-type="gdrive" data-card="card11" onclick="openDriveModal(this)">G Drive</a><a class="asset-link" data-type="onedrive" data-card="card11" onclick="openDriveModal(this)">OneDrive</a></div>
+    </div>
+
+    <div class="rest-day"><span class="rest-date">17 Jul · Thu</span><span class="rest-label">— Rest Day</span></div>
+
+    <div class="card tp-reel" data-status="not-started" data-type="reel" data-phase="p1" id="card12">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">18 Jul</span><span class="card-day">Friday</span></div>
+        <div class="card-meta"><span class="type-pill pill-reel">Reel</span><span class="format-tag">Transformation · Problem/Solution</span><span class="phase-tag pt-p1">Phase 1</span></div>
+        <div class="status-wrap"><span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card12')">
+            <option value="not-started">⬜ Not Started</option><option value="in-progress">🔵 In Progress</option><option value="ready-to-post">🟢 Ready to Post</option><option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Content Angle</div><div class="field-val">Ageing Your Look Without Realising It — the wrong frames can add years to your face. Creates urgency without being pushy.</div></div>
+        <div class="card-field"><div class="field-key">Hook / Opening Line</div><div class="field-val hook-txt">"Your current glasses may be making you look older than you are."</div></div>
+        <div class="card-field"><div class="field-key">Core Objective</div><div class="field-val"><span class="obj-badge">Watch Time + Shares</span></div></div>
+        <div class="card-field"><div class="field-key">CTA</div><div class="field-val"><span class="cta-badge">→ "Come try a sharper update."</span></div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">Your glasses might be adding years to your face. 👀 (Not trying to be harsh — just honest.)
+
+Three frame mistakes that age you faster than you'd expect — and what to wear instead.
+
+If you haven't updated your frames in 3+ years, there's a good chance this applies to you.
+
+Come into Shiva Optics for a fresh look.
+
+#EyewearUpdate #AgingStyle #ShivaOptics #FrameUpdate #AhmedabadFashion</div></div>
+      </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a class="asset-link" data-type="gdrive" data-card="card12" onclick="openDriveModal(this)">G Drive</a><a class="asset-link" data-type="onedrive" data-card="card12" onclick="openDriveModal(this)">OneDrive</a></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="phase-banner pb-p4">
+  <span>●</span>
+  <span><strong>Phase 4 — Social Proof + Phase 5 — Conversion</strong> · Authority built. Now reduce hesitation with real proof, then invite action. Objective: DMs, consultations, store visits.</span>
+</div>
+
+<div class="week-block">
+  <div class="week-header">
+    <span class="week-num">July · Week 4</span>
+    <span class="week-theme">— Identity, Proof + Urgency</span>
+    <span class="week-dates">21 Jul – 27 Jul</span>
+    <div class="week-bar"></div>
+    <span class="week-post-count">4 posts</span>
+  </div>
+  <div class="cards-wrap">
+
+    <div class="card tp-reel" data-status="not-started" data-type="reel" data-phase="p3" id="card13">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">21 Jul</span><span class="card-day">Monday</span></div>
+        <div class="card-meta"><span class="type-pill pill-reel">Reel</span><span class="format-tag">Aspiration · Identity</span><span class="phase-tag pt-p3">Phase 3</span></div>
+        <div class="status-wrap"><span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card13')">
+            <option value="not-started">⬜ Not Started</option><option value="in-progress">🔵 In Progress</option><option value="ready-to-post">🟢 Ready to Post</option><option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Content Angle</div><div class="field-val">Power Personalities Edit — three distinct frame energies: soft power, sharp power, statement power. Viewers identify with one and comment.</div></div>
+        <div class="card-field"><div class="field-key">Hook / Opening Line</div><div class="field-val hook-txt">"Soft power. Sharp power. Statement power. Pick your frame energy."</div></div>
+        <div class="card-field"><div class="field-key">Core Objective</div><div class="field-val"><span class="obj-badge">Comments + Identity Engagement</span></div></div>
+        <div class="card-field"><div class="field-key">CTA</div><div class="field-val"><span class="cta-badge">→ "Comment your type."</span></div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">Three frame energies. One store. Which one is you? 🕶️
+
+🤍 Soft Power — refined, warm, considered. The frame that earns respect quietly.
+🖤 Sharp Power — precise, architectural, minimal. The frame that means business.
+❤️ Statement Power — bold, confident, unapologetic. The frame that walks in first.
+
+All at Shiva Optics, Ahmedabad.
+
+Comment which one you are ⬇️
+
+#PowerStyle #EyewearPersonality #ShivaOptics #FrameEnergy #AhmedabadStyle</div></div>
+      </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a class="asset-link" data-type="gdrive" data-card="card13" onclick="openDriveModal(this)">G Drive</a><a class="asset-link" data-type="onedrive" data-card="card13" onclick="openDriveModal(this)">OneDrive</a></div>
+    </div>
+
+    <div class="rest-day"><span class="rest-date">22 Jul · Tue</span><span class="rest-label">— Rest Day</span></div>
+
+    <div class="card tp-carousel" data-status="not-started" data-type="carousel" data-phase="p5" id="card14">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">23 Jul</span><span class="card-day">Wednesday</span></div>
+        <div class="card-meta"><span class="type-pill pill-carousel">Carousel</span><span class="format-tag">Conversion Intent · 5 Slides</span><span class="phase-tag pt-p5">Phase 5</span></div>
+        <div class="status-wrap"><span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card14')">
+            <option value="not-started">⬜ Not Started</option><option value="in-progress">🔵 In Progress</option><option value="ready-to-post">🟢 Ready to Post</option><option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Content Angle</div><div class="field-val">Signs It Is Time to Replace Your Frame — practical checklist that creates genuine conversion intent by making readers self-diagnose the need for new frames.</div></div>
+        <div class="card-field"><div class="field-key">Hook / Opening Line</div><div class="field-val hook-txt">"If it slips, pinches, scratches or dates your face, it is time."</div></div>
+        <div class="card-field"><div class="field-key">Core Objective</div><div class="field-val"><span class="obj-badge">Saves + Conversion Intent</span></div></div>
+        <div class="card-field"><div class="field-key">CTA</div><div class="field-val"><span class="cta-badge">→ "Visit for a frame check."</span></div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">If it slips, pinches, scratches or dates your face — it is time. 🕶️
+
+Five signs your frames are overdue for a change:
+1. They slip down constantly — the fit is gone
+2. They leave red marks on your nose — too tight
+3. Your lenses are scratched — vision compromised
+4. They feel loose or wobbly — frame is worn
+5. You've had them 3+ years and your face has changed
+
+How many did you count?
+
+Come in for a free frame check at Shiva Optics.
+
+#FrameCheck #NewFrames #ShivaOptics #EyewearUpgrade #AhmedabadEyewear</div></div>
+      </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a class="asset-link" data-type="gdrive" data-card="card14" onclick="openDriveModal(this)">G Drive</a><a class="asset-link" data-type="onedrive" data-card="card14" onclick="openDriveModal(this)">OneDrive</a></div>
+    </div>
+
+    <div class="card tp-stories" data-status="not-started" data-type="stories" data-phase="p3" id="card15">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">25 Jul</span><span class="card-day">Friday</span></div>
+        <div class="card-meta"><span class="type-pill pill-stories">Stories</span><span class="format-tag">Interactive Poll · Weekend</span><span class="phase-tag pt-p3">Phase 3</span></div>
+        <div class="status-wrap"><span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card15')">
+            <option value="not-started">⬜ Not Started</option><option value="in-progress">🔵 In Progress</option><option value="ready-to-post">🟢 Ready to Post</option><option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Content Angle</div><div class="field-val">Weekend Frame Vote — light, fun, end-of-week engagement. Two frames, quick poll. Keeps brand present going into weekend without heavy selling.</div></div>
+        <div class="card-field"><div class="field-key">Hook / Opening Line</div><div class="field-val hook-txt">"Which one are you wearing this weekend?"</div></div>
+        <div class="card-field"><div class="field-key">Core Objective</div><div class="field-val"><span class="obj-badge">Poll Taps + Story Engagement</span></div></div>
+        <div class="card-field"><div class="field-key">CTA</div><div class="field-val"><span class="cta-badge">→ "Vote and tag your friend."</span></div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Story Copy</div><div class="field-val caption-txt">Friday question 🕶️
+
+Which one are you wearing this weekend?
+
+[Frame A image] vs [Frame B image]
+[Poll sticker: A / B]
+
+Both at Shiva Optics. Tag the friend who matches the other one 😄</div></div>
+      </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a class="asset-link" data-type="gdrive" data-card="card15" onclick="openDriveModal(this)">G Drive</a><a class="asset-link" data-type="onedrive" data-card="card15" onclick="openDriveModal(this)">OneDrive</a></div>
+    </div>
+
+    <div class="rest-day"><span class="rest-date">26 Jul · Sat</span><span class="rest-label">— Rest Day</span></div>
+    <div class="rest-day"><span class="rest-date">27 Jul · Sun</span><span class="rest-label">— Rest Day</span></div>
+  </div>
+</div>
+
+<div class="week-block">
+  <div class="week-header">
+    <span class="week-num">July · Close</span>
+    <span class="week-theme">— Proof, Conversion + August Urgency</span>
+    <span class="week-dates">28 Jul – 31 Jul</span>
+    <div class="week-bar"></div>
+    <span class="week-post-count">3 posts</span>
+  </div>
+  <div class="cards-wrap">
+
+    <div class="card tp-reel" data-status="not-started" data-type="reel" data-phase="p4" id="card16">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">28 Jul</span><span class="card-day">Monday</span></div>
+        <div class="card-meta"><span class="type-pill pill-reel">Reel</span><span class="format-tag">Social Proof · Store Experience</span><span class="phase-tag pt-p4">Phase 4</span></div>
+        <div class="status-wrap"><span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card16')">
+            <option value="not-started">⬜ Not Started</option><option value="in-progress">🔵 In Progress</option><option value="ready-to-post">🟢 Ready to Post</option><option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Content Angle</div><div class="field-val">Premium Store Experience — shows what it actually feels like to visit Shiva Optics. Not a product showcase — a vibe showcase.</div></div>
+        <div class="card-field"><div class="field-key">Hook / Opening Line</div><div class="field-val hook-txt">"This is what choosing eyewear should feel like when it is done properly."</div></div>
+        <div class="card-field"><div class="field-key">Core Objective</div><div class="field-val"><span class="obj-badge">Trust + Store Curiosity</span></div></div>
+        <div class="card-field"><div class="field-key">CTA</div><div class="field-val"><span class="cta-badge">→ "Visit Shiva Optics."</span></div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">This is what choosing eyewear should feel like. ✦
+
+Not rushed. Not pressured. Not handed the first frame that fits the budget.
+
+A proper conversation. A real assessment. Frames selected for your face, your lifestyle, your personality.
+
+That is Shiva Optics.
+
+Come visit us in Ahmedabad.
+
+#ShivaOptics #StoreExperience #EyewearConsultation #AhmedabadEyewear #PremiumExperience</div></div>
+      </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a class="asset-link" data-type="gdrive" data-card="card16" onclick="openDriveModal(this)">G Drive</a><a class="asset-link" data-type="onedrive" data-card="card16" onclick="openDriveModal(this)">OneDrive</a></div>
+    </div>
+
+    <div class="rest-day"><span class="rest-date">29 Jul · Tue</span><span class="rest-label">— Rest Day</span></div>
+
+    <div class="card tp-carousel" data-status="not-started" data-type="carousel" data-phase="p4" id="card17">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">30 Jul</span><span class="card-day">Wednesday</span></div>
+        <div class="card-meta"><span class="type-pill pill-carousel">Carousel</span><span class="format-tag">Social Proof · Best of Month</span><span class="phase-tag pt-p4">Phase 4</span></div>
+        <div class="status-wrap"><span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card17')">
+            <option value="not-started">⬜ Not Started</option><option value="in-progress">🔵 In Progress</option><option value="ready-to-post">🟢 Ready to Post</option><option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Content Angle</div><div class="field-val">July's Most-Loved Fits — frames customers kept returning to this month. Real social proof through demand. Creates FOMO and urgency.</div></div>
+        <div class="card-field"><div class="field-key">Hook / Opening Line</div><div class="field-val hook-txt">"These were the frames people kept coming back to."</div></div>
+        <div class="card-field"><div class="field-key">Core Objective</div><div class="field-val"><span class="obj-badge">Social Proof + Saves</span></div></div>
+        <div class="card-field"><div class="field-key">CTA</div><div class="field-val"><span class="cta-badge">→ "DM for availability."</span></div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">These were the frames people kept coming back to in July. 🕶️
+
+Some were tried on five times before someone finally took them home. Some sold out and had to be restocked.
+
+Swipe to see July's most-loved fits at Shiva Optics →
+
+If one of these catches your eye — DM us to check availability before August takes them.
+
+#JulyFavourites #ShivaOptics #MostLoved #EyewearPicks #AhmedabadFashion</div></div>
+      </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a class="asset-link" data-type="gdrive" data-card="card17" onclick="openDriveModal(this)">G Drive</a><a class="asset-link" data-type="onedrive" data-card="card17" onclick="openDriveModal(this)">OneDrive</a></div>
+    </div>
+
+    <div class="card tp-mixed" data-status="not-started" data-type="reel" data-phase="p5" id="card18">
+      <div class="card-top">
+        <div class="card-date-col"><span class="card-date">31 Jul</span><span class="card-day">Thursday</span></div>
+        <div class="card-meta"><span class="type-pill pill-mixed">Reel + Stories</span><span class="format-tag">Month Close · August Urgency</span><span class="phase-tag pt-p5">Phase 5</span></div>
+        <div class="status-wrap"><span class="status-label-txt">Status</span>
+          <select class="status-select status-none" onchange="setStatus(this,'card18')">
+            <option value="not-started">⬜ Not Started</option><option value="in-progress">🔵 In Progress</option><option value="ready-to-post">🟢 Ready to Post</option><option value="posted">✅ Posted</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-field full-width"><div class="field-key">Content Angle</div><div class="field-val">July Recap with August Urgency — closes the discovery phase, opens the conversion phase. "July was about finding your frame. August is about claiming it."</div></div>
+        <div class="card-field"><div class="field-key">Hook / Opening Line</div><div class="field-val hook-txt">"July was about discovering your frame. August is for claiming it."</div></div>
+        <div class="card-field"><div class="field-key">Core Objective</div><div class="field-val"><span class="obj-badge">DMs + Appointment Intent</span></div></div>
+        <div class="card-field"><div class="field-key">CTA</div><div class="field-val"><span class="cta-badge">→ "Book your August slot."</span></div></div>
+        <div class="card-field full-width no-bottom"><div class="field-key">Caption Draft</div><div class="field-val caption-txt">July was about discovering your frame. August is for claiming it. 🕶️
+
+This month we talked about transformation, face shapes, lens logic, quiet luxury, personalities and what makes a frame wrong or right for a face.
+
+If something clicked — August is the time to act on it.
+
+DM us to book a styling slot at Shiva Optics. It is free. It takes 20 minutes. And it changes how you look at eyewear — permanently.
+
+See you in August. 🙏
+
+#ShivaOptics #JulyRecap #AugustAppointment #EyewearConsultation #AhmedabadEyewear</div></div>
+      </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a class="asset-link" data-type="gdrive" data-card="card18" onclick="openDriveModal(this)">G Drive</a><a class="asset-link" data-type="onedrive" data-card="card18" onclick="openDriveModal(this)">OneDrive</a></div>
+    </div>
+
+  </div>
+</div>
+
+<div style="height:60px;"></div>
+
+<!-- DRIVE MODAL -->
+<div id="driveModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:10000;align-items:center;justify-content:center;">
+  <div style="background:var(--bg2);border:1px solid var(--border2);padding:32px;max-width:420px;width:90%;position:relative;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;" id="driveModalTitle">Asset Link</div>
+    <div style="font-family:'Syne',sans-serif;font-size:13px;color:var(--text);margin-bottom:20px;">Paste your folder or file link — syncs to the whole team instantly</div>
+    <input id="driveInput" type="url" placeholder="https://drive.google.com/..." style="width:100%;padding:10px 14px;background:var(--bg3);border:1px solid var(--border2);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:11px;outline:none;margin-bottom:16px;">
+    <div style="display:flex;gap:10px;justify-content:flex-end;">
+      <button onclick="closeDriveModal()" style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border2);background:transparent;color:var(--muted);cursor:pointer;">Cancel</button>
+      <button onclick="saveDriveLink()" style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 16px;border:1px solid var(--gold);background:rgba(212,168,67,0.1);color:var(--gold);cursor:pointer;">Save &amp; Sync</button>
+    </div>
+    <button onclick="closeDriveModal()" style="position:absolute;top:16px;right:16px;background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;">&#x2715;</button>
+  </div>
+</div>
+
+<script>
+const TOTAL = 18;
+let currentAssetBtn = null;
+
+function setStatus(sel, cardId) {
+  const card = document.getElementById(cardId);
+  const val = sel.value;
+  card.dataset.status = val;
+  sel.className = "status-select";
+  if(val==="not-started")  sel.classList.add("status-none");
+  if(val==="in-progress")  sel.classList.add("status-prog");
+  if(val==="ready-to-post")sel.classList.add("status-ready");
+  if(val==="posted")       sel.classList.add("status-post");
+  updateCounts();
+  if(window._fbSaveStatus) window._fbSaveStatus(cardId, val);
+  saveState();
+}
+
+function updateCounts() {
+  const cards = document.querySelectorAll(".card[id]");
+  let none=0,prog=0,ready=0,post=0;
+  cards.forEach(c=>{
+    const s = c.dataset.status;
+    if(s==="not-started")  none++;
+    if(s==="in-progress")  prog++;
+    if(s==="ready-to-post")ready++;
+    if(s==="posted")       post++;
+  });
+  document.getElementById("cnt-none").textContent  = none;
+  document.getElementById("cnt-prog").textContent  = prog;
+  document.getElementById("cnt-ready").textContent = ready;
+  document.getElementById("cnt-post").textContent  = post;
+  document.getElementById("bar-none").style.width  = (none/TOTAL*100)+"%";
+  document.getElementById("bar-prog").style.width  = (prog/TOTAL*100)+"%";
+  document.getElementById("bar-ready").style.width = (ready/TOTAL*100)+"%";
+  document.getElementById("bar-post").style.width  = (post/TOTAL*100)+"%";
+}
+
+let activeStatus="all", activeType=null, activePhase=null;
+
+function filter(status, btn) {
+  activeStatus = status;
+  document.querySelectorAll(".controls .filter-btn").forEach(b=>{
+    const m = b.getAttribute("onclick").match(/'([^']+)'/);
+    if(m && ["all","not-started","in-progress","ready-to-post","posted"].includes(m[1])) b.classList.remove("active");
+  });
+  btn.classList.add("active"); applyFilters();
+}
+
+function filterType(type, btn) {
+  if(activeType===type){ activeType=null; btn.classList.remove("active"); }
+  else {
+    document.querySelectorAll(".controls .filter-btn").forEach(b=>{
+      const m = b.getAttribute("onclick").match(/'([^']+)'/);
+      if(m && ["reel","carousel","stories"].includes(m[1])) b.classList.remove("active");
+    });
+    activeType=type; btn.classList.add("active");
+  }
+  applyFilters();
+}
+
+function filterPhase(phase, btn) {
+  if(activePhase===phase){ activePhase=null; btn.classList.remove("active"); }
+  else {
+    document.querySelectorAll(".controls .filter-btn").forEach(b=>{
+      const m = b.getAttribute("onclick").match(/'([^']+)'/);
+      if(m && ["p1","p2","p3","p4","p5"].includes(m[1])) b.classList.remove("active");
+    });
+    activePhase=phase; btn.classList.add("active");
+  }
+  applyFilters();
+}
+
+function applyFilters() {
+  document.querySelectorAll(".card[id]").forEach(card=>{
+    const sOk = activeStatus==="all" || card.dataset.status===activeStatus;
+    const tOk = !activeType || card.dataset.type===activeType;
+    const pOk = !activePhase || card.dataset.phase===activePhase;
+    card.classList.toggle("hidden", !(sOk && tOk && pOk));
+  });
+  document.querySelectorAll(".rest-day").forEach(rd=>{
+    rd.classList.toggle("hidden", !!(activeType || activePhase));
+  });
+}
+
+function openDriveModal(btn) {
+  currentAssetBtn = btn;
+  const type = btn.dataset.type;
+  document.getElementById("driveModalTitle").textContent = type === "gdrive" ? "Google Drive Link" : "OneDrive Link";
+  document.getElementById("driveInput").value = btn.dataset.link || "";
+  const modal = document.getElementById("driveModal");
+  modal.style.display = "flex";
+}
+function closeDriveModal() {
+  document.getElementById("driveModal").style.display = "none";
+  currentAssetBtn = null;
+}
+function saveDriveLink() {
+  const val = document.getElementById("driveInput").value.trim();
+  if(currentAssetBtn && val) {
+    const type = currentAssetBtn.dataset.type;
+    const cardId = currentAssetBtn.dataset.card;
+    currentAssetBtn.dataset.link = val;
+    currentAssetBtn.textContent = type === "gdrive" ? "✓ G Drive" : "✓ OneDrive";
+    currentAssetBtn.classList.add("linked");
+    currentAssetBtn.onclick = function(e){ e.preventDefault(); window.open(val,"_blank"); };
+    if(window._fbSaveAsset) window._fbSaveAsset(cardId, type, val);
+  }
+  closeDriveModal();
+}
+
+document.getElementById("driveModal").addEventListener("click", function(e){
+  if(e.target===this) closeDriveModal();
+});
+
+function saveState() {
+  const state = {};
+  document.querySelectorAll(".card[id]").forEach(c=>{ state[c.id] = c.dataset.status; });
+  try { localStorage.setItem("shiva_july25_tracker", JSON.stringify(state)); } catch(e) {}
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem("shiva_july25_tracker");
+    if(!raw) return;
+    const state = JSON.parse(raw);
+    Object.entries(state).forEach(([id, status])=>{
+      const card = document.getElementById(id); if(!card) return;
+      card.dataset.status = status;
+      const sel = card.querySelector(".status-select");
+      if(sel){
+        sel.value = status; sel.className = "status-select";
+        if(status==="not-started")  sel.classList.add("status-none");
+        if(status==="in-progress")  sel.classList.add("status-prog");
+        if(status==="ready-to-post")sel.classList.add("status-ready");
+        if(status==="posted")       sel.classList.add("status-post");
+      }
+    });
+    updateCounts();
+  } catch(e) {}
+}
+
+loadState(); updateCounts();
+</script>
+</body>
+</html>
