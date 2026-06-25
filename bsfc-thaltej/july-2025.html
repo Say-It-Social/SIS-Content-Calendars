@@ -92,6 +92,24 @@ body{font-family:"Plus Jakarta Sans",sans-serif;background:var(--bg);color:var(-
 .status-scheduled{background:var(--leaf-light);color:#166534;}
 .status-posted{background:#F0FDF4;color:#15803D;}
 .asset-link{font-size:9px;font-weight:700;color:var(--sky);text-decoration:none;}
+.assets-row{display:flex;align-items:center;gap:8px;padding:8px 18px;background:var(--bg);border-top:1px solid var(--border);}
+.assets-label{font-family:"Plus Jakarta Sans",sans-serif;font-size:9px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);margin-right:4px;}
+.asset-pill{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border-radius:100px;font-size:11px;font-weight:700;text-decoration:none;background:var(--white);transition:all 0.15s;cursor:pointer;border:none;font-family:"Plus Jakarta Sans",sans-serif;}
+.asset-pill.gdrive{border:1.5px solid var(--leaf);color:var(--leaf);}
+.asset-pill.gdrive:hover{background:var(--leaf-light);}
+.asset-pill.onedrive{border:1.5px solid var(--sky);color:var(--sky);background:#EFF6FF;}
+.asset-pill.onedrive:hover{background:#DBEAFE;}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1000;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal-box{background:#fff;border-radius:16px;padding:28px;max-width:400px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.2);}
+.modal-box h3{font-family:"Playfair Display",serif;font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.modal-box p{font-size:13px;color:var(--muted);margin-bottom:14px;}
+.modal-input{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;font-family:"Plus Jakarta Sans",sans-serif;font-size:13px;margin-bottom:10px;outline:none;}
+.modal-input:focus{border-color:var(--sky);}
+.modal-type{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;}
+.modal-btns{display:flex;gap:8px;justify-content:flex-end;}
+.modal-btn-cancel{padding:8px 16px;border:1.5px solid var(--border);border-radius:8px;background:none;font-family:"Plus Jakarta Sans",sans-serif;font-size:13px;cursor:pointer;color:var(--muted);}
+.modal-btn-save{padding:8px 16px;border:none;border-radius:8px;background:var(--navy);color:#fff;font-family:"Plus Jakarta Sans",sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
 .expand-btn{background:none;border:none;cursor:pointer;font-size:10px;color:var(--leaf);font-weight:800;font-family:"Plus Jakarta Sans",sans-serif;padding:0 18px 9px;display:block;text-align:left;}
 .extra{display:none;margin:0 18px 11px;background:var(--leaf-light);border-radius:11px;padding:11px 13px;font-size:11px;line-height:1.7;color:#065F46;}
 .extra.open{display:block;}
@@ -254,8 +272,9 @@ onSnapshot(collection(db,"campaigns",CID,"posts"), snap => {
       <div class="extra"><strong>Visual Direction</strong>Each slide = one candid activity moment. Warm natural light preferred. No staged photos. Mint green accent borders.</div>
       <div class="card-status-row">
         <span class="status-badge status-planned" data-id="post-1" onclick="cycleStatus(this)">Planned</span>
-        <a class="asset-link" href="#" onclick="return false;">Add Asset Link</a>
+        
       </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><button class="asset-pill gdrive" onclick="openAsset(event,'gdrive',this)">&#128193; G Drive</button><button class="asset-pill onedrive" onclick="openAsset(event,'onedrive',this)">&#9729;&#65039; OneDrive</button></div>
       <div class="card-footer"><span class="cta-btn">Save &amp; Share</span><span class="hashtag-prev">#ClassroomLife #BrightStartThaltej</span></div>
     </div>
     <div class="post-card" data-type="carousel">
@@ -280,8 +299,9 @@ onSnapshot(collection(db,"campaigns",CID,"posts"), snap => {
       <div class="extra"><strong>Visual Direction</strong>Slightly warm golden-hour filter. Photos: teacher writing on board, arranging art supplies. Final: This is why your child loves school.</div>
       <div class="card-status-row">
         <span class="status-badge status-planned" data-id="post-2" onclick="cycleStatus(this)">Planned</span>
-        <a class="asset-link" href="#" onclick="return false;">Add Asset Link</a>
+        
       </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><button class="asset-pill gdrive" onclick="openAsset(event,'gdrive',this)">&#128193; G Drive</button><button class="asset-pill onedrive" onclick="openAsset(event,'onedrive',this)">&#9729;&#65039; OneDrive</button></div>
       <div class="card-footer"><span class="cta-btn">Tag Your Teacher</span><span class="hashtag-prev">#BrightStartTeachers #TeacherLife</span></div>
     </div>
     <div class="post-card" data-type="poster">
@@ -306,8 +326,9 @@ onSnapshot(collection(db,"campaigns",CID,"posts"), snap => {
       <div class="extra"><strong>Visual Direction</strong>If activity photos available - use a real candid of children doing the sensory play. Warm chocolate-brown overlay with cream text.</div>
       <div class="card-status-row">
         <span class="status-badge status-planned" data-id="post-3" onclick="cycleStatus(this)">Planned</span>
-        <a class="asset-link" href="#" onclick="return false;">Add Asset Link</a>
+        
       </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><button class="asset-pill gdrive" onclick="openAsset(event,'gdrive',this)">&#128193; G Drive</button><button class="asset-pill onedrive" onclick="openAsset(event,'onedrive',this)">&#9729;&#65039; OneDrive</button></div>
       <div class="card-footer"><span class="cta-btn">Share the Sweet</span><span class="hashtag-prev">#WorldChocolateDay #SensoryPlay</span></div>
     </div></div>
   <div class="sec-label">Weekly Reel</div>
@@ -388,8 +409,9 @@ onSnapshot(collection(db,"campaigns",CID,"posts"), snap => {
       <div class="extra"><strong>Visual Direction</strong>Sky blue and white palette. Slide 1: Portrait photo of teacher (candid, not posed stiffly). Slides 2-4: Pull quotes in large serif font. Final: This is who your child learns from every day.</div>
       <div class="card-status-row">
         <span class="status-badge status-planned" data-id="post-4" onclick="cycleStatus(this)">Planned</span>
-        <a class="asset-link" href="#" onclick="return false;">Add Asset Link</a>
+        
       </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><button class="asset-pill gdrive" onclick="openAsset(event,'gdrive',this)">&#128193; G Drive</button><button class="asset-pill onedrive" onclick="openAsset(event,'onedrive',this)">&#9729;&#65039; OneDrive</button></div>
       <div class="card-footer"><span class="cta-btn">Meet Our Teachers</span><span class="hashtag-prev">#BrightStartTeachers #PreschoolTeacher</span></div>
     </div>
     <div class="post-card" data-type="poster">
@@ -414,8 +436,9 @@ onSnapshot(collection(db,"campaigns",CID,"posts"), snap => {
       <div class="extra"><strong>Visual Direction</strong>Full marigold gold and ivory palette. Diya or lotus motif as subtle background. Real photo of a BSFC teacher kneeling at child's eye level. Udgamverse heritage line.</div>
       <div class="card-status-row">
         <span class="status-badge status-planned" data-id="post-5" onclick="cycleStatus(this)">Planned</span>
-        <a class="asset-link" href="#" onclick="return false;">Add Asset Link</a>
+        
       </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><button class="asset-pill gdrive" onclick="openAsset(event,'gdrive',this)">&#128193; G Drive</button><button class="asset-pill onedrive" onclick="openAsset(event,'onedrive',this)">&#9729;&#65039; OneDrive</button></div>
       <div class="card-footer"><span class="cta-btn">Tag Your Guru</span><span class="hashtag-prev">#GuruPurnima2025 #Udgamverse</span></div>
     </div>
     <div class="post-card" data-type="carousel">
@@ -440,8 +463,9 @@ onSnapshot(collection(db,"campaigns",CID,"posts"), snap => {
       <div class="extra"><strong>Visual Direction</strong>Playful violet and cream palette. Each slide: large quote in quotation marks, child's first name and age. Small candid photo.</div>
       <div class="card-status-row">
         <span class="status-badge status-planned" data-id="post-6" onclick="cycleStatus(this)">Planned</span>
-        <a class="asset-link" href="#" onclick="return false;">Add Asset Link</a>
+        
       </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><button class="asset-pill gdrive" onclick="openAsset(event,'gdrive',this)">&#128193; G Drive</button><button class="asset-pill onedrive" onclick="openAsset(event,'onedrive',this)">&#9729;&#65039; OneDrive</button></div>
       <div class="card-footer"><span class="cta-btn">Tag a Parent</span><span class="hashtag-prev">#KidsSayTheDarnestThings #BrightStartThaltej</span></div>
     </div></div>
   <div class="sec-label">Weekly Reel</div>
@@ -522,8 +546,9 @@ onSnapshot(collection(db,"campaigns",CID,"posts"), snap => {
       <div class="extra"><strong>Visual Direction</strong>Gold and white palette. Warmer, more editorial look. Slide 1: Candid of teacher engaged with a child, not looking at camera.</div>
       <div class="card-status-row">
         <span class="status-badge status-planned" data-id="post-7" onclick="cycleStatus(this)">Planned</span>
-        <a class="asset-link" href="#" onclick="return false;">Add Asset Link</a>
+        
       </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><button class="asset-pill gdrive" onclick="openAsset(event,'gdrive',this)">&#128193; G Drive</button><button class="asset-pill onedrive" onclick="openAsset(event,'onedrive',this)">&#9729;&#65039; OneDrive</button></div>
       <div class="card-footer"><span class="cta-btn">Meet the Team</span><span class="hashtag-prev">#BrightStartTeachers #TeachersOfInstagram</span></div>
     </div>
     <div class="post-card" data-type="carousel">
@@ -548,8 +573,9 @@ onSnapshot(collection(db,"campaigns",CID,"posts"), snap => {
       <div class="extra"><strong>Visual Direction</strong>Orange and cream. Each slide: one photo + a one-line caption. Keep it personal and real.</div>
       <div class="card-status-row">
         <span class="status-badge status-planned" data-id="post-8" onclick="cycleStatus(this)">Planned</span>
-        <a class="asset-link" href="#" onclick="return false;">Add Asset Link</a>
+        
       </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><button class="asset-pill gdrive" onclick="openAsset(event,'gdrive',this)">&#128193; G Drive</button><button class="asset-pill onedrive" onclick="openAsset(event,'onedrive',this)">&#9729;&#65039; OneDrive</button></div>
       <div class="card-footer"><span class="cta-btn">Tag Your Child</span><span class="hashtag-prev">#ClassroomMoments #BrightStartThaltej</span></div>
     </div>
     <div class="post-card" data-type="poster">
@@ -574,8 +600,9 @@ onSnapshot(collection(db,"campaigns",CID,"posts"), snap => {
       <div class="extra"><strong>Visual Direction</strong>Forest green and cream. Large bold headline. Below: 4 lines showing what play develops. Real photo of a child deep in play as background.</div>
       <div class="card-status-row">
         <span class="status-badge status-planned" data-id="post-9" onclick="cycleStatus(this)">Planned</span>
-        <a class="asset-link" href="#" onclick="return false;">Add Asset Link</a>
+        
       </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><button class="asset-pill gdrive" onclick="openAsset(event,'gdrive',this)">&#128193; G Drive</button><button class="asset-pill onedrive" onclick="openAsset(event,'onedrive',this)">&#9729;&#65039; OneDrive</button></div>
       <div class="card-footer"><span class="cta-btn">Save &amp; Share</span><span class="hashtag-prev">#PlayBasedLearning #EarlyChildhoodEducation</span></div>
     </div></div>
   <div class="sec-label">Weekly Reel</div>
@@ -656,8 +683,9 @@ onSnapshot(collection(db,"campaigns",CID,"posts"), snap => {
       <div class="extra"><strong>Visual Direction</strong>Coral and white palette - warmer and more energetic. Slide 1: Teacher in a moment of connection with a child.</div>
       <div class="card-status-row">
         <span class="status-badge status-planned" data-id="post-10" onclick="cycleStatus(this)">Planned</span>
-        <a class="asset-link" href="#" onclick="return false;">Add Asset Link</a>
+        
       </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><button class="asset-pill gdrive" onclick="openAsset(event,'gdrive',this)">&#128193; G Drive</button><button class="asset-pill onedrive" onclick="openAsset(event,'onedrive',this)">&#9729;&#65039; OneDrive</button></div>
       <div class="card-footer"><span class="cta-btn">Tag Your Teacher</span><span class="hashtag-prev">#BrightStartTeachers #TeacherAppreciation</span></div>
     </div>
     <div class="post-card" data-type="carousel">
@@ -682,8 +710,9 @@ onSnapshot(collection(db,"campaigns",CID,"posts"), snap => {
       <div class="extra"><strong>Visual Direction</strong>Violet and cream. Curate only the most visually striking photos. Final: July was just the beginning.</div>
       <div class="card-status-row">
         <span class="status-badge status-planned" data-id="post-11" onclick="cycleStatus(this)">Planned</span>
-        <a class="asset-link" href="#" onclick="return false;">Add Asset Link</a>
+        
       </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><button class="asset-pill gdrive" onclick="openAsset(event,'gdrive',this)">&#128193; G Drive</button><button class="asset-pill onedrive" onclick="openAsset(event,'onedrive',this)">&#9729;&#65039; OneDrive</button></div>
       <div class="card-footer"><span class="cta-btn">Share Your Favourite</span><span class="hashtag-prev">#JulyAtBrightStart #ClassroomLife</span></div>
     </div>
     <div class="post-card" data-type="poster">
@@ -708,8 +737,9 @@ onSnapshot(collection(db,"campaigns",CID,"posts"), snap => {
       <div class="extra"><strong>Visual Direction</strong>Deep navy background, gold typography. July you were wonderful in large italic. Soft bokeh overlay. BSFC logo centred in gold.</div>
       <div class="card-status-row">
         <span class="status-badge status-planned" data-id="post-12" onclick="cycleStatus(this)">Planned</span>
-        <a class="asset-link" href="#" onclick="return false;">Add Asset Link</a>
+        
       </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><button class="asset-pill gdrive" onclick="openAsset(event,'gdrive',this)">&#128193; G Drive</button><button class="asset-pill onedrive" onclick="openAsset(event,'onedrive',this)">&#9729;&#65039; OneDrive</button></div>
       <div class="card-footer"><span class="cta-btn">See You in August</span><span class="hashtag-prev">#BrightStartThaltej #Udgamverse</span></div>
     </div></div>
   <div class="sec-label">Weekly Reel</div>
@@ -849,6 +879,52 @@ function toggleDetail(btn) {
   el.classList.toggle("open");
   btn.textContent = el.classList.contains("open") ? "- Hide Creative Direction" : "+ Creative Direction";
 }
+// Asset link modal
+let _activeAssetBtn = null;
+
+function openAsset(e, type, btn) {
+  e.stopPropagation();
+  _activeAssetBtn = btn;
+  const label = type === "gdrive" ? "Google Drive" : "OneDrive";
+  document.getElementById("assetModalDesc").textContent = "Paste your " + label + " folder link for this post.";
+  document.getElementById("assetInput").value = btn.dataset.link || "";
+  document.getElementById("assetModal").classList.add("open");
+}
+
+function closeAsset() {
+  document.getElementById("assetModal").classList.remove("open");
+  _activeAssetBtn = null;
+}
+
+function saveAsset() {
+  const val = document.getElementById("assetInput").value.trim();
+  if (val && _activeAssetBtn) {
+    _activeAssetBtn.dataset.link = val;
+    const t = _activeAssetBtn;
+    t.onclick = function(e) { e.stopPropagation(); window.open(val, "_blank"); };
+    t.style.fontWeight = "800";
+    t.style.boxShadow = "0 0 0 2px currentColor";
+  }
+  closeAsset();
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  var m = document.getElementById("assetModal");
+  if(m) m.addEventListener("click", function(e) { if(e.target===this) closeAsset(); });
+});
 </script>
+
+<!-- Asset Modal -->
+<div class="modal-overlay" id="assetModal">
+  <div class="modal-box">
+    <h3>Link Asset Folder</h3>
+    <p id="assetModalDesc">Paste your folder link — it will be saved for this post.</p>
+    <input class="modal-input" id="assetInput" type="url" placeholder="https://drive.google.com/...">
+    <div class="modal-btns">
+      <button class="modal-btn-cancel" onclick="closeAsset()">Cancel</button>
+      <button class="modal-btn-save" onclick="saveAsset()">Save Link</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
