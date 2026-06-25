@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BSFC South Bopal — July 2025 Content Calendar</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest:#2D5A3D;--leaf:#4A7C59;--moss:#7BAE8A;--mist:#D6EAD9;--cream:#FAFAF5;
+    --amber:#E8A838;--clay:#C4603A;--charcoal:#1C1C1C;--mid:#5A5A5A;--light:#9A9A9A;
+    --white:#FFFFFF;--card-bg:#FFFFFF;--border:#E8EDE8;
+    --s-not:#F0F0F0;--s-wip:#FFF3CD;--s-ready:#D6EAD9;--s-posted:#2D5A3D;
+    --s-not-t:#888;--s-wip-t:#7A5F00;--s-ready-t:#2D5A3D;--s-posted-t:#FFFFFF;
+    --radius:12px;--shadow:0 2px 12px rgba(45,90,61,0.08);--shadow-hover:0 6px 24px rgba(45,90,61,0.14);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--charcoal);font-size:15px;line-height:1.6;}
+
+  .back-btn{position:absolute;top:20px;left:40px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:8px;padding:7px 14px;font-size:12px;font-weight:600;color:#fff;text-decoration:none;font-family:"DM Sans",sans-serif;z-index:10;}
+  .back-btn:hover{background:rgba(255,255,255,.2);}
+
+  .hero{background:var(--forest);color:var(--white);padding:56px 40px 48px;position:relative;overflow:hidden;}
+  .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 80% 0%,rgba(74,124,89,0.45) 0%,transparent 65%);pointer-events:none;}
+  .hero-eyebrow{font-family:"DM Mono",monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--moss);margin-bottom:16px;}
+  .hero-title{font-family:"Fraunces",serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.1;margin-bottom:8px;}
+  .hero-title em{font-style:italic;color:var(--amber);}
+  .hero-sub{color:var(--moss);font-size:13px;margin-top:12px;letter-spacing:0.02em;}
+  .hero-stats{display:flex;gap:32px;margin-top:36px;flex-wrap:wrap;}
+  .hero-stat{text-align:center;}
+  .hero-stat .num{font-family:"Fraunces",serif;font-size:2.2rem;font-weight:900;color:var(--white);display:block;line-height:1;}
+  .hero-stat .lbl{font-size:11px;color:var(--moss);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;}
+  .hero-divider{width:48px;height:2px;background:var(--amber);margin:28px 0;}
+
+  .strategy-band{background:var(--charcoal);color:var(--white);padding:32px 40px;display:flex;gap:40px;flex-wrap:wrap;align-items:flex-start;}
+  .strategy-item{flex:1;min-width:200px;}
+  .strategy-item .s-label{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:0.15em;color:var(--moss);text-transform:uppercase;margin-bottom:6px;}
+  .strategy-item .s-text{font-size:13px;color:#ccc;line-height:1.5;}
+  .strategy-item strong{color:var(--white);}
+
+  .pillars-section{padding:40px 40px 0;}
+  .section-eyebrow{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--leaf);margin-bottom:16px;}
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:8px;}
+  .pillar{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:20px;border-top:4px solid var(--forest);}
+  .pillar:nth-child(2){border-top-color:var(--amber);}
+  .pillar:nth-child(3){border-top-color:var(--clay);}
+  .pillar-icon{font-size:1.5rem;margin-bottom:8px;}
+  .pillar-name{font-family:"Fraunces",serif;font-weight:700;font-size:1rem;margin-bottom:4px;}
+  .pillar-desc{font-size:12px;color:var(--mid);line-height:1.5;}
+
+  .tabs-bar{padding:32px 40px 0;display:flex;gap:8px;flex-wrap:wrap;}
+  .tab-btn{background:none;border:1.5px solid var(--border);border-radius:100px;padding:8px 20px;font-family:"DM Sans",sans-serif;font-size:13px;font-weight:500;color:var(--mid);cursor:pointer;transition:all 0.2s;}
+  .tab-btn.active,.tab-btn:hover{background:var(--forest);border-color:var(--forest);color:var(--white);}
+  .tab-btn.all-tab.active{background:var(--charcoal);border-color:var(--charcoal);}
+
+  .legend{padding:16px 40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--mid);}
+  .legend-label{font-weight:600;color:var(--charcoal);}
+  .status-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:100px;font-size:11px;font-weight:600;}
+  .sp-not{background:var(--s-not);color:var(--s-not-t);}
+  .sp-wip{background:var(--s-wip);color:var(--s-wip-t);}
+  .sp-ready{background:var(--s-ready);color:var(--s-ready-t);}
+  .sp-posted{background:var(--s-posted);color:var(--s-posted-t);}
+  .legend-hint{font-size:11px;color:var(--light);margin-left:4px;}
+
+  .week-block{padding:32px 40px 0;}
+  .week-header{display:flex;align-items:flex-start;gap:20px;margin-bottom:24px;padding-bottom:20px;border-bottom:1.5px solid var(--border);}
+  .week-num{font-family:"Fraunces",serif;font-size:3rem;font-weight:900;color:var(--mist);line-height:1;min-width:60px;}
+  .week-meta{flex:1;}
+  .week-title{font-family:"Fraunces",serif;font-size:1.4rem;font-weight:700;color:var(--forest);margin-bottom:4px;}
+  .week-goal{font-size:12px;color:var(--mid);font-style:italic;}
+  .week-dates{font-family:"DM Mono",monospace;font-size:11px;color:var(--light);text-align:right;white-space:nowrap;padding-top:6px;}
+
+  .section-head{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--leaf);padding:20px 0 10px;border-bottom:1px solid var(--border);margin-bottom:16px;}
+
+  .post-card{background:var(--card-bg);border:1.5px solid var(--border);border-radius:var(--radius);margin-bottom:16px;box-shadow:var(--shadow);transition:box-shadow 0.2s;overflow:hidden;}
+  .post-card:hover{box-shadow:var(--shadow-hover);}
+  .card-top{display:flex;align-items:center;gap:12px;padding:16px 20px;cursor:pointer;}
+  .post-num{font-family:"Fraunces",serif;font-size:1.4rem;font-weight:900;color:var(--mist);min-width:32px;line-height:1;}
+  .post-meta{flex:1;}
+  .post-date{font-family:"DM Mono",monospace;font-size:10px;color:var(--light);letter-spacing:0.08em;margin-bottom:4px;}
+  .post-title{font-size:14px;font-weight:600;color:var(--charcoal);line-height:1.35;margin-bottom:4px;}
+  .post-hook{font-size:12px;color:var(--mid);font-style:italic;line-height:1.4;}
+  .card-chips{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:6px;}
+  .chip{display:inline-block;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}
+  .chip-reel{background:#D6EAD9;color:var(--forest);}
+  .chip-carousel{background:#D9EAD3;color:var(--leaf);}
+  .chip-static{background:#FADDCF;color:var(--clay);}
+  .chip-ig{background:#FCE4FF;color:#8B2FC9;}
+  .chip-fb{background:#E4EDFF;color:#1877F2;}
+  .status-badge{padding:4px 10px;border-radius:100px;font-size:10px;font-weight:700;cursor:pointer;user-select:none;transition:opacity 0.15s;white-space:nowrap;}
+  .status-badge:hover{opacity:0.8;}
+  .sb-not{background:var(--s-not);color:var(--s-not-t);}
+  .sb-wip{background:var(--s-wip);color:var(--s-wip-t);}
+  .sb-ready{background:var(--s-ready);color:var(--s-ready-t);}
+  .sb-posted{background:var(--s-posted);color:var(--s-posted-t);}
+  .expand-icon{color:var(--light);font-size:12px;margin-left:8px;transition:transform 0.2s;}
+  .expand-icon.open{transform:rotate(90deg);}
+
+  .card-body{display:none;border-top:1px solid var(--border);}
+  .card-body.open{display:block;}
+  .card-section{padding:20px;border-bottom:1px solid var(--border);}
+  .card-section:last-child{border-bottom:none;}
+  .card-section-title{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--leaf);margin-bottom:12px;}
+  .caption-box{background:#F6FAF7;border-left:3px solid var(--moss);border-radius:0 8px 8px 0;padding:14px 16px;font-size:13px;line-height:1.65;color:var(--charcoal);white-space:pre-wrap;}
+  .slides-list{list-style:none;}
+  .slides-list li{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--border);font-size:13px;}
+  .slides-list li:last-child{border-bottom:none;}
+  .slide-num{font-family:"DM Mono",monospace;font-size:10px;color:var(--light);min-width:20px;padding-top:2px;}
+  .story-linked{background:#F0F8F1;border:1px solid var(--border);border-radius:8px;padding:12px 14px;font-size:12px;color:var(--mid);line-height:1.55;}
+  .story-linked strong{color:var(--forest);}
+  .brief-table{width:100%;border-collapse:collapse;font-size:12px;}
+  .brief-table td{padding:6px 10px;border-bottom:1px solid var(--border);vertical-align:top;}
+  .brief-table td:first-child{font-family:"DM Mono",monospace;font-size:10px;color:var(--light);letter-spacing:0.06em;width:120px;padding-right:16px;white-space:nowrap;}
+  .brief-table td:last-child{color:var(--charcoal);}
+  .brief-table tr:last-child td{border-bottom:none;}
+  .brief-header{background:var(--forest);color:var(--white);padding:10px 14px;font-family:"DM Mono",monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;border-radius:8px 8px 0 0;}
+  .brief-wrap{border:1.5px solid var(--forest);border-radius:10px;overflow:hidden;}
+  .frame-breakdown{margin-top:12px;}
+  .frame-row{display:grid;grid-template-columns:60px 1fr;gap:10px;padding:7px 0;border-bottom:1px dashed var(--border);font-size:12px;align-items:start;}
+  .frame-row:last-child{border-bottom:none;}
+  .frame-tc{font-family:"DM Mono",monospace;font-size:10px;color:var(--light);padding-top:2px;}
+  .assets-row{display:flex;align-items:center;gap:8px;padding:10px 18px;background:var(--cream);border-top:1px solid var(--border);}
+  .assets-label{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--light);margin-right:4px;}
+  .asset-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;text-decoration:none;background:var(--white);color:var(--forest);border:1.5px solid var(--leaf);transition:all 0.15s;}
+  .asset-btn:hover{background:var(--mist);border-color:var(--forest);}
+  .asset-btn.gdrive{border-color:#3BAF7E;color:#2D5A3D;}
+  .asset-btn.onedrive{border-color:#3D8EE8;color:#1E40AF;background:#EFF6FF;}
+  .cta-row{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:#F8FBF8;border-top:1px solid var(--border);}
+  .cta-label{font-size:12px;font-weight:600;color:var(--forest);}
+  .accordion-toggle{background:none;border:none;font-size:12px;color:var(--leaf);cursor:pointer;font-family:"DM Sans",sans-serif;font-weight:600;padding:0;display:flex;align-items:center;gap:4px;}
+  .inner-accordion{display:none;margin-top:10px;}
+  .inner-accordion.open{display:block;}
+
+  .story-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow);}
+  .story-top{display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;}
+  .story-icon{font-size:1.1rem;}
+  .story-title-wrap{flex:1;}
+  .story-code{font-family:"DM Mono",monospace;font-size:10px;color:var(--light);margin-bottom:2px;}
+  .story-title{font-size:13px;font-weight:600;color:var(--charcoal);}
+  .story-hint{font-size:11px;color:var(--leaf);margin-top:2px;}
+  .story-body{display:none;border-top:1px solid var(--border);padding:16px 18px;}
+  .story-body.open{display:block;}
+  .brief-table-sm{width:100%;border-collapse:collapse;font-size:12px;}
+  .brief-table-sm td{padding:5px 8px;border-bottom:1px solid #F0F4F0;vertical-align:top;}
+  .brief-table-sm td:first-child{font-family:"DM Mono",monospace;font-size:10px;color:var(--light);width:90px;}
+  .brief-table-sm tr:last-child td{border-bottom:none;}
+
+  .hashtag-section{padding:40px;background:var(--charcoal);margin-top:40px;}
+  .hashtag-section h2{font-family:"Fraunces",serif;font-size:1.4rem;font-weight:700;color:var(--white);margin-bottom:24px;}
+  .hashtag-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;}
+  .ht-group-name{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--moss);margin-bottom:10px;}
+  .ht-tags{display:flex;flex-wrap:wrap;gap:6px;}
+  .ht-tag{background:rgba(255,255,255,0.08);color:#ccc;padding:4px 10px;border-radius:100px;font-size:11px;font-family:"DM Mono",monospace;}
+
+  .schedule-section{padding:40px;background:var(--white);border-top:1.5px solid var(--border);}
+  .schedule-section h2{font-family:"Fraunces",serif;font-size:1.4rem;font-weight:700;color:var(--forest);margin-bottom:20px;}
+  .sched-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;}
+  .sched-block{background:var(--cream);border:1.5px solid var(--border);border-radius:10px;padding:16px;}
+  .sched-block h4{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--leaf);margin-bottom:10px;}
+  .sched-block ul{list-style:none;}
+  .sched-block ul li{font-size:12.5px;padding:4px 0;border-bottom:1px dashed var(--border);color:var(--mid);}
+  .sched-block ul li:last-child{border-bottom:none;}
+  .sched-block ul li strong{color:var(--charcoal);}
+
+  footer{background:var(--forest);color:var(--moss);text-align:center;padding:20px;font-size:12px;letter-spacing:0.04em;}
+
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:1000;align-items:center;justify-content:center;}
+  .modal-overlay.open{display:flex;}
+  .modal-box{background:var(--white);border-radius:16px;padding:28px;max-width:400px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.2);}
+  .modal-box h3{font-family:"Fraunces",serif;font-size:1.1rem;font-weight:700;margin-bottom:12px;}
+  .modal-box p{font-size:13px;color:var(--mid);margin-bottom:16px;}
+  .modal-input{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;font-family:"DM Sans",sans-serif;font-size:13px;margin-bottom:12px;outline:none;transition:border-color 0.2s;}
+  .modal-input:focus{border-color:var(--forest);}
+  .modal-btns{display:flex;gap:8px;justify-content:flex-end;}
+  .btn-cancel{padding:8px 16px;border:1.5px solid var(--border);border-radius:8px;background:none;font-family:"DM Sans",sans-serif;font-size:13px;cursor:pointer;color:var(--mid);}
+  .btn-save{padding:8px 16px;border:none;border-radius:8px;background:var(--forest);color:var(--white);font-family:"DM Sans",sans-serif;font-size:13px;font-weight:600;cursor:pointer;}
+
+  @media(max-width:700px){
+    .hero,.strategy-band,.pillars-section,.tabs-bar,.legend,.week-block,.hashtag-section,.schedule-section{padding-left:20px;padding-right:20px;}
+    .pillars{grid-template-columns:1fr;}
+    .hero-stats{gap:20px;}
+    .week-header{flex-direction:column;gap:6px;}
+    .week-dates{text-align:left;}
+    .sched-grid{grid-template-columns:1fr;}
+    .hashtag-grid{grid-template-columns:1fr;}
+    .post-num{display:none;}
+    .back-btn{left:20px;font-size:11px;}
+  }
+</style>
+</head>
+<body>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+const app = initializeApp({
+  apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
+  authDomain:"sayitsocial-calendar.firebaseapp.com",
+  projectId:"sayitsocial-calendar",
+  storageBucket:"sayitsocial-calendar.firebasestorage.app",
+  messagingSenderId:"232081824561",
+  appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
+});
+const db = getFirestore(app);
+const CID = "bsfc-bopal-july-2025";
+
+const STATUS_MAP = [
+  {cls:"sb-not",   label:"Not Started"},
+  {cls:"sb-wip",   label:"In Progress"},
+  {cls:"sb-ready", label:"Ready to Post"},
+  {cls:"sb-posted",label:"Posted"},
+];
+
+window._fbSave = async (id, label) => {
+  try {
+    await setDoc(doc(db,"campaigns",CID,"posts",id),{status:label},{merge:true});
+  } catch(e) { console.warn("Firebase save failed:",e); }
+};
+
+onSnapshot(collection(db,"campaigns",CID,"posts"), snap => {
+  snap.forEach(d => {
+    const data = d.data();
+    if(data.status) {
+      document.querySelectorAll("[data-id=\""+d.id+"\"]").forEach(el => {
+        const s = STATUS_MAP.find(x => x.label === data.status);
+        if(s) {
+          STATUS_MAP.forEach(x => el.classList.remove(x.cls));
+          el.classList.add(s.cls);
+          el.textContent = s.label;
+        }
+      });
+    }
+  });
+});
+</script>
+
+<section class="hero">
+  <a class="back-btn" href="../index.html">&#8592; Client Hub</a>
+  <p class="hero-eyebrow">BSFC South Bopal &middot; Say It Social &middot; July 2025</p>
+  <h1 class="hero-title">This Is What<br><em>Thriving</em> Looks Like.</h1>
+  <div class="hero-divider"></div>
+  <p class="hero-sub">Instagram &amp; Facebook &middot; 3 Posts/Week + Stories &middot; School is open. Community is everything.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="num">13</span><span class="lbl">Main Posts</span></div>
+    <div class="hero-stat"><span class="num">12</span><span class="lbl">Stories</span></div>
+    <div class="hero-stat"><span class="num">4</span><span class="lbl">Weeks</span></div>
+    <div class="hero-stat"><span class="num">25</span><span class="lbl">Total Pieces</span></div>
+  </div>
+</section>
+
+<div class="strategy-band">
+  <div class="strategy-item"><div class="s-label">Tone Shift from May</div><div class="s-text">May = <strong>loud &amp; urgent</strong> (sell seats). July = <strong>warm &amp; confident</strong> (celebrate what&apos;s happening inside). Stop selling. Start showing.</div></div>
+  <div class="strategy-item"><div class="s-label">Core Engagement Strategy</div><div class="s-text"><strong>Save-worthy</strong> child development content &middot; <strong>Tag-a-parent</strong> relatable posts &middot; <strong>Behind-the-scenes</strong> classroom glimpses that make enrolled families feel proud</div></div>
+  <div class="strategy-item"><div class="s-label">Why This Drives Reach</div><div class="s-text">Enrolled parents who feel seen <strong>share &amp; tag</strong>. Saves boost the algorithm. Community content earns <strong>organic word-of-mouth</strong> &mdash; the only waitlist that matters.</div></div>
+</div>
+
+<section class="pillars-section">
+  <p class="section-eyebrow">July Content Pillars</p>
+  <div class="pillars">
+    <div class="pillar"><div class="pillar-icon">&#127979;</div><div class="pillar-name">Classroom Life</div><div class="pillar-desc">Show enrolled families what their child&apos;s day looks like &mdash; activities, moments, milestones. Makes parents feel they&apos;re part of something real.</div></div>
+    <div class="pillar"><div class="pillar-icon">&#129504;</div><div class="pillar-name">Child Development</div><div class="pillar-desc">Bite-sized, save-worthy parenting &amp; development content. Positions BSFC as the expert. High share &amp; save potential &mdash; drives organic reach.</div></div>
+    <div class="pillar"><div class="pillar-icon">&#129309;</div><div class="pillar-name">Parent Community</div><div class="pillar-desc">Relatable moments for BSFC parents. Celebrates the family, not just the child. Earns tags, comments, and shares from your most loyal audience.</div></div>
+  </div>
+</section>
+
+<div class="tabs-bar">
+  <button class="tab-btn all-tab active" onclick="showWeek('all',this)">All Weeks</button>
+  <button class="tab-btn" onclick="showWeek('w1',this)">Week 1 &middot; Jul 2&ndash;5</button>
+  <button class="tab-btn" onclick="showWeek('w2',this)">Week 2 &middot; Jul 7&ndash;11</button>
+  <button class="tab-btn" onclick="showWeek('w3',this)">Week 3 &middot; Jul 14&ndash;18</button>
+  <button class="tab-btn" onclick="showWeek('w4',this)">Week 4 &middot; Jul 21&ndash;25</button>
+</div>
+
+<div class="legend">
+  <span class="legend-label">Status:</span>
+  <span class="status-pill sp-not">Not Started</span>
+  <span class="status-pill sp-wip">In Progress</span>
+  <span class="status-pill sp-ready">Ready to Post</span>
+  <span class="status-pill sp-posted">Posted</span>
+  <span class="legend-hint">Click badge on card to cycle</span>
+</div>
+
+<!-- WEEK 1 -->
+<section class="week-block" id="w1">
+  <div class="week-header">
+    <div class="week-num">01</div>
+    <div class="week-meta">
+      <div class="week-title">Welcome Back — School Is In Session 🏫</div>
+      <div class="week-goal">Goal: Show the community that BSFC is alive, warm, and thriving. Build emotional connection with enrolled families.</div>
+    </div>
+    <div class="week-dates">Jul 2 · Jul 4 · Jul 5</div>
+  </div>
+  <div class="section-head">Main Posts</div>
+
+  <div class="post-card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <div class="post-num">1</div>
+      <div class="post-meta">
+        <div class="post-date">Wed · Jul 2 · Reel</div>
+        <div class="post-title">The First Week Back — This Is What It Looked Like 🎒</div>
+        <div class="post-hook">"New classroom. New friends. Same spark of curiosity."</div>
+        <div class="card-chips"><span class="chip chip-reel">Reel</span><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="status-badge sb-not" data-id="post-1" onclick="cycleStatus(event,this)">Not Started</span></div>
+      </div>
+      <span class="expand-icon">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="card-section"><div class="card-section-title">Caption</div><div class="caption-box">School is back, and BSFC South Bopal is buzzing.
+
+First week in — and the classrooms are already full of colour, conversation, and curiosity.
+
+From settling into new routines to finding their first best friends, our little ones are doing what children do best: figuring out the world, one day at a time.
+
+Here's a peek inside.
+
+#BSFCSouthBopal #SouthBopalParents #PreschoolLife #FirstWeekBack</div></div>
+      <div class="card-section"><div class="card-section-title">Linked Story</div><div class="story-linked"><strong>Poll Story:</strong> "How was your child's first week back?" — "Loved it" vs "Still adjusting". Relatable, high engagement from enrolled parents.</div></div>
+      <div class="card-section"><div class="card-section-title">Creative Direction</div><div class="story-linked">Warm montage reel: 6–8 short clips of classroom activity — children exploring materials, a teacher reading aloud, a child laughing with a peer. No voiceover. Minimal text: just "Week 1." at the open, BSFC logo at close. Warm golden-green colour grade. Audio: soft upbeat instrumental.</div></div>
+      <div class="card-section">
+        <button class="accordion-toggle" onclick="toggleInner(this)">▶ Designer Brief</button>
+        <div class="inner-accordion">
+          <div class="brief-wrap" style="margin-top:12px">
+            <div class="brief-header">Designer Brief — Post 1</div>
+            <table class="brief-table">
+              <tr><td>Format</td><td>Reel · 25–35 seconds</td></tr>
+              <tr><td>Dimensions</td><td>1080 × 1920 px (9:16)</td></tr>
+              <tr><td>Colour Grade</td><td>Warm golden-green · boost shadows to olive, highlights to amber</td></tr>
+              <tr><td>Text Overlay</td><td>Fraunces Italic · "Week 1." — white, bottom-left, subtle</td></tr>
+              <tr><td>Music</td><td>Soft instrumental (not kids BGM) — lo-fi or acoustic</td></tr>
+              <tr><td>Logo</td><td>End card only · centred · charcoal BG</td></tr>
+            </table>
+            <div class="frame-breakdown">
+              <div class="frame-row"><span class="frame-tc">0–3s</span><span>Text only: "Week 1." in Fraunces Italic on forest green BG</span></div>
+              <div class="frame-row"><span class="frame-tc">3–22s</span><span>7 clips: classroom exploration, circle time, art activity, lunchtime, teacher moment, two kids laughing, child concentrating</span></div>
+              <div class="frame-row"><span class="frame-tc">22–28s</span><span>Slow fade: "See you tomorrow, little ones." — Fraunces Italic · warm amber</span></div>
+              <div class="frame-row"><span class="frame-tc">End card</span><span>BSFC logo · "South Bopal" · charcoal BG</span></div>
+            </div>
+          </div>
+          <div class="assets-row"><span class="assets-label">Assets</span><a href="#" class="asset-btn gdrive" onclick="openDrive(event)">&#128193; G Drive</a><a href="#" class="asset-btn onedrive" onclick="openDrive(event)">&#9729;&#65039; OneDrive</a></div>
+        </div>
+      </div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a href="#" class="asset-btn gdrive" onclick="openDrive(event)">&#128193; G Drive</a><a href="#" class="asset-btn onedrive" onclick="openDrive(event)">&#9729;&#65039; OneDrive</a></div>
+      <div class="cta-row"><span class="cta-label">Save for Families</span><span class="status-badge sb-not" data-id="post-1" onclick="cycleStatus(event,this)">Not Started</span></div>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <div class="post-num">2</div>
+      <div class="post-meta">
+        <div class="post-date">Fri · Jul 4 · Carousel</div>
+        <div class="post-title">A Day In The Life At BSFC South Bopal — Hour by Hour 🌿</div>
+        <div class="post-hook">"Ever wonder what your child actually does from 9 to 1? Here's the full picture."</div>
+        <div class="card-chips"><span class="chip chip-carousel">Carousel</span><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="status-badge sb-not" data-id="post-2" onclick="cycleStatus(event,this)">Not Started</span></div>
+      </div>
+      <span class="expand-icon">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="card-section"><div class="card-section-title">Slides</div>
+        <ul class="slides-list">
+          <li><span class="slide-num">1</span>Cover: "A day at BSFC South Bopal — what's your child actually doing?" · Fraunces Heavy</li>
+          <li><span class="slide-num">2</span>9:00 AM — "Morning circle: greetings, weather, date, mood check-in"</li>
+          <li><span class="slide-num">3</span>9:30 AM — "Activity time: art, building, sensory play — hands are always busy"</li>
+          <li><span class="slide-num">4</span>10:15 AM — "Story & language: books, poems, tell-me-what-you-see moments"</li>
+          <li><span class="slide-num">5</span>10:45 AM — "Snack & social: the most important unstructured 15 minutes of the day"</li>
+          <li><span class="slide-num">6</span>11:00 AM — "Movement & music: gross motor, dance, stretch, breathe"</li>
+          <li><span class="slide-num">7</span>11:30 AM — "Concept time: numbers, shapes, colours — through play, not worksheets"</li>
+          <li><span class="slide-num">8</span>12:15 PM — "Wrap-up: what did you learn today? Children share one thing."</li>
+          <li><span class="slide-num">9</span>CTA: "Every day is thoughtfully designed. Every child is seen. BSFC South Bopal."</li>
+        </ul>
+      </div>
+      <div class="card-section"><div class="card-section-title">Caption</div><div class="caption-box">Parents always ask: "What does my child actually do all day?"
+
+Here's the honest, hour-by-hour answer.
+
+Every moment at BSFC South Bopal is intentional — from the morning circle that builds vocabulary and emotional intelligence, to the unstructured snack time that teaches children to socialise without being told to.
+
+Save this. Share it with another parent.
+
+#BSFCSouthBopal #PreschoolDay #EarlyChildhoodEducation #SouthBopalParents</div></div>
+      <div class="card-section"><div class="card-section-title">Linked Story</div><div class="story-linked"><strong>Question Story:</strong> "What's the first thing your child tells you when they get home?" — Question sticker. Incredibly relatable for parents, drives comments and replies.</div></div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a href="#" class="asset-btn gdrive" onclick="openDrive(event)">&#128193; G Drive</a><a href="#" class="asset-btn onedrive" onclick="openDrive(event)">&#9729;&#65039; OneDrive</a></div>
+      <div class="cta-row"><span class="cta-label">Save This Post</span><span class="status-badge sb-not" data-id="post-2" onclick="cycleStatus(event,this)">Not Started</span></div>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <div class="post-num">3</div>
+      <div class="post-meta">
+        <div class="post-date">Sat · Jul 5 · Static</div>
+        <div class="post-title">The One Thing Every Parent Worries About On Day 1 😌</div>
+        <div class="post-hook">"Separation anxiety. Let's talk about it honestly — and what we do about it."</div>
+        <div class="card-chips"><span class="chip chip-static">Static</span><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="status-badge sb-not" data-id="post-3" onclick="cycleStatus(event,this)">Not Started</span></div>
+      </div>
+      <span class="expand-icon">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="card-section"><div class="card-section-title">Caption</div><div class="caption-box">The morning drop-off. The tight hug. The little lip quiver.
+
+And then — the walk back to the car alone.
+
+Separation anxiety is one of the most common and least-talked-about parts of starting school.
+
+Here's what we know: children who show separation anxiety are securely attached. That's a sign of healthy bonding.
+
+What we do at BSFC South Bopal:
+- A familiar teacher meets each child at the gate
+- Transition rituals — a wave, a handshake, a secret signal
+- The first 15 minutes are always sensory play — familiar, calming, absorbing
+- We update parents at pickup — always
+
+It usually takes 2 weeks. Some children, 2 days.
+
+Tag a parent who needed to hear this today.
+
+#SeparationAnxiety #PreschoolParents #SouthBopalParents #BSFCSouthBopal</div></div>
+      <div class="card-section"><div class="card-section-title">Linked Story</div><div class="story-linked"><strong>Poll Story:</strong> "How was your child's first drop-off?" — "Walked right in" vs "Tears (mine included)". High engagement — every parent has a story.</div></div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a href="#" class="asset-btn gdrive" onclick="openDrive(event)">&#128193; G Drive</a><a href="#" class="asset-btn onedrive" onclick="openDrive(event)">&#9729;&#65039; OneDrive</a></div>
+      <div class="cta-row"><span class="cta-label">Tag a Parent</span><span class="status-badge sb-not" data-id="post-3" onclick="cycleStatus(event,this)">Not Started</span></div>
+    </div>
+  </div>
+
+  <div class="section-head">Stories — Week 1</div>
+  <div class="story-card"><div class="story-top" onclick="toggleStory(this)"><div class="story-icon">📊</div><div class="story-title-wrap"><div class="story-code">Story S1 · Wed Jul 2</div><div class="story-title">Poll: How was your child's first week back?</div><div class="story-hint">Poll sticker · "Loved it" vs "Still adjusting"</div></div><span class="status-badge sb-not" data-id="story-s1" onclick="cycleStatus(event,this)">Not Started</span></div><div class="story-body"><table class="brief-table-sm"><tr><td>Size</td><td>1080 × 1920 px</td></tr><tr><td>BG</td><td>#D6EAD9 mist green</td></tr><tr><td>Content</td><td>"First week done! How are we feeling?" · Poll sticker centred</td></tr></table></div></div>
+  <div class="story-card"><div class="story-top" onclick="toggleStory(this)"><div class="story-icon">💬</div><div class="story-title-wrap"><div class="story-code">Story S2 · Fri Jul 4</div><div class="story-title">Question: What's the first thing your child tells you at pickup?</div><div class="story-hint">Question sticker · drives comments &amp; replies</div></div><span class="status-badge sb-not" data-id="story-s2" onclick="cycleStatus(event,this)">Not Started</span></div><div class="story-body"><table class="brief-table-sm"><tr><td>Size</td><td>1080 × 1920 px</td></tr><tr><td>BG</td><td>#FAFAF5 cream</td></tr><tr><td>Content</td><td>"What's the FIRST thing they say?" · Question sticker</td></tr></table></div></div>
+  <div class="story-card"><div class="story-top" onclick="toggleStory(this)"><div class="story-icon">🤗</div><div class="story-title-wrap"><div class="story-code">Story S3 · Sat Jul 5</div><div class="story-title">Reshare: Separation anxiety post — "Tag a parent who needs this"</div><div class="story-hint">Post reshare with tag sticker · amplify reach</div></div><span class="status-badge sb-not" data-id="story-s3" onclick="cycleStatus(event,this)">Not Started</span></div><div class="story-body"><table class="brief-table-sm"><tr><td>Content</td><td>Post 3 reshared · "Know a parent who's going through this? Tag them"</td></tr></table></div></div>
+</section>
+
+<!-- WEEK 2 -->
+<section class="week-block" id="w2">
+  <div class="week-header">
+    <div class="week-num">02</div>
+    <div class="week-meta">
+      <div class="week-title">What's Happening Inside The Classroom 🧠</div>
+      <div class="week-goal">Goal: Deep-dive into child development — position BSFC as the expert. Drive saves, shares, and comments with educational content parents actually want.</div>
+    </div>
+    <div class="week-dates">Jul 7 · Jul 9 · Jul 11</div>
+  </div>
+  <div class="section-head">Main Posts</div>
+
+  <div class="post-card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <div class="post-num">4</div>
+      <div class="post-meta">
+        <div class="post-date">Mon · Jul 7 · Carousel</div>
+        <div class="post-title">7 Things Your Preschooler Is Learning That Aren't On Any Syllabus 📚</div>
+        <div class="post-hook">"The real curriculum of the early years — and why it matters more than worksheets."</div>
+        <div class="card-chips"><span class="chip chip-carousel">Carousel</span><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="status-badge sb-not" data-id="post-4" onclick="cycleStatus(event,this)">Not Started</span></div>
+      </div>
+      <span class="expand-icon">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="card-section"><div class="card-section-title">Slides</div>
+        <ul class="slides-list">
+          <li><span class="slide-num">1</span>Cover: "7 things your child is learning at school that aren't on any syllabus"</li>
+          <li><span class="slide-num">2</span>Emotional Regulation — "How to feel a big feeling without losing control of it"</li>
+          <li><span class="slide-num">3</span>Turn-Taking — "One of the most underrated social skills in adult life, learned at 4"</li>
+          <li><span class="slide-num">4</span>Curiosity — "The habit of asking why — the foundation of all future learning"</li>
+          <li><span class="slide-num">5</span>Frustration Tolerance — "Trying something hard, failing, trying again. They're practising."</li>
+          <li><span class="slide-num">6</span>Conflict Resolution — "Learning to say 'I don't like that' instead of grabbing or crying"</li>
+          <li><span class="slide-num">7</span>Independence — "Packing their bag, hanging their coat, cleaning their plate — it matters"</li>
+          <li><span class="slide-num">8</span>Empathy — "Noticing when a friend is sad. Sitting with them. That's the whole skill."</li>
+          <li><span class="slide-num">9</span>CTA: "At BSFC South Bopal, every day is designed to build exactly these."</li>
+        </ul>
+      </div>
+      <div class="card-section"><div class="card-section-title">Caption</div><div class="caption-box">Parents often ask us: "What are they learning?"
+
+Here's our honest answer: the most important things don't fit in a report card.
+
+While your child is at BSFC South Bopal, they're building the foundations of emotional intelligence, social confidence, and independent thinking.
+
+Save this for the days when you wonder if it's "worth it." It always is.
+
+#EarlyChildhoodEducation #PreschoolLearning #BSFCSouthBopal #ChildDevelopment #SouthBopalParents</div></div>
+      <div class="card-section"><div class="card-section-title">Linked Story</div><div class="story-linked"><strong>Quiz Story:</strong> "Which skill do you think is hardest to teach?" — A: Emotional Regulation / B: Empathy / C: Frustration Tolerance.</div></div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a href="#" class="asset-btn gdrive" onclick="openDrive(event)">&#128193; G Drive</a><a href="#" class="asset-btn onedrive" onclick="openDrive(event)">&#9729;&#65039; OneDrive</a></div>
+      <div class="cta-row"><span class="cta-label">Save This Post</span><span class="status-badge sb-not" data-id="post-4" onclick="cycleStatus(event,this)">Not Started</span></div>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <div class="post-num">5</div>
+      <div class="post-meta">
+        <div class="post-date">Wed · Jul 9 · Reel</div>
+        <div class="post-title">Watch What Happens When We Give Children Unstructured Play Time 🎬</div>
+        <div class="post-hook">"No instructions. No rules. Just materials. What happens next is the actual magic."</div>
+        <div class="card-chips"><span class="chip chip-reel">Reel</span><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="status-badge sb-not" data-id="post-5" onclick="cycleStatus(event,this)">Not Started</span></div>
+      </div>
+      <span class="expand-icon">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="card-section"><div class="card-section-title">Caption</div><div class="caption-box">We put out blocks, fabric scraps, paper rolls, and paint.
+
+No instructions. No "do it like this." Just: here's the stuff. Go.
+
+And then we stepped back and watched.
+
+What unfolded in the next 20 minutes is the reason early childhood education exists.
+
+Children negotiated. Built. Destroyed. Rebuilt. Laughed. Argued. Figured it out.
+
+This is called open-ended play — and it is the single most important thing we do all week.
+
+BSFC South Bopal · Where learning looks like play because it is.
+
+#OpenEndedPlay #PreschoolLife #BSFCSouthBopal #ChildDevelopment</div></div>
+      <div class="card-section"><div class="card-section-title">Linked Story</div><div class="story-linked"><strong>BTS Story:</strong> One 10-second raw clip from the session — a child problem-solving independently. "No instructions. Just watch." DM us "PLAY" to know more about our approach.</div></div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a href="#" class="asset-btn gdrive" onclick="openDrive(event)">&#128193; G Drive</a><a href="#" class="asset-btn onedrive" onclick="openDrive(event)">&#9729;&#65039; OneDrive</a></div>
+      <div class="cta-row"><span class="cta-label">Comment Below</span><span class="status-badge sb-not" data-id="post-5" onclick="cycleStatus(event,this)">Not Started</span></div>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <div class="post-num">6</div>
+      <div class="post-meta">
+        <div class="post-date">Fri · Jul 11 · Static</div>
+        <div class="post-title">Signs Your Child Is Thriving At School (That Aren't About Grades) ✅</div>
+        <div class="post-hook">"Look for these — not the report card."</div>
+        <div class="card-chips"><span class="chip chip-static">Static</span><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="status-badge sb-not" data-id="post-6" onclick="cycleStatus(event,this)">Not Started</span></div>
+      </div>
+      <span class="expand-icon">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="card-section"><div class="card-section-title">Caption</div><div class="caption-box">At this age, thriving doesn't look like a perfect score. It looks like this:
+
+- They talk about their teacher with affection
+- They come home with stories, not just answers
+- They ask "can I go to school?" on weekends
+- They show you what they made without being asked
+- They use words to tell you when something upset them
+- They mention a friend's name you haven't heard before
+
+If your child is doing any of these — they are exactly where they need to be.
+
+Save this for the days when you worry. Because every parent worries. And almost every child is doing better than we think.
+
+#ChildDevelopment #ThrivingKids #BSFCSouthBopal #PreschoolParents</div></div>
+      <div class="card-section"><div class="card-section-title">Linked Story</div><div class="story-linked"><strong>Poll Story:</strong> "Which one of these did your child do this week?" — run as a checklist series (4 stories, one sign per poll). Massive engagement driver.</div></div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a href="#" class="asset-btn gdrive" onclick="openDrive(event)">&#128193; G Drive</a><a href="#" class="asset-btn onedrive" onclick="openDrive(event)">&#9729;&#65039; OneDrive</a></div>
+      <div class="cta-row"><span class="cta-label">Save &amp; Share</span><span class="status-badge sb-not" data-id="post-6" onclick="cycleStatus(event,this)">Not Started</span></div>
+    </div>
+  </div>
+
+  <div class="section-head">Stories — Week 2</div>
+  <div class="story-card"><div class="story-top" onclick="toggleStory(this)"><div class="story-icon">🎯</div><div class="story-title-wrap"><div class="story-code">Story S4 · Mon Jul 7</div><div class="story-title">Quiz: Which skill do you think is hardest to teach?</div><div class="story-hint">Quiz sticker · A: Emotional Reg / B: Empathy / C: Frustration Tolerance</div></div><span class="status-badge sb-not" data-id="story-s4" onclick="cycleStatus(event,this)">Not Started</span></div><div class="story-body"><table class="brief-table-sm"><tr><td>BG</td><td>#2D5A3D forest · white text</td></tr><tr><td>Content</td><td>"Which is hardest to teach?" · Quiz sticker</td></tr></table></div></div>
+  <div class="story-card"><div class="story-top" onclick="toggleStory(this)"><div class="story-icon">🎥</div><div class="story-title-wrap"><div class="story-code">Story S5 · Wed Jul 9</div><div class="story-title">BTS: 10-second clip from open-ended play session</div><div class="story-hint">Raw observational clip · "No instructions. Just watch." · DM "PLAY"</div></div><span class="status-badge sb-not" data-id="story-s5" onclick="cycleStatus(event,this)">Not Started</span></div><div class="story-body"><table class="brief-table-sm"><tr><td>Content</td><td>Raw vertical clip · "No instructions. Just watch." · DM "PLAY" CTA</td></tr></table></div></div>
+  <div class="story-card"><div class="story-top" onclick="toggleStory(this)"><div class="story-icon">✅</div><div class="story-title-wrap"><div class="story-code">Story S6 · Fri Jul 11</div><div class="story-title">Checklist polls: "Did your child do this this week?" — 4-part series</div><div class="story-hint">4 poll stories in sequence · one sign per story · massive engagement</div></div><span class="status-badge sb-not" data-id="story-s6" onclick="cycleStatus(event,this)">Not Started</span></div><div class="story-body"><table class="brief-table-sm"><tr><td>Story 1</td><td>"Did they talk about their teacher this week?"</td></tr><tr><td>Story 2</td><td>"Did they come home with stories?"</td></tr><tr><td>Story 3</td><td>"Did they ask to go to school on a non-school day?"</td></tr><tr><td>Story 4</td><td>"Did they show you something they made?"</td></tr></table></div></div>
+</section>
+
+<!-- WEEK 3 -->
+<section class="week-block" id="w3">
+  <div class="week-header">
+    <div class="week-num">03</div>
+    <div class="week-meta">
+      <div class="week-title">The Parent-Teacher Relationship 🤝</div>
+      <div class="week-goal">Goal: Celebrate the partnership between BSFC and families. Build community, loyalty, and organic word-of-mouth.</div>
+    </div>
+    <div class="week-dates">Jul 14 · Jul 16 · Jul 18</div>
+  </div>
+  <div class="section-head">Main Posts</div>
+
+  <div class="post-card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <div class="post-num">7</div>
+      <div class="post-meta">
+        <div class="post-date">Mon · Jul 14 · Carousel</div>
+        <div class="post-title">10 Questions To Ask Your Child After School (Instead of "How Was Your Day?") 💬</div>
+        <div class="post-hook">"That question always gets one answer: 'Good.' Here's what actually opens them up."</div>
+        <div class="card-chips"><span class="chip chip-carousel">Carousel</span><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="status-badge sb-not" data-id="post-7" onclick="cycleStatus(event,this)">Not Started</span></div>
+      </div>
+      <span class="expand-icon">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="card-section"><div class="card-section-title">Slides</div>
+        <ul class="slides-list">
+          <li><span class="slide-num">1</span>Cover: "10 better questions to ask your child after school"</li>
+          <li><span class="slide-num">2</span>"What made you smile today?"</li>
+          <li><span class="slide-num">3</span>"Did anything feel hard today?"</li>
+          <li><span class="slide-num">4</span>"What did you make or build today?"</li>
+          <li><span class="slide-num">5</span>"Who did you play with most today?"</li>
+          <li><span class="slide-num">6</span>"What made someone laugh today?"</li>
+          <li><span class="slide-num">7</span>"What's something you want to do again tomorrow?"</li>
+          <li><span class="slide-num">8</span>"Did you learn something that surprised you?"</li>
+          <li><span class="slide-num">9</span>"What did you eat at snack time and who sat with you?"</li>
+          <li><span class="slide-num">10</span>"What's one thing your teacher did that you liked?"</li>
+          <li><span class="slide-num">11</span>"Tell me something your teacher said today."</li>
+          <li><span class="slide-num">12</span>CTA: "Save this — try one question tonight. The answers will surprise you. BSFC South Bopal"</li>
+        </ul>
+      </div>
+      <div class="card-section"><div class="card-section-title">Caption</div><div class="caption-box">"How was your day?"
+
+"Good."
+
+Sound familiar?
+
+Young children don't give summaries. They give fragments. The trick is to ask about the fragment, not the whole.
+
+These 10 questions are designed to open the door — gently, specifically, without feeling like an interrogation.
+
+Try one tonight. Tell us what they said in the comments. We'd genuinely love to know.
+
+#ParentingTips #AfterSchoolTalks #BSFCSouthBopal #SouthBopalParents #PreschoolParents</div></div>
+      <div class="card-section"><div class="card-section-title">Linked Story</div><div class="story-linked"><strong>Share Prompt Story:</strong> "Which question will you try tonight?" — Slider or poll. Follow up tomorrow with best parent replies.</div></div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a href="#" class="asset-btn gdrive" onclick="openDrive(event)">&#128193; G Drive</a><a href="#" class="asset-btn onedrive" onclick="openDrive(event)">&#9729;&#65039; OneDrive</a></div>
+      <div class="cta-row"><span class="cta-label">Highest Save Potential This Month</span><span class="status-badge sb-not" data-id="post-7" onclick="cycleStatus(event,this)">Not Started</span></div>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <div class="post-num">8</div>
+      <div class="post-meta">
+        <div class="post-date">Wed · Jul 16 · Reel</div>
+        <div class="post-title">Things BSFC Parents Say At Pickup 😄 — A Week In Quotes</div>
+        <div class="post-hook">"The real feedback. Unfiltered. Exactly as it happened."</div>
+        <div class="card-chips"><span class="chip chip-reel">Reel</span><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="status-badge sb-not" data-id="post-8" onclick="cycleStatus(event,this)">Not Started</span></div>
+      </div>
+      <span class="expand-icon">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="card-section"><div class="card-section-title">Caption</div><div class="caption-box">Every day at pickup, we hear things that make us smile.
+
+"He ran in today — didn't even wave goodbye"
+"She made her first proper friend this week."
+"He's been playing 'teacher' at home all evening."
+"I think she talks about Ms. [Name] more than she talks about me."
+
+This is the part of the job that doesn't show up in any lesson plan.
+
+If you have a pickup story — share it below. We read every single comment.
+
+#BSFCSouthBopal #PickupStories #PreschoolParents #SouthBopalParents #PreschoolCommunity</div></div>
+      <div class="card-section"><div class="card-section-title">Linked Story</div><div class="story-linked"><strong>Community Story:</strong> "What has your child done this week that surprised you?" — Question sticker. Share the best anonymous replies tomorrow as a "Parent Voices" story series.</div></div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a href="#" class="asset-btn gdrive" onclick="openDrive(event)">&#128193; G Drive</a><a href="#" class="asset-btn onedrive" onclick="openDrive(event)">&#9729;&#65039; OneDrive</a></div>
+      <div class="cta-row"><span class="cta-label">Comment Your Story</span><span class="status-badge sb-not" data-id="post-8" onclick="cycleStatus(event,this)">Not Started</span></div>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <div class="post-num">9</div>
+      <div class="post-meta">
+        <div class="post-date">Fri · Jul 18 · Static</div>
+        <div class="post-title">The Invisible Work Your Child's Teacher Does Every Day 🌿</div>
+        <div class="post-hook">"Before the first bell. After the last goodbye. This is what it actually looks like."</div>
+        <div class="card-chips"><span class="chip chip-static">Static</span><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="status-badge sb-not" data-id="post-9" onclick="cycleStatus(event,this)">Not Started</span></div>
+      </div>
+      <span class="expand-icon">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="card-section"><div class="card-section-title">Caption</div><div class="caption-box">Before the first child arrives, the classroom is already ready. The materials are laid out. The books are chosen. The day is planned.
+
+After the last child leaves, the teacher stays.
+
+To write observations. To track a child who seemed quieter than usual. To prepare tomorrow's activities. To message a parent who had questions.
+
+This is the work that no one sees but every family feels.
+
+At BSFC South Bopal, we're proud of the teachers who show up — completely — every single day.
+
+Tag a teacher who changed your child's life.
+
+#TeacherAppreciation #PreschoolTeachers #BSFCSouthBopal #SouthBopalParents #ThankATeacher</div></div>
+      <div class="card-section"><div class="card-section-title">Linked Story</div><div class="story-linked"><strong>Appreciation Story:</strong> "Tell us one thing a BSFC teacher did for your child that you'll never forget" — Question sticker. Beautiful community-building content.</div></div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a href="#" class="asset-btn gdrive" onclick="openDrive(event)">&#128193; G Drive</a><a href="#" class="asset-btn onedrive" onclick="openDrive(event)">&#9729;&#65039; OneDrive</a></div>
+      <div class="cta-row"><span class="cta-label">Tag a Teacher</span><span class="status-badge sb-not" data-id="post-9" onclick="cycleStatus(event,this)">Not Started</span></div>
+    </div>
+  </div>
+
+  <div class="section-head">Stories — Week 3</div>
+  <div class="story-card"><div class="story-top" onclick="toggleStory(this)"><div class="story-icon">💬</div><div class="story-title-wrap"><div class="story-code">Story S7 · Mon Jul 14</div><div class="story-title">Which question will you try tonight?</div><div class="story-hint">Slider or poll sticker · share best replies tomorrow</div></div><span class="status-badge sb-not" data-id="story-s7" onclick="cycleStatus(event,this)">Not Started</span></div><div class="story-body"><table class="brief-table-sm"><tr><td>BG</td><td>#D6EAD9 mist · calm and warm</td></tr><tr><td>Content</td><td>Post 7 reshared · "Which question will you try tonight?" · Slider sticker</td></tr></table></div></div>
+  <div class="story-card"><div class="story-top" onclick="toggleStory(this)"><div class="story-icon">😄</div><div class="story-title-wrap"><div class="story-code">Story S8 · Wed Jul 16</div><div class="story-title">Question: What has your child done this week that surprised you?</div><div class="story-hint">Question sticker · reshare best replies anonymously next day</div></div><span class="status-badge sb-not" data-id="story-s8" onclick="cycleStatus(event,this)">Not Started</span></div><div class="story-body"><table class="brief-table-sm"><tr><td>Content</td><td>"What has your child done this week that genuinely surprised you?" · Question sticker centred</td></tr></table></div></div>
+  <div class="story-card"><div class="story-top" onclick="toggleStory(this)"><div class="story-icon">💛</div><div class="story-title-wrap"><div class="story-code">Story S9 · Fri Jul 18</div><div class="story-title">Teacher appreciation: "Tell us one thing a BSFC teacher did that you'll never forget"</div><div class="story-hint">Question sticker · community-building gold</div></div><span class="status-badge sb-not" data-id="story-s9" onclick="cycleStatus(event,this)">Not Started</span></div><div class="story-body"><table class="brief-table-sm"><tr><td>BG</td><td>#E8A838 amber · matches Post 9</td></tr><tr><td>Content</td><td>"Tell us one thing a BSFC teacher did for your child that you'll never forget" · Question sticker</td></tr></table></div></div>
+</section>
+
+<!-- WEEK 4 -->
+<section class="week-block" id="w4" style="padding-bottom:48px">
+  <div class="week-header">
+    <div class="week-num">04</div>
+    <div class="week-meta">
+      <div class="week-title">Growing Together — One Month In 🌱</div>
+      <div class="week-goal">Goal: Reflect on July's journey, celebrate growth, and set up August with a strong community feeling. High-emotion, high-shareability content.</div>
+    </div>
+    <div class="week-dates">Jul 21 · Jul 23 · Jul 25</div>
+  </div>
+  <div class="section-head">Main Posts</div>
+
+  <div class="post-card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <div class="post-num">10</div>
+      <div class="post-meta">
+        <div class="post-date">Mon · Jul 21 · Carousel</div>
+        <div class="post-title">One Month In — 8 Things Your Child Has Quietly Learned 🌱</div>
+        <div class="post-hook">"You may not have noticed all of these. But we have."</div>
+        <div class="card-chips"><span class="chip chip-carousel">Carousel</span><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="status-badge sb-not" data-id="post-10" onclick="cycleStatus(event,this)">Not Started</span></div>
+      </div>
+      <span class="expand-icon">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="card-section"><div class="card-section-title">Slides</div>
+        <ul class="slides-list">
+          <li><span class="slide-num">1</span>Cover: "One month in. Here's what your child has quietly learned." · forest green BG</li>
+          <li><span class="slide-num">2</span>"They walk in on their own now. (Remember the first day?)"</li>
+          <li><span class="slide-num">3</span>"They know their classmates' names. And call them friends."</li>
+          <li><span class="slide-num">4</span>"They tell you more than 'good' when you ask about their day."</li>
+          <li><span class="slide-num">5</span>"They bring home things they made — and explain what each part means."</li>
+          <li><span class="slide-num">6</span>"They handle goodbye a little easier each time."</li>
+          <li><span class="slide-num">7</span>"They have a favourite activity. They've told you about it at least twice."</li>
+          <li><span class="slide-num">8</span>"They try things they wouldn't have tried before."</li>
+          <li><span class="slide-num">9</span>"They are, quietly and surely, becoming themselves."</li>
+          <li><span class="slide-num">10</span>CTA: "One month at BSFC South Bopal. We're proud of every single one of them."</li>
+        </ul>
+      </div>
+      <div class="card-section"><div class="card-section-title">Caption</div><div class="caption-box">A month ago, some of them cried at the gate.
+
+Today, some of them run in.
+
+It's easy to miss how much changes in 30 days when you're living inside it. But we see it, every day, from where we stand.
+
+The child who wouldn't let go of their parent's hand now reaches for a friend's.
+The child who sat quietly in the corner now leads the circle.
+The child who wouldn't try the art activity now brings their creation home proudly.
+
+Every single child at BSFC South Bopal is growing. And we are so honoured to be part of it.
+
+Share this with the parent who needs to hear that their child is doing just fine.
+
+#OneMonthin #BSFCSouthBopal #PreschoolGrowth #SouthBopalParents #ChildDevelopment</div></div>
+      <div class="card-section"><div class="card-section-title">Linked Story</div><div class="story-linked"><strong>Milestone Story:</strong> "One month in! Which of these did you notice in your child?" — Checklist poll series (4 slides). Community milestone moment.</div></div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a href="#" class="asset-btn gdrive" onclick="openDrive(event)">&#128193; G Drive</a><a href="#" class="asset-btn onedrive" onclick="openDrive(event)">&#9729;&#65039; OneDrive</a></div>
+      <div class="cta-row"><span class="cta-label">Tag a Parent · Share the moment</span><span class="status-badge sb-not" data-id="post-10" onclick="cycleStatus(event,this)">Not Started</span></div>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <div class="post-num">11</div>
+      <div class="post-meta">
+        <div class="post-date">Wed · Jul 23 · Reel</div>
+        <div class="post-title">The Moments That Happened This Month At BSFC South Bopal 🎬</div>
+        <div class="post-hook">"A month of firsts, milestones, and small moments that add up to something big."</div>
+        <div class="card-chips"><span class="chip chip-reel">Reel</span><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="status-badge sb-not" data-id="post-11" onclick="cycleStatus(event,this)">Not Started</span></div>
+      </div>
+      <span class="expand-icon">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="card-section"><div class="card-section-title">Caption</div><div class="caption-box">July at BSFC South Bopal. In moments.
+
+Art hands. Circle time voices. First friendships forming. Children figuring out the world in the way only children can — messily, joyfully, completely.
+
+This is a month we'll remember.
+
+Thank you to every child, every parent, and every family that trusts us with the most important years of a child's life.
+
+August — we're ready.
+
+#JulyAtBSFC #BSFCSouthBopal #SouthBopalParents #PreschoolLife #MonthlyRewind</div></div>
+      <div class="card-section"><div class="card-section-title">Linked Story</div><div class="story-linked"><strong>Photo Dump Story:</strong> 6–8 best classroom photos from July. Caption: "July — that's a wrap. What a month." Heartwarming, earned, community-building.</div></div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a href="#" class="asset-btn gdrive" onclick="openDrive(event)">&#128193; G Drive</a><a href="#" class="asset-btn onedrive" onclick="openDrive(event)">&#9729;&#65039; OneDrive</a></div>
+      <div class="cta-row"><span class="cta-label">Month Wrap Reel</span><span class="status-badge sb-not" data-id="post-11" onclick="cycleStatus(event,this)">Not Started</span></div>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="card-top" onclick="toggleCard(this)">
+      <div class="post-num">12</div>
+      <div class="post-meta">
+        <div class="post-date">Fri · Jul 25 · Static</div>
+        <div class="post-title">What Happens When a Child Feels Safe At School 💛</div>
+        <div class="post-hook">"Safety is not just physical. Here's what psychological safety looks like — and why everything else depends on it."</div>
+        <div class="card-chips"><span class="chip chip-static">Static</span><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="status-badge sb-not" data-id="post-12" onclick="cycleStatus(event,this)">Not Started</span></div>
+      </div>
+      <span class="expand-icon">▶</span>
+    </div>
+    <div class="card-body">
+      <div class="card-section"><div class="card-section-title">Caption</div><div class="caption-box">When a child feels safe at school, something remarkable happens.
+
+They try things they're not sure about.
+They ask questions that might sound silly.
+They tell their teacher when something is wrong.
+They make friends without being afraid of rejection.
+They take creative risks — because failure is not something to fear here.
+
+Psychological safety in the early years is not a nice-to-have. It is the foundation everything else is built on.
+
+A child who feels safe learns. A child who learns grows confident. A child who is confident becomes someone who changes the world.
+
+This is why we do what we do.
+
+#PsychologicalSafety #EarlyChildhoodEducation #BSFCSouthBopal #PreschoolParents #ChildWellbeing</div></div>
+      <div class="card-section"><div class="card-section-title">Linked Story</div><div class="story-linked"><strong>Reflective Poll Story:</strong> "Do you think your child feels safe at school?" — "Yes, completely" vs "I think so, but I'm not sure". Opens conversation + invites DMs.</div></div>
+      <div class="assets-row"><span class="assets-label">Assets</span><a href="#" class="asset-btn gdrive" onclick="openDrive(event)">&#128193; G Drive</a><a href="#" class="asset-btn onedrive" onclick="openDrive(event)">&#9729;&#65039; OneDrive</a></div>
+      <div class="cta-row"><span class="cta-label">Highest Share Potential · Close of July</span><span class="status-badge sb-not" data-id="post-12" onclick="cycleStatus(event,this)">Not Started</span></div>
+    </div>
+  </div>
+
+  <div class="section-head">Stories — Week 4</div>
+  <div class="story-card"><div class="story-top" onclick="toggleStory(this)"><div class="story-icon">🌱</div><div class="story-title-wrap"><div class="story-code">Story S10 · Mon Jul 21</div><div class="story-title">Milestone polls: "One month in — which of these did you notice?" — 4-part series</div><div class="story-hint">4 poll stories · one milestone per story</div></div><span class="status-badge sb-not" data-id="story-s10" onclick="cycleStatus(event,this)">Not Started</span></div><div class="story-body"><table class="brief-table-sm"><tr><td>Story 1</td><td>"They walk in on their own now?" · Yes! / Almost there</td></tr><tr><td>Story 2</td><td>"They talk about a friend by name?" · Yes! / Not yet</td></tr><tr><td>Story 3</td><td>"They handle goodbye better now?" · So much better! / Still tricky</td></tr><tr><td>Story 4</td><td>"Overall — how's month one been?" · Amazing / Good, settling in</td></tr></table></div></div>
+  <div class="story-card"><div class="story-top" onclick="toggleStory(this)"><div class="story-icon">📸</div><div class="story-title-wrap"><div class="story-code">Story S11 · Wed Jul 23</div><div class="story-title">Photo dump: Best classroom moments from July — 6–8 photos</div><div class="story-hint">"July — that's a wrap. What a month."</div></div><span class="status-badge sb-not" data-id="story-s11" onclick="cycleStatus(event,this)">Not Started</span></div><div class="story-body"><table class="brief-table-sm"><tr><td>Content</td><td>Best classroom photos from across July · Final slide: "July — that's a wrap. See you in August." · Forest green BG</td></tr></table></div></div>
+  <div class="story-card"><div class="story-top" onclick="toggleStory(this)"><div class="story-icon">🛡️</div><div class="story-title-wrap"><div class="story-code">Story S12 · Fri Jul 25</div><div class="story-title">Poll: "Do you think your child feels safe at school?"</div><div class="story-hint">Reflective poll · opens conversation · invites DMs</div></div><span class="status-badge sb-not" data-id="story-s12" onclick="cycleStatus(event,this)">Not Started</span></div><div class="story-body"><table class="brief-table-sm"><tr><td>BG</td><td>#2D5A3D forest green</td></tr><tr><td>Content</td><td>"Do you feel your child is safe at BSFC?" · "Yes, completely" vs "I think so, but..." · "DM us anytime." below</td></tr></table></div></div>
+</section>
+
+<!-- HASHTAGS -->
+<section class="hashtag-section">
+  <h2>July Hashtag Bank — BSFC South Bopal</h2>
+  <div class="hashtag-grid">
+    <div class="ht-group"><div class="ht-group-name">Classroom &amp; School Life</div><div class="ht-tags"><span class="ht-tag">#BSFCSouthBopal</span><span class="ht-tag">#PreschoolLife</span><span class="ht-tag">#ClassroomMoments</span><span class="ht-tag">#FirstWeekBack</span><span class="ht-tag">#BackToSchool2025</span><span class="ht-tag">#BSFCBOPAL</span></div></div>
+    <div class="ht-group"><div class="ht-group-name">Child Development</div><div class="ht-tags"><span class="ht-tag">#ChildDevelopment</span><span class="ht-tag">#EarlyChildhoodEducation</span><span class="ht-tag">#OpenEndedPlay</span><span class="ht-tag">#PlayBasedLearning</span><span class="ht-tag">#ThrivingKids</span></div></div>
+    <div class="ht-group"><div class="ht-group-name">Parent Community</div><div class="ht-tags"><span class="ht-tag">#SouthBopalParents</span><span class="ht-tag">#PreschoolParents</span><span class="ht-tag">#ParentingTips</span><span class="ht-tag">#BSFCCommunity</span><span class="ht-tag">#SchoolParents</span></div></div>
+    <div class="ht-group"><div class="ht-group-name">Local Tags</div><div class="ht-tags"><span class="ht-tag">#SouthBopal</span><span class="ht-tag">#SouthBopalAhmedabad</span><span class="ht-tag">#AhmedabadKids</span><span class="ht-tag">#BrightStartSouthBopal</span></div></div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="schedule-section">
+  <h2>Posting Schedule &amp; Strategy — July 2025</h2>
+  <div class="sched-grid">
+    <div class="sched-block"><h4>Posting Days &amp; Times</h4><ul><li><strong>Mon, Wed, Fri</strong> for main posts</li><li><strong>Stories</strong> same day as post</li><li><strong>Carousels &amp; Statics:</strong> 9–11 AM</li><li><strong>Reels:</strong> 6–9 PM for max reach</li><li><strong>Stories:</strong> 8–10 AM or post-pickup 3–5 PM</li></ul></div>
+    <div class="sched-block"><h4>Boost Strategy</h4><ul><li><strong>Post 4</strong> (7 Skills Carousel) — saves + reach</li><li><strong>Post 7</strong> (10 Questions) — highest save potential</li><li><strong>Post 10</strong> (One Month In) — shares + tags</li><li><strong>Post 12</strong> (Safety post) — brand authority</li><li>Boost to: <strong>South Bopal / Bopal parents</strong> · age 25–40</li></ul></div>
+    <div class="sched-block"><h4>Engagement Actions</h4><ul><li>Reply to every comment within 2 hours</li><li>Reshare best story replies next day as "Parent Voices"</li><li>DM parents who poll "not sure / still adjusting"</li><li>Pin Post 7 (10 Questions) to IG profile for the month</li></ul></div>
+    <div class="sched-block"><h4>CTA Reference</h4><ul><li><strong>Phone:</strong> 081287 59260</li><li><strong>DM trigger:</strong> "PLAY" — open-ended play info</li><li><strong>DM trigger:</strong> "VISIT" — school visit request</li><li><strong>Location:</strong> Shivam Bunglows, SOBO Centre Rd</li></ul></div>
+    <div class="sched-block"><h4>KPIs to Track</h4><ul><li><strong>Saves per post</strong> — target: 30+ on carousels</li><li><strong>Story replies</strong> — target: 15+ per question story</li><li><strong>Profile visits</strong> from Reels — watch weekly</li><li><strong>Tags &amp; shares</strong> on Post 3, 8, 10, 12</li></ul></div>
+    <div class="sched-block"><h4>August Preview</h4><ul><li>Independence Day content — Aug 15</li><li>Friendship Day — Aug 3 (community opportunity)</li><li>Month 2 milestones — continuation of July arc</li><li>Back-to-school routine content for families</li></ul></div>
+  </div>
+</section>
+
+<footer>Say It Social — Digital Marketing &middot; BSFC South Bopal &middot; July 2025 Content Calendar &middot; Confidential Client Document</footer>
+
+<div class="modal-overlay" id="driveModal">
+  <div class="modal-box">
+    <h3>Link Drive Folder</h3>
+    <p>Paste your Google Drive or OneDrive folder link — saves for the whole team.</p>
+    <input class="modal-input" id="driveInput" type="url" placeholder="https://drive.google.com/...">
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeDrive()">Cancel</button>
+      <button class="btn-save" onclick="saveDrive()">Save &amp; Sync</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function showWeek(id,btn){
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  document.querySelectorAll(".week-block").forEach(s=>{s.style.display=(id==="all"||s.id===id)?"":"none";});
+}
+function toggleCard(top){
+  const card=top.closest(".post-card");
+  const body=card.querySelector(".card-body");
+  const icon=card.querySelector(".expand-icon");
+  const isOpen=body.classList.toggle("open");
+  icon.classList.toggle("open",isOpen);
+}
+function toggleStory(top){
+  top.closest(".story-card").querySelector(".story-body").classList.toggle("open");
+}
+function toggleInner(btn){
+  const inner=btn.nextElementSibling;
+  inner.classList.toggle("open");
+  btn.textContent=inner.classList.contains("open")?btn.textContent.replace("▶","▼"):btn.textContent.replace("▼","▶");
+}
+const STATUSES=[
+  {cls:"sb-not",label:"Not Started"},
+  {cls:"sb-wip",label:"In Progress"},
+  {cls:"sb-ready",label:"Ready to Post"},
+  {cls:"sb-posted",label:"Posted"},
+];
+function cycleStatus(e,badge){
+  e.stopPropagation();
+  const cur=STATUSES.findIndex(s=>badge.classList.contains(s.cls));
+  const next=(cur+1)%STATUSES.length;
+  STATUSES.forEach(s=>badge.classList.remove(s.cls));
+  badge.classList.add(STATUSES[next].cls);
+  badge.textContent=STATUSES[next].label;
+  if(window._fbSave && badge.dataset.id){
+    window._fbSave(badge.dataset.id, STATUSES[next].label);
+  }
+}
+function openDrive(e){e.preventDefault();document.getElementById("driveModal").classList.add("open");}
+function closeDrive(){document.getElementById("driveModal").classList.remove("open");}
+function saveDrive(){
+  const val=document.getElementById("driveInput").value.trim();
+  if(val){document.querySelectorAll(".asset-btn").forEach(btn=>{btn.href=val;btn.target="_blank";});}
+  closeDrive();
+}
+document.getElementById("driveModal").addEventListener("click",function(e){if(e.target===this)closeDrive();});
+</script>
+</body>
+</html>
