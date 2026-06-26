@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green Sapio — July Calendar · Month 3 · Product Launch</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#2C4A2E;--sage:#7A9E7E;--wheat:#C8A96E;
+  --cream:#F5F0E8;--bark:#5C3D2E;--clay:#C4714A;
+  --leaf:#4E7C51;--mist:#E8EDE5;--dark:#1A2E1B;--white:#FDFAF5;
+  --ig:#E1306C;--fb:#1877F2;--li:#0A66C2;--yt:#FF0000;--tw:#000;
+  --story:#C13584;
+  --auto:#1a3a5c;--fashion:#7a2040;--furniture:#3d2a1a;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--dark);}
+header{background:var(--forest);padding:56px 60px 36px;position:relative;overflow:hidden;}
+header::before{content:"";position:absolute;top:-80px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(200,169,110,0.12) 0%,transparent 70%);border-radius:50%;}
+.back-btn{position:absolute;top:18px;left:60px;background:rgba(200,169,110,0.1);border:1px solid rgba(200,169,110,0.25);border-radius:6px;padding:6px 14px;font-family:"DM Mono",monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--wheat);text-decoration:none;transition:all 0.15s;z-index:10;}
+.back-btn:hover{background:rgba(200,169,110,0.2);border-color:var(--wheat);}
+.h-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:24px;}
+.h-logo{display:flex;align-items:center;gap:14px;}
+.h-icon{width:42px;height:42px;background:var(--wheat);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.h-name{font-family:"Playfair Display",serif;font-size:20px;color:var(--white);}
+.h-sub{font-size:10px;color:var(--sage);letter-spacing:2.5px;text-transform:uppercase;}
+.h-badge{background:rgba(200,169,110,0.15);border:1px solid rgba(200,169,110,0.3);padding:8px 18px;border-radius:100px;font-family:"DM Mono",monospace;font-size:11px;color:var(--wheat);letter-spacing:2px;}
+header h1{font-family:"Playfair Display",serif;font-size:clamp(24px,4vw,38px);color:var(--white);line-height:1.2;}
+header h1 em{color:var(--wheat);font-style:italic;}
+header p{color:var(--sage);font-size:13px;margin-top:10px;font-weight:300;}
+.phase-banner{padding:0 60px;}
+.phase-inner{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+.phase-block{padding:20px 24px;display:flex;flex-direction:column;gap:6px;}
+.phase-block.p1{background:rgba(44,74,46,0.08);border-right:1px solid rgba(44,74,46,0.1);}
+.phase-block.p2{background:rgba(200,169,110,0.08);border-right:1px solid rgba(200,169,110,0.1);}
+.phase-block.p3a{background:rgba(26,58,92,0.08);border-right:1px solid rgba(26,58,92,0.1);}
+.phase-block.p3b{background:rgba(122,32,64,0.06);}
+.phase-num{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:600;}
+.phase-num.p1{color:var(--leaf);}.phase-num.p2{color:var(--wheat);}.phase-num.p3a{color:#4a8abf;}.phase-num.p3b{color:#b05070;}
+.phase-title{font-family:"Playfair Display",serif;font-size:15px;font-style:italic;}
+.phase-title.p1{color:var(--forest);}.phase-title.p2{color:var(--bark);}.phase-title.p3a{color:var(--auto);}.phase-title.p3b{color:var(--fashion);}
+.phase-weeks{font-size:11px;color:#888;font-weight:300;}
+.mix-bar{background:var(--dark);padding:16px 60px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;border-bottom:1px solid rgba(200,169,110,0.1);}
+.mix-title{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:2px;color:var(--sage);text-transform:uppercase;white-space:nowrap;}
+.mix-pill{display:flex;align-items:center;gap:7px;padding:6px 14px;border-radius:100px;font-size:11px;font-weight:500;}
+.mix-pill.reel{background:rgba(225,48,108,0.15);color:#ff6b9d;}
+.mix-pill.static{background:rgba(78,124,81,0.15);color:var(--sage);}
+.mix-pill.carousel{background:rgba(200,169,110,0.15);color:var(--wheat);}
+.mix-change{font-size:11px;color:rgba(200,169,110,0.6);font-family:"DM Mono",monospace;}
+.stats-bar{background:var(--forest);padding:14px 60px;display:flex;gap:32px;flex-wrap:wrap;border-bottom:2px solid rgba(200,169,110,0.15);}
+.stat{display:flex;flex-direction:column;gap:2px;}
+.stat-num{font-family:"Playfair Display",serif;font-size:24px;color:var(--wheat);font-weight:700;}
+.stat-label{font-size:10px;color:var(--sage);letter-spacing:1.5px;text-transform:uppercase;}
+.controls{background:var(--white);padding:14px 60px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(44,74,46,0.1);box-shadow:0 2px 20px rgba(44,74,46,0.07);}
+.ctrl-label{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--forest);margin-right:4px;}
+.pill{padding:6px 14px;border-radius:100px;border:1.5px solid transparent;font-size:12px;font-weight:500;cursor:pointer;transition:all 0.2s;font-family:"DM Sans",sans-serif;background:var(--mist);color:var(--forest);}
+.pill:hover{background:var(--sage);color:#fff;}
+.pill.active{background:var(--forest);color:#fff;}
+.pill.f-ig.active{background:var(--ig);}
+.pill.f-li.active{background:var(--li);}
+.pill.f-yt.active{background:var(--yt);}
+.pill.f-tw.active{background:#000;}
+.pill.f-story.active{background:var(--story);}
+.pill.f-auto.active{background:var(--auto);}
+.pill.f-fashion.active{background:var(--fashion);}
+.pill.f-furniture.active{background:var(--furniture);}
+.sep{width:1px;height:22px;background:rgba(44,74,46,0.15);margin:0 2px;}
+.week-wrap{padding:0 60px 36px;}
+.week-hdr{display:flex;align-items:center;gap:16px;padding:32px 0 20px;}
+.wk-num{font-family:"DM Mono",monospace;font-size:10px;color:var(--wheat);letter-spacing:2px;text-transform:uppercase;white-space:nowrap;}
+.wk-line{flex:1;height:1px;background:linear-gradient(to right,rgba(200,169,110,0.25),transparent);}
+.wk-theme{font-family:"Playfair Display",serif;font-size:14px;font-style:italic;color:var(--forest);white-space:nowrap;}
+.phase-label{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:100px;font-family:"DM Mono",monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;margin-bottom:16px;}
+.phase-label.tease{background:rgba(78,124,81,0.12);color:var(--leaf);}
+.phase-label.countdown{background:rgba(200,169,110,0.15);color:var(--bark);}
+.phase-label.drop-auto{background:rgba(26,58,92,0.12);color:#4a8abf;}
+.phase-label.drop-fashion{background:rgba(122,32,64,0.1);color:#b05070;}
+.day-row{margin-bottom:20px;}
+.day-label{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:2px;color:rgba(44,74,46,0.4);text-transform:uppercase;margin-bottom:10px;padding-left:2px;}
+.day-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;}
+.card{background:var(--white);border-radius:14px;border:1px solid rgba(44,74,46,0.08);overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;position:relative;}
+.card:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(44,74,46,0.1);}
+.card.hidden{display:none;}
+.card.tw-card{background:#fafafa;border:1px solid #e8e8e8;}
+.card.story-card{border:2px solid rgba(193,53,132,0.2);background:rgba(193,53,132,0.02);}
+.card.auto-card{border-left:4px solid #4a8abf;}
+.card.fashion-card{border-left:4px solid #b05070;}
+.card.furniture-card{border-left:4px solid var(--bark);}
+.fmt-strip{height:30px;display:flex;align-items:center;padding:0 14px;gap:8px;}
+.fmt-strip.reel{background:linear-gradient(90deg,rgba(225,48,108,0.12),rgba(252,180,69,0.08));}
+.fmt-strip.static{background:rgba(78,124,81,0.08);}
+.fmt-strip.carousel{background:rgba(200,169,110,0.1);}
+.fmt-strip.li{background:rgba(10,102,194,0.08);}
+.fmt-strip.yt{background:rgba(255,0,0,0.07);}
+.fmt-strip.tw{background:#f0f0f0;}
+.fmt-strip.story{background:rgba(193,53,132,0.08);}
+.fmt-icon{font-size:13px;}
+.fmt-name{font-family:"DM Mono",monospace;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;}
+.fmt-name.reel{color:var(--ig);}.fmt-name.static{color:var(--leaf);}.fmt-name.carousel{color:var(--bark);}.fmt-name.li{color:var(--li);}.fmt-name.yt{color:var(--yt);}.fmt-name.tw{color:#333;}.fmt-name.story{color:var(--story);}
+.fmt-dur{font-size:10px;color:rgba(0,0,0,0.25);margin-left:auto;font-family:"DM Mono",monospace;}
+.card-body{padding:14px 16px 14px;}
+.day-ghost{font-family:"Playfair Display",serif;font-size:52px;font-weight:700;color:var(--mist);line-height:1;position:absolute;top:30px;right:12px;pointer-events:none;user-select:none;}
+.card.tw-card .day-ghost{color:#efefef;}
+.ptags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px;}
+.ptag{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:2px 7px;border-radius:100px;font-family:"DM Mono",monospace;}
+.ptag.ig{background:rgba(225,48,108,0.1);color:var(--ig);}
+.ptag.fb{background:rgba(24,119,242,0.1);color:var(--fb);}
+.ptag.li{background:rgba(10,102,194,0.1);color:var(--li);}
+.ptag.yt{background:rgba(255,0,0,0.1);color:var(--yt);}
+.ptag.tw{background:#111;color:#fff;}
+.ptag.story{background:rgba(193,53,132,0.12);color:var(--story);}
+.use-tag{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border-radius:100px;font-family:"DM Mono",monospace;}
+.use-tag.auto{background:rgba(26,58,92,0.12);color:#4a8abf;}
+.use-tag.fashion{background:rgba(122,32,64,0.1);color:#b05070;}
+.use-tag.furniture{background:rgba(61,42,26,0.1);color:var(--bark);}
+.use-tag.tease{background:rgba(78,124,81,0.1);color:var(--leaf);}
+.use-tag.bts{background:rgba(200,169,110,0.15);color:var(--bark);}
+.card-title{font-family:"Playfair Display",serif;font-size:15px;color:var(--forest);font-weight:700;line-height:1.3;margin-bottom:6px;}
+.card.tw-card .card-title{font-family:"DM Sans",sans-serif;font-size:14px;font-weight:600;color:#111;}
+.card-desc{font-size:12px;color:#5a6b5a;line-height:1.65;margin-bottom:10px;font-weight:300;}
+.tweet-box{background:#fff;border:1px solid #e1e8ed;border-radius:12px;padding:14px 16px;margin-bottom:10px;}
+.tweet-text{font-size:14px;color:#0f0f0f;line-height:1.6;}
+.tweet-text strong{font-weight:700;}
+.tweet-footer{display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid #f5f5f5;}
+.tweet-chars{font-family:"DM Mono",monospace;font-size:10px;color:#aaa;}
+.tweet-tip{font-size:10px;color:#888;font-style:italic;}
+.story-box{background:rgba(193,53,132,0.05);border:1px solid rgba(193,53,132,0.15);border-radius:10px;padding:12px 14px;margin-bottom:10px;}
+.story-type{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--story);margin-bottom:6px;font-weight:600;}
+.story-copy{font-size:12px;color:#3d2a3a;line-height:1.65;}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;}
+.chip{font-size:10.5px;padding:3px 9px;border-radius:6px;font-weight:500;}
+.chip.hook{background:rgba(78,124,81,0.1);color:var(--leaf);}
+.chip.cta{background:rgba(44,74,46,0.07);color:var(--forest);}
+.chip.tip{background:rgba(200,169,110,0.12);color:var(--bark);}
+.chip.shoot{background:rgba(225,48,108,0.08);color:var(--ig);}
+.hashtags{font-size:10.5px;color:var(--sage);font-family:"DM Mono",monospace;line-height:1.8;border-top:1px dashed rgba(44,74,46,0.1);padding-top:8px;}
+.shoot-note{background:rgba(225,48,108,0.05);border:1px solid rgba(225,48,108,0.15);border-radius:8px;padding:10px 12px;margin-bottom:10px;font-size:11.5px;color:#a02050;line-height:1.6;}
+footer{text-align:center;padding:28px;font-size:11px;color:var(--sage);background:var(--forest);font-family:"DM Mono",monospace;letter-spacing:1px;}
+footer span{color:var(--wheat);}
+@media(max-width:768px){
+  header,.phase-banner,.mix-bar,.stats-bar,.controls,.week-wrap{padding-left:20px;padding-right:20px;}
+  .day-cards{grid-template-columns:1fr;}
+  .phase-inner{grid-template-columns:1fr 1fr;}
+  .back-btn{left:20px;}
+}
+/* ASSET ROW */
+.asset-row{display:flex;align-items:center;gap:8px;padding:10px 14px 10px;border-top:1px solid rgba(44,74,46,0.07);margin-top:8px;flex-wrap:wrap;background:rgba(44,74,46,0.02);}
+.asset-label{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(44,74,46,0.35);margin-right:2px;flex-shrink:0;}
+.asset-link{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:6px;font-size:10.5px;font-weight:500;text-decoration:none;border:1px solid transparent;transition:all 0.15s;white-space:nowrap;cursor:pointer;}
+.asset-link.gdrive{background:rgba(26,115,232,0.07);border-color:rgba(26,115,232,0.18);color:#1a73e8;}
+.asset-link.gdrive:hover{background:rgba(26,115,232,0.14);}
+.asset-link.onedrive{background:rgba(0,120,212,0.07);border-color:rgba(0,120,212,0.18);color:#0078d4;}
+.asset-link.onedrive:hover{background:rgba(0,120,212,0.14);}
+.asset-link.linked{color:#3d6b40!important;border-color:#3d6b40!important;background:rgba(61,107,64,0.07)!important;}
+.status-btn{margin-left:auto;padding:4px 12px;border-radius:100px;font-size:10px;font-weight:600;letter-spacing:0.5px;cursor:pointer;border:none;transition:all 0.2s;font-family:"DM Mono",monospace;white-space:nowrap;}
+.status-btn.s0{background:#f0f0f0;color:#999;}
+.status-btn.s1{background:rgba(255,165,0,0.12);color:#b36b00;}
+.status-btn.s2{background:rgba(10,102,194,0.1);color:#0a66c2;}
+.status-btn.s3{background:rgba(78,124,81,0.12);color:#3d6b40;}
+.status-btn.s4{background:rgba(44,74,46,0.85);color:#fff;}
+/* DRIVE MODAL */
+.modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;}
+.modal-ov.open{display:flex;}
+.modal-box{background:var(--white);border-radius:14px;padding:28px;max-width:400px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.2);border:1px solid rgba(44,74,46,0.15);}
+.modal-box h3{font-family:"Playfair Display",serif;font-size:16px;color:var(--forest);margin-bottom:8px;}
+.modal-box p{font-size:12px;color:#888;margin-bottom:14px;}
+.modal-input{width:100%;border:1.5px solid rgba(44,74,46,0.2);border-radius:8px;padding:10px 12px;font-family:"DM Mono",monospace;font-size:12px;margin-bottom:12px;outline:none;color:var(--dark);}
+.modal-input:focus{border-color:var(--forest);}
+.modal-btns{display:flex;gap:8px;justify-content:flex-end;}
+.modal-btn-cancel{padding:8px 16px;border:1.5px solid rgba(44,74,46,0.2);border-radius:8px;background:none;font-family:"DM Sans",sans-serif;font-size:12px;cursor:pointer;color:#888;}
+.modal-btn-save{padding:8px 16px;border:none;border-radius:8px;background:var(--forest);color:var(--white);font-family:"DM Sans",sans-serif;font-size:12px;font-weight:600;cursor:pointer;}
+</style>
+</head>
+<body>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+const _app = initializeApp({apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",authDomain:"sayitsocial-calendar.firebaseapp.com",projectId:"sayitsocial-calendar",storageBucket:"sayitsocial-calendar.firebasestorage.app",messagingSenderId:"232081824561",appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"});
+const _db = getFirestore(_app);
+const CID = "green-sapio-july-2025";
+const STATS = [{label:"Not Started",cls:"s0"},{label:"In Progress",cls:"s1"},{label:"Assets Ready",cls:"s2"},{label:"Scheduled",cls:"s3"},{label:"Posted",cls:"s4"}];
+
+window._fbSaveStatus = async (id, label) => {
+  try { await setDoc(doc(_db,"campaigns",CID,"posts",id),{status:label},{merge:true}); } catch(e){console.warn(e);}
+};
+window._fbSaveAsset = async (id, type, link) => {
+  try { await setDoc(doc(_db,"campaigns",CID,"posts",id),{["asset_"+type]:link},{merge:true}); } catch(e){console.warn(e);}
+};
+
+onSnapshot(collection(_db,"campaigns",CID,"posts"), snap => {
+  snap.forEach(d => {
+    const data = d.data();
+    if(data.status){
+      document.querySelectorAll("[data-id=\""+d.id+"\"].status-btn").forEach(btn => {
+        const s = STATS.find(x => x.label === data.status);
+        if(s){ STATS.forEach(x=>btn.classList.remove(x.cls)); btn.classList.add(s.cls); btn.textContent=s.label; btn.dataset.s=STATS.indexOf(s); }
+      });
+    }
+    ["gdrive","onedrive"].forEach(type => {
+      if(data["asset_"+type]){
+        document.querySelectorAll("[data-id=\""+d.id+"\"][data-type=\""+type+"\"]").forEach(a => {
+          a.dataset.link=data["asset_"+type]; a.textContent=type==="gdrive"?"✓ G Drive":"✓ OneDrive"; a.classList.add("linked");
+        });
+      }
+    });
+  });
+});
+</script>
+
+<header style="position:relative;">
+  <a class="back-btn" href="../index.html">&#8592; Client Hub</a>
+  <div class="h-top">
+    <div class="h-logo">
+      <div class="h-icon">&#127807;</div>
+      <div><div class="h-name">Green Sapio</div><div class="h-sub">Harvested from Nature</div></div>
+    </div>
+    <div class="h-badge">&#128197; JULY 2025 &middot; MONTH 3 &middot; PRODUCT LAUNCH</div>
+  </div>
+  <h1>July Content Calendar &mdash;<br><em>The Product Drop.</em></h1>
+  <p>Instagram + Facebook &middot; LinkedIn &middot; YouTube &middot; X (Twitter) &middot; Stories &nbsp;&middot;&nbsp; Tease &rarr; Shoot &rarr; Reveal</p>
+</header>
+
+<div class="phase-banner">
+  <div class="phase-inner">
+    <div class="phase-block p1"><div class="phase-num p1">Phase 1 &middot; Week 1</div><div class="phase-title p1">The Tease</div><div class="phase-weeks">Jul 1&ndash;7 &middot; No product shots yet. Build anticipation.</div></div>
+    <div class="phase-block p2"><div class="phase-num p2">Phase 2 &middot; Week 2</div><div class="phase-title p2">The Shoot &amp; Countdown</div><div class="phase-weeks">Jul 8&ndash;14 &middot; Shoot BTS. First glimpses. Near-reveal.</div></div>
+    <div class="phase-block p3a"><div class="phase-num p3a">Phase 3A &middot; Week 3</div><div class="phase-title p3a">&#128663; Automotive Drop</div><div class="phase-weeks">Jul 15&ndash;21 &middot; First use case reveal. EV interior focus.</div></div>
+    <div class="phase-block p3b"><div class="phase-num p3b">Phase 3B &middot; Week 4</div><div class="phase-title p3b">&#128247; Fashion + &#128715; Furniture</div><div class="phase-weeks">Jul 22&ndash;31 &middot; Fashion mid-month. Furniture closes July.</div></div>
+  </div>
+</div>
+
+<div class="mix-bar">
+  <div class="mix-title">July IG/FB Mix &rarr;</div>
+  <div class="mix-pill reel">&#127916; 2 Reels / week</div>
+  <div class="mix-pill static">&#128444;&#65039; 1 Static / week</div>
+  <div class="mix-pill carousel">&#128247; 1 Carousel / week</div>
+  <div class="mix-change">&uarr; Reels doubled vs May &mdash; product launch month</div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">4</div><div class="stat-label">Phases</div></div>
+  <div class="stat"><div class="stat-num">8</div><div class="stat-label">IG/FB Reels</div></div>
+  <div class="stat"><div class="stat-num">4</div><div class="stat-label">Carousels</div></div>
+  <div class="stat"><div class="stat-num">4</div><div class="stat-label">Static Posts</div></div>
+  <div class="stat"><div class="stat-num">8</div><div class="stat-label">LinkedIn Posts</div></div>
+  <div class="stat"><div class="stat-num">4</div><div class="stat-label">YT Videos</div></div>
+  <div class="stat"><div class="stat-num">18</div><div class="stat-label">X Tweets</div></div>
+</div>
+
+<div class="controls">
+  <span class="ctrl-label">Platform</span>
+  <button class="pill active" onclick="filterAll(this)">All</button>
+  <button class="pill f-ig" onclick="filterPlat('ig',this)">&#128247; IG + FB</button>
+  <button class="pill f-li" onclick="filterPlat('li',this)">&#128188; LinkedIn</button>
+  <button class="pill f-yt" onclick="filterPlat('yt',this)">&#9654;&#65039; YouTube</button>
+  <button class="pill f-tw" onclick="filterPlat('tw',this)">&#120143; Twitter</button>
+  <button class="pill f-story" onclick="filterPlat('story',this)">&#128214; Stories</button>
+  <div class="sep"></div>
+  <span class="ctrl-label">Use Case</span>
+  <button class="pill f-auto" onclick="filterUse('auto',this)">&#128663; Automotive</button>
+  <button class="pill f-fashion" onclick="filterUse('fashion',this)">&#128247; Fashion</button>
+  <button class="pill f-furniture" onclick="filterUse('furniture',this)">&#128715; Furniture</button>
+</div>
+
+<!-- WEEK 1 -->
+<div class="week-wrap">
+  <div class="week-hdr"><span class="wk-num">Week 1 &middot; Jul 1&ndash;7</span><div class="wk-line"></div><span class="wk-theme">The Tease &mdash; Something is Coming</span></div>
+  <div class="phase-label tease">&#127807; Phase 1 &mdash; No Product Shots Yet &middot; Build Anticipation</div>
+
+  <div class="day-row">
+    <div class="day-label">Jul 1 &middot; Tuesday</div>
+    <div class="day-cards">
+      <div class="card" data-plat="ig" data-use="tease">
+        <div class="fmt-strip reel"><span class="fmt-icon">&#127916;</span><span class="fmt-name reel">Reel</span><span class="fmt-dur">30 sec</span></div>
+        <div class="card-body">
+          <div class="day-ghost">01</div>
+          <div class="ptags"><span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span><span class="use-tag tease">Tease</span></div>
+          <div class="card-title">Month 3. The Product Is Ready. Are You?</div>
+          <div class="card-desc">Month opener Reel. Fast-cut montage of May's best content &mdash; textures, stats, farmer, team &mdash; building to a freeze frame and the text: "Month 3. The product drops this July." No product shots. Pure anticipation build.</div>
+          <div class="chips"><span class="chip hook">&#127919; Hook: "Two months of building. One month of showing."</span><span class="chip cta">CTA: "Follow. You don't want to miss this."</span></div>
+          <div class="hashtags">#GreenSapio #NatureReMade #ProductLaunch #ComingSoon #VeganLeather #BioBased #Month3</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-01" data-card="gs-01" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-01" data-card="gs-01" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-01" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+      <div class="card" data-plat="li" data-use="tease">
+        <div class="fmt-strip li"><span class="fmt-icon">&#128188;</span><span class="fmt-name li">LinkedIn &middot; Tue</span></div>
+        <div class="card-body">
+          <div class="day-ghost">01</div>
+          <div class="ptags"><span class="ptag li">LinkedIn</span><span class="use-tag tease">Tease</span></div>
+          <div class="card-title">Two Months of Building. July Is Where We Show It.</div>
+          <div class="card-desc">Month 3 opener from Tarun. What the first two months built &mdash; credibility, audience, education. What July changes &mdash; the product is ready, the shoot is happening, three industries.</div>
+          <div class="chips"><span class="chip hook">&#127919; Hook: "We spent two months telling you about this material. July is when we show it."</span><span class="chip cta">CTA: "If you're a brand in fashion, automotive or furniture &mdash; this month is for you."</span></div>
+          <div class="hashtags">#GreenSapio #ProductLaunch #SustainableMaterials #BioBased #NatureReMade #B2B #ESG</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-02" data-card="gs-02" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-02" data-card="gs-02" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-02" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+      <div class="card tw-card" data-plat="tw" data-use="tease">
+        <div class="fmt-strip tw"><span class="fmt-icon">&#120143;</span><span class="fmt-name tw">Tweet &middot; Tue</span></div>
+        <div class="card-body">
+          <div class="day-ghost">01</div>
+          <div class="ptags"><span class="ptag tw">&#120143; Twitter</span></div>
+          <div class="tweet-box"><div class="tweet-text">Month 3.<br><br>The product is ready.<br>The shoot is happening.<br>Three industries. One material.<br><br>July is going to be a good month. <strong>#GreenSapio</strong></div><div class="tweet-footer"><span class="tweet-chars">~100 chars</span><span class="tweet-tip">&#128204; Pin this tweet for the first week of July.</span></div></div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-03" data-card="gs-03" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-03" data-card="gs-03" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-03" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-row">
+    <div class="day-label">Jul 3 &middot; Thursday</div>
+    <div class="day-cards">
+      <div class="card" data-plat="ig" data-use="tease">
+        <div class="fmt-strip static"><span class="fmt-icon">&#128444;&#65039;</span><span class="fmt-name static">Static Post</span><span class="fmt-dur">1080&times;1080</span></div>
+        <div class="card-body">
+          <div class="day-ghost">03</div>
+          <div class="ptags"><span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span><span class="use-tag tease">Tease</span></div>
+          <div class="card-title">This Material Is About to Be Seen in Three Very Different Places.</div>
+          <div class="card-desc">Pre-reveal teaser static. Three silhouette icons &mdash; a car, a jacket, a chair &mdash; on forest green background. Each with a question mark. "Coming this July." No product photography. Pure intrigue.</div>
+          <div class="chips"><span class="chip hook">&#127919; Hook: "&#128663; ? &nbsp; &#128247; ? &nbsp; &#128715; ?" &mdash; let the icons do the talking.</span><span class="chip cta">CTA: "Comment what you think it is &#11015;"</span></div>
+          <div class="hashtags">#GreenSapio #ComingSoon #VeganLeather #NatureReMade #ProductLaunch #SustainableDesign</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-04" data-card="gs-04" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-04" data-card="gs-04" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-04" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+      <div class="card story-card" data-plat="story" data-use="tease">
+        <div class="fmt-strip story"><span class="fmt-icon">&#128214;</span><span class="fmt-name story">Story &middot; Day 3</span></div>
+        <div class="card-body">
+          <div class="day-ghost">03</div>
+          <div class="ptags"><span class="ptag story">Instagram Story</span><span class="use-tag tease">Tease</span></div>
+          <div class="card-title">Goes up same day as the Teaser Static</div>
+          <div class="story-box"><div class="story-type">Poll &mdash; Guess the Use Case</div><div class="story-copy">Background: The three icons from the static post.<br>Text: "Which one surprises you most? &#128064;"<br>Poll: "&#128663; A car" vs "&#128715; Furniture"<br>Second frame (2hrs later): "All three. Coming this month. Stay close."</div></div>
+          <div class="hashtags">#GreenSapio #NatureReMade</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-05" data-card="gs-05" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-05" data-card="gs-05" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-05" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+      <div class="card tw-card" data-plat="tw" data-use="tease">
+        <div class="fmt-strip tw"><span class="fmt-icon">&#120143;</span><span class="fmt-name tw">Tweet &middot; Thu</span></div>
+        <div class="card-body">
+          <div class="day-ghost">03</div>
+          <div class="ptags"><span class="ptag tw">&#120143; Twitter</span></div>
+          <div class="tweet-box"><div class="tweet-text">Wheat straw &rarr; premium leather.<br><br>This month you'll see it in a car interior, a fashion collection, and a furniture piece.<br><br>Same material. Three industries. Zero plastic. <strong>#GreenSapio</strong></div><div class="tweet-footer"><span class="tweet-chars">~155 chars</span><span class="tweet-tip">Post morning. High retweet potential.</span></div></div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-06" data-card="gs-06" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-06" data-card="gs-06" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-06" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-row">
+    <div class="day-label">Jul 5 &middot; Saturday</div>
+    <div class="day-cards">
+      <div class="card" data-plat="ig" data-use="tease">
+        <div class="fmt-strip carousel"><span class="fmt-icon">&#128247;</span><span class="fmt-name carousel">Carousel</span><span class="fmt-dur">5 slides</span></div>
+        <div class="card-body">
+          <div class="day-ghost">05</div>
+          <div class="ptags"><span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span><span class="use-tag tease">Tease</span></div>
+          <div class="card-title">Before the Product Shots &mdash; Here's Why Each Industry Needs This Material</div>
+          <div class="card-desc">Education carousel. One slide per use case explaining the problem the industry has right now and why Green Sapio solves it. Primes the audience for when the product drops.</div>
+          <div class="chips"><span class="chip hook">&#127919; Hook: "The product shoots this month. Here's why it matters for three industries."</span><span class="chip tip">&#128161; Slide 1: Cover. Slide 2: Auto problem. Slide 3: Fashion problem. Slide 4: Furniture problem. Slide 5: Answer drops this July.</span></div>
+          <div class="hashtags">#GreenSapio #SustainableMaterials #VeganLeather #BioBased #NatureReMade #ESG #ProductLaunch</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-07" data-card="gs-07" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-07" data-card="gs-07" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-07" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+      <div class="card" data-plat="yt" data-use="tease">
+        <div class="fmt-strip yt"><span class="fmt-icon">&#9654;&#65039;</span><span class="fmt-name yt">YouTube &middot; Sun</span><span class="fmt-dur">10&ndash;12 mins</span></div>
+        <div class="card-body">
+          <div class="day-ghost">07</div>
+          <div class="ptags"><span class="ptag yt">YouTube</span><span class="use-tag tease">Tease</span></div>
+          <div class="card-title">Why Bio-Based Leather Is the Next Big Move for Fashion, Automotive &amp; Furniture Brands</div>
+          <div class="card-desc">Pre-launch education video. Industry trends across all three verticals. No product shots yet. Positions the context so when the product reveal videos land, the audience is already primed.</div>
+          <div class="chips"><span class="chip hook">&#127919; Hook: "Three industries. One material solution. Here's why the timing matters."</span><span class="chip cta">CTA: Subscribe &mdash; product reveal drops this month.</span></div>
+          <div class="hashtags">#GreenSapio #SustainableMaterials #VeganLeather #ESG #BioBased #NatureReMade #ProductLaunch</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-08" data-card="gs-08" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-08" data-card="gs-08" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-08" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WEEK 2 -->
+<div class="week-wrap">
+  <div class="week-hdr"><span class="wk-num">Week 2 &middot; Jul 8&ndash;14</span><div class="wk-line"></div><span class="wk-theme">The Shoot &amp; Countdown &mdash; BTS + First Glimpses</span></div>
+  <div class="phase-label countdown">&#128247; Phase 2 &mdash; Shoot Week &middot; BTS Content &middot; Near-Reveal Teases</div>
+
+  <div class="day-row">
+    <div class="day-label">Jul 8 &middot; Tuesday</div>
+    <div class="day-cards">
+      <div class="card" data-plat="ig" data-use="bts">
+        <div class="fmt-strip reel"><span class="fmt-icon">&#127916;</span><span class="fmt-name reel">Reel</span><span class="fmt-dur">30 sec</span></div>
+        <div class="card-body">
+          <div class="day-ghost">08</div>
+          <div class="ptags"><span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span><span class="use-tag bts">BTS</span></div>
+          <div class="card-title">We're Shooting Today. Here's What's Happening.</div>
+          <div class="card-desc">Shoot day BTS Reel. Raw, handheld, authentic. Studio setup being built. Leather sheets being laid out. Team arranging materials. No finished product visible yet &mdash; intentional.</div>
+          <div class="chips"><span class="chip hook">&#127919; Hook: "Shoot day. This is what it looks like at 7AM."</span><span class="chip shoot">&#128247; Film on phone throughout the shoot day. Vertical, handheld, no stabiliser.</span><span class="chip cta">CTA: "The reveal is coming. Stay close. &#127807;"</span></div>
+          <div class="hashtags">#GreenSapio #BehindTheScenes #ShootDay #NatureReMade #ProductPhotography #VeganLeather</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-09" data-card="gs-09" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-09" data-card="gs-09" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-09" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+      <div class="card story-card" data-plat="story" data-use="bts">
+        <div class="fmt-strip story"><span class="fmt-icon">&#128214;</span><span class="fmt-name story">Story &middot; Day 8</span></div>
+        <div class="card-body">
+          <div class="day-ghost">08</div>
+          <div class="ptags"><span class="ptag story">Instagram Story</span><span class="use-tag bts">BTS</span></div>
+          <div class="card-title">Real-time shoot day story sequence</div>
+          <div class="story-box"><div class="story-type">Live BTS Story Sequence &mdash; Post Throughout the Day</div><div class="story-copy">Morning (8AM): Studio setup photo. "Shoot day. &#127807; Can you guess what we're shooting?"<br><br>Midday (1PM): Close-up of leather swatches. "Which one is your favourite?" Emoji slider.<br><br>Evening (6PM): Team wrap photo. "That's a wrap. The reveal is coming this week." Countdown sticker.</div></div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-10" data-card="gs-10" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-10" data-card="gs-10" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-10" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+      <div class="card tw-card" data-plat="tw" data-use="bts">
+        <div class="fmt-strip tw"><span class="fmt-icon">&#120143;</span><span class="fmt-name tw">Tweet &middot; Tue</span></div>
+        <div class="card-body">
+          <div class="day-ghost">08</div>
+          <div class="ptags"><span class="ptag tw">&#120143; Twitter</span></div>
+          <div class="tweet-box"><div class="tweet-text">Shoot day.<br><br>The material that started as wheat straw is about to be photographed in a car, a fashion piece, and a furniture collection.<br><br>Stay tuned. <strong>#GreenSapio #NatureReMade</strong></div><div class="tweet-footer"><span class="tweet-chars">~150 chars</span><span class="tweet-tip">Post morning of shoot day for maximum real-time engagement.</span></div></div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-11" data-card="gs-11" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-11" data-card="gs-11" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-11" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-row">
+    <div class="day-label">Jul 10 &middot; Thursday</div>
+    <div class="day-cards">
+      <div class="card" data-plat="ig" data-use="bts">
+        <div class="fmt-strip reel"><span class="fmt-icon">&#127916;</span><span class="fmt-name reel">Reel</span><span class="fmt-dur">20 sec</span></div>
+        <div class="card-body">
+          <div class="day-ghost">10</div>
+          <div class="ptags"><span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span><span class="use-tag bts">First Glimpse</span></div>
+          <div class="card-title">First Look. Just a Glimpse. The Rest Drops Next Week.</div>
+          <div class="card-desc">Near-reveal Reel. Extremely tight close-ups from the shoot &mdash; the grain of leather on a car seat edge, the fold of a jacket at the collar, the stitch on a furniture panel. Nothing identifiable yet. Ends on black: "Coming next week."</div>
+          <div class="chips"><span class="chip hook">&#127919; Hook: First frame &mdash; extreme close-up. No context. Pure texture and intrigue.</span><span class="chip shoot">&#128247; Capture close-ups during the main shoot. 2&ndash;3 seconds per clip, macro lens if possible.</span><span class="chip cta">CTA: "The full reveal drops next week. Follow so you don't miss it."</span></div>
+          <div class="hashtags">#GreenSapio #FirstLook #ComingSoon #VeganLeather #NatureReMade #BioBased #ProductReveal</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-12" data-card="gs-12" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-12" data-card="gs-12" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-12" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+      <div class="card auto-card" data-plat="li" data-use="auto">
+        <div class="fmt-strip li"><span class="fmt-icon">&#128188;</span><span class="fmt-name li">LinkedIn &middot; Thu</span></div>
+        <div class="card-body">
+          <div class="day-ghost">10</div>
+          <div class="ptags"><span class="ptag li">LinkedIn</span><span class="use-tag auto">&#128663; Automotive</span></div>
+          <div class="card-title">Why the Automotive Industry's Interior Problem Is Bigger Than Most Brands Admit</div>
+          <div class="card-desc">Deep pre-reveal LinkedIn piece targeting automotive procurement heads. The full case for why EV brands and premium OEMs need to address their interior materials now &mdash; ESG audit pressure, consumer expectations, EU compliance.</div>
+          <div class="chips"><span class="chip hook">&#127919; Hook: "You've built an electric car. Now explain what your seats are made of."</span><span class="chip cta">CTA: "We're shooting our automotive application this week. The reveal drops next week."</span></div>
+          <div class="hashtags">#AutomotiveESG #EVIndustry #SustainableInteriors #GreenSapio #BioLeather #NatureReMade</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-13" data-card="gs-13" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-13" data-card="gs-13" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-13" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-row">
+    <div class="day-label">Jul 12 &middot; Saturday</div>
+    <div class="day-cards">
+      <div class="card" data-plat="ig" data-use="bts">
+        <div class="fmt-strip static"><span class="fmt-icon">&#128444;&#65039;</span><span class="fmt-name static">Static Post</span><span class="fmt-dur">1080&times;1080</span></div>
+        <div class="card-body">
+          <div class="day-ghost">12</div>
+          <div class="ptags"><span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span><span class="use-tag bts">BTS</span></div>
+          <div class="card-title">Behind Every Product Shot Is a Sheet That Started in a Field.</div>
+          <div class="card-desc">BTS static post. Split image: left &mdash; a close-up from the actual shoot. Right &mdash; raw wheat straw in a field. The contrast between the shoot and the source. Ties the product launch back to the origin story.</div>
+          <div class="chips"><span class="chip shoot">&#128247; Capture a natural BTS moment during the shoot &mdash; no posing. Hands positioning leather, team reviewing a shot.</span><span class="chip tip">&#128161; Same split-panel layout as May stubble burning post. Shoot photo left. Field photo right. Logo at the split.</span></div>
+          <div class="hashtags">#GreenSapio #BehindTheScenes #NatureReMade #FromFieldToProduct #BioBased #VeganLeather</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-14" data-card="gs-14" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-14" data-card="gs-14" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-14" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+      <div class="card" data-plat="yt" data-use="bts">
+        <div class="fmt-strip yt"><span class="fmt-icon">&#9654;&#65039;</span><span class="fmt-name yt">YouTube &middot; Sun</span><span class="fmt-dur">8&ndash;10 mins</span></div>
+        <div class="card-body">
+          <div class="day-ghost">14</div>
+          <div class="ptags"><span class="ptag yt">YouTube</span><span class="use-tag bts">BTS</span></div>
+          <div class="card-title">Behind the Shoot: How We Photographed Bio-Based Leather for Three Industries</div>
+          <div class="card-desc">Full shoot BTS documentary. How the shoot was planned, what each industry application required visually, how the team set up each scene. Raw, real, founder-narrated. Makes brands take the material seriously.</div>
+          <div class="chips"><span class="chip hook">&#127919; Hook: "This is the shoot that changes what people think sustainable leather looks like."</span><span class="chip shoot">&#128247; Assign one team member to film BTS footage throughout the entire shoot day.</span><span class="chip cta">CTA: Subscribe &middot; Full product reveal in next video &middot; greensapio.com</span></div>
+          <div class="hashtags">#GreenSapio #BehindTheShoot #VeganLeather #ProductPhotography #BioBased #NatureReMade</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-15" data-card="gs-15" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-15" data-card="gs-15" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-15" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WEEK 3 -->
+<div class="week-wrap">
+  <div class="week-hdr"><span class="wk-num">Week 3 &middot; Jul 15&ndash;21</span><div class="wk-line"></div><span class="wk-theme">&#128663; The Automotive Drop</span></div>
+  <div class="phase-label drop-auto">&#128663; Phase 3A &mdash; Automotive Use Case Reveal</div>
+
+  <div class="day-row">
+    <div class="day-label">Jul 15 &middot; Tuesday &mdash; World Youth Skills Day &#127919;</div>
+    <div class="day-cards">
+      <div class="card auto-card" data-plat="ig" data-use="auto">
+        <div class="fmt-strip reel"><span class="fmt-icon">&#127916;</span><span class="fmt-name reel">Reel</span><span class="fmt-dur">40 sec</span></div>
+        <div class="card-body">
+          <div class="day-ghost">15</div>
+          <div class="ptags"><span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span><span class="use-tag auto">&#128663; Automotive</span></div>
+          <div class="card-title">This Is What an EV Interior Should Be Made Of.</div>
+          <div class="card-desc">Automotive reveal Reel. The first real product shot of the month. Green Sapio leather on a car seat panel, dashboard element, or door trim. Professional, cinematic. Slow pan across the surface. Ends on tagline: "Strong. Stylish. Sustainable. Built for the road ahead."</div>
+          <div class="chips"><span class="chip hook">&#127919; Hook: "This is not animal leather. This is not plastic. This is the future of car interiors."</span><span class="chip tip">&#128161; This Reel needs to look premium. Good lighting, slow camera movements, cinematic grade.</span><span class="chip cta">CTA: "Automotive brands &mdash; request our sample kit. Link in bio."</span></div>
+          <div class="hashtags">#GreenSapio #AutomotiveDesign #EVInterior #SustainableAutomotive #VeganLeather #NatureReMade #BioBased #CarDesign</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-16" data-card="gs-16" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-16" data-card="gs-16" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-16" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+      <div class="card story-card" data-plat="story" data-use="auto">
+        <div class="fmt-strip story"><span class="fmt-icon">&#128214;</span><span class="fmt-name story">Story &middot; Day 15</span></div>
+        <div class="card-body">
+          <div class="day-ghost">15</div>
+          <div class="ptags"><span class="ptag story">Instagram Story</span><span class="use-tag auto">&#128663; Automotive</span></div>
+          <div class="card-title">Goes up same day as Automotive Reveal Reel</div>
+          <div class="story-box"><div class="story-type">2-Frame Story &middot; Reveal + CTA</div><div class="story-copy">Frame 1 &mdash; Share Reel to story:<br>Text: "We made this from wheat straw. &#127806;&rarr;&#128663;"<br>Poll: "Would you choose this for your EV?" &rarr; Yes, always &#9989; / Tell me more &#129300;<br><br>Frame 2 &mdash; Direct CTA (2hrs later):<br>Close-up of leather on car surface.<br>"Automotive brands &mdash; this is your next interior material."<br>Link sticker: Request sample kit &rarr; greensapio.com</div></div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-17" data-card="gs-17" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-17" data-card="gs-17" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-17" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+      <div class="card auto-card" data-plat="li" data-use="auto">
+        <div class="fmt-strip li"><span class="fmt-icon">&#128188;</span><span class="fmt-name li">LinkedIn &middot; Tue</span></div>
+        <div class="card-body">
+          <div class="day-ghost">15</div>
+          <div class="ptags"><span class="ptag li">LinkedIn</span><span class="use-tag auto">&#128663; Automotive</span></div>
+          <div class="card-title">We Just Shot Our Leather on a Car Interior. Here's What It Looked Like.</div>
+          <div class="card-desc">Automotive reveal post from Tarun. The story of how Green Sapio's material performs in an automotive context &mdash; the visual quality, the technical specs, and the ESG case for automotive brands.</div>
+          <div class="chips"><span class="chip hook">&#127919; Hook: "An electric vehicle with bio-based leather interiors. This isn't a concept. We just shot it."</span><span class="chip cta">CTA: "Automotive procurement teams &mdash; request our technical datasheet and sample kit."</span></div>
+          <div class="hashtags">#GreenSapio #AutomotiveESG #EVDesign #SustainableInteriors #BioLeather #NatureReMade</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-18" data-card="gs-18" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-18" data-card="gs-18" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-18" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+      <div class="card tw-card" data-plat="tw" data-use="auto">
+        <div class="fmt-strip tw"><span class="fmt-icon">&#120143;</span><span class="fmt-name tw">Tweet &middot; Tue</span></div>
+        <div class="card-body">
+          <div class="day-ghost">15</div>
+          <div class="ptags"><span class="ptag tw">&#120143; Twitter</span></div>
+          <div class="tweet-box"><div class="tweet-text">An EV interior made from <strong>wheat straw</strong>.<br><br>No animal leather. No petroleum plastic. 87% fewer emissions in production.<br><br>We just shot it. It looks exactly like luxury. <strong>#GreenSapio #EVDesign</strong></div><div class="tweet-footer"><span class="tweet-chars">~170 chars</span><span class="tweet-tip">Post same time as the Reel. Include one product shot image.</span></div></div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-19" data-card="gs-19" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-19" data-card="gs-19" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-19" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-row">
+    <div class="day-label">Jul 17 &middot; Thursday</div>
+    <div class="day-cards">
+      <div class="card auto-card" data-plat="ig" data-use="auto">
+        <div class="fmt-strip carousel"><span class="fmt-icon">&#128247;</span><span class="fmt-name carousel">Carousel</span><span class="fmt-dur">5 slides</span></div>
+        <div class="card-body">
+          <div class="day-ghost">17</div>
+          <div class="ptags"><span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span><span class="use-tag auto">&#128663; Automotive</span></div>
+          <div class="card-title">Why Automotive Brands Are Switching to Bio-Based Leather &mdash; The Full Picture</div>
+          <div class="card-desc">Automotive deep-dive carousel. Slide 1: the problem. Slide 2: why PU doesn't solve it. Slide 3: Green Sapio product shot on automotive surface. Slide 4: performance specs. Slide 5: CTA to request sample kit.</div>
+          <div class="chips"><span class="chip hook">&#127919; Hook: "The car is electric. The interior shouldn't contradict that."</span><span class="chip tip">&#128161; Product shots from shoot on slides 3 and 4. Keep slides 1, 2, 5 as clean brand graphics.</span></div>
+          <div class="hashtags">#GreenSapio #AutomotiveDesign #SustainableAutomotive #EVInterior #BioLeather #NatureReMade #ESG</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-20" data-card="gs-20" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-20" data-card="gs-20" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-20" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+      <div class="card" data-plat="yt" data-use="auto">
+        <div class="fmt-strip yt"><span class="fmt-icon">&#9654;&#65039;</span><span class="fmt-name yt">YouTube &middot; Sun</span><span class="fmt-dur">12&ndash;15 mins</span></div>
+        <div class="card-body auto-card">
+          <div class="day-ghost">20</div>
+          <div class="ptags"><span class="ptag yt">YouTube</span><span class="use-tag auto">&#128663; Automotive</span></div>
+          <div class="card-title">Bio-Based Leather in Automotive: What It Takes, What It Delivers, Why It Matters Now</div>
+          <div class="card-desc">Full automotive use case video. ESG pressure on OEMs, performance specifications bio-based leather must meet, how Green Sapio performs against those specs. Product footage from the shoot woven throughout.</div>
+          <div class="chips"><span class="chip hook">&#127919; Hook: "The automotive industry is electrifying everything &mdash; except what you sit on."</span><span class="chip cta">CTA: Request automotive sample kit + technical spec sheet &middot; greensapio.com</span></div>
+          <div class="hashtags">#GreenSapio #AutomotiveDesign #SustainableAutomotive #BioLeather #EVInterior #NatureReMade</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-21" data-card="gs-21" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-21" data-card="gs-21" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-21" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-row">
+    <div class="day-label">Jul 19 &middot; Saturday</div>
+    <div class="day-cards">
+      <div class="card auto-card" data-plat="ig" data-use="auto">
+        <div class="fmt-strip reel"><span class="fmt-icon">&#127916;</span><span class="fmt-name reel">Reel</span><span class="fmt-dur">25 sec</span></div>
+        <div class="card-body">
+          <div class="day-ghost">19</div>
+          <div class="ptags"><span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span><span class="use-tag auto">&#128663; Automotive</span></div>
+          <div class="card-title">The Material. In a Car. Made From Straw.</div>
+          <div class="card-desc">Second automotive Reel. More intimate, more tactile. Hands running along the leather surface of the car interior. Audio: ambient sound of the leather being touched, no music. Ends with: "87% fewer emissions than animal leather."</div>
+          <div class="chips"><span class="chip hook">&#127919; Hook: Hands on car leather interior &mdash; close-up, no words for first 3 seconds.</span><span class="chip cta">CTA: "Tag an automotive brand that should see this."</span></div>
+          <div class="hashtags">#GreenSapio #AutomotiveDesign #EVInterior #SustainableLeather #NatureReMade #BioBased</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-22" data-card="gs-22" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-22" data-card="gs-22" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-22" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+      <div class="card tw-card" data-plat="tw" data-use="auto">
+        <div class="fmt-strip tw"><span class="fmt-icon">&#120143;</span><span class="fmt-name tw">Tweet &middot; Sat</span></div>
+        <div class="card-body">
+          <div class="day-ghost">19</div>
+          <div class="ptags"><span class="ptag tw">&#120143; Twitter</span></div>
+          <div class="tweet-box"><div class="tweet-text">Quick spec check for automotive brands:<br><br>&#9989; Water-resistant<br>&#9989; Heat-stable<br>&#9989; Abrasion-resistant<br>&#9989; Consistent grain across sheets<br>&#9989; Eurofins verified<br>&#9989; Made from wheat straw<br><br>Your next interior material. <strong>#GreenSapio</strong></div><div class="tweet-footer"><span class="tweet-chars">~210 chars</span><span class="tweet-tip">List format works well for B2B spec content. Post Saturday morning.</span></div></div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-23" data-card="gs-23" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-23" data-card="gs-23" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-23" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WEEK 4 -->
+<div class="week-wrap">
+  <div class="week-hdr"><span class="wk-num">Week 4 &middot; Jul 22&ndash;31</span><div class="wk-line"></div><span class="wk-theme">&#128247; Fashion Drop &middot; &#128715; Furniture Close</span></div>
+  <div class="phase-label drop-fashion">&#128247; Phase 3B &mdash; Fashion Drop &middot; Then Furniture &middot; Then Month Close</div>
+
+  <div class="day-row">
+    <div class="day-label">Jul 22 &middot; Tuesday &mdash; Fashion Drop</div>
+    <div class="day-cards">
+      <div class="card fashion-card" data-plat="ig" data-use="fashion">
+        <div class="fmt-strip reel"><span class="fmt-icon">&#127916;</span><span class="fmt-name reel">Reel</span><span class="fmt-dur">40 sec</span></div>
+        <div class="card-body">
+          <div class="day-ghost">22</div>
+          <div class="ptags"><span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span><span class="use-tag fashion">&#128247; Fashion</span></div>
+          <div class="card-title">What Sustainable Fashion Actually Looks Like.</div>
+          <div class="card-desc">Fashion reveal Reel. Green Sapio leather in a fashion context &mdash; jacket, bag, belt, accessories. Styled properly. Model or mannequin. Editorial lighting. The material looking exactly like luxury &mdash; because it is.</div>
+          <div class="chips"><span class="chip hook">&#127919; Hook: "This jacket doesn't cost the earth. Literally."</span><span class="chip tip">&#128161; This needs to look like a fashion editorial &mdash; not a product demo. Hire a stylist if possible.</span><span class="chip cta">CTA: "Fashion brands &mdash; your sustainable material is here. Link in bio."</span></div>
+          <div class="hashtags">#GreenSapio #SustainableFashion #VeganLeather #EcoLuxury #NatureReMade #BioBased #ConsciousFashion</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-24" data-card="gs-24" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-24" data-card="gs-24" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-24" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+      <div class="card story-card" data-plat="story" data-use="fashion">
+        <div class="fmt-strip story"><span class="fmt-icon">&#128214;</span><span class="fmt-name story">Story &middot; Day 22</span></div>
+        <div class="card-body">
+          <div class="day-ghost">22</div>
+          <div class="ptags"><span class="ptag story">Instagram Story</span><span class="use-tag fashion">&#128247; Fashion</span></div>
+          <div class="card-title">Goes up same day as Fashion Reveal Reel</div>
+          <div class="story-box"><div class="story-type">2-Frame Story &middot; Fashion Drop</div><div class="story-copy">Frame 1 &mdash; Share Reel to story:<br>Text: "This is what we've been building. &#127807;"<br>Poll: "Would you wear this?" &rarr; Absolutely &#128587; / Tell me more &#128064;<br><br>Frame 2 &mdash; Close-up (2hrs later):<br>Close-up of leather detail on the fashion piece.<br>"Every detail. From wheat straw."<br>Link sticker: greensapio.com</div></div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-25" data-card="gs-25" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-25" data-card="gs-25" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-25" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+      <div class="card fashion-card" data-plat="li" data-use="fashion">
+        <div class="fmt-strip li"><span class="fmt-icon">&#128188;</span><span class="fmt-name li">LinkedIn &middot; Tue</span></div>
+        <div class="card-body">
+          <div class="day-ghost">22</div>
+          <div class="ptags"><span class="ptag li">LinkedIn</span><span class="use-tag fashion">&#128247; Fashion</span></div>
+          <div class="card-title">The Fashion Industry Has a Material Problem. Here's What It Looks Like Solved.</div>
+          <div class="card-desc">Fashion drop LinkedIn post. Addresses the three objections fashion brands always raise &mdash; looks, performance, price &mdash; and answers each one directly. Product shots from the fashion shoot included.</div>
+          <div class="chips"><span class="chip hook">&#127919; Hook: "Fashion brands have two choices: greenwash it or actually change it. We built the material for the second option."</span><span class="chip cta">CTA: "Fashion brands &mdash; request a sample kit and spec sheet."</span></div>
+          <div class="hashtags">#GreenSapio #SustainableFashion #VeganLeather #ESG #BioBased #NatureReMade #FashionIndustry</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-26" data-card="gs-26" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-26" data-card="gs-26" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-26" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+      <div class="card tw-card" data-plat="tw" data-use="fashion">
+        <div class="fmt-strip tw"><span class="fmt-icon">&#120143;</span><span class="fmt-name tw">Tweet &middot; Tue</span></div>
+        <div class="card-body">
+          <div class="day-ghost">22</div>
+          <div class="ptags"><span class="ptag tw">&#120143; Twitter</span></div>
+          <div class="tweet-box"><div class="tweet-text">A leather jacket made from wheat straw.<br><br>Indistinguishable from animal leather. No cruelty. No plastic. Fully biodegradable.<br><br>Sustainable fashion doesn't have to look sustainable. <strong>#GreenSapio #SustainableFashion</strong></div><div class="tweet-footer"><span class="tweet-chars">~195 chars</span><span class="tweet-tip">Post with a fashion product shot image. Maximum reach for fashion audiences on X.</span></div></div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-27" data-card="gs-27" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-27" data-card="gs-27" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-27" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-row">
+    <div class="day-label">Jul 24 &middot; Thursday</div>
+    <div class="day-cards">
+      <div class="card fashion-card" data-plat="ig" data-use="fashion">
+        <div class="fmt-strip carousel"><span class="fmt-icon">&#128247;</span><span class="fmt-name carousel">Carousel</span><span class="fmt-dur">6 slides</span></div>
+        <div class="card-body">
+          <div class="day-ghost">24</div>
+          <div class="ptags"><span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span><span class="use-tag fashion">&#128247; Fashion</span></div>
+          <div class="card-title">From Crop Waste to Couture &mdash; The Full Journey in 6 Slides</div>
+          <div class="card-desc">The origin-to-product story carousel. Slide by slide: wheat field &rarr; raw straw &rarr; processing &rarr; finished leather sheet &rarr; fashion product on model &rarr; CTA. The entire Green Sapio story compressed into one beautiful swipeable narrative.</div>
+          <div class="chips"><span class="chip hook">&#127919; Hook: "Swipe to see how a farmer's harvest becomes a fashion piece. &rarr;"</span><span class="chip tip">&#128161; Alternating layout: full-bleed photo slides and text/graphic slides. Warm, editorial palette. Feels like a magazine spread.</span><span class="chip cta">CTA: "This is Green Sapio. Follow to see what's next."</span></div>
+          <div class="hashtags">#GreenSapio #FromFieldToFashion #SustainableFashion #VeganLeather #NatureReMade #BioBased #EcoLuxury</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-28" data-card="gs-28" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-28" data-card="gs-28" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-28" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+      <div class="card tw-card" data-plat="tw" data-use="fashion">
+        <div class="fmt-strip tw"><span class="fmt-icon">&#120143;</span><span class="fmt-name tw">Tweet &middot; Thu</span></div>
+        <div class="card-body">
+          <div class="day-ghost">24</div>
+          <div class="ptags"><span class="ptag tw">&#120143; Twitter</span></div>
+          <div class="tweet-box"><div class="tweet-text">The fashion industry produces 10% of global carbon emissions.<br><br>Switching to bio-based leather doesn't solve all of it.<br><br>But it's one of the most impactful single decisions a brand can make. <strong>#GreenSapio #SustainableFashion</strong></div><div class="tweet-footer"><span class="tweet-chars">~200 chars</span><span class="tweet-tip">Stat-first. Honest and measured &mdash; not overblown. High credibility tone.</span></div></div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-29" data-card="gs-29" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-29" data-card="gs-29" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-29" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-row">
+    <div class="day-label">Jul 26 &middot; Saturday &mdash; Furniture Drop</div>
+    <div class="day-cards">
+      <div class="card furniture-card" data-plat="ig" data-use="furniture">
+        <div class="fmt-strip reel"><span class="fmt-icon">&#127916;</span><span class="fmt-name reel">Reel</span><span class="fmt-dur">35 sec</span></div>
+        <div class="card-body">
+          <div class="day-ghost">26</div>
+          <div class="ptags"><span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span><span class="use-tag furniture">&#128715; Furniture</span></div>
+          <div class="card-title">The Chair That Started in a Field.</div>
+          <div class="card-desc">Furniture reveal Reel. Green Sapio leather on a chair, sofa panel, or cushion &mdash; in a real room setting, not a white studio. Natural light. Warm, lived-in, aspirational. A hand running along the upholstered surface. Ends on: "Sustainable living, without the compromise."</div>
+          <div class="chips"><span class="chip hook">&#127919; Hook: "This chair is upholstered with wheat straw leather. And it looks like this."</span><span class="chip tip">&#128161; Shoot in a real room or showroom &mdash; not a white studio. Natural afternoon light preferred.</span><span class="chip cta">CTA: "Furniture and interior brands &mdash; link in bio for samples."</span></div>
+          <div class="hashtags">#GreenSapio #SustainableFurniture #InteriorDesign #VeganLeather #EcoDesign #NatureReMade #BioBased</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-30" data-card="gs-30" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-30" data-card="gs-30" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-30" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+      <div class="card story-card" data-plat="story" data-use="furniture">
+        <div class="fmt-strip story"><span class="fmt-icon">&#128214;</span><span class="fmt-name story">Story &middot; Day 26</span></div>
+        <div class="card-body">
+          <div class="day-ghost">26</div>
+          <div class="ptags"><span class="ptag story">Instagram Story</span><span class="use-tag furniture">&#128715; Furniture</span></div>
+          <div class="card-title">Goes up same day as Furniture Reveal Reel</div>
+          <div class="story-box"><div class="story-type">2-Frame Story &middot; Furniture Drop</div><div class="story-copy">Frame 1 &mdash; Share Reel to story:<br>Text: "A chair. From wheat straw. &#127806;&rarr;&#128715;"<br>Poll: "Would you want this in your home?" &rarr; Yes &#128587; / In my showroom too &#127978;<br><br>Frame 2 &mdash; Room setting shot (3hrs later):<br>Full room shot with furniture in context. Warm, natural light.<br>"Sustainable interiors don't have to look sustainable. They just have to be."<br>Link sticker: greensapio.com</div></div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-31" data-card="gs-31" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-31" data-card="gs-31" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-31" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+      <div class="card furniture-card" data-plat="li" data-use="furniture">
+        <div class="fmt-strip li"><span class="fmt-icon">&#128188;</span><span class="fmt-name li">LinkedIn &middot; Sat</span></div>
+        <div class="card-body">
+          <div class="day-ghost">26</div>
+          <div class="ptags"><span class="ptag li">LinkedIn</span><span class="use-tag furniture">&#128715; Furniture</span></div>
+          <div class="card-title">Furniture Brands Are Under More ESG Pressure Than They Realise. Here's the Move.</div>
+          <div class="card-desc">Furniture sector LinkedIn post. LEED certification requirements, commercial contract ESG audits, growing consumer demand for traceable sustainable upholstery. The business case for furniture brands to make the switch.</div>
+          <div class="chips"><span class="chip hook">&#127919; Hook: "A hotel chain's sustainability audit now covers what your chairs are upholstered with. Are you ready?"</span><span class="chip cta">CTA: "Furniture and interior brands &mdash; request our sample kit and spec sheet."</span></div>
+          <div class="hashtags">#GreenSapio #SustainableFurniture #InteriorDesign #ESG #BioLeather #NatureReMade #FurnitureDesign</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-32" data-card="gs-32" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-32" data-card="gs-32" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-32" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-row">
+    <div class="day-label">Jul 29 &middot; Tuesday &mdash; Three Use Cases, One Post</div>
+    <div class="day-cards">
+      <div class="card" data-plat="ig" data-use="tease">
+        <div class="fmt-strip static"><span class="fmt-icon">&#128444;&#65039;</span><span class="fmt-name static">Static Post</span><span class="fmt-dur">1080&times;1080</span></div>
+        <div class="card-body">
+          <div class="day-ghost">29</div>
+          <div class="ptags"><span class="ptag ig">Instagram</span><span class="ptag fb">Facebook</span></div>
+          <div class="card-title">One Material. Three Industries. Zero Compromise.</div>
+          <div class="card-desc">Month close static. Three-panel image &mdash; automotive interior shot, fashion piece shot, furniture piece shot &mdash; arranged as a triptych. Green Sapio logo centred. The definitive visual statement of the month.</div>
+          <div class="chips"><span class="chip tip">&#128161; Three equal vertical panels. One product shot per panel. Thin wheat-gold dividers. Logo and tagline centred below. Most important single graphic of July.</span><span class="chip cta">CTA: "Request your sample kit. greensapio.com"</span></div>
+          <div class="hashtags">#GreenSapio #NatureReMade #VeganLeather #SustainableDesign #BioBased #ProductLaunch #OneMaterial</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-33" data-card="gs-33" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-33" data-card="gs-33" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-33" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+      <div class="card" data-plat="yt" data-use="tease">
+        <div class="fmt-strip yt"><span class="fmt-icon">&#9654;&#65039;</span><span class="fmt-name yt">YouTube &middot; Sun Jul 27</span><span class="fmt-dur">12&ndash;15 mins</span></div>
+        <div class="card-body">
+          <div class="day-ghost">27</div>
+          <div class="ptags"><span class="ptag yt">YouTube</span></div>
+          <div class="card-title">One Material, Three Industries: Green Sapio's Full Product Reveal</div>
+          <div class="card-desc">The definitive July YouTube video. All three use cases in one video. Product footage from the shoot throughout. Founder narration tying each application to the mission. The B2B sales tool disguised as a brand film.</div>
+          <div class="chips"><span class="chip hook">&#127919; Hook: "This is what we've been building for three months. One material. Three industries. Zero compromise."</span><span class="chip cta">CTA: Request sample kit at greensapio.com &middot; catarun@greensapio.com</span></div>
+          <div class="hashtags">#GreenSapio #ProductReveal #VeganLeather #BioBased #NatureReMade #SustainableMaterials</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-34" data-card="gs-34" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-34" data-card="gs-34" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-34" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-row">
+    <div class="day-label">Jul 31 &middot; Thursday &mdash; Month Close</div>
+    <div class="day-cards">
+      <div class="card" data-plat="li" data-use="tease">
+        <div class="fmt-strip li"><span class="fmt-icon">&#128188;</span><span class="fmt-name li">LinkedIn &middot; Thu</span></div>
+        <div class="card-body">
+          <div class="day-ghost">31</div>
+          <div class="ptags"><span class="ptag li">LinkedIn</span></div>
+          <div class="card-title">Three Months. Three Industries. One Material. What Month 4 Looks Like.</div>
+          <div class="card-desc">Month close LinkedIn post from Tarun. Honest reflection &mdash; what the product shoot revealed, what the market response has been, what enquiries have come in, and what Month 4 (August) will focus on: converting enquiries into confirmed partnerships.</div>
+          <div class="chips"><span class="chip hook">&#127919; Hook: "Three months ago we had a material and a mission. Today we have a product, three use cases, and brands asking questions."</span><span class="chip cta">CTA: "If your brand is one of them &mdash; let's talk this week."</span></div>
+          <div class="hashtags">#GreenSapio #Month3Done #SustainableMaterials #B2B #ESG #NatureReMade #BioBased #Month4</div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-35" data-card="gs-35" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-35" data-card="gs-35" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-35" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+      <div class="card tw-card" data-plat="tw" data-use="tease">
+        <div class="fmt-strip tw"><span class="fmt-icon">&#120143;</span><span class="fmt-name tw">Tweet &middot; Thu &middot; &#128204; Pin</span></div>
+        <div class="card-body">
+          <div class="day-ghost">31</div>
+          <div class="ptags"><span class="ptag tw">&#120143; Twitter</span></div>
+          <div class="tweet-box"><div class="tweet-text">Month 3 done.<br><br>Wheat straw &rarr; car interiors, fashion collections, furniture upholstery.<br><br>87% less emissions. 72% less water. Zero plastic.<br><br>Month 4: we sign our first brand partners.<br><br>Watch this space. <strong>#GreenSapio #NatureReMade</strong></div><div class="tweet-footer"><span class="tweet-chars">~210 chars</span><span class="tweet-tip">&#128204; Pin to profile for first week of August.</span></div></div>
+          <div class="asset-row"><span class="asset-label">Assets</span><a href="#" class="asset-link gdrive" data-type="gdrive" data-id="gs-36" data-card="gs-36" onclick="openGsModal(this);return false;">G Drive</a><a href="#" class="asset-link onedrive" data-type="onedrive" data-id="gs-36" data-card="gs-36" onclick="openGsModal(this);return false;">OneDrive</a><button class="status-btn s0" data-id="gs-36" data-s="0" onclick="cycleStatus(this)">Not Started</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>Prepared by <span>Say It Social</span> &nbsp;&middot;&nbsp; Green Sapio &middot; July Calendar &middot; Month 3 &middot; Product Launch &nbsp;&middot;&nbsp; <span>#NatureReMade</span> &nbsp;&middot;&nbsp; greensapio.com</footer>
+
+<!-- DRIVE MODAL -->
+<div class="modal-ov" id="gsModal">
+  <div class="modal-box">
+    <h3 id="gsModalTitle">Link Asset Folder</h3>
+    <p>Paste your folder link &mdash; syncs to the whole team instantly.</p>
+    <input class="modal-input" id="gsModalInput" type="url" placeholder="https://drive.google.com/...">
+    <div class="modal-btns">
+      <button class="modal-btn-cancel" onclick="closeGsModal()">Cancel</button>
+      <button class="modal-btn-save" onclick="saveGsModal()">Save &amp; Sync</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var statuses = [
+  {label:"Not Started",cls:"s0"},
+  {label:"In Progress",cls:"s1"},
+  {label:"Assets Ready",cls:"s2"},
+  {label:"Scheduled",cls:"s3"},
+  {label:"Posted",cls:"s4"}
+];
+function cycleStatus(btn){
+  var cur = parseInt(btn.dataset.s||"0");
+  var next = (cur+1)%5;
+  btn.dataset.s = next;
+  btn.className = "status-btn "+statuses[next].cls;
+  btn.textContent = statuses[next].label;
+  if(window._fbSaveStatus && btn.dataset.id) window._fbSaveStatus(btn.dataset.id, statuses[next].label);
+}
+function filterAll(btn){
+  document.querySelectorAll(".pill").forEach(p=>p.classList.remove("active"));
+  btn.classList.add("active");
+  document.querySelectorAll(".card").forEach(c=>c.classList.remove("hidden"));
+}
+function filterPlat(plat,btn){
+  document.querySelectorAll(".pill").forEach(p=>p.classList.remove("active"));
+  btn.classList.add("active");btn.classList.add("f-"+plat);
+  document.querySelectorAll(".card").forEach(c=>{
+    c.classList.toggle("hidden",(c.dataset.plat||"")!==plat);
+  });
+}
+function filterUse(use,btn){
+  document.querySelectorAll(".pill").forEach(p=>p.classList.remove("active"));
+  btn.classList.add("active");btn.classList.add("f-"+use);
+  document.querySelectorAll(".card").forEach(c=>{
+    c.classList.toggle("hidden",(c.dataset.use||"")!==use);
+  });
+}
+var _gsActiveBtn = null;
+function openGsModal(a){
+  _gsActiveBtn = a;
+  var type = a.dataset.type;
+  document.getElementById("gsModalTitle").textContent = type==="gdrive" ? "Google Drive Link" : "OneDrive Link";
+  document.getElementById("gsModalInput").value = a.dataset.link || "";
+  document.getElementById("gsModal").classList.add("open");
+}
+function closeGsModal(){
+  document.getElementById("gsModal").classList.remove("open");
+  _gsActiveBtn = null;
+}
+function saveGsModal(){
+  var val = document.getElementById("gsModalInput").value.trim();
+  if(_gsActiveBtn && val){
+    var type = _gsActiveBtn.dataset.type;
+    var cardId = _gsActiveBtn.dataset.card;
+    _gsActiveBtn.dataset.link = val;
+    _gsActiveBtn.textContent = type==="gdrive" ? "&#10003; G Drive" : "&#10003; OneDrive";
+    _gsActiveBtn.classList.add("linked");
+    _gsActiveBtn.onclick = function(e){ e.preventDefault(); window.open(val,"_blank"); };
+    if(window._fbSaveAsset) window._fbSaveAsset(cardId, type, val);
+  }
+  closeGsModal();
+}
+document.addEventListener("click",function(e){ if(e.target===document.getElementById("gsModal")) closeGsModal(); });
+</script>
+</body>
+</html>
