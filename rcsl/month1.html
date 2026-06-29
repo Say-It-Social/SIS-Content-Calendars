@@ -7,510 +7,561 @@
 :root{--navy:#15233f;--navy-soft:#22335a;--ink:#1d2433;--muted:#5d6577;--hair:#e7e9ef;--paper:#f6f7fa;--white:#fff;--red:#c8102e;--radius:12px;}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'IBM Plex Sans',-apple-system,Segoe UI,sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
 h1,h2,h3{font-family:'Archivo',-apple-system,Segoe UI,sans-serif;letter-spacing:-.01em}
 .hero{background:var(--navy);color:#fff;padding:46px 0 40px;position:relative;overflow:hidden}
 .hero:before{content:"";position:absolute;top:-60px;right:-40px;width:300px;height:300px;border:38px solid rgba(255,255,255,.04);transform:rotate(45deg)}
 .kicker{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#9fb3d6;font-weight:600;margin-bottom:12px}
-.hero h1{font-size:44px;line-height:1.02;font-weight:800}
+.hero h1{font-size:42px;line-height:1.04;font-weight:800}
 .hero h1 .accent{color:#7fa8e8}
-.hero .sub{font-size:16px;color:#c7d2e6;max-width:700px;margin-top:14px}
-.hero .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.hero .sub{font-size:15px;color:#c7d2e6;max-width:700px;margin-top:12px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
 .tag{font-size:12px;font-weight:500;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:5px 12px;border-radius:999px;color:#dde6f4}
 .spotlight-tag{background:rgba(14,124,102,.3);border-color:rgba(14,124,102,.5);color:#a7f3d0;font-weight:700}
 .brandline{position:absolute;top:26px;right:28px;text-align:right;font-family:'Archivo';font-weight:700;font-size:15px;color:#fff}
 .brandline span{color:var(--red)}
 .brandline small{display:block;font-weight:400;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#9fb3d6;margin-top:3px}
-.section{padding:32px 0}
-.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:20px}
-.sec-head h2{font-size:22px;font-weight:700;color:var(--navy)}
+.section{padding:30px 0}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:18px}
+.sec-head h2{font-size:21px;font-weight:700;color:var(--navy)}
 .sec-head .num{font-family:'Archivo';font-weight:800;color:var(--red);font-size:14px}
 .sec-head .line{flex:1;height:1px;background:var(--hair)}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
-.stat{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:15px 17px}
-.stat .v{font-family:'Archivo';font-weight:800;font-size:28px;color:var(--navy);line-height:1}
-.stat .l{font-size:12px;color:var(--muted);margin-top:5px}
-.mixbar{display:flex;height:12px;border-radius:999px;overflow:hidden;margin-top:16px;border:1px solid var(--hair)}
+/* platform summary */
+.ps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.ps-card{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:16px 18px;display:grid;grid-template-columns:12px 1fr auto;grid-template-rows:auto auto;gap:6px 12px;align-items:start}
+.ps-dot{width:12px;height:12px;border-radius:50%;margin-top:4px;grid-row:1;grid-column:1}
+.ps-info{grid-row:1;grid-column:2}
+.ps-right{grid-row:1;grid-column:3;text-align:right}
+.ps-meta{grid-row:2;grid-column:1/4;display:flex;flex-wrap:wrap;gap:6px}
+.ps-name{font-family:'Archivo';font-weight:700;font-size:14px;color:var(--navy)}
+.ps-formats{font-size:12px;color:var(--muted);margin-top:2px}
+.ps-total{font-family:'Archivo';font-weight:800;font-size:26px;color:var(--navy);line-height:1}
+.ps-label{font-size:11px;color:var(--muted)}
+.ps-badge{font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:999px}
+.ps-badge.rights{background:#f0f1f3;color:var(--muted)}
+.ps-badge.spoc{background:#eaf1fe;color:#1a56db}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px}
+.stat{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:14px 16px}
+.stat .v{font-family:'Archivo';font-weight:800;font-size:26px;color:var(--navy);line-height:1}
+.stat .l{font-size:11.5px;color:var(--muted);margin-top:4px}
+.mixbar{display:flex;height:11px;border-radius:999px;overflow:hidden;margin-top:14px;border:1px solid var(--hair)}
 .mixbar span{display:block;height:100%}
-.mixleg{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px;font-size:12px;color:var(--muted)}
-.mixleg b{display:inline-flex;align-items:center;gap:6px;font-weight:500;color:var(--ink)}
-.dot{width:10px;height:10px;border-radius:3px;display:inline-block}
-.status-legend{display:flex;align-items:center;flex-wrap:wrap;gap:6px;background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:14px 20px}
-.status-legend .sl-label{font-family:'Archivo';font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-right:6px}
-.sl-item{display:inline-flex;align-items:center;gap:7px;background:var(--paper);border:1px solid var(--hair);border-radius:999px;padding:6px 14px}
-.sl-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
-.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-.legcard{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:13px 15px;border-left:5px solid}
-.legcard h4{font-family:'Archivo';font-size:13.5px;font-weight:700;margin-bottom:3px}
-.legcard p{font-size:12px;color:var(--muted);line-height:1.45}
-.ch-legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:12px}
-.chleg{display:flex;align-items:center;gap:10px;background:var(--white);border:1px solid var(--hair);border-radius:10px;padding:11px 14px}
-.chleg .cdot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
-.chleg .n{font-family:'Archivo';font-size:13px;font-weight:700}
-.chleg .d{font-size:11.5px;color:var(--muted)}
+.mixleg{display:flex;flex-wrap:wrap;gap:10px;margin-top:9px;font-size:12px;color:var(--muted)}
+.mixleg b{display:inline-flex;align-items:center;gap:5px;font-weight:500;color:var(--ink)}
+.dot{width:9px;height:9px;border-radius:3px;display:inline-block}
+.status-legend{display:flex;align-items:center;flex-wrap:wrap;gap:6px;background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:13px 18px}
+.status-legend .sl-label{font-family:'Archivo';font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-right:6px}
+.sl-item{display:inline-flex;align-items:center;gap:6px;background:var(--paper);border:1px solid var(--hair);border-radius:999px;padding:5px 12px}
+.sl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .setup{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);overflow:hidden}
-.setup .row{display:grid;grid-template-columns:30px 1fr;gap:12px;padding:14px 18px;border-bottom:1px solid var(--hair);align-items:start}
+.setup .row{display:grid;grid-template-columns:28px 1fr;gap:12px;padding:13px 17px;border-bottom:1px solid var(--hair);align-items:start}
 .setup .row:last-child{border-bottom:none}
-.setup .chk{width:20px;height:20px;border:2px solid var(--navy);border-radius:5px;margin-top:2px}
-.setup .row h4{font-family:'Archivo';font-size:14px;font-weight:600;margin-bottom:2px}
-.setup .row p{font-size:12.5px;color:var(--muted)}
-.week{margin-bottom:28px}
-.week-head{display:flex;align-items:flex-start;gap:16px;background:var(--navy-soft);color:#fff;border-radius:var(--radius);padding:16px 22px;margin-bottom:16px;flex-wrap:wrap}
-.week-head .wk{font-family:'Archivo';font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;background:var(--red);padding:6px 14px;border-radius:6px;white-space:nowrap;flex-shrink:0}
-.week-head .focus{font-size:14px;color:#c7d2e6;line-height:1.5}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.setup .chk{width:19px;height:19px;border:2px solid var(--navy);border-radius:5px;margin-top:2px}
+.setup .row h4{font-family:'Archivo';font-size:13.5px;font-weight:600;margin-bottom:2px}
+.setup .row p{font-size:12px;color:var(--muted)}
+.week{margin-bottom:26px}
+.week-head{display:flex;align-items:flex-start;gap:14px;background:var(--navy-soft);color:#fff;border-radius:var(--radius);padding:14px 20px;margin-bottom:14px;flex-wrap:wrap}
+.week-head .wk{font-family:'Archivo';font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;background:var(--red);padding:5px 10px;border-radius:6px;white-space:nowrap;flex-shrink:0}
+.week-head .focus{font-size:13px;color:#c7d2e6;line-height:1.5}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
 .card{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);overflow:hidden;border-top:5px solid;display:flex;flex-direction:column}
-.card .top{padding:13px 15px 9px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
-.day-label{font-family:'Archivo';font-weight:700;font-size:12.5px;color:var(--navy);background:var(--paper);border:1px solid var(--hair);padding:3px 10px;border-radius:6px;white-space:nowrap}
-.pill{font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:999px;color:#fff;white-space:nowrap}
-.spot-pill{font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;background:#0E7C66;color:#fff;white-space:nowrap}
-.art-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;background:#6D28D9;color:#fff;white-space:nowrap}
-.chan{font-size:11px;font-weight:700;margin-left:auto;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.card .top{padding:12px 14px 8px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.day-label{font-family:'Archivo';font-weight:700;font-size:12px;color:var(--navy);background:var(--paper);border:1px solid var(--hair);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.pill{font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:999px;color:#fff;white-space:nowrap}
+.fmt-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;background:#f0f1f3;color:var(--ink);white-space:nowrap;border:1px solid var(--hair)}
+.fmt-badge.vid{background:#fbeee7;color:#C2410C;border-color:#f3d9c9}
+.fmt-badge.art{background:#ede9fe;color:#6D28D9;border-color:#ddd6fe}
+.fmt-badge.short{background:#ecfdf5;color:#0E7C66;border-color:#c8efde}
+.fmt-badge.long{background:#fff7ed;color:#b45309;border-color:#fde8cc}
+.fmt-badge.story{background:#f0f9ff;color:#0369a1;border-color:#bae6fd}
+.chan{font-size:11px;font-weight:700;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
 .chan i{width:8px;height:8px;border-radius:2px;flex-shrink:0}
-.fmt{font-size:10.5px;font-weight:600;color:var(--navy);background:var(--paper);border:1px solid var(--hair);padding:3px 8px;border-radius:6px;white-space:nowrap}
-.card .body{padding:4px 15px 12px;flex:1}
-.card h3{font-family:'Archivo';font-size:16px;font-weight:700;line-height:1.2;margin:8px 0 11px}
-.field{margin-bottom:9px}
-.field .lab{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
-.field p{font-size:13px;line-height:1.5}
+.spoc-tag{font-size:10px;font-weight:600;padding:3px 8px;border-radius:999px;white-space:nowrap;margin-left:auto}
+.card .body{padding:4px 14px 12px;flex:1}
+.card h3{font-family:'Archivo';font-size:15px;font-weight:700;line-height:1.25;margin:7px 0 10px}
+.field{margin-bottom:8px}
+.field .lab{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.field p{font-size:12.5px;line-height:1.5;color:var(--ink)}
 .field.hook p{font-style:italic;color:var(--navy);font-weight:500}
-.dep{margin-top:9px;font-size:11.5px;color:#C2410C;background:#fbeee7;border:1px solid #f3d9c9;padding:7px 10px;border-radius:8px;display:flex;gap:7px;align-items:flex-start}
+.dep{margin-top:8px;font-size:11px;color:#C2410C;background:#fbeee7;border:1px solid #f3d9c9;padding:6px 10px;border-radius:8px;display:flex;gap:6px}
 .dep b{font-weight:700;white-space:nowrap}
-.pr-block{margin-top:6px;font-size:12.5px;color:var(--muted);background:var(--paper);border:1px solid var(--hair);padding:10px 13px;border-radius:8px;font-style:italic}
-.card-status{display:flex;align-items:center;gap:8px;padding:10px 15px;border-top:1px solid var(--hair);user-select:none}
+.pr-block{margin-top:6px;font-size:12px;color:var(--muted);background:var(--paper);border:1px solid var(--hair);padding:9px 12px;border-radius:8px;font-style:italic}
+.card-status{display:flex;align-items:center;gap:7px;padding:9px 14px;border-top:1px solid var(--hair);cursor:pointer;user-select:none}
 .card-status:hover{filter:brightness(.96)}
-.s-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
-.s-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
-.exp-table{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);overflow:hidden}
-.exp-row{display:grid;grid-template-columns:150px 1fr 220px;gap:16px;padding:16px 20px;border-bottom:1px solid var(--hair);align-items:center}
-.exp-row:last-child{border-bottom:none}
-.exp-ch{font-family:'Archivo';font-weight:700;font-size:13.5px;color:var(--navy)}
-.exp-metric{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:3px}
-.exp-note{font-size:11.5px;color:var(--muted);line-height:1.5}
-.exp-val{font-family:'Archivo';font-weight:800;font-size:15px;color:#0E7C66;text-align:right;line-height:1.3}
-.exp-caveat{margin-top:14px;font-size:12px;color:var(--muted);background:#fff7ed;border:1px solid #fde8cc;padding:12px 16px;border-radius:10px;line-height:1.6}
-.foot{background:var(--navy);color:#cdd8ea;padding:32px 0 38px;margin-top:28px}
-.foot h2{color:#fff;font-size:19px;margin-bottom:13px;font-weight:700}
-.foot ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:11px}
-.foot li{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 15px;font-size:12.5px}
+.s-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.s-label{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.foot{background:var(--navy);color:#cdd8ea;padding:30px 0 36px;margin-top:26px}
+.foot h2{color:#fff;font-size:18px;margin-bottom:12px;font-weight:700}
+.foot ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.foot li{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 14px;font-size:12px}
 .foot li b{color:#fff;font-family:'Archivo';display:block;margin-bottom:3px}
-.foot .fin{margin-top:20px;font-size:12px;color:#8ea3c6}
+.foot .fin{margin-top:18px;font-size:11.5px;color:#8ea3c6}
 @media print{body{background:#fff}.hero,.foot,.week-head{-webkit-print-color-adjust:exact;print-color-adjust:exact}.card,.week{break-inside:avoid}}
-@media (max-width:640px){.exp-row{grid-template-columns:1fr;text-align:left}.exp-val{text-align:left}}
 </style></head><body>
+
 <header class="hero"><div class="wrap">
 <div class="brandline">Say It <span>Social</span><small>Strategize · Innovate · Socialize</small></div>
-<div class="kicker">Company Content Calendar · Pilot — Month 1</div>
+<div class="kicker">Company Content Calendar · Pilot — Month 1 · Revised</div>
 <h1>Riddhi Corporate Services<br><span class="accent">Month 1 — Foundation Phase</span></h1>
-<p class="sub">The first 30 days: stand up the channels, activate the operational-content engine, and launch the Transportation &amp; 3PL service spotlight. CXO calendar built separately.</p>
+<p class="sub">Revised calendar — exact post counts per platform as confirmed. Content strategy, pillars, and service spotlight unchanged. CXO calendar is separate.</p>
 <div class="meta">
-<span class="tag">LinkedIn · company page</span><span class="tag">Instagram + Facebook · clubbed</span>
-<span class="tag">Twitter / X</span><span class="tag">YouTube · reactivation</span><span class="tag">PR · SIS-handled</span>
+<span class="tag">LinkedIn · 6 posts</span>
+<span class="tag">Instagram + Facebook · 13 each</span>
+<span class="tag">Twitter/X · 6 posts · Client IT</span>
+<span class="tag">YouTube · 4 uploads</span>
 <span class="tag spotlight-tag">⚡ Spotlight: Transportation &amp; 3PL</span>
-<span class="tag">20,000+ workforce deployed across India</span>
+<span class="tag">44 total posts published</span>
 </div></div></header>
-<div class="wrap">
-<section class="section"><div class="sec-head"><span class="num">01</span><h2>The month at a glance</h2><span class="line"></span></div>
-<div class="stats"><div class="stat"><div class="v">26</div><div class="l">Total scheduled posts</div></div><div class="stat"><div class="v">10</div><div class="l">LinkedIn (posts + 1 article)</div></div><div class="stat"><div class="v">8</div><div class="l">Instagram + Facebook</div></div><div class="stat"><div class="v">5</div><div class="l">Twitter / X</div></div><div class="stat"><div class="v">2</div><div class="l">YouTube</div></div><div class="stat"><div class="v">1</div><div class="l">PR placement</div></div></div>
-<div class="mixbar"><span style="width:35%;background:#0E7C66"></span><span style="width:38%;background:#C2410C"></span><span style="width:12%;background:#1B4D8E"></span><span style="width:15%;background:#475569"></span></div><div class="mixleg"><b><span class="dot" style="background:#0E7C66"></span>Capability — 3PL Spotlight · 9</b><b><span class="dot" style="background:#C2410C"></span>People & Culture · 10</b><b><span class="dot" style="background:#1B4D8E"></span>Proof & Performance · 3</b><b><span class="dot" style="background:#475569"></span>Milestones · 4</b></div></section>
 
-<section class="section"><div class="sec-head"><span class="num">02</span><h2>Expected performance — relative ranges, not absolute figures</h2><span class="line"></span></div>
-<div class="exp-table"><div class="exp-row">
-<div class="exp-ch">LinkedIn</div>
-<div class="exp-mid"><div class="exp-metric">Engagement rate vs current baseline</div><div class="exp-note">Baseline engagement is near-zero on sporadic posting. Consistent operational + capability content typically lifts engagement rate meaningfully within the first month, per the SIS/Quess/Denave benchmark pattern.</div></div>
-<div class="exp-val">+40% to +70%</div>
-</div><div class="exp-row">
-<div class="exp-ch">Instagram + Facebook</div>
-<div class="exp-mid"><div class="exp-metric">Reach growth on Reels vs static posts</div><div class="exp-note">Reels and short-form video consistently outperform static posts in early-stage accounts. RCSL’s current content is 100% static/festival posts — the format shift alone typically drives a step-change.</div></div>
-<div class="exp-val">+60% to +120%</div>
-</div><div class="exp-row">
-<div class="exp-ch">Twitter / X</div>
-<div class="exp-mid"><div class="exp-metric">Impressions per post (new presence)</div><div class="exp-note">No prior Twitter presence to benchmark against. Month 1 focuses on consistent posting to establish a measurable baseline by Month 2.</div></div>
-<div class="exp-val">Establishing baseline</div>
-</div><div class="exp-row">
-<div class="exp-ch">YouTube</div>
-<div class="exp-mid"><div class="exp-metric">Channel reactivation lift</div><div class="exp-note">Channel is existing but dormant. Two uploads will not drive scale, but reactivates the channel and tests Shorts-format response ahead of a fuller Month 2+ plan.</div></div>
-<div class="exp-val">+20% to +50% vs dormant baseline</div>
-</div><div class="exp-row">
-<div class="exp-ch">Overall (all channels)</div>
-<div class="exp-mid"><div class="exp-metric">Share of voice vs benchmarked competitors</div><div class="exp-note">RCSL starts from a small fraction of competitor presence (per the competitive audit). Month 1 is about narrowing that gap’s rate of change, not closing it.</div></div>
-<div class="exp-val">Low double-digit % → building toward parity over 6–12 months</div>
+<div class="wrap">
+
+<section class="section"><div class="sec-head"><span class="num">01</span><h2>Platform breakdown</h2><span class="line"></span></div>
+<div class="ps-grid"><div class="ps-card">
+<div class="ps-dot" style="background:#0A66C2"></div>
+<div class="ps-info">
+<div class="ps-name">LinkedIn</div>
+<div class="ps-formats">1 video · 5 posts</div>
+</div>
+<div class="ps-right">
+<div class="ps-total">6</div>
+<div class="ps-label">posts</div>
+</div>
+<div class="ps-meta">
+<span class="ps-badge rights">Content Admin</span>
+<span class="ps-badge spoc">SPOC: SIS</span>
+</div>
+</div><div class="ps-card">
+<div class="ps-dot" style="background:#C13584"></div>
+<div class="ps-info">
+<div class="ps-name">Instagram + Facebook</div>
+<div class="ps-formats">2 Reels · 8 statics · 3 Stories</div>
+</div>
+<div class="ps-right">
+<div class="ps-total">13</div>
+<div class="ps-label">posts</div>
+</div>
+<div class="ps-meta">
+<span class="ps-badge rights">Editor Rights</span>
+<span class="ps-badge spoc">SPOC: SIS</span>
+</div>
+</div><div class="ps-card">
+<div class="ps-dot" style="background:#1DA1F2"></div>
+<div class="ps-info">
+<div class="ps-name">Twitter / X</div>
+<div class="ps-formats">1 video · 5 photo posts</div>
+</div>
+<div class="ps-right">
+<div class="ps-total">6</div>
+<div class="ps-label">posts</div>
+</div>
+<div class="ps-meta">
+<span class="ps-badge rights">Not required</span>
+<span class="ps-badge spoc">SPOC: Client IT — SIS hands over copy-ready briefs</span>
+</div>
+</div><div class="ps-card">
+<div class="ps-dot" style="background:#FF0000"></div>
+<div class="ps-info">
+<div class="ps-name">YouTube</div>
+<div class="ps-formats">3 Shorts · 1 Long-form</div>
+</div>
+<div class="ps-right">
+<div class="ps-total">4</div>
+<div class="ps-label">posts</div>
+</div>
+<div class="ps-meta">
+<span class="ps-badge rights">Editor Rights</span>
+<span class="ps-badge spoc">SPOC: SIS</span>
+</div>
 </div></div>
-<div class="exp-caveat">⚠️ These are <b>directional, percentage-based ranges</b> drawn from the competitive benchmark pattern (SIS, Quess, Denave, TeamLease) and general platform behaviour — not a guarantee. We deliberately avoid quoting absolute follower/view counts in Month 1 because RCSL has no meaningful baseline on Twitter and YouTube, and a hard number this early would not be defensible. Once a month of real data exists, projections move from percentage ranges to numbers.</div>
+</section>
+
+<section class="section"><div class="sec-head"><span class="num">02</span><h2>The month at a glance</h2><span class="line"></span></div>
+<div class="stats"><div class="stat"><div class="v">30</div><div class="l">Total calendar entries</div></div><div class="stat"><div class="v">44</div><div class="l">Total posts published (IG+FB counted separately)</div></div><div class="stat"><div class="v">6</div><div class="l">LinkedIn</div></div><div class="stat"><div class="v">13</div><div class="l">Instagram + Facebook (each)</div></div><div class="stat"><div class="v">6</div><div class="l">Twitter / X</div></div><div class="stat"><div class="v">4</div><div class="l">YouTube</div></div></div>
+<div class="mixbar"><span style="width:37%;background:#0E7C66"></span><span style="width:33%;background:#C2410C"></span><span style="width:7%;background:#1B4D8E"></span><span style="width:23%;background:#475569"></span></div><div class="mixleg"><b><span class="dot" style="background:#0E7C66"></span>Capability — 3PL Spotlight · 11</b><b><span class="dot" style="background:#C2410C"></span>People & Culture · 10</b><b><span class="dot" style="background:#1B4D8E"></span>Proof & Performance · 2</b><b><span class="dot" style="background:#475569"></span>Milestones · 7</b></div>
 </section>
 
 <section class="section"><div class="sec-head"><span class="num">03</span><h2>Post status</h2><span class="line"></span></div>
 <div class="status-legend"><span class="sl-label">Status :</span><span class="sl-item"><span class="sl-dot" style="background:#9ca3af"></span><span style="color:#6b7280;font-weight:700;font-size:12px;letter-spacing:.06em">NOT STARTED</span></span><span class="sl-item"><span class="sl-dot" style="background:#f59e0b"></span><span style="color:#d97706;font-weight:700;font-size:12px;letter-spacing:.06em">IN PROGRESS</span></span><span class="sl-item"><span class="sl-dot" style="background:#06b6d4"></span><span style="color:#0891b2;font-weight:700;font-size:12px;letter-spacing:.06em">READY TO POST</span></span><span class="sl-item"><span class="sl-dot" style="background:#22c55e"></span><span style="color:#16a34a;font-weight:700;font-size:12px;letter-spacing:.06em">POSTED</span></span></div>
-<p style="font-size:12px;color:var(--muted);margin-top:8px">Click any status badge on a post card to update it.</p>
+<p style="font-size:12px;color:var(--muted);margin-top:7px">Click any status badge on a post card to update it.</p>
 </section>
 
-<section class="section"><div class="sec-head"><span class="num">04</span><h2>Pillar &amp; channel key</h2><span class="line"></span></div>
-<div class="legend">
-<div class="legcard" style="border-left-color:#0E7C66"><h4>Capability — 3PL Spotlight</h4><p>Transportation &amp; logistics as the month's service theme.</p></div>
-<div class="legcard" style="border-left-color:#C2410C"><h4>People &amp; Culture</h4><p>The 20,000+ workforce visible. Employer brand on IG+FB; human on LinkedIn.</p></div>
-<div class="legcard" style="border-left-color:#1B4D8E"><h4>Proof &amp; Performance</h4><p>Anonymized case studies. Client names slot in once permissions land.</p></div>
-<div class="legcard" style="border-left-color:#475569"><h4>Milestones &amp; Governance</h4><p>BSE-listed credibility: certifications, scale, month-end signals.</p></div>
-</div>
-<div class="ch-legend">
-<div class="chleg"><div class="cdot" style="background:#0A66C2"></div><div><div class="n">LinkedIn</div><div class="d">Posts + 1 article · credibility voice</div></div></div>
-<div class="chleg"><div class="cdot" style="background:#C13584"></div><div><div class="n">Instagram + Facebook</div><div class="d">Clubbed · people &amp; culture voice</div></div></div>
-<div class="chleg"><div class="cdot" style="background:#1DA1F2"></div><div><div class="n">Twitter / X</div><div class="d">Punchy takes · 1–2x per week</div></div></div>
-<div class="chleg"><div class="cdot" style="background:#FF0000"></div><div><div class="n">YouTube</div><div class="d">Dormant channel · reactivation, 2 uploads</div></div></div>
-<div class="chleg"><div class="cdot" style="background:#C8102E"></div><div><div class="n">PR Activity</div><div class="d">SIS-handled · RCSL to brief</div></div></div>
-</div></section>
+<section class="section"><div class="sec-head"><span class="num">04</span><h2>Week 0 — set-up (before first post)</h2><span class="line"></span></div>
+<div class="setup"><div class="row"><div class="chk"></div><div><h4>LinkedIn — Content Admin access</h4><p>SIS needs Content Admin rights on the RCSL LinkedIn company page before any posts go live. Confirm with client.</p></div></div><div class="row"><div class="chk"></div><div><h4>Instagram + Facebook — Editor rights</h4><p>SIS needs Editor rights on both IG and FB. Pages should be linked (Meta Business Suite) for simultaneous posting.</p></div></div><div class="row"><div class="chk"></div><div><h4>YouTube — channel revival + Editor access</h4><p>Existing but dormant channel. Refresh banner, About section, playlists. SIS needs Editor rights. Brand intro film to be pinned as channel trailer once uploaded.</p></div></div><div class="row"><div class="chk"></div><div><h4>Twitter / X — copy handover process</h4><p>RCSL Client IT team handles posting. SIS to deliver copy-ready briefs (text + image/video asset) 48 hours before each scheduled post.</p></div></div><div class="row"><div class="chk"></div><div><h4>PR brief from RCSL</h4><p>Receive the Month 1 PR activity brief. SIS to align on angle, target outlets, timeline, and approval flow before execution.</p></div></div><div class="row"><div class="chk"></div><div><h4>Lock the visual system</h4><p>Master template kit: LinkedIn post card, Reel lower-thirds, Story frames, YouTube thumbnail, Twitter photo card. One cohesive look across all channels.</p></div></div><div class="row"><div class="chk"></div><div><h4>Confirm 3PL asset list</h4><p>Fleet photos (HAZ vehicles, rail rack), operations footage from at least one logistics site, route maps. Required for Week 1 posts and the brand intro film shoot.</p></div></div><div class="row"><div class="chk"></div><div><h4>Brand intro film — pre-production</h4><p>Brief the video team on the 2–3 min brand intro film: RCSL overview, 20,000+ deployed, 28 states, in-house tech, people on the ground. No client names. Scripted VO. Schedule shoot in Week 1–2 for Week 3–4 upload.</p></div></div></div>
+</section>
 
-<section class="section"><div class="sec-head"><span class="num">05</span><h2>Week 0 — foundation set-up (before first post)</h2><span class="line"></span></div>
-<div class="setup"><div class="row"><div class="chk"></div><div><h4>LinkedIn company page overhaul</h4><p>Full description (BSE-listed 540590, 20,000+ workforce deployed, 28 states, 15+ years), branded banner, complete services section, verified website link. Pin the reintroduction post once live.</p></div></div><div class="row"><div class="chk"></div><div><h4>Instagram + Facebook profile clean-up</h4><p>Consistent logo, handle, bio and link across both. Build Instagram highlight covers: Operations · People · Certifications · Hiring. Mirror profile details on Facebook.</p></div></div><div class="row"><div class="chk"></div><div><h4>YouTube channel revival</h4><p>Existing but dormant channel — refresh banner, About section, channel trailer slot, playlists (Operations / People / Capability). Audit and archive or update any outdated legacy videos.</p></div></div><div class="row"><div class="chk"></div><div><h4>Surface the certifications</h4><p>Move ISO 9001:2015, ISO 27001:2013 and CMMi Level-3 from buried to featured — LinkedIn Featured section + a pinned credibility graphic.</p></div></div><div class="row"><div class="chk"></div><div><h4>Lock the visual system</h4><p>Master template kit: data-card layout, carousel grid, Reel/Shorts lower-thirds, "People of RCSL" portrait frame, Twitter stat card, YouTube thumbnail template.</p></div></div><div class="row"><div class="chk"></div><div><h4>Confirm 3PL asset list with RCSL</h4><p>Fleet photos (HAZ vehicles, rail rack), operations footage from at least one logistics site, route maps, and any measurable delivery outcomes for the anonymized proof posts.</p></div></div><div class="row"><div class="chk"></div><div><h4>PR brief from RCSL</h4><p>Receive the Month 1 PR activity brief. SIS to align on angle, target outlets, timeline, and approval flow before execution.</p></div></div></div></section>
-
-<section class="section"><div class="sec-head"><span class="num">06</span><h2>The calendar</h2><span class="line"></span></div>
-<div class="week"><div class="week-head"><span class="wk">Week 1</span><span class="focus">Soft launch. Reintroduce RCSL at full scale. Establish the 3PL spotlight and operational-content look.</span></div><div class="cards"><div class="card" style="border-top-color:#475569;">
+<section class="section"><div class="sec-head"><span class="num">05</span><h2>The calendar</h2><span class="line"></span></div>
+<div class="week"><div class="week-head"><span class="wk">Week 1</span><span class="focus">Soft launch. Reintroduce RCSL at full scale. Establish the 3PL spotlight and operational-content look across every channel.</span></div><div class="cards"><div class="card" style="border-top-color:#475569;">
 <div class="top">
  <span class="day-label">Monday</span>
  <span class="pill" style="background:#475569">Milestones</span>
- 
+ <span class="fmt-badge vid">▶ Video · 60s</span>
  <span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span>
- <span class="fmt">Carousel · data cards</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
 </div>
-<div class="body"><h3>RCSL, in numbers</h3>
-<div class="field hook"><div class="lab">Hook</div><p>A 15-year-old, BSE-listed company most of LinkedIn has never properly met.</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>Reintroduction post. Lead with operational scale — 20,000+ workforce deployed, 28 states, certified, debt-free. Sets the credibility baseline. CTA: follow.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>5-slide carousel, big Archivo numbers on navy, one stat per slide, RCSL red accents.</p></div><div class="dep"><b>Needs:</b><span>Confirm final stat set with RCSL before posting.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
-<div class="top">
- <span class="day-label">Tuesday</span>
- <span class="pill" style="background:#C2410C">People & Culture</span>
- 
- <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
- <span class="fmt">Reel · 20–30s</span>
-</div>
-<div class="body"><h3>This is RCSL</h3>
-<div class="field hook"><div class="lab">Hook</div><p>You've seen our work. You've just never seen us.</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>Launch Reel — fast montage of warehouses, fleet, ports, teams on the ground. Establishes the operational-content direction. CTA: follow.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Punchy cuts, on-beat text overlays, navy/red grade. 9:16 for Instagram, repurposed for Facebook.</p></div><div class="dep"><b>Needs:</b><span>RCSL: raw operations footage or recent site photos to motion-ify.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
+<div class="body"><h3>RCSL, in numbers — 60 seconds</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p>A 15-year-old, BSE-listed company most of LinkedIn has never properly met.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>Short punchy video: fast cuts of operations + bold stat overlays — 20,000+ deployed, 28 states, 15+ years, debt-free, certified. Sets the credibility baseline for everything that follows. CTA: follow.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>60s vertical or square video, navy/red colour grade, text overlays on each stat, RCSL logo end-card.</p></div><div class="dep"><b>Asset:</b><span>RCSL: operations footage or site photography to compile.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
 <div class="top">
  <span class="day-label">Wednesday</span>
  <span class="pill" style="background:#0E7C66">Capability</span>
- <span class="spot-pill">3PL Spotlight</span>
+ <span class="fmt-badge">Static post · Carousel</span>
  <span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span>
- <span class="fmt">Carousel · spotlight intro</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
 </div>
 <div class="body"><h3>We move it. You sell it.</h3>
-<div class="field hook"><div class="lab">Hook</div><p>Your product leaves the factory. Then what?</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>3PL spotlight intro — B2B + B2C, FTL/PTL, HAZ-compliant fleet, last-mile. This month we go deep on logistics. CTA: follow for the full story.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Carousel — India route map, fleet imagery, service icons.</p></div><div class="dep"><b>Needs:</b><span>Fleet photos, route map graphic.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
+<div class="field hook"><div class="lab">Hook / opening</div><p>Your product leaves the factory. Then what?</p></div>
+<div class="field"><div class="lab">Content direction</div><p>3PL spotlight intro — B2B + B2C, FTL/PTL, HAZ-compliant fleet, last-mile. Month 1 service theme introduced. CTA: follow for the full story.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>5-slide carousel, India route map, fleet imagery, service icons. Navy accents.</p></div><div class="dep"><b>Asset:</b><span>Fleet photos, route map graphic.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
+<div class="top">
+ <span class="day-label">Tuesday</span>
+ <span class="pill" style="background:#C2410C">People & Culture</span>
+ <span class="fmt-badge vid">▶ Reel · 20–30s</span>
+ <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
+</div>
+<div class="body"><h3>This is RCSL</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p>You've seen our work. You've just never seen us.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>Launch Reel — fast montage of warehouses, fleet, ports, teams on the ground. Establishes operational-content direction. CTA: follow.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>Punchy cuts, on-beat overlays, navy/red grade. 9:16 IG, repurposed FB.</p></div><div class="dep"><b>Asset:</b><span>RCSL: raw operations footage.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#475569;">
 <div class="top">
  <span class="day-label">Thursday</span>
- <span class="pill" style="background:#0E7C66">Capability</span>
- <span class="spot-pill">3PL Spotlight</span>
- <span class="chan" style="color:#1DA1F2"><i style="background:#1DA1F2"></i>Twitter / X</span>
- <span class="fmt">Tweet</span>
+ <span class="pill" style="background:#475569">Milestones</span>
+ <span class="fmt-badge">Static · single image</span>
+ <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
 </div>
-<div class="body"><h3>65 HAZ vehicles. GPS-tracked.</h3>
-<div class="field hook"><div class="lab">Hook</div><p>65 HAZ-compliant vehicles. GPS-tracked. Rail rack capable. RCSL's fleet moves what others won't. #Logistics #3PL #SupplyChain</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>Opening 3PL stat tweet — short, credible, no CTA needed.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Optional: single stat graphic.</p></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
+<div class="body"><h3>20,000+ deployed. 28 states. 15 years.</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p>The numbers behind the name.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>Credential graphic — key stats in a clean branded layout. First impression post for new followers arriving from the Reel.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>Bold stat card, navy background, RCSL red accents.</p></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
 <div class="top">
  <span class="day-label">Friday</span>
- <span class="pill" style="background:#C2410C">People & Culture</span>
- 
- <span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span>
- <span class="fmt">Single graphic</span>
+ <span class="pill" style="background:#0E7C66">Capability</span>
+ <span class="fmt-badge">Static · Carousel</span>
+ <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
 </div>
-<div class="body"><h3>The people behind the operations</h3>
-<div class="field hook"><div class="lab">Hook</div><p>20,000+ deployed. Every one of them someone we're proud to work with.</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>Employer brand post — humanise the scale number. Warm, proud, understated. CTA: explore careers.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Team photo collage in RCSL branded frame.</p></div><div class="dep"><b>Needs:</b><span>RCSL: on-ground team photos.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
+<div class="body"><h3>What is 3PL — and why does it matter?</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p>Every product that moves from A to B needs a system behind it.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>3-slide educational carousel. Simple, buyer-friendly explainer on 3PL — what it is, what RCSL does, why it matters. Soft CTA.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>Clean illustrated carousel, icon-led, light background.</p></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
 <div class="top">
  <span class="day-label">Saturday</span>
  <span class="pill" style="background:#C2410C">People & Culture</span>
- 
+ <span class="fmt-badge story">◎ Story</span>
  <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
- <span class="fmt">Carousel · series launch</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
 </div>
-<div class="body"><h3>People of RCSL — #1</h3>
-<div class="field hook"><div class="lab">Hook</div><p>Meet the people who keep 20,000+ operations moving.</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>Launch of the recurring employee spotlight series. One person, their role, one line in their words. CTA: tag someone who'd thrive here.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>"People of RCSL" portrait frame + pull-quote slide.</p></div><div class="dep"><b>Needs:</b><span>RCSL: employee consent, name, role, photo, one quote.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div></div></div><div class="week"><div class="week-head"><span class="wk">Week 2</span><span class="focus">Cadence builds. FTL/PTL deep-dive, first anonymized proof story, first YouTube upload.</span></div><div class="cards"><div class="card" style="border-top-color:#0E7C66;">
+<div class="body"><h3>Behind the operations — swipe to see</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p></p></div>
+<div class="field"><div class="lab">Content direction</div><p>Story sequence: 3 frames showing a real RCSL site, a team moment, and a "follow us for more" close. Casual, real, not over-designed.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>3 Story frames, branded but lightweight. Sticker: "follow for more."</p></div><div class="dep"><b>Asset:</b><span>RCSL: site/team photos.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#475569;">
 <div class="top">
  <span class="day-label">Monday</span>
- <span class="pill" style="background:#0E7C66">Capability</span>
- <span class="spot-pill">3PL Spotlight</span>
- <span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span>
- <span class="fmt">Carousel</span>
-</div>
-<div class="body"><h3>FTL, PTL — and everything in between</h3>
-<div class="field hook"><div class="lab">Hook</div><p>Volume shouldn't be a problem. It should be your advantage.</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>FTL/PTL capability — own + partner fleet, GPS tracking, regular and seasonal services. CTA: soft enquiry.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Side-by-side FTL/PTL comparison carousel, truck and load imagery.</p></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
-<div class="top">
- <span class="day-label">Tuesday</span>
- <span class="pill" style="background:#0E7C66">Capability</span>
- 
+ <span class="pill" style="background:#475569">Milestones</span>
+ <span class="fmt-badge vid">▶ Video post</span>
  <span class="chan" style="color:#1DA1F2"><i style="background:#1DA1F2"></i>Twitter / X</span>
- <span class="fmt">Tweet</span>
+ <span class="spoc-tag" style="background:#fff3e0;color:#b45309">SPOC: Client IT</span>
 </div>
-<div class="body"><h3>India 3PL context</h3>
-<div class="field hook"><div class="lab">Hook</div><p>India's 3PL sector is growing fast. The companies that win won't just have the fleet — they'll have the systems, compliance, and people behind it. #3PL #SupplyChain #Logistics</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>Industry-context tweet. Verify any market figure before posting.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p></p></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
+<div class="body"><h3>RCSL — Work Simplified. 60 seconds.</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p>20,000+ workforce. 28 states. 15 years. BSE-listed. Debt-free. This is RCSL.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>Same 60s video as LinkedIn, shared natively on Twitter. Caption as a punchy fact-stack. Hashtags: #WorkSimplified #Logistics #Workforce #RCSL</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>Same video asset as LinkedIn — no re-edit needed. Native upload.</p></div><div class="dep"><b>Asset:</b><span>Same asset as LinkedIn video.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
 <div class="top">
- <span class="day-label">Wednesday</span>
- <span class="pill" style="background:#C2410C">People & Culture</span>
- 
- <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
- <span class="fmt">Reel · day-in-the-life</span>
+ <span class="day-label">Friday</span>
+ <span class="pill" style="background:#0E7C66">Capability</span>
+ <span class="fmt-badge">Photo post</span>
+ <span class="chan" style="color:#1DA1F2"><i style="background:#1DA1F2"></i>Twitter / X</span>
+ <span class="spoc-tag" style="background:#fff3e0;color:#b45309">SPOC: Client IT</span>
 </div>
-<div class="body"><h3>A shift, start to finish</h3>
-<div class="field hook"><div class="lab">Hook</div><p>05:30. The first shift clocks in.</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>Day-in-the-life at a logistics site. Documentary-style, authentic. CTA: this could be your team.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Time-stamped Reel overlays, on-ground footage.</p></div><div class="dep"><b>Needs:</b><span>RCSL: site access + footage from one logistics location.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
+<div class="body"><h3>3PL in India — the numbers that matter</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p>India moves ₹X lakh crore in goods annually. Here's who handles the last mile. #3PL #Logistics #SupplyChain</p></div>
+<div class="field"><div class="lab">Content direction</div><p>Stat-led photo post. A single sharp infographic on India's 3PL market context — positions RCSL within a growing sector. Client IT posts from copy-ready brief.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>Single graphic: market context stat + RCSL positioning line.</p></div><div class="dep"><b>Asset:</b><span>Verify market stat before posting.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
 <div class="top">
  <span class="day-label">Thursday</span>
  <span class="pill" style="background:#0E7C66">Capability</span>
- <span class="spot-pill">3PL Spotlight</span>
+ <span class="fmt-badge short">⚡ YouTube Short</span>
  <span class="chan" style="color:#FF0000"><i style="background:#FF0000"></i>YouTube</span>
- <span class="fmt">YouTube Short</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
 </div>
-<div class="body"><h3>65 HAZ vehicles. GPS-tracked. (Short)</h3>
-<div class="field hook"><div class="lab">Hook</div><p>Most fleets just drive. Ours reports back.</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>Repurposed cut of the Twitter/IG fleet content into a YouTube Short. Reintroduces the dormant channel with a low-lift, high-relevance first upload.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Vertical Short, 30–45s, captioned, RCSL branded end-card.</p></div><div class="dep"><b>Needs:</b><span>Reuse footage from Tue/Thu IG + Twitter assets — no new shoot needed.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#1B4D8E;">
+<div class="body"><h3>What is 3PL? — 45 seconds</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p>Your goods leave the factory. Then what happens?</p></div>
+<div class="field"><div class="lab">Content direction</div><p>First Short — repurposed from the IGFB 3PL carousel content, reformatted for YouTube Shorts. Introduces the 3PL spotlight theme on the channel.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>Vertical 9:16, 45s max, captions on, RCSL end-card. Repurpose from IG assets.</p></div><div class="dep"><b>Asset:</b><span>Repurpose from IG carousel — no new shoot needed.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div></div></div><div class="week"><div class="week-head"><span class="wk">Week 2</span><span class="focus">Cadence builds. First proof story. Operations content drives IG/FB. YouTube Short #2.</span></div><div class="cards"><div class="card" style="border-top-color:#1B4D8E;">
 <div class="top">
- <span class="day-label">Friday</span>
+ <span class="day-label">Monday</span>
  <span class="pill" style="background:#1B4D8E">Proof & Performance</span>
- 
+ <span class="fmt-badge">Static post · Carousel</span>
  <span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span>
- <span class="fmt">Carousel · case study</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
 </div>
 <div class="body"><h3>Last-mile, at scale</h3>
-<div class="field hook"><div class="lab">Hook</div><p>The last mile is where promises are kept — or broken.</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>First anonymized Proof post tied to the 3PL spotlight. Problem → approach → outcome. CTA: facing a similar challenge?</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Case-study carousel: challenge / approach / result.</p></div><div class="dep"><b>Needs:</b><span>Client name held — insert once permission is cleared.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
+<div class="field hook"><div class="lab">Hook / opening</div><p>The last mile is where promises are kept — or broken.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>First anonymized Proof post. Problem → RCSL approach → outcome. 3PL spotlight aligned. CTA: facing a similar challenge?</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>Case-study carousel: challenge / approach / result. Clean, metric-forward.</p></div><div class="dep"><b>Asset:</b><span>Client anonymized until permission cleared.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
+<div class="top">
+ <span class="day-label">Friday</span>
+ <span class="pill" style="background:#0E7C66">Capability</span>
+ <span class="fmt-badge">Static post · Carousel</span>
+ <span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
+</div>
+<div class="body"><h3>FTL, PTL — and everything in between</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p>Volume shouldn't be a problem. It should be your advantage.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>FTL/PTL capability carousel. Own + partner fleet, GPS tracking, regular and seasonal services. Buyer-facing explainer. CTA: soft enquiry.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>Side-by-side FTL/PTL carousel, truck/load imagery.</p></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
+<div class="top">
+ <span class="day-label">Wednesday</span>
+ <span class="pill" style="background:#C2410C">People & Culture</span>
+ <span class="fmt-badge vid">▶ Reel · day-in-the-life</span>
+ <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
+</div>
+<div class="body"><h3>A shift, start to finish</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p>05:30. The first shift clocks in.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>Day-in-the-life at a logistics site. Documentary-style, authentic, human. CTA: this could be your team.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>Time-stamped Reel overlays, on-ground footage. 9:16.</p></div><div class="dep"><b>Asset:</b><span>RCSL: site access + footage from one logistics location.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
+<div class="top">
+ <span class="day-label">Monday</span>
+ <span class="pill" style="background:#C2410C">People & Culture</span>
+ <span class="fmt-badge">Static · Carousel</span>
+ <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
+</div>
+<div class="body"><h3>People of RCSL — #1</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p>Meet the people who keep 20,000+ operations moving.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>Launch of the recurring employee spotlight series. One person, role, one line in their words. CTA: tag someone who'd thrive here.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>"People of RCSL" portrait frame + pull-quote slide.</p></div><div class="dep"><b>Asset:</b><span>RCSL: employee consent, name, role, photo, one quote.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
 <div class="top">
  <span class="day-label">Saturday</span>
  <span class="pill" style="background:#C2410C">People & Culture</span>
- 
+ <span class="fmt-badge story">◎ Story</span>
  <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
- <span class="fmt">Stories series</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
 </div>
-<div class="body"><h3>Behind the badge</h3>
-<div class="field hook"><div class="lab">Hook</div><p>How we get a driver/operator ready for day one.</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>Story sequence — onboarding, safety training, fleet orientation. Polls + apply CTA.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>4–6 branded vertical Story frames.</p></div><div class="dep"><b>Needs:</b><span>RCSL: training footage or photos.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div></div></div><div class="week"><div class="week-head"><span class="wk">Week 3</span><span class="focus">Near-full cadence. LinkedIn article goes live. Tech angle on 3PL. Hiring push on social.</span></div><div class="cards"><div class="card" style="border-top-color:#0E7C66;">
+<div class="body"><h3>A day in our warehouse — tap through</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p></p></div>
+<div class="field"><div class="lab">Content direction</div><p>Story sequence: warehouse interior moments, staff at work, a process step. Real, behind-the-scenes. Casual storytelling.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>3 Story frames. Real photos preferred over graphics.</p></div><div class="dep"><b>Asset:</b><span>RCSL: warehouse photos.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
+<div class="top">
+ <span class="day-label">Tuesday</span>
+ <span class="pill" style="background:#C2410C">People & Culture</span>
+ <span class="fmt-badge">Photo post</span>
+ <span class="chan" style="color:#1DA1F2"><i style="background:#1DA1F2"></i>Twitter / X</span>
+ <span class="spoc-tag" style="background:#fff3e0;color:#b45309">SPOC: Client IT</span>
+</div>
+<div class="body"><h3>20,000+ people. One mission. #WorkSimplified</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p>The workforce behind India's supply chains. #RCSL #Logistics #Manpower</p></div>
+<div class="field"><div class="lab">Content direction</div><p>People-focused photo post. An on-ground team photo with a short proud caption. Client IT posts.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>One strong on-ground team photo, RCSL frame overlay.</p></div><div class="dep"><b>Asset:</b><span>RCSL: team photo.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
+<div class="top">
+ <span class="day-label">Thursday</span>
+ <span class="pill" style="background:#0E7C66">Capability</span>
+ <span class="fmt-badge">Photo post</span>
+ <span class="chan" style="color:#1DA1F2"><i style="background:#1DA1F2"></i>Twitter / X</span>
+ <span class="spoc-tag" style="background:#fff3e0;color:#b45309">SPOC: Client IT</span>
+</div>
+<div class="body"><h3>HAZ-compliant fleet. GPS-tracked. Rail rack capable. #3PL #Logistics</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p>Moving what others won't. Tracking every kilometre. #RCSL #SupplyChain</p></div>
+<div class="field"><div class="lab">Content direction</div><p>Fleet capability photo post. Visual proof of RCSL's transport infrastructure. Short, factual, credibility-led.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>Fleet photo with caption overlay graphic.</p></div><div class="dep"><b>Asset:</b><span>RCSL: fleet photo.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
+<div class="top">
+ <span class="day-label">Wednesday</span>
+ <span class="pill" style="background:#C2410C">People & Culture</span>
+ <span class="fmt-badge short">⚡ YouTube Short</span>
+ <span class="chan" style="color:#FF0000"><i style="background:#FF0000"></i>YouTube</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
+</div>
+<div class="body"><h3>People of RCSL — 60 seconds</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p>20,000+ deployed. These are the people behind the number.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>Short: repurposed from the People of RCSL employee spotlight. A quick 45–60s cut introducing the series on YouTube.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>Vertical, 60s max, captions, employee consent confirmed.</p></div><div class="dep"><b>Asset:</b><span>Repurpose from IG People of RCSL content.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div></div></div><div class="week"><div class="week-head"><span class="wk">Week 3</span><span class="focus">Near-full cadence. LinkedIn Article live. Brand intro film nears completion. YouTube Short #3.</span></div><div class="cards"><div class="card" style="border-top-color:#0E7C66;">
 <div class="top">
  <span class="day-label">Monday</span>
  <span class="pill" style="background:#0E7C66">Capability</span>
- <span class="spot-pill">3PL Spotlight</span><span class="art-badge">✍ Article</span>
+ <span class="fmt-badge art">✍ LinkedIn Article</span>
  <span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span>
- <span class="fmt">LinkedIn Article</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
 </div>
 <div class="body"><h3>Why enterprise brands are rethinking last-mile logistics</h3>
-<div class="field hook"><div class="lab">Hook</div><p>The last mile has become the most expensive, most visible, and most misunderstood part of the supply chain.</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>Company page LinkedIn Article — 600–800 words on 3PL trends and RCSL's approach. CTA: follow, share, enquire.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Article cover image: logistics/supply chain visual, RCSL branded.</p></div><div class="dep"><b>Needs:</b><span>SIS to draft; RCSL to review and approve before publishing.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
+<div class="field hook"><div class="lab">Hook / opening</div><p>The last mile has become the most expensive, most visible, and most misunderstood part of the supply chain.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>600–800 word article. 3PL trends + RCSL's operational approach. Company page flagship piece. CTA: follow, share, enquire.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>Article cover: logistics visual, RCSL branded. Author photo.</p></div><div class="dep"><b>Asset:</b><span>SIS drafts; RCSL reviews and approves before publishing.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
 <div class="top">
  <span class="day-label">Tuesday</span>
  <span class="pill" style="background:#0E7C66">Capability</span>
- <span class="spot-pill">3PL Spotlight</span>
- <span class="chan" style="color:#1DA1F2"><i style="background:#1DA1F2"></i>Twitter / X</span>
- <span class="fmt">Tweet</span>
-</div>
-<div class="body"><h3>GPS fleet credibility</h3>
-<div class="field hook"><div class="lab">Hook</div><p>Every vehicle. Every consignment. Every move — tracked in real time. That's not a premium feature. That's just how RCSL's fleet runs. #GPSTracking #Logistics #3PL</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>Tech credibility signal. No CTA.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p></p></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
-<div class="top">
- <span class="day-label">Wednesday</span>
- <span class="pill" style="background:#C2410C">People & Culture</span>
- 
+ <span class="fmt-badge">Static · single image</span>
  <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
- <span class="fmt">Carousel</span>
-</div>
-<div class="body"><h3>People of RCSL — #2</h3>
-<div class="field hook"><div class="lab">Hook</div><p>From the floor to the front line.</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>Second employee spotlight. Different role and vertical from #1. CTA: tag + share.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Same "People of RCSL" series frame.</p></div><div class="dep"><b>Needs:</b><span>RCSL: employee consent, name, role, photo, one quote.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
-<div class="top">
- <span class="day-label">Thursday</span>
- <span class="pill" style="background:#0E7C66">Capability</span>
- <span class="spot-pill">3PL Spotlight</span>
- <span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span>
- <span class="fmt">Carousel</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
 </div>
 <div class="body"><h3>The tech behind the truck</h3>
-<div class="field hook"><div class="lab">Hook</div><p>GPS tracking. Consignment visibility. HAZ compliance. The operations your client never sees — until something goes wrong.</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>Tech-in-logistics spotlight — GPS fleet, real-time tracking, HAZ-compliant handling, rail rack. CTA: learn more.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Infographic carousel: feature icons + one-line benefits.</p></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#1B4D8E;">
+<div class="field hook"><div class="lab">Hook / opening</div><p>GPS. HAZ compliance. Rail rack. Real-time tracking.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>Tech-in-logistics graphic. Highlights RCSL's fleet technology capabilities. Positions RCSL above unorganized competitors.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>Bold infographic: 4 capability icons + one-line each. Navy/white.</p></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
 <div class="top">
- <span class="day-label">Friday</span>
- <span class="pill" style="background:#1B4D8E">Proof & Performance</span>
- 
- <span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span>
- <span class="fmt">Carousel · case study</span>
+ <span class="day-label">Thursday</span>
+ <span class="pill" style="background:#C2410C">People & Culture</span>
+ <span class="fmt-badge">Static · Carousel</span>
+ <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
 </div>
-<div class="body"><h3>B2C delivery, on time</h3>
-<div class="field hook"><div class="lab">Hook</div><p>When a consumer brand ships to 50 cities in one week, someone has to be ready.</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>Second anonymized Proof post — B2C transportation at scale. Problem → execution → outcome. CTA: facing a similar challenge?</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Case-study carousel, delivery/urban imagery.</p></div><div class="dep"><b>Needs:</b><span>Client name held — insert once permission is cleared.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
+<div class="body"><h3>People of RCSL — #2</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p>From the floor to the front line.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>Second employee spotlight. Different role and vertical from #1 for range. CTA: tag + share.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>Same "People of RCSL" series frame.</p></div><div class="dep"><b>Asset:</b><span>RCSL: employee consent, name, role, photo, one quote.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
+<div class="top">
+ <span class="day-label">Saturday</span>
+ <span class="pill" style="background:#0E7C66">Capability</span>
+ <span class="fmt-badge story">◎ Story</span>
+ <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
+</div>
+<div class="body"><h3>Did you know? — 3PL facts</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p></p></div>
+<div class="field"><div class="lab">Content direction</div><p>Story series: 3 quick-fire facts about 3PL and logistics in India. Educational, tap-through format. CTA: follow for more.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>3 Story frames, stat-led, branded.</p></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
+<div class="top">
+ <span class="day-label">Wednesday</span>
+ <span class="pill" style="background:#0E7C66">Capability</span>
+ <span class="fmt-badge">Photo post</span>
+ <span class="chan" style="color:#1DA1F2"><i style="background:#1DA1F2"></i>Twitter / X</span>
+ <span class="spoc-tag" style="background:#fff3e0;color:#b45309">SPOC: Client IT</span>
+</div>
+<div class="body"><h3>Last-mile delivery, at scale. Anonymized proof post.</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p>When a consumer brand ships to 50 cities in one week, someone has to be ready. That's us. #3PL #Logistics #RCSL</p></div>
+<div class="field"><div class="lab">Content direction</div><p>Proof-aligned photo post. Anonymized outcome stat on a graphic card. Client IT posts from SIS brief.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>Stat card: outcome number + "a leading consumer brand" framing.</p></div><div class="dep"><b>Asset:</b><span>Client anonymized.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
+<div class="top">
+ <span class="day-label">Thursday</span>
+ <span class="pill" style="background:#0E7C66">Capability</span>
+ <span class="fmt-badge short">⚡ YouTube Short</span>
+ <span class="chan" style="color:#FF0000"><i style="background:#FF0000"></i>YouTube</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
+</div>
+<div class="body"><h3>RCSL's fleet — 60 seconds</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p>HAZ-compliant. GPS-tracked. Rail rack capable.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>Third Short: fleet showcase. Quick cuts of RCSL vehicles/operations. Pure visual credibility. Links back to the 3PL spotlight theme.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>Vertical, 60s max, fleet footage, text overlays, RCSL end-card.</p></div><div class="dep"><b>Asset:</b><span>RCSL: fleet footage.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div></div></div><div class="week"><div class="week-head"><span class="wk">Week 4</span><span class="focus">Full cadence. Brand intro film goes live on YouTube. PR activity. Month wrap.</span></div><div class="cards"><div class="card" style="border-top-color:#475569;">
+<div class="top">
+ <span class="day-label">Monday</span>
+ <span class="pill" style="background:#475569">Milestones</span>
+ <span class="fmt-badge">Static post · Carousel</span>
+ <span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
+</div>
+<div class="body"><h3>Month one: just the start</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p>New here? Here's what you missed — and what's next.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>Month-end recap carousel. Highlights 3PL spotlight content, signals Month 2 service theme. CTA: follow.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>Recap carousel: best-of-month visuals + teaser for Month 2.</p></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
+<div class="top">
+ <span class="day-label">Monday</span>
+ <span class="pill" style="background:#C2410C">People & Culture</span>
+ <span class="fmt-badge">Static · Carousel</span>
+ <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
+</div>
+<div class="body"><h3>People of RCSL — #3</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p>The women keeping operations running.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>Third employee spotlight. Diversity angle if authentic to the person. CTA: share.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>Same series frame.</p></div><div class="dep"><b>Asset:</b><span>RCSL: employee consent, name, role, photo, one quote.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#475569;">
+<div class="top">
+ <span class="day-label">Thursday</span>
+ <span class="pill" style="background:#475569">Milestones</span>
+ <span class="fmt-badge">Static · single image</span>
+ <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
+</div>
+<div class="body"><h3>Month 1 — a look back</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p>4 weeks. 5 channels. One goal: showing up.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>Month-end recap graphic. Summarises the month visually — post count, service spotlight, milestones. Signals the brand is consistent and active.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>Clean stat/recap graphic. RCSL branded.</p></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
 <div class="top">
  <span class="day-label">Saturday</span>
  <span class="pill" style="background:#C2410C">People & Culture</span>
- 
+ <span class="fmt-badge story">◎ Story</span>
  <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
- <span class="fmt">Static · hiring</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
 </div>
-<div class="body"><h3>We're hiring — both collars</h3>
-<div class="field hook"><div class="lab">Hook</div><p>Drivers. Operators. Logistics coordinators. We're building teams across 28 states.</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>Recruitment post — blue + white collar logistics roles. CTA: DM / apply.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Clean roles graphic, RCSL branded.</p></div><div class="dep"><b>Needs:</b><span>RCSL: current open roles + locations.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div></div></div><div class="week"><div class="week-head"><span class="wk">Week 4</span><span class="focus">Full cadence. Second YouTube upload, PR activity, month wrap and handoff to Month 2.</span></div><div class="cards"><div class="card" style="border-top-color:#0E7C66;">
-<div class="top">
- <span class="day-label">Monday</span>
- <span class="pill" style="background:#0E7C66">Capability</span>
- <span class="spot-pill">3PL Spotlight</span>
- <span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span>
- <span class="fmt">Carousel</span>
-</div>
-<div class="body"><h3>B2B to B2C — one fleet, all routes</h3>
-<div class="field hook"><div class="lab">Hook</div><p>Warehouse to distributor. Warehouse to doorstep. One partner for both.</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>B2B + B2C transportation — RCSL handles both ends. FTL/PTL + last-mile. CTA: get in touch.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Split carousel — B2B route vs B2C route, clean comparison.</p></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#475569;">
+<div class="body"><h3>We're hiring — tap to see open roles</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p></p></div>
+<div class="field"><div class="lab">Content direction</div><p>Hiring Story. 3 frames: "we're growing," open role types (drivers/operators/coordinators), and a "DM us" CTA. Blue + white collar.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>3 Story frames, bold type, RCSL brand colours.</p></div><div class="dep"><b>Asset:</b><span>RCSL: current open roles + locations.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#475569;">
 <div class="top">
  <span class="day-label">Tuesday</span>
  <span class="pill" style="background:#475569">Milestones</span>
- 
+ <span class="fmt-badge">Photo post</span>
  <span class="chan" style="color:#1DA1F2"><i style="background:#1DA1F2"></i>Twitter / X</span>
- <span class="fmt">Tweet</span>
+ <span class="spoc-tag" style="background:#fff3e0;color:#b45309">SPOC: Client IT</span>
 </div>
-<div class="body"><h3>Month-end logistics POV</h3>
-<div class="field hook"><div class="lab">Hook</div><p>The best 3PL partner isn't the one with the biggest fleet. It's the one with the most reliable system. Fleet + tech + compliance — that's the real differentiator. #3PL #Logistics</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>Closing industry POV tweet for the 3PL spotlight month.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p></p></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
-<div class="top">
- <span class="day-label">Wednesday</span>
- <span class="pill" style="background:#C2410C">People & Culture</span>
- 
- <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
- <span class="fmt">Carousel</span>
-</div>
-<div class="body"><h3>People of RCSL — #3</h3>
-<div class="field hook"><div class="lab">Hook</div><p>The women keeping operations running.</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>Third employee spotlight. Diversity angle if authentic. CTA: share.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Same series frame.</p></div><div class="dep"><b>Needs:</b><span>RCSL: employee consent, name, role, photo, one quote.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
-<div class="top">
- <span class="day-label">Thursday</span>
- <span class="pill" style="background:#C2410C">People & Culture</span>
- 
- <span class="chan" style="color:#FF0000"><i style="background:#FF0000"></i>YouTube</span>
- <span class="fmt">YouTube Short</span>
-</div>
-<div class="body"><h3>30 days of showing up (Short)</h3>
-<div class="field hook"><div class="lab">Hook</div><p>A month ago, almost no one saw this. Now they do.</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>Second YouTube upload — a short recap cut from the month's best operational and people content. Builds channel momentum ahead of Month 2.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Vertical Short, highlight montage, branded end-card with subscribe CTA.</p></div><div class="dep"><b>Needs:</b><span>Reuse footage from the month's IG/FB Reels — no new shoot needed.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#1B4D8E;border:2px dashed #e7e9ef;border-top:5px dashed #1B4D8E;">
+<div class="body"><h3>Month 1 done. Showing up every week. #RCSL #WorkSimplified</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p>6 posts. 5 channels. 1 goal: making RCSL's offline credibility visible online. Month 2 coming. #Logistics #Workforce</p></div>
+<div class="field"><div class="lab">Content direction</div><p>Month-end photo post. A clean "we showed up" graphic with the month in numbers. Client IT posts.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>Recap graphic: platform icons + post counts.</p></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#1B4D8E;border:2px dashed #e7e9ef;border-top:5px dashed #1B4D8E;">
 <div class="top">
  <span class="day-label">Thursday</span>
  <span class="pill" style="background:#1B4D8E">Proof & Performance</span>
- 
+ <span class="fmt-badge">PR Activity</span>
  <span class="chan" style="color:#C8102E"><i style="background:#C8102E"></i>PR Activity</span>
- <span class="fmt">PR Activity — placeholder</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
 </div>
-<div class="body"><h3>Month 1 PR — to be briefed by RCSL</h3><div class="pr-block">📋 Placeholder — RCSL to brief SIS. Slot fills once brief is received.</div><div class="dep"><b>Needs:</b><span>RCSL to brief SIS. All details TBD.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#475569;">
+<div class="body"><h3>Month 1 PR — to be briefed by RCSL</h3><div class="pr-block">📋 Placeholder — RCSL to brief SIS. Slot fills once brief received.</div><div class="dep"><b>Asset:</b><span>RCSL to brief SIS.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#475569;">
 <div class="top">
- <span class="day-label">Friday</span>
+ <span class="day-label">Wednesday</span>
  <span class="pill" style="background:#475569">Milestones</span>
- 
- <span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span>
- <span class="fmt">Single graphic</span>
+ <span class="fmt-badge long">🎬 Long-form · Brand intro film</span>
+ <span class="chan" style="color:#FF0000"><i style="background:#FF0000"></i>YouTube</span>
+ <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
 </div>
-<div class="body"><h3>Month one: just the start</h3>
-<div class="field hook"><div class="lab">Hook</div><p>New here? Here's what you missed — and what's next.</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>Month-end recap — highlights 3PL content, signals Month 2. CTA: follow.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Recap graphic with month highlights and Month 2 teaser.</p></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
-<div class="top">
- <span class="day-label">Saturday</span>
- <span class="pill" style="background:#C2410C">People & Culture</span>
- 
- <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
- <span class="fmt">Reel · recap</span>
+<div class="body"><h3>Riddhi Corporate Services — Who We Are</h3>
+<div class="field hook"><div class="lab">Hook / opening</div><p>Work Simplified.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>2–3 minute brand introduction film. RCSL's story, scale, and people — the evergreen channel anchor. Covers: who RCSL is, 20,000+ deployed across 28 states, 15+ years, in-house technology, operations across verticals, the people on the ground. No client names. Scripted VO. Pinned as channel trailer on upload.</p></div>
+<div class="field"><div class="lab">Visual brief</div><p>Professional video: mix of site footage, team visuals, operations B-roll. Clean VO. RCSL logo open + close. 16:9 for YouTube, also clipped for LinkedIn/IG.</p></div><div class="dep"><b>Asset:</b><span>RCSL: full shoot required. SIS: script + production brief. Approve script before shoot.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div></div></div>
+</section>
+
 </div>
-<div class="body"><h3>30 days of showing up</h3>
-<div class="field hook"><div class="lab">Hook</div><p>A month ago, almost no one saw this. Now they do.</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>Month recap Reel — best operational moments + forward tease for Month 2. CTA: follow.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Highlight montage Reel from best footage/stills of the month.</p></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#475569;">
-<div class="top">
- <span class="day-label">Sunday</span>
- <span class="pill" style="background:#475569">Milestones</span>
- 
- <span class="chan" style="color:#1DA1F2"><i style="background:#1DA1F2"></i>Twitter / X</span>
- <span class="fmt">Tweet</span>
-</div>
-<div class="body"><h3>Month 1 wrap</h3>
-<div class="field hook"><div class="lab">Hook</div><p>Month 1 done. Transportation & 3PL spotlight complete. Next month: a new service, the same depth. Follow to stay with us. #RCSL #WorkSimplified</p></div>
-<div class="field"><div class="lab">Caption direction</div><p>Clean month-end Twitter wrap. Sets up Month 2.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p></p></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;" title="Click to update status">
-<span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div></div></div></section>
-</div>
-<footer class="foot"><div class="wrap"><h2>Dependencies &amp; notes</h2><ul>
-<li><b>Client permissions</b>All Proof posts run anonymized until RCSL clears names. Names drop straight in — no rewrite needed.</li>
-<li><b>3PL asset list</b>Fleet photos, HAZ vehicle imagery, operations footage needed before Week 1.</li>
-<li><b>YouTube access</b>SIS needs channel admin access to action the reactivation checklist and upload.</li>
-<li><b>PR brief</b>Week 4 placeholder. SIS executes once RCSL provides the brief.</li>
-<li><b>People of RCSL series</b>Three spotlights this month. Employee consent, name, role, photo, one quote per entry.</li>
-<li><b>CXO LinkedIn calendar</b>Built separately. Leadership POV article sits there, not here.</li>
-<li><b>Service taxonomy</b>Capability posts use theme-level naming. Exact labels finalize once taxonomy is locked.</li>
-<li><b>Performance ranges</b>All figures in Section 02 are directional percentages, not commitments. See caveat note above.</li>
+
+<footer class="foot"><div class="wrap"><h2>Key notes</h2><ul>
+<li><b>Twitter / X — Client IT SPOC</b>SIS delivers copy-ready briefs (text + asset) 48 hours ahead of each scheduled post. Client IT team handles actual publishing. All 6 Twitter posts follow this workflow.</li>
+<li><b>YouTube long-form — pre-production starts Week 1</b>The brand intro film (2–3 min) requires a shoot. Script to be approved by RCSL before shoot date. Target upload: Week 4.</li>
+<li><b>Client permissions</b>All Proof posts run anonymized until RCSL clears specific client names for public use.</li>
+<li><b>IG + FB — mirrored content</b>Clubbed as one entry in this calendar. Each entry counts as 1 IG post + 1 FB post = 2 published. Total 13 entries = 26 published across both platforms.</li>
+<li><b>CXO LinkedIn calendar</b>Separate document. Not included in these post counts.</li>
+<li><b>PR activity</b>RCSL to brief SIS. Placeholder held in Week 4.</li>
 </ul>
-<p class="fin">Prepared by Say It Social for Riddhi Corporate Services Limited · Month 1 — Foundation Phase · Company calendar only.</p>
+<p class="fin">Prepared by Say It Social for Riddhi Corporate Services Limited · Month 1 — Foundation Phase · Revised post counts per platform confirmation · Company calendar only.</p>
 </div></footer>
 <script>
 const STATUSES=[
