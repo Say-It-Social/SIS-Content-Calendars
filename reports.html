@@ -266,6 +266,58 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
 .ps-badge-tw{background:rgba(255,255,255,0.08);color:#CCC;}
 .ps-badge-posts{background:rgba(34,197,94,0.1);color:var(--green);}
 .ps-badge-content{background:rgba(167,139,250,0.1);color:var(--purple);}
+
+/* ── ANALYTICS BUTTONS ── */
+.analytics-strip{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px;}
+.analytics-strip-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-right:4px;white-space:nowrap;}
+.an-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;border:none;font-family:'Plus Jakarta Sans',sans-serif;transition:all .15s;text-decoration:none;white-space:nowrap;}
+.an-btn:hover{filter:brightness(1.15);}
+.an-btn-igfb{background:linear-gradient(135deg,rgba(225,48,108,0.15),rgba(24,119,242,0.15));color:#E1306C;border:1px solid rgba(225,48,108,0.3);}
+.an-btn-li{background:rgba(10,102,194,0.12);color:#4DA3FF;border:1px solid rgba(10,102,194,0.3);}
+.an-btn-yt{background:rgba(255,0,0,0.1);color:#FF6060;border:1px solid rgba(255,0,0,0.25);}
+.an-btn-tw{background:rgba(255,255,255,0.06);color:#CCC;border:1px solid rgba(255,255,255,0.15);}
+.an-btn-config{background:rgba(107,122,153,0.1);color:var(--muted);border:1px solid var(--border);margin-left:auto;}
+.an-btn-config:hover{color:var(--text);border-color:var(--border2);}
+.an-btn.disabled{opacity:0.4;cursor:not-allowed;pointer-events:none;}
+
+/* IMPORT BUTTONS IN CH-ACTIONS */
+.ch-btn-import-all{background:rgba(167,139,250,.1);color:var(--purple);border:1px solid rgba(167,139,250,.3);}
+.ch-btn-import-all:hover{background:rgba(167,139,250,.2);}
+
+/* ── PROFILE SETTINGS MODAL ── */
+.profile-modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:600;align-items:center;justify-content:center;backdrop-filter:blur(6px);}
+.profile-modal-bg.show{display:flex;}
+.profile-modal{background:var(--navy2);border:1px solid var(--border2);border-radius:18px;padding:32px;width:560px;max-width:95vw;max-height:88vh;overflow-y:auto;position:relative;box-shadow:0 32px 80px rgba(0,0,0,.6);}
+.pm-title{font-family:'Instrument Serif',serif;font-size:20px;color:var(--white);margin-bottom:4px;}
+.pm-sub{font-size:12px;color:var(--muted);margin-bottom:22px;line-height:1.6;}
+.pm-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:16px;color:var(--muted);cursor:pointer;}
+.pm-field{display:flex;flex-direction:column;gap:5px;margin-bottom:14px;}
+.pm-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);}
+.pm-label-note{font-size:9px;color:var(--muted2);font-weight:400;letter-spacing:0;text-transform:none;margin-top:1px;}
+.pm-input-wrap{display:flex;gap:8px;align-items:center;}
+.pm-input{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:12px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;outline:none;transition:border-color .2s;flex:1;}
+.pm-input:focus{border-color:var(--blue);}
+.pm-input::placeholder{color:var(--muted2);}
+.pm-input-icon{font-size:16px;flex-shrink:0;width:28px;text-align:center;}
+.pm-save{padding:10px 24px;border-radius:9px;border:none;background:var(--blue);font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;width:100%;margin-top:8px;}
+.pm-save:hover{background:#2979FF;}
+.pm-divider{height:1px;background:var(--border);margin:18px 0;}
+
+/* ── EXTENDED IMPORT MODAL ── */
+.im-platform-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.im-ptab{padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:var(--surface);color:var(--muted);transition:all .15s;font-family:'Plus Jakarta Sans',sans-serif;}
+.im-ptab:hover{border-color:var(--border2);color:var(--text);}
+.im-ptab.active-ig{background:rgba(225,48,108,0.12);border-color:rgba(225,48,108,0.4);color:#E1306C;}
+.im-ptab.active-fb{background:rgba(24,119,242,0.12);border-color:rgba(24,119,242,0.4);color:#1877F2;}
+.im-ptab.active-li{background:rgba(10,102,194,0.12);border-color:rgba(10,102,194,0.4);color:#4DA3FF;}
+.im-ptab.active-yt{background:rgba(255,0,0,0.1);border-color:rgba(255,0,0,0.3);color:#FF6060;}
+.im-ptab.active-tw{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.2);color:#CCC;}
+.im-manual-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:14px;}
+.im-manual-field{display:flex;flex-direction:column;gap:4px;}
+.im-manual-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);}
+.im-manual-input{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:13px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;outline:none;transition:border-color .2s;}
+.im-manual-input:focus{border-color:var(--blue);}
+.im-manual-input::placeholder{color:var(--muted2);}
 </style>
 </head>
 <body>
@@ -273,7 +325,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-  import { getFirestore, doc, setDoc, collection, getDocs }
+  import { getFirestore, doc, setDoc, getDoc, collection, getDocs }
     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
   const app = initializeApp({
@@ -297,6 +349,11 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
 
   window._signOut=async()=>{await signOut(auth);window.location.href="login.html";};
   window._saveMonthData=async(cid,mk,data)=>await setDoc(doc(db,"reports",cid,"months",mk),data,{merge:true});
+  window._saveProfileUrls=async(cid,urls)=>await setDoc(doc(db,"reports",cid,"settings","profiles"),urls,{merge:true});
+  window._loadProfileUrls=async(cid)=>{
+    try{const d=await getDocs(collection(db,"reports",cid,"settings"));let u={};d.forEach(doc=>{if(doc.id==="profiles") u=doc.data();});return u;}
+    catch(e){return {};}
+  };
   window._loadClientData=async(cid)=>{
     const snap=await getDocs(collection(db,"reports",cid,"months"));
     const m={};snap.forEach(d=>m[d.id]=d.data());return m;
@@ -366,14 +423,25 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
           <div class="ch-client" id="rClientName">—</div>
           <div class="ch-period" id="rPeriod">—</div>
         </div>
-        <div class="ch-actions" id="chActions">
-          <button class="ch-btn ch-btn-entry" onclick="toggleEntry()" id="entryToggleBtn">+ Add Month Data</button>
-          <button class="ch-btn" onclick="openImportModal()" style="background:rgba(167,139,250,.1);color:var(--purple);border:1px solid rgba(167,139,250,.3);">⬆ Import Meta CSVs</button>
-          <input type="file" id="csvImportBtn" multiple accept=".csv" style="display:none" onchange="handleMetaCSVImport(event)"/>
-          <button class="ch-btn" onclick="document.getElementById('adsImportBtn').click()" style="background:rgba(245,166,35,.1);color:var(--amber);border:1px solid rgba(245,166,35,.3);">💰 Import Ads CSV</button>
-          <input type="file" id="adsImportBtn" accept=".csv" style="display:none" onchange="handleAdsCSVImport(event)"/>
-          <button class="ch-btn ch-btn-share" onclick="copyShareLink()">🔗 Share</button>
-          <button class="ch-btn ch-btn-pdf" onclick="window.print()">⬇ PDF</button>
+        <div class="ch-actions" id="chActions" style="flex-direction:column;align-items:flex-start;gap:10px;">
+          <!-- Row 1: Primary actions -->
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="ch-btn ch-btn-entry" onclick="toggleEntry()" id="entryToggleBtn">+ Add Month Data</button>
+            <button class="ch-btn ch-btn-import-all" onclick="openUnifiedImport()">⬆ Import Data</button>
+            <input type="file" id="csvImportBtn" multiple accept=".csv" style="display:none" onchange="handleMetaCSVImport(event)"/>
+            <input type="file" id="adsImportBtn" accept=".csv" style="display:none" onchange="handleAdsCSVImport(event)"/>
+            <button class="ch-btn ch-btn-share" onclick="copyShareLink()">🔗 Share</button>
+            <button class="ch-btn ch-btn-pdf" onclick="window.print()">⬇ PDF</button>
+          </div>
+          <!-- Row 2: Analytics quick links -->
+          <div class="analytics-strip" id="analyticsStrip">
+            <span class="analytics-strip-label">Analytics →</span>
+            <a class="an-btn an-btn-igfb disabled" id="anBtnIGFB" href="#" target="_blank" rel="noopener">📸📘 IG &amp; FB</a>
+            <a class="an-btn an-btn-li disabled" id="anBtnLI" href="#" target="_blank" rel="noopener">💼 LinkedIn</a>
+            <a class="an-btn an-btn-yt disabled" id="anBtnYT" href="#" target="_blank" rel="noopener">▶ YouTube</a>
+            <a class="an-btn an-btn-tw disabled" id="anBtnTW" href="#" target="_blank" rel="noopener">𝕏 Twitter</a>
+            <button class="an-btn an-btn-config" onclick="openProfileModal()">⚙ Configure Profiles</button>
+          </div>
         </div>
       </div>
       <div class="month-tabs" id="monthTabs"></div>
@@ -744,6 +812,12 @@ async function loadReport(){
   try{document.getElementById('postCountSection').style.display='none';}catch(e){}
   try{document.getElementById('contentBreakdownSection').style.display='none';}catch(e){}
   try{document.getElementById('multiPlatformSection').style.display='none';}catch(e){}
+  // Reset analytics buttons to disabled on client switch
+  _profileUrls={};
+  ['anBtnIGFB','anBtnLI','anBtnYT','anBtnTW'].forEach(id=>{
+    const btn=document.getElementById(id);
+    if(btn){btn.classList.add('disabled');btn.href='#';btn.style.opacity='';}
+  });
   try{document.getElementById('monthNotes').style.display='none';}catch(e){}
   Object.values(_charts).forEach(c=>{try{c.destroy();}catch(e){}});
   _charts={};
@@ -754,6 +828,8 @@ async function loadReport(){
   document.getElementById('reportArea').classList.add('show');
   // Fetch fresh from Firebase
   if(window._loadClientData) _months=await window._loadClientData(cid);
+  // Load profile URLs for analytics buttons
+  if(window._loadProfileUrls){ _profileUrls=await window._loadProfileUrls(cid)||{}; updateAnalyticsButtons(); }
   // Reset ads data for this client
   _adsData = null;
   document.getElementById('adsSection').style.display = 'none';
@@ -1213,6 +1289,172 @@ function renderContentBreakdown(){
       }
     }
   });
+}
+
+
+// ══════════════════════════════════════
+// PROFILE SETTINGS + ANALYTICS BUTTONS
+// ══════════════════════════════════════
+let _profileUrls = {};
+
+async function openProfileModal(){
+  if(!_cid){showToast('Select a client first');return;}
+  // Load existing URLs from Firebase
+  if(window._loadProfileUrls){
+    _profileUrls = await window._loadProfileUrls(_cid) || {};
+  }
+  document.getElementById('url_igfb').value = _profileUrls.igfb||'';
+  document.getElementById('url_li').value   = _profileUrls.li||'';
+  document.getElementById('url_yt').value   = _profileUrls.yt||'';
+  document.getElementById('url_tw').value   = _profileUrls.tw||'';
+  document.getElementById('profileModalBg').classList.add('show');
+}
+function closeProfileModal(){
+  document.getElementById('profileModalBg').classList.remove('show');
+}
+async function saveProfileUrls(){
+  if(!_cid){showToast('No client selected');return;}
+  _profileUrls = {
+    igfb: document.getElementById('url_igfb').value.trim(),
+    li:   document.getElementById('url_li').value.trim(),
+    yt:   document.getElementById('url_yt').value.trim(),
+    tw:   document.getElementById('url_tw').value.trim(),
+  };
+  if(window._saveProfileUrls) await window._saveProfileUrls(_cid, _profileUrls);
+  updateAnalyticsButtons();
+  closeProfileModal();
+  showToast('✅ Profile links saved!');
+}
+function updateAnalyticsButtons(){
+  const defs = [
+    {id:'anBtnIGFB', key:'igfb', fallback:'https://business.facebook.com/latest/insights/'},
+    {id:'anBtnLI',   key:'li',   fallback:'https://www.linkedin.com/analytics/'},
+    {id:'anBtnYT',   key:'yt',   fallback:'https://studio.youtube.com/'},
+    {id:'anBtnTW',   key:'tw',   fallback:'https://analytics.twitter.com/'},
+  ];
+  defs.forEach(({id,key,fallback})=>{
+    const btn = document.getElementById(id);
+    if(!btn) return;
+    const url = _profileUrls[key];
+    if(url){
+      btn.href = url;
+      btn.classList.remove('disabled');
+    } else {
+      btn.href = fallback;
+      btn.classList.remove('disabled');
+      btn.style.opacity='0.6';
+    }
+  });
+}
+
+// ══════════════════════════════════════
+// UNIFIED IMPORT MODAL
+// ══════════════════════════════════════
+let _uiTab = null;
+let _uiCSVData = {ig:{}, fb:{}};
+
+function openUnifiedImport(){
+  if(!_cid){showToast('Select a client first');return;}
+  document.getElementById('unifiedImportBg').classList.add('show');
+  setUITab('ig');
+}
+function closeUnifiedImport(){
+  document.getElementById('unifiedImportBg').classList.remove('show');
+  _uiTab=null;
+  _uiCSVData={ig:{},fb:{}};
+}
+function setUITab(tab){
+  _uiTab=tab;
+  ['ig','fb','li','yt','tw','ads'].forEach(t=>{
+    const el=document.getElementById('ui-panel-'+t);
+    const btn=document.getElementById('uitab-'+t);
+    if(el) el.style.display=t===tab?'block':'none';
+    if(btn){
+      btn.className='im-ptab';
+      if(t===tab) btn.classList.add('active-'+t);
+    }
+  });
+  // Pre-fill month for manual tabs
+  if(['li','yt','tw'].includes(tab)){
+    const mk=_active||'';
+    const el=document.getElementById('ui_'+tab+'_month');
+    if(el && mk) el.value=mk;
+  }
+}
+
+function handleUICSVUpload(event, plat){
+  const files = Array.from(event.target.files);
+  if(!files.length) return;
+  const countEl = document.getElementById('ui'+plat.toUpperCase()+'FileCount');
+  if(countEl) countEl.textContent = files.length+' file'+(files.length>1?'s':'')+' selected';
+  const saveBtn = document.getElementById('ui'+plat.toUpperCase()+'SaveBtn');
+
+  // Process CSVs using existing parseMetaCSV logic
+  Promise.all(files.map(f=>f.text())).then(texts=>{
+    const combined={};
+    texts.forEach(txt=>{
+      const rows=parseMetaCSV(txt,plat);
+      rows.forEach(({month,data})=>{
+        if(!combined[month]) combined[month]={};
+        Object.entries(data).forEach(([k,v])=>combined[month][k]=(combined[month][k]||0)+v);
+      });
+    });
+    _uiCSVData[plat]=combined;
+    const months=Object.keys(combined).sort().reverse();
+    const previewEl=document.getElementById('ui'+plat.toUpperCase()+'Preview');
+    if(previewEl && months.length){
+      previewEl.style.display='block';
+      const fields=['views','reach','interactions','link_clicks','profile_visits','follows'];
+      previewEl.innerHTML=`<div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Preview — ${months.length} month(s)</div>
+        <div class="im-preview"><table>
+          <thead><tr><th>Month</th>${fields.map(f=>'<th>'+f.replace('_',' ')+'</th>').join('')}</tr></thead>
+          <tbody>${months.map(m=>{const d=combined[m];return'<tr><td style="font-weight:700">'+fmtMonth(m)+'</td>'+fields.map(f=>'<td>'+(fmt(d[plat+'_'+f])||'—')+'</td>').join('')+'</tr>';}).join('')}</tbody>
+        </table></div>`;
+    }
+    if(saveBtn){saveBtn.style.display='block';}
+  }).catch(e=>{console.error(e);showToast('Error reading files');});
+}
+
+async function saveUIImport(plat){
+  const data = _uiCSVData[plat]||{};
+  const months = Object.keys(data);
+  if(!months.length){showToast('No data to save');return;}
+  for(const mk of months){
+    if(window._saveMonthData){
+      _months[mk]=Object.assign(_months[mk]||{},data[mk]);
+      await window._saveMonthData(_cid,mk,data[mk]);
+    }
+  }
+  closeUnifiedImport();
+  renderAll();
+  showToast('✅ '+months.length+' month(s) imported for '+(plat==='ig'?'Instagram':'Facebook')+'!');
+}
+
+async function saveManualImport(plat){
+  const monthEl=document.getElementById('ui_'+plat+'_month');
+  const mk=monthEl?monthEl.value:'';
+  if(!mk){showToast('Please select a month');return;}
+
+  const fieldMap={
+    li:['impressions','reactions','comments','reposts','clicks','follows'],
+    yt:['views','watch_time','subscribers','likes','comments','shorts_views'],
+    tw:['impressions','likes','retweets','replies','clicks','follows'],
+  };
+  const fields=fieldMap[plat]||[];
+  const data={};
+  fields.forEach(f=>{
+    const el=document.getElementById('ui_'+plat+'_'+f);
+    if(el && el.value) data[plat+'_'+f]=+el.value||0;
+  });
+
+  if(!Object.keys(data).length){showToast('No data entered');return;}
+  if(window._saveMonthData){
+    _months[mk]=Object.assign(_months[mk]||{},data);
+    await window._saveMonthData(_cid,mk,data);
+  }
+  closeUnifiedImport();
+  renderAll();
+  showToast('✅ '+fmtMonth(mk)+' data saved for '+plat.toUpperCase()+'!');
 }
 
 function showToast(msg){
@@ -1750,5 +1992,197 @@ window.handleMetaCSVImport = handleMetaCSVImport;
 window.openImportModal     = openImportModal;
 window.setImportPlatform   = setImportPlatform;
 </script>
+
+<!-- ══════════════════════════════════
+     PROFILE SETTINGS MODAL
+══════════════════════════════════ -->
+<div class="profile-modal-bg" id="profileModalBg" onclick="if(event.target===this)closeProfileModal()">
+  <div class="profile-modal">
+    <button class="pm-close" onclick="closeProfileModal()">✕</button>
+    <div class="pm-title">Configure Analytics Links</div>
+    <div class="pm-sub">Add the direct analytics URLs for each platform. These are saved per client and open native analytics dashboards in a new tab.</div>
+
+    <div class="pm-field">
+      <label class="pm-label">📸📘 Instagram &amp; Facebook
+        <span class="pm-label-note">Meta Business Suite → Insights URL</span>
+      </label>
+      <div class="pm-input-wrap">
+        <span class="pm-input-icon">🔗</span>
+        <input class="pm-input" id="url_igfb" type="url" placeholder="https://business.facebook.com/latest/insights/..."/>
+      </div>
+    </div>
+
+    <div class="pm-field">
+      <label class="pm-label">💼 LinkedIn
+        <span class="pm-label-note">LinkedIn Company Page → Analytics</span>
+      </label>
+      <div class="pm-input-wrap">
+        <span class="pm-input-icon">🔗</span>
+        <input class="pm-input" id="url_li" type="url" placeholder="https://www.linkedin.com/company/[name]/admin/analytics/..."/>
+      </div>
+    </div>
+
+    <div class="pm-field">
+      <label class="pm-label">▶ YouTube
+        <span class="pm-label-note">YouTube Studio → Analytics</span>
+      </label>
+      <div class="pm-input-wrap">
+        <span class="pm-input-icon">🔗</span>
+        <input class="pm-input" id="url_yt" type="url" placeholder="https://studio.youtube.com/channel/[id]/analytics/..."/>
+      </div>
+    </div>
+
+    <div class="pm-field">
+      <label class="pm-label">𝕏 Twitter / X
+        <span class="pm-label-note">X Analytics → analytics.twitter.com</span>
+      </label>
+      <div class="pm-input-wrap">
+        <span class="pm-input-icon">🔗</span>
+        <input class="pm-input" id="url_tw" type="url" placeholder="https://analytics.twitter.com/user/[handle]/..."/>
+      </div>
+    </div>
+
+    <div class="pm-divider"></div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:14px;">💡 Tip: Copy the URL directly from your browser while on the analytics page of each platform. Links are saved per client to Firebase.</div>
+
+    <button class="pm-save" onclick="saveProfileUrls()">Save Profile Links</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     UNIFIED IMPORT MODAL
+══════════════════════════════════ -->
+<div class="import-modal-bg" id="unifiedImportBg" onclick="if(event.target===this)closeUnifiedImport()">
+  <div class="import-modal" style="width:640px;">
+    <button class="im-close" onclick="closeUnifiedImport()">✕</button>
+    <div class="im-title">Import Platform Data</div>
+    <div class="im-sub">Select a platform to import data. For Meta (IG &amp; FB), upload CSV files from Meta Insights. For LinkedIn, YouTube, and Twitter, enter data manually — native export formats vary and are entered directly.</div>
+
+    <!-- Platform tabs -->
+    <div class="im-platform-tabs" id="uiPlatformTabs">
+      <button class="im-ptab" id="uitab-ig" onclick="setUITab('ig')">📸 Instagram</button>
+      <button class="im-ptab" id="uitab-fb" onclick="setUITab('fb')">📘 Facebook</button>
+      <button class="im-ptab" id="uitab-li" onclick="setUITab('li')">💼 LinkedIn</button>
+      <button class="im-ptab" id="uitab-yt" onclick="setUITab('yt')">▶ YouTube</button>
+      <button class="im-ptab" id="uitab-tw" onclick="setUITab('tw')">𝕏 Twitter / X</button>
+      <button class="im-ptab" id="uitab-ads" onclick="setUITab('ads')" style="color:var(--amber);">💰 Meta Ads</button>
+    </div>
+
+    <!-- IG / FB — CSV upload (existing flow) -->
+    <div id="ui-panel-ig" class="ui-panel" style="display:none;">
+      <div style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6;">Upload CSV files exported from <strong style="color:var(--white);">Meta Business Suite → Insights → Export</strong>. Daily rows are automatically summed into monthly totals.</div>
+      <div class="im-files" id="uiIGFileList" style="min-height:48px;border:1.5px dashed var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;padding:14px;margin-bottom:12px;">
+        <span style="font-size:12px;color:var(--muted);">Drop CSV files here or click Browse</span>
+      </div>
+      <input type="file" id="uiIGFileInput" multiple accept=".csv" style="display:none" onchange="handleUICSVUpload(event,'ig')"/>
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:14px;">
+        <button onclick="document.getElementById('uiIGFileInput').click()" style="padding:8px 18px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:12px;font-weight:600;cursor:pointer;font-family:Plus Jakarta Sans,sans-serif;">Browse Files</button>
+        <span id="uiIGFileCount" style="font-size:11px;color:var(--muted);"></span>
+      </div>
+      <div id="uiIGPreview" style="display:none;margin-bottom:12px;"></div>
+      <div class="im-actions">
+        <button class="im-cancel" onclick="closeUnifiedImport()">Cancel</button>
+        <button class="im-save" id="uiIGSaveBtn" style="display:none;" onclick="saveUIImport('ig')">Save Instagram Data</button>
+      </div>
+    </div>
+
+    <div id="ui-panel-fb" class="ui-panel" style="display:none;">
+      <div style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6;">Upload CSV files from <strong style="color:var(--white);">Meta Business Suite → Insights → Export</strong> for Facebook Page data.</div>
+      <div class="im-files" id="uiFBFileList" style="min-height:48px;border:1.5px dashed var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;padding:14px;margin-bottom:12px;">
+        <span style="font-size:12px;color:var(--muted);">Drop CSV files here or click Browse</span>
+      </div>
+      <input type="file" id="uiFBFileInput" multiple accept=".csv" style="display:none" onchange="handleUICSVUpload(event,'fb')"/>
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:14px;">
+        <button onclick="document.getElementById('uiFBFileInput').click()" style="padding:8px 18px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:12px;font-weight:600;cursor:pointer;font-family:Plus Jakarta Sans,sans-serif;">Browse Files</button>
+        <span id="uiFBFileCount" style="font-size:11px;color:var(--muted);"></span>
+      </div>
+      <div id="uiFBPreview" style="display:none;margin-bottom:12px;"></div>
+      <div class="im-actions">
+        <button class="im-cancel" onclick="closeUnifiedImport()">Cancel</button>
+        <button class="im-save" id="uiFBSaveBtn" style="display:none;" onclick="saveUIImport('fb')">Save Facebook Data</button>
+      </div>
+    </div>
+
+    <!-- LinkedIn manual entry -->
+    <div id="ui-panel-li" class="ui-panel" style="display:none;">
+      <div style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6;">Go to <strong style="color:#4DA3FF;">LinkedIn Company Page → Analytics</strong> and copy the numbers below. Select the month period in LinkedIn Analytics before reading the values.</div>
+      <div class="sel-field" style="max-width:180px;margin-bottom:16px;">
+        <label class="entry-label">Month</label>
+        <input class="im-manual-input" id="ui_li_month" type="month"/>
+      </div>
+      <div class="im-manual-grid">
+        <div class="im-manual-field"><label class="im-manual-label">Impressions</label><input class="im-manual-input" id="ui_li_impressions" type="number" placeholder="e.g. 12000"/></div>
+        <div class="im-manual-field"><label class="im-manual-label">Reactions</label><input class="im-manual-input" id="ui_li_reactions" type="number" placeholder="e.g. 340"/></div>
+        <div class="im-manual-field"><label class="im-manual-label">Comments</label><input class="im-manual-input" id="ui_li_comments" type="number" placeholder="e.g. 28"/></div>
+        <div class="im-manual-field"><label class="im-manual-label">Reposts</label><input class="im-manual-input" id="ui_li_reposts" type="number" placeholder="e.g. 14"/></div>
+        <div class="im-manual-field"><label class="im-manual-label">Clicks</label><input class="im-manual-input" id="ui_li_clicks" type="number" placeholder="e.g. 180"/></div>
+        <div class="im-manual-field"><label class="im-manual-label">New Followers</label><input class="im-manual-input" id="ui_li_follows" type="number" placeholder="e.g. 22"/></div>
+      </div>
+      <div class="im-actions">
+        <button class="im-cancel" onclick="closeUnifiedImport()">Cancel</button>
+        <button class="im-save" style="display:block;" onclick="saveManualImport('li')">Save LinkedIn Data</button>
+      </div>
+    </div>
+
+    <!-- YouTube manual entry -->
+    <div id="ui-panel-yt" class="ui-panel" style="display:none;">
+      <div style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6;">Go to <strong style="color:#FF6060;">YouTube Studio → Analytics</strong>, set the date range to the full month, and copy the numbers below.</div>
+      <div class="sel-field" style="max-width:180px;margin-bottom:16px;">
+        <label class="entry-label">Month</label>
+        <input class="im-manual-input" id="ui_yt_month" type="month"/>
+      </div>
+      <div class="im-manual-grid">
+        <div class="im-manual-field"><label class="im-manual-label">Views</label><input class="im-manual-input" id="ui_yt_views" type="number" placeholder="e.g. 4800"/></div>
+        <div class="im-manual-field"><label class="im-manual-label">Watch Time (mins)</label><input class="im-manual-input" id="ui_yt_watch_time" type="number" placeholder="e.g. 18500"/></div>
+        <div class="im-manual-field"><label class="im-manual-label">Subscribers Gained</label><input class="im-manual-input" id="ui_yt_subscribers" type="number" placeholder="e.g. 34"/></div>
+        <div class="im-manual-field"><label class="im-manual-label">Likes</label><input class="im-manual-input" id="ui_yt_likes" type="number" placeholder="e.g. 96"/></div>
+        <div class="im-manual-field"><label class="im-manual-label">Comments</label><input class="im-manual-input" id="ui_yt_comments" type="number" placeholder="e.g. 12"/></div>
+        <div class="im-manual-field"><label class="im-manual-label">Shorts Views</label><input class="im-manual-input" id="ui_yt_shorts_views" type="number" placeholder="e.g. 2200"/></div>
+      </div>
+      <div class="im-actions">
+        <button class="im-cancel" onclick="closeUnifiedImport()">Cancel</button>
+        <button class="im-save" style="display:block;" onclick="saveManualImport('yt')">Save YouTube Data</button>
+      </div>
+    </div>
+
+    <!-- Twitter/X manual entry -->
+    <div id="ui-panel-tw" class="ui-panel" style="display:none;">
+      <div style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6;">Go to <strong style="color:#CCC;">analytics.twitter.com</strong>, set the date range to the full month, and enter the summary totals below.</div>
+      <div class="sel-field" style="max-width:180px;margin-bottom:16px;">
+        <label class="entry-label">Month</label>
+        <input class="im-manual-input" id="ui_tw_month" type="month"/>
+      </div>
+      <div class="im-manual-grid">
+        <div class="im-manual-field"><label class="im-manual-label">Impressions</label><input class="im-manual-input" id="ui_tw_impressions" type="number" placeholder="e.g. 5200"/></div>
+        <div class="im-manual-field"><label class="im-manual-label">Likes</label><input class="im-manual-input" id="ui_tw_likes" type="number" placeholder="e.g. 84"/></div>
+        <div class="im-manual-field"><label class="im-manual-label">Retweets</label><input class="im-manual-input" id="ui_tw_retweets" type="number" placeholder="e.g. 18"/></div>
+        <div class="im-manual-field"><label class="im-manual-label">Replies</label><input class="im-manual-input" id="ui_tw_replies" type="number" placeholder="e.g. 9"/></div>
+        <div class="im-manual-field"><label class="im-manual-label">Link Clicks</label><input class="im-manual-input" id="ui_tw_clicks" type="number" placeholder="e.g. 42"/></div>
+        <div class="im-manual-field"><label class="im-manual-label">Followers Gained</label><input class="im-manual-input" id="ui_tw_follows" type="number" placeholder="e.g. 11"/></div>
+      </div>
+      <div class="im-actions">
+        <button class="im-cancel" onclick="closeUnifiedImport()">Cancel</button>
+        <button class="im-save" style="display:block;" onclick="saveManualImport('tw')">Save Twitter / X Data</button>
+      </div>
+    </div>
+
+    <!-- Meta Ads CSV (existing flow bridged here) -->
+    <div id="ui-panel-ads" class="ui-panel" style="display:none;">
+      <div style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6;">Upload the <strong style="color:var(--amber);">Meta Ads Manager</strong> export CSV. Go to Ads Manager → Reports → Export CSV (Campaigns or Ad Sets level).</div>
+      <div class="im-files" style="min-height:48px;border:1.5px dashed rgba(245,166,35,0.3);border-radius:10px;display:flex;align-items:center;justify-content:center;padding:14px;margin-bottom:12px;">
+        <span style="font-size:12px;color:var(--muted);">Drop Ads Manager CSV here or click Browse</span>
+      </div>
+      <input type="file" id="uiAdsFileInput" accept=".csv" style="display:none" onchange="handleAdsCSVImport(event);closeUnifiedImport();"/>
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:14px;">
+        <button onclick="document.getElementById('uiAdsFileInput').click()" style="padding:8px 18px;border-radius:8px;border:1px solid rgba(245,166,35,0.3);background:rgba(245,166,35,0.08);color:var(--amber);font-size:12px;font-weight:600;cursor:pointer;font-family:Plus Jakarta Sans,sans-serif;">Browse Ads CSV</button>
+      </div>
+      <div class="im-actions">
+        <button class="im-cancel" onclick="closeUnifiedImport()">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 </body>
 </html>
