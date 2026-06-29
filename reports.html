@@ -218,6 +218,54 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
   .month-tab{font-size:9px;padding:3px 8px;}
 }
 
+
+/* ── NEW PLATFORM SECTIONS ── */
+.section-divider{margin:24px 0 16px;display:flex;align-items:center;gap:12px;}
+.section-divider-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+.section-divider-line{flex:1;height:1px;background:var(--border);}
+
+.multi-platform-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-bottom:20px;}
+.mp-card{background:var(--navy2);border:1px solid var(--border);border-radius:14px;padding:18px 20px;}
+.mp-card-header{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
+.mp-platform-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:100px;font-size:11px;font-weight:700;}
+.mp-badge-li{background:rgba(10,102,194,0.15);color:#4DA3FF;}
+.mp-badge-yt{background:rgba(255,0,0,0.12);color:#FF6060;}
+.mp-badge-tw{background:rgba(255,255,255,0.08);color:#CCC;}
+.mp-metric{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);}
+.mp-metric:last-child{border-bottom:none;}
+.mp-metric-label{font-size:11px;color:var(--muted);}
+.mp-metric-val{font-size:13px;font-weight:700;color:var(--white);}
+
+/* POST COUNT TRACKER */
+.post-count-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:20px;}
+.pc-card{background:var(--navy2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;text-align:center;}
+.pc-val{font-family:'Instrument Serif',serif;font-size:28px;color:var(--white);line-height:1;}
+.pc-label{font-size:10px;color:var(--muted);margin-top:4px;font-weight:600;letter-spacing:.3px;text-transform:uppercase;}
+.pc-card.pc-total{border-color:rgba(30,111,255,0.3);background:rgba(30,111,255,0.06);}
+.pc-card.pc-total .pc-val{color:#7BB3FF;}
+
+/* CONTENT BREAKDOWN */
+.content-breakdown-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
+.cb-card{background:var(--navy2);border:1px solid var(--border);border-radius:14px;padding:18px 20px;}
+.cb-title{font-size:12px;font-weight:700;color:var(--white);margin-bottom:14px;}
+.cb-row{display:flex;align-items:center;gap:10px;margin-bottom:9px;}
+.cb-label{font-size:11px;font-weight:600;color:var(--text);min-width:70px;}
+.cb-bar-wrap{flex:1;background:var(--surface);border-radius:100px;height:6px;overflow:hidden;}
+.cb-bar{height:100%;border-radius:100px;transition:width .6s ease;}
+.cb-val{font-size:11px;font-weight:700;color:var(--white);min-width:40px;text-align:right;}
+.cb-bar-reel{background:linear-gradient(90deg,var(--ig),var(--purple));}
+.cb-bar-carousel{background:linear-gradient(90deg,#F5A623,#F4655A);}
+.cb-bar-static{background:linear-gradient(90deg,var(--green),#22D3EE);}
+.cb-bar-story{background:linear-gradient(90deg,var(--pink),var(--purple));}
+.cb-bar-video{background:linear-gradient(90deg,#FF6060,#FF9900);}
+.cb-bar-other{background:var(--muted2);}
+
+/* ENTRY FORM - new fields */
+.ps-badge-li{background:rgba(10,102,194,0.15);color:#4DA3FF;}
+.ps-badge-yt{background:rgba(255,0,0,0.12);color:#FF6060;}
+.ps-badge-tw{background:rgba(255,255,255,0.08);color:#CCC;}
+.ps-badge-posts{background:rgba(34,197,94,0.1);color:var(--green);}
+.ps-badge-content{background:rgba(167,139,250,0.1);color:var(--purple);}
 </style>
 </head>
 <body>
@@ -304,6 +352,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
         <option value="bsfc-bopal">BSFC Bopal</option>
         <option value="shiva-optics">Shiva Optics</option>
         <option value="rcsl">RCSL</option>
+        <option value="vcsl">VCSL — Veracity Supply Chain</option>
       </select>
     </div>
     <button class="sel-btn" onclick="loadReport()">Load Report →</button>
@@ -386,7 +435,87 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
         </div>
       </div>
 
-      <div class="platform-section" style="margin-bottom:16px;">
+
+      <!-- LINKEDIN -->
+      <div class="platform-section">
+        <div class="ps-header">
+          <span class="ps-badge ps-badge-li">💼 LinkedIn</span>
+          <div class="ps-divider"></div>
+        </div>
+        <div class="entry-grid">
+          <div class="entry-field"><label class="entry-label">Impressions<span>Total post views</span></label><input class="entry-input" id="li_impressions" type="number" placeholder="e.g. 12000"/></div>
+          <div class="entry-field"><label class="entry-label">Reactions<span>Likes + celebrations</span></label><input class="entry-input" id="li_reactions" type="number" placeholder="e.g. 340"/></div>
+          <div class="entry-field"><label class="entry-label">Comments</label><input class="entry-input" id="li_comments" type="number" placeholder="e.g. 28"/></div>
+          <div class="entry-field"><label class="entry-label">Reposts<span>Shares on LinkedIn</span></label><input class="entry-input" id="li_reposts" type="number" placeholder="e.g. 14"/></div>
+          <div class="entry-field"><label class="entry-label">Clicks<span>Link + profile clicks</span></label><input class="entry-input" id="li_clicks" type="number" placeholder="e.g. 180"/></div>
+          <div class="entry-field"><label class="entry-label">New Followers</label><input class="entry-input" id="li_follows" type="number" placeholder="e.g. 22"/></div>
+        </div>
+      </div>
+
+      <!-- YOUTUBE -->
+      <div class="platform-section">
+        <div class="ps-header">
+          <span class="ps-badge ps-badge-yt">▶ YouTube</span>
+          <div class="ps-divider"></div>
+        </div>
+        <div class="entry-grid">
+          <div class="entry-field"><label class="entry-label">Views<span>Total video views</span></label><input class="entry-input" id="yt_views" type="number" placeholder="e.g. 4800"/></div>
+          <div class="entry-field"><label class="entry-label">Watch Time<span>Minutes watched</span></label><input class="entry-input" id="yt_watch_time" type="number" placeholder="e.g. 18500"/></div>
+          <div class="entry-field"><label class="entry-label">Subscribers Gained</label><input class="entry-input" id="yt_subscribers" type="number" placeholder="e.g. 34"/></div>
+          <div class="entry-field"><label class="entry-label">Likes</label><input class="entry-input" id="yt_likes" type="number" placeholder="e.g. 96"/></div>
+          <div class="entry-field"><label class="entry-label">Comments</label><input class="entry-input" id="yt_comments" type="number" placeholder="e.g. 12"/></div>
+          <div class="entry-field"><label class="entry-label">Shorts Views<span>Separate from long-form</span></label><input class="entry-input" id="yt_shorts_views" type="number" placeholder="e.g. 2200"/></div>
+        </div>
+      </div>
+
+      <!-- TWITTER / X -->
+      <div class="platform-section">
+        <div class="ps-header">
+          <span class="ps-badge ps-badge-tw">𝕏 Twitter / X</span>
+          <div class="ps-divider"></div>
+        </div>
+        <div class="entry-grid">
+          <div class="entry-field"><label class="entry-label">Impressions<span>Total post views</span></label><input class="entry-input" id="tw_impressions" type="number" placeholder="e.g. 5200"/></div>
+          <div class="entry-field"><label class="entry-label">Likes</label><input class="entry-input" id="tw_likes" type="number" placeholder="e.g. 84"/></div>
+          <div class="entry-field"><label class="entry-label">Retweets<span>Reposts</span></label><input class="entry-input" id="tw_retweets" type="number" placeholder="e.g. 18"/></div>
+          <div class="entry-field"><label class="entry-label">Replies</label><input class="entry-input" id="tw_replies" type="number" placeholder="e.g. 9"/></div>
+          <div class="entry-field"><label class="entry-label">Link Clicks</label><input class="entry-input" id="tw_clicks" type="number" placeholder="e.g. 42"/></div>
+          <div class="entry-field"><label class="entry-label">Followers Gained</label><input class="entry-input" id="tw_follows" type="number" placeholder="e.g. 11"/></div>
+        </div>
+      </div>
+
+      <!-- POST COUNT -->
+      <div class="platform-section">
+        <div class="ps-header">
+          <span class="ps-badge ps-badge-posts">📊 Posts Published This Month</span>
+          <div class="ps-divider"></div>
+        </div>
+        <div class="entry-grid">
+          <div class="entry-field"><label class="entry-label">Instagram</label><input class="entry-input" id="posts_ig" type="number" placeholder="e.g. 13"/></div>
+          <div class="entry-field"><label class="entry-label">Facebook</label><input class="entry-input" id="posts_fb" type="number" placeholder="e.g. 13"/></div>
+          <div class="entry-field"><label class="entry-label">LinkedIn</label><input class="entry-input" id="posts_li" type="number" placeholder="e.g. 6"/></div>
+          <div class="entry-field"><label class="entry-label">YouTube</label><input class="entry-input" id="posts_yt" type="number" placeholder="e.g. 4"/></div>
+          <div class="entry-field"><label class="entry-label">Twitter / X</label><input class="entry-input" id="posts_tw" type="number" placeholder="e.g. 6"/></div>
+        </div>
+      </div>
+
+      <!-- CONTENT BREAKDOWN -->
+      <div class="platform-section">
+        <div class="ps-header">
+          <span class="ps-badge ps-badge-content">🎬 Content Format Breakdown (IG + FB)</span>
+          <div class="ps-divider"></div>
+        </div>
+        <div class="entry-grid">
+          <div class="entry-field"><label class="entry-label">Reels<span>Short videos</span></label><input class="entry-input" id="fmt_reels" type="number" placeholder="e.g. 8"/></div>
+          <div class="entry-field"><label class="entry-label">Carousels<span>Multi-slide posts</span></label><input class="entry-input" id="fmt_carousels" type="number" placeholder="e.g. 4"/></div>
+          <div class="entry-field"><label class="entry-label">Static Posts<span>Single image</span></label><input class="entry-input" id="fmt_statics" type="number" placeholder="e.g. 4"/></div>
+          <div class="entry-field"><label class="entry-label">Stories<span>24hr frames</span></label><input class="entry-input" id="fmt_stories" type="number" placeholder="e.g. 3"/></div>
+          <div class="entry-field"><label class="entry-label">Videos / Long-form</label><input class="entry-input" id="fmt_videos" type="number" placeholder="e.g. 1"/></div>
+          <div class="entry-field"><label class="entry-label">Best Performing Format<span>Type manually</span></label><input class="entry-input" id="fmt_best" type="text" placeholder="e.g. Reels"/></div>
+        </div>
+      </div>
+
+            <div class="platform-section" style="margin-bottom:16px;">
         <div class="ps-header">
           <span class="ps-badge" style="background:rgba(107,122,153,.12);color:var(--muted);">📝 Internal Notes</span>
           <div class="ps-divider"></div>
@@ -477,7 +606,63 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
     <!-- HISTORY TABLE -->
 
     <!-- ADS REPORT -->
-    <div class="breakdown-card" id="adsSection" style="display:none;margin-bottom:20px;">
+    <!-- POST COUNT SECTION -->
+      <div id="postCountSection" style="display:none;margin-bottom:20px;">
+        <div class="section-divider"><span class="section-divider-label">📊 Posts Published</span><div class="section-divider-line"></div></div>
+        <div class="post-count-grid" id="postCountGrid"></div>
+      </div>
+
+      <!-- CONTENT FORMAT BREAKDOWN -->
+      <div id="contentBreakdownSection" style="display:none;margin-bottom:20px;">
+        <div class="section-divider"><span class="section-divider-label">🎬 Content Format Breakdown</span><div class="section-divider-line"></div></div>
+        <div class="content-breakdown-grid">
+          <div class="cb-card">
+            <div class="cb-title">IG + FB — Format Split</div>
+            <div id="contentBreakdownBars"></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title">Format Mix</div>
+            <div class="chart-sub">Content type distribution this month</div>
+            <div class="chart-wrap"><canvas id="chartFormats" role="img" aria-label="Content format breakdown"></canvas></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MULTI-PLATFORM: LinkedIn + YouTube + Twitter -->
+      <div id="multiPlatformSection" style="display:none;margin-bottom:20px;">
+        <div class="section-divider"><span class="section-divider-label">Other Platforms</span><div class="section-divider-line"></div></div>
+        <div class="multi-platform-grid">
+          <div class="mp-card" id="liCard" style="display:none;">
+            <div class="mp-card-header"><span class="mp-platform-badge mp-badge-li">💼 LinkedIn</span></div>
+            <div class="mp-metric"><span class="mp-metric-label">Impressions</span><span class="mp-metric-val" id="li_disp_impressions">—</span></div>
+            <div class="mp-metric"><span class="mp-metric-label">Reactions</span><span class="mp-metric-val" id="li_disp_reactions">—</span></div>
+            <div class="mp-metric"><span class="mp-metric-label">Comments</span><span class="mp-metric-val" id="li_disp_comments">—</span></div>
+            <div class="mp-metric"><span class="mp-metric-label">Reposts</span><span class="mp-metric-val" id="li_disp_reposts">—</span></div>
+            <div class="mp-metric"><span class="mp-metric-label">Clicks</span><span class="mp-metric-val" id="li_disp_clicks">—</span></div>
+            <div class="mp-metric"><span class="mp-metric-label">New Followers</span><span class="mp-metric-val" id="li_disp_follows">—</span></div>
+          </div>
+          <div class="mp-card" id="ytCard" style="display:none;">
+            <div class="mp-card-header"><span class="mp-platform-badge mp-badge-yt">&#9654; YouTube</span></div>
+            <div class="mp-metric"><span class="mp-metric-label">Views</span><span class="mp-metric-val" id="yt_disp_views">—</span></div>
+            <div class="mp-metric"><span class="mp-metric-label">Watch Time (mins)</span><span class="mp-metric-val" id="yt_disp_watch_time">—</span></div>
+            <div class="mp-metric"><span class="mp-metric-label">Subscribers Gained</span><span class="mp-metric-val" id="yt_disp_subscribers">—</span></div>
+            <div class="mp-metric"><span class="mp-metric-label">Likes</span><span class="mp-metric-val" id="yt_disp_likes">—</span></div>
+            <div class="mp-metric"><span class="mp-metric-label">Comments</span><span class="mp-metric-val" id="yt_disp_comments">—</span></div>
+            <div class="mp-metric"><span class="mp-metric-label">Shorts Views</span><span class="mp-metric-val" id="yt_disp_shorts_views">—</span></div>
+          </div>
+          <div class="mp-card" id="twCard" style="display:none;">
+            <div class="mp-card-header"><span class="mp-platform-badge mp-badge-tw">&#120143; Twitter / X</span></div>
+            <div class="mp-metric"><span class="mp-metric-label">Impressions</span><span class="mp-metric-val" id="tw_disp_impressions">—</span></div>
+            <div class="mp-metric"><span class="mp-metric-label">Likes</span><span class="mp-metric-val" id="tw_disp_likes">—</span></div>
+            <div class="mp-metric"><span class="mp-metric-label">Retweets</span><span class="mp-metric-val" id="tw_disp_retweets">—</span></div>
+            <div class="mp-metric"><span class="mp-metric-label">Replies</span><span class="mp-metric-val" id="tw_disp_replies">—</span></div>
+            <div class="mp-metric"><span class="mp-metric-label">Link Clicks</span><span class="mp-metric-val" id="tw_disp_clicks">—</span></div>
+            <div class="mp-metric"><span class="mp-metric-label">Followers Gained</span><span class="mp-metric-val" id="tw_disp_follows">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="breakdown-card" id="adsSection" style="display:none;margin-bottom:20px;">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px;">
         <div>
           <div class="chart-title">💰 Meta Ads Performance</div>
@@ -514,12 +699,15 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
         <table class="history-table">
           <thead><tr>
             <th>Month</th>
-            <th>IG Views</th><th>FB Views</th>
-            <th>IG Reach</th><th>FB Reach</th>
-            <th>IG Interact.</th><th>FB Interact.</th>
-            <th>IG Clicks</th><th>FB Clicks</th>
-            <th>IG Follows</th><th>FB Follows</th>
-            <th>Ad Spend</th><th>Ad Results</th><th>CPA ₹</th>
+            <th class="ig-col">IG Views</th><th class="fb-col">FB Views</th>
+            <th class="ig-col">IG Reach</th><th class="fb-col">FB Reach</th>
+            <th class="ig-col">IG Interact.</th><th class="fb-col">FB Interact.</th>
+            <th class="ig-col">IG Follows</th><th class="fb-col">FB Follows</th>
+            <th style="color:#4DA3FF;">LI Impr.</th><th style="color:#4DA3FF;">LI Clicks</th>
+            <th style="color:#FF6060;">YT Views</th><th style="color:#FF6060;">YT Subs</th>
+            <th style="color:#CCC;">𝕏 Impr.</th><th style="color:#CCC;">𝕏 Likes</th>
+            <th>Posts</th>
+            <th>Ad Spend</th><th>Ad Results</th>
           </tr></thead>
           <tbody id="historyBody"></tbody>
         </table>
@@ -535,7 +723,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
 <div class="toast" id="toast"></div>
 
 <script>
-const CLIENT_NAMES={'say-it-social':'Say It Social','green-sapio':'Green Sapio','bsfc-thaltej':'BSFC Thaltej','bsfc-bopal':'BSFC Bopal','shiva-optics':'Shiva Optics','rcsl':'RCSL'};
+const CLIENT_NAMES={'say-it-social':'Say It Social','green-sapio':'Green Sapio','bsfc-thaltej':'BSFC Thaltej','bsfc-bopal':'BSFC Bopal','shiva-optics':'Shiva Optics','rcsl':'RCSL','vcsl':'VCSL — Veracity Supply Chain'};
 let _cid=null,_months={},_active=null,_charts={};
 
 const fmtMonth=k=>{if(!k)return'—';const[y,m]=k.split('-');return['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m-1]+' '+y;};
@@ -553,6 +741,9 @@ async function loadReport(){
   document.getElementById('monthTabs').innerHTML='<span style="font-size:12px;color:var(--muted);">Loading...</span>';
   document.getElementById('historyBody').innerHTML='';
   try{document.getElementById('adsSection').style.display='none';}catch(e){}
+  try{document.getElementById('postCountSection').style.display='none';}catch(e){}
+  try{document.getElementById('contentBreakdownSection').style.display='none';}catch(e){}
+  try{document.getElementById('multiPlatformSection').style.display='none';}catch(e){}
   try{document.getElementById('monthNotes').style.display='none';}catch(e){}
   Object.values(_charts).forEach(c=>{try{c.destroy();}catch(e){}});
   _charts={};
@@ -605,14 +796,14 @@ function renderAll(){
     const badge = count > 0 ? `<span style="font-size:9px;margin-left:4px;">🏆${count>1?'×'+count:''}</span>` : '';
     return `<button class="month-tab ${k===_active?'active':''}" onclick="setTab('${k}',this)">${fmtMonth(k)}${badge}</button>`;
   }).join('');
-  renderKPIs();renderPlatform();renderCharts(sorted);renderBreakdown();renderHistory(keys);
+  renderKPIs();renderPlatform();renderCharts(sorted);renderBreakdown();renderHistory(keys);renderMultiPlatform();renderPostCount();renderContentBreakdown();
 }
 
 function setTab(k,btn){
   _active=k;
   document.querySelectorAll('.month-tab').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  renderKPIs();renderPlatform();renderBreakdown();
+  renderKPIs();renderPlatform();renderBreakdown();renderMultiPlatform();renderPostCount();renderContentBreakdown();
 }
 
 function renderKPIs(){
@@ -640,6 +831,10 @@ function renderKPIs(){
     {icon:'👤',label:'Profile Visits',val:fmt(t.profile_visits),ch:pct(t.profile_visits,prev?.profile_visits),ig:d.ig_profile_visits,fb:d.fb_profile_visits},
     {icon:'➕',label:'New Follows',val:fmt(t.follows),ch:pct(t.follows,prev?.follows),ig:d.ig_follows,fb:d.fb_follows},
     {icon:'💰',label:'Ad Spend',val:d.ad_spend?'₹'+fmt(d.ad_spend):'—',ch:null,ig:null,fb:null},
+    {icon:'📊',label:'Posts Published',val:(((+d.posts_ig||0)+(+d.posts_fb||0)+(+d.posts_li||0)+(+d.posts_yt||0)+(+d.posts_tw||0))||null)?String((+d.posts_ig||0)+(+d.posts_fb||0)+(+d.posts_li||0)+(+d.posts_yt||0)+(+d.posts_tw||0)):'—',ch:null,ig:d.posts_ig||null,fb:d.posts_fb||null,hint:'across all platforms'},
+    {icon:'💼',label:'LI Impressions',val:fmt(d.li_impressions)||'—',ch:d.li_impressions?null:null,ig:null,fb:null},
+    {icon:'▶',label:'YT Views',val:fmt(d.yt_views)||'—',ch:null,ig:null,fb:null},
+    {icon:'𝕏',label:'X Impressions',val:fmt(d.tw_impressions)||'—',ch:null,ig:null,fb:null},
   ];
 
   document.getElementById('kpiGrid').innerHTML=kpis.map(k=>{
@@ -828,18 +1023,22 @@ function renderBreakdown(){
 }
 
 function renderHistory(keys){
+  const totalPostsFn=d=>(+d.posts_ig||0)+(+d.posts_fb||0)+(+d.posts_li||0)+(+d.posts_yt||0)+(+d.posts_tw||0);
   document.getElementById('historyBody').innerHTML=keys.map(k=>{
     const d=_months[k]||{};
+    const tp=totalPostsFn(d);
     return`<tr>
       <td class="td-month">${fmtMonth(k)}</td>
       <td class="td-ig">${fmt(d.ig_views)}</td><td class="td-fb">${fmt(d.fb_views)}</td>
       <td class="td-ig">${fmt(d.ig_reach)}</td><td class="td-fb">${fmt(d.fb_reach)}</td>
       <td class="td-ig">${fmt(d.ig_interactions)}</td><td class="td-fb">${fmt(d.fb_interactions)}</td>
-      <td class="td-ig">${fmt(d.ig_link_clicks)}</td><td class="td-fb">${fmt(d.fb_link_clicks)}</td>
       <td class="td-ig">${fmt(d.ig_follows)}</td><td class="td-fb">${fmt(d.fb_follows)}</td>
+      <td style="color:#4DA3FF;">${fmt(d.li_impressions)||'—'}</td><td style="color:#4DA3FF;">${fmt(d.li_clicks)||'—'}</td>
+      <td style="color:#FF6060;">${fmt(d.yt_views)||'—'}</td><td style="color:#FF6060;">${fmt(d.yt_subscribers)||'—'}</td>
+      <td style="color:#CCC;">${fmt(d.tw_impressions)||'—'}</td><td style="color:#CCC;">${fmt(d.tw_likes)||'—'}</td>
+      <td style="color:var(--green);font-weight:700;">${tp||'—'}</td>
       <td>${d.ad_spend?'₹'+fmt(d.ad_spend):'—'}</td>
       <td>${fmt(d.ad_results)||'—'}</td>
-      <td>${d.ad_cpr?'₹'+fmt(d.ad_cpr):'—'}</td>
     </tr>`;
   }).join('');
 }
@@ -854,9 +1053,15 @@ function toggleEntry(){
     document.getElementById('eMonth').value=_active||'';
     const fields=['ig_views','ig_reach','ig_interactions','ig_link_clicks','ig_profile_visits','ig_follows',
                   'fb_views','fb_reach','fb_interactions','fb_link_clicks','fb_profile_visits','fb_follows',
-                  'ad_spend','ad_reach','ad_results','ad_cpr'];
+                  'ad_spend','ad_reach','ad_results','ad_cpr',
+                  'li_impressions','li_reactions','li_comments','li_reposts','li_clicks','li_follows',
+                  'yt_views','yt_watch_time','yt_subscribers','yt_likes','yt_comments','yt_shorts_views',
+                  'tw_impressions','tw_likes','tw_retweets','tw_replies','tw_clicks','tw_follows',
+                  'posts_ig','posts_fb','posts_li','posts_yt','posts_tw',
+                  'fmt_reels','fmt_carousels','fmt_statics','fmt_stories','fmt_videos'];
     fields.forEach(f=>{ const el=document.getElementById(f); if(el) el.value=d[f]||''; });
     const notesEl=document.getElementById('eNotes'); if(notesEl) notesEl.value=d.notes||'';
+    const fmtBestEl=document.getElementById('fmt_best'); if(fmtBestEl) fmtBestEl.value=d.fmt_best||'';
   }
 }
 
@@ -866,11 +1071,18 @@ async function saveMonthData(){
   if(!_cid){showToast('No client selected');return;}
   const fields=['ig_views','ig_reach','ig_interactions','ig_link_clicks','ig_profile_visits','ig_follows',
                 'fb_views','fb_reach','fb_interactions','fb_link_clicks','fb_profile_visits','fb_follows',
-                'ad_spend','ad_reach','ad_results','ad_cpr'];
+                'ad_spend','ad_reach','ad_results','ad_cpr',
+                'li_impressions','li_reactions','li_comments','li_reposts','li_clicks','li_follows',
+                'yt_views','yt_watch_time','yt_subscribers','yt_likes','yt_comments','yt_shorts_views',
+                'tw_impressions','tw_likes','tw_retweets','tw_replies','tw_clicks','tw_follows',
+                'posts_ig','posts_fb','posts_li','posts_yt','posts_tw',
+                'fmt_reels','fmt_carousels','fmt_statics','fmt_stories','fmt_videos'];
   const data={};
   fields.forEach(f=>{ const el=document.getElementById(f); if(el) data[f]=+el.value||0; });
   const notesEl=document.getElementById('eNotes');
   if(notesEl && notesEl.value.trim()) data.notes=notesEl.value.trim();
+  const fmtBestEl=document.getElementById('fmt_best');
+  if(fmtBestEl && fmtBestEl.value.trim()) data.fmt_best=fmtBestEl.value.trim();
   if(window._saveMonthData) await window._saveMonthData(_cid,mk,data);
   _months[mk]=data; _active=mk;
   toggleEntry(); renderAll();
@@ -880,6 +1092,127 @@ async function saveMonthData(){
 function copyShareLink(){
   const url=`${location.origin}${location.pathname}?client=${_cid}&view=share`;
   navigator.clipboard.writeText(url).then(()=>showToast('🔗 Share link copied!')).catch(()=>prompt('Copy this link:',url));
+}
+
+
+function renderMultiPlatform(){
+  const d=_months[_active]||{};
+  const hasLI = d.li_impressions||d.li_reactions||d.li_comments||d.li_clicks||d.li_follows;
+  const hasYT = d.yt_views||d.yt_watch_time||d.yt_subscribers;
+  const hasTW = d.tw_impressions||d.tw_likes||d.tw_retweets;
+  const hasAny = hasLI||hasYT||hasTW;
+
+  const sec = document.getElementById('multiPlatformSection');
+  if(sec) sec.style.display = hasAny ? 'block' : 'none';
+
+  // LinkedIn
+  const liCard = document.getElementById('liCard');
+  if(liCard) liCard.style.display = hasLI ? 'block' : 'none';
+  if(hasLI){
+    ['impressions','reactions','comments','reposts','clicks','follows'].forEach(f=>{
+      const el=document.getElementById('li_disp_'+f);
+      if(el) el.textContent=fmt(d['li_'+f])||'—';
+    });
+  }
+
+  // YouTube
+  const ytCard = document.getElementById('ytCard');
+  if(ytCard) ytCard.style.display = hasYT ? 'block' : 'none';
+  if(hasYT){
+    ['views','watch_time','subscribers','likes','comments','shorts_views'].forEach(f=>{
+      const el=document.getElementById('yt_disp_'+f);
+      if(el) el.textContent=fmt(d['yt_'+f])||'—';
+    });
+  }
+
+  // Twitter
+  const twCard = document.getElementById('twCard');
+  if(twCard) twCard.style.display = hasTW ? 'block' : 'none';
+  if(hasTW){
+    ['impressions','likes','retweets','replies','clicks','follows'].forEach(f=>{
+      const el=document.getElementById('tw_disp_'+f);
+      if(el) el.textContent=fmt(d['tw_'+f])||'—';
+    });
+  }
+}
+
+function renderPostCount(){
+  const d=_months[_active]||{};
+  const platforms=[
+    {key:'posts_ig', label:'Instagram', color:'var(--ig)'},
+    {key:'posts_fb', label:'Facebook',  color:'var(--fb)'},
+    {key:'posts_li', label:'LinkedIn',  color:'#4DA3FF'},
+    {key:'posts_yt', label:'YouTube',   color:'#FF6060'},
+    {key:'posts_tw', label:'Twitter/X', color:'#CCC'},
+  ];
+  const total_posts = platforms.reduce((s,p)=>s+(+d[p.key]||0),0);
+  const hasData = total_posts > 0;
+  const sec = document.getElementById('postCountSection');
+  if(sec) sec.style.display = hasData ? 'block' : 'none';
+  if(!hasData) return;
+
+  const grid = document.getElementById('postCountGrid');
+  if(!grid) return;
+  grid.innerHTML = platforms.map(p=>{
+    const v=+d[p.key]||0;
+    return `<div class="pc-card"><div class="pc-val" style="color:${p.color}">${v||'—'}</div><div class="pc-label">${p.label}</div></div>`;
+  }).join('') + `<div class="pc-card pc-total"><div class="pc-val">${total_posts}</div><div class="pc-label">Total Posts</div></div>`;
+}
+
+function renderContentBreakdown(){
+  const d=_months[_active]||{};
+  const formats=[
+    {key:'fmt_reels',     label:'Reels',     barClass:'cb-bar-reel'},
+    {key:'fmt_carousels', label:'Carousels', barClass:'cb-bar-carousel'},
+    {key:'fmt_statics',   label:'Statics',   barClass:'cb-bar-static'},
+    {key:'fmt_stories',   label:'Stories',   barClass:'cb-bar-story'},
+    {key:'fmt_videos',    label:'Videos',    barClass:'cb-bar-video'},
+  ];
+  const total_fmt = formats.reduce((s,f)=>s+(+d[f.key]||0),0);
+  const hasData = total_fmt > 0;
+  const sec = document.getElementById('contentBreakdownSection');
+  if(sec) sec.style.display = hasData ? 'block' : 'none';
+  if(!hasData) return;
+
+  // Bars
+  const barsEl = document.getElementById('contentBreakdownBars');
+  if(barsEl){
+    barsEl.innerHTML = formats.map(f=>{
+      const v=+d[f.key]||0;
+      const pct=total_fmt>0?Math.round(v/total_fmt*100):0;
+      return `<div class="cb-row">
+        <span class="cb-label">${f.label}</span>
+        <div class="cb-bar-wrap"><div class="cb-bar ${f.barClass}" style="width:${pct}%"></div></div>
+        <span class="cb-val">${v} <span style="color:var(--muted);font-weight:400;font-size:10px;">(${pct}%)</span></span>
+      </div>`;
+    }).join('');
+    if(d.fmt_best){
+      barsEl.innerHTML+=`<div style="margin-top:12px;padding:8px 10px;background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.2);border-radius:8px;font-size:11px;color:var(--purple);">🏆 Best format this month: <strong>${d.fmt_best}</strong></div>`;
+    }
+  }
+
+  // Doughnut chart
+  const ctx=document.getElementById('chartFormats')?.getContext('2d');
+  if(!ctx) return;
+  if(_charts['chartFormats']) _charts['chartFormats'].destroy();
+  _charts['chartFormats']=new Chart(ctx,{
+    type:'doughnut',
+    data:{
+      labels:formats.map(f=>f.label),
+      datasets:[{
+        data:formats.map(f=>+d[f.key]||0),
+        backgroundColor:['rgba(225,48,108,0.8)','rgba(245,166,35,0.8)','rgba(34,197,94,0.8)','rgba(244,114,182,0.8)','rgba(255,96,96,0.8)'],
+        borderColor:'var(--navy2)',borderWidth:3,borderRadius:3
+      }]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,cutout:'60%',
+      plugins:{
+        legend:{display:true,position:'bottom',labels:{color:'#6B7A99',font:{size:10},padding:8,boxWidth:10}},
+        tooltip:{backgroundColor:'#111827',titleColor:'#E8EDF8',bodyColor:'#6B7A99',borderColor:'rgba(255,255,255,0.07)',borderWidth:1,padding:10,cornerRadius:8}
+      }
+    }
+  });
 }
 
 function showToast(msg){
