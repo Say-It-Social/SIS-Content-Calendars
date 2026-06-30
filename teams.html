@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Say It Social — Team Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B1220;--navy2:#111827;--navy3:#1A2540;
+  --surface:#161E30;--surface2:#1E2A42;
+  --blue:#1E6FFF;--blue-dim:rgba(30,111,255,0.08);
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);
+  --text:#E8EDF8;--muted:#6B7A99;--muted2:#3A4560;--white:#FFFFFF;
+  --green:#22C55E;--amber:#F5A623;--red:#EF4444;--purple:#A78BFA;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--navy);color:var(--text);min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(30,111,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(30,111,255,0.03) 1px,transparent 1px);
+  background-size:48px 48px;}
+body::after{content:'';position:fixed;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:500px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(30,111,255,0.08) 0%,transparent 70%);z-index:0;pointer-events:none;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1400px;margin:0 auto;padding:0 40px;height:62px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nav-mark{width:38px;height:38px;border-radius:10px;background:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#fff;box-shadow:0 0 24px rgba(30,111,255,0.4);}
+.nav-brand-top{font-size:13px;font-weight:700;color:var(--white);}
+.nav-brand-sub{font-size:9px;font-weight:500;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:1px;}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.nav-back{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;padding:7px 14px;border:1px solid var(--border);border-radius:8px;background:var(--surface);transition:all .15s;}
+.nav-back:hover{color:var(--text);border-color:var(--border2);}
+.nav-user{display:flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--border);border-radius:8px;background:var(--surface);cursor:pointer;transition:all .15s;}
+.nav-user:hover{border-color:var(--border2);}
+.nav-avatar{width:26px;height:26px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;}
+.nav-username{font-size:12px;font-weight:600;color:var(--text);}
+
+/* WRAP */
+.wrap{max-width:1400px;margin:0 auto;padding:0 40px;position:relative;z-index:1;}
+
+/* HERO */
+.hero{padding:44px 0 28px;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;background:rgba(30,111,255,0.1);border:1px solid rgba(30,111,255,0.2);border-radius:100px;padding:4px 14px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#7BB3FF;margin-bottom:16px;}
+.hero-dot{width:5px;height:5px;background:var(--blue);border-radius:50%;animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-title{font-family:'Instrument Serif',serif;font-size:clamp(28px,3.5vw,42px);color:var(--white);line-height:1.12;letter-spacing:-.02em;margin-bottom:8px;}
+.hero-title em{color:#7BB3FF;font-style:italic;}
+.hero-sub{font-size:13px;color:var(--muted);line-height:1.6;}
+
+/* TWO COL LAYOUT */
+.two-col{display:grid;grid-template-columns:1fr 380px;gap:24px;margin-bottom:60px;}
+
+/* SECTION HEADER */
+.sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.sec-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px;}
+.sec-title::before{content:'';width:14px;height:2px;background:var(--blue);border-radius:2px;}
+.sec-count{font-size:11px;color:var(--muted2);}
+
+/* ACTIVITY FEED */
+.feed-wrap{background:var(--navy2);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.feed-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.feed-title{font-size:13px;font-weight:700;color:var(--white);}
+.feed-live{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--green);font-weight:600;}
+.feed-live-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:blink 1.5s infinite;}
+.feed-body{max-height:560px;overflow-y:auto;}
+.feed-body::-webkit-scrollbar{width:4px;}
+.feed-body::-webkit-scrollbar-track{background:transparent;}
+.feed-body::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px;}
+.activity-item{display:flex;align-items:flex-start;gap:12px;padding:14px 20px;border-bottom:1px solid var(--border);animation:fadeIn .3s ease;}
+.activity-item:last-child{border-bottom:none;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.activity-avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;flex-shrink:0;margin-top:1px;}
+.activity-body{flex:1;}
+.activity-text{font-size:12px;color:var(--text);line-height:1.5;margin-bottom:3px;}
+.activity-text strong{color:var(--white);font-weight:700;}
+.activity-text .act-status{font-weight:700;padding:1px 7px;border-radius:100px;font-size:10px;}
+.activity-time{font-size:10px;color:var(--muted2);}
+.activity-client{font-size:10px;color:var(--muted);background:var(--surface);padding:2px 8px;border-radius:6px;display:inline-block;margin-top:3px;}
+.feed-empty{padding:48px 20px;text-align:center;color:var(--muted);font-size:13px;}
+
+/* TEAM SIDEBAR */
+.team-card{background:var(--navy2);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:16px;}
+.team-card-head{padding:16px 18px;border-bottom:1px solid var(--border);}
+.team-card-title{font-size:13px;font-weight:700;color:var(--white);}
+.team-member{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--border);transition:background .15s;}
+.team-member:last-child{border-bottom:none;}
+.team-member:hover{background:rgba(30,111,255,0.04);}
+.tm-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0;position:relative;}
+.tm-online-dot{position:absolute;bottom:0;right:0;width:10px;height:10px;border-radius:50%;border:2px solid var(--navy2);}
+.tm-dot-online{background:var(--green);}
+.tm-dot-away{background:var(--amber);}
+.tm-dot-offline{background:var(--muted2);}
+.tm-name{font-size:13px;font-weight:600;color:var(--white);}
+.tm-role{font-size:10px;color:var(--muted);margin-top:1px;}
+.tm-lastseen{font-size:10px;color:var(--muted2);margin-left:auto;white-space:nowrap;}
+.tm-you{font-size:9px;font-weight:700;color:var(--blue);background:var(--blue-dim);padding:2px 7px;border-radius:100px;margin-left:auto;}
+
+/* STATS ROW */
+.stats-row{display:flex;gap:12px;flex-wrap:wrap;padding:20px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:28px;}
+.stat-pill{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 18px;flex:1;min-width:110px;}
+.stat-icon{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.stat-n{font-family:'Instrument Serif',serif;font-size:24px;color:var(--white);line-height:1;display:block;margin-bottom:1px;}
+.stat-l{font-size:9px;color:var(--muted);font-weight:500;}
+
+/* NAME SELECTOR MODAL */
+.name-modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:600;align-items:center;justify-content:center;backdrop-filter:blur(8px);}
+.name-modal-bg.show{display:flex;}
+.name-modal{background:var(--navy2);border:1px solid var(--border2);border-radius:20px;padding:40px;width:480px;max-width:92vw;text-align:center;animation:mIn .2s ease;box-shadow:0 32px 80px rgba(0,0,0,.7);}
+@keyframes mIn{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}
+.name-modal-icon{font-size:40px;margin-bottom:16px;}
+.name-modal-title{font-family:'Instrument Serif',serif;font-size:26px;color:var(--white);margin-bottom:8px;}
+.name-modal-sub{font-size:13px;color:var(--muted);margin-bottom:28px;line-height:1.6;}
+.name-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:8px;}
+.name-btn{display:flex;align-items:center;gap:14px;padding:14px 18px;border:1.5px solid var(--border);border-radius:12px;background:var(--surface);cursor:pointer;transition:all .15s;text-align:left;}
+.name-btn:hover{border-color:var(--blue);background:var(--blue-dim);}
+.name-btn-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0;}
+.name-btn-name{font-size:14px;font-weight:700;color:var(--white);}
+.name-btn-role{font-size:11px;color:var(--muted);}
+
+/* RESPONSIVE */
+
+  .wrap,.nav-inner{padding-left:20px;padding-right:20px;}
+}
+
+@media(max-width:768px){
+  .nav-inner{padding:0 16px;height:56px;}
+  .nav-brand-sub{display:none;}
+  .nav-right{gap:6px;}
+  .wrap{padding-left:16px;padding-right:16px;}
+  .hero{padding:24px 0 14px;}
+  .hero-title{font-size:clamp(22px,6vw,32px);}
+  .two-col{grid-template-columns:1fr;}
+  .stats-row{gap:8px;}
+  .stat-pill{padding:10px 12px;flex:1;min-width:0;}
+  .stat-n{font-size:18px;}
+  .stat-l{font-size:8px;}
+  .feed-body{max-height:360px;}
+  .name-modal{padding:24px 18px;width:92vw;}
+  .name-btn{padding:12px 14px;}
+  .name-grid{gap:8px;}
+}
+@media(max-width:480px){
+  .stats-row{display:grid;grid-template-columns:1fr 1fr;}
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">
+      <div class="nav-mark">SIS</div>
+      <div>
+        <div class="nav-brand-top">Say It Social</div>
+        <div class="nav-brand-sub">Team Hub</div>
+      </div>
+    </a>
+    <div class="nav-right">
+      <a class="nav-back" href="tasks.html">📌 Tasks</a>
+      <a class="nav-back" href="index.html">← Client Hub</a>
+      <div class="nav-user" onclick="openNameModal()">
+        <div class="nav-avatar" id="navAvatar">?</div>
+        <span class="nav-username" id="navUsername">Select Name</span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="hero-eyebrow"><span class="hero-dot"></span>Team Collaboration</div>
+    <h1 class="hero-title">Team Hub —<br><em>Who's doing what.</em></h1>
+    <p class="hero-sub">Live activity feed, team presence, and collaboration across all clients and campaigns.</p>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-pill"><div class="stat-icon" style="background:rgba(34,197,94,.12);">🟢</div><div><span class="stat-n" id="st-online">0</span><span class="stat-l">Online Now</span></div></div>
+    <div class="stat-pill"><div class="stat-icon" style="background:rgba(30,111,255,.12);">⚡</div><div><span class="stat-n" id="st-today">0</span><span class="stat-l">Actions Today</span></div></div>
+    <div class="stat-pill"><div class="stat-icon" style="background:rgba(245,166,35,.12);">📋</div><div><span class="stat-n" id="st-week">0</span><span class="stat-l">This Week</span></div></div>
+    <div class="stat-pill"><div class="stat-icon" style="background:rgba(167,139,250,.12);">✅</div><div><span class="stat-n" id="st-posted">0</span><span class="stat-l">Posts Marked Done</span></div></div>
+  </div>
+
+  <div class="two-col">
+    <!-- ACTIVITY FEED -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-title">Live Activity Feed</div>
+        <div class="sec-count" id="actCount">0 activities</div>
+      </div>
+      <div class="feed-wrap">
+        <div class="feed-header">
+          <div class="feed-title">What's happening</div>
+          <div class="feed-live"><div class="feed-live-dot"></div>Live</div>
+        </div>
+        <div class="feed-body" id="feedBody">
+          <div class="feed-empty">No activity yet. Start working on a calendar to see updates here.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEAM SIDEBAR -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-title">Team</div>
+        <div class="sec-count">5 members</div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-head"><div class="team-card-title">Members</div></div>
+        <div id="teamList"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid var(--border);padding:18px 0;text-align:center;position:relative;z-index:1;">
+  <p style="font-size:11px;color:var(--muted2);">Say It Social · Team Hub · Built by <a href="#" style="color:var(--muted);text-decoration:none;">Apexis Technologies</a></p>
+</footer>
+
+<!-- NAME SELECTOR MODAL -->
+<div class="name-modal-bg" id="nameModalBg">
+  <div class="name-modal">
+    <div class="name-modal-icon">👋</div>
+    <div class="name-modal-title">Who are you?</div>
+    <div class="name-modal-sub">Select your name to identify your activity across the platform. This is saved on your device.</div>
+    <div class="name-grid" id="nameGrid"></div>
+  </div>
+</div>
+
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, limit, serverTimestamp, doc, setDoc, getDocs }
+    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const app = initializeApp({
+    apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
+    authDomain:"sayitsocial-calendar.firebaseapp.com",
+    projectId:"sayitsocial-calendar",
+    storageBucket:"sayitsocial-calendar.firebasestorage.app",
+    messagingSenderId:"232081824561",
+    appId:"1:232081824651:web:0131d5e91d96ce8ea9ae10"
+  });
+  const db = getFirestore(app);
+
+  // Expose log activity globally so calendars can call it
+  window._fbLogActivity = async function(data) {
+    await addDoc(collection(db, "activity"), {
+      ...data,
+      ts: serverTimestamp()
+    }).catch(e => console.error("Activity log error:", e));
+  };
+
+  // Update presence
+  window._fbUpdatePresence = async function(name) {
+    if(!name) return;
+    await setDoc(doc(db, "presence", name.replace(/\s/g,'_')), {
+      name,
+      lastSeen: serverTimestamp(),
+      online: true
+    }, { merge: true });
+  };
+
+  // Listen to activity feed
+  const actQ = query(collection(db, "activity"), orderBy("ts", "desc"), limit(50));
+  onSnapshot(actQ, snap => {
+    const items = [];
+    snap.forEach(d => items.push({ id: d.id, ...d.data() }));
+    if(window.renderFeed) window.renderFeed(items);
+  });
+
+  // Listen to presence
+  onSnapshot(collection(db, "presence"), snap => {
+    const members = {};
+    snap.forEach(d => members[d.id] = d.data());
+    if(window.renderTeam) window.renderTeam(members);
+  });
+
+  // Update my presence every 60s
+  setInterval(() => {
+    const me = localStorage.getItem('sis_username');
+    if(me) window._fbUpdatePresence(me);
+  }, 60000);
+
+  // Connected toast
+  const t = document.createElement("div");
+  t.style.cssText = "position:fixed;bottom:24px;right:24px;background:#111827;color:#7BB3FF;border:1px solid rgba(30,111,255,.3);padding:10px 18px;border-radius:100px;font-size:12px;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:9999;";
+  t.textContent = "🔄 Connected — syncing live";
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(), 3000);
+</script>
+
+<script>
+const TEAM = [
+  { name: "Darshil Soni",       initials: "DS", color: "#1E6FFF" },
+  { name: "Aayushi Mulay",      initials: "AM", color: "#22C55E" },
+  { name: "Lokendra Shekhawat", initials: "LS", color: "#F5A623" },
+  { name: "Saurabh Parmar",     initials: "SP", color: "#A78BFA" },
+  { name: "Bikash Sahoo",       initials: "BS", color: "#EF4444" },
+];
+
+const STATUS_COLORS = {
+  'posted':       '#22C55E',
+  'ready-to-post':'#3B82F6',
+  'in-progress':  '#F5A623',
+  'not-started':  '#6B7A99',
+  's3-sis':       '#22C55E',
+  's2-sis':       '#3B82F6',
+  's1-sis':       '#F5A623',
+  's0-sis':       '#6B7A99',
+};
+
+const STATUS_LABELS = {
+  'posted':'Posted ✓','ready-to-post':'Ready to Post','in-progress':'In Progress','not-started':'Not Started',
+  's3-sis':'Posted ✓','s2-sis':'Ready to Post','s1-sis':'In Progress','s0-sis':'Not Started',
+};
+
+function getMember(name) {
+  return TEAM.find(t => t.name === name) || { name: name||'Unknown', initials: (name||'?').substring(0,2).toUpperCase(), color: '#6B7A99' };
+}
+
+function timeAgo(ts) {
+  if(!ts) return 'just now';
+  const diff = Date.now() - (ts.seconds ? ts.seconds*1000 : ts);
+  if(diff < 60000) return 'just now';
+  if(diff < 3600000) return Math.floor(diff/60000) + 'm ago';
+  if(diff < 86400000) return Math.floor(diff/3600000) + 'h ago';
+  return Math.floor(diff/86400000) + 'd ago';
+}
+
+// ── RENDER FEED ───────────────────────────────────────────────
+window.renderFeed = function(items) {
+  const body = document.getElementById('feedBody');
+  document.getElementById('actCount').textContent = items.length + ' activities';
+
+  // Update stats
+  const now = Date.now();
+  const todayItems = items.filter(i => i.ts && (now - i.ts.seconds*1000) < 86400000);
+  const weekItems  = items.filter(i => i.ts && (now - i.ts.seconds*1000) < 604800000);
+  const postedItems= items.filter(i => i.status === 'posted' || i.status === 's3-sis');
+  document.getElementById('st-today').textContent  = todayItems.length;
+  document.getElementById('st-week').textContent   = weekItems.length;
+  document.getElementById('st-posted').textContent = postedItems.length;
+
+  if(!items.length) {
+    body.innerHTML = '<div class="feed-empty">No activity yet. Start working on a calendar to see updates here.</div>';
+    return;
+  }
+
+  body.innerHTML = items.map(item => {
+    const member = getMember(item.user);
+    const statusLabel = STATUS_LABELS[item.status] || item.status || '';
+    const statusColor = STATUS_COLORS[item.status] || '#6B7A99';
+    return `
+    <div class="activity-item">
+      <div class="activity-avatar" style="background:${member.color}">${member.initials}</div>
+      <div class="activity-body">
+        <div class="activity-text">
+          <strong>${esc(item.user||'Someone')}</strong> marked
+          <em style="color:var(--muted)">${esc(item.postTitle||item.postId||'a post')}</em> as
+          <span class="act-status" style="background:${statusColor}22;color:${statusColor}">${esc(statusLabel)}</span>
+        </div>
+        ${item.client ? `<span class="activity-client">📁 ${esc(item.client)}</span>` : ''}
+        <div class="activity-time">${timeAgo(item.ts)}</div>
+      </div>
+    </div>`;
+  }).join('');
+};
+
+// ── RENDER TEAM ───────────────────────────────────────────────
+window.renderTeam = function(presenceData) {
+  const list = document.getElementById('teamList');
+  const me   = localStorage.getItem('sis_username');
+  const now  = Date.now();
+  let onlineCount = 0;
+
+  list.innerHTML = TEAM.map(member => {
+    const key  = member.name.replace(/\s/g,'_');
+    const pres = presenceData[key];
+    const lastSeenMs = pres?.lastSeen?.seconds ? pres.lastSeen.seconds*1000 : 0;
+    const diff = now - lastSeenMs;
+
+    let dotCls = 'tm-dot-offline';
+    let lastSeenTxt = 'Offline';
+    if(lastSeenMs && diff < 120000)   { dotCls = 'tm-dot-online';  lastSeenTxt = 'Online now'; onlineCount++; }
+    else if(lastSeenMs && diff < 3600000) { dotCls = 'tm-dot-away'; lastSeenTxt = timeAgo(pres.lastSeen); }
+    else if(lastSeenMs)               { lastSeenTxt = timeAgo(pres.lastSeen); }
+
+    const isMe = member.name === me;
+    return `
+    <div class="team-member">
+      <div class="tm-avatar" style="background:${member.color}">
+        ${member.initials}
+        <div class="tm-online-dot ${dotCls}"></div>
+      </div>
+      <div>
+        <div class="tm-name">${member.name}</div>
+        <div class="tm-role">${lastSeenTxt}</div>
+      </div>
+      ${isMe ? '<span class="tm-you">You</span>' : `<span class="tm-lastseen">${lastSeenTxt === 'Online now' ? '🟢' : ''}</span>`}
+    </div>`;
+  }).join('');
+
+  document.getElementById('st-online').textContent = onlineCount;
+};
+
+// ── NAME SELECTOR ─────────────────────────────────────────────
+function buildNameGrid() {
+  const grid = document.getElementById('nameGrid');
+  grid.innerHTML = TEAM.map(m => `
+    <button class="name-btn" onclick="selectName('${m.name}')">
+      <div class="name-btn-avatar" style="background:${m.color}">${m.initials}</div>
+      <div>
+        <div class="name-btn-name">${m.name}</div>
+        <div class="name-btn-role">Say It Social Team</div>
+      </div>
+    </button>`).join('');
+}
+
+function selectName(name) {
+  localStorage.setItem('sis_username', name);
+  updateNavUser(name);
+  document.getElementById('nameModalBg').classList.remove('show');
+  if(window._fbUpdatePresence) window._fbUpdatePresence(name);
+}
+
+function openNameModal() {
+  document.getElementById('nameModalBg').classList.add('show');
+}
+
+function updateNavUser(name) {
+  const m = getMember(name);
+  document.getElementById('navAvatar').textContent = m.initials;
+  document.getElementById('navAvatar').style.background = m.color;
+  document.getElementById('navUsername').textContent = name;
+}
+
+function esc(s) {
+  if(!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ── INIT ──────────────────────────────────────────────────────
+buildNameGrid();
+const savedName = localStorage.getItem('sis_username');
+if(!savedName) {
+  document.getElementById('nameModalBg').classList.add('show');
+} else {
+  updateNavUser(savedName);
+  if(window._fbUpdatePresence) window._fbUpdatePresence(savedName);
+}
+
+window.openNameModal = openNameModal;
+window.selectName   = selectName;
+document.getElementById('footerYear') && (document.getElementById('footerYear').textContent = new Date().getFullYear());
+</script>
+</body>
+</html>
