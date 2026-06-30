@@ -93,11 +93,16 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
 .chart-wrap{position:relative;height:180px;}
 
 /* PLATFORM COMPARISON */
-.platform-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
-.platform-card{background:var(--navy2);border:1px solid var(--border);border-radius:14px;padding:18px 20px;}
-.platform-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:100px;font-size:11px;font-weight:700;margin-bottom:14px;}
+.platform-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:20px;}
+.platform-card{background:var(--navy2);border:1px solid var(--border);border-radius:14px;padding:18px 20px;transition:opacity .2s,transform .2s;}
+.platform-card.plat-hidden{display:none;}
+.platform-badge{display:inline-flex;align-items:center;gap:7px;padding:4px 12px;border-radius:100px;font-size:11px;font-weight:700;margin-bottom:14px;}
+.platform-badge svg{flex-shrink:0;}
 .platform-badge-ig{background:var(--ig-dim);color:var(--ig);}
 .platform-badge-fb{background:var(--fb-dim);color:var(--fb);}
+.platform-badge-li{background:rgba(10,102,194,0.14);color:#4DA3FF;}
+.platform-badge-yt{background:rgba(255,0,0,0.12);color:#FF6060;}
+.platform-badge-tw{background:rgba(255,255,255,0.1);color:#fff;}
 .platform-metric{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);}
 .platform-metric:last-child{border-bottom:none;}
 .pm-label{font-size:11px;color:var(--muted);}
@@ -271,15 +276,20 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
 /* ── ANALYTICS BUTTONS ── */
 .analytics-strip{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px;}
 .analytics-strip-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-right:4px;white-space:nowrap;}
-.an-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;border:none;font-family:'Plus Jakarta Sans',sans-serif;transition:all .15s;text-decoration:none;white-space:nowrap;}
-.an-btn:hover{filter:brightness(1.15);}
-.an-btn-igfb{background:linear-gradient(135deg,rgba(225,48,108,0.15),rgba(24,119,242,0.15));color:#E1306C;border:1px solid rgba(225,48,108,0.3);}
-.an-btn-li{background:rgba(10,102,194,0.12);color:#4DA3FF;border:1px solid rgba(10,102,194,0.3);}
-.an-btn-yt{background:rgba(255,0,0,0.1);color:#FF6060;border:1px solid rgba(255,0,0,0.25);}
-.an-btn-tw{background:rgba(255,255,255,0.06);color:#CCC;border:1px solid rgba(255,255,255,0.15);}
-.an-btn-config{background:rgba(107,122,153,0.1);color:var(--muted);border:1px solid var(--border);margin-left:auto;}
-.an-btn-config:hover{color:var(--text);border-color:var(--border2);}
-.an-btn.disabled{opacity:0.4;cursor:not-allowed;pointer-events:none;}
+.an-btn{display:inline-flex;align-items:center;gap:7px;padding:7px 14px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;border:1.5px solid transparent;font-family:'Plus Jakarta Sans',sans-serif;transition:all .15s;text-decoration:none;white-space:nowrap;background:var(--surface);color:var(--muted);}
+.an-btn svg{flex-shrink:0;opacity:0.85;}
+.an-btn:hover{filter:brightness(1.2);border-color:var(--border2);}
+.an-btn.active{filter:brightness(1.05);}
+.an-btn-all{color:var(--text);}
+.an-btn-all.active{background:rgba(30,111,255,0.12);color:#7BB3FF;border-color:rgba(30,111,255,0.35);}
+.an-btn-igfb{}
+.an-btn-igfb.active{background:linear-gradient(135deg,rgba(225,48,108,0.16),rgba(24,119,242,0.16));color:#E1306C;border-color:rgba(225,48,108,0.35);}
+.an-btn-li{}
+.an-btn-li.active{background:rgba(10,102,194,0.14);color:#4DA3FF;border-color:rgba(10,102,194,0.35);}
+.an-btn-yt{}
+.an-btn-yt.active{background:rgba(255,0,0,0.12);color:#FF6060;border-color:rgba(255,0,0,0.3);}
+.an-btn-tw{}
+.an-btn-tw.active{background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.25);}
 
 /* IMPORT BUTTONS IN CH-ACTIONS */
 .ch-btn-import-all{background:rgba(167,139,250,.1);color:var(--purple);border:1px solid rgba(167,139,250,.3);}
@@ -467,12 +477,12 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
           </div>
           <!-- Row 2: Analytics quick links -->
           <div class="analytics-strip" id="analyticsStrip">
-            <span class="analytics-strip-label">Analytics →</span>
-            <a class="an-btn an-btn-igfb disabled" id="anBtnIGFB" href="#" target="_blank" rel="noopener">📸📘 IG &amp; FB</a>
-            <a class="an-btn an-btn-li disabled" id="anBtnLI" href="#" target="_blank" rel="noopener">💼 LinkedIn</a>
-            <a class="an-btn an-btn-yt disabled" id="anBtnYT" href="#" target="_blank" rel="noopener">▶ YouTube</a>
-            <a class="an-btn an-btn-tw disabled" id="anBtnTW" href="#" target="_blank" rel="noopener">𝕏 Twitter</a>
-            <button class="an-btn an-btn-config" onclick="openProfileModal()">⚙ Configure Profiles</button>
+            <span class="analytics-strip-label">Filter →</span>
+            <button class="an-btn an-btn-all active" id="anBtnAll" onclick="setPlatformFilter('all',this)">All Platforms</button>
+            <button class="an-btn an-btn-igfb" id="anBtnIGFB" onclick="setPlatformFilter('igfb',this)"></button>
+            <button class="an-btn an-btn-li" id="anBtnLI" onclick="setPlatformFilter('li',this)"></button>
+            <button class="an-btn an-btn-yt" id="anBtnYT" onclick="setPlatformFilter('yt',this)"></button>
+            <button class="an-btn an-btn-tw" id="anBtnTW" onclick="setPlatformFilter('tw',this)"></button>
           </div>
         </div>
       </div>
@@ -638,13 +648,25 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
 
     <!-- PLATFORM COMPARISON CARDS -->
     <div class="platform-row" id="platformRow">
-      <div class="platform-card">
-        <div class="platform-badge platform-badge-ig">📸 Instagram</div>
+      <div class="platform-card plat-card-ig" data-plat="igfb">
+        <div class="platform-badge platform-badge-ig" id="badgeIG"></div>
         <div id="igMetrics"></div>
       </div>
-      <div class="platform-card">
-        <div class="platform-badge platform-badge-fb">📘 Facebook</div>
+      <div class="platform-card plat-card-fb" data-plat="igfb">
+        <div class="platform-badge platform-badge-fb" id="badgeFB"></div>
         <div id="fbMetrics"></div>
+      </div>
+      <div class="platform-card plat-card-li" data-plat="li" id="liPlatCard" style="display:none;">
+        <div class="platform-badge platform-badge-li" id="badgeLI"></div>
+        <div id="liMetricsCard"></div>
+      </div>
+      <div class="platform-card plat-card-yt" data-plat="yt" id="ytPlatCard" style="display:none;">
+        <div class="platform-badge platform-badge-yt" id="badgeYT"></div>
+        <div id="ytMetricsCard"></div>
+      </div>
+      <div class="platform-card plat-card-tw" data-plat="tw" id="twPlatCard" style="display:none;">
+        <div class="platform-badge platform-badge-tw" id="badgeTW"></div>
+        <div id="twMetricsCard"></div>
       </div>
     </div>
 
@@ -844,6 +866,14 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
 
 <script>
 const CLIENT_NAMES={'say-it-social':'Say It Social','green-sapio':'Green Sapio','bsfc-thaltej':'BSFC Thaltej','bsfc-bopal':'BSFC Bopal','shiva-optics':'Shiva Optics','rcsl':'RCSL','vcsl':'VCSL — Veracity Supply Chain'};
+const PLATFORM_ICONS = {
+  ig: `<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.012 4.85.07 1.17.054 1.97.24 2.43.41.61.23 1.05.51 1.5.96.46.46.74.9.97 1.51.17.46.36 1.26.41 2.43.058 1.27.07 1.65.07 4.85s-.012 3.58-.07 4.85c-.054 1.17-.24 1.97-.41 2.43-.23.61-.51 1.05-.96 1.5-.46.46-.9.74-1.51.97-.46.17-1.26.36-2.43.41-1.27.058-1.65.07-4.85.07s-3.58-.012-4.85-.07c-1.17-.054-1.97-.24-2.43-.41-.61-.23-1.05-.51-1.5-.96-.46-.46-.74-.9-.97-1.51-.17-.46-.36-1.26-.41-2.43-.058-1.27-.07-1.65-.07-4.85s.012-3.58.07-4.85c.054-1.17.24-1.97.41-2.43.23-.61.51-1.05.96-1.5.46-.46.9-.74 1.51-.97.46-.17 1.26-.36 2.43-.41 1.27-.058 1.65-.07 4.85-.07M12 0C8.74 0 8.33.014 7.05.072 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.13 1.39C1.34 2.69.93 3.36.63 4.14.33 4.9.13 5.78.072 7.05.014 8.33 0 8.74 0 12s.014 3.67.072 4.95c.058 1.27.258 2.15.558 2.91.31.79.72 1.46 1.39 2.13.67.67 1.34 1.08 2.13 1.39.76.3 1.64.5 2.91.558C8.33 23.986 8.74 24 12 24s3.67-.014 4.95-.072c1.27-.058 2.15-.258 2.91-.558.79-.31 1.46-.72 2.13-1.39.67-.67 1.08-1.34 1.39-2.13.3-.76.5-1.64.558-2.91.058-1.28.072-1.69.072-4.95s-.014-3.67-.072-4.95c-.058-1.27-.258-2.15-.558-2.91-.31-.79-.72-1.46-1.39-2.13C20.31 1.34 19.64.93 18.86.63c-.76-.3-1.64-.5-2.91-.558C14.67.014 14.26 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>`,
+  fb: `<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>`,
+  li: `<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>`,
+  yt: `<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`,
+  tw: `<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`,
+};
+
 let _cid=null,_months={},_active=null,_charts={};
 
 const fmtMonth=k=>{if(!k)return'—';const[y,m]=k.split('-');return['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m-1]+' '+y;};
@@ -864,12 +894,9 @@ async function loadReport(){
   try{document.getElementById('postCountSection').style.display='none';}catch(e){}
   try{document.getElementById('contentBreakdownSection').style.display='none';}catch(e){}
   try{document.getElementById('multiPlatformSection').style.display='none';}catch(e){}
-  // Reset analytics buttons to disabled on client switch
+  // Reset platform filter to 'All' on client switch
   _profileUrls={};
-  ['anBtnIGFB','anBtnLI','anBtnYT','anBtnTW'].forEach(id=>{
-    const btn=document.getElementById(id);
-    if(btn){btn.classList.add('disabled');btn.href='#';btn.style.opacity='';}
-  });
+  setPlatformFilter('all', document.getElementById('anBtnAll'));
   // Reset competitor section on client switch
   _competitors=null;
   try{document.getElementById('competitorSection').style.display='none';}catch(e){}
@@ -884,7 +911,7 @@ async function loadReport(){
   // Fetch fresh from Firebase
   if(window._loadClientData) _months=await window._loadClientData(cid);
   // Load profile URLs for analytics buttons
-  if(window._loadProfileUrls){ _profileUrls=await window._loadProfileUrls(cid)||{}; updateAnalyticsButtons(); }
+  if(window._loadProfileUrls){ _profileUrls=await window._loadProfileUrls(cid)||{}; }
   // Load competitor benchmarking data
   if(window._loadCompetitors){ _competitors=await window._loadCompetitors(cid)||null; renderCompetitors(); }
   // Reset ads data for this client
@@ -1004,6 +1031,22 @@ function renderPlatform(){
     {label:'Page Visits',val:d.fb_profile_visits},
     {label:'New Follows',val:d.fb_follows},
   ];
+  const liFields=[
+    {label:'Impressions',val:d.li_impressions},{label:'Reactions',val:d.li_reactions},
+    {label:'Comments',val:d.li_comments},{label:'Reposts',val:d.li_reposts},
+    {label:'Clicks',val:d.li_clicks},{label:'New Followers',val:d.li_follows},
+    {label:'Page Views',val:d.li_page_views},{label:'Unique Visitors',val:d.li_unique_visitors},
+  ];
+  const ytFields=[
+    {label:'Views',val:d.yt_views},{label:'Watch Time (mins)',val:d.yt_watch_time},
+    {label:'Subscribers Gained',val:d.yt_subscribers},{label:'Likes',val:d.yt_likes},
+    {label:'Comments',val:d.yt_comments},{label:'Shorts Views',val:d.yt_shorts_views},
+  ];
+  const twFields=[
+    {label:'Impressions',val:d.tw_impressions},{label:'Likes',val:d.tw_likes},
+    {label:'Retweets',val:d.tw_retweets},{label:'Replies',val:d.tw_replies},
+    {label:'Link Clicks',val:d.tw_clicks},{label:'Followers Gained',val:d.tw_follows},
+  ];
   const render=fields=>fields.map(f=>`
     <div class="platform-metric">
       <span class="pm-label">${f.label}</span>
@@ -1011,6 +1054,19 @@ function renderPlatform(){
     </div>`).join('');
   document.getElementById('igMetrics').innerHTML=render(igFields);
   document.getElementById('fbMetrics').innerHTML=render(fbFields);
+  document.getElementById('liMetricsCard').innerHTML=render(liFields);
+  document.getElementById('ytMetricsCard').innerHTML=render(ytFields);
+  document.getElementById('twMetricsCard').innerHTML=render(twFields);
+
+  // Toggle LI/YT/TW cards based on whether any data exists for them
+  const hasLI = liFields.some(f=>f.val!=null && f.val!==0);
+  const hasYT = ytFields.some(f=>f.val!=null && f.val!==0);
+  const hasTW = twFields.some(f=>f.val!=null && f.val!==0);
+  const liCard=document.getElementById('liPlatCard'), ytCard=document.getElementById('ytPlatCard'), twCard=document.getElementById('twPlatCard');
+  if(liCard) liCard.dataset.hasData = hasLI ? '1':'0';
+  if(ytCard) ytCard.dataset.hasData = hasYT ? '1':'0';
+  if(twCard) twCard.dataset.hasData = hasTW ? '1':'0';
+  applyPlatformFilter();
 
   // Show notes if available
   const notesEl = document.getElementById('monthNotes');
@@ -1022,6 +1078,23 @@ function renderPlatform(){
       notesEl.style.display='none';
     }
   }
+}
+
+let _platFilter = 'all';
+function setPlatformFilter(plat, btn){
+  _platFilter = plat;
+  document.querySelectorAll('.an-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  applyPlatformFilter();
+}
+function applyPlatformFilter(){
+  const cards = document.querySelectorAll('.platform-card');
+  cards.forEach(c=>{
+    const plat = c.dataset.plat;
+    const hasData = c.id ? (c.dataset.hasData!=='0') : true; // IG/FB always considered to have data potential
+    const matches = (_platFilter==='all') || (_platFilter===plat);
+    c.classList.toggle('plat-hidden', !matches);
+  });
 }
 
 // Peak annotation plugin — highlights the highest value point on line charts only
@@ -1378,31 +1451,10 @@ async function saveProfileUrls(){
     tw:   document.getElementById('url_tw').value.trim(),
   };
   if(window._saveProfileUrls) await window._saveProfileUrls(_cid, _profileUrls);
-  updateAnalyticsButtons();
   closeProfileModal();
   showToast('✅ Profile links saved!');
 }
-function updateAnalyticsButtons(){
-  const defs = [
-    {id:'anBtnIGFB', key:'igfb', fallback:'https://business.facebook.com/latest/insights/'},
-    {id:'anBtnLI',   key:'li',   fallback:'https://www.linkedin.com/analytics/'},
-    {id:'anBtnYT',   key:'yt',   fallback:'https://studio.youtube.com/'},
-    {id:'anBtnTW',   key:'tw',   fallback:'https://analytics.twitter.com/'},
-  ];
-  defs.forEach(({id,key,fallback})=>{
-    const btn = document.getElementById(id);
-    if(!btn) return;
-    const url = _profileUrls[key];
-    if(url){
-      btn.href = url;
-      btn.classList.remove('disabled');
-    } else {
-      btn.href = fallback;
-      btn.classList.remove('disabled');
-      btn.style.opacity='0.6';
-    }
-  });
-}
+
 
 // ══════════════════════════════════════
 // UNIFIED IMPORT MODAL
@@ -1823,6 +1875,25 @@ function renderCompetitors(){
 }
 
 
+
+function injectPlatformIcons(){
+  const map = [
+    ['anBtnIGFB', PLATFORM_ICONS.ig+PLATFORM_ICONS.fb+' <span>Instagram &amp; Facebook</span>'],
+    ['anBtnLI',   PLATFORM_ICONS.li+' <span>LinkedIn</span>'],
+    ['anBtnYT',   PLATFORM_ICONS.yt+' <span>YouTube</span>'],
+    ['anBtnTW',   PLATFORM_ICONS.tw+' <span>X (Twitter)</span>'],
+    ['badgeIG',   PLATFORM_ICONS.ig+' <span>Instagram</span>'],
+    ['badgeFB',   PLATFORM_ICONS.fb+' <span>Facebook</span>'],
+    ['badgeLI',   PLATFORM_ICONS.li+' <span>LinkedIn</span>'],
+    ['badgeYT',   PLATFORM_ICONS.yt+' <span>YouTube</span>'],
+    ['badgeTW',   PLATFORM_ICONS.tw+' <span>X (Twitter)</span>'],
+  ];
+  map.forEach(([id,html])=>{
+    const el=document.getElementById(id);
+    if(el) el.innerHTML=html;
+  });
+}
+
 function showToast(msg){
   const t=document.getElementById('toast');
   t.textContent=msg;t.classList.add('show');
@@ -1830,6 +1901,7 @@ function showToast(msg){
 }
 
 window.addEventListener('DOMContentLoaded',()=>{
+  injectPlatformIcons();
   const p=new URLSearchParams(location.search);
   const isShare=p.get('view')==='share';
   if(isShare){
