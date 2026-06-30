@@ -251,6 +251,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
       <option value="">All Clients</option>
       <option value="__general">🏢 Agency / General</option>
     </select>
+    <button class="tb-select" style="cursor:pointer;font-weight:700;color:var(--blue);" onclick="openClientModal()" title="Add a new client">+ Client</button>
     <select class="tb-select" id="filterAssignee" onchange="applyFilters()">
       <option value="">All Assignees</option>
     </select>
@@ -265,6 +266,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
     <div class="view-toggle">
       <button class="view-btn active" id="viewBtnKanban" onclick="setView('kanban')">▦ Board</button>
       <button class="view-btn" id="viewBtnList" onclick="setView('list')">☰ List</button>
+      <button class="view-btn" id="viewBtnMonthly" onclick="setView('monthly')">📅 Monthly</button>
     </div>
   </div>
 
@@ -308,6 +310,44 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
     <div id="listRows"></div>
   </div>
 
+  <!-- MONTHLY VIEW -->
+  <div class="monthly-view" id="monthlyView" style="display:none;">
+    <div class="month-nav">
+      <button class="month-nav-btn" onclick="shiftMonth(-1)">← Prev</button>
+      <div class="month-nav-label" id="monthNavLabel">—</div>
+      <button class="month-nav-btn" onclick="shiftMonth(1)">Next →</button>
+    </div>
+
+    <div class="heatmap-card">
+      <div class="heatmap-head">
+        <div class="heatmap-title">📅 Daily Completions</div>
+        <div class="heatmap-legend">
+          <span>Less</span>
+          <span class="hm-cell hm-l0"></span>
+          <span class="hm-cell hm-l1"></span>
+          <span class="hm-cell hm-l2"></span>
+          <span class="hm-cell hm-l3"></span>
+          <span class="hm-cell hm-l4"></span>
+          <span>More</span>
+        </div>
+      </div>
+      <div class="heatmap-dow-row" id="heatmapDowRow"></div>
+      <div class="heatmap-grid" id="heatmapGrid"></div>
+    </div>
+
+    <div class="monthly-stats-row">
+      <div class="ms-card"><div class="ms-num" id="msCreated">0</div><div class="ms-label">Created This Month</div></div>
+      <div class="ms-card"><div class="ms-num" id="msCompleted">0</div><div class="ms-label">Completed This Month</div></div>
+      <div class="ms-card"><div class="ms-num" id="msOverdueCarry">0</div><div class="ms-label">Still Overdue</div></div>
+      <div class="ms-card"><div class="ms-num" id="msRate">0%</div><div class="ms-label">Completion Rate</div></div>
+    </div>
+
+    <div class="leaderboard-card">
+      <div class="leaderboard-head">🏆 Team Leaderboard — Tasks Completed</div>
+      <div id="leaderboardBody"></div>
+    </div>
+  </div>
+
   <div class="empty-state" id="emptyState" style="display:none;">
     <div class="empty-state-icon">📭</div>
     <p>No tasks match your filters. Try clearing them, or add a new task.</p>
@@ -324,9 +364,10 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
     <div class="tm-grid">
       <div class="tm-field">
         <label class="tm-label">Client</label>
-        <select class="tm-select" id="tmClient">
+        <select class="tm-select" id="tmClient" onchange="handleClientSelectChange(this)">
           <option value="">— None —</option>
           <option value="__general">🏢 Agency / General</option>
+          <option value="__new" style="color:#7BB3FF;">+ Add New Client...</option>
         </select>
       </div>
       <div class="tm-field">
@@ -355,6 +396,10 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
           <option value="done">Done</option>
         </select>
       </div>
+      <div class="tm-field full" style="flex-direction:row;align-items:center;gap:8px;">
+        <input type="checkbox" id="tmRecurring" style="width:16px;height:16px;accent-color:var(--blue);cursor:pointer;"/>
+        <label class="tm-label" for="tmRecurring" style="text-transform:none;letter-spacing:0;font-size:12.5px;color:var(--text);cursor:pointer;">🔁 Daily recurring task — when marked Done, a fresh copy is created for tomorrow automatically</label>
+      </div>
       <div class="tm-field full">
         <label class="tm-label">Description</label>
         <textarea class="tm-textarea" id="tmDesc" placeholder="Add more detail about this task..."></textarea>
@@ -375,6 +420,27 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
     <div class="tm-actions">
       <button class="tm-delete" id="tmDeleteBtn" style="display:none;" onclick="deleteCurrentTask()">🗑 Delete Task</button>
       <button class="tm-save" onclick="saveTask()">Save Task</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD CLIENT MODAL -->
+<div class="modal-bg" id="clientModalBg" onclick="if(event.target===this)closeClientModal()">
+  <div class="task-modal" style="width:420px;">
+    <button class="tm-close" onclick="closeClientModal()">✕</button>
+    <div style="font-family:'Instrument Serif',serif;font-size:20px;color:var(--white);margin-bottom:6px;">Add New Client</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:20px;line-height:1.5;">For clients you're working with before a content calendar exists yet. They'll show up in the client picker right away.</div>
+    <div class="tm-field" style="margin-bottom:14px;">
+      <label class="tm-label">Client Name</label>
+      <input class="tm-input" id="newClientName" type="text" placeholder="e.g. Acme Corp"/>
+    </div>
+    <div class="tm-field" style="margin-bottom:18px;">
+      <label class="tm-label">Emoji <span style="text-transform:none;font-weight:400;color:var(--muted2);">(optional)</span></label>
+      <input class="tm-input" id="newClientEmoji" type="text" placeholder="🏢" maxlength="2" style="width:70px;"/>
+    </div>
+    <div style="font-size:11px;color:#FCA5A5;margin-bottom:10px;display:none;" id="newClientError"></div>
+    <div class="tm-actions" style="justify-content:flex-end;">
+      <button class="tm-save" onclick="submitNewClient()">Add Client</button>
     </div>
   </div>
 </div>
@@ -418,19 +484,40 @@ let _draggedTaskId = null;
 // ══════════════════════════════════════
 // INIT — populate dropdowns, wire Firebase
 // ══════════════════════════════════════
+let _prospectClients = [];
+
 window._tasksInit = function(){
-  populateClientDropdowns();
   populateAssigneeDropdowns();
+  window._fbWatchProspectClients(clients => {
+    _prospectClients = clients;
+    populateClientDropdowns();
+    renderTasks(); // client labels may need refreshing if a prospect client was just added
+  });
   window._fbWatchTasks(tasks => {
     _allTasks = tasks;
     renderEverything();
   });
 };
 
+function allClients(){
+  // Real clients (with a content calendar) + prospect clients (no calendar yet)
+  return [...CLIENTS, ...(_prospectClients||[]).map(p=>({id:p.id, name:p.name, emoji:p.emoji||'🏢', isProspect:true}))];
+}
+
 function populateClientDropdowns(){
-  const opts = CLIENTS.map(c=>`<option value="${c.id}">${c.emoji} ${c.name}</option>`).join('');
-  document.getElementById('filterClient').insertAdjacentHTML('beforeend', opts);
-  document.getElementById('tmClient').insertAdjacentHTML('beforeend', opts);
+  const opts = allClients().map(c=>`<option value="${c.id}">${c.emoji} ${c.name}${c.isProspect?' (new)':''}</option>`).join('');
+
+  // Rebuild filterClient (preserving "All Clients" + "Agency / General")
+  const filterEl = document.getElementById('filterClient');
+  const filterCurrent = filterEl.value;
+  filterEl.innerHTML = '<option value="">All Clients</option><option value="__general">🏢 Agency / General</option>' + opts;
+  if([...filterEl.options].some(o=>o.value===filterCurrent)) filterEl.value = filterCurrent;
+
+  // Rebuild tmClient (preserving "None" + "Agency / General" + "Add New Client")
+  const tmEl = document.getElementById('tmClient');
+  const tmCurrent = tmEl.value;
+  tmEl.innerHTML = '<option value="">— None —</option><option value="__general">🏢 Agency / General</option>' + opts + '<option value="__new" style="color:#7BB3FF;">+ Add New Client...</option>';
+  if([...tmEl.options].some(o=>o.value===tmCurrent)) tmEl.value = tmCurrent;
 }
 function populateAssigneeDropdowns(){
   const opts = TEAM.map(t=>`<option value="${t.email}">${t.name}</option>`).join('');
@@ -448,7 +535,7 @@ function teamInitial(email){
 }
 function clientLabel(id){
   if(id==='__general') return '🏢 Agency';
-  const c = CLIENTS.find(c=>c.id===id);
+  const c = allClients().find(c=>c.id===id);
   return c ? c.emoji+' '+c.name : '';
 }
 
@@ -570,7 +657,7 @@ function renderTaskCard(t){
       <span class="tc-priority p-${t.priority||'medium'}">${(t.priority||'medium').toUpperCase()}</span>
       ${t.assignee ? `<div class="tc-assignee" title="${teamName(t.assignee)}">${teamInitial(t.assignee)}</div>` : ''}
     </div>
-    <div class="tc-title">${escapeHtml(t.title||'Untitled task')}</div>
+    <div class="tc-title">${t.recurring ? '🔁 ' : ''}${escapeHtml(t.title||'Untitled task')}</div>
     ${t.client ? `<div class="tc-client">${clientLabel(t.client)}</div>` : ''}
     <div class="tc-meta">
       <span class="tc-due ${dueClass}">${t.due ? dueIcon+' '+fmtDue(t.due) : ''}</span>
@@ -615,7 +702,7 @@ function renderList(tasks){
     const done = t.status==='done';
     return `<div class="task-row ${overdue?'overdue':''}" onclick="openTaskModal('${t.id}')">
       <div class="tr-check ${done?'checked':''}" onclick="event.stopPropagation();toggleDone('${t.id}')">${done?'✓':''}</div>
-      <div class="tr-title ${done?'done-title':''}">${escapeHtml(t.title||'Untitled task')}</div>
+      <div class="tr-title ${done?'done-title':''}">${t.recurring ? '🔁 ' : ''}${escapeHtml(t.title||'Untitled task')}</div>
       <div class="tr-client">${t.client ? clientLabel(t.client) : '—'}</div>
       <div class="tr-client">${t.assignee ? teamName(t.assignee) : '—'}</div>
       <span class="tc-priority p-${t.priority||'medium'}" style="justify-self:start;">${(t.priority||'medium').toUpperCase()}</span>
@@ -639,6 +726,47 @@ function renderEverything(){
   renderTasks();
 }
 
+
+// ══════════════════════════════════════
+// RECURRING TASKS — clone for tomorrow when marked Done
+// ══════════════════════════════════════
+function addDaysToDateStr(dateStr, days){
+  const base = dateStr ? new Date(dateStr+'T00:00:00') : new Date(todayStr()+'T00:00:00');
+  base.setDate(base.getDate() + days);
+  return base.getFullYear()+'-'+String(base.getMonth()+1).padStart(2,'0')+'-'+String(base.getDate()).padStart(2,'0');
+}
+
+// Call this right after a task transitions INTO 'done'. Guards against double-cloning
+// (e.g. re-saving an already-done recurring task) via the _spawnedFor marker.
+async function maybeSpawnRecurringClone(task){
+  if(!task || !task.recurring) return;
+  if(task._spawnedFor) return; // already cloned once from this completion — don't duplicate
+
+  const tomorrow = addDaysToDateStr(task.due, 1);
+  const clone = {
+    title: task.title,
+    client: task.client || '',
+    assignee: task.assignee || '',
+    due: tomorrow,
+    priority: task.priority || 'medium',
+    status: 'todo',
+    desc: task.desc || '',
+    recurring: true,
+    notes: [],
+    createdBy: window._currentUserEmail || '',
+    recurringParentId: task.recurringParentId || task.id,
+  };
+
+  try{
+    await window._fbAddTask(clone);
+    await window._fbUpdateTask(task.id, { _spawnedFor: tomorrow });
+    showToast('🔁 Recurring task created for ' + fmtDue(tomorrow));
+  } catch(e){
+    console.error('Failed to spawn recurring task clone:', e);
+  }
+}
+
+
 async function toggleDone(id){
   const t = _allTasks.find(t=>t.id===id);
   if(!t) return;
@@ -646,6 +774,7 @@ async function toggleDone(id){
   const data = {status:newStatus};
   if(newStatus==='done') data.completedAt = new Date().toISOString();
   await window._fbUpdateTask(id, data);
+  if(newStatus==='done') maybeSpawnRecurringClone({...t, status:'done'});
 }
 
 // ══════════════════════════════════════
@@ -672,11 +801,74 @@ async function onColDrop(e){
   e.currentTarget.classList.remove('drag-over');
   const newStatus = e.currentTarget.dataset.status;
   if(!_draggedTaskId || !newStatus) return;
+  const draggedTask = _allTasks.find(t=>t.id===_draggedTaskId);
   const data = {status:newStatus};
   if(newStatus==='done') data.completedAt = new Date().toISOString();
   await window._fbUpdateTask(_draggedTaskId, data);
+  if(newStatus==='done' && draggedTask) maybeSpawnRecurringClone({...draggedTask, status:'done'});
   showToast('Task moved to '+({todo:'To Do',progress:'In Progress',review:'Review',done:'Done'}[newStatus]));
 }
+
+
+// ══════════════════════════════════════
+// ADD NEW CLIENT — for clients without a calendar yet
+// ══════════════════════════════════════
+function handleClientSelectChange(selectEl){
+  if(selectEl.value === '__new'){
+    selectEl.value = ''; // reset so it doesn't stay stuck on the placeholder option
+    openClientModal();
+  }
+}
+
+function openClientModal(){
+  document.getElementById('newClientName').value = '';
+  document.getElementById('newClientEmoji').value = '';
+  document.getElementById('newClientError').style.display = 'none';
+  document.getElementById('clientModalBg').classList.add('show');
+  setTimeout(()=>document.getElementById('newClientName').focus(), 50);
+}
+function closeClientModal(){
+  document.getElementById('clientModalBg').classList.remove('show');
+}
+
+function slugify(name){
+  return name.toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+}
+
+async function submitNewClient(){
+  const name = document.getElementById('newClientName').value.trim();
+  const emoji = document.getElementById('newClientEmoji').value.trim() || '🏢';
+  const errEl = document.getElementById('newClientError');
+  errEl.style.display = 'none';
+
+  if(!name){
+    errEl.textContent = 'Please enter a client name.';
+    errEl.style.display = 'block';
+    return;
+  }
+  const id = 'prospect-' + slugify(name);
+  if(allClients().some(c => c.id === id || c.name.toLowerCase() === name.toLowerCase())){
+    errEl.textContent = 'A client with this name already exists.';
+    errEl.style.display = 'block';
+    return;
+  }
+
+  try{
+    await window._fbAddProspectClient({ id, name, emoji, addedBy: window._currentUserEmail || '' });
+    closeClientModal();
+    // Pre-select the new client on the task modal once Firestore's onSnapshot picks it up
+    setTimeout(()=>{
+      const tmEl = document.getElementById('tmClient');
+      if(tmEl && [...tmEl.options].some(o=>o.value===id)) tmEl.value = id;
+    }, 400);
+    showToast('✅ ' + name + ' added — you can now tag tasks to them');
+  } catch(e){
+    console.error(e);
+    errEl.textContent = 'Something went wrong. Please try again.';
+    errEl.style.display = 'block';
+  }
+}
+
 
 // ══════════════════════════════════════
 // MODAL — open/close/save/delete
@@ -692,6 +884,7 @@ function openTaskModal(id){
   document.getElementById('tmPriority').value = t?.priority || 'medium';
   document.getElementById('tmStatus').value = t?.status || 'todo';
   document.getElementById('tmDesc').value = t?.desc || '';
+  document.getElementById('tmRecurring').checked = !!t?.recurring;
   document.getElementById('tmDeleteBtn').style.display = id ? 'block' : 'none';
 
   renderNotes(t?.notes || []);
@@ -733,10 +926,15 @@ async function saveTask(){
     priority: document.getElementById('tmPriority').value,
     status: document.getElementById('tmStatus').value,
     desc: document.getElementById('tmDesc').value.trim(),
+    recurring: document.getElementById('tmRecurring').checked,
   };
+  let justCompletedTask = null;
   if(data.status==='done'){
     const existing = _editingTaskId ? _allTasks.find(t=>t.id===_editingTaskId) : null;
-    if(!existing || existing.status!=='done') data.completedAt = new Date().toISOString();
+    if(!existing || existing.status!=='done'){
+      data.completedAt = new Date().toISOString();
+      justCompletedTask = {...(existing||{}), ...data, id:_editingTaskId};
+    }
   }
 
   if(_editingTaskId){
@@ -745,9 +943,11 @@ async function saveTask(){
   } else {
     data.createdBy = window._currentUserEmail || '';
     data.notes = [];
-    await window._fbAddTask(data);
+    const newId = await window._fbAddTask(data);
+    if(data.status==='done') justCompletedTask = {...data, id:newId};
     showToast('✅ Task created');
   }
+  if(justCompletedTask) maybeSpawnRecurringClone(justCompletedTask);
   closeTaskModal();
 }
 
@@ -847,6 +1047,20 @@ document.addEventListener('keydown', e=>{
       const tasks = [];
       snap.forEach(d => tasks.push({ id: d.id, ...d.data() }));
       cb(tasks);
+    });
+  };
+
+  // ── PROSPECT CLIENTS — clients being worked on without a content calendar yet ──
+  const PROSPECT_COLL = collection(db, "prospect_clients");
+  window._fbAddProspectClient = async (data) => {
+    const ref = await addDoc(PROSPECT_COLL, { ...data, createdAt: serverTimestamp() });
+    return ref.id;
+  };
+  window._fbWatchProspectClients = (cb) => {
+    return onSnapshot(PROSPECT_COLL, snap => {
+      const clients = [];
+      snap.forEach(d => clients.push({ id: d.id, ...d.data() }));
+      cb(clients);
     });
   };
 
