@@ -15,7 +15,7 @@
   --green:#22C55E;--amber:#F5A623;--red:#EF4444;--purple:#A78BFA;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--navy);color:var(--text);min-height:100vh;overflow-x:hidden;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--navy);color:var(--text);min-height:100vh;overflow-x:hidden;visibility:hidden;}
 body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   background-image:linear-gradient(rgba(30,111,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(30,111,255,0.03) 1px,transparent 1px);
   background-size:48px 48px;}
@@ -145,6 +145,40 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.9);backdrop-fil
   .stats-row{display:grid;grid-template-columns:1fr 1fr;}
 }
 
+
+/* ── ACCESS MANAGEMENT ── */
+.access-card{background:var(--navy2);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.access-card-head{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.access-card-title{font-size:13px;font-weight:700;color:var(--white);}
+.access-add-btn{padding:6px 14px;border-radius:8px;border:none;background:var(--blue);color:#fff;font-size:11px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;}
+.access-add-btn:hover{background:#2979FF;}
+.access-list{max-height:340px;overflow-y:auto;}
+.access-row{display:flex;align-items:center;gap:10px;padding:11px 18px;border-bottom:1px solid var(--border);}
+.access-row:last-child{border-bottom:none;}
+.access-avatar{width:30px;height:30px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--blue);flex-shrink:0;}
+.access-info{flex:1;min-width:0;}
+.access-name{font-size:12.5px;font-weight:600;color:var(--white);}
+.access-email{font-size:10.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.access-remove{background:none;border:none;color:var(--muted2);cursor:pointer;font-size:14px;padding:4px;border-radius:6px;transition:all .15s;flex-shrink:0;}
+.access-remove:hover{color:var(--red);background:rgba(239,68,68,0.1);}
+.access-empty{padding:30px 18px;text-align:center;color:var(--muted);font-size:12px;}
+
+/* ADD MEMBER MODAL */
+.am-modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:700;align-items:center;justify-content:center;backdrop-filter:blur(6px);}
+.am-modal-bg.show{display:flex;}
+.am-modal{background:var(--navy2);border:1px solid var(--border2);border-radius:18px;padding:28px;width:420px;max-width:92vw;box-shadow:0 32px 80px rgba(0,0,0,.6);}
+.am-title{font-family:'Instrument Serif',serif;font-size:20px;color:var(--white);margin-bottom:6px;}
+.am-sub{font-size:12px;color:var(--muted);margin-bottom:20px;line-height:1.5;}
+.am-field{display:flex;flex-direction:column;gap:5px;margin-bottom:14px;}
+.am-label{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);}
+.am-input{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;outline:none;transition:border-color .2s;}
+.am-input:focus{border-color:var(--blue);}
+.am-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:8px;}
+.am-cancel{padding:9px 18px;border-radius:8px;border:1px solid var(--border);background:none;color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;}
+.am-save{padding:9px 20px;border-radius:8px;border:none;background:var(--blue);color:#fff;font-size:12px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;}
+.am-save:hover{background:#2979FF;}
+.am-error{font-size:11.5px;color:#FCA5A5;margin-top:-6px;margin-bottom:10px;display:none;}
+.am-error.show{display:block;}
 </style>
 </head>
 <body>
@@ -160,7 +194,6 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.9);backdrop-fil
       </div>
     </a>
     <div class="nav-right">
-      <a class="nav-back" href="tasks.html">📌 Tasks</a>
       <a class="nav-back" href="index.html">← Client Hub</a>
       <div class="nav-user" onclick="openNameModal()">
         <div class="nav-avatar" id="navAvatar">?</div>
@@ -213,6 +246,41 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.9);backdrop-fil
         <div class="team-card-head"><div class="team-card-title">Members</div></div>
         <div id="teamList"></div>
       </div>
+
+      <div class="sec-head" style="margin-top:24px;">
+        <div class="sec-title">Manage Access</div>
+        <div class="sec-count" id="accessCount">0 approved</div>
+      </div>
+      <div class="access-card">
+        <div class="access-card-head">
+          <div class="access-card-title">🔐 Approved Logins</div>
+          <button class="access-add-btn" onclick="openAddMemberModal()">+ Add</button>
+        </div>
+        <div class="access-list" id="accessList">
+          <div class="access-empty">Loading...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADD MEMBER MODAL -->
+<div class="am-modal-bg" id="amModalBg" onclick="if(event.target===this)closeAddMemberModal()">
+  <div class="am-modal">
+    <div class="am-title">Grant Access</div>
+    <div class="am-sub">Add a Google account email to allow them to sign in to the Say It Social tools.</div>
+    <div class="am-field">
+      <label class="am-label">Full Name</label>
+      <input class="am-input" id="amName" type="text" placeholder="e.g. Priya Shah"/>
+    </div>
+    <div class="am-field">
+      <label class="am-label">Google Email</label>
+      <input class="am-input" id="amEmail" type="email" placeholder="name@gmail.com"/>
+    </div>
+    <div class="am-error" id="amError"></div>
+    <div class="am-actions">
+      <button class="am-cancel" onclick="closeAddMemberModal()">Cancel</button>
+      <button class="am-save" onclick="submitAddMember()">Grant Access</button>
     </div>
   </div>
 </div>
@@ -235,8 +303,9 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.9);backdrop-fil
 <!-- Firebase SDK -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, limit, serverTimestamp, doc, setDoc, getDocs }
+  import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, limit, serverTimestamp, doc, setDoc, deleteDoc, getDocs, getDocsFromServer }
     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+  import { getAuth, onAuthStateChanged, signOut, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
   const app = initializeApp({
     apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
@@ -246,7 +315,163 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.9);backdrop-fil
     messagingSenderId:"232081824561",
     appId:"1:232081824651:web:0131d5e91d96ce8ea9ae10"
   });
-  const db = getFirestore(app);
+const db = getFirestore(app);
+  const auth = getAuth(app);
+
+  async function loadAllowedEmails(){
+    try{
+      const snap = await getDocsFromServer(collection(db, "team_members"));
+      const emails = [];
+      snap.forEach(d => emails.push((d.data().email || d.id).toLowerCase()));
+      return emails;
+    } catch(e){
+      console.error("Failed to load team allowlist:", e);
+      return [];
+    }
+  }
+  const allowedEmailsPromise = loadAllowedEmails();
+
+  onAuthStateChanged(auth, async user => {
+    const ALLOWED = await allowedEmailsPromise;
+    if(!user || !ALLOWED.includes(user.email.toLowerCase())) {
+      window.location.href = "login.html";
+      return;
+    }
+    window._currentUserEmail = user.email;
+    document.body.style.visibility = "visible";
+    if(window._initAdminPanel) window._initAdminPanel();
+  });
+
+  window._doSignOut = () => signOut(auth).then(()=>window.location.href="login.html");
+
+
+// ══════════════════════════════════════
+// MANAGE ACCESS — add/remove team_members
+// ══════════════════════════════════════
+let _teamMembersData = [];
+
+window._initAdminPanel = function(){
+  onSnapshot(collection(db, "team_members"), snap => {
+    _teamMembersData = [];
+    snap.forEach(d => _teamMembersData.push({ id: d.id, ...d.data() }));
+    _teamMembersData.sort((a,b) => (a.name||a.email||'').localeCompare(b.name||b.email||''));
+    renderAccessList();
+  }, err => {
+    console.error("team_members listener error:", err);
+    document.getElementById('accessList').innerHTML = '<div class="access-empty">Could not load access list.</div>';
+  });
+};
+
+function accessInitials(m){
+  const n = m.name || m.email || '?';
+  return n.charAt(0).toUpperCase();
+}
+
+function renderAccessList(){
+  const listEl = document.getElementById('accessList');
+  const countEl = document.getElementById('accessCount');
+  if(!listEl) return;
+  countEl.textContent = _teamMembersData.length + ' approved';
+
+  if(!_teamMembersData.length){
+    listEl.innerHTML = '<div class="access-empty">No approved members yet. This should not normally happen — add someone immediately.</div>';
+    return;
+  }
+
+  listEl.innerHTML = _teamMembersData.map(m => {
+    const isMe = (m.email||'').toLowerCase() === (window._currentUserEmail||'').toLowerCase();
+    return `<div class="access-row">
+      <div class="access-avatar">${accessInitials(m)}</div>
+      <div class="access-info">
+        <div class="access-name">${escAdmin(m.name || '(no name)')}${isMe ? ' <span style="color:var(--blue);font-weight:700;">(you)</span>' : ''}</div>
+        <div class="access-email">${escAdmin(m.email)}</div>
+      </div>
+      <button class="access-remove" title="Remove access" onclick="removeMember('${m.id}','${escAdmin(m.email)}')">✕</button>
+    </div>`;
+  }).join('');
+}
+
+function escAdmin(s){
+  if(!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/'/g,'&#39;');
+}
+
+function openAddMemberModal(){
+  document.getElementById('amName').value = '';
+  document.getElementById('amEmail').value = '';
+  document.getElementById('amError').classList.remove('show');
+  document.getElementById('amModalBg').classList.add('show');
+  setTimeout(()=>document.getElementById('amName').focus(), 50);
+}
+function closeAddMemberModal(){
+  document.getElementById('amModalBg').classList.remove('show');
+}
+
+async function submitAddMember(){
+  const name = document.getElementById('amName').value.trim();
+  const emailRaw = document.getElementById('amEmail').value.trim();
+  const email = emailRaw.toLowerCase();
+  const errEl = document.getElementById('amError');
+  errEl.classList.remove('show');
+
+  if(!name){ errEl.textContent = 'Please enter a name.'; errEl.classList.add('show'); return; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ errEl.textContent = 'Please enter a valid email address.'; errEl.classList.add('show'); return; }
+  if(_teamMembersData.some(m => (m.email||'').toLowerCase() === email)){
+    errEl.textContent = 'This email already has access.';
+    errEl.classList.add('show');
+    return;
+  }
+
+  try{
+    await setDoc(doc(db, "team_members", email), {
+      email, name,
+      addedBy: window._currentUserEmail || 'unknown',
+      addedAt: new Date().toISOString()
+    });
+    closeAddMemberModal();
+    showAdminToast('✅ Access granted to ' + name);
+  } catch(e){
+    console.error(e);
+    errEl.textContent = 'Something went wrong. Please try again.';
+    errEl.classList.add('show');
+  }
+}
+
+async function removeMember(id, email){
+  if((email||'').toLowerCase() === (window._currentUserEmail||'').toLowerCase()){
+    if(!confirm('This is YOUR OWN access. Removing it will sign you out and you will need someone else to re-add you. Continue?')) return;
+  } else {
+    if(!confirm('Remove access for ' + email + '? They will be signed out and unable to log back in.')) return;
+  }
+  if(_teamMembersData.length <= 1){
+    alert('Cannot remove the last remaining approved member — this would lock everyone out of the tool.');
+    return;
+  }
+  try{
+    await deleteDoc(doc(db, "team_members", id));
+    showAdminToast('🗑 Access removed for ' + email);
+    if((email||'').toLowerCase() === (window._currentUserEmail||'').toLowerCase()){
+      setTimeout(()=>{ window._doSignOut(); }, 800);
+    }
+  } catch(e){
+    console.error(e);
+    alert('Failed to remove member. Please try again.');
+  }
+}
+
+function showAdminToast(msg){
+  const t = document.createElement("div");
+  t.style.cssText = "position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#111827;color:#E8EDF8;border:1px solid rgba(255,255,255,.12);padding:11px 20px;border-radius:100px;font-size:12px;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:9999;";
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(), 2800);
+}
+
+window.openAddMemberModal = openAddMemberModal;
+window.closeAddMemberModal = closeAddMemberModal;
+window.submitAddMember = submitAddMember;
+window.removeMember = removeMember;
+
 
   // Expose log activity globally so calendars can call it
   window._fbLogActivity = async function(data) {
