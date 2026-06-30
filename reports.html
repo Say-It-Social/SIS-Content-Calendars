@@ -671,7 +671,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
     </div>
 
     <!-- CHARTS -->
-    <div class="charts-grid">
+    <div class="charts-grid" id="chartsGridIGFB" data-plat-group="igfb">
       <div class="chart-card">
         <div class="chart-title">Views & Reach — IG vs FB</div>
         <div class="chart-sub">Solid = Views, Dashed = Reach</div>
@@ -707,6 +707,115 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
           <span class="cl-item"><span class="cl-dot" style="background:var(--green)"></span>Results</span>
         </div>
         <div class="chart-wrap"><canvas id="chartAds" role="img" aria-label="Ad spend vs results">Ad performance.</canvas></div>
+      </div>
+    </div>
+
+    <!-- LINKEDIN TREND CHARTS -->
+    <div class="charts-grid" id="chartsGridLI" data-plat-group="li" style="display:none;">
+      <div class="chart-card">
+        <div class="chart-title">Impressions &amp; Clicks — LinkedIn</div>
+        <div class="chart-sub">Solid = Impressions, Dashed = Clicks</div>
+        <div class="chart-legend">
+          <span class="cl-item"><span class="cl-dot" style="background:#4DA3FF"></span>Impressions</span>
+          <span class="cl-item"><span class="cl-dot" style="background:#7BB3FF"></span>Clicks</span>
+        </div>
+        <div class="chart-wrap"><canvas id="chartLIReach" role="img" aria-label="LinkedIn impressions and clicks">LinkedIn impressions.</canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Engagement — LinkedIn</div>
+        <div class="chart-sub">Reactions, comments &amp; reposts per month</div>
+        <div class="chart-legend">
+          <span class="cl-item"><span class="cl-dot" style="background:#4DA3FF"></span>Reactions</span>
+          <span class="cl-item"><span class="cl-dot" style="background:#7BB3FF"></span>Comments</span>
+          <span class="cl-item"><span class="cl-dot" style="background:#1E5FCC"></span>Reposts</span>
+        </div>
+        <div class="chart-wrap"><canvas id="chartLIEngagement" role="img" aria-label="LinkedIn engagement">LinkedIn engagement.</canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">New Followers — LinkedIn</div>
+        <div class="chart-sub">Followers gained each month</div>
+        <div class="chart-legend">
+          <span class="cl-item"><span class="cl-dot" style="background:#4DA3FF"></span>New Followers</span>
+        </div>
+        <div class="chart-wrap"><canvas id="chartLIFollowers" role="img" aria-label="LinkedIn follower growth">LinkedIn followers.</canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Page Visits — LinkedIn</div>
+        <div class="chart-sub">Page views vs unique visitors</div>
+        <div class="chart-legend">
+          <span class="cl-item"><span class="cl-dot" style="background:#4DA3FF"></span>Page Views</span>
+          <span class="cl-item"><span class="cl-dot" style="background:#7BB3FF"></span>Unique Visitors</span>
+        </div>
+        <div class="chart-wrap"><canvas id="chartLIVisitors" role="img" aria-label="LinkedIn page visitors">LinkedIn visitors.</canvas></div>
+      </div>
+    </div>
+
+    <!-- YOUTUBE TREND CHARTS -->
+    <div class="charts-grid" id="chartsGridYT" data-plat-group="yt" style="display:none;">
+      <div class="chart-card">
+        <div class="chart-title">Views &amp; Watch Time — YouTube</div>
+        <div class="chart-sub">Solid = Views, Dashed = Watch Time (mins)</div>
+        <div class="chart-legend">
+          <span class="cl-item"><span class="cl-dot" style="background:#FF6060"></span>Views</span>
+          <span class="cl-item"><span class="cl-dot" style="background:#FF9999"></span>Watch Time</span>
+        </div>
+        <div class="chart-wrap"><canvas id="chartYTReach" role="img" aria-label="YouTube views and watch time">YouTube views.</canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Engagement — YouTube</div>
+        <div class="chart-sub">Likes &amp; comments per month</div>
+        <div class="chart-legend">
+          <span class="cl-item"><span class="cl-dot" style="background:#FF6060"></span>Likes</span>
+          <span class="cl-item"><span class="cl-dot" style="background:#FF9999"></span>Comments</span>
+        </div>
+        <div class="chart-wrap"><canvas id="chartYTEngagement" role="img" aria-label="YouTube engagement">YouTube engagement.</canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Subscribers Gained — YouTube</div>
+        <div class="chart-sub">New subscribers each month</div>
+        <div class="chart-legend">
+          <span class="cl-item"><span class="cl-dot" style="background:#FF6060"></span>Subscribers</span>
+        </div>
+        <div class="chart-wrap"><canvas id="chartYTSubs" role="img" aria-label="YouTube subscriber growth">YouTube subscribers.</canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Shorts Views — YouTube</div>
+        <div class="chart-sub">Shorts views per month</div>
+        <div class="chart-legend">
+          <span class="cl-item"><span class="cl-dot" style="background:#FF6060"></span>Shorts Views</span>
+        </div>
+        <div class="chart-wrap"><canvas id="chartYTShorts" role="img" aria-label="YouTube Shorts views">YouTube Shorts.</canvas></div>
+      </div>
+    </div>
+
+    <!-- TWITTER/X TREND CHARTS -->
+    <div class="charts-grid" id="chartsGridTW" data-plat-group="tw" style="display:none;">
+      <div class="chart-card">
+        <div class="chart-title">Impressions &amp; Clicks — X (Twitter)</div>
+        <div class="chart-sub">Solid = Impressions, Dashed = Link Clicks</div>
+        <div class="chart-legend">
+          <span class="cl-item"><span class="cl-dot" style="background:#CCCCCC"></span>Impressions</span>
+          <span class="cl-item"><span class="cl-dot" style="background:#888888"></span>Link Clicks</span>
+        </div>
+        <div class="chart-wrap"><canvas id="chartTWReach" role="img" aria-label="X impressions and clicks">X impressions.</canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Engagement — X (Twitter)</div>
+        <div class="chart-sub">Likes, retweets &amp; replies per month</div>
+        <div class="chart-legend">
+          <span class="cl-item"><span class="cl-dot" style="background:#CCCCCC"></span>Likes</span>
+          <span class="cl-item"><span class="cl-dot" style="background:#888888"></span>Retweets</span>
+          <span class="cl-item"><span class="cl-dot" style="background:#555555"></span>Replies</span>
+        </div>
+        <div class="chart-wrap"><canvas id="chartTWEngagement" role="img" aria-label="X engagement">X engagement.</canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Followers Gained — X (Twitter)</div>
+        <div class="chart-sub">New followers each month</div>
+        <div class="chart-legend">
+          <span class="cl-item"><span class="cl-dot" style="background:#CCCCCC"></span>Followers</span>
+        </div>
+        <div class="chart-wrap"><canvas id="chartTWFollowers" role="img" aria-label="X follower growth">X followers.</canvas></div>
       </div>
     </div>
 
@@ -956,14 +1065,14 @@ function renderAll(){
     const badge = count > 0 ? `<span style="font-size:9px;margin-left:4px;">🏆${count>1?'×'+count:''}</span>` : '';
     return `<button class="month-tab ${k===_active?'active':''}" onclick="setTab('${k}',this)">${fmtMonth(k)}${badge}</button>`;
   }).join('');
-  renderKPIs();renderPlatform();renderCharts(sorted);renderBreakdown();renderHistory(keys);renderMultiPlatform();renderPostCount();renderContentBreakdown();
+  renderKPIs();renderPlatform();renderCharts(sorted);renderPlatformCharts();renderBreakdown();renderHistory(keys);renderMultiPlatform();renderPostCount();renderContentBreakdown();
 }
 
 function setTab(k,btn){
   _active=k;
   document.querySelectorAll('.month-tab').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  renderKPIs();renderPlatform();renderBreakdown();renderMultiPlatform();renderPostCount();renderContentBreakdown();
+  renderKPIs();renderPlatform();renderPlatformCharts();renderBreakdown();renderMultiPlatform();renderPostCount();renderContentBreakdown();
 }
 
 function renderKPIs(){
@@ -982,7 +1091,7 @@ function renderKPIs(){
   const prevEr = prev && prev.reach > 0 ? (prev.interactions / prev.reach * 100).toFixed(2) : null;
   const erChange = totalEr && prevEr ? Math.round(((+totalEr - +prevEr) / +prevEr) * 100) : null;
 
-  const kpis=[
+  const igfbKpis=[
     {icon:'👁️',label:'Total Views',val:fmt(t.views),ch:pct(t.views,prev?.views),ig:d.ig_views,fb:d.fb_views},
     {icon:'📡',label:'Total Reach',val:fmt(t.reach),ch:pct(t.reach,prev?.reach),ig:d.ig_reach,fb:d.fb_reach},
     {icon:'❤️',label:'Interactions',val:fmt(t.interactions),ch:pct(t.interactions,prev?.interactions),ig:d.ig_interactions,fb:d.fb_interactions},
@@ -992,10 +1101,41 @@ function renderKPIs(){
     {icon:'➕',label:'New Follows',val:fmt(t.follows),ch:pct(t.follows,prev?.follows),ig:d.ig_follows,fb:d.fb_follows},
     {icon:'💰',label:'Ad Spend',val:d.ad_spend?'₹'+fmt(d.ad_spend):'—',ch:null,ig:null,fb:null},
     {icon:'📊',label:'Posts Published',val:(((+d.posts_ig||0)+(+d.posts_fb||0)+(+d.posts_li||0)+(+d.posts_yt||0)+(+d.posts_tw||0))||null)?String((+d.posts_ig||0)+(+d.posts_fb||0)+(+d.posts_li||0)+(+d.posts_yt||0)+(+d.posts_tw||0)):'—',ch:null,ig:d.posts_ig||null,fb:d.posts_fb||null,hint:'across all platforms'},
-    {icon:'💼',label:'LI Impressions',val:fmt(d.li_impressions)||'—',ch:d.li_impressions?null:null,ig:null,fb:null},
-    {icon:'▶',label:'YT Views',val:fmt(d.yt_views)||'—',ch:null,ig:null,fb:null},
-    {icon:'𝕏',label:'X Impressions',val:fmt(d.tw_impressions)||'—',ch:null,ig:null,fb:null},
   ];
+
+  const liPrev = prev ? null : null; // placeholder for future use
+  const liKpis=[
+    {icon:PLATFORM_ICONS.li,label:'Impressions',val:fmt(d.li_impressions)||'—'},
+    {icon:'❤️',label:'Reactions',val:fmt(d.li_reactions)||'—'},
+    {icon:'💬',label:'Comments',val:fmt(d.li_comments)||'—'},
+    {icon:'🔁',label:'Reposts',val:fmt(d.li_reposts)||'—'},
+    {icon:'🔗',label:'Clicks',val:fmt(d.li_clicks)||'—'},
+    {icon:'➕',label:'New Followers',val:fmt(d.li_follows)||'—'},
+    {icon:'👁️',label:'Page Views',val:fmt(d.li_page_views)||'—'},
+    {icon:'👤',label:'Unique Visitors',val:fmt(d.li_unique_visitors)||'—'},
+  ];
+  const ytKpis=[
+    {icon:PLATFORM_ICONS.yt,label:'Views',val:fmt(d.yt_views)||'—'},
+    {icon:'⏱️',label:'Watch Time (mins)',val:fmt(d.yt_watch_time)||'—'},
+    {icon:'➕',label:'Subscribers Gained',val:fmt(d.yt_subscribers)||'—'},
+    {icon:'❤️',label:'Likes',val:fmt(d.yt_likes)||'—'},
+    {icon:'💬',label:'Comments',val:fmt(d.yt_comments)||'—'},
+    {icon:'🎬',label:'Shorts Views',val:fmt(d.yt_shorts_views)||'—'},
+  ];
+  const twKpis=[
+    {icon:PLATFORM_ICONS.tw,label:'Impressions',val:fmt(d.tw_impressions)||'—'},
+    {icon:'❤️',label:'Likes',val:fmt(d.tw_likes)||'—'},
+    {icon:'🔁',label:'Retweets',val:fmt(d.tw_retweets)||'—'},
+    {icon:'💬',label:'Replies',val:fmt(d.tw_replies)||'—'},
+    {icon:'🔗',label:'Link Clicks',val:fmt(d.tw_clicks)||'—'},
+    {icon:'➕',label:'Followers Gained',val:fmt(d.tw_follows)||'—'},
+  ];
+
+  let kpis;
+  if(_platFilter==='li') kpis=liKpis;
+  else if(_platFilter==='yt') kpis=ytKpis;
+  else if(_platFilter==='tw') kpis=twKpis;
+  else kpis=igfbKpis; // 'all' or 'igfb'
 
   document.getElementById('kpiGrid').innerHTML=kpis.map(k=>{
     const c=k.ch;
@@ -1086,14 +1226,18 @@ function setPlatformFilter(plat, btn){
   document.querySelectorAll('.an-btn').forEach(b=>b.classList.remove('active'));
   if(btn) btn.classList.add('active');
   applyPlatformFilter();
+  if(_active){ renderKPIs(); renderPlatformCharts(); }
 }
 function applyPlatformFilter(){
   const cards = document.querySelectorAll('.platform-card');
   cards.forEach(c=>{
     const plat = c.dataset.plat;
-    const hasData = c.id ? (c.dataset.hasData!=='0') : true; // IG/FB always considered to have data potential
-    const matches = (_platFilter==='all') || (_platFilter===plat);
-    c.classList.toggle('plat-hidden', !matches);
+    const hasData = c.dataset.hasData!=='0'; // LI/YT/TW cards set this in renderPlatform(); IG/FB cards default to undefined→ '0'!=='0' is false→true
+    const matchesFilter = (_platFilter==='all') || (_platFilter===plat);
+    // For LI/YT/TW cards specifically: only show if they actually have data, even under 'All Platforms'
+    const isOptionalCard = (plat==='li' || plat==='yt' || plat==='tw');
+    const visible = matchesFilter && (!isOptionalCard || hasData);
+    c.classList.toggle('plat-hidden', !visible);
   });
 }
 
@@ -1894,14 +2038,144 @@ function injectPlatformIcons(){
   });
 }
 
+
+function renderPlatformCharts(){
+  // 'All Platforms' shows every chart group (matching platform-card behavior).
+  // A specific filter (igfb/li/yt/tw) narrows to just that group's charts.
+  const showAll = _platFilter === 'all';
+  ['igfb','li','yt','tw'].forEach(g=>{
+    const el = document.querySelector('.charts-grid[data-plat-group="'+g+'"]');
+    if(!el) return;
+    const visible = showAll || (_platFilter===g);
+    el.style.display = visible ? 'grid' : 'none';
+  });
+
+  // Render data into whichever LI/YT/TW chart groups are visible (or always, when 'all')
+  if(showAll || _platFilter==='li') renderLICharts();
+  if(showAll || _platFilter==='yt') renderYTCharts();
+  if(showAll || _platFilter==='tw') renderTWCharts();
+}
+
+function destroyChart(id){ if(_charts[id]){ try{_charts[id].destroy();}catch(e){} delete _charts[id]; } }
+
+function chartBase(){
+  return {responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{backgroundColor:'#111827',titleColor:'#E8EDF8',bodyColor:'#6B7A99',borderColor:'rgba(255,255,255,0.07)',borderWidth:1,padding:10,cornerRadius:8}},
+    scales:{x:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#6B7A99',font:{size:10,family:'Plus Jakarta Sans'}}},
+            y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#6B7A99',font:{size:10,family:'Plus Jakarta Sans'}}}}};
+}
+
+function getSortedMonthKeys(){
+  return Object.keys(_months).sort();
+}
+
+function renderLICharts(){
+  const sk = getSortedMonthKeys();
+  if(!sk.length) return;
+  const labels = sk.map(fmtMonth);
+  const g = f => sk.map(k=>+(_months[k]?.[f]||0));
+
+  ['chartLIReach','chartLIEngagement','chartLIFollowers','chartLIVisitors'].forEach(destroyChart);
+
+  const mk=(id,datasets,type='line')=>{
+    const ctx=document.getElementById(id)?.getContext('2d');
+    if(!ctx)return;
+    _charts[id]=new Chart(ctx,{type,data:{labels,datasets},options:JSON.parse(JSON.stringify(chartBase()))});
+  };
+
+  mk('chartLIReach',[
+    {label:'Impressions',data:g('li_impressions'),borderColor:'#4DA3FF',backgroundColor:'rgba(77,163,255,0.12)',fill:true,tension:.4,borderWidth:2,pointRadius:3,pointBackgroundColor:'#4DA3FF'},
+    {label:'Clicks',data:g('li_clicks'),borderColor:'rgba(123,179,255,0.6)',backgroundColor:'transparent',tension:.4,borderWidth:1.5,pointRadius:2,borderDash:[4,4]},
+  ]);
+
+  mk('chartLIEngagement',[
+    {label:'Reactions',data:g('li_reactions'),backgroundColor:'rgba(77,163,255,0.85)',borderRadius:5,borderSkipped:false},
+    {label:'Comments',data:g('li_comments'),backgroundColor:'rgba(123,179,255,0.85)',borderRadius:5,borderSkipped:false},
+    {label:'Reposts',data:g('li_reposts'),backgroundColor:'rgba(30,95,204,0.85)',borderRadius:5,borderSkipped:false},
+  ],'bar');
+
+  mk('chartLIFollowers',[
+    {label:'New Followers',data:g('li_follows'),borderColor:'#4DA3FF',backgroundColor:'rgba(77,163,255,0.12)',fill:true,tension:.4,borderWidth:2,pointRadius:3,pointBackgroundColor:'#4DA3FF'},
+  ]);
+
+  mk('chartLIVisitors',[
+    {label:'Page Views',data:g('li_page_views'),borderColor:'#4DA3FF',backgroundColor:'rgba(77,163,255,0.12)',fill:true,tension:.4,borderWidth:2,pointRadius:3,pointBackgroundColor:'#4DA3FF'},
+    {label:'Unique Visitors',data:g('li_unique_visitors'),borderColor:'rgba(123,179,255,0.6)',backgroundColor:'transparent',tension:.4,borderWidth:1.5,pointRadius:2,borderDash:[4,4]},
+  ]);
+}
+
+function renderYTCharts(){
+  const sk = getSortedMonthKeys();
+  if(!sk.length) return;
+  const labels = sk.map(fmtMonth);
+  const g = f => sk.map(k=>+(_months[k]?.[f]||0));
+
+  ['chartYTReach','chartYTEngagement','chartYTSubs','chartYTShorts'].forEach(destroyChart);
+
+  const mk=(id,datasets,type='line')=>{
+    const ctx=document.getElementById(id)?.getContext('2d');
+    if(!ctx)return;
+    _charts[id]=new Chart(ctx,{type,data:{labels,datasets},options:JSON.parse(JSON.stringify(chartBase()))});
+  };
+
+  mk('chartYTReach',[
+    {label:'Views',data:g('yt_views'),borderColor:'#FF6060',backgroundColor:'rgba(255,96,96,0.12)',fill:true,tension:.4,borderWidth:2,pointRadius:3,pointBackgroundColor:'#FF6060'},
+    {label:'Watch Time',data:g('yt_watch_time'),borderColor:'rgba(255,153,153,0.6)',backgroundColor:'transparent',tension:.4,borderWidth:1.5,pointRadius:2,borderDash:[4,4]},
+  ]);
+
+  mk('chartYTEngagement',[
+    {label:'Likes',data:g('yt_likes'),backgroundColor:'rgba(255,96,96,0.85)',borderRadius:5,borderSkipped:false},
+    {label:'Comments',data:g('yt_comments'),backgroundColor:'rgba(255,153,153,0.85)',borderRadius:5,borderSkipped:false},
+  ],'bar');
+
+  mk('chartYTSubs',[
+    {label:'Subscribers',data:g('yt_subscribers'),borderColor:'#FF6060',backgroundColor:'rgba(255,96,96,0.12)',fill:true,tension:.4,borderWidth:2,pointRadius:3,pointBackgroundColor:'#FF6060'},
+  ]);
+
+  mk('chartYTShorts',[
+    {label:'Shorts Views',data:g('yt_shorts_views'),borderColor:'#FF6060',backgroundColor:'rgba(255,96,96,0.12)',fill:true,tension:.4,borderWidth:2,pointRadius:3,pointBackgroundColor:'#FF6060'},
+  ]);
+}
+
+function renderTWCharts(){
+  const sk = getSortedMonthKeys();
+  if(!sk.length) return;
+  const labels = sk.map(fmtMonth);
+  const g = f => sk.map(k=>+(_months[k]?.[f]||0));
+
+  ['chartTWReach','chartTWEngagement','chartTWFollowers'].forEach(destroyChart);
+
+  const mk=(id,datasets,type='line')=>{
+    const ctx=document.getElementById(id)?.getContext('2d');
+    if(!ctx)return;
+    _charts[id]=new Chart(ctx,{type,data:{labels,datasets},options:JSON.parse(JSON.stringify(chartBase()))});
+  };
+
+  mk('chartTWReach',[
+    {label:'Impressions',data:g('tw_impressions'),borderColor:'#CCCCCC',backgroundColor:'rgba(204,204,204,0.12)',fill:true,tension:.4,borderWidth:2,pointRadius:3,pointBackgroundColor:'#CCCCCC'},
+    {label:'Link Clicks',data:g('tw_clicks'),borderColor:'rgba(136,136,136,0.6)',backgroundColor:'transparent',tension:.4,borderWidth:1.5,pointRadius:2,borderDash:[4,4]},
+  ]);
+
+  mk('chartTWEngagement',[
+    {label:'Likes',data:g('tw_likes'),backgroundColor:'rgba(204,204,204,0.85)',borderRadius:5,borderSkipped:false},
+    {label:'Retweets',data:g('tw_retweets'),backgroundColor:'rgba(136,136,136,0.85)',borderRadius:5,borderSkipped:false},
+    {label:'Replies',data:g('tw_replies'),backgroundColor:'rgba(85,85,85,0.85)',borderRadius:5,borderSkipped:false},
+  ],'bar');
+
+  mk('chartTWFollowers',[
+    {label:'Followers',data:g('tw_follows'),borderColor:'#CCCCCC',backgroundColor:'rgba(204,204,204,0.12)',fill:true,tension:.4,borderWidth:2,pointRadius:3,pointBackgroundColor:'#CCCCCC'},
+  ]);
+}
+
+
 function showToast(msg){
   const t=document.getElementById('toast');
   t.textContent=msg;t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2500);
 }
 
+injectPlatformIcons(); // called immediately — script runs after DOM is parsed, DOMContentLoaded would already have fired
 window.addEventListener('DOMContentLoaded',()=>{
-  injectPlatformIcons();
   const p=new URLSearchParams(location.search);
   const isShare=p.get('view')==='share';
   if(isShare){
