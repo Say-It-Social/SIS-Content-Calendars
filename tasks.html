@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Say It Social — Tasks Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B1220;--navy2:#111827;--surface:#161E30;--surface2:#1E2A42;
+  --blue:#1E6FFF;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);
+  --text:#E8EDF8;--muted:#6B7A99;--muted2:#3A4560;--white:#FFFFFF;
+  --green:#22C55E;--amber:#F5A623;--red:#EF4444;--purple:#A78BFA;--pink:#F472B6;
+  --ig:#E1306C;--ig-dim:rgba(225,48,108,0.12);
+  --fb:#1877F2;--fb-dim:rgba(24,119,242,0.12);
+  --p-low:#6B7A99;--p-low-bg:rgba(107,122,153,0.12);
+  --p-med:#1E6FFF;--p-med-bg:rgba(30,111,255,0.12);
+  --p-high:#F5A623;--p-high-bg:rgba(245,166,35,0.14);
+  --p-urgent:#EF4444;--p-urgent-bg:rgba(239,68,68,0.14);
+  --s-todo:#6B7A99;--s-todo-bg:rgba(107,122,153,0.1);
+  --s-progress:#F5A623;--s-progress-bg:rgba(245,166,35,0.12);
+  --s-review:#A78BFA;--s-review-bg:rgba(167,139,250,0.12);
+  --s-done:#22C55E;--s-done-bg:rgba(34,197,94,0.12);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--navy);color:var(--text);min-height:100vh;overflow-x:hidden;visibility:hidden;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(30,111,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(30,111,255,0.03) 1px,transparent 1px);
+  background-size:48px 48px;}
+.wrap{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 28px 80px;}
+
+/* ── NAV ── */
+.topnav{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;border-bottom:1px solid var(--border);position:relative;z-index:2;}
+.nav-left{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nav-logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--blue),#7B61FF);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.nav-title{font-family:'Instrument Serif',serif;font-size:18px;color:var(--white);line-height:1.1;}
+.nav-sub{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
+.nav-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.nav-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border);font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;transition:all .15s;}
+.nav-pill:hover{color:var(--text);border-color:var(--border2);}
+.nav-user{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);}
+.nav-avatar{width:26px;height:26px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--blue);}
+.signout-btn{background:none;border:none;color:var(--muted);font-size:11px;cursor:pointer;text-decoration:underline;}
+.signout-btn:hover{color:var(--text);}
+
+/* ── HERO ── */
+.hero{padding:36px 0 24px;}
+.hero h1{font-family:'Instrument Serif',serif;font-size:32px;color:var(--white);margin-bottom:6px;}
+.hero p{font-size:13px;color:var(--muted);}
+
+/* ── STATS ── */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:24px;}
+.stat-card{background:var(--navy2);border:1px solid var(--border);border-radius:14px;padding:16px 18px;cursor:pointer;transition:border-color .15s;}
+.stat-card:hover{border-color:var(--border2);}
+.stat-card.active-stat{border-color:var(--blue);background:rgba(30,111,255,0.06);}
+.stat-num{font-family:'Instrument Serif',serif;font-size:28px;line-height:1;margin-bottom:4px;}
+.stat-label{font-size:11px;color:var(--muted);font-weight:600;}
+.stat-card.s-overdue .stat-num{color:var(--red);}
+.stat-card.s-today .stat-num{color:var(--amber);}
+.stat-card.s-week .stat-num{color:var(--blue);}
+.stat-card.s-done .stat-num{color:var(--green);}
+.stat-card.s-total .stat-num{color:var(--text);}
+
+/* ── TOOLBAR ── */
+.toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px;}
+.add-task-btn{padding:10px 20px;border-radius:9px;border:none;background:var(--blue);color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:background .15s;}
+.add-task-btn:hover{background:#2979FF;}
+.tb-select{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 14px;font-size:12px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;outline:none;}
+.tb-select:focus{border-color:var(--blue);}
+.tb-search{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 14px;font-size:12px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;outline:none;min-width:200px;}
+.tb-search::placeholder{color:var(--muted2);}
+.tb-search:focus{border-color:var(--blue);}
+.view-toggle{display:flex;gap:4px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:3px;margin-left:auto;}
+.view-btn{padding:7px 14px;border-radius:6px;border:none;background:none;color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .15s;}
+.view-btn.active{background:var(--blue);color:#fff;}
+
+/* ── KANBAN ── */
+.kanban{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:start;}
+.kanban-col{background:var(--navy2);border:1px solid var(--border);border-radius:14px;padding:14px;min-height:200px;}
+.kanban-col-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding:0 4px;}
+.kc-title{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;}
+.kc-dot{width:8px;height:8px;border-radius:50%;}
+.kc-dot.todo{background:var(--s-todo);}
+.kc-dot.progress{background:var(--s-progress);}
+.kc-dot.review{background:var(--s-review);}
+.kc-dot.done{background:var(--s-done);}
+.kc-count{font-size:11px;color:var(--muted);background:var(--surface);padding:2px 8px;border-radius:100px;}
+.kanban-col.drag-over{border-color:var(--blue);background:rgba(30,111,255,0.04);}
+.kanban-cards{display:flex;flex-direction:column;gap:10px;min-height:60px;}
+
+/* ── TASK CARD ── */
+.task-card{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:14px;cursor:grab;transition:transform .15s,box-shadow .15s,border-color .15s;}
+.task-card:hover{border-color:var(--border2);box-shadow:0 6px 20px rgba(0,0,0,.25);}
+.task-card.dragging{opacity:.4;}
+.task-card.overdue{border-left:3px solid var(--red);}
+.tc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px;}
+.tc-priority{font-size:9px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:2px 8px;border-radius:100px;white-space:nowrap;}
+.tc-priority.p-low{background:var(--p-low-bg);color:var(--p-low);}
+.tc-priority.p-medium{background:var(--p-med-bg);color:var(--p-med);}
+.tc-priority.p-high{background:var(--p-high-bg);color:var(--p-high);}
+.tc-priority.p-urgent{background:var(--p-urgent-bg);color:var(--p-urgent);}
+.tc-title{font-size:13px;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:8px;}
+.tc-client{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;background:var(--surface2);color:var(--muted);margin-bottom:8px;}
+.tc-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;}
+.tc-due{font-size:10.5px;color:var(--muted);display:flex;align-items:center;gap:4px;}
+.tc-due.overdue-text{color:var(--red);font-weight:700;}
+.tc-due.due-today{color:var(--amber);font-weight:700;}
+.tc-assignee{width:24px;height:24px;border-radius:50%;background:var(--surface2);border:1.5px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--blue);flex-shrink:0;}
+.tc-notes-badge{font-size:10px;color:var(--muted);display:flex;align-items:center;gap:3px;}
+.kanban-empty{font-size:11px;color:var(--muted2);text-align:center;padding:24px 8px;}
+
+/* ── LIST VIEW ── */
+.list-view{display:none;}
+.list-view.active{display:block;}
+.kanban.hidden-view{display:none;}
+.task-row{display:grid;grid-template-columns:24px 1fr 110px 110px 90px 100px 36px;align-items:center;gap:14px;padding:13px 16px;background:var(--navy2);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;transition:border-color .15s;cursor:pointer;}
+.task-row:hover{border-color:var(--border2);}
+.task-row.overdue{border-left:3px solid var(--red);}
+.tr-check{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--border2);cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--green);transition:all .15s;}
+.tr-check.checked{background:var(--green);border-color:var(--green);color:#fff;}
+.tr-title{font-size:13px;font-weight:600;color:var(--text);}
+.tr-title.done-title{text-decoration:line-through;color:var(--muted);}
+.tr-client{font-size:11px;color:var(--muted);font-weight:600;}
+.list-headers{display:grid;grid-template-columns:24px 1fr 110px 110px 90px 100px 36px;gap:14px;padding:0 16px 8px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted2);}
+
+/* ── TASK MODAL ── */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:600;align-items:center;justify-content:center;backdrop-filter:blur(6px);padding:20px;}
+.modal-bg.show{display:flex;}
+.task-modal{background:var(--navy2);border:1px solid var(--border2);border-radius:18px;padding:32px;width:600px;max-width:100%;max-height:88vh;overflow-y:auto;position:relative;box-shadow:0 32px 80px rgba(0,0,0,.6);}
+.tm-close{position:absolute;top:16px;right:18px;background:none;border:none;font-size:18px;color:var(--muted);cursor:pointer;}
+.tm-close:hover{color:var(--text);}
+.tm-title-input{width:100%;background:none;border:none;font-family:'Instrument Serif',serif;font-size:22px;color:var(--white);outline:none;margin-bottom:18px;padding-right:30px;}
+.tm-title-input::placeholder{color:var(--muted2);}
+.tm-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
+.tm-field{display:flex;flex-direction:column;gap:5px;}
+.tm-field.full{grid-column:1/-1;}
+.tm-label{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);}
+.tm-input,.tm-select,.tm-textarea{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:13px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;outline:none;transition:border-color .2s;width:100%;}
+.tm-input:focus,.tm-select:focus,.tm-textarea:focus{border-color:var(--blue);}
+.tm-textarea{resize:vertical;min-height:60px;line-height:1.5;}
+.tm-divider{height:1px;background:var(--border);margin:18px 0;}
+.tm-actions{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-top:18px;}
+.tm-save{padding:10px 24px;border-radius:9px;border:none;background:var(--blue);font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;}
+.tm-save:hover{background:#2979FF;}
+.tm-delete{padding:10px 18px;border-radius:9px;border:1px solid rgba(239,68,68,0.3);background:rgba(239,68,68,0.08);font-size:12px;font-weight:700;color:var(--red);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;}
+.tm-delete:hover{background:rgba(239,68,68,0.16);}
+
+/* ── COMMENTS/NOTES THREAD ── */
+.notes-thread{display:flex;flex-direction:column;gap:10px;max-height:220px;overflow-y:auto;margin-bottom:12px;padding-right:4px;}
+.note-item{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:10px 12px;}
+.note-meta{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+.note-author{font-size:11px;font-weight:700;color:var(--blue);}
+.note-time{font-size:10px;color:var(--muted2);}
+.note-text{font-size:12.5px;color:var(--text);line-height:1.5;white-space:pre-wrap;}
+.note-empty{font-size:11.5px;color:var(--muted2);text-align:center;padding:14px;}
+.note-input-row{display:flex;gap:8px;}
+.note-input{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:12.5px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;outline:none;resize:none;}
+.note-input:focus{border-color:var(--blue);}
+.note-add-btn{padding:9px 16px;border-radius:8px;border:none;background:var(--surface2);color:var(--text);font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;font-family:'Plus Jakarta Sans',sans-serif;}
+.note-add-btn:hover{background:var(--blue);}
+
+/* ── EMPTY STATE ── */
+.empty-state{text-align:center;padding:60px 20px;color:var(--muted);}
+.empty-state-icon{font-size:36px;margin-bottom:12px;opacity:.5;}
+.empty-state p{font-size:13px;}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--surface2);border:1px solid var(--border2);color:var(--text);padding:12px 22px;border-radius:10px;font-size:13px;font-weight:600;box-shadow:0 12px 30px rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:all .25s;z-index:9999;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+@media(max-width:1100px){
+  .kanban{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:680px){
+  .wrap{padding:0 16px 60px;}
+  .topnav{padding:16px;flex-wrap:wrap;gap:10px;}
+  .kanban{grid-template-columns:1fr;}
+  .tm-grid{grid-template-columns:1fr;}
+  .task-row{grid-template-columns:20px 1fr 70px;}
+  .task-row > :nth-child(4),.task-row > :nth-child(5),.task-row > :nth-child(6){display:none;}
+  .list-headers{display:none;}
+  .toolbar{flex-direction:column;align-items:stretch;}
+  .view-toggle{margin-left:0;}
+  .tb-search{min-width:0;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<div class="topnav">
+  <a class="nav-left" href="index.html" style="text-decoration:none;">
+    <div class="nav-logo">📌</div>
+    <div>
+      <div class="nav-title">Say It Social</div>
+      <div class="nav-sub">Tasks Hub</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <a class="nav-pill" href="index.html">🏠 Client Hub</a>
+    <a class="nav-pill" href="reports.html">📊 Reports</a>
+    <a class="nav-pill" href="leads.html">📋 Leads</a>
+    <a class="nav-pill" href="team.html">👥 Team</a>
+    <div class="nav-user">
+      <div class="nav-avatar" id="navUserInitial">—</div>
+      <span id="navUserEmail">—</span>
+      <button class="signout-btn" onclick="window._doSignOut()">Sign out</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>Tasks &amp; To-Dos</h1>
+    <p>Client work and agency-wide tasks, all in one tracker. Drag cards between columns or use the list view to triage quickly.</p>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-card s-total active-stat" id="statAll" onclick="setQuickFilter('all',this)">
+      <div class="stat-num" id="statAllNum">0</div>
+      <div class="stat-label">All Tasks</div>
+    </div>
+    <div class="stat-card s-overdue" id="statOverdue" onclick="setQuickFilter('overdue',this)">
+      <div class="stat-num" id="statOverdueNum">0</div>
+      <div class="stat-label">Overdue</div>
+    </div>
+    <div class="stat-card s-today" id="statToday" onclick="setQuickFilter('today',this)">
+      <div class="stat-num" id="statTodayNum">0</div>
+      <div class="stat-label">Due Today</div>
+    </div>
+    <div class="stat-card s-week" id="statWeek" onclick="setQuickFilter('week',this)">
+      <div class="stat-num" id="statWeekNum">0</div>
+      <div class="stat-label">Due This Week</div>
+    </div>
+    <div class="stat-card s-done" id="statDoneMonth" onclick="setQuickFilter('donemonth',this)">
+      <div class="stat-num" id="statDoneMonthNum">0</div>
+      <div class="stat-label">Completed This Month</div>
+    </div>
+  </div>
+
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+    <button class="add-task-btn" onclick="openTaskModal()">+ New Task</button>
+    <select class="tb-select" id="filterClient" onchange="applyFilters()">
+      <option value="">All Clients</option>
+      <option value="__general">🏢 Agency / General</option>
+    </select>
+    <select class="tb-select" id="filterAssignee" onchange="applyFilters()">
+      <option value="">All Assignees</option>
+    </select>
+    <select class="tb-select" id="filterPriority" onchange="applyFilters()">
+      <option value="">All Priorities</option>
+      <option value="urgent">🔴 Urgent</option>
+      <option value="high">🟠 High</option>
+      <option value="medium">🔵 Medium</option>
+      <option value="low">⚪ Low</option>
+    </select>
+    <input class="tb-search" id="searchInput" type="text" placeholder="Search tasks..." oninput="applyFilters()"/>
+    <div class="view-toggle">
+      <button class="view-btn active" id="viewBtnKanban" onclick="setView('kanban')">▦ Board</button>
+      <button class="view-btn" id="viewBtnList" onclick="setView('list')">☰ List</button>
+    </div>
+  </div>
+
+  <!-- KANBAN VIEW -->
+  <div class="kanban" id="kanbanView">
+    <div class="kanban-col" data-status="todo" ondragover="onColDragOver(event)" ondragleave="onColDragLeave(event)" ondrop="onColDrop(event)">
+      <div class="kanban-col-head">
+        <div class="kc-title"><span class="kc-dot todo"></span>To Do</div>
+        <span class="kc-count" id="countTodo">0</span>
+      </div>
+      <div class="kanban-cards" id="colTodo"></div>
+    </div>
+    <div class="kanban-col" data-status="progress" ondragover="onColDragOver(event)" ondragleave="onColDragLeave(event)" ondrop="onColDrop(event)">
+      <div class="kanban-col-head">
+        <div class="kc-title"><span class="kc-dot progress"></span>In Progress</div>
+        <span class="kc-count" id="countProgress">0</span>
+      </div>
+      <div class="kanban-cards" id="colProgress"></div>
+    </div>
+    <div class="kanban-col" data-status="review" ondragover="onColDragOver(event)" ondragleave="onColDragLeave(event)" ondrop="onColDrop(event)">
+      <div class="kanban-col-head">
+        <div class="kc-title"><span class="kc-dot review"></span>Review</div>
+        <span class="kc-count" id="countReview">0</span>
+      </div>
+      <div class="kanban-cards" id="colReview"></div>
+    </div>
+    <div class="kanban-col" data-status="done" ondragover="onColDragOver(event)" ondragleave="onColDragLeave(event)" ondrop="onColDrop(event)">
+      <div class="kanban-col-head">
+        <div class="kc-title"><span class="kc-dot done"></span>Done</div>
+        <span class="kc-count" id="countDone">0</span>
+      </div>
+      <div class="kanban-cards" id="colDone"></div>
+    </div>
+  </div>
+
+  <!-- LIST VIEW -->
+  <div class="list-view" id="listView">
+    <div class="list-headers">
+      <span></span><span>Task</span><span>Client</span><span>Assignee</span><span>Priority</span><span>Due</span><span></span>
+    </div>
+    <div id="listRows"></div>
+  </div>
+
+  <div class="empty-state" id="emptyState" style="display:none;">
+    <div class="empty-state-icon">📭</div>
+    <p>No tasks match your filters. Try clearing them, or add a new task.</p>
+  </div>
+
+</div>
+
+<!-- TASK MODAL -->
+<div class="modal-bg" id="taskModalBg" onclick="if(event.target===this)closeTaskModal()">
+  <div class="task-modal">
+    <button class="tm-close" onclick="closeTaskModal()">✕</button>
+    <input class="tm-title-input" id="tmTitle" type="text" placeholder="Task title..."/>
+
+    <div class="tm-grid">
+      <div class="tm-field">
+        <label class="tm-label">Client</label>
+        <select class="tm-select" id="tmClient">
+          <option value="">— None —</option>
+          <option value="__general">🏢 Agency / General</option>
+        </select>
+      </div>
+      <div class="tm-field">
+        <label class="tm-label">Assignee</label>
+        <select class="tm-select" id="tmAssignee"></select>
+      </div>
+      <div class="tm-field">
+        <label class="tm-label">Due Date</label>
+        <input class="tm-input" id="tmDue" type="date"/>
+      </div>
+      <div class="tm-field">
+        <label class="tm-label">Priority</label>
+        <select class="tm-select" id="tmPriority">
+          <option value="low">⚪ Low</option>
+          <option value="medium" selected>🔵 Medium</option>
+          <option value="high">🟠 High</option>
+          <option value="urgent">🔴 Urgent</option>
+        </select>
+      </div>
+      <div class="tm-field full">
+        <label class="tm-label">Status</label>
+        <select class="tm-select" id="tmStatus">
+          <option value="todo">To Do</option>
+          <option value="progress">In Progress</option>
+          <option value="review">Review</option>
+          <option value="done">Done</option>
+        </select>
+      </div>
+      <div class="tm-field full">
+        <label class="tm-label">Description</label>
+        <textarea class="tm-textarea" id="tmDesc" placeholder="Add more detail about this task..."></textarea>
+      </div>
+    </div>
+
+    <div class="tm-divider"></div>
+
+    <label class="tm-label" style="margin-bottom:10px;display:block;">💬 Notes &amp; Comments</label>
+    <div class="notes-thread" id="notesThread"></div>
+    <div class="note-input-row">
+      <textarea class="note-input" id="noteInput" rows="2" placeholder="Add a note..."></textarea>
+      <button class="note-add-btn" onclick="addNote()">Add</button>
+    </div>
+
+    <div class="tm-divider"></div>
+
+    <div class="tm-actions">
+      <button class="tm-delete" id="tmDeleteBtn" style="display:none;" onclick="deleteCurrentTask()">🗑 Delete Task</button>
+      <button class="tm-save" onclick="saveTask()">Save Task</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════
+// CONFIG — client roster & team
+// ══════════════════════════════════════
+const CLIENTS = [
+  {id:'say-it-social', name:'Say It Social', emoji:'🟦'},
+  {id:'green-sapio',   name:'Green Sapio',   emoji:'🌿'},
+  {id:'bsfc-thaltej',  name:'BSFC Thaltej',  emoji:'🎈'},
+  {id:'bsfc-bopal',    name:'BSFC Bopal',    emoji:'🎈'},
+  {id:'shiva-optics',  name:'Shiva Optics',  emoji:'👓'},
+  {id:'rcsl',          name:'RCSL',          emoji:'🏭'},
+  {id:'vcsl',          name:'VCSL',          emoji:'🚛'},
+];
+
+const TEAM = [
+  {email:'darshilsoni10@gmail.com',     name:'Darshil'},
+  {email:'aayushimulay0903@gmail.com',  name:'Aayushi'},
+  {email:'sparmar1317@gmail.com',       name:'S Parmar'},
+  {email:'bikashsahooclg09@gmail.com',  name:'Bikash'},
+  {email:'niyatiparikh98@gmail.com',    name:'Niyati'},
+  {email:'patelriddhi221@gmail.com',    name:'Riddhi'},
+  {email:'kavyabothrasocial@gmail.com', name:'Kavya'},
+  {email:'kritika70015@gmail.com',      name:'Kritika'},
+];
+
+const PRIORITY_ORDER = {urgent:0, high:1, medium:2, low:3};
+const STATUS_COLS = ['todo','progress','review','done'];
+
+let _allTasks = [];
+let _currentView = 'kanban';
+let _currentQuickFilter = 'all';
+let _editingTaskId = null;
+let _draggedTaskId = null;
+
+// ══════════════════════════════════════
+// INIT — populate dropdowns, wire Firebase
+// ══════════════════════════════════════
+window._tasksInit = function(){
+  populateClientDropdowns();
+  populateAssigneeDropdowns();
+  window._fbWatchTasks(tasks => {
+    _allTasks = tasks;
+    renderEverything();
+  });
+};
+
+function populateClientDropdowns(){
+  const opts = CLIENTS.map(c=>`<option value="${c.id}">${c.emoji} ${c.name}</option>`).join('');
+  document.getElementById('filterClient').insertAdjacentHTML('beforeend', opts);
+  document.getElementById('tmClient').insertAdjacentHTML('beforeend', opts);
+}
+function populateAssigneeDropdowns(){
+  const opts = TEAM.map(t=>`<option value="${t.email}">${t.name}</option>`).join('');
+  document.getElementById('filterAssignee').insertAdjacentHTML('beforeend', opts);
+  document.getElementById('tmAssignee').innerHTML = '<option value="">— Unassigned —</option>' + opts;
+}
+
+function teamName(email){
+  const t = TEAM.find(t=>t.email===email);
+  return t ? t.name : (email ? email.split('@')[0] : '');
+}
+function teamInitial(email){
+  const n = teamName(email);
+  return n ? n.charAt(0).toUpperCase() : '?';
+}
+function clientLabel(id){
+  if(id==='__general') return '🏢 Agency';
+  const c = CLIENTS.find(c=>c.id===id);
+  return c ? c.emoji+' '+c.name : '';
+}
+
+// ══════════════════════════════════════
+// DATE HELPERS
+// ══════════════════════════════════════
+function todayStr(){
+  const d=new Date();
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+function isOverdue(task){
+  if(!task.due || task.status==='done') return false;
+  return task.due < todayStr();
+}
+function isDueToday(task){
+  return task.due === todayStr() && task.status!=='done';
+}
+function isDueThisWeek(task){
+  if(!task.due || task.status==='done') return false;
+  const due = new Date(task.due+'T00:00:00');
+  const today = new Date(todayStr()+'T00:00:00');
+  const diffDays = (due - today) / 86400000;
+  return diffDays >= 0 && diffDays <= 7;
+}
+function isCompletedThisMonth(task){
+  if(task.status!=='done' || !task.completedAt) return false;
+  const now = new Date();
+  const ym = now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
+  return String(task.completedAt).startsWith(ym);
+}
+function fmtDue(due){
+  if(!due) return '';
+  const d = new Date(due+'T00:00:00');
+  return d.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+}
+function fmtNoteTime(ts){
+  if(!ts) return '';
+  const d = new Date(ts);
+  return d.toLocaleDateString('en-US',{month:'short',day:'numeric'}) + ' · ' + d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+}
+
+// ══════════════════════════════════════
+// FILTERING
+// ══════════════════════════════════════
+function getFilteredTasks(){
+  const clientF = document.getElementById('filterClient').value;
+  const assigneeF = document.getElementById('filterAssignee').value;
+  const priorityF = document.getElementById('filterPriority').value;
+  const searchF = document.getElementById('searchInput').value.trim().toLowerCase();
+
+  return _allTasks.filter(t=>{
+    if(clientF && t.client !== clientF) return false;
+    if(assigneeF && t.assignee !== assigneeF) return false;
+    if(priorityF && t.priority !== priorityF) return false;
+    if(searchF && !(t.title||'').toLowerCase().includes(searchF) && !(t.desc||'').toLowerCase().includes(searchF)) return false;
+
+    if(_currentQuickFilter==='overdue' && !isOverdue(t)) return false;
+    if(_currentQuickFilter==='today' && !isDueToday(t)) return false;
+    if(_currentQuickFilter==='week' && !isDueThisWeek(t)) return false;
+    if(_currentQuickFilter==='donemonth' && !isCompletedThisMonth(t)) return false;
+
+    return true;
+  });
+}
+
+function setQuickFilter(filter, btn){
+  _currentQuickFilter = filter;
+  document.querySelectorAll('.stat-card').forEach(c=>c.classList.remove('active-stat'));
+  if(btn) btn.classList.add('active-stat');
+  renderTasks();
+}
+
+function applyFilters(){ renderTasks(); }
+
+function setView(view){
+  _currentView = view;
+  document.getElementById('viewBtnKanban').classList.toggle('active', view==='kanban');
+  document.getElementById('viewBtnList').classList.toggle('active', view==='list');
+  document.getElementById('kanbanView').classList.toggle('hidden-view', view!=='kanban');
+  document.getElementById('listView').classList.toggle('active', view==='list');
+  renderTasks();
+}
+
+// ══════════════════════════════════════
+// RENDER — stats
+// ══════════════════════════════════════
+function renderStats(){
+  document.getElementById('statAllNum').textContent = _allTasks.filter(t=>t.status!=='done').length;
+  document.getElementById('statOverdueNum').textContent = _allTasks.filter(isOverdue).length;
+  document.getElementById('statTodayNum').textContent = _allTasks.filter(isDueToday).length;
+  document.getElementById('statWeekNum').textContent = _allTasks.filter(isDueThisWeek).length;
+  document.getElementById('statDoneMonthNum').textContent = _allTasks.filter(isCompletedThisMonth).length;
+}
+
+// ══════════════════════════════════════
+// RENDER — task card (kanban)
+// ══════════════════════════════════════
+function renderTaskCard(t){
+  const overdue = isOverdue(t);
+  const dueClass = overdue ? 'overdue-text' : (isDueToday(t) ? 'due-today' : '');
+  const dueIcon = overdue ? '⚠️' : '📅';
+  const notesCount = (t.notes||[]).length;
+  return `<div class="task-card ${overdue?'overdue':''}" draggable="true"
+            ondragstart="onCardDragStart(event,'${t.id}')" ondragend="onCardDragEnd(event)"
+            onclick="openTaskModal('${t.id}')">
+    <div class="tc-top">
+      <span class="tc-priority p-${t.priority||'medium'}">${(t.priority||'medium').toUpperCase()}</span>
+      ${t.assignee ? `<div class="tc-assignee" title="${teamName(t.assignee)}">${teamInitial(t.assignee)}</div>` : ''}
+    </div>
+    <div class="tc-title">${escapeHtml(t.title||'Untitled task')}</div>
+    ${t.client ? `<div class="tc-client">${clientLabel(t.client)}</div>` : ''}
+    <div class="tc-meta">
+      <span class="tc-due ${dueClass}">${t.due ? dueIcon+' '+fmtDue(t.due) : ''}</span>
+      ${notesCount ? `<span class="tc-notes-badge">💬 ${notesCount}</span>` : ''}
+    </div>
+  </div>`;
+}
+
+function renderKanban(tasks){
+  const cols = {todo:[], progress:[], review:[], done:[]};
+  tasks.forEach(t=>{ (cols[t.status||'todo'] = cols[t.status||'todo']||[]).push(t); });
+
+  STATUS_COLS.forEach(status=>{
+    const list = (cols[status]||[]).sort((a,b)=>{
+      const pa = PRIORITY_ORDER[a.priority||'medium'], pb = PRIORITY_ORDER[b.priority||'medium'];
+      if(pa!==pb) return pa-pb;
+      return (a.due||'9999').localeCompare(b.due||'9999');
+    });
+    const colId = 'col'+status.charAt(0).toUpperCase()+status.slice(1);
+    const countId = 'count'+status.charAt(0).toUpperCase()+status.slice(1);
+    const el = document.getElementById(colId);
+    if(el) el.innerHTML = list.length ? list.map(renderTaskCard).join('') : '<div class="kanban-empty">No tasks</div>';
+    const countEl = document.getElementById(countId);
+    if(countEl) countEl.textContent = list.length;
+  });
+}
+
+// ══════════════════════════════════════
+// RENDER — list view
+// ══════════════════════════════════════
+function renderList(tasks){
+  const sorted = [...tasks].sort((a,b)=>{
+    if((a.status==='done')!==(b.status==='done')) return a.status==='done'?1:-1;
+    const pa = PRIORITY_ORDER[a.priority||'medium'], pb = PRIORITY_ORDER[b.priority||'medium'];
+    if(pa!==pb) return pa-pb;
+    return (a.due||'9999').localeCompare(b.due||'9999');
+  });
+  const rowsEl = document.getElementById('listRows');
+  if(!rowsEl) return;
+  rowsEl.innerHTML = sorted.map(t=>{
+    const overdue = isOverdue(t);
+    const done = t.status==='done';
+    return `<div class="task-row ${overdue?'overdue':''}" onclick="openTaskModal('${t.id}')">
+      <div class="tr-check ${done?'checked':''}" onclick="event.stopPropagation();toggleDone('${t.id}')">${done?'✓':''}</div>
+      <div class="tr-title ${done?'done-title':''}">${escapeHtml(t.title||'Untitled task')}</div>
+      <div class="tr-client">${t.client ? clientLabel(t.client) : '—'}</div>
+      <div class="tr-client">${t.assignee ? teamName(t.assignee) : '—'}</div>
+      <span class="tc-priority p-${t.priority||'medium'}" style="justify-self:start;">${(t.priority||'medium').toUpperCase()}</span>
+      <span class="tc-due ${overdue?'overdue-text':(isDueToday(t)?'due-today':'')}">${t.due?fmtDue(t.due):'—'}</span>
+      <span style="font-size:11px;color:var(--muted2);">${(t.notes||[]).length ? '💬'+(t.notes||[]).length : ''}</span>
+    </div>`;
+  }).join('');
+}
+
+function renderTasks(){
+  const filtered = getFilteredTasks();
+  document.getElementById('emptyState').style.display = filtered.length ? 'none' : 'block';
+  document.getElementById('kanbanView').style.display = (filtered.length && _currentView==='kanban') ? 'grid' : 'none';
+  document.getElementById('listView').classList.toggle('active', filtered.length>0 && _currentView==='list');
+  if(_currentView==='kanban') renderKanban(filtered);
+  else renderList(filtered);
+}
+
+function renderEverything(){
+  renderStats();
+  renderTasks();
+}
+
+async function toggleDone(id){
+  const t = _allTasks.find(t=>t.id===id);
+  if(!t) return;
+  const newStatus = t.status==='done' ? 'todo' : 'done';
+  const data = {status:newStatus};
+  if(newStatus==='done') data.completedAt = new Date().toISOString();
+  await window._fbUpdateTask(id, data);
+}
+
+// ══════════════════════════════════════
+// DRAG & DROP
+// ══════════════════════════════════════
+function onCardDragStart(e, id){
+  _draggedTaskId = id;
+  e.target.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+}
+function onCardDragEnd(e){
+  e.target.classList.remove('dragging');
+  _draggedTaskId = null;
+}
+function onColDragOver(e){
+  e.preventDefault();
+  e.currentTarget.classList.add('drag-over');
+}
+function onColDragLeave(e){
+  e.currentTarget.classList.remove('drag-over');
+}
+async function onColDrop(e){
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  const newStatus = e.currentTarget.dataset.status;
+  if(!_draggedTaskId || !newStatus) return;
+  const data = {status:newStatus};
+  if(newStatus==='done') data.completedAt = new Date().toISOString();
+  await window._fbUpdateTask(_draggedTaskId, data);
+  showToast('Task moved to '+({todo:'To Do',progress:'In Progress',review:'Review',done:'Done'}[newStatus]));
+}
+
+// ══════════════════════════════════════
+// MODAL — open/close/save/delete
+// ══════════════════════════════════════
+function openTaskModal(id){
+  _editingTaskId = id || null;
+  const t = id ? _allTasks.find(t=>t.id===id) : null;
+
+  document.getElementById('tmTitle').value = t?.title || '';
+  document.getElementById('tmClient').value = t?.client || '';
+  document.getElementById('tmAssignee').value = t?.assignee || '';
+  document.getElementById('tmDue').value = t?.due || '';
+  document.getElementById('tmPriority').value = t?.priority || 'medium';
+  document.getElementById('tmStatus').value = t?.status || 'todo';
+  document.getElementById('tmDesc').value = t?.desc || '';
+  document.getElementById('tmDeleteBtn').style.display = id ? 'block' : 'none';
+
+  renderNotes(t?.notes || []);
+  document.getElementById('noteInput').value = '';
+  document.getElementById('taskModalBg').classList.add('show');
+  setTimeout(()=>document.getElementById('tmTitle').focus(), 50);
+}
+function closeTaskModal(){
+  document.getElementById('taskModalBg').classList.remove('show');
+  _editingTaskId = null;
+}
+
+function renderNotes(notes){
+  const el = document.getElementById('notesThread');
+  if(!notes.length){
+    el.innerHTML = '<div class="note-empty">No notes yet — add the first one below.</div>';
+    return;
+  }
+  el.innerHTML = notes.map(n=>`
+    <div class="note-item">
+      <div class="note-meta">
+        <span class="note-author">${teamName(n.author)}</span>
+        <span class="note-time">${fmtNoteTime(n.ts)}</span>
+      </div>
+      <div class="note-text">${escapeHtml(n.text)}</div>
+    </div>`).join('');
+  el.scrollTop = el.scrollHeight;
+}
+
+async function saveTask(){
+  const title = document.getElementById('tmTitle').value.trim();
+  if(!title){ showToast('Please add a task title'); return; }
+
+  const data = {
+    title,
+    client: document.getElementById('tmClient').value,
+    assignee: document.getElementById('tmAssignee').value,
+    due: document.getElementById('tmDue').value,
+    priority: document.getElementById('tmPriority').value,
+    status: document.getElementById('tmStatus').value,
+    desc: document.getElementById('tmDesc').value.trim(),
+  };
+  if(data.status==='done'){
+    const existing = _editingTaskId ? _allTasks.find(t=>t.id===_editingTaskId) : null;
+    if(!existing || existing.status!=='done') data.completedAt = new Date().toISOString();
+  }
+
+  if(_editingTaskId){
+    await window._fbUpdateTask(_editingTaskId, data);
+    showToast('✅ Task updated');
+  } else {
+    data.createdBy = window._currentUserEmail || '';
+    data.notes = [];
+    await window._fbAddTask(data);
+    showToast('✅ Task created');
+  }
+  closeTaskModal();
+}
+
+async function deleteCurrentTask(){
+  if(!_editingTaskId) return;
+  if(!confirm('Delete this task? This cannot be undone.')) return;
+  await window._fbDeleteTask(_editingTaskId);
+  showToast('🗑 Task deleted');
+  closeTaskModal();
+}
+
+async function addNote(){
+  const input = document.getElementById('noteInput');
+  const text = input.value.trim();
+  if(!text) return;
+  const note = {author: window._currentUserEmail||'', text, ts: new Date().toISOString()};
+
+  if(_editingTaskId){
+    await window._fbAddNote(_editingTaskId, note);
+    input.value = '';
+    // Optimistically render — onSnapshot will reconcile shortly after
+    const t = _allTasks.find(t=>t.id===_editingTaskId);
+    const notes = [...(t?.notes||[]), note];
+    renderNotes(notes);
+  } else {
+    showToast('Save the task first, then add notes');
+  }
+}
+
+// ══════════════════════════════════════
+// UTIL
+// ══════════════════════════════════════
+function escapeHtml(str){
+  const d = document.createElement('div');
+  d.textContent = str || '';
+  return d.innerHTML;
+}
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2200);
+}
+
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape') closeTaskModal();
+});
+</script>
+
+<!-- Firebase Auth Guard -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot, serverTimestamp, arrayUnion } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const app = initializeApp({
+    apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
+    authDomain:"sayitsocial-calendar.firebaseapp.com",
+    projectId:"sayitsocial-calendar",
+    storageBucket:"sayitsocial-calendar.firebasestorage.app",
+    messagingSenderId:"232081824561",
+    appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
+  });
+
+  const ALLOWED = [
+    "darshilsoni10@gmail.com",
+    "aayushimulay0903@gmail.com",
+    "sparmar1317@gmail.com",
+    "bikashsahooclg09@gmail.com",
+    "niyatiparikh98@gmail.com",
+    "patelriddhi221@gmail.com",
+    "kavyabothrasocial@gmail.com",
+    "kritika70015@gmail.com"
+  ];
+
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const TASKS_COLL = collection(db, "tasks");
+
+  window._fbAddTask = async (data) => {
+    const ref = await addDoc(TASKS_COLL, { ...data, createdAt: serverTimestamp() });
+    return ref.id;
+  };
+  window._fbUpdateTask = async (id, data) => {
+    await updateDoc(doc(db, "tasks", id), data);
+  };
+  window._fbDeleteTask = async (id) => {
+    await deleteDoc(doc(db, "tasks", id));
+  };
+  window._fbAddNote = async (id, note) => {
+    await updateDoc(doc(db, "tasks", id), { notes: arrayUnion(note) });
+  };
+  window._fbWatchTasks = (cb) => {
+    return onSnapshot(TASKS_COLL, snap => {
+      const tasks = [];
+      snap.forEach(d => tasks.push({ id: d.id, ...d.data() }));
+      cb(tasks);
+    });
+  };
+
+  onAuthStateChanged(auth, user => {
+    if(!user || !ALLOWED.includes(user.email.toLowerCase())) {
+      window.location.href = "login.html";
+      return;
+    }
+    const initials = user.email.charAt(0).toUpperCase();
+    window._currentUserEmail = user.email;
+    document.getElementById('navUserInitial').textContent = initials;
+    document.getElementById('navUserEmail').textContent = user.email.split('@')[0];
+    document.body.style.visibility = 'visible';
+    if(window._tasksInit) window._tasksInit();
+  });
+
+  window._doSignOut = () => signOut(auth).then(()=>window.location.href="login.html");
+</script>
+
+</body>
+</html>
