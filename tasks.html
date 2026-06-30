@@ -156,8 +156,8 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 .note-input-row{display:flex;gap:8px;}
 .note-input{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:12.5px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;outline:none;resize:none;}
 .note-input:focus{border-color:var(--blue);}
-.note-add-btn{padding:9px 16px;border-radius:8px;border:none;background:var(--surface2);color:var(--text);font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;font-family:'Plus Jakarta Sans',sans-serif;}
-.note-add-btn:hover{background:var(--blue);}
+.note-add-btn{padding:9px 18px;border-radius:8px;border:none;background:var(--blue);color:#fff;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;font-family:'Plus Jakarta Sans',sans-serif;align-self:flex-end;}
+.note-add-btn:hover{background:#2979FF;}
 
 /* ── EMPTY STATE ── */
 .empty-state{text-align:center;padding:60px 20px;color:var(--muted);}
@@ -471,7 +471,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
     <label class="tm-label" style="margin-bottom:10px;display:block;">💬 Notes &amp; Comments</label>
     <div class="notes-thread" id="notesThread"></div>
     <div class="note-input-row">
-      <textarea class="note-input" id="noteInput" rows="2" placeholder="Add a note..."></textarea>
+      <textarea class="note-input" id="noteInput" rows="2" placeholder="Add a note... (Enter to send, Shift+Enter for new line)" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();addNote();}"></textarea>
       <button class="note-add-btn" onclick="addNote()">Add</button>
     </div>
 
@@ -1104,6 +1104,14 @@ async function saveTask(){
   const title = document.getElementById('tmTitle').value.trim();
   if(!title){ showToast('Please add a task title'); return; }
 
+  // Guard against silently losing an unsaved comment if someone types a note
+  // then hits "Save Task" instead of the note's own "Add" button.
+  const pendingNote = document.getElementById('noteInput').value.trim();
+  if(pendingNote){
+    showToast('⚠️ You have an unsaved note — click "Add" next to it first');
+    return;
+  }
+
   const primaryVal = document.getElementById('tmAssignee').value;
   const secondaryVal = document.getElementById('tmAssignee2').value;
   if(secondaryVal && secondaryVal === primaryVal){
@@ -1160,12 +1168,18 @@ async function addNote(){
   const note = {author: window._currentUserEmail||'', text, ts: new Date().toISOString()};
 
   if(_editingTaskId){
-    await window._fbAddNote(_editingTaskId, note);
-    input.value = '';
-    // Optimistically render — onSnapshot will reconcile shortly after
-    const t = _allTasks.find(t=>t.id===_editingTaskId);
-    const notes = [...(t?.notes||[]), note];
-    renderNotes(notes);
+    try{
+      await window._fbAddNote(_editingTaskId, note);
+      input.value = '';
+      // Optimistically render — onSnapshot will reconcile shortly after
+      const t = _allTasks.find(t=>t.id===_editingTaskId);
+      const notes = [...(t?.notes||[]), note];
+      renderNotes(notes);
+      showToast('💬 Note added');
+    } catch(e){
+      console.error('Failed to add note:', e);
+      showToast('❌ Could not save note — please try again');
+    }
   } else {
     showToast('Save the task first, then add notes');
   }
