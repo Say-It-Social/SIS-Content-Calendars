@@ -222,19 +222,24 @@ footer{border-top:1px solid var(--border);padding:18px 0;text-align:center;posit
     appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
   });
 
-  const ALLOWED = [
-    "darshilsoni10@gmail.com",
-    "aayushimulay0903@gmail.com",
-    "sparmar1317@gmail.com",
-    "bikashsahooclg09@gmail.com",
-    "niyatiparikh98@gmail.com",
-    "patelriddhi221@gmail.com",
-    "kavyabothrasocial@gmail.com",
-    "kritika70015@gmail.com"
-  ];
-
   const auth = getAuth(app);
-  onAuthStateChanged(auth, user => {
+  const db = getFirestore(app);
+
+  async function loadAllowedEmails(){
+    try{
+      const snap = await getDocsFromServer(collection(db, "team_members"));
+      const emails = [];
+      snap.forEach(d => emails.push((d.data().email || d.id).toLowerCase()));
+      return emails;
+    } catch(e){
+      console.error("Failed to load team allowlist:", e);
+      return [];
+    }
+  }
+  const allowedEmailsPromise = loadAllowedEmails();
+
+  onAuthStateChanged(auth, async user => {
+    const ALLOWED = await allowedEmailsPromise;
     if(!user || !ALLOWED.includes(user.email.toLowerCase())) {
       window.location.href = "login.html";
       return;
@@ -415,7 +420,7 @@ footer{border-top:1px solid var(--border);padding:18px 0;text-align:center;posit
 <!-- Firebase SDK -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, onSnapshot, serverTimestamp }
+  import { getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, onSnapshot, serverTimestamp, getDocsFromServer }
     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
   const app = initializeApp({
@@ -426,7 +431,6 @@ footer{border-top:1px solid var(--border);padding:18px 0;text-align:center;posit
     messagingSenderId:"232081824561",
     appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
   });
-  const db = getFirestore(app);
   const COLL = collection(db, "leads");
 
   // Expose to window so non-module script can use
