@@ -88,8 +88,6 @@ nav {
   font-size: 12px; font-weight: 600; cursor: pointer; border: none; transition: all 0.15s;
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
-.btn-primary { background: var(--blue); color: #fff; box-shadow: 0 0 20px rgba(30,111,255,0.3); }
-.btn-primary:hover { background: #2979FF; }
 .btn-ghost { background: var(--surface); border: 1px solid var(--border); color: var(--muted); }
 .btn-ghost:hover { border-color: var(--border2); color: var(--text); }
 
@@ -272,37 +270,48 @@ footer { border-top: 1px solid var(--border); padding: 20px 0; text-align: cente
 
 
 @media(max-width:768px){
-  .nav-inner{padding:0 16px;height:56px;gap:8px;}
+  /* NAV — search bar gets its own row, pills wrap cleanly, labels shrink */
+  .nav-inner{padding:0 16px;height:auto;min-height:56px;gap:8px;flex-wrap:wrap;}
   .nav-mark{width:32px;height:32px;font-size:12px;}
   .nav-brand-sub{display:none;}
-  .nav-right{gap:6px;}
+  .nav-right{gap:6px;flex-wrap:wrap;width:100%;justify-content:flex-start;padding-bottom:10px;}
+  .search-wrap{order:-1;width:100%;margin-bottom:8px;}
+  .nav-search{width:100%;}
+  .nav-right a{padding:6px 11px!important;font-size:11px!important;}
+  .nav-right button.nav-btn{padding:6px 11px;font-size:11px;}
+
+  /* HERO */
+  .hero{padding-top:20px;}
   .hero-title{font-size:clamp(22px,6vw,32px);}
   .hero-sub{font-size:12px;}
+
+  /* STATS */
   .stat-pill{padding:10px 12px;}
   .stat-n{font-size:18px;}
   .stat-l{font-size:8px;}
   .stats-row{gap:8px;}
-  .wrap,.nav-inner,.strategy,.filters,.week-section,.hashtags-section,.footer-note{padding-left:16px;padding-right:16px;}
-  .client-grid{grid-template-columns:1fr!important;}
-  .selector-bar{flex-direction:column;gap:10px;padding:16px;}
-  .sel-btn{width:100%;justify-content:center;}
-  .toolbar{gap:6px;flex-wrap:wrap;}
-  .search-wrap{min-width:100%;order:-1;}
-  .view-toggle{margin-left:0;}
-  .cards-grid,.posts-grid{grid-template-columns:1fr;}
+
+  /* GENERAL CONTENT PADDING */
+  .wrap{padding-left:16px;padding-right:16px;}
+
+  /* CLIENT CARDS — auto-fill already collapses responsively, no override needed */
+
+  /* ADD CLIENT MODAL */
   .modal{padding:20px 16px;width:95vw;}
-  .form-grid{grid-template-columns:1fr;}
-  .form-field.full{grid-column:1;}
+  .modal-field{margin-bottom:12px;}
   .modal-actions{flex-direction:column-reverse;}
   .modal-save,.modal-cancel{width:100%;text-align:center;}
-  .footer-inner{grid-template-columns:1fr;}
 }
+
+.nav-pill-icon{display:inline-block;}
+.nav-pill-label{display:inline-block;}
+
 @media(max-width:480px){
   .stats-row{display:grid;grid-template-columns:1fr 1fr;}
-  .nav-right a[href="leads.html"]>span:last-child,
-  .nav-right a[href="team.html"]>span:last-child,
-  .nav-right a[href="reports.html"]>span:last-child{display:none;}
+  .nav-right a{padding:6px 9px!important;}
+  .nav-right a .nav-pill-label{display:none;}
 }
+
 
 </style>
 <!-- Firebase Auth Guard -->
@@ -373,10 +382,10 @@ footer { border-top: 1px solid var(--border); padding: 20px 0; text-align: cente
         <span class="search-icon">🔍</span>
         <input class="nav-search" type="text" placeholder="Search clients..." oninput="filterClients(this.value)" />
       </div>
-      <a href="tasks.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border);font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;transition:all .15s;" onmouseover="this.style.color='var(--text)';this.style.borderColor='var(--border2)'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border)'">📌 Tasks</a>
-      <a href="leads.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border);font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;transition:all .15s;" onmouseover="this.style.color='var(--text)';this.style.borderColor='var(--border2)'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border)'">📋 Leads</a>
-      <a href="team.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border);font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;transition:all .15s;" onmouseover="this.style.color='var(--text)';this.style.borderColor='var(--border2)'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border)'">👥 Team</a>
-      <a href="reports.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border);font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;transition:all .15s;" onmouseover="this.style.color='var(--text)';this.style.borderColor='var(--border2)'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border)'">📊 Reports</a>
+      <a href="tasks.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border);font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;transition:all .15s;" onmouseover="this.style.color='var(--text)';this.style.borderColor='var(--border2)'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border)'"><span class="nav-pill-icon">📌</span><span class="nav-pill-label">Tasks</span></a>
+      <a href="leads.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border);font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;transition:all .15s;" onmouseover="this.style.color='var(--text)';this.style.borderColor='var(--border2)'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border)'"><span class="nav-pill-icon">📋</span><span class="nav-pill-label">Leads</span></a>
+      <a href="team.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border);font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;transition:all .15s;" onmouseover="this.style.color='var(--text)';this.style.borderColor='var(--border2)'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border)'"><span class="nav-pill-icon">👥</span><span class="nav-pill-label">Team</span></a>
+      <a href="reports.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border);font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;transition:all .15s;" onmouseover="this.style.color='var(--text)';this.style.borderColor='var(--border2)'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border)'"><span class="nav-pill-icon">📊</span><span class="nav-pill-label">Reports</span></a>
       <button class="nav-btn btn-ghost" onclick="openModal()">+ Add Client</button>
       <div id="navUserAvatar" style="width:32px;height:32px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;cursor:pointer;flex-shrink:0;" title="Sign out" onclick="_signOut()">?</div>
     </div>
