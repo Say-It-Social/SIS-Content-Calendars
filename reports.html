@@ -900,7 +900,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
       </div>
 
       <!-- COMPETITOR BENCHMARKING -->
-      <div id="competitorSection" class="competitor-section" style="display:none;">
+      <div id="competitorSection" class="competitor-section" data-plat-group="li" style="display:none;">
         <div class="section-divider"><span class="section-divider-label">🏆 Competitor Benchmarking</span><div class="section-divider-line"></div></div>
         <div class="comp-table-wrap">
           <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:6px;">
@@ -1981,6 +1981,7 @@ async function handleCompetitorUpload(event){
     _competitors = {period:{from:periodFrom,to:periodTo}, rows:dataRows};
     if(window._saveCompetitors) await window._saveCompetitors(_cid, _competitors);
     renderCompetitors();
+    applyIGFBOnlyFilter();
     showToast('✅ Competitor data imported — '+dataRows.length+' pages!');
   } catch(err){
     console.error(err);
@@ -2059,12 +2060,18 @@ function renderPlatformCharts(){
   if(showAll || _platFilter==='tw') renderTWCharts();
 }
 
-// Applies IG/FB-only filter-hiding to sections that render AFTER renderPlatformCharts()
-// in the lifecycle (breakdown chart, content format breakdown, ads). Must run last.
+// Applies platform-only filter-hiding to ANY section tagged with data-plat-group
+// (igfb/li/yt/tw) that lives outside the .charts-grid system — e.g. the IG vs FB
+// breakdown chart, ads, content format breakdown, and LinkedIn competitor benchmarking.
+// Runs last in the render lifecycle since some of these sections set their own
+// inline display:block/none based on whether data exists for that month.
 function applyIGFBOnlyFilter(){
-  const igfbOnlyVisible = _platFilter==='all' || _platFilter==='igfb';
-  document.querySelectorAll('[data-plat-group="igfb"]:not(.charts-grid)').forEach(el=>{
-    el.classList.toggle('plat-filter-hidden', !igfbOnlyVisible);
+  const showAll = _platFilter === 'all';
+  ['igfb','li','yt','tw'].forEach(group=>{
+    const visible = showAll || _platFilter===group;
+    document.querySelectorAll('[data-plat-group="'+group+'"]:not(.charts-grid)').forEach(el=>{
+      el.classList.toggle('plat-filter-hidden', !visible);
+    });
   });
 }
 
