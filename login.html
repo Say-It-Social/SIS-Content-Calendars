@@ -131,9 +131,19 @@ body::after{content:'';position:fixed;top:-200px;left:50%;transform:translateX(-
     {email:"kritika70015@gmail.com",      name:"Kritika"},
   ];
 
+  function withTimeout(promise, ms){
+    return Promise.race([
+      promise,
+      new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), ms))
+    ]);
+  }
+
   async function loadAllowedEmails(){
     try{
-      const snap = await getDocsFromServer(collection(db, "team_members"));
+      // Hard 8s cap — a slow/blocked network must never leave someone stuck on
+      // "Signing you in..." forever. Falls back to the seed list if Firestore
+      // doesn't respond in time, so login always resolves one way or another.
+      const snap = await withTimeout(getDocsFromServer(collection(db, "team_members")), 8000);
       if(snap.empty){
         // First-ever load — bootstrap Firestore with the seed list so nobody is locked out.
         await Promise.all(SEED_TEAM.map(m =>
@@ -147,7 +157,7 @@ body::after{content:'';position:fixed;top:-200px;left:50%;transform:translateX(-
       snap.forEach(d => emails.push((d.data().email || d.id).toLowerCase()));
       return emails;
     } catch(e){
-      console.error("Failed to load team allowlist, falling back to seed list:", e);
+      console.error("Failed to load team allowlist (or timed out), falling back to seed list:", e);
       return SEED_TEAM.map(m => m.email.toLowerCase());
     }
   }
@@ -157,7 +167,7 @@ body::after{content:'';position:fixed;top:-200px;left:50%;transform:translateX(-
   // If already signed in with allowed email → go straight to dashboard
   onAuthStateChanged(auth, async user => {
     if(!user) return;
-    const ALLOWED = await allowedEmailsPromise;
+    const ALLOWED = await withTimeout(allowedEmailsPromise, 10000).catch(() => SEED_TEAM.map(m => m.email.toLowerCase()));
     if(ALLOWED.includes(user.email.toLowerCase())) {
       window.location.href = "index.html";
     }
@@ -176,7 +186,12 @@ body::after{content:'';position:fixed;top:-200px;left:50%;transform:translateX(-
     try {
       const result = await signInWithPopup(auth, provider);
       const email  = result.user.email.toLowerCase();
-      const ALLOWED = await allowedEmailsPromise;
+      // Outer safety net: even if loadAllowedEmails' own timeout somehow doesn't
+      // fire, this guarantees the UI never hangs longer than ~10s on this step.
+      const ALLOWED = await withTimeout(allowedEmailsPromise, 10000).catch(() => {
+        console.error("Allowlist check timed out at sign-in — falling back to seed list");
+        return SEED_TEAM.map(m => m.email.toLowerCase());
+      });
 
       if(ALLOWED.includes(email)) {
         window.location.href = "index.html";
