@@ -183,6 +183,62 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   .view-toggle{margin-left:0;}
   .tb-search{min-width:0;}
 }
+
+/* ── MONTHLY VIEW ── */
+.monthly-view{display:flex;flex-direction:column;gap:20px;}
+.month-nav{display:flex;align-items:center;justify-content:center;gap:20px;}
+.month-nav-btn{padding:8px 16px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:12px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .15s;}
+.month-nav-btn:hover{border-color:var(--border2);background:var(--surface2);}
+.month-nav-label{font-family:'Instrument Serif',serif;font-size:20px;color:var(--white);min-width:180px;text-align:center;}
+
+.heatmap-card{background:var(--navy2);border:1px solid var(--border);border-radius:16px;padding:20px 24px;}
+.heatmap-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px;}
+.heatmap-title{font-size:13px;font-weight:700;color:var(--white);}
+.heatmap-legend{display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--muted);}
+.hm-cell{width:13px;height:13px;border-radius:3px;display:inline-block;}
+.hm-l0{background:var(--surface);border:1px solid var(--border);}
+.hm-l1{background:rgba(30,111,255,0.25);}
+.hm-l2{background:rgba(30,111,255,0.5);}
+.hm-l3{background:rgba(30,111,255,0.75);}
+.hm-l4{background:#1E6FFF;}
+.heatmap-dow-row{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:6px;}
+.heatmap-dow-row span{font-size:10px;color:var(--muted2);text-align:center;font-weight:600;}
+.heatmap-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
+.hm-day{aspect-ratio:1;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--muted);cursor:default;position:relative;transition:transform .1s;}
+.hm-day:hover{transform:scale(1.12);z-index:2;}
+.hm-day.hm-empty{background:none;cursor:default;}
+.hm-day.hm-empty:hover{transform:none;}
+.hm-day[data-count]:hover::after{
+  content:attr(data-tooltip);position:absolute;bottom:120%;left:50%;transform:translateX(-50%);
+  background:#111827;color:var(--text);font-size:10px;font-weight:600;padding:5px 9px;border-radius:6px;
+  white-space:nowrap;box-shadow:0 8px 20px rgba(0,0,0,.4);border:1px solid var(--border2);pointer-events:none;z-index:10;
+}
+.hm-day.hm-today{box-shadow:0 0 0 2px var(--blue);}
+
+.monthly-stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;}
+.ms-card{background:var(--navy2);border:1px solid var(--border);border-radius:14px;padding:16px 18px;text-align:center;}
+.ms-num{font-family:'Instrument Serif',serif;font-size:26px;color:var(--white);line-height:1;margin-bottom:4px;}
+.ms-label{font-size:10.5px;color:var(--muted);font-weight:600;}
+
+.leaderboard-card{background:var(--navy2);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.leaderboard-head{padding:16px 20px;border-bottom:1px solid var(--border);font-size:13px;font-weight:700;color:var(--white);}
+.lb-row{display:flex;align-items:center;gap:14px;padding:13px 20px;border-bottom:1px solid var(--border);}
+.lb-row:last-child{border-bottom:none;}
+.lb-rank{width:22px;height:22px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--muted);flex-shrink:0;}
+.lb-rank.lb-rank-1{background:rgba(245,166,35,0.2);color:#F5A623;}
+.lb-rank.lb-rank-2{background:rgba(167,139,250,0.15);color:#A78BFA;}
+.lb-rank.lb-rank-3{background:rgba(34,197,94,0.15);color:#22C55E;}
+.lb-avatar{width:30px;height:30px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--blue);flex-shrink:0;}
+.lb-name{flex:1;font-size:13px;font-weight:600;color:var(--text);}
+.lb-bar-wrap{flex:2;background:var(--surface);border-radius:100px;height:8px;overflow:hidden;}
+.lb-bar{height:100%;background:linear-gradient(90deg,var(--blue),#7BB3FF);border-radius:100px;transition:width .5s ease;}
+.lb-count{font-size:13px;font-weight:700;color:var(--white);min-width:30px;text-align:right;}
+.lb-empty{padding:30px 20px;text-align:center;color:var(--muted);font-size:12px;}
+
+@media(max-width:680px){
+  .heatmap-card{padding:16px;}
+  .hm-day{font-size:9px;}
+}
 </style>
 </head>
 <body>
@@ -371,8 +427,12 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
         </select>
       </div>
       <div class="tm-field">
-        <label class="tm-label">Assignee</label>
+        <label class="tm-label">Primary Assignee</label>
         <select class="tm-select" id="tmAssignee"></select>
+      </div>
+      <div class="tm-field">
+        <label class="tm-label">Secondary Assignee <span style="text-transform:none;font-weight:400;color:var(--muted2);">(optional)</span></label>
+        <select class="tm-select" id="tmAssignee2"></select>
       </div>
       <div class="tm-field">
         <label class="tm-label">Due Date</label>
@@ -523,6 +583,7 @@ function populateAssigneeDropdowns(){
   const opts = TEAM.map(t=>`<option value="${t.email}">${t.name}</option>`).join('');
   document.getElementById('filterAssignee').insertAdjacentHTML('beforeend', opts);
   document.getElementById('tmAssignee').innerHTML = '<option value="">— Unassigned —</option>' + opts;
+  document.getElementById('tmAssignee2').innerHTML = '<option value="">— None —</option>' + opts;
 }
 
 function teamName(email){
@@ -597,9 +658,9 @@ function getFilteredTasks(){
   const searchF = document.getElementById('searchInput').value.trim().toLowerCase();
 
   return _allTasks.filter(t=>{
-    if(_currentScope==='mine' && t.assignee !== window._currentUserEmail) return false;
+    if(_currentScope==='mine' && t.assignee !== window._currentUserEmail && t.assignee2 !== window._currentUserEmail) return false;
     if(clientF && t.client !== clientF) return false;
-    if(assigneeF && t.assignee !== assigneeF) return false;
+    if(assigneeF && t.assignee !== assigneeF && t.assignee2 !== assigneeF) return false;
     if(priorityF && t.priority !== priorityF) return false;
     if(searchF && !(t.title||'').toLowerCase().includes(searchF) && !(t.desc||'').toLowerCase().includes(searchF)) return false;
 
@@ -625,16 +686,20 @@ function setView(view){
   _currentView = view;
   document.getElementById('viewBtnKanban').classList.toggle('active', view==='kanban');
   document.getElementById('viewBtnList').classList.toggle('active', view==='list');
+  document.getElementById('viewBtnMonthly').classList.toggle('active', view==='monthly');
   document.getElementById('kanbanView').classList.toggle('hidden-view', view!=='kanban');
   document.getElementById('listView').classList.toggle('active', view==='list');
-  renderTasks();
+  document.getElementById('monthlyView').style.display = view==='monthly' ? 'flex' : 'none';
+  document.getElementById('emptyState').style.display = 'none'; // monthly view has its own empty states
+  if(view==='monthly') renderMonthlyView();
+  else renderTasks();
 }
 
 // ══════════════════════════════════════
 // RENDER — stats
 // ══════════════════════════════════════
 function renderStats(){
-  const pool = _currentScope==='mine' ? _allTasks.filter(t=>t.assignee===window._currentUserEmail) : _allTasks;
+  const pool = _currentScope==='mine' ? _allTasks.filter(t=>t.assignee===window._currentUserEmail || t.assignee2===window._currentUserEmail) : _allTasks;
   document.getElementById('statAllNum').textContent = pool.filter(t=>t.status!=='done').length;
   document.getElementById('statOverdueNum').textContent = pool.filter(isOverdue).length;
   document.getElementById('statTodayNum').textContent = pool.filter(isDueToday).length;
@@ -655,7 +720,10 @@ function renderTaskCard(t){
             onclick="openTaskModal('${t.id}')">
     <div class="tc-top">
       <span class="tc-priority p-${t.priority||'medium'}">${(t.priority||'medium').toUpperCase()}</span>
-      ${t.assignee ? `<div class="tc-assignee" title="${teamName(t.assignee)}">${teamInitial(t.assignee)}</div>` : ''}
+      <div style="display:flex;gap:-6px;">
+        ${t.assignee ? `<div class="tc-assignee" title="Primary: ${teamName(t.assignee)}">${teamInitial(t.assignee)}</div>` : ''}
+        ${t.assignee2 ? `<div class="tc-assignee" style="margin-left:-8px;border-color:var(--surface);" title="Secondary: ${teamName(t.assignee2)}">${teamInitial(t.assignee2)}</div>` : ''}
+      </div>
     </div>
     <div class="tc-title">${t.recurring ? '🔁 ' : ''}${escapeHtml(t.title||'Untitled task')}</div>
     ${t.client ? `<div class="tc-client">${clientLabel(t.client)}</div>` : ''}
@@ -704,7 +772,7 @@ function renderList(tasks){
       <div class="tr-check ${done?'checked':''}" onclick="event.stopPropagation();toggleDone('${t.id}')">${done?'✓':''}</div>
       <div class="tr-title ${done?'done-title':''}">${t.recurring ? '🔁 ' : ''}${escapeHtml(t.title||'Untitled task')}</div>
       <div class="tr-client">${t.client ? clientLabel(t.client) : '—'}</div>
-      <div class="tr-client">${t.assignee ? teamName(t.assignee) : '—'}</div>
+      <div class="tr-client">${t.assignee ? teamName(t.assignee)+(t.assignee2?' + '+teamName(t.assignee2):'') : '—'}</div>
       <span class="tc-priority p-${t.priority||'medium'}" style="justify-self:start;">${(t.priority||'medium').toUpperCase()}</span>
       <span class="tc-due ${overdue?'overdue-text':(isDueToday(t)?'due-today':'')}">${t.due?fmtDue(t.due):'—'}</span>
       <span style="font-size:11px;color:var(--muted2);">${(t.notes||[]).length ? '💬'+(t.notes||[]).length : ''}</span>
@@ -747,6 +815,7 @@ async function maybeSpawnRecurringClone(task){
     title: task.title,
     client: task.client || '',
     assignee: task.assignee || '',
+    assignee2: task.assignee2 || '',
     due: tomorrow,
     priority: task.priority || 'medium',
     status: 'todo',
@@ -764,6 +833,122 @@ async function maybeSpawnRecurringClone(task){
   } catch(e){
     console.error('Failed to spawn recurring task clone:', e);
   }
+}
+
+
+
+// ══════════════════════════════════════
+// MONTHLY VIEW — heatmap + leaderboard
+// ══════════════════════════════════════
+let _monthlyCursor = new Date(); // tracks which month is being viewed
+
+function shiftMonth(delta){
+  _monthlyCursor.setMonth(_monthlyCursor.getMonth() + delta);
+  renderMonthlyView();
+}
+
+function ymKey(d){
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');
+}
+function dayKeyFromDate(d){
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+
+function renderMonthlyView(){
+  const year = _monthlyCursor.getFullYear();
+  const month = _monthlyCursor.getMonth(); // 0-indexed
+  const monthLabel = _monthlyCursor.toLocaleDateString('en-US',{month:'long',year:'numeric'});
+  document.getElementById('monthNavLabel').textContent = monthLabel;
+
+  const ym = ymKey(_monthlyCursor);
+  const daysInMonth = new Date(year, month+1, 0).getDate();
+  const firstDow = new Date(year, month, 1).getDay(); // 0=Sun
+
+  // ── Build completion counts per day from completedAt ──
+  const completionsByDay = {}; // 'YYYY-MM-DD' -> count
+  _allTasks.forEach(t=>{
+    if(t.status!=='done' || !t.completedAt) return;
+    const dk = String(t.completedAt).slice(0,10);
+    if(!dk.startsWith(ym)) return;
+    completionsByDay[dk] = (completionsByDay[dk]||0) + 1;
+  });
+  const maxCount = Math.max(1, ...Object.values(completionsByDay));
+
+  function heatLevel(count){
+    if(!count) return 0;
+    const ratio = count / maxCount;
+    if(ratio > 0.75) return 4;
+    if(ratio > 0.5) return 3;
+    if(ratio > 0.25) return 2;
+    return 1;
+  }
+
+  // Day-of-week header
+  const dowEl = document.getElementById('heatmapDowRow');
+  dowEl.innerHTML = ['S','M','T','W','T','F','S'].map(d=>`<span>${d}</span>`).join('');
+
+  // Grid: leading empty cells + actual days
+  const gridEl = document.getElementById('heatmapGrid');
+  let cells = '';
+  for(let i=0;i<firstDow;i++) cells += '<div class="hm-day hm-empty"></div>';
+  const todayKey = todayStr();
+  for(let day=1; day<=daysInMonth; day++){
+    const dk = ym+'-'+String(day).padStart(2,'0');
+    const count = completionsByDay[dk] || 0;
+    const lvl = heatLevel(count);
+    const isToday = dk === todayKey;
+    const tooltip = count ? `${count} task${count>1?'s':''} completed` : 'No tasks completed';
+    cells += `<div class="hm-day hm-l${lvl} ${isToday?'hm-today':''}" data-count="${count}" data-tooltip="${tooltip} — ${monthLabel.split(' ')[0]} ${day}">${day}</div>`;
+  }
+  gridEl.innerHTML = cells;
+
+  // ── Monthly stats ──
+  const createdThisMonth = _allTasks.filter(t=>{
+    const ts = t.createdAt;
+    const dk = ts?.seconds ? new Date(ts.seconds*1000).toISOString().slice(0,7) : (typeof ts==='string' ? ts.slice(0,7) : null);
+    return dk === ym;
+  }).length;
+  const completedThisMonth = Object.values(completionsByDay).reduce((a,b)=>a+b,0);
+  const stillOverdue = _allTasks.filter(isOverdue).length;
+  const rate = createdThisMonth > 0 ? Math.round((completedThisMonth/createdThisMonth)*100) : (completedThisMonth>0 ? 100 : 0);
+
+  document.getElementById('msCreated').textContent = createdThisMonth;
+  document.getElementById('msCompleted').textContent = completedThisMonth;
+  document.getElementById('msOverdueCarry').textContent = stillOverdue;
+  document.getElementById('msRate').textContent = rate + '%';
+
+  renderLeaderboard(ym);
+}
+
+function renderLeaderboard(ym){
+  const counts = {}; // email -> count
+  _allTasks.forEach(t=>{
+    if(t.status!=='done' || !t.completedAt) return;
+    const dk = String(t.completedAt).slice(0,7);
+    if(dk !== ym) return;
+    // Both primary and secondary assignees get leaderboard credit for a completed task
+    const people = new Set([t.assignee, t.assignee2].filter(Boolean));
+    people.forEach(email => { counts[email] = (counts[email]||0) + 1; });
+  });
+
+  const rows = Object.entries(counts).sort((a,b)=>b[1]-a[1]);
+  const bodyEl = document.getElementById('leaderboardBody');
+  if(!rows.length){
+    bodyEl.innerHTML = '<div class="lb-empty">No completed tasks with assignees this month yet.</div>';
+    return;
+  }
+  const maxCount = rows[0][1];
+  bodyEl.innerHTML = rows.map(([email,count],i)=>{
+    const rankCls = i===0?'lb-rank-1':i===1?'lb-rank-2':i===2?'lb-rank-3':'';
+    const pct = Math.round((count/maxCount)*100);
+    return `<div class="lb-row">
+      <div class="lb-rank ${rankCls}">${i+1}</div>
+      <div class="lb-avatar">${teamInitial(email)}</div>
+      <div class="lb-name">${teamName(email)}</div>
+      <div class="lb-bar-wrap"><div class="lb-bar" style="width:${pct}%"></div></div>
+      <div class="lb-count">${count}</div>
+    </div>`;
+  }).join('');
 }
 
 
@@ -880,6 +1065,7 @@ function openTaskModal(id){
   document.getElementById('tmTitle').value = t?.title || '';
   document.getElementById('tmClient').value = t?.client || '';
   document.getElementById('tmAssignee').value = t?.assignee || '';
+  document.getElementById('tmAssignee2').value = t?.assignee2 || '';
   document.getElementById('tmDue').value = t?.due || '';
   document.getElementById('tmPriority').value = t?.priority || 'medium';
   document.getElementById('tmStatus').value = t?.status || 'todo';
@@ -918,10 +1104,18 @@ async function saveTask(){
   const title = document.getElementById('tmTitle').value.trim();
   if(!title){ showToast('Please add a task title'); return; }
 
+  const primaryVal = document.getElementById('tmAssignee').value;
+  const secondaryVal = document.getElementById('tmAssignee2').value;
+  if(secondaryVal && secondaryVal === primaryVal){
+    showToast('Secondary assignee must be different from primary');
+    return;
+  }
+
   const data = {
     title,
     client: document.getElementById('tmClient').value,
     assignee: document.getElementById('tmAssignee').value,
+    assignee2: document.getElementById('tmAssignee2').value,
     due: document.getElementById('tmDue').value,
     priority: document.getElementById('tmPriority').value,
     status: document.getElementById('tmStatus').value,
