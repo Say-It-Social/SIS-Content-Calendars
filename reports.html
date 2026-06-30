@@ -355,6 +355,8 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
 .comp-upload-btn{padding:7px 14px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;border:1px solid rgba(245,166,35,0.3);background:rgba(245,166,35,0.1);color:var(--amber);font-family:'Plus Jakarta Sans',sans-serif;}
 .comp-upload-btn:hover{background:rgba(245,166,35,0.18);}
 .comp-period{font-size:11px;color:var(--muted);margin-bottom:14px;}
+
+.plat-filter-hidden{display:none!important;}
 </style>
 </head>
 <body>
@@ -820,7 +822,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
     </div>
 
     <!-- ENGAGEMENT BREAKDOWN -->
-    <div class="breakdown-card">
+    <div class="breakdown-card" id="breakdownCardIGFB" data-plat-group="igfb">
       <div class="chart-title">Platform Comparison — Latest Month</div>
       <div class="chart-sub" style="margin-bottom:16px;">All 6 metrics side by side — Instagram vs Facebook</div>
       <div class="chart-legend" style="margin-bottom:12px;">
@@ -846,7 +848,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
       </div>
 
       <!-- CONTENT FORMAT BREAKDOWN -->
-      <div id="contentBreakdownSection" style="display:none;margin-bottom:20px;">
+      <div id="contentBreakdownSection" data-plat-group="igfb" style="display:none;margin-bottom:20px;">
         <div class="section-divider"><span class="section-divider-label">🎬 Content Format Breakdown</span><div class="section-divider-line"></div></div>
         <div class="content-breakdown-grid">
           <div class="cb-card">
@@ -913,7 +915,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
         </div>
       </div>
 
-      <div class="breakdown-card" id="adsSection" style="display:none;margin-bottom:20px;">
+      <div class="breakdown-card" id="adsSection" data-plat-group="igfb" style="display:none;margin-bottom:20px;">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px;">
         <div>
           <div class="chart-title">💰 Meta Ads Performance</div>
@@ -1065,14 +1067,14 @@ function renderAll(){
     const badge = count > 0 ? `<span style="font-size:9px;margin-left:4px;">🏆${count>1?'×'+count:''}</span>` : '';
     return `<button class="month-tab ${k===_active?'active':''}" onclick="setTab('${k}',this)">${fmtMonth(k)}${badge}</button>`;
   }).join('');
-  renderKPIs();renderPlatform();renderCharts(sorted);renderPlatformCharts();renderBreakdown();renderHistory(keys);renderMultiPlatform();renderPostCount();renderContentBreakdown();
+  renderKPIs();renderPlatform();renderCharts(sorted);renderPlatformCharts();renderBreakdown();renderHistory(keys);renderMultiPlatform();renderPostCount();renderContentBreakdown();applyIGFBOnlyFilter();
 }
 
 function setTab(k,btn){
   _active=k;
   document.querySelectorAll('.month-tab').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  renderKPIs();renderPlatform();renderPlatformCharts();renderBreakdown();renderMultiPlatform();renderPostCount();renderContentBreakdown();
+  renderKPIs();renderPlatform();renderPlatformCharts();renderBreakdown();renderMultiPlatform();renderPostCount();renderContentBreakdown();applyIGFBOnlyFilter();
 }
 
 function renderKPIs(){
@@ -1226,6 +1228,7 @@ function setPlatformFilter(plat, btn){
   document.querySelectorAll('.an-btn').forEach(b=>b.classList.remove('active'));
   if(btn) btn.classList.add('active');
   applyPlatformFilter();
+  applyIGFBOnlyFilter();
   if(_active){ renderKPIs(); renderPlatformCharts(); }
 }
 function applyPlatformFilter(){
@@ -2054,6 +2057,15 @@ function renderPlatformCharts(){
   if(showAll || _platFilter==='li') renderLICharts();
   if(showAll || _platFilter==='yt') renderYTCharts();
   if(showAll || _platFilter==='tw') renderTWCharts();
+}
+
+// Applies IG/FB-only filter-hiding to sections that render AFTER renderPlatformCharts()
+// in the lifecycle (breakdown chart, content format breakdown, ads). Must run last.
+function applyIGFBOnlyFilter(){
+  const igfbOnlyVisible = _platFilter==='all' || _platFilter==='igfb';
+  document.querySelectorAll('[data-plat-group="igfb"]:not(.charts-grid)').forEach(el=>{
+    el.classList.toggle('plat-filter-hidden', !igfbOnlyVisible);
+  });
 }
 
 function destroyChart(id){ if(_charts[id]){ try{_charts[id].destroy();}catch(e){} delete _charts[id]; } }
