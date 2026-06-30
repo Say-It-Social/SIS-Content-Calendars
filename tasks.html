@@ -243,6 +243,10 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   <!-- TOOLBAR -->
   <div class="toolbar">
     <button class="add-task-btn" onclick="openTaskModal()">+ New Task</button>
+    <div class="view-toggle" style="margin-left:0;">
+      <button class="view-btn active" id="scopeBtnMine" onclick="setScope('mine')">👤 My Tasks</button>
+      <button class="view-btn" id="scopeBtnAll" onclick="setScope('all')">🌐 All Tasks</button>
+    </div>
     <select class="tb-select" id="filterClient" onchange="applyFilters()">
       <option value="">All Clients</option>
       <option value="__general">🏢 Agency / General</option>
@@ -408,6 +412,7 @@ const STATUS_COLS = ['todo','progress','review','done'];
 let _allTasks = [];
 let _currentView = 'kanban';
 let _currentQuickFilter = 'all';
+let _currentScope = 'mine';
 let _editingTaskId = null;
 let _draggedTaskId = null;
 
@@ -489,6 +494,16 @@ function fmtNoteTime(ts){
 // ══════════════════════════════════════
 // FILTERING
 // ══════════════════════════════════════
+function setScope(scope){
+  _currentScope = scope;
+  document.getElementById('scopeBtnMine').classList.toggle('active', scope==='mine');
+  document.getElementById('scopeBtnAll').classList.toggle('active', scope==='all');
+  // 'My Tasks' is a personal view — clear the manual assignee filter so it doesn't fight the scope
+  if(scope==='mine') document.getElementById('filterAssignee').value = '';
+  renderStats();
+  renderTasks();
+}
+
 function getFilteredTasks(){
   const clientF = document.getElementById('filterClient').value;
   const assigneeF = document.getElementById('filterAssignee').value;
@@ -496,6 +511,7 @@ function getFilteredTasks(){
   const searchF = document.getElementById('searchInput').value.trim().toLowerCase();
 
   return _allTasks.filter(t=>{
+    if(_currentScope==='mine' && t.assignee !== window._currentUserEmail) return false;
     if(clientF && t.client !== clientF) return false;
     if(assigneeF && t.assignee !== assigneeF) return false;
     if(priorityF && t.priority !== priorityF) return false;
@@ -532,11 +548,12 @@ function setView(view){
 // RENDER — stats
 // ══════════════════════════════════════
 function renderStats(){
-  document.getElementById('statAllNum').textContent = _allTasks.filter(t=>t.status!=='done').length;
-  document.getElementById('statOverdueNum').textContent = _allTasks.filter(isOverdue).length;
-  document.getElementById('statTodayNum').textContent = _allTasks.filter(isDueToday).length;
-  document.getElementById('statWeekNum').textContent = _allTasks.filter(isDueThisWeek).length;
-  document.getElementById('statDoneMonthNum').textContent = _allTasks.filter(isCompletedThisMonth).length;
+  const pool = _currentScope==='mine' ? _allTasks.filter(t=>t.assignee===window._currentUserEmail) : _allTasks;
+  document.getElementById('statAllNum').textContent = pool.filter(t=>t.status!=='done').length;
+  document.getElementById('statOverdueNum').textContent = pool.filter(isOverdue).length;
+  document.getElementById('statTodayNum').textContent = pool.filter(isDueToday).length;
+  document.getElementById('statWeekNum').textContent = pool.filter(isDueThisWeek).length;
+  document.getElementById('statDoneMonthNum').textContent = pool.filter(isCompletedThisMonth).length;
 }
 
 // ══════════════════════════════════════
