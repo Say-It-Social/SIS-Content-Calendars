@@ -6,6 +6,7 @@
 <title>Say It Social — Reports Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <style>
 :root{
   --navy:#0B1220;--navy2:#111827;--surface:#161E30;--surface2:#1E2A42;
@@ -318,6 +319,32 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
 .im-manual-input{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:13px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;outline:none;transition:border-color .2s;}
 .im-manual-input:focus{border-color:var(--blue);}
 .im-manual-input::placeholder{color:var(--muted2);}
+
+/* LINKEDIN FILE UPLOAD SLOTS */
+.li-upload-slot{border:1.5px dashed var(--border);border-radius:10px;padding:16px 10px;text-align:center;cursor:pointer;transition:all .15s;}
+.li-upload-slot:hover{border-color:#4DA3FF;background:rgba(10,102,194,0.05);}
+.li-upload-slot.uploaded{border-style:solid;border-color:rgba(34,197,94,0.4);background:rgba(34,197,94,0.06);}
+.li-upload-icon{font-size:22px;margin-bottom:6px;}
+.li-upload-label{font-size:11px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.li-upload-status{font-size:10px;color:var(--muted);}
+.li-upload-slot.uploaded .li-upload-status{color:var(--green);font-weight:600;}
+
+/* COMPETITOR BENCHMARKING */
+.competitor-section{margin-bottom:20px;}
+.comp-table-wrap{background:var(--navy2);border:1px solid var(--border);border-radius:14px;padding:18px 20px;overflow-x:auto;}
+.comp-table{width:100%;border-collapse:collapse;font-size:12px;}
+.comp-table thead th{text-align:left;padding:8px 12px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap;}
+.comp-table tbody td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--text);}
+.comp-table tbody tr:last-child td{border-bottom:none;}
+.comp-table tbody tr.comp-self{background:rgba(30,111,255,0.06);}
+.comp-table tbody tr.comp-self td:first-child{font-weight:700;color:#7BB3FF;}
+.comp-table tbody tr:hover{background:rgba(255,255,255,0.02);}
+.comp-rank{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--surface2);font-size:10px;font-weight:700;color:var(--muted);}
+.comp-rank.rank-1{background:rgba(245,166,35,0.2);color:#F5A623;}
+.comp-self-badge{display:inline-block;padding:2px 8px;border-radius:100px;background:rgba(30,111,255,0.15);color:#7BB3FF;font-size:9px;font-weight:700;margin-left:6px;text-transform:uppercase;letter-spacing:.5px;}
+.comp-upload-btn{padding:7px 14px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;border:1px solid rgba(245,166,35,0.3);background:rgba(245,166,35,0.1);color:var(--amber);font-family:'Plus Jakarta Sans',sans-serif;}
+.comp-upload-btn:hover{background:rgba(245,166,35,0.18);}
+.comp-period{font-size:11px;color:var(--muted);margin-bottom:14px;}
 </style>
 </head>
 <body>
@@ -325,7 +352,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-  import { getFirestore, doc, setDoc, getDoc, collection, getDocs }
+  import { getFirestore, doc, setDoc, getDoc, collection, getDocs, getDocsFromServer }
     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
   const app = initializeApp({
@@ -351,11 +378,16 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
   window._saveMonthData=async(cid,mk,data)=>await setDoc(doc(db,"reports",cid,"months",mk),data,{merge:true});
   window._saveProfileUrls=async(cid,urls)=>await setDoc(doc(db,"reports",cid,"settings","profiles"),urls,{merge:true});
   window._loadProfileUrls=async(cid)=>{
-    try{const d=await getDocs(collection(db,"reports",cid,"settings"));let u={};d.forEach(doc=>{if(doc.id==="profiles") u=doc.data();});return u;}
+    try{const d=await getDocsFromServer(collection(db,"reports",cid,"settings"));let u={};d.forEach(doc=>{if(doc.id==="profiles") u=doc.data();});return u;}
     catch(e){return {};}
   };
+  window._saveCompetitors=async(cid,data)=>await setDoc(doc(db,"reports",cid,"settings","competitors"),data,{merge:false});
+  window._loadCompetitors=async(cid)=>{
+    try{const d=await getDocsFromServer(collection(db,"reports",cid,"settings"));let c=null;d.forEach(doc=>{if(doc.id==="competitors") c=doc.data();});return c;}
+    catch(e){return null;}
+  };
   window._loadClientData=async(cid)=>{
-    const snap=await getDocs(collection(db,"reports",cid,"months"));
+    const snap=await getDocsFromServer(collection(db,"reports",cid,"months"));
     const m={};snap.forEach(d=>m[d.id]=d.data());return m;
   };
 </script>
@@ -517,6 +549,8 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
           <div class="entry-field"><label class="entry-label">Reposts<span>Shares on LinkedIn</span></label><input class="entry-input" id="li_reposts" type="number" placeholder="e.g. 14"/></div>
           <div class="entry-field"><label class="entry-label">Clicks<span>Link + profile clicks</span></label><input class="entry-input" id="li_clicks" type="number" placeholder="e.g. 180"/></div>
           <div class="entry-field"><label class="entry-label">New Followers</label><input class="entry-input" id="li_follows" type="number" placeholder="e.g. 22"/></div>
+          <div class="entry-field"><label class="entry-label">Page Views<span>Total company page views</span></label><input class="entry-input" id="li_page_views" type="number" placeholder="e.g. 850"/></div>
+          <div class="entry-field"><label class="entry-label">Unique Visitors<span>Total unique page visitors</span></label><input class="entry-input" id="li_unique_visitors" type="number" placeholder="e.g. 420"/></div>
         </div>
       </div>
 
@@ -708,6 +742,8 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
             <div class="mp-metric"><span class="mp-metric-label">Reposts</span><span class="mp-metric-val" id="li_disp_reposts">—</span></div>
             <div class="mp-metric"><span class="mp-metric-label">Clicks</span><span class="mp-metric-val" id="li_disp_clicks">—</span></div>
             <div class="mp-metric"><span class="mp-metric-label">New Followers</span><span class="mp-metric-val" id="li_disp_follows">—</span></div>
+            <div class="mp-metric"><span class="mp-metric-label">Page Views</span><span class="mp-metric-val" id="li_disp_page_views">—</span></div>
+            <div class="mp-metric"><span class="mp-metric-label">Unique Visitors</span><span class="mp-metric-val" id="li_disp_unique_visitors">—</span></div>
           </div>
           <div class="mp-card" id="ytCard" style="display:none;">
             <div class="mp-card-header"><span class="mp-platform-badge mp-badge-yt">&#9654; YouTube</span></div>
@@ -727,6 +763,22 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
             <div class="mp-metric"><span class="mp-metric-label">Link Clicks</span><span class="mp-metric-val" id="tw_disp_clicks">—</span></div>
             <div class="mp-metric"><span class="mp-metric-label">Followers Gained</span><span class="mp-metric-val" id="tw_disp_follows">—</span></div>
           </div>
+        </div>
+      </div>
+
+      <!-- COMPETITOR BENCHMARKING -->
+      <div id="competitorSection" class="competitor-section" style="display:none;">
+        <div class="section-divider"><span class="section-divider-label">🏆 Competitor Benchmarking</span><div class="section-divider-line"></div></div>
+        <div class="comp-table-wrap">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:6px;">
+            <div class="comp-period" id="compPeriod">—</div>
+            <button class="comp-upload-btn" onclick="document.getElementById('compFileInput').click()">⬆ Upload Competitor File</button>
+            <input type="file" id="compFileInput" accept=".xls,.xlsx,.csv" style="display:none" onchange="handleCompetitorUpload(event)"/>
+          </div>
+          <table class="comp-table">
+            <thead><tr><th>#</th><th>Page</th><th>Total Followers</th><th>New Followers</th><th>Post Engagements</th><th>Total Posts</th></tr></thead>
+            <tbody id="compTableBody"></tbody>
+          </table>
         </div>
       </div>
 
@@ -818,6 +870,9 @@ async function loadReport(){
     const btn=document.getElementById(id);
     if(btn){btn.classList.add('disabled');btn.href='#';btn.style.opacity='';}
   });
+  // Reset competitor section on client switch
+  _competitors=null;
+  try{document.getElementById('competitorSection').style.display='none';}catch(e){}
   try{document.getElementById('monthNotes').style.display='none';}catch(e){}
   Object.values(_charts).forEach(c=>{try{c.destroy();}catch(e){}});
   _charts={};
@@ -830,6 +885,8 @@ async function loadReport(){
   if(window._loadClientData) _months=await window._loadClientData(cid);
   // Load profile URLs for analytics buttons
   if(window._loadProfileUrls){ _profileUrls=await window._loadProfileUrls(cid)||{}; updateAnalyticsButtons(); }
+  // Load competitor benchmarking data
+  if(window._loadCompetitors){ _competitors=await window._loadCompetitors(cid)||null; renderCompetitors(); }
   // Reset ads data for this client
   _adsData = null;
   document.getElementById('adsSection').style.display = 'none';
@@ -848,7 +905,7 @@ function renderAll(){
   if(!keys.length){
     tabs.innerHTML='<span style="font-size:12px;color:var(--muted);">No data yet — click "+ Add Month Data" to begin.</span>';
     document.getElementById('kpiGrid').innerHTML='';
-    document.getElementById('historyBody').innerHTML='<tr><td colspan="13" style="text-align:center;padding:24px;color:var(--muted);">No data yet</td></tr>';
+    document.getElementById('historyBody').innerHTML='<tr><td colspan="18" style="text-align:center;padding:24px;color:var(--muted);">No data yet</td></tr>';
     renderCharts([]);return;
   }
   _active=keys[0];
@@ -1130,7 +1187,7 @@ function toggleEntry(){
     const fields=['ig_views','ig_reach','ig_interactions','ig_link_clicks','ig_profile_visits','ig_follows',
                   'fb_views','fb_reach','fb_interactions','fb_link_clicks','fb_profile_visits','fb_follows',
                   'ad_spend','ad_reach','ad_results','ad_cpr',
-                  'li_impressions','li_reactions','li_comments','li_reposts','li_clicks','li_follows',
+                  'li_impressions','li_reactions','li_comments','li_reposts','li_clicks','li_follows','li_page_views','li_unique_visitors',
                   'yt_views','yt_watch_time','yt_subscribers','yt_likes','yt_comments','yt_shorts_views',
                   'tw_impressions','tw_likes','tw_retweets','tw_replies','tw_clicks','tw_follows',
                   'posts_ig','posts_fb','posts_li','posts_yt','posts_tw',
@@ -1148,7 +1205,7 @@ async function saveMonthData(){
   const fields=['ig_views','ig_reach','ig_interactions','ig_link_clicks','ig_profile_visits','ig_follows',
                 'fb_views','fb_reach','fb_interactions','fb_link_clicks','fb_profile_visits','fb_follows',
                 'ad_spend','ad_reach','ad_results','ad_cpr',
-                'li_impressions','li_reactions','li_comments','li_reposts','li_clicks','li_follows',
+                'li_impressions','li_reactions','li_comments','li_reposts','li_clicks','li_follows','li_page_views','li_unique_visitors',
                 'yt_views','yt_watch_time','yt_subscribers','yt_likes','yt_comments','yt_shorts_views',
                 'tw_impressions','tw_likes','tw_retweets','tw_replies','tw_clicks','tw_follows',
                 'posts_ig','posts_fb','posts_li','posts_yt','posts_tw',
@@ -1173,7 +1230,7 @@ function copyShareLink(){
 
 function renderMultiPlatform(){
   const d=_months[_active]||{};
-  const hasLI = d.li_impressions||d.li_reactions||d.li_comments||d.li_clicks||d.li_follows;
+  const hasLI = d.li_impressions||d.li_reactions||d.li_comments||d.li_clicks||d.li_follows||d.li_page_views||d.li_unique_visitors;
   const hasYT = d.yt_views||d.yt_watch_time||d.yt_subscribers;
   const hasTW = d.tw_impressions||d.tw_likes||d.tw_retweets;
   const hasAny = hasLI||hasYT||hasTW;
@@ -1185,7 +1242,7 @@ function renderMultiPlatform(){
   const liCard = document.getElementById('liCard');
   if(liCard) liCard.style.display = hasLI ? 'block' : 'none';
   if(hasLI){
-    ['impressions','reactions','comments','reposts','clicks','follows'].forEach(f=>{
+    ['impressions','reactions','comments','reposts','clicks','follows','page_views','unique_visitors'].forEach(f=>{
       const el=document.getElementById('li_disp_'+f);
       if(el) el.textContent=fmt(d['li_'+f])||'—';
     });
@@ -1436,7 +1493,7 @@ async function saveManualImport(plat){
   if(!mk){showToast('Please select a month');return;}
 
   const fieldMap={
-    li:['impressions','reactions','comments','reposts','clicks','follows'],
+    li:['impressions','reactions','comments','reposts','clicks','follows','page_views','unique_visitors'],
     yt:['views','watch_time','subscribers','likes','comments','shorts_views'],
     tw:['impressions','likes','retweets','replies','clicks','follows'],
   };
@@ -1456,6 +1513,315 @@ async function saveManualImport(plat){
   renderAll();
   showToast('✅ '+fmtMonth(mk)+' data saved for '+plat.toUpperCase()+'!');
 }
+
+
+// ══════════════════════════════════════
+// LINKEDIN FILE PARSER (.xls/.xlsx via SheetJS)
+// ══════════════════════════════════════
+let _liFiles = {content:null, followers:null, visitors:null};
+let _liMonthly = {}; // {monthKey: {li_impressions, li_clicks, ...}}
+
+function liDateToMonthKey(dateVal){
+  // LinkedIn exports dates as MM/DD/YYYY strings, or Excel serial numbers
+  let d;
+  if(typeof dateVal === 'number'){
+    // Excel serial date
+    d = new Date(Math.round((dateVal - 25569) * 86400 * 1000));
+  } else if(typeof dateVal === 'string'){
+    const parts = dateVal.split('/');
+    if(parts.length === 3){
+      d = new Date(+parts[2], +parts[0]-1, +parts[1]);
+    } else {
+      d = new Date(dateVal);
+    }
+  } else if(dateVal instanceof Date){
+    d = dateVal;
+  } else {
+    return null;
+  }
+  if(isNaN(d.getTime())) return null;
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');
+}
+
+function readWorkbookFile(file){
+  return new Promise((resolve,reject)=>{
+    const reader = new FileReader();
+    reader.onload = e => {
+      try{
+        const data = new Uint8Array(e.target.result);
+        const wb = XLSX.read(data, {type:'array', cellDates:false});
+        resolve(wb);
+      } catch(err){ reject(err); }
+    };
+    reader.onerror = reject;
+    reader.readAsArrayBuffer(file);
+  });
+}
+
+function findHeaderRow(rows){
+  // LinkedIn exports have a description row at top, then header row, then data
+  // Find the row that contains "Date" as first cell
+  for(let i=0;i<Math.min(rows.length,5);i++){
+    if(rows[i] && String(rows[i][0]||'').trim()==='Date') return i;
+  }
+  return 0;
+}
+
+async function handleLIFileUpload(event, kind){
+  const file = event.target.files[0];
+  if(!file) return;
+  const slotEl = document.getElementById('liSlot'+kind.charAt(0).toUpperCase()+kind.slice(1));
+  const statusEl = document.getElementById('liStatus'+kind.charAt(0).toUpperCase()+kind.slice(1));
+  try{
+    const wb = await readWorkbookFile(file);
+    _liFiles[kind] = wb;
+    if(slotEl) slotEl.classList.add('uploaded');
+    if(statusEl) statusEl.textContent = '✓ '+file.name.slice(0,18)+(file.name.length>18?'…':'');
+    computeLIMonthly();
+  } catch(err){
+    console.error(err);
+    showToast('Could not read '+kind+' file');
+  }
+}
+
+function sheetToRows(wb, sheetName){
+  const ws = wb.Sheets[sheetName];
+  if(!ws) return null;
+  return XLSX.utils.sheet_to_json(ws, {header:1, raw:true, defval:''});
+}
+
+function computeLIMonthly(){
+  _liMonthly = {};
+
+  // ── CONTENT > Metrics sheet ──
+  if(_liFiles.content){
+    const rows = sheetToRows(_liFiles.content, 'Metrics');
+    if(rows){
+      const hIdx = findHeaderRow(rows);
+      const headers = rows[hIdx].map(h=>String(h).trim());
+      const col = name => headers.indexOf(name);
+      const cImpr = col('Impressions (total)');
+      const cClicks = col('Clicks (total)');
+      const cReact = col('Reactions (total)');
+      const cComm = col('Comments (total)');
+      const cRepost = col('Reposts (total)');
+      for(let i=hIdx+1;i<rows.length;i++){
+        const r = rows[i];
+        if(!r || !r[0]) continue;
+        const mk = liDateToMonthKey(r[0]);
+        if(!mk) continue;
+        if(!_liMonthly[mk]) _liMonthly[mk]={};
+        const m=_liMonthly[mk];
+        m.li_impressions=(m.li_impressions||0)+(+r[cImpr]||0);
+        m.li_clicks=(m.li_clicks||0)+(+r[cClicks]||0);
+        m.li_reactions=(m.li_reactions||0)+(+r[cReact]||0);
+        m.li_comments=(m.li_comments||0)+(+r[cComm]||0);
+        m.li_reposts=(m.li_reposts||0)+(+r[cRepost]||0);
+      }
+    }
+    // ── CONTENT > All posts sheet — derive post count ──
+    const postRows = sheetToRows(_liFiles.content, 'All posts');
+    if(postRows){
+      const hIdx = findHeaderRow2(postRows, 'Post title');
+      if(hIdx !== -1){
+        const headers = postRows[hIdx].map(h=>String(h).trim());
+        const cDate = headers.indexOf('Created date');
+        for(let i=hIdx+1;i<postRows.length;i++){
+          const r = postRows[i];
+          if(!r || !r[cDate]) continue;
+          const mk = liDateToMonthKey(r[cDate]);
+          if(!mk) continue;
+          if(!_liMonthly[mk]) _liMonthly[mk]={};
+          _liMonthly[mk].posts_li=(_liMonthly[mk].posts_li||0)+1;
+        }
+      }
+    }
+  }
+
+  // ── FOLLOWERS > New followers sheet ──
+  if(_liFiles.followers){
+    const rows = sheetToRows(_liFiles.followers, 'New followers');
+    if(rows){
+      const hIdx = findHeaderRow(rows);
+      const headers = rows[hIdx].map(h=>String(h).trim());
+      const cTotal = headers.indexOf('Total followers');
+      for(let i=hIdx+1;i<rows.length;i++){
+        const r = rows[i];
+        if(!r || !r[0]) continue;
+        const mk = liDateToMonthKey(r[0]);
+        if(!mk) continue;
+        if(!_liMonthly[mk]) _liMonthly[mk]={};
+        _liMonthly[mk].li_follows=(_liMonthly[mk].li_follows||0)+(+r[cTotal]||0);
+      }
+    }
+  }
+
+  // ── VISITORS > Visitor metrics sheet ──
+  if(_liFiles.visitors){
+    const rows = sheetToRows(_liFiles.visitors, 'Visitor metrics');
+    if(rows){
+      const hIdx = findHeaderRow(rows);
+      const headers = rows[hIdx].map(h=>String(h).trim());
+      const cViews = headers.indexOf('Total page views (total)');
+      const cVisitors = headers.indexOf('Total unique visitors (total)');
+      for(let i=hIdx+1;i<rows.length;i++){
+        const r = rows[i];
+        if(!r || !r[0]) continue;
+        const mk = liDateToMonthKey(r[0]);
+        if(!mk) continue;
+        if(!_liMonthly[mk]) _liMonthly[mk]={};
+        const m=_liMonthly[mk];
+        m.li_page_views=(m.li_page_views||0)+(+r[cViews]||0);
+        m.li_unique_visitors=(m.li_unique_visitors||0)+(+r[cVisitors]||0);
+      }
+    }
+  }
+
+  renderLIPreview();
+}
+
+function findHeaderRow2(rows, firstColName){
+  for(let i=0;i<Math.min(rows.length,5);i++){
+    if(rows[i] && String(rows[i][0]||'').trim()===firstColName) return i;
+  }
+  return -1;
+}
+
+function renderLIPreview(){
+  const months = Object.keys(_liMonthly).sort();
+  const wrap = document.getElementById('liPreviewWrap');
+  const saveBtn = document.getElementById('liSaveBtn');
+  if(!months.length){
+    if(wrap) wrap.style.display='none';
+    if(saveBtn) saveBtn.style.display='none';
+    return;
+  }
+  const fields = [
+    {k:'li_impressions',l:'Impressions'},{k:'li_clicks',l:'Clicks'},
+    {k:'li_reactions',l:'Reactions'},{k:'li_comments',l:'Comments'},
+    {k:'li_reposts',l:'Reposts'},{k:'li_follows',l:'New Followers'},
+    {k:'posts_li',l:'Posts'},
+    {k:'li_page_views',l:'Page Views'},{k:'li_unique_visitors',l:'Visitors'},
+  ];
+  const headEl = document.getElementById('liPreviewHead');
+  const bodyEl = document.getElementById('liPreviewBody');
+  if(headEl) headEl.innerHTML = '<tr><th>Month</th>'+fields.map(f=>'<th>'+f.l+'</th>').join('')+'</tr>';
+  if(bodyEl) bodyEl.innerHTML = months.map(mk=>{
+    const d=_liMonthly[mk];
+    return '<tr><td style="font-weight:700">'+fmtMonth(mk)+'</td>'+fields.map(f=>'<td>'+(d[f.k]!=null?fmt(d[f.k]):'—')+'</td>').join('')+'</tr>';
+  }).join('');
+  if(wrap) wrap.style.display='block';
+  if(saveBtn) saveBtn.style.display='block';
+}
+
+async function saveLIImport(){
+  const months = Object.keys(_liMonthly);
+  if(!months.length){showToast('Upload at least one file first');return;}
+  if(!_cid){showToast('No client selected');return;}
+  for(const mk of months){
+    const data = _liMonthly[mk];
+    _months[mk] = Object.assign(_months[mk]||{}, data);
+    if(window._saveMonthData) await window._saveMonthData(_cid, mk, data);
+  }
+  closeUnifiedImport();
+  renderAll();
+  showToast('✅ LinkedIn data imported for '+months.length+' month(s)!');
+  // Reset upload state
+  _liFiles={content:null,followers:null,visitors:null};
+  _liMonthly={};
+  ['Content','Followers','Visitors'].forEach(k=>{
+    const slot=document.getElementById('liSlot'+k);
+    const status=document.getElementById('liStatus'+k);
+    if(slot) slot.classList.remove('uploaded');
+    if(status) status.textContent='Click to upload';
+  });
+}
+
+
+
+// ══════════════════════════════════════
+// COMPETITOR BENCHMARKING
+// ══════════════════════════════════════
+let _competitors = null; // {period:{from,to}, rows:[{page,followers,newFollowers,engagements,posts}]}
+
+async function handleCompetitorUpload(event){
+  const file = event.target.files[0];
+  if(!file) return;
+  try{
+    const wb = await readWorkbookFile(file);
+    const sheetName = wb.SheetNames[0];
+    const rows = sheetToRows(wb, sheetName);
+    if(!rows || !rows.length){showToast('Could not read file');return;}
+
+    // Row 0: date range (from, to). Row 1: headers. Row 2+: data
+    let periodFrom='', periodTo='';
+    if(rows[0] && rows[0][0]) periodFrom = String(rows[0][0]);
+    if(rows[0] && rows[0][1]) periodTo = String(rows[0][1]);
+
+    const hIdx = findHeaderRow2(rows, 'Page');
+    const startIdx = hIdx !== -1 ? hIdx+1 : 2;
+    const headers = hIdx !== -1 ? rows[hIdx].map(h=>String(h).trim()) : ['Page','Total Followers','New Followers','Total post engagements','Total posts'];
+    const cPage=headers.indexOf('Page'), cFol=headers.indexOf('Total Followers'),
+          cNew=headers.indexOf('New Followers'), cEng=headers.indexOf('Total post engagements'),
+          cPosts=headers.indexOf('Total posts');
+
+    const dataRows=[];
+    for(let i=startIdx;i<rows.length;i++){
+      const r=rows[i];
+      if(!r || !r[cPage] || String(r[cPage]).trim()==='') continue;
+      dataRows.push({
+        page: String(r[cPage]).trim(),
+        followers: +r[cFol]||0,
+        newFollowers: +r[cNew]||0,
+        engagements: +r[cEng]||0,
+        posts: +r[cPosts]||0,
+      });
+    }
+    dataRows.sort((a,b)=>b.followers-a.followers);
+
+    _competitors = {period:{from:periodFrom,to:periodTo}, rows:dataRows};
+    if(window._saveCompetitors) await window._saveCompetitors(_cid, _competitors);
+    renderCompetitors();
+    showToast('✅ Competitor data imported — '+dataRows.length+' pages!');
+  } catch(err){
+    console.error(err);
+    showToast('Error reading competitor file');
+  }
+}
+
+function renderCompetitors(){
+  const sec = document.getElementById('competitorSection');
+  if(!_competitors || !_competitors.rows || !_competitors.rows.length){
+    if(sec) sec.style.display='none';
+    return;
+  }
+  if(sec) sec.style.display='block';
+
+  const periodEl = document.getElementById('compPeriod');
+  if(periodEl){
+    const {from,to} = _competitors.period||{};
+    periodEl.textContent = (from&&to) ? `Period: ${from} – ${to}` : 'Period: —';
+  }
+
+  const selfName = (CLIENT_NAMES[_cid]||'').toLowerCase();
+  const bodyEl = document.getElementById('compTableBody');
+  if(bodyEl){
+    bodyEl.innerHTML = _competitors.rows.map((r,i)=>{
+      const isSelf = r.page.toLowerCase().includes(selfName.split(' ')[0]) ||
+                     selfName.includes(r.page.toLowerCase().split(' ')[0]||'___');
+      const rankCls = i===0 ? 'comp-rank rank-1' : 'comp-rank';
+      return `<tr class="${isSelf?'comp-self':''}">
+        <td><span class="${rankCls}">${i+1}</span></td>
+        <td>${r.page}${isSelf?'<span class="comp-self-badge">You</span>':''}</td>
+        <td>${fmt(r.followers)}</td>
+        <td>${fmt(r.newFollowers)}</td>
+        <td>${fmt(r.engagements)}</td>
+        <td>${fmt(r.posts)}</td>
+      </tr>`;
+    }).join('');
+  }
+}
+
 
 function showToast(msg){
   const t=document.getElementById('toast');
@@ -2103,9 +2469,45 @@ window.setImportPlatform   = setImportPlatform;
       </div>
     </div>
 
-    <!-- LinkedIn manual entry -->
+    <!-- LinkedIn — file upload + manual fallback -->
     <div id="ui-panel-li" class="ui-panel" style="display:none;">
-      <div style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6;">Go to <strong style="color:#4DA3FF;">LinkedIn Company Page → Analytics</strong> and copy the numbers below. Select the month period in LinkedIn Analytics before reading the values.</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6;">
+        Export 3 files from <strong style="color:#4DA3FF;">LinkedIn Company Page Admin → Analytics</strong>:
+        <strong style="color:var(--text);">Content</strong> (.xls), <strong style="color:var(--text);">Followers</strong> (.xls), and <strong style="color:var(--text);">Visitors</strong> (.xls). Upload any combination — daily rows are auto-summed into monthly totals, and a multi-month export is split automatically.
+      </div>
+      <div class="li-upload-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;">
+        <div class="li-upload-slot" id="liSlotContent" onclick="document.getElementById('liFileContent').click()">
+          <div class="li-upload-icon">📊</div>
+          <div class="li-upload-label">Content</div>
+          <div class="li-upload-status" id="liStatusContent">Click to upload</div>
+        </div>
+        <div class="li-upload-slot" id="liSlotFollowers" onclick="document.getElementById('liFileFollowers').click()">
+          <div class="li-upload-icon">👥</div>
+          <div class="li-upload-label">Followers</div>
+          <div class="li-upload-status" id="liStatusFollowers">Click to upload</div>
+        </div>
+        <div class="li-upload-slot" id="liSlotVisitors" onclick="document.getElementById('liFileVisitors').click()">
+          <div class="li-upload-icon">🚪</div>
+          <div class="li-upload-label">Visitors</div>
+          <div class="li-upload-status" id="liStatusVisitors">Click to upload</div>
+        </div>
+      </div>
+      <input type="file" id="liFileContent" accept=".xls,.xlsx,.csv" style="display:none" onchange="handleLIFileUpload(event,'content')"/>
+      <input type="file" id="liFileFollowers" accept=".xls,.xlsx,.csv" style="display:none" onchange="handleLIFileUpload(event,'followers')"/>
+      <input type="file" id="liFileVisitors" accept=".xls,.xlsx,.csv" style="display:none" onchange="handleLIFileUpload(event,'visitors')"/>
+
+      <div id="liPreviewWrap" style="display:none;margin-bottom:14px;">
+        <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Preview — Monthly Totals</div>
+        <div class="im-preview"><table><thead id="liPreviewHead"></thead><tbody id="liPreviewBody"></tbody></table></div>
+      </div>
+
+      <div class="im-actions">
+        <button class="im-cancel" onclick="closeUnifiedImport()">Cancel</button>
+        <button class="im-save" id="liSaveBtn" style="display:none;" onclick="saveLIImport()">Save LinkedIn Data</button>
+      </div>
+
+      <div class="pm-divider"></div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:10px;">Or enter totals manually for a single month:</div>
       <div class="sel-field" style="max-width:180px;margin-bottom:16px;">
         <label class="entry-label">Month</label>
         <input class="im-manual-input" id="ui_li_month" type="month"/>
@@ -2117,10 +2519,12 @@ window.setImportPlatform   = setImportPlatform;
         <div class="im-manual-field"><label class="im-manual-label">Reposts</label><input class="im-manual-input" id="ui_li_reposts" type="number" placeholder="e.g. 14"/></div>
         <div class="im-manual-field"><label class="im-manual-label">Clicks</label><input class="im-manual-input" id="ui_li_clicks" type="number" placeholder="e.g. 180"/></div>
         <div class="im-manual-field"><label class="im-manual-label">New Followers</label><input class="im-manual-input" id="ui_li_follows" type="number" placeholder="e.g. 22"/></div>
+        <div class="im-manual-field"><label class="im-manual-label">Page Views</label><input class="im-manual-input" id="ui_li_page_views" type="number" placeholder="e.g. 850"/></div>
+        <div class="im-manual-field"><label class="im-manual-label">Unique Visitors</label><input class="im-manual-input" id="ui_li_unique_visitors" type="number" placeholder="e.g. 420"/></div>
       </div>
       <div class="im-actions">
         <button class="im-cancel" onclick="closeUnifiedImport()">Cancel</button>
-        <button class="im-save" style="display:block;" onclick="saveManualImport('li')">Save LinkedIn Data</button>
+        <button class="im-save" style="display:block;" onclick="saveManualImport('li')">Save Manual Entry</button>
       </div>
     </div>
 
