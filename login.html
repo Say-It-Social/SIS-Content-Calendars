@@ -103,6 +103,8 @@ body::after{content:'';position:fixed;top:-200px;left:50%;transform:translateX(-
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged }
     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  import { getFirestore, collection, getDocsFromServer, doc, setDoc }
+    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
   const app = initializeApp({
     apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
@@ -114,22 +116,50 @@ body::after{content:'';position:fixed;top:-200px;left:50%;transform:translateX(-
   });
 
   const auth     = getAuth(app);
+  const db       = getFirestore(app);
   const provider = new GoogleAuthProvider();
 
-  // Approved emails
-  const ALLOWED = [
-    "darshilsoni10@gmail.com",
-    "aayushimulay0903@gmail.com",
-    "patelriddhi221@gmail.com",
-    "bikashsahooclg09@gmail.com",
-    "kavyabothrasocial@gmail.com",
-    "kritika70015@gmail.com",
-    "niyatiparikh98@gmail.com"
+  // ── TEAM ALLOWLIST — Firestore-backed (team_members collection) ──
+  // Seed list used only to bootstrap Firestore once if the collection is empty.
+  const SEED_TEAM = [
+    {email:"darshilsoni10@gmail.com",     name:"Darshil"},
+    {email:"aayushimulay0903@gmail.com",  name:"Aayushi"},
+    {email:"sparmar1317@gmail.com",       name:"S Parmar"},
+    {email:"bikashsahooclg09@gmail.com",  name:"Bikash"},
+    {email:"niyatiparikh98@gmail.com",    name:"Niyati"},
+    {email:"patelriddhi221@gmail.com",    name:"Riddhi"},
+    {email:"kavyabothrasocial@gmail.com", name:"Kavya"},
+    {email:"kritika70015@gmail.com",      name:"Kritika"},
   ];
 
+  async function loadAllowedEmails(){
+    try{
+      const snap = await getDocsFromServer(collection(db, "team_members"));
+      if(snap.empty){
+        // First-ever load — bootstrap Firestore with the seed list so nobody is locked out.
+        await Promise.all(SEED_TEAM.map(m =>
+          setDoc(doc(db, "team_members", m.email.toLowerCase()), {
+            email: m.email.toLowerCase(), name: m.name, addedBy: "system-seed", addedAt: new Date().toISOString()
+          })
+        ));
+        return SEED_TEAM.map(m => m.email.toLowerCase());
+      }
+      const emails = [];
+      snap.forEach(d => emails.push((d.data().email || d.id).toLowerCase()));
+      return emails;
+    } catch(e){
+      console.error("Failed to load team allowlist, falling back to seed list:", e);
+      return SEED_TEAM.map(m => m.email.toLowerCase());
+    }
+  }
+
+  const allowedEmailsPromise = loadAllowedEmails();
+
   // If already signed in with allowed email → go straight to dashboard
-  onAuthStateChanged(auth, user => {
-    if(user && ALLOWED.includes(user.email.toLowerCase())) {
+  onAuthStateChanged(auth, async user => {
+    if(!user) return;
+    const ALLOWED = await allowedEmailsPromise;
+    if(ALLOWED.includes(user.email.toLowerCase())) {
       window.location.href = "index.html";
     }
   });
@@ -147,6 +177,7 @@ body::after{content:'';position:fixed;top:-200px;left:50%;transform:translateX(-
     try {
       const result = await signInWithPopup(auth, provider);
       const email  = result.user.email.toLowerCase();
+      const ALLOWED = await allowedEmailsPromise;
 
       if(ALLOWED.includes(email)) {
         window.location.href = "index.html";
