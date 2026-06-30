@@ -3,213 +3,217 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>VCSL — Veracity Supply Chain · Content Calendar · Month 1</title>
+<title>Veracity Supply Chain — Content Calendar · Month 1</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap');
+
   :root {
-    --gold:#B8860B; --gold-light:#D4A017; --gold-pale:#FDF6E3; --gold-muted:#E8D5A3;
-    --charcoal:#1E1E1E; --charcoal-2:#2C2C2C; --mid:#555555; --light:#F7F7F5;
-    --border:#E5E0D5; --white:#FFFFFF;
-    --p-scale:#1A6B3C; --p-scale-bg:#EAF5EE;
-    --p-tech:#1565C0; --p-tech-bg:#E8F0FD;
-    --p-project:#7B3F00; --p-project-bg:#FDF0E6;
-    --p-thought:#4A148C; --p-thought-bg:#F4EDFC;
-    --p-people:#C62828; --p-people-bg:#FDECEA;
-    --p-trust:#00695C; --p-trust-bg:#E0F2F1;
-    --s-ns:#9E9E9E; --s-ip:#F57C00; --s-rtp:#1565C0; --s-p:#2E7D32;
+    --gold:        #B8860B;
+    --gold-light:  #D4A017;
+    --gold-pale:   #FDF6E3;
+    --gold-muted:  #E8D5A3;
+    --charcoal:    #1E1E1E;
+    --charcoal-2:  #2C2C2C;
+    --mid:         #555555;
+    --light:       #F7F7F5;
+    --border:      #E5E0D5;
+    --white:       #FFFFFF;
+
+    --p-scale:     #1A6B3C;
+    --p-scale-bg:  #EAF5EE;
+    --p-tech:      #1565C0;
+    --p-tech-bg:   #E8F0FD;
+    --p-project:   #7B3F00;
+    --p-project-bg:#FDF0E6;
+    --p-thought:   #4A148C;
+    --p-thought-bg:#F4EDFC;
+    --p-people:    #C62828;
+    --p-people-bg: #FDECEA;
+    --p-trust:     #00695C;
+    --p-trust-bg:  #E0F2F1;
+
+    --s-ns:  #9E9E9E;
+    --s-ip:  #F57C00;
+    --s-rtp: #1565C0;
+    --s-p:   #2E7D32;
   }
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:'Inter',sans-serif;background:var(--light);color:var(--charcoal);line-height:1.6;font-size:14px;}
 
-  /* SITE BAR */
-  .site-bar{background:var(--charcoal);padding:10px 32px;display:flex;align-items:center;justify-content:space-between;}
-  .back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--gold-light);font-size:12px;font-weight:600;text-decoration:none;letter-spacing:0.04em;transition:opacity .15s;}
-  .back-btn:hover{opacity:.75;}
-  .site-bar .agency{font-size:13px;font-weight:700;color:var(--gold-light);letter-spacing:.04em;}
-  .site-bar .tagline{font-size:11px;color:#888;font-weight:400;}
-  .doc-label{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.1em;}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* HERO */
-  .hero{background:var(--charcoal-2);padding:48px 32px 36px;border-bottom:3px solid var(--gold);}
-  .hero-eyebrow{font-size:11px;font-weight:600;color:var(--gold-light);text-transform:uppercase;letter-spacing:.14em;margin-bottom:12px;}
-  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(28px,4vw,44px);color:var(--white);line-height:1.15;margin-bottom:8px;}
-  .hero h1 em{color:var(--gold-light);font-style:italic;}
-  .hero-sub{font-size:13px;color:#AAA;margin-bottom:28px;max-width:680px;}
-  .hero-pills{display:flex;flex-wrap:wrap;gap:8px;}
-  .pill{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:5px 14px;font-size:12px;color:#CCC;font-weight:500;}
-  .pill strong{color:var(--gold-light);}
-  .pill.spotlight{background:var(--gold);border-color:var(--gold);color:var(--charcoal);font-weight:700;}
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--light);
+    color: var(--charcoal);
+    line-height: 1.6;
+    font-size: 14px;
+  }
 
-  /* LAYOUT */
-  .page{max-width:1120px;margin:0 auto;padding:0 24px 80px;}
-  .section-block{margin-top:48px;}
-  .section-num{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.12em;margin-bottom:4px;}
-  .section-title{font-family:'DM Serif Display',serif;font-size:22px;color:var(--charcoal);margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid var(--gold-muted);}
+  .site-bar {
+    background: var(--charcoal);
+    padding: 10px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .site-bar .agency { font-size: 13px; font-weight: 700; color: var(--gold-light); letter-spacing: 0.04em; }
+  .site-bar .tagline { font-size: 11px; color: #888; font-weight: 400; }
+  .doc-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.1em; }
 
-  /* PLATFORM BREAKDOWN */
-  .platform-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
-  .platform-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px 20px;border-top:3px solid var(--gold);}
-  .platform-card .pname{font-weight:700;font-size:14px;color:var(--charcoal);margin-bottom:4px;}
-  .platform-card .pdetail{font-size:12px;color:var(--mid);margin-bottom:10px;}
-  .platform-card .pcount{font-family:'DM Serif Display',serif;font-size:36px;color:var(--gold);line-height:1;margin-bottom:2px;}
-  .platform-card .punit{font-size:12px;color:var(--mid);}
-  .platform-card .pmeta{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:11px;color:#888;}
-  .pmeta strong{color:var(--charcoal);}
+  .hero { background: var(--charcoal-2); padding: 48px 32px 36px; border-bottom: 3px solid var(--gold); }
+  .hero-eyebrow { font-size: 11px; font-weight: 600; color: var(--gold-light); text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 12px; }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 4vw, 44px); color: var(--white); line-height: 1.15; margin-bottom: 8px; }
+  .hero h1 em { color: var(--gold-light); font-style: italic; }
+  .hero-sub { font-size: 13px; color: #AAA; margin-bottom: 28px; max-width: 720px; }
+  .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 5px 14px; font-size: 12px; color: #CCC; font-weight: 500; }
+  .pill strong { color: var(--gold-light); }
+  .pill.spotlight { background: var(--gold); border-color: var(--gold); color: var(--charcoal); font-weight: 700; }
+  .pill.site { background: var(--charcoal); border-color: var(--gold-light); color: var(--gold-light); font-weight: 700; }
 
-  /* GLANCE */
-  .glance-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:20px;}
-  .glance-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:16px;text-align:center;}
-  .glance-card .gnum{font-family:'DM Serif Display',serif;font-size:30px;color:var(--gold);line-height:1;}
-  .glance-card .glabel{font-size:11px;color:var(--mid);margin-top:4px;}
-  .pillar-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
-  .pl-chip{display:flex;align-items:center;gap:6px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;}
-  .pl-dot{width:8px;height:8px;border-radius:50%;}
+  .page { max-width: 1120px; margin: 0 auto; padding: 0 24px 80px; }
+  .section-block { margin-top: 48px; }
+  .section-num { font-size: 11px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 4px; }
+  .section-title { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--charcoal); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--gold-muted); }
 
-  /* STATUS */
-  .status-legend{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:14px 18px;}
-  .status-legend span{font-size:12px;color:var(--mid);}
-  .status-legend strong{color:var(--charcoal);font-size:12px;}
-  .s-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;transition:opacity .15s;user-select:none;white-space:nowrap;}
-  .s-badge:hover{opacity:.8;}
-  .s-ns{background:#F5F5F5;color:var(--s-ns);border:1px solid #DDD;}
-  .s-ip{background:#FFF3E0;color:var(--s-ip);border:1px solid #FFCC80;}
-  .s-rtp{background:#E3F0FF;color:var(--s-rtp);border:1px solid #90CAF9;}
-  .s-p{background:#E8F5E9;color:var(--s-p);border:1px solid #A5D6A7;}
-  .status-legend .hint{font-size:11px;color:#AAA;margin-left:4px;}
+  .platform-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+  .platform-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; border-top: 3px solid var(--gold); }
+  .platform-card .pname { font-weight: 700; font-size: 14px; color: var(--charcoal); margin-bottom: 4px; }
+  .platform-card .pdetail { font-size: 12px; color: var(--mid); margin-bottom: 10px; }
+  .platform-card .pcount { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--gold); line-height: 1; margin-bottom: 2px; }
+  .platform-card .punit { font-size: 12px; color: var(--mid); }
+  .platform-card .pmeta { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 11px; color: #888; }
+  .pmeta strong { color: var(--charcoal); }
 
-  /* WEEKS */
-  .week-block{margin-top:40px;}
-  .week-header{display:flex;align-items:baseline;gap:14px;margin-bottom:16px;}
-  .week-label{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.12em;white-space:nowrap;}
-  .week-desc{font-size:13px;color:var(--mid);font-style:italic;}
-  .week-divider{height:2px;background:linear-gradient(to right,var(--gold-muted),transparent);margin-bottom:16px;}
+  .glance-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 20px; }
+  .glance-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; }
+  .glance-card .gnum { font-family: 'DM Serif Display', serif; font-size: 30px; color: var(--gold); line-height: 1; }
+  .glance-card .glabel { font-size: 11px; color: var(--mid); margin-top: 4px; }
 
-  /* CARDS */
-  .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;}
-  .post-card{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:box-shadow .2s;}
-  .post-card:hover{box-shadow:0 4px 20px rgba(0,0,0,.08);}
-  .card-top{padding:12px 14px 10px;display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid var(--border);}
-  .card-meta-left{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
-  .day-tag{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;}
-  .pillar-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;text-transform:uppercase;letter-spacing:.04em;}
-  .format-tag{font-size:10px;color:var(--mid);background:var(--light);border:1px solid var(--border);border-radius:4px;padding:2px 7px;}
-  .platform-badge{font-size:10px;font-weight:700;color:var(--mid);background:var(--light);border:1px solid var(--border);border-radius:4px;padding:2px 7px;white-space:nowrap;}
-  .card-body{padding:14px;}
-  .card-headline{font-weight:700;font-size:14px;color:var(--charcoal);line-height:1.35;margin-bottom:8px;}
-  .card-field{margin-bottom:10px;}
-  .field-label{font-size:10px;font-weight:700;color:#AAA;text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px;}
-  .field-val{font-size:12.5px;color:var(--mid);line-height:1.5;}
-  .field-val.hook{font-style:italic;color:var(--charcoal);font-size:13px;}
-  .card-footer{padding:10px 14px;background:var(--light);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px;}
-  .asset-note{font-size:11px;color:var(--mid);}
-  .asset-note strong{color:var(--charcoal);font-weight:600;}
+  .pillar-legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .pl-chip { display: flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+  .pl-dot { width: 8px; height: 8px; border-radius: 50%; }
 
-  /* SETUP */
-  .setup-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;}
-  .setup-card{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:8px;padding:16px 18px;}
-  .setup-card h4{font-size:13px;font-weight:700;color:var(--charcoal);margin-bottom:6px;}
-  .setup-card p{font-size:12px;color:var(--mid);line-height:1.55;}
+  .status-legend { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; }
+  .status-legend span { font-size: 12px; color: var(--mid); }
+  .status-legend strong { color: var(--charcoal); font-size: 12px; }
+  .s-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; cursor: pointer; transition: opacity 0.15s; user-select: none; white-space: nowrap; }
+  .s-badge:hover { opacity: 0.8; }
+  .s-ns  { background: #F5F5F5; color: var(--s-ns); border: 1px solid #DDD; }
+  .s-ip  { background: #FFF3E0; color: var(--s-ip); border: 1px solid #FFCC80; }
+  .s-rtp { background: #E3F0FF; color: var(--s-rtp); border: 1px solid #90CAF9; }
+  .s-p   { background: #E8F5E9; color: var(--s-p);  border: 1px solid #A5D6A7; }
+  .status-legend .hint { font-size: 11px; color: #AAA; margin-left: 4px; }
 
-  /* NOTES */
-  .notes-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;}
-  .note-item{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:14px 16px;}
-  .note-item h4{font-size:12px;font-weight:700;color:var(--charcoal);margin-bottom:5px;}
-  .note-item p{font-size:12px;color:var(--mid);line-height:1.5;}
+  .shoot-banner {
+    background: linear-gradient(135deg, var(--charcoal-2), var(--charcoal));
+    border-radius: 10px;
+    padding: 22px 26px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    border-left: 4px solid var(--gold);
+  }
+  .shoot-banner .icon-box {
+    width: 52px; height: 52px;
+    background: var(--gold);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  .shoot-banner .stext h4 { color: var(--white); font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .shoot-banner .stext p { color: #BBB; font-size: 12.5px; line-height: 1.55; max-width: 760px; }
+  .shoot-banner .stext p strong { color: var(--gold-light); }
 
-  /* FOOTER */
-  .page-footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--border);font-size:11px;color:#AAA;text-align:center;}
+  .week-block { margin-top: 40px; }
+  .week-header { display: flex; align-items: baseline; gap: 14px; margin-bottom: 16px; flex-wrap: wrap; }
+  .week-label { font-size: 11px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.12em; white-space: nowrap; }
+  .week-desc { font-size: 13px; color: var(--mid); font-style: italic; }
+  .week-divider { height: 2px; background: linear-gradient(to right, var(--gold-muted), transparent); margin-bottom: 16px; }
 
-  .pillar-scale{background:var(--p-scale-bg);color:var(--p-scale);}
-  .pillar-tech{background:var(--p-tech-bg);color:var(--p-tech);}
-  .pillar-project{background:var(--p-project-bg);color:var(--p-project);}
-  .pillar-thought{background:var(--p-thought-bg);color:var(--p-thought);}
-  .pillar-people{background:var(--p-people-bg);color:var(--p-people);}
-  .pillar-trust{background:var(--p-trust-bg);color:var(--p-trust);}
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
 
-  /* FB SYNC INDICATOR */
-  .fb-synced{position:fixed;bottom:20px;right:20px;background:#2E7D32;color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:600;display:none;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,.2);}
+  .post-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; transition: box-shadow 0.2s; }
+  .post-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+  .post-card.from-shoot { border-top: 3px solid var(--gold); }
 
-  @media(max-width:600px){
-    .hero{padding:32px 16px 24px;}
-    .page{padding:0 12px 60px;}
-    .cards-grid{grid-template-columns:1fr;}
-    .platform-grid{grid-template-columns:1fr 1fr;}
-    .site-bar{flex-wrap:wrap;gap:8px;}
+  .card-top { padding: 12px 14px 10px; display: flex; align-items: center; justify-content: space-between; gap: 8px; border-bottom: 1px solid var(--border); }
+  .card-meta-left { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .day-tag { font-size: 11px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.06em; }
+  .pillar-tag { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .format-tag { font-size: 10px; color: var(--mid); background: var(--light); border: 1px solid var(--border); border-radius: 4px; padding: 2px 7px; }
+  .platform-badge { font-size: 10px; font-weight: 700; color: var(--mid); background: var(--light); border: 1px solid var(--border); border-radius: 4px; padding: 2px 7px; white-space: nowrap; }
+  .shoot-flag { font-size: 9px; font-weight: 800; color: var(--charcoal); background: var(--gold-light); border-radius: 4px; padding: 2px 6px; letter-spacing: 0.04em; text-transform: uppercase; }
+
+  .card-body { padding: 14px; }
+  .card-headline { font-weight: 700; font-size: 14px; color: var(--charcoal); line-height: 1.35; margin-bottom: 8px; }
+
+  .card-field { margin-bottom: 10px; }
+  .field-label { font-size: 10px; font-weight: 700; color: #AAA; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px; }
+  .field-val { font-size: 12.5px; color: var(--mid); line-height: 1.5; }
+  .field-val.hook { font-style: italic; color: var(--charcoal); font-size: 13px; }
+
+  .card-footer { padding: 10px 14px; background: var(--light); border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .asset-note { font-size: 11px; color: var(--mid); }
+  .asset-note strong { color: var(--charcoal); font-weight: 600; }
+
+  .setup-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+  .setup-card { background: var(--white); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 8px; padding: 16px 18px; }
+  .setup-card h4 { font-size: 13px; font-weight: 700; color: var(--charcoal); margin-bottom: 6px; }
+  .setup-card p { font-size: 12px; color: var(--mid); line-height: 1.55; }
+
+  .notes-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+  .note-item { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; }
+  .note-item h4 { font-size: 12px; font-weight: 700; color: var(--charcoal); margin-bottom: 5px; }
+  .note-item p { font-size: 12px; color: var(--mid); line-height: 1.5; }
+
+  .page-footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 11px; color: #AAA; text-align: center; }
+
+  .pillar-scale    { background: var(--p-scale-bg);   color: var(--p-scale); }
+  .pillar-tech     { background: var(--p-tech-bg);    color: var(--p-tech); }
+  .pillar-project  { background: var(--p-project-bg); color: var(--p-project); }
+  .pillar-thought  { background: var(--p-thought-bg); color: var(--p-thought); }
+  .pillar-people   { background: var(--p-people-bg);  color: var(--p-people); }
+  .pillar-trust    { background: var(--p-trust-bg);   color: var(--p-trust); }
+
+  .rotation-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  .rotation-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 14px; text-align: center; }
+  .rotation-card.active { border: 2px solid var(--gold); background: var(--gold-pale); }
+  .rotation-card .rmonth { font-size: 10px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .rotation-card .rsite { font-size: 14px; font-weight: 700; color: var(--charcoal); margin-bottom: 2px; }
+  .rotation-card .rfeature { font-size: 10.5px; color: var(--mid); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 32px 16px 24px; }
+    .page { padding: 0 12px 60px; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .platform-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>
 </head>
 <body>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, doc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-const _app = initializeApp({
-  apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
-  authDomain:"sayitsocial-calendar.firebaseapp.com",
-  projectId:"sayitsocial-calendar",
-  storageBucket:"sayitsocial-calendar.firebasestorage.app",
-  messagingSenderId:"232081824561",
-  appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
-});
-const _db = getFirestore(_app);
-const CID = "vcsl-month1";
-const STATS = [
-  {label:"NOT STARTED", cls:"s-ns"},
-  {label:"IN PROGRESS",  cls:"s-ip"},
-  {label:"READY TO POST",cls:"s-rtp"},
-  {label:"POSTED",       cls:"s-p"}
-];
-
-window._fbSave = async (id, label) => {
-  try {
-    await setDoc(doc(_db,"campaigns",CID,"posts",id),{status:label},{merge:true});
-    const ind = document.getElementById("fbSync");
-    if(ind){ind.style.display="block"; setTimeout(()=>ind.style.display="none",2000);}
-  } catch(e){console.warn("FB save error:",e);}
-};
-
-onSnapshot(collection(_db,"campaigns",CID,"posts"), snap => {
-  snap.forEach(d => {
-    const data = d.data();
-    if(data.status){
-      document.querySelectorAll('[data-id="'+d.id+'"].s-badge').forEach(el => {
-        const s = STATS.find(x => x.label === data.status);
-        if(s){
-          STATS.forEach(x => el.classList.remove(x.cls));
-          el.classList.add(s.cls);
-          el.textContent = s.label;
-          el.dataset.s = STATS.indexOf(s);
-        }
-      });
-    }
-  });
-}, err => console.warn("onSnapshot error:", err));
-</script>
-
-<!-- SITE BAR -->
 <div class="site-bar">
-  <div style="display:flex;align-items:center;gap:20px;">
-    <a class="back-btn" href="../index.html">&#8592; Client Hub</a>
-    <div>
-      <div class="agency">Say It Social</div>
-      <div class="tagline">Strategize &middot; Innovate &middot; Socialize</div>
-    </div>
+  <div>
+    <div class="agency">Say It Social</div>
+    <div class="tagline">Strategize · Innovate · Socialize</div>
   </div>
-  <div class="doc-label">Company Content Calendar &middot; Pilot &mdash; Month 1 &middot; Foundation Phase</div>
+  <div class="doc-label">Company Content Calendar · Pilot — Month 1 · Foundation Phase · Revised</div>
 </div>
 
-<!-- HERO -->
 <div class="hero">
   <div class="page">
     <div class="hero-eyebrow">Veracity Supply Chain Limited</div>
-    <h1>Month 1 &mdash; <em>Foundation Phase</em></h1>
-    <p class="hero-sub">Foundation phase calendar &mdash; establishing Veracity's digital presence across all platforms. Content pillars and ICD &amp; Container Logistics spotlight run in parallel throughout the month. CXO calendar is separate.</p>
+    <h1>Month 1 — <em>Foundation Phase</em></h1>
+    <p class="hero-sub">Revised calendar — one site shoot per month model introduced. All video content for the month is captured in a single visit. Content pillars and ICD & Container Logistics spotlight unchanged. CXO calendar is separate.</p>
     <div class="hero-pills">
-      <span class="pill"><strong>LinkedIn</strong> &middot; 6 posts</span>
-      <span class="pill"><strong>Instagram + Facebook</strong> &middot; 13 each</span>
-      <span class="pill"><strong>Twitter / X</strong> &middot; 6 posts &middot; Client IT</span>
-      <span class="pill"><strong>YouTube</strong> &middot; 4 uploads</span>
-      <span class="pill spotlight">&#9889; Spotlight: ICD &amp; Container Logistics</span>
+      <span class="pill"><strong>LinkedIn</strong> · 6 posts</span>
+      <span class="pill"><strong>Instagram + Facebook</strong> · 13 each</span>
+      <span class="pill"><strong>Twitter / X</strong> · 6 posts · Client IT</span>
+      <span class="pill"><strong>YouTube</strong> · 4 uploads</span>
+      <span class="pill spotlight">⚡ Spotlight: ICD & Container Logistics</span>
+      <span class="pill site">📍 Site of the Month: Tumb</span>
       <span class="pill"><strong>42</strong> total posts published</span>
     </div>
   </div>
@@ -217,41 +221,78 @@ onSnapshot(collection(_db,"campaigns",CID,"posts"), snap => {
 
 <div class="page">
 
-  <!-- 01 PLATFORM BREAKDOWN -->
   <div class="section-block">
     <div class="section-num">01</div>
     <div class="section-title">Platform breakdown</div>
     <div class="platform-grid">
       <div class="platform-card">
         <div class="pname">LinkedIn</div>
-        <div class="pdetail">1 video &middot; 5 posts</div>
-        <div class="pcount">6</div><div class="punit">posts</div>
-        <div class="pmeta"><strong>Content Admin</strong> &nbsp;&middot;&nbsp; SPOC: <strong>SIS</strong></div>
+        <div class="pdetail">1 video · 5 posts</div>
+        <div class="pcount">6</div>
+        <div class="punit">posts</div>
+        <div class="pmeta"><strong>Content Admin</strong> &nbsp;·&nbsp; SPOC: <strong>SIS</strong></div>
       </div>
       <div class="platform-card">
         <div class="pname">Instagram + Facebook</div>
-        <div class="pdetail">2 Reels &middot; 8 statics &middot; 3 Stories</div>
-        <div class="pcount">13</div><div class="punit">posts each</div>
-        <div class="pmeta"><strong>Editor Rights</strong> &nbsp;&middot;&nbsp; SPOC: <strong>SIS</strong></div>
+        <div class="pdetail">2 Reels · 8 statics · 3 Stories</div>
+        <div class="pcount">13</div>
+        <div class="punit">posts each</div>
+        <div class="pmeta"><strong>Editor Rights</strong> &nbsp;·&nbsp; SPOC: <strong>SIS</strong></div>
       </div>
       <div class="platform-card">
         <div class="pname">Twitter / X</div>
-        <div class="pdetail">1 video &middot; 5 photo posts</div>
-        <div class="pcount">6</div><div class="punit">posts</div>
-        <div class="pmeta"><strong>Not required</strong> &nbsp;&middot;&nbsp; SPOC: <strong>Client IT</strong> &mdash; SIS hands over copy-ready briefs</div>
+        <div class="pdetail">1 video · 5 photo posts</div>
+        <div class="pcount">6</div>
+        <div class="punit">posts</div>
+        <div class="pmeta"><strong>Not required</strong> &nbsp;·&nbsp; SPOC: <strong>Client IT</strong> — SIS hands over copy-ready briefs</div>
       </div>
       <div class="platform-card">
         <div class="pname">YouTube</div>
-        <div class="pdetail">3 Shorts &middot; 1 Long-form</div>
-        <div class="pcount">4</div><div class="punit">uploads</div>
-        <div class="pmeta"><strong>Editor Rights</strong> &nbsp;&middot;&nbsp; SPOC: <strong>SIS</strong></div>
+        <div class="pdetail">3 Shorts · 1 Long-form</div>
+        <div class="pcount">4</div>
+        <div class="punit">uploads</div>
+        <div class="pmeta"><strong>Editor Rights</strong> &nbsp;·&nbsp; SPOC: <strong>SIS</strong></div>
       </div>
     </div>
   </div>
 
-  <!-- 02 GLANCE -->
   <div class="section-block">
     <div class="section-num">02</div>
+    <div class="section-title">Monthly site shoot model</div>
+    <div class="shoot-banner">
+      <div class="icon-box">🎬</div>
+      <div class="stext">
+        <h4>One site. One shoot. One month of video content.</h4>
+        <p>Each month, SIS visits <strong>one</strong> Veracity site at the start of the month. That single visit captures: site B-roll (feeds the Scale &amp; Proof site spotlight + statics/carousels/Stories all month), <strong>one</strong> People &amp; Culture interview (driver or manager — rotates monthly), and incremental footage for the evergreen Brand Intro Film. No repeat shoots, no multi-location logistics. <strong>Month 1 site: Tumb</strong> — the flagship ICD, largest fleet and TEU volume on the network.</p>
+      </div>
+    </div>
+    <div style="height:16px"></div>
+    <div class="rotation-grid">
+      <div class="rotation-card active">
+        <div class="rmonth">Month 1</div>
+        <div class="rsite">Tumb</div>
+        <div class="rfeature">🎙️ Driver interview</div>
+      </div>
+      <div class="rotation-card">
+        <div class="rmonth">Month 2</div>
+        <div class="rsite">TBD</div>
+        <div class="rfeature">🎙️ Manager interview</div>
+      </div>
+      <div class="rotation-card">
+        <div class="rmonth">Month 3</div>
+        <div class="rsite">TBD</div>
+        <div class="rfeature">🎙️ Driver interview</div>
+      </div>
+      <div class="rotation-card">
+        <div class="rmonth">Month 4</div>
+        <div class="rsite">TBD</div>
+        <div class="rfeature">🎙️ Manager interview</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-num">03</div>
     <div class="section-title">The month at a glance</div>
     <div class="glance-grid">
       <div class="glance-card"><div class="gnum">30</div><div class="glabel">Total calendar entries</div></div>
@@ -262,18 +303,17 @@ onSnapshot(collection(_db,"campaigns",CID,"posts"), snap => {
       <div class="glance-card"><div class="gnum">4</div><div class="glabel">YouTube</div></div>
     </div>
     <div class="pillar-legend">
-      <span class="pl-chip pillar-scale"><span class="pl-dot" style="background:var(--p-scale)"></span>Scale &amp; Proof &middot; 8</span>
-      <span class="pl-chip pillar-tech"><span class="pl-dot" style="background:var(--p-tech)"></span>Technology Edge &middot; 6</span>
-      <span class="pl-chip pillar-project"><span class="pl-dot" style="background:var(--p-project)"></span>Project Stories &middot; 4</span>
-      <span class="pl-chip pillar-thought"><span class="pl-dot" style="background:var(--p-thought)"></span>Thought Leadership &middot; 3</span>
-      <span class="pl-chip pillar-people"><span class="pl-dot" style="background:var(--p-people)"></span>People &amp; Culture &middot; 7</span>
-      <span class="pl-chip pillar-trust"><span class="pl-dot" style="background:var(--p-trust)"></span>Client Trust &middot; 2</span>
+      <span class="pl-chip pillar-scale"><span class="pl-dot" style="background:var(--p-scale)"></span>Scale &amp; Proof · 9</span>
+      <span class="pl-chip pillar-tech"><span class="pl-dot" style="background:var(--p-tech)"></span>Technology Edge · 6</span>
+      <span class="pl-chip pillar-project"><span class="pl-dot" style="background:var(--p-project)"></span>Project Stories · 4</span>
+      <span class="pl-chip pillar-thought"><span class="pl-dot" style="background:var(--p-thought)"></span>Thought Leadership · 3</span>
+      <span class="pl-chip pillar-people"><span class="pl-dot" style="background:var(--p-people)"></span>People &amp; Culture · 6</span>
+      <span class="pl-chip pillar-trust"><span class="pl-dot" style="background:var(--p-trust)"></span>Client Trust · 2</span>
     </div>
   </div>
 
-  <!-- 03 STATUS -->
   <div class="section-block">
-    <div class="section-num">03</div>
+    <div class="section-num">04</div>
     <div class="section-title">Post status</div>
     <div class="status-legend">
       <strong>Status :</strong>
@@ -281,431 +321,1069 @@ onSnapshot(collection(_db,"campaigns",CID,"posts"), snap => {
       <span class="s-badge s-ip">IN PROGRESS</span>
       <span class="s-badge s-rtp">READY TO POST</span>
       <span class="s-badge s-p">POSTED</span>
-      <span class="hint">Click any badge on a post card to cycle status &mdash; syncs to the whole team instantly via Firebase.</span>
+      <span class="hint">Click any status badge on a post card to update it.</span>
     </div>
   </div>
 
-  <!-- 04 WEEK 0 SETUP -->
-  <div class="section-block">
-    <div class="section-num">04</div>
-    <div class="section-title">Week 0 &mdash; set-up (before first post)</div>
-    <div class="setup-grid">
-      <div class="setup-card"><h4>LinkedIn &mdash; Content Admin access</h4><p>SIS needs Content Admin rights on the Veracity LinkedIn company page before any posts go live. Confirm with Jaimin.</p></div>
-      <div class="setup-card"><h4>Instagram + Facebook &mdash; Editor rights</h4><p>SIS needs Editor rights on both IG and FB. Pages should be linked via Meta Business Suite for simultaneous posting.</p></div>
-      <div class="setup-card"><h4>YouTube &mdash; channel setup + Editor access</h4><p>Refresh or create the Veracity YouTube channel. Update banner, About section, and playlists. SIS needs Editor rights. Brand intro film to be pinned as channel trailer once uploaded.</p></div>
-      <div class="setup-card"><h4>Twitter / X &mdash; copy handover process</h4><p>Client IT team handles posting. SIS to deliver copy-ready briefs (text + image/video asset) 48 hours before each scheduled post. All 6 X posts follow this workflow.</p></div>
-      <div class="setup-card"><h4>Resolve factual inconsistencies</h4><p>Before any post goes live, confirm with Jaimin: HQ location, fleet size, SLA %, states covered, ports covered, and Singrauli volume figures. No unverified stats to be published.</p></div>
-      <div class="setup-card"><h4>Lock the visual system</h4><p>Master template kit: LinkedIn post card (gold/charcoal), Reel lower-thirds, Story frames, YouTube thumbnail, Twitter photo card. One cohesive look across all channels.</p></div>
-      <div class="setup-card"><h4>Confirm ICD &amp; asset list</h4><p>GPS-tracked fleet photos, ICD site operations footage (Tumb preferred &mdash; largest site), India territory map, control room/dashboard visuals. Required for Week 1 posts and the brand intro film.</p></div>
-      <div class="setup-card"><h4>Brand intro film &mdash; pre-production</h4><p>Brief the video team on the 2&ndash;3 min brand intro film: Veracity overview, 1,500+ fleet, 14 territories, 30,000 containers/month, proprietary tech. No client names. Scripted VO. Schedule shoot in Week 1&ndash;2 for Week 3&ndash;4 upload.</p></div>
-    </div>
-  </div>
-
-  <!-- 05 THE CALENDAR -->
   <div class="section-block">
     <div class="section-num">05</div>
+    <div class="section-title">Week 0 — set-up (before first post)</div>
+    <div class="setup-grid">
+      <div class="setup-card">
+        <h4>LinkedIn — Content Admin access</h4>
+        <p>SIS needs Content Admin rights on the Veracity LinkedIn company page before any posts go live. Confirm with Jaimin.</p>
+      </div>
+      <div class="setup-card">
+        <h4>Instagram + Facebook — Editor rights</h4>
+        <p>SIS needs Editor rights on both IG and FB. Pages should be linked via Meta Business Suite for simultaneous posting.</p>
+      </div>
+      <div class="setup-card">
+        <h4>YouTube — channel setup + Editor access</h4>
+        <p>Refresh or create the Veracity YouTube channel. Update banner, About section, and playlists. SIS needs Editor rights. Brand intro film to be pinned as channel trailer once uploaded.</p>
+      </div>
+      <div class="setup-card">
+        <h4>Twitter / X — copy handover process</h4>
+        <p>Client IT team handles posting. SIS to deliver copy-ready briefs (text + image/video asset) 48 hours before each scheduled post. All 6 X posts follow this workflow.</p>
+      </div>
+      <div class="setup-card">
+        <h4>Resolve factual inconsistencies</h4>
+        <p>Before any post goes live, confirm with Jaimin: HQ location, fleet size, SLA %, states covered, ports covered, and Singrauli volume figures. No unverified stats to be published.</p>
+      </div>
+      <div class="setup-card">
+        <h4>Lock the visual system</h4>
+        <p>Master template kit: LinkedIn post card (gold/charcoal), Reel lower-thirds, Story frames, YouTube thumbnail, Twitter photo card. One cohesive look across all channels.</p>
+      </div>
+      <div class="setup-card">
+        <h4>Schedule the Tumb site shoot — Week 1, Day 1–2</h4>
+        <p>Confirm site access, shoot date, and point of contact at Tumb. Single visit captures: B-roll, driver interview (consent confirmed in advance), and brand film footage. This shoot is the dependency for nearly every video post in the calendar — lock it first.</p>
+      </div>
+      <div class="setup-card">
+        <h4>Confirm driver for Month 1 interview</h4>
+        <p>Jaimin/site team to identify and confirm a driver at Tumb willing to be on camera. Get consent, name, and role confirmed before the shoot date so the crew doesn't arrive without a subject.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-num">06</div>
     <div class="section-title">The calendar</div>
 
-    <!-- WEEK 1 -->
     <div class="week-block">
       <div class="week-header">
         <span class="week-label">Week 1</span>
-        <span class="week-desc">Soft launch. Introduce Veracity at full scale. Establish the ICD spotlight and the brand's operational-content look across every channel.</span>
+        <span class="week-desc">Tumb shoot happens Day 1–2. Soft launch — introduce Veracity at scale and open the ICD spotlight + Tumb site story across every channel.</span>
       </div>
       <div class="week-divider"></div>
       <div class="cards-grid">
 
-        <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Monday</span><span class="pillar-tag pillar-scale">Scale &amp; Proof</span><span class="format-tag">&#9654; Video &middot; 60s</span></div><span class="platform-badge">LinkedIn &middot; SIS</span></div>
-          <div class="card-body">
-            <div class="card-headline">Veracity Supply Chain &mdash; in numbers. 60 seconds.</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">1,500+ trucks. 14 territories. 30,000 containers a month. Most of LinkedIn has never properly met us.</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">60s punchy video: fast cuts of fleet, ICD sites, GPS dashboards + bold stat overlays &mdash; 1,500+ fleet, 14 territories, 30,000 containers/month, 2 lakh+ MT bulk/day, 100% SLA. Sets the credibility baseline for the month. CTA: follow.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">60s vertical or square video. Gold/charcoal colour grade. Bold stat text overlays on each cut. Veracity logo end-card with tagline: "Supply Chain Infrastructure. Built for Scale."</div></div>
+        <div class="post-card from-shoot">
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Monday</span>
+              <span class="pillar-tag pillar-scale">Scale &amp; Proof</span>
+              <span class="format-tag">▶ Video · 60s</span>
+              <span class="shoot-flag">From Tumb shoot</span>
+            </div>
+            <span class="platform-badge">LinkedIn · SIS</span>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Veracity: fleet + ICD operations footage or site photography to compile.</span><span class="s-badge s-ns" data-id="vcsl-01" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-body">
+            <div class="card-headline">Veracity Supply Chain — in numbers. 60 seconds.</div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">1,500+ trucks. 14 territories. 30,000 containers a month. Most of LinkedIn has never properly met us.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">60s punchy video built from Tumb B-roll: fast cuts of fleet, yard operations, GPS dashboard + bold stat overlays — 1,500+ fleet, 14 territories, 30,000 containers/month, 2 lakh+ MT bulk/day, 100% SLA. Sets the credibility baseline for the month. CTA: follow.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">60s vertical or square video. Gold/charcoal colour grade. Bold stat text overlays on each cut. Veracity logo end-card with tagline: "Supply Chain Infrastructure. Built for Scale."</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Tumb shoot B-roll — fleet, yard, GPS dashboard footage.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
         <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Wednesday</span><span class="pillar-tag pillar-tech">Technology Edge</span><span class="format-tag">Static &middot; Carousel</span></div><span class="platform-badge">LinkedIn &middot; SIS</span></div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Wednesday</span>
+              <span class="pillar-tag pillar-tech">Technology Edge</span>
+              <span class="format-tag">Static · Carousel</span>
+            </div>
+            <span class="platform-badge">LinkedIn · SIS</span>
+          </div>
           <div class="card-body">
             <div class="card-headline">Your container leaves the port. Here's what happens next.</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">Port to ICD. ICD to your door. Every kilometre GPS-tracked. Every trip SLA-governed.</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">ICD &amp; Container Logistics spotlight intro. 5-slide carousel: Port &rarr; First Mile FTL &rarr; ICD &rarr; Last Mile &rarr; Customer. Each slide shows one service with a stat. CTA: follow for the full story.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">5-slide carousel. India corridor map on slide 1. Fleet imagery + service icons per slide. Gold/charcoal design system.</div></div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">Port to ICD. ICD to your door. Every kilometre GPS-tracked. Every trip SLA-governed.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">ICD & Container Logistics spotlight intro. 5-slide carousel walking through the container journey: Port → First Mile FTL → ICD → Last Mile → Customer. Each slide shows one service with a stat. Month 1 service theme introduced. CTA: follow for the full story.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">5-slide carousel. India corridor map on slide 1. Fleet imagery + service icons per slide. Gold/charcoal design system. Clean, data-forward.</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Fleet photos, India route/territory map graphic.</span><span class="s-badge s-ns" data-id="vcsl-02" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Fleet photos, India route/territory map graphic.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
-        <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Tuesday</span><span class="pillar-tag pillar-people">People &amp; Culture</span><span class="format-tag">&#9654; Reel &middot; 20&ndash;30s</span></div><span class="platform-badge">Instagram + Facebook &middot; SIS</span></div>
+        <div class="post-card from-shoot">
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Tuesday</span>
+              <span class="pillar-tag pillar-scale">Scale &amp; Proof</span>
+              <span class="format-tag">▶ Reel · 20–30s</span>
+              <span class="shoot-flag">From Tumb shoot</span>
+            </div>
+            <span class="platform-badge">Instagram + Facebook · SIS</span>
+          </div>
           <div class="card-body">
-            <div class="card-headline">This is Veracity.</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">You've seen the trucks. You've never seen what drives them.</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Launch Reel &mdash; fast montage of GPS dashboards, fleet moving, ICD yards, drivers, control room. Establishes the operational-content direction for the channel. CTA: follow.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Punchy on-beat cuts. Gold/charcoal grade. Stat overlays: "1,500+ fleet &middot; 14 territories &middot; 30,000 containers/month." 9:16 IG, repurposed FB.</div></div>
+            <div class="card-headline">This is Veracity. This is Tumb.</div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">You've seen the trucks. You've never seen where they start.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">Launch Reel built from Tumb shoot footage — fast montage of the yard, fleet moving, GPS dashboard, gate operations. Opens the Site Spotlight thread for the month and establishes the operational-content direction for the channel. CTA: follow.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">Punchy on-beat cuts. Gold/charcoal grade. Stat overlays: "Tumb · 700+ vehicles · 200,000+ TEUs/year." 9:16 IG, repurposed FB.</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Veracity: raw operations footage from any active site.</span><span class="s-badge s-ns" data-id="vcsl-03" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Tumb shoot — raw operations footage.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
         <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Thursday</span><span class="pillar-tag pillar-scale">Scale &amp; Proof</span><span class="format-tag">Static &middot; single image</span></div><span class="platform-badge">Instagram + Facebook &middot; SIS</span></div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Thursday</span>
+              <span class="pillar-tag pillar-scale">Scale &amp; Proof</span>
+              <span class="format-tag">Static · single image</span>
+            </div>
+            <span class="platform-badge">Instagram + Facebook · SIS</span>
+          </div>
           <div class="card-body">
             <div class="card-headline">1,500+ fleet. 14 territories. 30,000 containers a month.</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">The numbers behind the name.</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Credential graphic &mdash; key scale stats in a bold branded layout. First-impression post for new followers. Reinforces reach and proof before service content begins.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Bold stat card. Charcoal background. Gold numbers at large type. White secondary text. Veracity logo bottom right.</div></div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">The numbers behind the name.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">Credential graphic — key scale stats in a bold branded layout. First-impression post for new followers arriving from the Reel. Reinforces reach and proof before the service content begins.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">Bold stat card. Charcoal background. Gold numbers at large type. White secondary text. Veracity logo bottom right.</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Design-only &mdash; verify stat accuracy with client before posting.</span><span class="s-badge s-ns" data-id="vcsl-04" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Design-only — verify stat accuracy with client before posting.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
         <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Friday</span><span class="pillar-tag pillar-tech">Technology Edge</span><span class="format-tag">Static &middot; Carousel</span></div><span class="platform-badge">Instagram + Facebook &middot; SIS</span></div>
-          <div class="card-body">
-            <div class="card-headline">What is an ICD &mdash; and why does your supply chain depend on it?</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">Every import container that doesn't go straight to factory first stops here.</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">3-slide educational carousel. Simple explainer on what an ICD (Inland Container Depot) is, how it fits in the supply chain, and what Veracity does at 12+ ICD locations. Soft CTA: follow for more.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Clean icon-led carousel. Light background. Gold accent lines. Simple flow diagram: Port &rarr; ICD &rarr; Factory.</div></div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Friday</span>
+              <span class="pillar-tag pillar-tech">Technology Edge</span>
+              <span class="format-tag">Static · Carousel</span>
+            </div>
+            <span class="platform-badge">Instagram + Facebook · SIS</span>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Design-only. SIS to create diagram.</span><span class="s-badge s-ns" data-id="vcsl-05" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-body">
+            <div class="card-headline">What is an ICD — and why does your supply chain depend on it?</div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">Every import container that doesn't go straight to factory first stops here.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">3-slide educational carousel. Simple explainer on what an ICD (Inland Container Depot) is, how it fits in the supply chain, and what Veracity does at 12+ ICD locations. Buyer-friendly. Soft CTA: follow for more.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">Clean icon-led carousel. Light background. Gold accent lines. Simple flow diagram: Port → ICD → Factory.</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Design-only. SIS to create diagram.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
+        </div>
+
+        <div class="post-card from-shoot">
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Saturday</span>
+              <span class="pillar-tag pillar-scale">Scale &amp; Proof</span>
+              <span class="format-tag">◎ Story · 3 frames</span>
+              <span class="shoot-flag">From Tumb shoot</span>
+            </div>
+            <span class="platform-badge">Instagram + Facebook · SIS</span>
+          </div>
+          <div class="card-body">
+            <div class="card-headline">Behind the operations at Tumb — swipe to see</div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">Story sequence: Frame 1 — the Tumb yard. Frame 2 — fleet dispatch moment. Frame 3 — "Follow us for more from the ground." Casual, real, not over-designed.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">3 Story frames. Branded but lightweight. Gold sticker frame. CTA sticker: "follow for more."</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Tumb shoot — site photos.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
+        </div>
+
+        <div class="post-card from-shoot">
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Monday</span>
+              <span class="pillar-tag pillar-scale">Scale &amp; Proof</span>
+              <span class="format-tag">▶ Video post</span>
+              <span class="shoot-flag">From Tumb shoot</span>
+            </div>
+            <span class="platform-badge">Twitter / X · Client IT</span>
+          </div>
+          <div class="card-body">
+            <div class="card-headline">Veracity Supply Chain — Built for Scale. 60 seconds.</div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">1,500+ fleet. 14 territories. 30,000 containers/month. 100% SLA. This is Veracity.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">Same 60s video as LinkedIn, shared natively on X. Caption as a punchy fact-stack. Hashtags: #SupplyChain #Logistics #ICD #ContainerLogistics #VeracitySCM</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">Same video asset as LinkedIn — no re-edit needed. Native upload on X.</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Same as LinkedIn video. SIS delivers copy-ready brief + video file to Client IT.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
         <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Saturday</span><span class="pillar-tag pillar-people">People &amp; Culture</span><span class="format-tag">&#9711; Story &middot; 3 frames</span></div><span class="platform-badge">Instagram + Facebook &middot; SIS</span></div>
-          <div class="card-body">
-            <div class="card-headline">Behind the operations &mdash; swipe to see</div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Story sequence: Frame 1 &mdash; active ICD or fleet yard shot. Frame 2 &mdash; driver or ops crew moment. Frame 3 &mdash; "Follow us for more from the ground." Casual, real, not over-designed.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">3 Story frames. Branded but lightweight. Gold sticker frame. CTA sticker: "follow for more."</div></div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Friday</span>
+              <span class="pillar-tag pillar-tech">Technology Edge</span>
+              <span class="format-tag">Photo post</span>
+            </div>
+            <span class="platform-badge">Twitter / X · Client IT</span>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Veracity: site or team photos from any active location.</span><span class="s-badge s-ns" data-id="vcsl-06" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-body">
+            <div class="card-headline">India's container logistics — the numbers that matter</div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">India's EXIM trade moves through 12 major ports. The hinterland runs on ICDs. Here's what that looks like at scale. #ContainerLogistics #ICD #SupplyChain</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">Stat-led photo post. A single sharp infographic on India's container logistics market — positions Veracity within the sector. Client IT posts from copy-ready brief.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">Single graphic: India container market stat + Veracity positioning line. Gold on charcoal.</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Verify India EXIM market stat before posting. SIS sources.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
         <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Monday</span><span class="pillar-tag pillar-scale">Scale &amp; Proof</span><span class="format-tag">&#9654; Video post</span></div><span class="platform-badge">Twitter / X &middot; Client IT</span></div>
-          <div class="card-body">
-            <div class="card-headline">Veracity Supply Chain &mdash; Built for Scale. 60 seconds.</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">1,500+ fleet. 14 territories. 30,000 containers/month. 100% SLA. This is Veracity.</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Same 60s video as LinkedIn, shared natively on X. Caption as a punchy fact-stack. Hashtags: #SupplyChain #Logistics #ICD #ContainerLogistics #VeracitySCM</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Same video asset as LinkedIn &mdash; no re-edit needed. Native upload on X.</div></div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Thursday</span>
+              <span class="pillar-tag pillar-tech">Technology Edge</span>
+              <span class="format-tag">⚡ YouTube Short</span>
+            </div>
+            <span class="platform-badge">YouTube · SIS</span>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Same as LinkedIn video. SIS delivers copy-ready brief to Client IT.</span><span class="s-badge s-ns" data-id="vcsl-07" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
-        </div>
-
-        <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Friday</span><span class="pillar-tag pillar-tech">Technology Edge</span><span class="format-tag">Photo post</span></div><span class="platform-badge">Twitter / X &middot; Client IT</span></div>
           <div class="card-body">
-            <div class="card-headline">India's container logistics &mdash; the numbers that matter</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">India's EXIM trade moves through 12 major ports. The hinterland runs on ICDs. Here's what that looks like at scale. #ContainerLogistics #ICD #SupplyChain</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Stat-led photo post. A single sharp infographic on India's container logistics market &mdash; positions Veracity within the sector. Client IT posts from copy-ready brief.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Single graphic: India container market stat + Veracity positioning line. Gold on charcoal.</div></div>
+            <div class="card-headline">What is an ICD? — 45 seconds</div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">Your import container just cleared the port. Now what?</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">First Short — repurposed from the IG/FB ICD explainer carousel, reformatted for YouTube Shorts. Introduces the ICD spotlight theme on the channel with a fast, educational format.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">Vertical 9:16, 45s max. Captions on. Gold text overlays. Veracity end-card. Repurpose from IG carousel assets — no new shoot needed.</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Verify India EXIM market stat before posting. SIS sources.</span><span class="s-badge s-ns" data-id="vcsl-08" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
-        </div>
-
-        <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Thursday</span><span class="pillar-tag pillar-tech">Technology Edge</span><span class="format-tag">&#9889; YouTube Short</span></div><span class="platform-badge">YouTube &middot; SIS</span></div>
-          <div class="card-body">
-            <div class="card-headline">What is an ICD? &mdash; 45 seconds</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">Your import container just cleared the port. Now what?</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">First Short &mdash; repurposed from the IG/FB ICD explainer carousel, reformatted for YouTube Shorts. Introduces the ICD spotlight theme on the channel.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Vertical 9:16, 45s max. Captions on. Gold text overlays. Veracity end-card. Repurpose from IG carousel assets.</div></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Repurpose from IG/FB ICD carousel — no new shoot needed.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Repurpose from IG/FB ICD carousel &mdash; no new shoot needed.</span><span class="s-badge s-ns" data-id="vcsl-09" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
         </div>
 
       </div>
     </div>
 
-    <!-- WEEK 2 -->
     <div class="week-block">
       <div class="week-header">
         <span class="week-label">Week 2</span>
-        <span class="week-desc">Cadence builds. First proof story lands. Technology content drives IG/FB. People of Veracity series launches. YouTube Short #2.</span>
+        <span class="week-desc">Cadence builds. Driver interview from the Tumb shoot lands — the month's single People & Culture video. Technology content drives IG/FB.</span>
       </div>
       <div class="week-divider"></div>
       <div class="cards-grid">
 
         <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Monday</span><span class="pillar-tag pillar-trust">Client Trust</span><span class="format-tag">Static &middot; Carousel</span></div><span class="platform-badge">LinkedIn &middot; SIS</span></div>
-          <div class="card-body">
-            <div class="card-headline">Port to door &mdash; and nothing in between goes wrong.</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">The last mile is where SLAs are kept &mdash; or broken. Here's how we make sure it's always the former.</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">First anonymized proof post. Problem &rarr; Veracity approach &rarr; outcome format. Anonymized manufacturing/EXIM client, ICD corridor, SLA outcome. CTA: facing a similar challenge? Let's talk.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Case-study carousel: 4 slides &mdash; Problem / Our Approach / The Result / About Veracity. Clean, metric-forward. Gold accent on results slide.</div></div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Monday</span>
+              <span class="pillar-tag pillar-trust">Client Trust</span>
+              <span class="format-tag">Static · Carousel</span>
+            </div>
+            <span class="platform-badge">LinkedIn · SIS</span>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Client anonymized until Jaimin clears specific names for public use.</span><span class="s-badge s-ns" data-id="vcsl-10" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-body">
+            <div class="card-headline">Port to door — and nothing in between goes wrong.</div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">The last mile is where SLAs are kept — or broken. Here's how we make sure it's always the former.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">First anonymized proof post. Problem → Veracity approach → outcome format. Anonymized manufacturing/EXIM client, ICD corridor, SLA outcome. CTA: facing a similar challenge? Let's talk.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">Case-study carousel: 4 slides — Problem / Our Approach / The Result / About Veracity. Clean, metric-forward. Gold accent on results slide.</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Client anonymized until Jaimin clears specific names for public use.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
         <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Friday</span><span class="pillar-tag pillar-tech">Technology Edge</span><span class="format-tag">Static &middot; Carousel</span></div><span class="platform-badge">LinkedIn &middot; SIS</span></div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Friday</span>
+              <span class="pillar-tag pillar-tech">Technology Edge</span>
+              <span class="format-tag">Static · Carousel</span>
+            </div>
+            <span class="platform-badge">LinkedIn · SIS</span>
+          </div>
           <div class="card-body">
             <div class="card-headline">We built the tech ourselves. Here's what it does.</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">Most logistics companies use generic software. We built our own &mdash; because our operations demanded it.</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Proprietary tech showcase carousel. Slide 1: Priority Allocation Engine. Slide 2: Veracity Driver App. Slide 3: GPS every 2 mins + live dashboard. Slide 4: eSeal + RFID on high-value cargo. CTA: soft enquiry.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Product-led carousel. Screenshots of Driver App + dashboard if available. Clean tech-forward design. Gold/charcoal.</div></div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">Most logistics companies use generic software. We built our own — because our operations demanded it.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">Proprietary tech showcase carousel. Slide 1: Priority Allocation Engine — intelligent ICD scheduling. Slide 2: Veracity Driver App — trip assignment, e-POD, compliance checklists. Slide 3: GPS every 2 mins + live dashboard for clients. Slide 4: eSeal + RFID on high-value cargo. CTA: soft enquiry.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">Product-led carousel. Screenshots of Driver App + dashboard if available. Clean tech-forward design. Gold/charcoal.</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Veracity: app screenshots or dashboard visuals. SIS adapts to design if unavailable.</span><span class="s-badge s-ns" data-id="vcsl-11" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Veracity: app screenshots or dashboard visuals. SIS adapts to design if unavailable.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
-        <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Monday</span><span class="pillar-tag pillar-people">People &amp; Culture</span><span class="format-tag">Static &middot; Carousel</span></div><span class="platform-badge">Instagram + Facebook &middot; SIS</span></div>
+        <div class="post-card from-shoot">
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Wednesday</span>
+              <span class="pillar-tag pillar-people">People &amp; Culture</span>
+              <span class="format-tag">▶ Reel · interview</span>
+              <span class="shoot-flag">From Tumb shoot</span>
+            </div>
+            <span class="platform-badge">Instagram + Facebook · SIS</span>
+          </div>
           <div class="card-body">
-            <div class="card-headline">People of Veracity &mdash; #1</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">2,000+ drivers keep India's supply chain moving. Meet the people behind the fleet.</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Launch of the recurring employee spotlight series. One person &mdash; driver, fleet coordinator, or control room operator &mdash; their role, their corridor, one quote in their words. CTA: tag someone who'd thrive here.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">"People of Veracity" portrait frame + pull-quote slide. Branded series header. Gold accent. Real photo essential.</div></div>
+            <div class="card-headline">"I know this route better than I know my own street."</div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">04:30. The first truck pulls out of the Tumb yard. Meet the driver behind the wheel.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">The month's single People & Culture video — a driver interview from the Tumb shoot. Short, authentic, conversational. A few quick questions: what does a typical day look like, what corridor do they run, what's one thing people don't realise about the job. CTA: this is who keeps your supply chain moving.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">30–45s Reel. Mix of interview soundbite + on-road/yard footage cutaways. Subtitled. Gold lower-third with driver's name and role. 9:16.</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Veracity: employee consent, name, role, real photo, one quote in their own words.</span><span class="s-badge s-ns" data-id="vcsl-12" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Tumb shoot — driver interview (consent confirmed before shoot).</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
         <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Wednesday</span><span class="pillar-tag pillar-people">People &amp; Culture</span><span class="format-tag">&#9654; Reel &middot; day-in-the-life</span></div><span class="platform-badge">Instagram + Facebook &middot; SIS</span></div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Monday</span>
+              <span class="pillar-tag pillar-people">People &amp; Culture</span>
+              <span class="format-tag">Static · Carousel</span>
+            </div>
+            <span class="platform-badge">Instagram + Facebook · SIS</span>
+          </div>
           <div class="card-body">
-            <div class="card-headline">A shift, start to finish.</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">04:30. The first truck pulls out of the yard.</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Day-in-the-life at a Veracity ICD site &mdash; ideally Tumb (largest operation) or Patli. Documentary-style, authentic, human. Follow one driver or ops coordinator through their shift.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Time-stamped Reel overlays. On-ground footage. 9:16. Gold timestamp markers. Real and unpolished preferred.</div></div>
+            <div class="card-headline">People of Veracity — #1</div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">2,000+ drivers keep India's supply chain moving. Meet the people behind the fleet.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">Launch of the recurring employee spotlight design series — distinct from the video interview series. One person, a portrait photo, role, and one written quote. Lighter-weight than the interview format, doesn't require a shoot. CTA: tag someone who'd thrive here.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">"People of Veracity" portrait frame + pull-quote slide. Branded series header. Gold accent.</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Veracity: site access + footage from Tumb or Patli ICD.</span><span class="s-badge s-ns" data-id="vcsl-13" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Veracity: employee consent, name, role, photo, one quote — can reuse a Tumb shoot photo or any team photo on file.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
-        <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Saturday</span><span class="pillar-tag pillar-scale">Scale &amp; Proof</span><span class="format-tag">&#9711; Story &middot; 3 frames</span></div><span class="platform-badge">Instagram + Facebook &middot; SIS</span></div>
+        <div class="post-card from-shoot">
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Saturday</span>
+              <span class="pillar-tag pillar-scale">Scale &amp; Proof</span>
+              <span class="format-tag">◎ Story · 3 frames</span>
+              <span class="shoot-flag">From Tumb shoot</span>
+            </div>
+            <span class="platform-badge">Instagram + Facebook · SIS</span>
+          </div>
           <div class="card-body">
-            <div class="card-headline">A day at the ICD &mdash; tap through</div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Story sequence: ICD yard operations moments &mdash; trucks being loaded/dispatched, GPS dashboard on a phone, a driver checking in. Real, behind-the-scenes. Casual storytelling format.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">3 Story frames. Real photos preferred over graphics. Branded gold frame overlay. Light and authentic.</div></div>
+            <div class="card-headline">A day at Tumb ICD — tap through</div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">Story sequence: ICD yard operations moments — trucks being loaded/dispatched, GPS dashboard on a phone, gate-in process. Real, behind-the-scenes. Casual storytelling format, drawn from the same Tumb shoot.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">3 Story frames. Real photos preferred over graphics. Branded gold frame overlay. Light and authentic.</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Veracity: ICD yard photos from any active site.</span><span class="s-badge s-ns" data-id="vcsl-14" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Tumb shoot — yard photos.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
-        <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Tuesday</span><span class="pillar-tag pillar-people">People &amp; Culture</span><span class="format-tag">Photo post</span></div><span class="platform-badge">Twitter / X &middot; Client IT</span></div>
+        <div class="post-card from-shoot">
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Tuesday</span>
+              <span class="pillar-tag pillar-people">People &amp; Culture</span>
+              <span class="format-tag">Photo post</span>
+              <span class="shoot-flag">From Tumb shoot</span>
+            </div>
+            <span class="platform-badge">Twitter / X · Client IT</span>
+          </div>
           <div class="card-body">
             <div class="card-headline">2,000+ drivers. 14 territories. One SLA. #VeracitySCM</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">The workforce behind India's container corridors. #Logistics #SupplyChain #ICD</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">People-focused photo post. On-ground driver or fleet team photo with a short, proud caption. Client IT posts from SIS copy-ready brief.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">One strong on-ground team or driver photo. Veracity gold frame overlay.</div></div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">The workforce behind India's container corridors. #Logistics #SupplyChain #ICD</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">People-focused photo post. Still frame of the Tumb driver from the interview shoot, with a short proud caption. Client IT posts from SIS copy-ready brief.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">One strong driver portrait from the Tumb shoot. Veracity gold frame overlay.</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Veracity: team or driver photo. SIS delivers brief to Client IT.</span><span class="s-badge s-ns" data-id="vcsl-15" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Tumb shoot — driver portrait still. SIS delivers brief to Client IT.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
         <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Thursday</span><span class="pillar-tag pillar-tech">Technology Edge</span><span class="format-tag">Photo post</span></div><span class="platform-badge">Twitter / X &middot; Client IT</span></div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Thursday</span>
+              <span class="pillar-tag pillar-tech">Technology Edge</span>
+              <span class="format-tag">Photo post</span>
+            </div>
+            <span class="platform-badge">Twitter / X · Client IT</span>
+          </div>
           <div class="card-body">
             <div class="card-headline">GPS-tracked every 2 minutes. Live dashboard. Zero black boxes. #ContainerLogistics</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">Your cargo shouldn't go dark the moment it leaves the port. Ours never does. #SupplyChain #Logistics #VeracitySCM</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Tech capability photo post. Visual proof of Veracity's GPS/tracking infrastructure. Short, factual, credibility-led. Client IT posts from SIS brief.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Dashboard screenshot or GPS tracking graphic with caption overlay. Gold on charcoal.</div></div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">Your cargo shouldn't go dark the moment it leaves the port. Ours never does. #SupplyChain #Logistics #VeracitySCM</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">Tech capability photo post. Visual proof of Veracity's GPS/tracking infrastructure. Short, factual, credibility-led. Client IT posts from SIS brief.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">Dashboard screenshot or GPS tracking graphic with caption overlay. Gold on charcoal.</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Veracity: dashboard/GPS screenshot. SIS adapts to graphic if unavailable.</span><span class="s-badge s-ns" data-id="vcsl-16" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Veracity: dashboard/GPS screenshot. SIS adapts to graphic if unavailable.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
-        <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Wednesday</span><span class="pillar-tag pillar-people">People &amp; Culture</span><span class="format-tag">&#9889; YouTube Short</span></div><span class="platform-badge">YouTube &middot; SIS</span></div>
-          <div class="card-body">
-            <div class="card-headline">People of Veracity &mdash; 60 seconds</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">2,000+ drivers. These are the people behind the fleet.</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Short #2: repurposed from the People of Veracity IG/FB employee spotlight. 45&ndash;60s cut introducing the series on YouTube. Employee consent confirmed before upload.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Vertical 9:16, 60s max. Captions on. Employee name/role lower-third. Veracity end-card.</div></div>
+        <div class="post-card from-shoot">
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Thursday</span>
+              <span class="pillar-tag pillar-people">People &amp; Culture</span>
+              <span class="format-tag">⚡ YouTube Short</span>
+              <span class="shoot-flag">From Tumb shoot</span>
+            </div>
+            <span class="platform-badge">YouTube · SIS</span>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Repurpose from IG/FB People of Veracity #1 content.</span><span class="s-badge s-ns" data-id="vcsl-17" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-body">
+            <div class="card-headline">Meet our driver at Tumb — 60 seconds</div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">2,000+ drivers. This is one of them.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">Short #2: the full driver interview cut for YouTube. Same source as the IG/FB Reel, slightly longer edit (up to 60s) with more of the conversation included. Employee consent confirmed before upload.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">Vertical 9:16, 60s max. Captions on. Driver name/role lower-third. Veracity end-card.</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Tumb shoot — driver interview, extended cut.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
       </div>
     </div>
 
-    <!-- WEEK 3 -->
     <div class="week-block">
       <div class="week-header">
         <span class="week-label">Week 3</span>
-        <span class="week-desc">Near-full cadence. LinkedIn Article live. Project story introduced &mdash; Singrauli or Khavda. Thought leadership begins. Brand intro film in final production.</span>
+        <span class="week-desc">Near-full cadence. LinkedIn Article live. Tumb site spotlight + Singrauli project story. Thought leadership begins.</span>
       </div>
       <div class="week-divider"></div>
       <div class="cards-grid">
 
         <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Monday</span><span class="pillar-tag pillar-thought">Thought Leadership</span><span class="format-tag">&#9998; LinkedIn Article</span></div><span class="platform-badge">LinkedIn &middot; SIS</span></div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Monday</span>
+              <span class="pillar-tag pillar-thought">Thought Leadership</span>
+              <span class="format-tag">✍ LinkedIn Article</span>
+            </div>
+            <span class="platform-badge">LinkedIn · SIS</span>
+          </div>
           <div class="card-body">
             <div class="card-headline">Why India's port-hinterland corridors are the new battleground for supply chain performance</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">The DFC is live. Rail capacity is growing. Port volumes are up. And yet, the last 200 km from port to factory floor remains the most unreliable part of the journey.</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">600&ndash;800 word article. India's port-hinterland logistics landscape, what's changing with DFC connectivity, and how Veracity's ICD network is built for this shift. SIS drafts, Veracity approves before publishing.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Article cover: India corridor map or port-hinterland logistics visual. Veracity branded header. Clean and editorial in feel.</div></div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">The DFC is live. Rail capacity is growing. Port volumes are up. And yet, the last 200 km from port to factory floor remains the most unreliable part of the journey.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">600–800 word article. India's port-hinterland logistics landscape, what's changing with DFC connectivity, and how Veracity's ICD network — including Tumb — is built for this shift. Company page flagship piece for Month 1. SIS drafts, Veracity approves before publishing. CTA: follow, share, enquire.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">Article cover: India corridor map or port-hinterland logistics visual. Veracity branded header. Clean and editorial in feel.</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> SIS drafts. Veracity reviews and approves &mdash; allow 48hr turnaround.</span><span class="s-badge s-ns" data-id="vcsl-18" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> SIS drafts. Veracity reviews and approves before publishing — allow 48hr turnaround.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
-        <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Wednesday</span><span class="pillar-tag pillar-project">Project Stories</span><span class="format-tag">Static &middot; Carousel</span></div><span class="platform-badge">LinkedIn &middot; SIS</span></div>
+        <div class="post-card from-shoot">
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Wednesday</span>
+              <span class="pillar-tag pillar-scale">Scale &amp; Proof</span>
+              <span class="format-tag">Static · Carousel</span>
+              <span class="shoot-flag">From Tumb shoot</span>
+            </div>
+            <span class="platform-badge">LinkedIn · SIS</span>
+          </div>
           <div class="card-body">
-            <div class="card-headline">130,000 rakes a year. Mine to power plant. Here's how we run Singrauli.</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">Coal logistics is not just about trucks. It's about gate-in documentation, weighbridge precision, railway siding coordination, and 24/7 control &mdash; simultaneously.</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Singrauli coal operations project story. 5-slide carousel: operation scale &rarr; what Veracity manages (gate-in, weighbridge, eSeal, GPS) &rarr; MEL Power Plant corridor &rarr; fleet on the ground &rarr; results.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Operational carousel. Stats prominent: 130,000+ rakes/yr, 70+ lakh MT/yr, 160+ coal fleet. Gold/charcoal design system.</div></div>
+            <div class="card-headline">Site Spotlight: Tumb — 700+ vehicles, 200,000+ TEUs a year.</div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">Our largest site runs like its own ecosystem. Here's what a day at Tumb actually looks like.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">First entry in the recurring monthly Site Spotlight series. 5-slide carousel: Tumb's role in the network → fleet and TEU numbers → what corridors it serves (western India EXIM) → behind-the-scenes from the shoot → why it's the flagship site. Built entirely from this month's shoot footage and photos.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">Photo-forward carousel using real Tumb shoot images. Stats overlaid in gold. Map pin showing Tumb's location relative to JNPT/Mundra.</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Veracity: Singrauli site photos if available. SIS uses design-led treatment if not.</span><span class="s-badge s-ns" data-id="vcsl-19" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Tumb shoot — site photos and stats.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
         <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Tuesday</span><span class="pillar-tag pillar-tech">Technology Edge</span><span class="format-tag">Static &middot; single image</span></div><span class="platform-badge">Instagram + Facebook &middot; SIS</span></div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Tuesday</span>
+              <span class="pillar-tag pillar-tech">Technology Edge</span>
+              <span class="format-tag">Static · single image</span>
+            </div>
+            <span class="platform-badge">Instagram + Facebook · SIS</span>
+          </div>
           <div class="card-body">
             <div class="card-headline">The tech behind every trip.</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">GPS every 2 minutes. eSeal on high-value cargo. Driver App for every indent. Priority Engine for every ICD slot. This is what "tracked" actually means.</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Tech capability infographic. 4-panel layout: GPS Tracking / Priority Allocation Engine / Driver App / eSeal + RFID. One-line benefit per panel.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Bold 4-icon infographic. Gold icons. Charcoal background. Clean, data-forward. No clutter.</div></div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">GPS every 2 minutes. eSeal on high-value cargo. Driver App for every indent. Priority Engine for every ICD slot. This is what "tracked" actually means.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">Tech capability infographic. 4-panel layout: GPS Tracking / Priority Allocation Engine / Driver App / eSeal + RFID. One-line benefit per panel. Positions Veracity above unorganized competitors.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">Bold 4-icon infographic. Gold icons. Charcoal background. Clean, data-forward. No clutter.</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Design-only. SIS creates infographic.</span><span class="s-badge s-ns" data-id="vcsl-20" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Design-only. SIS creates infographic.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
         <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Thursday</span><span class="pillar-tag pillar-people">People &amp; Culture</span><span class="format-tag">Static &middot; Carousel</span></div><span class="platform-badge">Instagram + Facebook &middot; SIS</span></div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Thursday</span>
+              <span class="pillar-tag pillar-people">People &amp; Culture</span>
+              <span class="format-tag">Static · Carousel</span>
+            </div>
+            <span class="platform-badge">Instagram + Facebook · SIS</span>
+          </div>
           <div class="card-body">
-            <div class="card-headline">People of Veracity &mdash; #2</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">From the control room to the corridor &mdash; meet the people who make 100% SLA possible.</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Second employee spotlight. Different role from #1 &mdash; ideally a control room operator, fleet coordinator, or ICD site manager. CTA: tag someone who'd thrive here.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Same "People of Veracity" series frame as #1. Consistent series look.</div></div>
+            <div class="card-headline">People of Veracity — #2</div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">From the control room to the corridor — meet the people who make 100% SLA possible.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">Second design-series spotlight (static, not video). Different role from the Tumb driver interview — control room operator, ops coordinator, or fleet manager. CTA: tag someone who'd thrive here.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">Same "People of Veracity" series frame as #1. Consistent series look.</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Veracity: employee consent, name, role, real photo, one quote.</span><span class="s-badge s-ns" data-id="vcsl-21" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Veracity: employee consent, name, role, photo, one quote.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
         <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Saturday</span><span class="pillar-tag pillar-thought">Thought Leadership</span><span class="format-tag">&#9711; Story &middot; 3 frames</span></div><span class="platform-badge">Instagram + Facebook &middot; SIS</span></div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Saturday</span>
+              <span class="pillar-tag pillar-thought">Thought Leadership</span>
+              <span class="format-tag">◎ Story · 3 frames</span>
+            </div>
+            <span class="platform-badge">Instagram + Facebook · SIS</span>
+          </div>
           <div class="card-body">
-            <div class="card-headline">Did you know? &mdash; India container logistics facts</div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Story series: 3 quick-fire facts about India's container logistics and ICD ecosystem. Educational, tap-through format. Facts: India TEU volume growth, DFC impact on hinterland corridors, ICD role in customs clearance.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">3 Story frames. Stat-led. Gold/charcoal branded. Bold numbers. Lightweight design.</div></div>
+            <div class="card-headline">Did you know? — India container logistics facts</div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">Story series: 3 quick-fire facts about India's container logistics and ICD ecosystem. Educational, tap-through format. Facts: India TEU volume growth, DFC impact on hinterland corridors, ICD role in customs clearance. CTA: follow for more.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">3 Story frames. Stat-led. Gold/charcoal branded. Bold numbers. Lightweight design.</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Design-only. SIS sources and verifies all India logistics stats before posting.</span><span class="s-badge s-ns" data-id="vcsl-22" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Design-only. SIS sources and verifies all India logistics stats before posting.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
         <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Wednesday</span><span class="pillar-tag pillar-trust">Client Trust</span><span class="format-tag">Photo post</span></div><span class="platform-badge">Twitter / X &middot; Client IT</span></div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Wednesday</span>
+              <span class="pillar-tag pillar-trust">Client Trust</span>
+              <span class="format-tag">Photo post</span>
+            </div>
+            <span class="platform-badge">Twitter / X · Client IT</span>
+          </div>
           <div class="card-body">
             <div class="card-headline">30,000 containers handled. Zero SLA breaches. Anonymized proof post.</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">When a manufacturing client needs 200 containers moved from JNPT to three ICDs in one week &mdash; someone has to be ready. That's us. #ContainerLogistics #ICD #SupplyChain</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Proof-aligned photo post. Anonymized outcome stat on a graphic card. Client IT posts from SIS copy-ready brief.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Stat card: outcome number + "a leading manufacturing client" framing. Gold on charcoal.</div></div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">When a manufacturing client needs 200 containers moved from JNPT to three ICDs in one week — someone has to be ready. That's us. #ContainerLogistics #ICD #SupplyChain</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">Proof-aligned photo post. Anonymized outcome stat on a graphic card. Client IT posts from SIS copy-ready brief.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">Stat card: outcome number + "a leading manufacturing client" framing. Gold on charcoal.</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Client anonymized. SIS to draft. Veracity to confirm stat before going live.</span><span class="s-badge s-ns" data-id="vcsl-23" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Client anonymized. SIS to draft. Veracity to confirm stat before going live.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
-        <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Thursday</span><span class="pillar-tag pillar-project">Project Stories</span><span class="format-tag">&#9889; YouTube Short</span></div><span class="platform-badge">YouTube &middot; SIS</span></div>
+        <div class="post-card from-shoot">
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Thursday</span>
+              <span class="pillar-tag pillar-project">Project Stories</span>
+              <span class="format-tag">⚡ YouTube Short</span>
+              <span class="shoot-flag">From Tumb shoot</span>
+            </div>
+            <span class="platform-badge">YouTube · SIS</span>
+          </div>
           <div class="card-body">
-            <div class="card-headline">Veracity's fleet &mdash; 60 seconds</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">1,500+ GPS-tracked vehicles. Every one SLA-linked. Here's the fleet behind India's container corridors.</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Short #3: fleet showcase. Quick cuts of Veracity vehicles across different sites &mdash; ICD yards, port exits, highway corridors. Stat overlays: 1,500+ fleet, 14 territories, GPS every 2 mins.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Vertical 9:16, 60s max. Fleet footage. Gold text overlays. Veracity end-card. High energy cuts.</div></div>
+            <div class="card-headline">Inside Tumb — Veracity's flagship site. 60 seconds.</div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">700+ vehicles. 200,000+ TEUs a year. One site. Here's what it takes to run it.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">Short #3: Tumb site showcase, fully sourced from this month's shoot. Quick cuts of the yard, fleet movement, gate operations. Pure visual credibility. Stat overlays specific to Tumb.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">Vertical 9:16, 60s max. Tumb B-roll. Gold text overlays. Veracity end-card. High energy cuts.</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Veracity: fleet footage from any active corridor or ICD site.</span><span class="s-badge s-ns" data-id="vcsl-24" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Tumb shoot — site and fleet B-roll.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
         <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Thursday</span><span class="pillar-tag pillar-thought">Thought Leadership</span><span class="format-tag">Photo post</span></div><span class="platform-badge">Twitter / X &middot; Client IT</span></div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Thursday</span>
+              <span class="pillar-tag pillar-thought">Thought Leadership</span>
+              <span class="format-tag">Photo post</span>
+            </div>
+            <span class="platform-badge">Twitter / X · Client IT</span>
+          </div>
           <div class="card-body">
             <div class="card-headline">The Dedicated Freight Corridor changes the hinterland calculus. Here's what logistics teams need to plan for. #DFC #Logistics</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">Rail capacity is expanding. ICD demand will follow. Is your logistics partner ready? #SupplyChain #ContainerLogistics #VeracitySCM</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Thought leadership photo post. A branded editorial graphic on DFC + ICD connectivity. Positions Veracity as industry insiders, not just operators. Client IT posts from SIS brief.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Editorial graphic: DFC route map highlight + Veracity positioning line. Gold/charcoal.</div></div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">Rail capacity is expanding. ICD demand will follow. Is your logistics partner ready? #SupplyChain #ContainerLogistics #VeracitySCM</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">Thought leadership photo post. A branded editorial graphic on DFC + ICD connectivity. Positions Veracity as industry insiders, not just operators. Client IT posts from SIS brief.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">Editorial graphic: DFC route map highlight + Veracity positioning line. Gold/charcoal.</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Design-only. SIS creates. Verify DFC facts before posting.</span><span class="s-badge s-ns" data-id="vcsl-25" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Design-only. SIS creates. Verify DFC facts before posting.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
       </div>
     </div>
 
-    <!-- WEEK 4 -->
     <div class="week-block">
       <div class="week-header">
         <span class="week-label">Week 4</span>
-        <span class="week-desc">Full cadence. Brand intro film goes live on YouTube. Khavda green energy project story. People of Veracity #3. Month wrap and teaser for Month 2.</span>
+        <span class="week-desc">Full cadence. Brand intro film goes live on YouTube — built from Tumb shoot footage. Singrauli project story. Month wrap and teaser for Month 2 site.</span>
       </div>
       <div class="week-divider"></div>
       <div class="cards-grid">
 
         <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Monday</span><span class="pillar-tag pillar-scale">Scale &amp; Proof</span><span class="format-tag">Static &middot; Carousel</span></div><span class="platform-badge">LinkedIn &middot; SIS</span></div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Monday</span>
+              <span class="pillar-tag pillar-scale">Scale &amp; Proof</span>
+              <span class="format-tag">Static · Carousel</span>
+            </div>
+            <span class="platform-badge">LinkedIn · SIS</span>
+          </div>
           <div class="card-body">
             <div class="card-headline">14 territories. One operating system. Month one: just the start.</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">New here? Here's what Veracity does &mdash; and what's coming in Month 2.</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Month-end recap carousel. Highlights from Month 1: ICD spotlight recap, scale stats, project story tease, tech differentiators. Signals Month 2 service theme. CTA: follow to stay in the loop.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Recap carousel: best-of-month design frames + teaser slide for Month 2. Clean, summary feel. Gold/charcoal.</div></div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">New here? Here's what Veracity does — and which site we're visiting next.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">Month-end recap carousel. Highlights from Month 1: ICD spotlight recap, Tumb site spotlight, driver interview, tech differentiators. Teases Month 2's site visit and service theme. CTA: follow to stay in the loop.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">Recap carousel: best-of-month design frames + teaser slide for Month 2 site. Clean, summary feel. Gold/charcoal.</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Design-only. Repurpose best visuals from Month 1 posts.</span><span class="s-badge s-ns" data-id="vcsl-26" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Design-only. Repurpose best visuals from Month 1 posts.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
         <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Wednesday</span><span class="pillar-tag pillar-project">Project Stories</span><span class="format-tag">Static &middot; Carousel</span></div><span class="platform-badge">LinkedIn &middot; SIS</span></div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Wednesday</span>
+              <span class="pillar-tag pillar-project">Project Stories</span>
+              <span class="format-tag">Static · Carousel</span>
+            </div>
+            <span class="platform-badge">LinkedIn · SIS</span>
+          </div>
           <div class="card-body">
-            <div class="card-headline">Moving solar panels and wind turbines to the edge of India's grid. This is Khavda.</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">Khavda, Kutch &mdash; one of the world's largest renewable energy zones. Getting solar panels and WTG components there safely is not a standard logistics job.</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Khavda green energy project story. 4-slide carousel: the project &rarr; what Veracity moved (solar panels, WTG components, platform trucks) &rarr; the challenge &rarr; the outcome. Positions Veracity in the renewable energy supply chain.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Project story carousel. Renewable / green energy visual tone &mdash; Veracity's gold/charcoal design system. Route map: Mundra Port &rarr; Khavda if available.</div></div>
+            <div class="card-headline">130,000 rakes a year. Mine to power plant. Here's how we run Singrauli.</div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">Coal logistics is not just about trucks. It's about gate-in documentation, weighbridge precision, railway siding coordination, and 24/7 control — simultaneously.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">Singrauli coal operations project story — separate from the monthly site-shoot model since it's rail/mine-based and harder to shoot routinely. 5-slide carousel: the operation scale → what Veracity manages (gate-in, weighbridge, eSeal, GPS) → the MEL Power Plant corridor → fleet on the ground → results.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">Operational carousel. Coal/mining visual tone. Stats prominent: 130,000+ rakes/yr, 70+ lakh MT/yr, 160+ coal fleet. Gold/charcoal design system.</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Veracity: Khavda site photos if available. SIS uses design-led if not.</span><span class="s-badge s-ns" data-id="vcsl-27" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Veracity: Singrauli site photos if available. SIS uses design-led treatment if not.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
         <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Monday</span><span class="pillar-tag pillar-people">People &amp; Culture</span><span class="format-tag">Static &middot; Carousel</span></div><span class="platform-badge">Instagram + Facebook &middot; SIS</span></div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Monday</span>
+              <span class="pillar-tag pillar-people">People &amp; Culture</span>
+              <span class="format-tag">Static · Carousel</span>
+            </div>
+            <span class="platform-badge">Instagram + Facebook · SIS</span>
+          </div>
           <div class="card-body">
-            <div class="card-headline">People of Veracity &mdash; #3</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">Every SLA met. Every container tracked. Every delivery on time. Meet the person who makes sure of it.</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Third employee spotlight. Different vertical from #1 and #2 &mdash; ideally someone from Singrauli coal ops or Khavda project logistics team to show range. CTA: share with someone in logistics.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Same "People of Veracity" series frame. Consistent look across all 3 spotlights.</div></div>
+            <div class="card-headline">People of Veracity — #3</div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">Every SLA met. Every container tracked. Every delivery on time. Meet the person who makes sure of it.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">Third design-series spotlight. Different role/vertical from #1 and #2 — could be from the coal ops or project logistics side. CTA: share with someone in logistics.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">Same "People of Veracity" series frame. Consistent look across all 3 spotlights.</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Veracity: employee consent, name, role, real photo, one quote.</span><span class="s-badge s-ns" data-id="vcsl-28" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Veracity: employee consent, name, role, photo, one quote.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
         <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Thursday</span><span class="pillar-tag pillar-scale">Scale &amp; Proof</span><span class="format-tag">Static &middot; single image</span></div><span class="platform-badge">Instagram + Facebook &middot; SIS</span></div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Thursday</span>
+              <span class="pillar-tag pillar-scale">Scale &amp; Proof</span>
+              <span class="format-tag">Static · single image</span>
+            </div>
+            <span class="platform-badge">Instagram + Facebook · SIS</span>
+          </div>
           <div class="card-body">
-            <div class="card-headline">Month 1 &mdash; a look back.</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">4 weeks. 5 channels. One goal: making Veracity's scale visible online.</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Month-end recap graphic. Summarises the month visually &mdash; post count, ICD spotlight coverage, key stats shared, milestones. Signals the brand is consistent and active. Soft teaser for Month 2 theme.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Clean stat/recap graphic. Charcoal background. Gold numbers. Month-in-review feel. Veracity branded.</div></div>
+            <div class="card-headline">Month 1 — a look back.</div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">4 weeks. 5 channels. One site visited. One goal: making Veracity's scale visible online.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">Month-end recap graphic. Summarises the month visually — post count, ICD spotlight coverage, Tumb site visit, key stats shared. Signals the brand is consistent and active. Soft teaser for Month 2 theme.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">Clean stat/recap graphic. Charcoal background. Gold numbers. Month-in-review feel. Veracity branded.</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Design-only. SIS creates post-month.</span><span class="s-badge s-ns" data-id="vcsl-29" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Design-only. SIS creates post-month.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
         <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Saturday</span><span class="pillar-tag pillar-people">People &amp; Culture</span><span class="format-tag">&#9711; Story &middot; 3 frames</span></div><span class="platform-badge">Instagram + Facebook &middot; SIS</span></div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Saturday</span>
+              <span class="pillar-tag pillar-people">People &amp; Culture</span>
+              <span class="format-tag">◎ Story · 3 frames</span>
+            </div>
+            <span class="platform-badge">Instagram + Facebook · SIS</span>
+          </div>
           <div class="card-body">
-            <div class="card-headline">We're growing &mdash; tap to see open roles</div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Hiring Story. 3 frames: "Veracity is expanding across 14 territories" &rarr; open role types (drivers, fleet coordinators, ICD ops, control room) &rarr; "DM us to know more." Both driver and ops roles.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">3 Story frames. Bold type. Gold/charcoal brand colours. CTA: "DM us" or "Link in bio."</div></div>
+            <div class="card-headline">We're growing — tap to see open roles</div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">Hiring Story. 3 frames: "Veracity is expanding across 14 territories" → open role types (drivers, fleet coordinators, ICD ops, control room) → "DM us to know more." Both driver and ops roles.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">3 Story frames. Bold type. Gold/charcoal brand colours. CTA: "DM us" or "Link in bio."</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Veracity: confirm current open roles + active territories before posting.</span><span class="s-badge s-ns" data-id="vcsl-30" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Veracity: confirm current open roles + active territories before posting.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
         <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Tuesday</span><span class="pillar-tag pillar-scale">Scale &amp; Proof</span><span class="format-tag">Photo post</span></div><span class="platform-badge">Twitter / X &middot; Client IT</span></div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Tuesday</span>
+              <span class="pillar-tag pillar-scale">Scale &amp; Proof</span>
+              <span class="format-tag">Photo post</span>
+            </div>
+            <span class="platform-badge">Twitter / X · Client IT</span>
+          </div>
           <div class="card-body">
             <div class="card-headline">Month 1 done. Showing up every week. #VeracitySCM</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">6 LinkedIn posts. 13 IG/FB posts. 6 tweets. 4 YouTube uploads. Month 1 goal: making Veracity's offline credibility visible online. Month 2 coming. #SupplyChain #Logistics #ICD</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">Month-end recap photo post. A clean "we showed up" graphic with platform icons and post counts. Client IT posts from SIS brief.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Recap graphic: platform icons + post counts. Clean and professional. Gold/charcoal.</div></div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">6 LinkedIn posts. 13 IG/FB posts. 6 tweets. 4 YouTube uploads. One site visited. Month 1 goal: making Veracity's offline credibility visible online. Month 2 coming. #SupplyChain #Logistics #ICD</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">Month-end recap photo post. A clean "we showed up" graphic with platform icons and post counts. Client IT posts from SIS brief.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">Recap graphic: platform icons + post counts. Clean and professional. Gold/charcoal.</div>
+            </div>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Design-only. SIS creates and delivers to Client IT.</span><span class="s-badge s-ns" data-id="vcsl-31" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Design-only. SIS creates and delivers to Client IT.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
         <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Thursday</span><span class="pillar-tag pillar-scale">Scale &amp; Proof</span><span class="format-tag">PR Activity</span></div><span class="platform-badge">Twitter / X &middot; SIS</span></div>
-          <div class="card-body">
-            <div class="card-headline">Month 1 PR &mdash; to be briefed by Veracity</div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">&#128203; Placeholder &mdash; Veracity to brief SIS. Slot fills once brief is received. Could be: industry feature, partnership announcement, new territory launch, or milestone press.</div></div>
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Thursday</span>
+              <span class="pillar-tag pillar-scale">Scale &amp; Proof</span>
+              <span class="format-tag">PR Activity</span>
+            </div>
+            <span class="platform-badge">Twitter / X · SIS</span>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Veracity to brief SIS on PR angle and timeline.</span><span class="s-badge s-ns" data-id="vcsl-32" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-body">
+            <div class="card-headline">Month 1 PR — to be briefed by Veracity</div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">📋 Placeholder — Veracity to brief SIS. Slot fills once brief is received. Could be: industry feature, partnership announcement, new territory launch, or milestone press.</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Veracity to brief SIS on PR angle and timeline.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
-        <div class="post-card">
-          <div class="card-top"><div class="card-meta-left"><span class="day-tag">Wednesday</span><span class="pillar-tag pillar-scale">Scale &amp; Proof</span><span class="format-tag">&#127916; Long-form &middot; Brand intro film</span></div><span class="platform-badge">YouTube &middot; SIS</span></div>
-          <div class="card-body">
-            <div class="card-headline">Veracity Supply Chain Limited &mdash; Who We Are</div>
-            <div class="card-field"><div class="field-label">Hook / opening</div><div class="field-val hook">Supply Chain Infrastructure. Built for Scale.</div></div>
-            <div class="card-field"><div class="field-label">Content direction</div><div class="field-val">2&ndash;3 minute brand introduction film. Veracity's story, scale, and people &mdash; the evergreen channel anchor. Covers: 1,500+ fleet across 14 territories, 30,000 containers/month, 2 lakh+ MT bulk/day, ICD business, coal operations, proprietary tech suite (Priority Engine + Driver App), the people on the ground. No client names. Scripted VO. Pinned as channel trailer on upload.</div></div>
-            <div class="card-field"><div class="field-label">Visual brief</div><div class="field-val">Professional video. Mix of ICD site footage, fleet on highway, control room/GPS dashboard, drivers, India map with territory markers. Clean VO script. Gold/charcoal grade. Veracity logo open + close. 16:9 for YouTube, clipped version for LinkedIn + IG.</div></div>
+        <div class="post-card from-shoot">
+          <div class="card-top">
+            <div class="card-meta-left">
+              <span class="day-tag">Wednesday</span>
+              <span class="pillar-tag pillar-scale">Scale &amp; Proof</span>
+              <span class="format-tag">🎬 Long-form · Brand intro film</span>
+              <span class="shoot-flag">From Tumb shoot</span>
+            </div>
+            <span class="platform-badge">YouTube · SIS</span>
           </div>
-          <div class="card-footer"><span class="asset-note"><strong>Asset:</strong> Veracity: full shoot required across at least 1&ndash;2 sites. SIS: script + production brief. Script must be approved before shoot.</span><span class="s-badge s-ns" data-id="vcsl-33" data-s="0" onclick="cycleStatus(this)">NOT STARTED</span></div>
+          <div class="card-body">
+            <div class="card-headline">Veracity Supply Chain Limited — Who We Are</div>
+            <div class="card-field">
+              <div class="field-label">Hook / opening</div>
+              <div class="field-val hook">Supply Chain Infrastructure. Built for Scale.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Content direction</div>
+              <div class="field-val">2–3 minute brand introduction film — first cut built from Tumb shoot footage, with this evergreen film designed to grow incrementally as more sites are shot in future months. Covers: who Veracity is, 1,500+ fleet across 14 territories, 30,000 containers/month, 2 lakh+ MT bulk/day, ICD business, the Tumb site as the flagship example, proprietary tech suite, and the driver interview as the human anchor. No client names. Scripted VO. Pinned as channel trailer on upload.</div>
+            </div>
+            <div class="card-field">
+              <div class="field-label">Visual brief</div>
+              <div class="field-val">Professional video. Tumb site footage, fleet on highway, control room/GPS dashboard, driver interview clips, India map with territory markers. Clean VO script. Gold/charcoal grade. Veracity logo open + close. 16:9 for YouTube, clipped version for LinkedIn + IG.</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="asset-note"><strong>Asset:</strong> Tumb shoot — full B-roll + driver interview. SIS: script + production brief. Script approved before shoot.</span>
+            <span class="s-badge s-ns" onclick="cycleStatus(this)">NOT STARTED</span>
+          </div>
         </div>
 
       </div>
@@ -713,44 +1391,69 @@ onSnapshot(collection(_db,"campaigns",CID,"posts"), snap => {
 
   </div>
 
-  <!-- 06 KEY NOTES -->
   <div class="section-block">
-    <div class="section-num">06</div>
+    <div class="section-num">07</div>
     <div class="section-title">Key notes</div>
     <div class="notes-list">
-      <div class="note-item"><h4>Twitter / X &mdash; Client IT SPOC</h4><p>SIS delivers copy-ready briefs (text + asset) 48 hours ahead of each scheduled post. Client IT team handles actual publishing. All 6 Twitter / X posts follow this workflow.</p></div>
-      <div class="note-item"><h4>YouTube long-form &mdash; pre-production starts Week 1</h4><p>The brand intro film (2&ndash;3 min) requires a full shoot. Script to be approved by Veracity before shoot date. Target upload: Week 4, Wednesday.</p></div>
-      <div class="note-item"><h4>Verify all stats before publishing</h4><p>Factual inconsistencies exist between the pitch deck and the website. Confirm fleet size, SLA %, HQ location, state count, and Singrauli volumes with Jaimin before any stat appears in a post.</p></div>
-      <div class="note-item"><h4>IG + FB &mdash; mirrored content</h4><p>Clubbed as one entry in this calendar. Each entry counts as 1 IG post + 1 FB post = 2 published. Total 13 entries = 26 published across both platforms.</p></div>
-      <div class="note-item"><h4>Client permissions &mdash; proof posts</h4><p>All proof and case story posts run anonymized ("a leading manufacturing client") until Veracity clears specific client names for public use.</p></div>
-      <div class="note-item"><h4>CXO LinkedIn calendar</h4><p>Separate document. Not included in these post counts. Jaimin's personal LinkedIn is managed on a separate cadence.</p></div>
-      <div class="note-item"><h4>Visual assets are critical</h4><p>Real photography and video of Veracity's fleet, ICD sites, drivers, and control room will dramatically outperform design-only posts. Prioritize getting site access for Tumb, Patli, or Singrauli in Week 1&ndash;2.</p></div>
-      <div class="note-item"><h4>Firebase status sync</h4><p>Status badges sync across all team members via Firebase in real time. Changes appear instantly for anyone viewing this calendar &mdash; no page refresh needed.</p></div>
+      <div class="note-item">
+        <h4>One site shoot per month — the core production model</h4>
+        <p>Every video and most photography in a given month comes from a single site visit at month-start. Month 1 = Tumb. This single shoot must capture: B-roll, the one People & Culture interview (driver this month), and brand film footage. Lock the shoot date and subject before Week 1 begins.</p>
+      </div>
+      <div class="note-item">
+        <h4>Only ONE People & Culture video per month</h4>
+        <p>Not two. The monthly shoot yields exactly one interview — driver or manager, alternating month to month. The "People of Veracity" static carousel series runs in parallel and does not require a shoot, filling the remaining People & Culture slots.</p>
+      </div>
+      <div class="note-item">
+        <h4>Twitter / X — Client IT SPOC</h4>
+        <p>SIS delivers copy-ready briefs (text + asset) 48 hours ahead of each scheduled post. Client IT team handles actual publishing. All 6 Twitter / X posts follow this workflow.</p>
+      </div>
+      <div class="note-item">
+        <h4>YouTube long-form — built from the same shoot</h4>
+        <p>The brand intro film (2–3 min) is not a separate production — it's cut from the same Tumb shoot footage. Script approved by Veracity before the shoot date. Target upload: Week 4, Wednesday.</p>
+      </div>
+      <div class="note-item">
+        <h4>Verify all stats before publishing</h4>
+        <p>Factual inconsistencies exist between the pitch deck and the website. Confirm fleet size, SLA %, HQ location, state count, and Singrauli volumes with Jaimin before any stat appears in a post.</p>
+      </div>
+      <div class="note-item">
+        <h4>IG + FB — mirrored content</h4>
+        <p>Clubbed as one entry in this calendar. Each entry counts as 1 IG post + 1 FB post = 2 published. Total 13 entries = 26 published across both platforms.</p>
+      </div>
+      <div class="note-item">
+        <h4>Client permissions — proof posts</h4>
+        <p>All proof and case story posts run anonymized ("a leading manufacturing client") until Veracity clears specific client names for public use.</p>
+      </div>
+      <div class="note-item">
+        <h4>Site rotation for future months</h4>
+        <p>14+ territories available — at 1 site per month, that's well over a year of fresh Site Spotlight content. Confirm Month 2's site and interview type (manager, per rotation) by the last week of Month 1 so the next shoot can be scheduled early.</p>
+      </div>
+      <div class="note-item">
+        <h4>CXO LinkedIn calendar</h4>
+        <p>Separate document. Not included in these post counts. Jaimin's personal LinkedIn is managed on a separate cadence.</p>
+      </div>
+      <div class="note-item">
+        <h4>PR activity</h4>
+        <p>Veracity to brief SIS with PR angle, target outlets, and timeline. Placeholder held in Week 4. Slot fills once brief is received.</p>
+      </div>
     </div>
   </div>
 
   <div class="page-footer">
-    Prepared by Say It Social for Veracity Supply Chain Limited &middot; Month 1 &mdash; Foundation Phase &middot; ICD &amp; Container Logistics Spotlight &middot; Company calendar only.
+    Prepared by Say It Social for Veracity Supply Chain Limited · Month 1 — Foundation Phase · ICD & Container Logistics Spotlight · Site of the Month: Tumb · Company calendar only.
   </div>
 
 </div>
 
-<div class="fb-synced" id="fbSync">&#10003; Synced to team</div>
-
 <script>
-const statuses = ['NOT STARTED','IN PROGRESS','READY TO POST','POSTED'];
-const classes  = ['s-ns','s-ip','s-rtp','s-p'];
+  const statuses = ['NOT STARTED', 'IN PROGRESS', 'READY TO POST', 'POSTED'];
+  const classes  = ['s-ns', 's-ip', 's-rtp', 's-p'];
 
-function cycleStatus(el) {
-  const cur  = parseInt(el.dataset.s || '0');
-  const next = (cur + 1) % 4;
-  el.dataset.s   = next;
-  el.textContent = statuses[next];
-  el.className   = 's-badge ' + classes[next];
-  if (window._fbSave && el.dataset.id) {
-    window._fbSave(el.dataset.id, statuses[next]);
+  function cycleStatus(el) {
+    const cur = statuses.indexOf(el.textContent.trim());
+    const next = (cur + 1) % statuses.length;
+    el.textContent = statuses[next];
+    el.className = 's-badge ' + classes[next];
   }
-}
 </script>
 </body>
 </html>
