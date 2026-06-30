@@ -376,12 +376,26 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
     appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
   });
 
-  const ALLOWED=["darshilsoni10@gmail.com","aayushimulay0903@gmail.com","sparmar1317@gmail.com","bikashsahooclg09@gmail.com","niyatiparikh98@gmail.com","patelriddhi221@gmail.com","kavyabothrasocial@gmail.com","kritika70015@gmail.com"];
   const auth=getAuth(app), db=getFirestore(app);
   const isShare=new URLSearchParams(window.location.search).get("view")==="share";
 
-  onAuthStateChanged(auth,user=>{
-    if(!isShare&&(!user||!ALLOWED.includes(user.email.toLowerCase()))){window.location.href="login.html";return;}
+  async function loadAllowedEmails(){
+    try{
+      const snap = await getDocsFromServer(collection(db, "team_members"));
+      const emails = [];
+      snap.forEach(d => emails.push((d.data().email || d.id).toLowerCase()));
+      return emails;
+    } catch(e){
+      console.error("Failed to load team allowlist:", e);
+      return [];
+    }
+  }
+  const allowedEmailsPromise = loadAllowedEmails();
+
+  onAuthStateChanged(auth, async user=>{
+    if(isShare){ document.body.style.visibility="visible"; return; }
+    const ALLOWED = await allowedEmailsPromise;
+    if(!user||!ALLOWED.includes(user.email.toLowerCase())){window.location.href="login.html";return;}
     document.body.style.visibility="visible";
   });
   if(isShare) document.body.style.visibility="visible";
