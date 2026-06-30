@@ -101,7 +101,7 @@ body::after{content:'';position:fixed;top:-200px;left:50%;transform:translateX(-
 <!-- Firebase SDK -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged }
+  import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, onAuthStateChanged }
     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
   import { getFirestore, collection, getDocsFromServer, doc, setDoc }
     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
@@ -173,46 +173,100 @@ body::after{content:'';position:fixed;top:-200px;left:50%;transform:translateX(-
     }
   });
 
-  window.signInWithGoogle = async function() {
-    const btn  = document.getElementById("googleBtn");
-    const load = document.getElementById("loadingBox");
-    const err  = document.getElementById("errorBox");
+  // Shared by both the popup-success path and the redirect-result path —
+// checks the signed-in email against the allowlist and routes accordingly.
+async function checkAccessAndRoute(user) {
+  const email = user.email.toLowerCase();
+  const ALLOWED = await withTimeout(allowedEmailsPromise, 10000).catch(() => {
+    console.error("Allowlist check timed out at sign-in — falling back to seed list");
+    return SEED_TEAM.map(m => m.email.toLowerCase());
+  });
 
-    btn.disabled = true;
-    btn.style.display = "none";
-    load.classList.add("show");
-    err.classList.remove("show");
+  if(ALLOWED.includes(email)) {
+    window.location.href = "index.html";
+    return true;
+  } else {
+    await auth.signOut();
+    const err = document.getElementById("errorBox");
+    err.textContent = "Access denied. Your Google account (" + email + ") is not authorised to access this tool. Contact Darshil to get access.";
+    err.classList.add("show");
+    return false;
+  }
+}
 
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const email  = result.user.email.toLowerCase();
-      // Outer safety net: even if loadAllowedEmails' own timeout somehow doesn't
-      // fire, this guarantees the UI never hangs longer than ~10s on this step.
-      const ALLOWED = await withTimeout(allowedEmailsPromise, 10000).catch(() => {
-        console.error("Allowlist check timed out at sign-in — falling back to seed list");
-        return SEED_TEAM.map(m => m.email.toLowerCase());
-      });
+function resetSignInUI() {
+  const btn  = document.getElementById("googleBtn");
+  const load = document.getElementById("loadingBox");
+  btn.disabled = false;
+  btn.style.display = "flex";
+  load.classList.remove("show");
+}
 
-      if(ALLOWED.includes(email)) {
-        window.location.href = "index.html";
-      } else {
-        await auth.signOut();
-        err.textContent = "Access denied. Your Google account (" + email + ") is not authorised to access this tool. Contact Darshil to get access.";
-        err.classList.add("show");
-        btn.disabled = false;
-        btn.style.display = "flex";
-        load.classList.remove("show");
-      }
-    } catch(e) {
-      if(e.code !== "auth/popup-closed-by-user") {
-        err.textContent = "Sign in failed. Please try again. (" + e.message + ")";
-        err.classList.add("show");
-      }
-      btn.disabled = false;
-      btn.style.display = "flex";
-      load.classList.remove("show");
+// Known error codes where Firebase's POPUP flow itself is broken in this browser
+// (blocked third-party cookies, popup blockers, certain in-app browsers, some
+// account/security configurations) — falls back to a full-page redirect instead,
+// which doesn't depend on popups or cross-window cookie access at all.
+const POPUP_FALLBACK_CODES = new Set([
+  "auth/internal-error",
+  "auth/popup-blocked",
+  "auth/cancelled-popup-request",
+  "auth/operation-not-supported-in-this-environment",
+  "auth/web-storage-unsupported",
+]);
+
+window.signInWithGoogle = async function() {
+  const load = document.getElementById("loadingBox");
+  const err  = document.getElementById("errorBox");
+  const btn  = document.getElementById("googleBtn");
+
+  btn.disabled = true;
+  btn.style.display = "none";
+  load.classList.add("show");
+  err.classList.remove("show");
+
+  try {
+    const result = await signInWithPopup(auth, provider);
+    const ok = await checkAccessAndRoute(result.user);
+    if(!ok) resetSignInUI();
+  } catch(e) {
+    if(e.code === "auth/popup-closed-by-user") {
+      resetSignInUI();
+      return;
     }
-  };
+    if(POPUP_FALLBACK_CODES.has(e.code)) {
+      // Popup sign-in is broken in this browser — fall back to full-page redirect.
+      console.warn("Popup sign-in failed (" + e.code + "), falling back to redirect:", e);
+      try {
+        await signInWithRedirect(auth, provider);
+        // Page navigates away here; getRedirectResult() picks up the result on return.
+      } catch(e2) {
+        err.textContent = "Sign in failed. Please try again. (" + e2.message + ")";
+        err.classList.add("show");
+        resetSignInUI();
+      }
+      return;
+    }
+    err.textContent = "Sign in failed. Please try again. (" + e.message + ")";
+    err.classList.add("show");
+    resetSignInUI();
+  }
+};
+
+// Pick up the result if we just came back from a signInWithRedirect() call.
+// onAuthStateChanged (below) handles the actual routing once Firebase confirms
+// the signed-in user — this just shows a loading state immediately and surfaces
+// any redirect-specific error (e.g. the same account-level issue that broke the
+// popup in the first place, now visible here instead of hanging silently).
+getRedirectResult(auth).then(result => {
+  if(!result || !result.user) return;
+  document.getElementById("loadingBox").classList.add("show");
+  document.getElementById("googleBtn").style.display = "none";
+}).catch(e => {
+  console.error("Redirect sign-in error:", e);
+  const err = document.getElementById("errorBox");
+  err.textContent = "Sign in failed. Please try again. (" + e.message + ")";
+  err.classList.add("show");
+});
 </script>
 
 <script>
