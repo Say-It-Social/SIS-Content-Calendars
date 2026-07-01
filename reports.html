@@ -1652,37 +1652,46 @@ function setUITab(tab){
   }
 }
 
-function handleUICSVUpload(event, plat){
+async function handleUICSVUpload(event, plat){
   const files = Array.from(event.target.files);
   if(!files.length) return;
   const countEl = document.getElementById('ui'+plat.toUpperCase()+'FileCount');
   if(countEl) countEl.textContent = files.length+' file'+(files.length>1?'s':'')+' selected';
   const saveBtn = document.getElementById('ui'+plat.toUpperCase()+'SaveBtn');
 
-  // Process CSVs using existing parseMetaCSV logic
-  Promise.all(files.map(f=>f.text())).then(texts=>{
-    const combined={};
-    texts.forEach(txt=>{
-      const rows=parseMetaCSV(txt,plat);
-      rows.forEach(({month,data})=>{
-        if(!combined[month]) combined[month]={};
-        Object.entries(data).forEach(([k,v])=>combined[month][k]=(combined[month][k]||0)+v);
-      });
-    });
-    _uiCSVData[plat]=combined;
-    const months=Object.keys(combined).sort().reverse();
-    const previewEl=document.getElementById('ui'+plat.toUpperCase()+'Preview');
-    if(previewEl && months.length){
-      previewEl.style.display='block';
-      const fields=['views','reach','interactions','link_clicks','profile_visits','follows'];
-      previewEl.innerHTML=`<div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Preview — ${months.length} month(s)</div>
-        <div class="im-preview"><table>
-          <thead><tr><th>Month</th>${fields.map(f=>'<th>'+f.replace('_',' ')+'</th>').join('')}</tr></thead>
-          <tbody>${months.map(m=>{const d=combined[m];return'<tr><td style="font-weight:700">'+fmtMonth(m)+'</td>'+fields.map(f=>'<td>'+(fmt(d[plat+'_'+f])||'—')+'</td>').join('')+'</tr>';}).join('')}</tbody>
-        </table></div>`;
+  const MAP = plat === 'ig' ? META_IG_MAP : META_FB_MAP;
+  const combined = {};
+
+  for(const file of files){
+    try{
+      const result = await parseMetaCSV(file, MAP, plat);
+      if(result.field){
+        for(const [month, val] of Object.entries(result.data)){
+          if(!combined[month]) combined[month] = {};
+          combined[month][result.field] = (combined[month][result.field]||0) + val;
+        }
+      } else {
+        showToast('⚠️ Could not recognise metric in: '+file.name);
+      }
+    } catch(e){
+      console.error(e);
+      showToast('Error reading: '+file.name);
     }
-    if(saveBtn){saveBtn.style.display='block';}
-  }).catch(e=>{console.error(e);showToast('Error reading files');});
+  }
+
+  _uiCSVData[plat] = combined;
+  const months = Object.keys(combined).sort().reverse();
+  const previewEl = document.getElementById('ui'+plat.toUpperCase()+'Preview');
+  if(previewEl && months.length){
+    previewEl.style.display = 'block';
+    const fields = ['views','reach','interactions','link_clicks','profile_visits','follows'];
+    previewEl.innerHTML = `<div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Preview — ${months.length} month(s)</div>
+      <div class="im-preview"><table>
+        <thead><tr><th>Month</th>${fields.map(f=>'<th>'+f.replace(/_/g,' ')+'</th>').join('')}</tr></thead>
+        <tbody>${months.map(m=>{const d=combined[m];return'<tr><td style="font-weight:700">'+fmtMonth(m)+'</td>'+fields.map(f=>'<td>'+(fmt(d[plat+'_'+f])||'—')+'</td>').join('')+'</tr>';}).join('')}</tbody>
+      </table></div>`;
+  }
+  if(saveBtn) saveBtn.style.display = months.length ? 'block' : 'none';
 }
 
 async function saveUIImport(plat){
@@ -1699,7 +1708,6 @@ async function saveUIImport(plat){
   renderAll();
   showToast('✅ '+months.length+' month(s) imported for '+(plat==='ig'?'Instagram':'Facebook')+'!');
 }
-
 async function saveManualImport(plat){
   const monthEl=document.getElementById('ui_'+plat+'_month');
   const mk=monthEl?monthEl.value:'';
