@@ -575,6 +575,59 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 
 <div class="toast" id="toast"></div>
 
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, doc, addDoc, setDoc, updateDoc, deleteDoc, onSnapshot, arrayUnion, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const app = initializeApp({
+  apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
+  authDomain:"sayitsocial-calendar.firebaseapp.com",
+  projectId:"sayitsocial-calendar",
+  storageBucket:"sayitsocial-calendar.firebasestorage.app",
+  messagingSenderId:"232081824561",
+  appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
+});
+const db = getFirestore(app);
+
+window._fbWatchTasks = function(cb) {
+  onSnapshot(collection(db, "tasks"), snap => {
+    const tasks = [];
+    snap.forEach(d => tasks.push({ id: d.id, ...d.data() }));
+    cb(tasks);
+  });
+};
+
+window._fbWatchProspectClients = function(cb) {
+  onSnapshot(collection(db, "prospect_clients"), snap => {
+    const clients = [];
+    snap.forEach(d => clients.push({ id: d.id, ...d.data() }));
+    cb(clients);
+  });
+};
+
+window._fbAddTask = async function(task) {
+  return await addDoc(collection(db, "tasks"), task);
+};
+
+window._fbUpdateTask = async function(id, data) {
+  await updateDoc(doc(db, "tasks", id), data);
+};
+
+window._fbDeleteTask = async function(id) {
+  await deleteDoc(doc(db, "tasks", id));
+};
+
+window._fbAddNote = async function(id, note) {
+  await updateDoc(doc(db, "tasks", id), { notes: arrayUnion(note) });
+};
+
+window._fbAddProspectClient = async function(data) {
+  return await addDoc(collection(db, "prospect_clients"), data);
+};
+
+window._tasksInit && window._tasksInit();
+</script>
+
 <script>
 // ══════════════════════════════════════
 // CONFIG — client roster & team
