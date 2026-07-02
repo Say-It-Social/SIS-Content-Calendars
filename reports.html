@@ -5,6 +5,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Say It Social — Reports Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, collection, getDoc, getDocs, setDoc, getDocsFromServer } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+const app = initializeApp({
+  apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
+  authDomain:"sayitsocial-calendar.firebaseapp.com",
+  projectId:"sayitsocial-calendar",
+  storageBucket:"sayitsocial-calendar.firebasestorage.app",
+  messagingSenderId:"232081824561",
+  appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
+});
+const db = getFirestore(app);
+
+window._saveMonthData = async (cid, mk, data) => {
+  await setDoc(doc(db,"reports",cid,"months",mk), data, {merge:true});
+};
+window._loadClientData = async (cid) => {
+  const snap = await getDocsFromServer(collection(db,"reports",cid,"months"));
+  const m = {}; snap.forEach(d => m[d.id] = d.data()); return m;
+};
+window._loadProfileUrls = async (cid) => {
+  try {
+    const d = await getDoc(doc(db,"reports",cid,"settings","profiles"));
+    return d.exists() ? d.data() : {};
+  } catch(e) { return {}; }
+};
+window._saveProfileUrls = async (cid, data) => {
+  await setDoc(doc(db,"reports",cid,"settings","profiles"), data, {merge:true});
+};
+window._loadCompetitors = async (cid) => {
+  try {
+    const snap = await getDocsFromServer(collection(db,"reports",cid,"settings"));
+    const out = {}; snap.forEach(d => out[d.id] = d.data()); return out;
+  } catch(e) { return {}; }
+};
+window._saveCompetitor = async (cid, id, data) => {
+  await setDoc(doc(db,"reports",cid,"settings",id), data, {merge:true});
+};
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <style>
