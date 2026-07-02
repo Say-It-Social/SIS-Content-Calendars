@@ -301,6 +301,60 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.9);backdrop-fil
 </div>
 
 <!-- Firebase SDK -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+const app = initializeApp({
+  apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
+  authDomain:"sayitsocial-calendar.firebaseapp.com",
+  projectId:"sayitsocial-calendar",
+  storageBucket:"sayitsocial-calendar.firebasestorage.app",
+  messagingSenderId:"232081824561",
+  appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
+});
+const db = getFirestore(app);
+
+window._fbWatchTeam = function(cb) {
+  onSnapshot(collection(db,"team_members"), snap => {
+    const members = [];
+    snap.forEach(d => members.push({id:d.id, ...d.data()}));
+    cb(members);
+  });
+};
+window._fbAddMember = async (email, name) => {
+  await setDoc(doc(db,"team_members",email.toLowerCase()), {
+    email: email.toLowerCase(), name, addedAt: new Date().toISOString()
+  });
+};
+window._fbRemoveMember = async (email) => {
+  await deleteDoc(doc(db,"team_members",email.toLowerCase()));
+};
+window._fbUpdatePresence = async (name) => {
+  if(!name) return;
+  await setDoc(doc(db,"presence",name), {name, lastSeen: new Date().toISOString()}, {merge:true});
+};
+window._fbWatchPresence = function(cb) {
+  onSnapshot(collection(db,"presence"), snap => {
+    const people = [];
+    snap.forEach(d => people.push(d.data()));
+    cb(people);
+  });
+};
+window._fbLogActivity = async (action) => {
+  try {
+    await addDoc(collection(db,"activity"), {action, at: new Date().toISOString()});
+  } catch(e) {}
+};
+window._fbWatchActivity = function(cb) {
+  onSnapshot(collection(db,"activity"), snap => {
+    const items = [];
+    snap.forEach(d => items.push({id:d.id,...d.data()}));
+    cb(items.sort((a,b)=>b.at.localeCompare(a.at)));
+  });
+};
+if(window._initAdminPanel) window._initAdminPanel();
+</script>
+
 <script>
 const TEAM = [
   { name: "Darshil Soni",       initials: "DS", color: "#1E6FFF" },
