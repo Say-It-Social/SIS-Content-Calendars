@@ -315,57 +315,8 @@ footer { border-top: 1px solid var(--border); padding: 20px 0; text-align: cente
 
 </style>
 <!-- Firebase Auth Guard -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-  import { getFirestore, collection, getDocsFromServer } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-  const app = initializeApp({
-    apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
-    authDomain:"sayitsocial-calendar.firebaseapp.com",
-    projectId:"sayitsocial-calendar",
-    storageBucket:"sayitsocial-calendar.firebasestorage.app",
-    messagingSenderId:"232081824561",
-    appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
-  });
-
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-
-  async function loadAllowedEmails(){
-    try{
-      const snap = await getDocsFromServer(collection(db, "team_members"));
-      const emails = [];
-      snap.forEach(d => emails.push((d.data().email || d.id).toLowerCase()));
-      return emails;
-    } catch(e){
-      console.error("Failed to load team allowlist:", e);
-      return [];
-    }
-  }
-  const allowedEmailsPromise = loadAllowedEmails();
-
-  onAuthStateChanged(auth, async user => {
-    const ALLOWED = await allowedEmailsPromise;
-    if(!user || !ALLOWED.includes(user.email.toLowerCase())) {
-      window.location.href = "login.html";
-      return;
-    }
-    // Show user in nav
-    const nameEl = document.getElementById("navUserName");
-    const avatarEl = document.getElementById("navUserAvatar");
-    if(nameEl) nameEl.textContent = user.displayName?.split(" ")[0] || user.email;
-    if(avatarEl) avatarEl.textContent = (user.displayName||user.email).substring(0,1).toUpperCase();
-    document.body.style.visibility = "visible";
-  });
-
-  window._signOut = async function() {
-    await signOut(auth);
-    window.location.href = "login.html";
-  };
-</script>
 </head>
-<body style="visibility:hidden;">
+<body style="visibility:visible">
 
 <!-- NAV -->
 <nav>
@@ -387,7 +338,7 @@ footer { border-top: 1px solid var(--border); padding: 20px 0; text-align: cente
       <a href="team.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border);font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;transition:all .15s;" onmouseover="this.style.color='var(--text)';this.style.borderColor='var(--border2)'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border)'"><span class="nav-pill-icon">👥</span><span class="nav-pill-label">Team</span></a>
       <a href="reports.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border);font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;transition:all .15s;" onmouseover="this.style.color='var(--text)';this.style.borderColor='var(--border2)'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border)'"><span class="nav-pill-icon">📊</span><span class="nav-pill-label">Reports</span></a>
       <button class="nav-btn btn-ghost" onclick="openModal()">+ Add Client</button>
-      <div id="navUserAvatar" style="width:32px;height:32px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;cursor:pointer;flex-shrink:0;" title="Sign out" onclick="_signOut()">?</div>
+      <div id="navUserAvatar" style="width:32px;height:32px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;cursor:pointer;flex-shrink:0;" title="Sign out" style="display:none">?</div>
     </div>
   </div>
 </nav>
