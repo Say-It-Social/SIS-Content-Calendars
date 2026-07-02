@@ -176,32 +176,43 @@ footer span{color:var(--wheat);}
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getFirestore, doc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-const _app = initializeApp({apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",authDomain:"sayitsocial-calendar.firebaseapp.com",projectId:"sayitsocial-calendar",storageBucket:"sayitsocial-calendar.firebasestorage.app",messagingSenderId:"232081824561",appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"});
-const _db = getFirestore(_app);
-const CID = "green-sapio-july-2025";
-const STATS = [{label:"Not Started",cls:"s0"},{label:"In Progress",cls:"s1"},{label:"Assets Ready",cls:"s2"},{label:"Scheduled",cls:"s3"},{label:"Posted",cls:"s4"}];
-
-window._fbSaveStatus = async (id, label) => {
-  try { await setDoc(doc(_db,"campaigns",CID,"posts",id),{status:label},{merge:true}); } catch(e){console.warn(e);}
-};
-window._fbSaveAsset = async (id, type, link) => {
-  try { await setDoc(doc(_db,"campaigns",CID,"posts",id),{["asset_"+type]:link},{merge:true}); } catch(e){console.warn(e);}
-};
-
-onSnapshot(collection(_db,"campaigns",CID,"posts"), snap => {
-  snap.forEach(d => {
-    const data = d.data();
-    if(data.status){
-      document.querySelectorAll("[data-id=\""+d.id+"\"].status-btn").forEach(btn => {
-        const s = STATS.find(x => x.label === data.status);
-        if(s){ STATS.forEach(x=>btn.classList.remove(x.cls)); btn.classList.add(s.cls); btn.textContent=s.label; btn.dataset.s=STATS.indexOf(s); }
-      });
-    }
-    ["gdrive","onedrive"].forEach(type => {
-      if(data["asset_"+type]){
-        document.querySelectorAll("[data-id=\""+d.id+"\"][data-type=\""+type+"\"]").forEach(a => {
-          a.dataset.link=data["asset_"+type]; a.textContent=type==="gdrive"?"✓ G Drive":"✓ OneDrive"; a.classList.add("linked");
+const _app = initializeApp({
+  apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
+  authDomain:"sayitsocial-calendar.firebaseapp.com",
+  projectId:"sayitsocial-calendar",
+  storageBucket:"sayitsocial-calendar.firebasestorage.app",
+  messagingSenderId:"232081824561",
+  appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
+});
+const _auth = getAuth(_app);
+onAuthStateChanged(_auth, user => {
+  if(!user) return;
+  const _db = getFirestore(_app);
+  const CID = "green-sapio-july-2025";
+  const STATS = [
+    {label:"Not Started",cls:"s0"},
+    {label:"In Progress",cls:"s1"},
+    {label:"Assets Ready",cls:"s2"},
+    {label:"Scheduled",cls:"s3"},
+    {label:"Posted",cls:"s4"}
+  ];
+  window._fbSaveStatus = async (id, label) => {
+    try { await setDoc(doc(_db,"campaigns",CID,"posts",id),{status:label},{merge:true}); }
+    catch(e) { console.warn("Firebase save failed:",e); }
+  };
+  window._fbSaveAsset = async (id, type, link) => {
+    try { await setDoc(doc(_db,"campaigns",CID,"posts",id),{["asset_"+type]:link},{merge:true}); }
+    catch(e) { console.warn("Firebase asset save failed:",e); }
+  };
+  onSnapshot(collection(_db,"campaigns",CID,"posts"), snap => {
+    snap.forEach(d => {
+      const data = d.data();
+      if(data.status){
+        document.querySelectorAll("[data-id=\""+d.id+"\"].status-btn").forEach(btn => {
+          const s = STATS.find(x => x.label === data.status);
+          if(s){ STATS.forEach(x=>btn.classList.remove(x.cls)); btn.classList.add(s.cls); btn.textContent=s.label; btn.dataset.s=STATS.indexOf(s); }
         });
       }
     });
