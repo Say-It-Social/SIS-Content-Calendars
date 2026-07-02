@@ -1623,8 +1623,23 @@ async function saveProfileUrls(){
 let _uiTab = null;
 let _uiCSVData = {ig:{}, fb:{}};
 
+function resetIGFBSlots(plat){
+  _uiCSVData[plat]={};
+  ['Views','Reach','Interactions','LinkClicks','ProfileVisits','Follows'].forEach(m=>{
+    const slot=document.getElementById(plat+'Slot'+m);
+    const stat=document.getElementById(plat+'Status'+m);
+    if(slot) slot.classList.remove('uploaded');
+    if(stat) stat.textContent='Click to upload';
+  });
+  const pw=document.getElementById(plat+'PreviewWrap');
+  const sb=document.getElementById(plat+'SaveBtn');
+  if(pw) pw.style.display='none';
+  if(sb) sb.style.display='none';
+}
 function openUnifiedImport(){
   if(!_cid){showToast('Select a client first');return;}
+  resetIGFBSlots('ig');
+  resetIGFBSlots('fb');
   document.getElementById('unifiedImportBg').classList.add('show');
   setUITab('ig');
 }
@@ -1649,6 +1664,75 @@ function setUITab(tab){
     const mk=_active||'';
     const el=document.getElementById('ui_'+tab+'_month');
     if(el && mk) el.value=mk;
+  }
+}
+
+
+// ── IG / FB PER-METRIC SLOT UPLOAD ────────────────────────────────────────
+// Maps slot key → Firestore field name for IG and FB
+const IGFB_SLOT_MAP = {
+  ig: {
+    views:          'ig_views',
+    reach:          'ig_reach',
+    interactions:   'ig_interactions',
+    link_clicks:    'ig_link_clicks',
+    profile_visits: 'ig_profile_visits',
+    follows:        'ig_follows',
+  },
+  fb: {
+    views:          'fb_views',
+    reach:          'fb_reach',
+    interactions:   'fb_interactions',
+    link_clicks:    'fb_link_clicks',
+    profile_visits: 'fb_profile_visits',
+    follows:        'fb_follows',
+  }
+};
+
+async function handleIGFBSlotUpload(event, plat, metric) {
+  const file = event.target.files[0];
+  if(!file) return;
+
+  const slotId   = plat.toUpperCase() + metric.charAt(0).toUpperCase() + metric.slice(1).replace('_','').replace('_','');
+  const slotEl   = document.getElementById(plat+'Slot'+metric.charAt(0).toUpperCase()+metric.slice(1).replace(/_(.)/, (_,c)=>c.toUpperCase()));
+  const statusEl = document.getElementById(plat+'Status'+metric.charAt(0).toUpperCase()+metric.slice(1).replace(/_(.)/, (_,c)=>c.toUpperCase()));
+
+  const MAP    = plat === 'ig' ? META_IG_MAP : META_FB_MAP;
+  const result = await parseMetaCSV(file, MAP, plat);
+
+  if(result.field) {
+    // Store into _uiCSVData
+    if(!_uiCSVData[plat]) _uiCSVData[plat] = {};
+    for(const [month, val] of Object.entries(result.data)) {
+      if(!_uiCSVData[plat][month]) _uiCSVData[plat][month] = {};
+      _uiCSVData[plat][month][result.field] = val;
+    }
+    if(slotEl) slotEl.classList.add('uploaded');
+    if(statusEl) statusEl.textContent = '✓ ' + file.name.slice(0,18) + (file.name.length>18?'…':'');
+  } else {
+    showToast('⚠️ Could not recognise metric in: ' + file.name);
+    if(statusEl) statusEl.textContent = '✗ Unrecognised';
+    return;
+  }
+
+  // Rebuild preview table
+  const data   = _uiCSVData[plat] || {};
+  const months = Object.keys(data).sort().reverse();
+  const previewWrap = document.getElementById(plat+'PreviewWrap');
+  const previewHead = document.getElementById(plat+'PreviewHead');
+  const previewBody = document.getElementById(plat+'PreviewBody');
+  const saveBtn     = document.getElementById(plat+'SaveBtn');
+
+  if(months.length && previewWrap) {
+    previewWrap.style.display = 'block';
+    const fields = Object.keys(IGFB_SLOT_MAP[plat]);
+    previewHead.innerHTML = '<tr><th>Month</th>' + fields.map(f=>'<th>'+f.replace(/_/g,' ')+'</th>').join('') + '</tr>';
+    previewBody.innerHTML = months.map(m => {
+      const d = data[m];
+      return '<tr><td style="font-weight:700">' + fmtMonth(m) + '</td>' +
+        fields.map(f => '<td>' + (fmt(d[plat+'_'+f]) || '—') + '</td>').join('') + '</tr>';
+    }).join('');
+    if(saveBtn) saveBtn.style.display = 'block';
   }
 }
 
@@ -1698,6 +1782,8 @@ async function saveUIImport(plat){
   const data = _uiCSVData[plat]||{};
   const months = Object.keys(data);
   if(!months.length){showToast('No data to save');return;}
+  const saveBtn = document.getElementById(plat+'SaveBtn');
+  if(saveBtn){ saveBtn.disabled=true; saveBtn.textContent='Saving…'; }
   for(const mk of months){
     if(window._saveMonthData){
       _months[mk]=Object.assign(_months[mk]||{},data[mk]);
@@ -2823,36 +2909,110 @@ window.setImportPlatform   = setImportPlatform;
 
     <!-- IG / FB — CSV upload (existing flow) -->
     <div id="ui-panel-ig" class="ui-panel" style="display:none;">
-      <div style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6;">Upload CSV files exported from <strong style="color:var(--white);">Meta Business Suite → Insights → Export</strong>. Daily rows are automatically summed into monthly totals.</div>
-      <div class="im-files" id="uiIGFileList" style="min-height:48px;border:1.5px dashed var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;padding:14px;margin-bottom:12px;">
-        <span style="font-size:12px;color:var(--muted);">Drop CSV files here or click Browse</span>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6;">
+        Export individual metric CSVs from <strong style="color:#E1306C;">Meta Business Suite → Insights → Export</strong>.
+        Upload one file per metric — daily rows are auto-summed into monthly totals.
       </div>
-      <input type="file" id="uiIGFileInput" multiple accept=".csv" style="display:none" onchange="handleUICSVUpload(event,'ig')"/>
-      <div style="display:flex;gap:10px;align-items:center;margin-bottom:14px;">
-        <button onclick="document.getElementById('uiIGFileInput').click()" style="padding:8px 18px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:12px;font-weight:600;cursor:pointer;font-family:Plus Jakarta Sans,sans-serif;">Browse Files</button>
-        <span id="uiIGFileCount" style="font-size:11px;color:var(--muted);"></span>
+      <div class="li-upload-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;">
+        <div class="li-upload-slot" id="igSlotViews" onclick="document.getElementById('igFileViews').click()">
+          <div class="li-upload-icon">👁️</div>
+          <div class="li-upload-label">Views</div>
+          <div class="li-upload-status" id="igStatusViews">Click to upload</div>
+        </div>
+        <div class="li-upload-slot" id="igSlotReach" onclick="document.getElementById('igFileReach').click()">
+          <div class="li-upload-icon">📡</div>
+          <div class="li-upload-label">Reach</div>
+          <div class="li-upload-status" id="igStatusReach">Click to upload</div>
+        </div>
+        <div class="li-upload-slot" id="igSlotInteractions" onclick="document.getElementById('igFileInteractions').click()">
+          <div class="li-upload-icon">💬</div>
+          <div class="li-upload-label">Interactions</div>
+          <div class="li-upload-status" id="igStatusInteractions">Click to upload</div>
+        </div>
+        <div class="li-upload-slot" id="igSlotLinkClicks" onclick="document.getElementById('igFileLinkClicks').click()">
+          <div class="li-upload-icon">🔗</div>
+          <div class="li-upload-label">Link Clicks</div>
+          <div class="li-upload-status" id="igStatusLinkClicks">Click to upload</div>
+        </div>
+        <div class="li-upload-slot" id="igSlotProfileVisits" onclick="document.getElementById('igFileProfileVisits').click()">
+          <div class="li-upload-icon">🏠</div>
+          <div class="li-upload-label">Profile Visits</div>
+          <div class="li-upload-status" id="igStatusProfileVisits">Click to upload</div>
+        </div>
+        <div class="li-upload-slot" id="igSlotFollows" onclick="document.getElementById('igFileFollows').click()">
+          <div class="li-upload-icon">➕</div>
+          <div class="li-upload-label">Follows</div>
+          <div class="li-upload-status" id="igStatusFollows">Click to upload</div>
+        </div>
       </div>
-      <div id="uiIGPreview" style="display:none;margin-bottom:12px;"></div>
+      <input type="file" id="igFileViews"         accept=".csv" style="display:none" onchange="handleIGFBSlotUpload(event,'ig','views')"/>
+      <input type="file" id="igFileReach"         accept=".csv" style="display:none" onchange="handleIGFBSlotUpload(event,'ig','reach')"/>
+      <input type="file" id="igFileInteractions"  accept=".csv" style="display:none" onchange="handleIGFBSlotUpload(event,'ig','interactions')"/>
+      <input type="file" id="igFileLinkClicks"    accept=".csv" style="display:none" onchange="handleIGFBSlotUpload(event,'ig','link_clicks')"/>
+      <input type="file" id="igFileProfileVisits" accept=".csv" style="display:none" onchange="handleIGFBSlotUpload(event,'ig','profile_visits')"/>
+      <input type="file" id="igFileFollows"       accept=".csv" style="display:none" onchange="handleIGFBSlotUpload(event,'ig','follows')"/>
+
+      <div id="igPreviewWrap" style="display:none;margin-bottom:14px;">
+        <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Preview — Monthly Totals</div>
+        <div class="im-preview"><table><thead id="igPreviewHead"></thead><tbody id="igPreviewBody"></tbody></table></div>
+      </div>
       <div class="im-actions">
         <button class="im-cancel" onclick="closeUnifiedImport()">Cancel</button>
-        <button class="im-save" id="uiIGSaveBtn" style="display:none;" onclick="saveUIImport('ig')">Save Instagram Data</button>
+        <button class="im-save" id="igSaveBtn" style="display:none;" onclick="saveUIImport('ig')">Save Instagram Data</button>
       </div>
     </div>
 
     <div id="ui-panel-fb" class="ui-panel" style="display:none;">
-      <div style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6;">Upload CSV files from <strong style="color:var(--white);">Meta Business Suite → Insights → Export</strong> for Facebook Page data.</div>
-      <div class="im-files" id="uiFBFileList" style="min-height:48px;border:1.5px dashed var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;padding:14px;margin-bottom:12px;">
-        <span style="font-size:12px;color:var(--muted);">Drop CSV files here or click Browse</span>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6;">
+        Export individual metric CSVs from <strong style="color:#1877F2;">Meta Business Suite → Insights → Export</strong>.
+        Upload one file per metric — daily rows are auto-summed into monthly totals.
       </div>
-      <input type="file" id="uiFBFileInput" multiple accept=".csv" style="display:none" onchange="handleUICSVUpload(event,'fb')"/>
-      <div style="display:flex;gap:10px;align-items:center;margin-bottom:14px;">
-        <button onclick="document.getElementById('uiFBFileInput').click()" style="padding:8px 18px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:12px;font-weight:600;cursor:pointer;font-family:Plus Jakarta Sans,sans-serif;">Browse Files</button>
-        <span id="uiFBFileCount" style="font-size:11px;color:var(--muted);"></span>
+      <div class="li-upload-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;">
+        <div class="li-upload-slot" id="fbSlotViews" onclick="document.getElementById('fbFileViews').click()">
+          <div class="li-upload-icon">👁️</div>
+          <div class="li-upload-label">Views</div>
+          <div class="li-upload-status" id="fbStatusViews">Click to upload</div>
+        </div>
+        <div class="li-upload-slot" id="fbSlotReach" onclick="document.getElementById('fbFileReach').click()">
+          <div class="li-upload-icon">📡</div>
+          <div class="li-upload-label">Reach</div>
+          <div class="li-upload-status" id="fbStatusReach">Click to upload</div>
+        </div>
+        <div class="li-upload-slot" id="fbSlotInteractions" onclick="document.getElementById('fbFileInteractions').click()">
+          <div class="li-upload-icon">💬</div>
+          <div class="li-upload-label">Interactions</div>
+          <div class="li-upload-status" id="fbStatusInteractions">Click to upload</div>
+        </div>
+        <div class="li-upload-slot" id="fbSlotLinkClicks" onclick="document.getElementById('fbFileLinkClicks').click()">
+          <div class="li-upload-icon">🔗</div>
+          <div class="li-upload-label">Link Clicks</div>
+          <div class="li-upload-status" id="fbStatusLinkClicks">Click to upload</div>
+        </div>
+        <div class="li-upload-slot" id="fbSlotProfileVisits" onclick="document.getElementById('fbFileProfileVisits').click()">
+          <div class="li-upload-icon">🏠</div>
+          <div class="li-upload-label">Profile Visits</div>
+          <div class="li-upload-status" id="fbStatusProfileVisits">Click to upload</div>
+        </div>
+        <div class="li-upload-slot" id="fbSlotFollows" onclick="document.getElementById('fbFileFollows').click()">
+          <div class="li-upload-icon">➕</div>
+          <div class="li-upload-label">Follows</div>
+          <div class="li-upload-status" id="fbStatusFollows">Click to upload</div>
+        </div>
       </div>
-      <div id="uiFBPreview" style="display:none;margin-bottom:12px;"></div>
+      <input type="file" id="fbFileViews"         accept=".csv" style="display:none" onchange="handleIGFBSlotUpload(event,'fb','views')"/>
+      <input type="file" id="fbFileReach"         accept=".csv" style="display:none" onchange="handleIGFBSlotUpload(event,'fb','reach')"/>
+      <input type="file" id="fbFileInteractions"  accept=".csv" style="display:none" onchange="handleIGFBSlotUpload(event,'fb','interactions')"/>
+      <input type="file" id="fbFileLinkClicks"    accept=".csv" style="display:none" onchange="handleIGFBSlotUpload(event,'fb','link_clicks')"/>
+      <input type="file" id="fbFileProfileVisits" accept=".csv" style="display:none" onchange="handleIGFBSlotUpload(event,'fb','profile_visits')"/>
+      <input type="file" id="fbFileFollows"       accept=".csv" style="display:none" onchange="handleIGFBSlotUpload(event,'fb','follows')"/>
+
+      <div id="fbPreviewWrap" style="display:none;margin-bottom:14px;">
+        <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Preview — Monthly Totals</div>
+        <div class="im-preview"><table><thead id="fbPreviewHead"></thead><tbody id="fbPreviewBody"></tbody></table></div>
+      </div>
       <div class="im-actions">
         <button class="im-cancel" onclick="closeUnifiedImport()">Cancel</button>
-        <button class="im-save" id="uiFBSaveBtn" style="display:none;" onclick="saveUIImport('fb')">Save Facebook Data</button>
+        <button class="im-save" id="fbSaveBtn" style="display:none;" onclick="saveUIImport('fb')">Save Facebook Data</button>
       </div>
     </div>
 
