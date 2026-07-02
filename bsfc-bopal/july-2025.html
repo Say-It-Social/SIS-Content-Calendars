@@ -192,6 +192,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getFirestore, doc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 const app = initializeApp({
   apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
@@ -201,35 +202,41 @@ const app = initializeApp({
   messagingSenderId:"232081824561",
   appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
 });
-const db = getFirestore(app);
-const CID = "bsfc-bopal-july-2025";
-
-const STATUS_MAP = [
-  {cls:"sb-not",   label:"Not Started"},
-  {cls:"sb-wip",   label:"In Progress"},
-  {cls:"sb-ready", label:"Ready to Post"},
-  {cls:"sb-posted",label:"Posted"},
-];
-
-window._fbSave = async (id, label) => {
-  try {
-    await setDoc(doc(db,"campaigns",CID,"posts",id),{status:label},{merge:true});
-  } catch(e) { console.warn("Firebase save failed:",e); }
-};
-
-onSnapshot(collection(db,"campaigns",CID,"posts"), snap => {
-  snap.forEach(d => {
-    const data = d.data();
-    if(data.status) {
-      document.querySelectorAll("[data-id=\""+d.id+"\"]").forEach(el => {
-        const s = STATUS_MAP.find(x => x.label === data.status);
-        if(s) {
-          STATUS_MAP.forEach(x => el.classList.remove(x.cls));
-          el.classList.add(s.cls);
-          el.textContent = s.label;
-        }
-      });
-    }
+const _auth = getAuth(app);
+onAuthStateChanged(_auth, user => {
+  if(!user) return;
+  const db = getFirestore(app);
+  const CID = "bsfc-bopal-july-2025";
+  const STATUS_MAP = [
+    {cls:"sb-not",   label:"Not Started"},
+    {cls:"sb-wip",   label:"In Progress"},
+    {cls:"sb-ready", label:"Ready to Post"},
+    {cls:"sb-posted",label:"Posted"},
+  ];
+  window._fbSave = async (id, label) => {
+    try {
+      await setDoc(doc(db,"campaigns",CID,"posts",id),{status:label},{merge:true});
+    } catch(e) { console.warn("Firebase save failed:",e); }
+  };
+  window._fbSaveAsset = async (id, type, link) => {
+    try {
+      await setDoc(doc(db,"campaigns",CID,"posts",id),{["asset_"+type]:link},{merge:true});
+    } catch(e) { console.warn("Firebase asset save failed:",e); }
+  };
+  onSnapshot(collection(db,"campaigns",CID,"posts"), snap => {
+    snap.forEach(d => {
+      const data = d.data();
+      if(data.status) {
+        document.querySelectorAll("[data-id=\""+d.id+"\"]").forEach(el => {
+          const s = STATUS_MAP.find(x => x.label === data.status);
+          if(s) {
+            STATUS_MAP.forEach(x => el.classList.remove(x.cls));
+            el.classList.add(s.cls);
+            el.textContent = s.label;
+          }
+        });
+      }
+    });
   });
 });
 </script>
