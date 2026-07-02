@@ -17,7 +17,7 @@
   --fb:#1877F2;--fb-dim:rgba(24,119,242,0.12);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--navy);color:var(--text);min-height:100vh;overflow-x:hidden;visibility:hidden;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--navy);color:var(--text);min-height:100vh;overflow-x:hidden;}
 body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   background-image:linear-gradient(rgba(30,111,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(30,111,255,0.03) 1px,transparent 1px);
   background-size:48px 48px;}
@@ -359,64 +359,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(11,18,32,0.92);backdrop-fi
 .plat-filter-hidden{display:none!important;}
 </style>
 </head>
-<body>
-
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-  import { getFirestore, doc, setDoc, getDoc, collection, getDocs, getDocsFromServer }
-    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-  const app = initializeApp({
-    apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
-    authDomain:"sayitsocial-calendar.firebaseapp.com",
-    projectId:"sayitsocial-calendar",
-    storageBucket:"sayitsocial-calendar.firebasestorage.app",
-    messagingSenderId:"232081824561",
-    appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
-  });
-
-  const auth=getAuth(app), db=getFirestore(app);
-  const isShare=new URLSearchParams(window.location.search).get("view")==="share";
-
-  async function loadAllowedEmails(){
-    try{
-      const snap = await getDocsFromServer(collection(db, "team_members"));
-      const emails = [];
-      snap.forEach(d => emails.push((d.data().email || d.id).toLowerCase()));
-      return emails;
-    } catch(e){
-      console.error("Failed to load team allowlist:", e);
-      return [];
-    }
-  }
-  const allowedEmailsPromise = loadAllowedEmails();
-
-  onAuthStateChanged(auth, async user=>{
-    if(isShare){ document.body.style.visibility="visible"; return; }
-    const ALLOWED = await allowedEmailsPromise;
-    if(!user||!ALLOWED.includes(user.email.toLowerCase())){window.location.href="login.html";return;}
-    document.body.style.visibility="visible";
-  });
-  if(isShare) document.body.style.visibility="visible";
-
-  window._signOut=async()=>{await signOut(auth);window.location.href="login.html";};
-  window._saveMonthData=async(cid,mk,data)=>await setDoc(doc(db,"reports",cid,"months",mk),data,{merge:true});
-  window._saveProfileUrls=async(cid,urls)=>await setDoc(doc(db,"reports",cid,"settings","profiles"),urls,{merge:true});
-  window._loadProfileUrls=async(cid)=>{
-    try{const d=await getDocsFromServer(collection(db,"reports",cid,"settings"));let u={};d.forEach(doc=>{if(doc.id==="profiles") u=doc.data();});return u;}
-    catch(e){return {};}
-  };
-  window._saveCompetitors=async(cid,data)=>await setDoc(doc(db,"reports",cid,"settings","competitors"),data,{merge:false});
-  window._loadCompetitors=async(cid)=>{
-    try{const d=await getDocsFromServer(collection(db,"reports",cid,"settings"));let c=null;d.forEach(doc=>{if(doc.id==="competitors") c=doc.data();});return c;}
-    catch(e){return null;}
-  };
-  window._loadClientData=async(cid)=>{
-    const snap=await getDocsFromServer(collection(db,"reports",cid,"months"));
-    const m={};snap.forEach(d=>m[d.id]=d.data());return m;
-  };
-</script>
+<body style="visibility:visible">
 
 <div class="share-banner" id="shareBanner">📊 Shared report from <strong>Say It Social</strong>. Contact your account manager for details.</div>
 
