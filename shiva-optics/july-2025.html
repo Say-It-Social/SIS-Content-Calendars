@@ -166,6 +166,7 @@ h1 em{color:var(--gold);font-style:italic;}
 <!-- Firebase -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getFirestore, doc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 const _app = initializeApp({
   apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
@@ -175,7 +176,10 @@ const _app = initializeApp({
   messagingSenderId:"232081824561",
   appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
 });
-const _db = getFirestore(_app);
+const _auth = getAuth(_app);
+onAuthStateChanged(_auth, user => {
+  if(!user) return; // not signed in — Firestore writes would be rejected anyway
+  const _db = getFirestore(_app);
 const CID = "shiva-optics-july-2025";
 
 window._fbSaveStatus = async (cardId, status) => {
@@ -215,6 +219,7 @@ onSnapshot(collection(_db,"campaigns",CID,"posts"), snap => {
       if(btn){ btn.dataset.link=data.asset_onedrive; btn.textContent="✓ OneDrive"; btn.classList.add("linked"); }
     }
   });
+});
   if(typeof updateCounts === "function") updateCounts();
 });
 </script>
