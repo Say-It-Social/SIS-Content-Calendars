@@ -192,7 +192,6 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getFirestore, doc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 const app = initializeApp({
   apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
@@ -202,9 +201,6 @@ const app = initializeApp({
   messagingSenderId:"232081824561",
   appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
 });
-const _auth = getAuth(app);
-onAuthStateChanged(_auth, user => {
-  if(!user) return;
   const db = getFirestore(app);
   const CID = "bsfc-bopal-july-2025";
   const STATUS_MAP = [
@@ -238,7 +234,6 @@ onAuthStateChanged(_auth, user => {
       }
     });
   });
-});
 </script>
 
 <section class="hero">
