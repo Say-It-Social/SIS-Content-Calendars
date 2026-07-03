@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ber Bandhej — Social Media Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --maroon-deep:#5C0B0B;
+    --maroon-mid:#7A0F0F;
+    --maroon-line:rgba(247,236,221,0.16);
+    --marigold:#E5762E;
+    --marigold-soft:#F0A24B;
+    --gold:#F4C15C;
+    --cream:#F7ECDD;
+    --cream-dim:#E9D8BE;
+    --ink:#2B0A08;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--maroon-deep);color:var(--cream);font-family:'Jost',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden;}
+  ::selection{background:var(--marigold);color:var(--maroon-deep);}
+  h1,h2,h3,.display{font-family:'Fraunces',serif;font-weight:500;letter-spacing:0.01em;}
+  .eyebrow{font-family:'Jost',sans-serif;text-transform:uppercase;letter-spacing:0.28em;font-size:0.72rem;font-weight:500;color:var(--marigold-soft);}
+  a{color:inherit;}
+  section{position:relative;padding:7rem 8vw;max-width:1280px;margin:0 auto;}
+  @media(max-width:720px){section{padding:4.5rem 6vw;}}
+  .divider{display:flex;align-items:center;gap:10px;margin:0 auto 3.5rem;width:fit-content;}
+  .divider span{width:5px;height:5px;border-radius:50%;background:var(--marigold-soft);}
+  .divider .rule{width:60px;height:1px;background:var(--maroon-line);}
+
+  /* BACK LINK */
+  .back-link{position:fixed;top:1.4rem;left:1.6rem;z-index:100;display:flex;align-items:center;gap:8px;font-size:0.76rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--cream-dim);opacity:0.7;transition:opacity 0.2s;text-decoration:none;}
+  .back-link:hover{opacity:1;}
+
+  /* HERO */
+  .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 6vw;position:relative;overflow:hidden;}
+  .hero-ring{position:absolute;width:900px;height:900px;max-width:160vw;max-height:160vw;border-radius:50%;border:1px dashed rgba(247,236,221,0.14);top:50%;left:50%;transform:translate(-50%,-50%);animation:spin 90s linear infinite;}
+  .hero-ring.r2{width:1100px;height:1100px;max-width:190vw;max-height:190vw;border-color:rgba(229,118,46,0.14);animation:spin 130s linear infinite reverse;}
+  @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg);}}
+  .hero-eyebrow{position:relative;z-index:2;margin-bottom:1.8rem;}
+  .hero h1{position:relative;z-index:2;font-size:clamp(2.6rem,7vw,5.4rem);line-height:1.04;max-width:14ch;color:var(--cream);}
+  .hero h1 em{font-style:italic;color:var(--marigold-soft);}
+  .hero-sub{position:relative;z-index:2;max-width:520px;margin:1.6rem auto 0;font-size:1.02rem;color:var(--cream-dim);font-weight:300;}
+  .hero-motif{position:relative;z-index:2;margin-top:3.2rem;display:flex;gap:10px;}
+  .hero-motif .dot{width:9px;height:9px;border-radius:50%;background:var(--marigold);}
+  .hero-motif .dot:nth-child(2){background:var(--marigold-soft);}
+  .hero-motif .dot:nth-child(3){background:var(--gold);}
+  .hero-motif .dot:nth-child(4){background:var(--cream-dim);opacity:0.6;}
+  .hero-motif .dot:nth-child(5){background:var(--cream-dim);opacity:0.3;}
+  .scroll-cue{position:absolute;bottom:2.4rem;left:50%;transform:translateX(-50%);z-index:2;font-size:0.68rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--cream-dim);opacity:0.5;display:flex;flex-direction:column;align-items:center;gap:8px;}
+  .scroll-cue .line{width:1px;height:34px;background:var(--cream-dim);animation:pulse 2s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:0.2;}50%{opacity:0.8;}}
+
+  /* OVERVIEW */
+  .overview-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:start;}
+  @media(max-width:820px){.overview-grid{grid-template-columns:1fr;gap:2.5rem;}}
+  .overview h2{font-size:clamp(1.9rem,3.4vw,2.6rem);margin-bottom:1.4rem;color:var(--cream);}
+  .overview p{color:var(--cream-dim);font-size:1rem;max-width:46ch;}
+  .tag-list{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:2rem;}
+  .tag{border:1px solid var(--maroon-line);padding:0.45rem 1rem;border-radius:999px;font-size:0.78rem;letter-spacing:0.04em;color:var(--cream-dim);}
+  .fact-card{border:1px solid var(--maroon-line);padding:2rem 2.1rem;border-radius:2px;background:linear-gradient(160deg,rgba(229,118,46,0.06),transparent 60%);}
+  .fact-card+.fact-card{margin-top:1.1rem;}
+  .fact-num{font-family:'Fraunces',serif;font-size:2.2rem;color:var(--marigold-soft);display:block;line-height:1;margin-bottom:0.5rem;}
+  .fact-label{font-size:0.86rem;color:var(--cream-dim);}
+
+  /* PALETTE */
+  .palette-wrap{text-align:center;}
+  .palette-head p{max-width:60ch;margin:0 auto;color:var(--cream-dim);}
+  .swatches{display:flex;justify-content:center;gap:1.6rem;margin-top:3.2rem;flex-wrap:wrap;}
+  .swatch{width:150px;text-align:left;}
+  .swatch .chip{width:100%;height:150px;border-radius:2px;margin-bottom:0.9rem;position:relative;overflow:hidden;}
+  .swatch .chip .dots{position:absolute;inset:0;opacity:0.35;}
+  .swatch .name{font-family:'Fraunces',serif;font-size:1rem;color:var(--cream);}
+  .swatch .hex{font-size:0.76rem;color:var(--cream-dim);letter-spacing:0.03em;}
+
+  /* PILLARS */
+  .pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--maroon-line);border:1px solid var(--maroon-line);margin-top:3rem;}
+  @media(max-width:720px){.pillars{grid-template-columns:1fr;}}
+  .pillar{background:var(--maroon-deep);padding:2.6rem 2.4rem;}
+  .pillar-mark{font-family:'Fraunces',serif;font-style:italic;color:var(--marigold-soft);font-size:0.92rem;margin-bottom:1rem;display:block;}
+  .pillar h3{font-size:1.28rem;margin-bottom:0.7rem;color:var(--cream);font-weight:500;}
+  .pillar p{color:var(--cream-dim);font-size:0.92rem;}
+
+  /* CALENDAR */
+  .month-block{margin-top:5rem;}
+  .month-block:first-of-type{margin-top:3rem;}
+  .month-head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-bottom:1px solid var(--maroon-line);padding-bottom:1.2rem;margin-bottom:1.6rem;}
+  .month-head h3{font-size:1.7rem;color:var(--cream);}
+  .month-freq{font-size:0.8rem;color:var(--marigold-soft);letter-spacing:0.06em;text-transform:uppercase;}
+  .month-strategy{color:var(--cream-dim);max-width:70ch;font-size:0.95rem;margin-bottom:2rem;}
+  .week-row{display:grid;grid-template-columns:110px 130px 1fr;gap:1.4rem;padding:1.1rem 0;border-bottom:1px dashed var(--maroon-line);align-items:baseline;}
+  .week-row:last-child{border-bottom:none;}
+  @media(max-width:640px){.week-row{grid-template-columns:1fr;gap:0.3rem;padding:1.3rem 0;}}
+  .week-tag{font-family:'Fraunces',serif;font-style:italic;color:var(--marigold-soft);font-size:0.95rem;}
+  .week-format{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--cream-dim);opacity:0.75;}
+  .week-idea{color:var(--cream);font-size:0.94rem;font-weight:300;}
+  .final-note{margin-top:2.4rem;padding:1.6rem 1.8rem;border:1px solid var(--maroon-line);border-left:2px solid var(--marigold);font-size:0.92rem;color:var(--cream-dim);background:rgba(229,118,46,0.05);}
+
+  /* GRID CONCEPT */
+  .grid-concept{display:grid;grid-template-columns:0.9fr 1.1fr;gap:4rem;align-items:center;}
+  @media(max-width:820px){.grid-concept{grid-template-columns:1fr;gap:2.5rem;}}
+  .ig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;aspect-ratio:1;}
+  .ig-cell{position:relative;border-radius:2px;overflow:hidden;}
+  .ig-cell svg{width:100%;height:100%;display:block;}
+  .grid-copy h2{font-size:clamp(1.8rem,3vw,2.3rem);margin-bottom:1.2rem;}
+  .grid-copy p{color:var(--cream-dim);font-size:0.96rem;max-width:48ch;margin-bottom:1rem;}
+
+  footer{text-align:center;padding:5rem 6vw 4rem;border-top:1px solid var(--maroon-line);margin-top:2rem;}
+  footer .display{font-size:1.6rem;color:var(--cream);margin-bottom:0.6rem;}
+  footer p{color:var(--cream-dim);font-size:0.85rem;}
+
+  @media(prefers-reduced-motion:reduce){.hero-ring{animation:none;}.scroll-cue .line{animation:none;}}
+</style>
+</head>
+<body>
+
+<a class="back-link" href="../index.html">← Back to Hub</a>
+
+<div class="hero">
+  <div class="hero-ring r1"></div>
+  <div class="hero-ring r2"></div>
+  <div class="hero-eyebrow eyebrow">Social Media Conceptualisation · Navratri</div>
+  <h1 class="display">Ber Bandhej<br><em>Garba, in Bandhani.</em></h1>
+  <p class="hero-sub">A three‑month content strategy for a one‑day exclusive Garba event, built around the Bandhani thread — minimal, premium, rooted, and festive.</p>
+  <div class="hero-motif">
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  </div>
+  <div class="scroll-cue"><div class="line"></div>Scroll</div>
+</div>
+
+<section class="overview">
+  <div class="divider"><span></span><div class="rule"></div><span></span></div>
+  <div class="overview-grid">
+    <div>
+      <h2 class="display">The brief, in one thread</h2>
+      <p>Ber Bandhej returns as a one‑day exclusive Garba event with Bandhani as its core visual language — same as last year, but with a refreshed palette. The account should build anticipation slowly, keep the grid visually connected, and never feel loud, cluttered, or over‑produced.</p>
+      <div class="tag-list">
+        <div class="tag">Minimal</div>
+        <div class="tag">Premium</div>
+        <div class="tag">Rooted</div>
+        <div class="tag">Connected grid</div>
+        <div class="tag">No influencer content</div>
+        <div class="tag">Phone‑shot, aesthetically edited</div>
+      </div>
+    </div>
+    <div>
+      <div class="fact-card"><span class="fact-num">45–50</span><span class="fact-label">Total posts across the full 3‑month campaign</span></div>
+      <div class="fact-card"><span class="fact-num">1–2 → alt‑day</span><span class="fact-label">Posting frequency, light start scaling to alternate‑day in the final 15 days</span></div>
+      <div class="fact-card"><span class="fact-num">Bandhani</span><span class="fact-label">The single visual and conceptual thread running through every post</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="palette-wrap">
+  <div class="divider"><span></span><div class="rule"></div><span></span></div>
+  <div class="palette-head">
+    <div class="eyebrow" style="margin-bottom:1rem;">This year's palette</div>
+    <h2 class="display" style="font-size:clamp(1.9rem,3.4vw,2.6rem);margin-bottom:0.9rem;">Moving into orange</h2>
+    <p>A shift from last year's tones into a warm orange spectrum — marigold, rust, and sindoor — tied together with cream Bandhani dot texture. Festive against both daylight and evening event photography, and distinct enough to read as a new season, not a repeat.</p>
+  </div>
+  <div class="swatches">
+    <div class="swatch">
+      <div class="chip" style="background:#5C0B0B;"><svg class="dots" viewBox="0 0 150 150"><g fill="#F7ECDD"><circle cx="20" cy="25" r="2.4"/><circle cx="55" cy="15" r="2.4"/><circle cx="90" cy="30" r="2.4"/><circle cx="125" cy="18" r="2.4"/><circle cx="35" cy="60" r="2.4"/><circle cx="70" cy="55" r="2.4"/><circle cx="105" cy="65" r="2.4"/><circle cx="15" cy="95" r="2.4"/><circle cx="60" cy="100" r="2.4"/><circle cx="95" cy="105" r="2.4"/><circle cx="130" cy="90" r="2.4"/><circle cx="40" cy="135" r="2.4"/><circle cx="80" cy="130" r="2.4"/><circle cx="115" cy="140" r="2.4"/></g></svg></div>
+      <div class="name">Maroon Base</div><div class="hex">#5C0B0B</div>
+    </div>
+    <div class="swatch"><div class="chip" style="background:#E5762E;"></div><div class="name">Marigold</div><div class="hex">#E5762E</div></div>
+    <div class="swatch"><div class="chip" style="background:#F0A24B;"></div><div class="name">Soft Rust</div><div class="hex">#F0A24B</div></div>
+    <div class="swatch"><div class="chip" style="background:#F4C15C;"></div><div class="name">Sindoor Gold</div><div class="hex">#F4C15C</div></div>
+    <div class="swatch"><div class="chip" style="background:#F7ECDD;"></div><div class="name">Bandhani Cream</div><div class="hex">#F7ECDD</div></div>
+  </div>
+</section>
+
+<section class="pillars-wrap">
+  <div class="divider"><span></span><div class="rule"></div><span></span></div>
+  <div style="text-align:center;margin-bottom:0;">
+    <div class="eyebrow" style="margin-bottom:1rem;">The strategy</div>
+    <h2 class="display" style="font-size:clamp(1.9rem,3.4vw,2.6rem);">Six threads, one campaign</h2>
+  </div>
+  <div class="pillars">
+    <div class="pillar"><span class="pillar-mark">One</span><h3>Countdown & anticipation</h3><p>Starting 30–45 days out with theme reveals, venue sneak peeks, throwback moments and countdown reels — all rooted in Bandhani — to build excitement steadily rather than all at once.</p></div>
+    <div class="pillar"><span class="pillar-mark">Two</span><h3>The complete experience</h3><p>Beyond Garba itself — food stalls, shopping zones, decor, and photo booths — so the audience reads Ber Bandhej as a full festive destination, not just a dance floor.</p></div>
+    <div class="pillar"><span class="pillar-mark">Three</span><h3>Interactive & audience‑led</h3><p>Polls, quizzes, "who's coming with you" prompts, outfit inspiration and this‑or‑that stories that keep the audience participating through the quiet weeks.</p></div>
+    <div class="pillar"><span class="pillar-mark">Four</span><h3>Meet the performers</h3><p>Singers, DJs and dancers introduced through short reels and rehearsal glimpses — a personal, behind‑the‑scenes layer, kept separate from influencer or collaboration content.</p></div>
+    <div class="pillar"><span class="pillar-mark">Five</span><h3>Event day coverage</h3><p>Live stories, crowd energy, dance highlights and an instant recap reel posted the same night — built to create FOMO and pull in last‑minute walk‑ins.</p></div>
+    <div class="pillar"><span class="pillar-mark">Six</span><h3>The wrap‑up</h3><p>Highlight reels, best‑dressed features, candid photo dumps and a thank‑you note that closes the campaign warmly and quietly opens the door to next year.</p></div>
+  </div>
+</section>
+
+<section class="month-block-wrap">
+  <div class="divider"><span></span><div class="rule"></div><span></span></div>
+  <div style="text-align:center;">
+    <div class="eyebrow" style="margin-bottom:1rem;">Content calendar</div>
+    <h2 class="display" style="font-size:clamp(1.9rem,3.4vw,2.6rem);">Three months, mapped</h2>
+  </div>
+
+  <div class="month-block">
+    <div class="month-head"><h3 class="display">Month 1 — Anticipation Builds</h3><span class="month-freq">1–2 posts / week</span></div>
+    <p class="month-strategy">The Bandhani theme and this year's orange palette are introduced slowly. No performer or event‑detail content yet — this month is purely aesthetic anticipation, reminding the audience Ber Bandhej is returning, so Month 2's reveal has room to escalate.</p>
+    <div class="week-row"><span class="week-tag">Week 1</span><span class="week-format">Carousel</span><span class="week-idea">"Ber Bandhej returns" announcement on an orange Bandhani print backdrop</span></div>
+    <div class="week-row"><span class="week-tag">Week 1</span><span class="week-format">Story</span><span class="week-idea">Poll — "Ready for Bandhej season?"</span></div>
+    <div class="week-row"><span class="week-tag">Week 2</span><span class="week-format">Reel</span><span class="week-idea">Throwback edit from last year, colour‑graded warm to hint at the new palette</span></div>
+    <div class="week-row"><span class="week-tag">Week 2</span><span class="week-format">Story</span><span class="week-idea">Close‑up Bandhani dot texture in orange — "Guess the theme"</span></div>
+    <div class="week-row"><span class="week-tag">Week 3</span><span class="week-format">Carousel</span><span class="week-idea">Palette reveal post — orange tones introduced formally as this year's identity</span></div>
+    <div class="week-row"><span class="week-tag">Week 3</span><span class="week-format">Story</span><span class="week-idea">This‑or‑that — two shades of orange Bandhani</span></div>
+    <div class="week-row"><span class="week-tag">Week 4</span><span class="week-format">Carousel</span><span class="week-idea">Mood board — marigold, decor textures, festive details</span></div>
+    <div class="week-row"><span class="week-tag">Week 4</span><span class="week-format">Story</span><span class="week-idea">Countdown sticker — "X weeks to go"</span></div>
+  </div>
+
+  <div class="month-block">
+    <div class="month-head"><h3 class="display">Month 2 — Reveal & Engagement</h3><span class="month-freq">2–3 posts / week</span></div>
+    <p class="month-strategy">The event comes alive. Performers, the full experience, and interaction all enter the feed. The orange palette is now established, so posts can get specific rather than purely moody.</p>
+    <div class="week-row"><span class="week-tag">Week 5</span><span class="week-format">Reel</span><span class="week-idea">Meet the DJ / singer — short rehearsal or intro clip, orange‑toned edit</span></div>
+    <div class="week-row"><span class="week-tag">Week 5</span><span class="week-format">Carousel</span><span class="week-idea">Venue sneak peek — decor and setup teasers</span></div>
+    <div class="week-row"><span class="week-tag">Week 5</span><span class="week-format">Story</span><span class="week-idea">Quiz — "How well do you know Bandhani?"</span></div>
+    <div class="week-row"><span class="week-tag">Week 6</span><span class="week-format">Static</span><span class="week-idea">Ticket / registration announcement, orange Bandhani frame</span></div>
+    <div class="week-row"><span class="week-tag">Week 6</span><span class="week-format">Reel</span><span class="week-idea">Dancer / performer behind‑the‑scenes glimpse</span></div>
+    <div class="week-row"><span class="week-tag">Week 6</span><span class="week-format">Story</span><span class="week-idea">"Who's coming with you?" tag‑a‑friend prompt</span></div>
+    <div class="week-row"><span class="week-tag">Week 7</span><span class="week-format">Carousel</span><span class="week-idea">The full experience — food stalls, shopping zones, photo booth previews</span></div>
+    <div class="week-row"><span class="week-tag">Week 7</span><span class="week-format">Reel</span><span class="week-idea">Outfit inspiration reel — orange Bandhani styling ideas</span></div>
+    <div class="week-row"><span class="week-tag">Week 7</span><span class="week-format">Story</span><span class="week-idea">Poll — "Traditional or fusion this year?"</span></div>
+    <div class="week-row"><span class="week-tag">Week 8</span><span class="week-format">Carousel</span><span class="week-idea">Optional light Navratri‑context post, if it fits the aesthetic</span></div>
+    <div class="week-row"><span class="week-tag">Week 8</span><span class="week-format">Story</span><span class="week-idea">Countdown sticker + registration reminder</span></div>
+    <div class="final-note">Of the 2–3 generic Navratri‑education posts the client is open to across the full campaign, we've placed one here — Month 2 has the room for it without disrupting the aesthetic run.</div>
+  </div>
+
+  <div class="month-block">
+    <div class="month-head"><h3 class="display">Month 3 — Countdown to Event Day</h3><span class="month-freq">Alternate days, final 15</span></div>
+    <p class="month-strategy">Frequency ramps up. The first half is final reveals and urgency — full lineup, last‑chance registration. The final 15 days shift to daily countdown content, then live event coverage, then a wrap‑up sequence that closes the campaign.</p>
+    <div class="week-row"><span class="week-tag">Week 9</span><span class="week-format">Reel</span><span class="week-idea">Full lineup reveal — all performers and DJs in one edit</span></div>
+    <div class="week-row"><span class="week-tag">Week 9</span><span class="week-format">Carousel</span><span class="week-idea">VIP experience / exclusivity spotlight</span></div>
+    <div class="week-row"><span class="week-tag">Week 9</span><span class="week-format">Story</span><span class="week-idea">Outfit contest — audience submits Bandhani looks</span></div>
+    <div class="week-row"><span class="week-tag">Week 10</span><span class="week-format">Static</span><span class="week-idea">"Last chance to register" urgency post</span></div>
+    <div class="week-row"><span class="week-tag">Week 10</span><span class="week-format">Reel</span><span class="week-idea">Final rehearsal behind‑the‑scenes, high energy</span></div>
+    <div class="week-row"><span class="week-tag">Week 10</span><span class="week-format">Story</span><span class="week-idea">Countdown sticker, daily from here on</span></div>
+    <div class="week-row"><span class="week-tag">Final 15</span><span class="week-format">Reel / Story</span><span class="week-idea">Daily countdown visuals, outfit‑contest entries, crowd‑anticipation reels</span></div>
+    <div class="week-row"><span class="week-tag">Event day</span><span class="week-format">Live story</span><span class="week-idea">Real‑time crowd reactions, dance highlights, candid moments</span></div>
+    <div class="week-row"><span class="week-tag">Event day</span><span class="week-format">Reel</span><span class="week-idea">Instant recap edit, posted the same night</span></div>
+    <div class="week-row"><span class="week-tag">+2–3 days</span><span class="week-format">Carousel</span><span class="week-idea">Best‑dressed feature, candid photo dump</span></div>
+    <div class="week-row"><span class="week-tag">+1 week</span><span class="week-format">Reel</span><span class="week-idea">Full highlight reel</span></div>
+    <div class="week-row"><span class="week-tag">Closing</span><span class="week-format">Static</span><span class="week-idea">Thank‑you post + "See you next year"</span></div>
+    <div class="final-note">Total across the three months lands at roughly 46–48 posts, within the client's 45–50 range.</div>
+  </div>
+</section>
+
+<section class="grid-concept-wrap">
+  <div class="divider"><span></span><div class="rule"></div><span></span></div>
+  <div class="grid-concept">
+    <div class="ig-grid">
+      <div class="ig-cell" style="background:#5C0B0B;"></div>
+      <div class="ig-cell" style="background:#E5762E;"></div>
+      <div class="ig-cell" style="background:#7A0F0F;"></div>
+      <div class="ig-cell" style="background:#F0A24B;"></div>
+      <div class="ig-cell" style="background:#5C0B0B;"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice"><g fill="#F7ECDD" opacity="0.85"><circle cx="20" cy="20" r="2.2"/><circle cx="50" cy="15" r="2.2"/><circle cx="80" cy="22" r="2.2"/><circle cx="30" cy="50" r="2.2"/><circle cx="65" cy="48" r="2.2"/><circle cx="15" cy="80" r="2.2"/><circle cx="50" cy="82" r="2.2"/><circle cx="85" cy="78" r="2.2"/></g></svg></div>
+      <div class="ig-cell" style="background:#F4C15C;"></div>
+      <div class="ig-cell" style="background:#7A0F0F;"></div>
+      <div class="ig-cell" style="background:#E5762E;"></div>
+      <div class="ig-cell" style="background:#5C0B0B;"></div>
+    </div>
+    <div class="grid-copy">
+      <div class="eyebrow" style="margin-bottom:1rem;">Grid direction</div>
+      <h2 class="display">One connected profile, not nine separate posts</h2>
+      <p>As last year, the grid is designed as a single connected layout rather than individual tiles — colour, texture and Bandhani dot placement carry across post boundaries so the profile reads as one cohesive piece when viewed as a whole.</p>
+      <p>Shot on phone throughout, no professional shoot day — planned and edited carefully enough that it doesn't need one.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="display">Ber Bandhej</div>
+  <p>Social Media Strategy · Prepared by Say It Social</p>
+</footer>
+
+</body>
+</html>
