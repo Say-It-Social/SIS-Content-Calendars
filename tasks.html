@@ -326,9 +326,16 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
     <a class="nav-pill" href="leads.html">📋 Leads</a>
     <a class="nav-pill" href="team.html">👥 Team</a>
     <div class="nav-user">
-      <div class="nav-avatar" id="navUserInitial">—</div>
-      <span id="navUserEmail">—</span>
-      <button class="signout-btn" onclick="window._doSignOut()">Sign out</button>
+      <select id="whoAmI" onchange="setCurrentUser(this.value)" style="background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.15);color:#fff;border-radius:8px;padding:6px 12px;font-size:13px;font-weight:600;cursor:pointer;outline:none;font-family:inherit;">
+        <option value="">👤 Who are you?</option>
+        <option value="darshilsoni10@gmail.com">Darshil</option>
+        <option value="aayushimulay0903@gmail.com">Aayushi</option>
+        <option value="bikashsahooclg09@gmail.com">Bikash</option>
+        <option value="niyatiparikh98@gmail.com">Niyati</option>
+        <option value="patelriddhi221@gmail.com">Riddhi</option>
+        <option value="kavyabothrasocial@gmail.com">Kavya</option>
+        <option value="kritika70015@gmail.com">Kritika</option>
+      </select>
     </div>
   </div>
 </div>
@@ -625,7 +632,12 @@ window._fbAddProspectClient = async function(data) {
   return await addDoc(collection(db, "prospect_clients"), data);
 };
 
-window._tasksInit && window._tasksInit();
+// Trigger init after Firestore module is ready
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', () => window._tasksInit && window._tasksInit());
+} else {
+  window._tasksInit && window._tasksInit();
+}
 </script>
 
 <script>
@@ -667,8 +679,37 @@ let _draggedTaskId = null;
 // ══════════════════════════════════════
 let _prospectClients = [];
 
+function setCurrentUser(email) {
+  window._currentUserEmail = email;
+  if(email) localStorage.setItem('sis_tasks_user', email);
+  else localStorage.removeItem('sis_tasks_user');
+  // Update picker display
+  const sel = document.getElementById('whoAmI');
+  if(sel) sel.value = email;
+  renderEverything();
+}
+
+function initUserPicker() {
+  const sel = document.getElementById('whoAmI');
+  if(!sel) return;
+  // Populate options from TEAM
+  TEAM.forEach(t => {
+    const opt = document.createElement('option');
+    opt.value = t.email;
+    opt.textContent = t.name;
+    sel.appendChild(opt);
+  });
+  // Restore from localStorage
+  const saved = localStorage.getItem('sis_tasks_user');
+  if(saved) {
+    window._currentUserEmail = saved;
+    sel.value = saved;
+  }
+}
+
 window._tasksInit = function(){
   populateAssigneeDropdowns();
+  initUserPicker();
   window._fbWatchProspectClients(clients => {
     _prospectClients = clients;
     populateClientDropdowns();
@@ -1323,6 +1364,16 @@ function showToast(msg){
 
 document.addEventListener('keydown', e=>{
   if(e.key==='Escape') closeTaskModal();
+});
+
+// Restore saved user on page load so My Tasks works immediately
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('sis_tasks_user');
+  if(saved){
+    window._currentUserEmail = saved;
+    const sel = document.getElementById('whoAmI');
+    if(sel) sel.value = saved;
+  }
 });
 </script>
 
