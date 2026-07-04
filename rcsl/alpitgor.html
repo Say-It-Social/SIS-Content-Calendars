@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Alpit Gor — LinkedIn Calendar Months 1–3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#15233f;--navy-soft:#22335a;--ink:#1d2433;--muted:#5d6577;--hair:#e7e9ef;--paper:#f6f7fa;--white:#fff;--red:#c8102e;--radius:12px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'IBM Plex Sans',-apple-system,Segoe UI,sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px 60px}
+h1,h2,h3{font-family:'Archivo',-apple-system,Segoe UI,sans-serif;letter-spacing:-.01em}
+.hero{background:var(--navy);color:#fff;padding:44px 0 38px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;top:-60px;right:-40px;width:280px;height:280px;border:36px solid rgba(255,255,255,.04);transform:rotate(45deg)}
+.kicker{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#9fb3d6;font-weight:600;margin-bottom:10px}
+.hero h1{font-size:36px;line-height:1.04;font-weight:800}
+.hero h1 .accent{color:#7fa8e8}
+.hero .sub{font-size:14px;color:#c7d2e6;max-width:640px;margin-top:12px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.tag{font-size:11.5px;font-weight:500;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:4px 11px;border-radius:999px;color:#dde6f4}
+.brandline{position:absolute;top:24px;right:26px;text-align:right;font-family:'Archivo';font-weight:700;font-size:15px;color:#fff}
+.brandline span{color:var(--red)}
+.brandline small{display:block;font-weight:400;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#9fb3d6;margin-top:2px}
+.sec-head{display:flex;align-items:baseline;gap:12px;margin:32px 0 16px}
+.sec-head h2{font-family:'Archivo';font-size:21px;font-weight:700;color:var(--navy)}
+.sec-num{font-family:'Archivo';font-weight:800;color:var(--red);font-size:14px}
+.sec-line{flex:1;height:1px;background:var(--hair)}
+.profile-hero{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);border-left:6px solid #1B4D8E;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:28px 0 14px}
+.ph-left{display:flex;align-items:center;gap:16px}
+.ph-avatar{width:52px;height:52px;border-radius:50%;background:#1B4D8E;display:flex;align-items:center;justify-content:center;font-family:'Archivo';font-weight:800;font-size:16px;color:#fff;flex-shrink:0}
+.ph-name{font-family:'Archivo';font-weight:800;font-size:19px;color:var(--navy)}
+.ph-title{font-size:12.5px;color:var(--muted);margin-top:2px}
+.access-badge{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:999px;background:#ecfdf5;color:#065f46;display:inline-block;margin-top:5px}
+.ph-counts{display:flex;gap:16px;align-items:center}
+.ph-count-item{text-align:center}
+.ph-num{font-family:'Archivo';font-weight:800;font-size:28px;color:var(--navy);display:block;line-height:1}
+.ph-lbl{font-size:11px;color:var(--muted)}
+.ph-count-item.total .ph-num{color:var(--red)}
+.domain-box{background:#eaf1fe;border:1px solid #c3d8f7;border-radius:10px;padding:12px 16px;font-size:13px;color:var(--ink);line-height:1.55;margin-bottom:10px}
+.domain-box b{color:#1a56db}
+.voice-box{background:var(--paper);border:1px solid var(--hair);border-radius:10px;padding:13px 16px;font-size:12.5px;color:var(--ink);line-height:1.6;margin-bottom:14px}
+.voice-box b{color:var(--navy)}
+.topic-section{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:14px 18px;margin-bottom:14px}
+.topic-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.topic-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.topic-tag{font-size:11.5px;font-weight:600;background:#ecfdf5;color:#065f46;border:1px solid #c8efde;padding:3px 10px;border-radius:999px}
+.avoid-tag{font-size:11.5px;font-weight:600;background:#fbeee7;color:#C2410C;border:1px solid #f3d9c9;padding:3px 10px;border-radius:999px}
+.glance-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:12px}
+.glance-card{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:14px 16px}
+.glance-card .v{font-family:'Archivo';font-weight:800;font-size:26px;color:var(--navy);line-height:1}
+.glance-card .l{font-size:11.5px;color:var(--muted);margin-top:4px}
+.mixbar{display:flex;height:10px;border-radius:999px;overflow:hidden;border:1px solid var(--hair);margin-bottom:8px}
+.mixleg{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--muted);margin-bottom:18px}
+.mixleg b{display:inline-flex;align-items:center;gap:5px;font-weight:500;color:var(--ink)}
+.dot{width:9px;height:9px;border-radius:3px;display:inline-block}
+.status-bar{display:flex;align-items:center;flex-wrap:wrap;gap:6px;background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:12px 18px;margin-bottom:14px}
+.sl-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+.sl-item{display:inline-flex;align-items:center;gap:6px;background:var(--paper);border:1px solid var(--hair);border-radius:999px;padding:4px 12px}
+.sl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.orange-flag{background:#fff7ed;border:1px solid #fde8cc;border-radius:var(--radius);padding:14px 18px;margin-bottom:20px;font-size:13px;line-height:1.6}
+.orange-flag b{color:#b45309}
+.schedule-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px}
+.sched-item{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:12px 14px;position:relative;padding-left:18px}
+.sched-item:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:var(--radius) 0 0 var(--radius)}
+.sched-w1:before{background:#1B4D8E}
+.sched-w2:before{background:#6D28D9}
+.sched-w3:before{background:#0E7C66}
+.sched-w4:before{background:#C2410C}
+.sched-wk{font-family:'Archivo';font-weight:700;font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.sched-post{font-size:12px;color:var(--ink);line-height:1.5;margin-bottom:4px}
+.sched-pill{display:inline-block;font-size:9.5px;font-weight:700;padding:1px 6px;border-radius:999px;color:#fff;margin-right:4px;vertical-align:middle}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px;margin-bottom:32px}
+.card{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);overflow:hidden;border-top:5px solid;display:flex;flex-direction:column}
+.card .top{padding:11px 14px 8px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.wk-pill{font-size:9.5px;font-weight:700;background:var(--navy-soft);color:#c7d2e6;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.day-label{font-family:'Archivo';font-weight:700;font-size:12px;color:var(--navy);background:var(--paper);border:1px solid var(--hair);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.pill{font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 7px;border-radius:999px;color:#fff;white-space:nowrap}
+.art-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;background:#ede9fe;color:#6D28D9;border:1px solid #ddd6fe}
+.vid-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;background:#fbeee7;color:#C2410C;border:1px solid #f3d9c9}
+.fmt{font-size:10px;font-weight:600;color:var(--navy);background:var(--paper);border:1px solid var(--hair);padding:3px 8px;border-radius:6px;white-space:nowrap}
+.card .body{padding:4px 14px 12px;flex:1}
+.card h3{font-family:'Archivo';font-size:14.5px;font-weight:700;line-height:1.25;margin:7px 0 10px}
+.field{margin-bottom:8px}
+.field .lab{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.field p{font-size:12.5px;line-height:1.5;color:var(--ink)}
+.field.hook p{font-style:italic;color:var(--navy);font-weight:500}
+.dep{margin-top:8px;font-size:11px;color:#C2410C;background:#fbeee7;border:1px solid #f3d9c9;padding:6px 10px;border-radius:8px;display:flex;gap:6px;align-items:flex-start}
+.dep b{font-weight:700;white-space:nowrap}
+.card-status{display:flex;align-items:center;gap:7px;padding:9px 14px;border-top:1px solid var(--hair);cursor:pointer;user-select:none}
+.card-status:hover{filter:brightness(.96)}
+.s-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.s-label{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.rm-block{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);border-top:5px solid;overflow:hidden;margin-bottom:14px}
+.rm-header{font-family:'Archivo';font-weight:800;font-size:15px;color:var(--navy);padding:14px 18px;border-bottom:1px solid var(--hair);background:var(--paper)}
+.rm-row{display:grid;grid-template-columns:220px 1fr;gap:14px;padding:12px 18px;border-bottom:1px solid var(--hair);align-items:start;font-size:12.5px}
+.rm-row:last-child{border-bottom:none}
+.rm-tag{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.06em;padding-top:2px}
+.rm-title{font-family:'Archivo';font-weight:700;font-size:13px;color:var(--navy);margin-bottom:3px}
+.rm-desc{font-size:12px;color:var(--muted);line-height:1.5}
+.foot{background:var(--navy);color:#cdd8ea;padding:28px 0 36px;margin-top:22px}
+.foot h2{color:#fff;font-size:18px;margin-bottom:12px;font-weight:700}
+.foot ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.foot li{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:11px 14px;font-size:12px}
+.foot li b{color:#fff;font-family:'Archivo';display:block;margin-bottom:3px}
+.foot .fin{margin-top:18px;font-size:11px;color:#8ea3c6}
+@media print{body{background:#fff}.hero,.foot{-webkit-print-color-adjust:exact;print-color-adjust:exact}.card,.rm-block{break-inside:avoid}}
+</style></head><body>
+
+<header class="hero"><div class="wrap">
+<div class="brandline">Say It <span>Social</span><small>Strategize · Innovate · Socialize</small></div>
+<div class="kicker">CXO LinkedIn Calendar · Riddhi Group · Months 1–3</div>
+<h1>Alpit Gor<br><span class="accent">LinkedIn Calendar — Month 1 + Roadmap</span></h1>
+<p class="sub">5 posts across Month 1. Content spread across 3 months — foundation, depth, and milestone. Technology added as a new lane across all three months.</p>
+<div class="meta">
+<span class="tag">Riddhi Group level</span>
+<span class="tag">0 videos · 2 articles · 3 text posts = 5 total</span>
+<span class="tag">Mon / Wed / Fri posting days</span>
+<span class="tag">Access confirmed</span>
+</div></div></header>
+
+<div class="wrap">
+
+<div class="profile-hero">
+ <div class="ph-left">
+  <div class="ph-avatar">AG</div>
+  <div>
+   <div class="ph-name">Alpit Gor</div>
+   <div class="ph-title">Managing Director · Riddhi Group</div>
+   <a href="https://www.linkedin.com/in/alpit-gor/" target="_blank"
+      style="font-size:12px;color:#0A66C2;text-decoration:none;display:block;margin-top:3px">
+     linkedin.com/in/alpit-gor
+   </a>
+   <span class="access-badge">✓ Access confirmed</span>
+  </div>
+ </div>
+ <div class="ph-counts">
+  <div class="ph-count-item"><span class="ph-num">0</span><span class="ph-lbl">Videos</span></div>
+  <div class="ph-count-item"><span class="ph-num">2</span><span class="ph-lbl">Articles</span></div>
+  <div class="ph-count-item"><span class="ph-num">3</span><span class="ph-lbl">Posts</span></div>
+  <div class="ph-count-item total"><span class="ph-num">5</span><span class="ph-lbl">Total M1</span></div>
+ </div>
+</div>
+
+<div class="domain-box">
+<b>Content domain:</b> Riddhi Group — group-level operational philosophy,
+building a B2B conglomerate, technology as a strategic differentiator,
+industry voice on compliance and workforce, group milestones.
+Speaks above individual entities. Does not duplicate RCSL company page,
+Om's new business content, or Nehal's CEO content.
+</div>
+
+<div class="voice-box">
+<b>Voice brief:</b> The MD founder voice. Built the group from the ground up.
+Content is grounded, specific, and practitioner-led — not promotional or corporate.
+The technology lane is strategic and philosophical (why we built vs bought),
+not technical (how it works — that is Umesh's lane).
+Month 1 = establish voice + introduce group + plant technology angle.
+Month 2 = industry depth + first tech deep-dive.
+Month 3 = milestone, legacy, and forward signal.
+</div>
+
+<div class="topic-section">
+ <div class="topic-label">Primary topics — all 3 months</div>
+ <div class="topic-list">
+  <span class="topic-tag">Riddhi Group operating philosophy</span>
+  <span class="topic-tag">In-house technology — build vs buy</span>
+  <span class="topic-tag">B2B operations & compliance</span>
+  <span class="topic-tag">Group milestones</span>
+  <span class="topic-tag">Workforce formalization</span>
+  <span class="topic-tag">New vertical evaluation</span>
+  <span class="topic-tag">15 years of building</span>
+ </div>
+ <div class="topic-label">Avoid</div>
+ <div class="topic-list">
+  <span class="avoid-tag">Riddhi Worldwide Express / courier franchise origin story</span>
+  <span class="avoid-tag">Personal lifestyle content</span>
+  <span class="avoid-tag">Generic motivational posts</span>
+  <span class="avoid-tag">Political or religious opinions</span>
+  <span class="avoid-tag">Technical platform detail (Umesh's lane)</span>
+ </div>
+</div>
+
+<div class="sec-head"><span class="sec-num">01</span><h2>Month 1 — Foundation Phase</h2><span class="sec-line"></span></div>
+
+<div class="glance-row">
+ <div class="glance-card"><div class="v">5</div><div class="l">Total posts Month 1</div></div>
+ <div class="glance-card"><div class="v">2</div><div class="l">LinkedIn Articles</div></div>
+ <div class="glance-card"><div class="v">3</div><div class="l">Text posts</div></div>
+ <div class="glance-card"><div class="v">1</div><div class="l">Technology posts</div></div>
+</div>
+<div class="mixbar"><span style="width:40%;background:#1B4D8E;display:block;height:100%"></span><span style="width:20%;background:#0E7C66;display:block;height:100%"></span><span style="width:20%;background:#6D28D9;display:block;height:100%"></span><span style="width:20%;background:#C2410C;display:block;height:100%"></span></div>
+<div class="mixleg"><b><span class="dot" style="background:#1B4D8E"></span>Riddhi Group · 2</b><b><span class="dot" style="background:#0E7C66"></span>Industry Voice · 1</b><b><span class="dot" style="background:#6D28D9"></span>Technology · 1</b><b><span class="dot" style="background:#C2410C"></span>Milestone · 1</b></div>
+
+<div class="status-bar">
+ <span class="sl-label">Status:</span><span class="sl-item"><span class="sl-dot" style="background:#9ca3af"></span><span style="color:#6b7280;font-weight:700;font-size:11px;letter-spacing:.06em">NOT STARTED</span></span><span class="sl-item"><span class="sl-dot" style="background:#f59e0b"></span><span style="color:#d97706;font-weight:700;font-size:11px;letter-spacing:.06em">IN PROGRESS</span></span><span class="sl-item"><span class="sl-dot" style="background:#06b6d4"></span><span style="color:#0891b2;font-weight:700;font-size:11px;letter-spacing:.06em">READY TO POST</span></span><span class="sl-item"><span class="sl-dot" style="background:#22c55e"></span><span style="color:#16a34a;font-weight:700;font-size:11px;letter-spacing:.06em">POSTED</span></span>
+ <span style="font-size:11px;color:var(--muted);margin-left:6px">Click any card to update</span>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px">
+ <div class="sched-item sched-w1">
+  <div class="sched-wk">Week 1 · 1 post</div>
+  <div class="sched-post"><span class="sched-pill" style="background:#1B4D8E">Mon</span>Group operating philosophy</div>
+ </div>
+ <div class="sched-item sched-w2">
+  <div class="sched-wk">Week 2 · 2 posts</div>
+  <div class="sched-post"><span class="sched-pill" style="background:#1B4D8E">Mon</span>Article — 15 years</div>
+  <div class="sched-post"><span class="sched-pill" style="background:#6D28D9">Fri</span>Tech — build vs buy</div>
+ </div>
+ <div class="sched-item sched-w3">
+  <div class="sched-wk">Week 3 · 1 post</div>
+  <div class="sched-post"><span class="sched-pill" style="background:#0E7C66">Mon</span>Article — tech solving problems</div>
+ </div>
+ <div class="sched-item sched-w4">
+  <div class="sched-wk">Week 4 · 1 post</div>
+  <div class="sched-post"><span class="sched-pill" style="background:#C2410C">Mon</span>Riddhi Group at 15</div>
+ </div>
+</div>
+
+<div class="orange-flag">
+<b>⚠ Before any post goes live:</b>
+Confirm ShiftEaze and platform names cleared for public mention (Week 2 Friday + Week 3 Monday) ·
+Week 3 Monday article — every technology claim must be validated by Alpit before publishing ·
+Week 4 Monday — company secretary awareness for any financial references in the milestone post
+</div>
+
+<div class="cards"><div class="card" style="border-top-color:#1B4D8E">
+<div class="top">
+ <span class="wk-pill">Week 1</span>
+ <span class="day-label">Monday</span>
+ <span class="pill" style="background:#1B4D8E">Riddhi Group</span>
+ 
+ <span class="fmt">Text post</span>
+</div>
+<div class="body">
+<h3>Riddhi Group operates across logistics, workforce, supply chain, and procurement. Here is what ties it all together.</h3>
+<div class="field hook"><div class="lab">Opening line</div><p>Different verticals. One operating philosophy.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>200-word post introducing Riddhi Group as a multi-vertical group with one common operating standard. Alpit frames this from the MD seat — what the unifying principle is across RCSL, VCSL, and Be Utopian. Sets context for everything that follows across Month 1. Company-led, not personal.</p></div>
+<div class="field"><div class="lab">Format & visual</div><p>Text-only. Optional: clean group-entity graphic if available.</p></div>
+<div class="dep"><b>Needs:</b><span>Alpit: approve the unifying principle — must reflect real group operating logic.</span></div>
+</div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started"
+ style="background:#f0f1f3;cursor:pointer;">
+ <span class="s-dot" style="background:#9ca3af"></span>
+ <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+</div></div><div class="card" style="border-top-color:#1B4D8E">
+<div class="top">
+ <span class="wk-pill">Week 2</span>
+ <span class="day-label">Monday</span>
+ <span class="pill" style="background:#1B4D8E">Riddhi Group</span>
+ <span class="art-badge">✍ Article</span>
+ <span class="fmt">LinkedIn Article</span>
+</div>
+<div class="body">
+<h3>15 years of building Riddhi Group — what I know now that I didn't then</h3>
+<div class="field hook"><div class="lab">Opening line</div><p>Year 1 taught me the market exists. Year 5 taught me it's harder than it looks. Year 15 taught me that's an advantage.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>700–900 word article. 5 candid, specific lessons from building a multi-vertical B2B group across 15 years in India. Not a company profile — a practitioner's honest account of what building at this scale actually requires. No promotional language. Ends with a forward-looking signal on where the group is headed. This is the flagship piece of Month 1.</p></div>
+<div class="field"><div class="lab">Format & visual</div><p>Article cover: Alpit + group operations imagery. Author photo prominent.</p></div>
+<div class="dep"><b>Needs:</b><span>SIS drafts from brief. Alpit adds personal observations — at least 2–3 must be in his own words. Approves before publishing.</span></div>
+</div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started"
+ style="background:#f0f1f3;cursor:pointer;">
+ <span class="s-dot" style="background:#9ca3af"></span>
+ <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+</div></div><div class="card" style="border-top-color:#6D28D9">
+<div class="top">
+ <span class="wk-pill">Week 2</span>
+ <span class="day-label">Friday</span>
+ <span class="pill" style="background:#6D28D9">Technology</span>
+ 
+ <span class="fmt">Text post</span>
+</div>
+<div class="body">
+<h3>We built 20+ technology platforms in-house. Here is why we chose to build instead of buy.</h3>
+<div class="field hook"><div class="lab">Opening line</div><p>Buying technology felt like borrowing someone else's brain.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>200-word post on the group's philosophy of building proprietary technology rather than procuring off-the-shelf solutions. Alpit frames this from the MD seat — the decision-making logic behind building RicRoot, ShiftEaze, PayEaze, EAS, RTrue, and RProc internally. The "we built our own tech" story told as a business philosophy, not a product pitch. This is Alpit's tech lane — group-level and strategic, not operational or technical.</p></div>
+<div class="field"><div class="lab">Format & visual</div><p>Text post. Optional: platform icons grid or a simple "built vs bought" visual.</p></div>
+<div class="dep"><b>Needs:</b><span>Confirm which platform names are cleared for public mention. ShiftEaze clearance especially.</span></div>
+</div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started"
+ style="background:#f0f1f3;cursor:pointer;">
+ <span class="s-dot" style="background:#9ca3af"></span>
+ <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+</div></div><div class="card" style="border-top-color:#0E7C66">
+<div class="top">
+ <span class="wk-pill">Week 3</span>
+ <span class="day-label">Monday</span>
+ <span class="pill" style="background:#0E7C66">Industry Voice</span>
+ <span class="art-badge">✍ Article</span>
+ <span class="fmt">LinkedIn Article</span>
+</div>
+<div class="body">
+<h3>How Riddhi Group's technology is solving problems enterprise clients didn't know they could outsource</h3>
+<div class="field hook"><div class="lab">Opening line</div><p>Most clients come to us for workforce or logistics. They stay because of the system behind it.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>600–800 word article. Alpit on how Riddhi Group's in-house technology platforms are redefining what B2B operations outsourcing means — from face-recognition attendance and AI-powered rostering to automated payroll compliance. Each platform solves a real client problem. Written from the MD perspective: why the group invested in building these, what problem each solves, and what it means for clients who choose an organised operator over an unorganised one. The tech-meets-operations flagship article.</p></div>
+<div class="field"><div class="lab">Format & visual</div><p>Article cover: technology + operations visual, RCSL/Riddhi Group branded.</p></div>
+<div class="dep"><b>Needs:</b><span>SIS drafts. Alpit validates every technology claim and adds the "why we built this" MD perspective per platform. Client names anonymized unless cleared.</span></div>
+</div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started"
+ style="background:#f0f1f3;cursor:pointer;">
+ <span class="s-dot" style="background:#9ca3af"></span>
+ <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+</div></div><div class="card" style="border-top-color:#C2410C">
+<div class="top">
+ <span class="wk-pill">Week 4</span>
+ <span class="day-label">Monday</span>
+ <span class="pill" style="background:#C2410C">Milestone</span>
+ 
+ <span class="fmt">Text post</span>
+</div>
+<div class="body">
+<h3>Riddhi Group at 15 — what the number means, and what it doesn't</h3>
+<div class="field hook"><div class="lab">Opening line</div><p>15 years doesn't mean we've arrived. It means we know how far there is to go.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>150-word milestone post closing Month 1. Honest, not celebratory. Alpit reflects on what 15 years of building the group has taught him — the scale achieved (28 states, 300+ locations, 20+ tech platforms) and the ambition that remains. Signals forward momentum without making specific promises. Warm, grounded, MD-level.</p></div>
+<div class="field"><div class="lab">Format & visual</div><p>Text-only.</p></div>
+<div class="dep"><b>Needs:</b><span>Alpit: approve. SIS shapes. Company secretary awareness for any financial references.</span></div>
+</div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started"
+ style="background:#f0f1f3;cursor:pointer;">
+ <span class="s-dot" style="background:#9ca3af"></span>
+ <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+</div></div></div>
+
+<div class="sec-head"><span class="sec-num">02</span><h2>Month 2 — Depth Phase (Roadmap)</h2><span class="sec-line"></span></div>
+<p style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6">Content to be fully detailed 2–4 weeks before Month 2 begins, based on what performed in Month 1. This is the directional outline — post angles confirmed, execution detail added closer to publish date.</p>
+<div class="rm-block" style="border-top-color:#0E7C66">
+<div class="rm-header">Month 2 — Depth Phase</div>
+<div class="rm-row">
+<span class="rm-tag">Industry Voice · Text post</span>
+<div><div class="rm-title">India's compliance burden on organised B2B companies is both a threat and a moat</div><div class="rm-desc">Alpit on how RCSL's 100% compliance posture is now a competitive advantage as regulations tighten. Group-level, operator's POV.</div></div>
+</div><div class="rm-row">
+<span class="rm-tag">Company & Ops · Text post</span>
+<div><div class="rm-title">The question enterprise clients always ask before they sign</div><div class="rm-desc">What the real evaluation question is (not price, not scale — accountability). Positions the group as a serious operator.</div></div>
+</div><div class="rm-row">
+<span class="rm-tag">Tech · LinkedIn Article</span>
+<div><div class="rm-title">ShiftEaze managing 1,000+ operators at port scale — what AI-powered rostering actually looks like in practice</div><div class="rm-desc">Alpit goes deeper on one specific platform. MD lens: why RCSL built ShiftEaze, what problem it solved, what the deployment at port terminals means for enterprise clients.</div></div>
+</div><div class="rm-row">
+<span class="rm-tag">Industry Voice · Text post</span>
+<div><div class="rm-title">On workforce formalization in India — an operator's view</div><div class="rm-desc">Alpit on the pace of formalization, what it means for organized operators vs unorganized competitors, the ground reality.</div></div>
+</div><div class="rm-row">
+<span class="rm-tag">Milestone · Text post</span>
+<div><div class="rm-title">How Riddhi Group thinks about entering a new vertical</div><div class="rm-desc">The group's new-vertical evaluation discipline. Complements Om's new business content without duplicating it.</div></div>
+</div>
+</div>
+
+<div class="sec-head"><span class="sec-num">03</span><h2>Month 3 — Milestone & Legacy Phase (Roadmap)</h2><span class="sec-line"></span></div>
+<p style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6">Month 3 closes the first quarter. Content pivots to milestone celebration and forward-looking signals. Full detail added after Month 2 performance review.</p>
+<div class="rm-block" style="border-top-color:#6D28D9">
+<div class="rm-header">Month 3 — Milestone & Legacy Phase</div>
+<div class="rm-row">
+<span class="rm-tag">Tech · LinkedIn Article</span>
+<div><div class="rm-title">From payroll to procurement — how Riddhi Group's full technology stack works together</div><div class="rm-desc">Alpit on the integrated tech ecosystem — how RicRoot feeds PayEaze, how EAS connects to ShiftEaze, how RProc enables Be Utopian. The "one stack, multiple verticals" story.</div></div>
+</div><div class="rm-row">
+<span class="rm-tag">Personal · Text post</span>
+<div><div class="rm-title">The business lesson from the ground that no boardroom teaches</div><div class="rm-desc">A real, specific operational observation from a site visit. Human and grounded — Alpit as a builder who visits the ground, not just a suit.</div></div>
+</div><div class="rm-row">
+<span class="rm-tag">Industry Voice · Text post</span>
+<div><div class="rm-title">Why I still visit sites, even as MD of Riddhi Group</div><div class="rm-desc">The case for leaders staying close to operations. Personal credibility post.</div></div>
+</div><div class="rm-row">
+<span class="rm-tag">Milestone · Text post</span>
+<div><div class="rm-title">Riddhi Group — what building the next chapter looks like</div><div class="rm-desc">Forward-looking close to the first quarter. Where the group is headed across verticals, tech, and new business.</div></div>
+</div><div class="rm-row">
+<span class="rm-tag">Engagement · Text post</span>
+<div><div class="rm-title">One question I ask every new leader joining Riddhi Group</div><div class="rm-desc">Engagement post. Invites peer engagement. High-comment format.</div></div>
+</div>
+</div>
+
+</div>
+
+<footer class="foot"><div class="wrap">
+<h2>Key notes across all 3 months</h2>
+<ul>
+<li><b>Technology is the new lane</b>Alpit's tech angle is strategic — why the group built its own platforms, what problem each solves, what it means for enterprise clients. Not technical. Umesh owns the operational tech detail.</li>
+<li><b>No courier franchise / origin story</b>Explicitly excluded per client direction. Alpit's credibility comes from what the group has built and where it is going — not where it started.</li>
+<li><b>2 articles per month</b>LinkedIn Articles are the highest-credibility format for an MD-level profile. Both Month 1 articles are distinct — one on the 15-year journey, one on technology solving enterprise problems. Month 2 continues with a tech deep-dive article.</li>
+<li><b>Content spread is deliberate</b>The previous calendar had too much content in Month 1. This version spreads the strong ideas across 3 months so each post gets full attention rather than competing for it.</li>
+<li><b>Coordination with Om and Nehal</b>Alpit's group-level content complements Om's new business content and Nehal's RCSL CEO content. Posts should not land on the same day where topics overlap.</li>
+</ul>
+<p class="fin">Prepared by Say It Social for Riddhi Corporate Services Limited ·
+Alpit Gor LinkedIn Calendar · Months 1–3 · Riddhi Group level ·
+Group philosophy / Technology / Industry voice / Milestones.</p>
+</div></footer>
+<script>
+const STATUSES=[
+ {key:'not-started',label:'NOT STARTED',bg:'#f0f1f3',dot:'#9ca3af',txt:'#6b7280'},
+ {key:'in-progress',label:'IN PROGRESS',bg:'#fff7ed',dot:'#f59e0b',txt:'#d97706'},
+ {key:'ready',label:'READY TO POST',bg:'#ecfeff',dot:'#06b6d4',txt:'#0891b2'},
+ {key:'posted',label:'POSTED',bg:'#f0fdf4',dot:'#22c55e',txt:'#16a34a'},
+];
+function cycleStatus(el){
+ const cur=el.dataset.status;
+ const idx=STATUSES.findIndex(s=>s.key===cur);
+ const next=STATUSES[(idx+1)%STATUSES.length];
+ el.dataset.status=next.key;el.style.background=next.bg;
+ el.querySelector('.s-dot').style.background=next.dot;
+ el.querySelector('.s-label').style.color=next.txt;
+ el.querySelector('.s-label').textContent=next.label;
+}
+</script>
+</body></html>
