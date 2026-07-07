@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Jash Gor — LinkedIn Calendar Months 1–3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#15233f;--navy-soft:#22335a;--ink:#1d2433;--muted:#5d6577;--hair:#e7e9ef;--paper:#f6f7fa;--white:#fff;--red:#c8102e;--radius:12px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'IBM Plex Sans',-apple-system,Segoe UI,sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px 60px}
+h1,h2,h3{font-family:'Archivo',-apple-system,Segoe UI,sans-serif;letter-spacing:-.01em}
+.hero{background:var(--navy);color:#fff;padding:44px 0 38px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;top:-60px;right:-40px;width:280px;height:280px;border:36px solid rgba(255,255,255,.04);transform:rotate(45deg)}
+.kicker{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#9fb3d6;font-weight:600;margin-bottom:10px}
+.hero h1{font-size:36px;line-height:1.04;font-weight:800}
+.hero h1 .accent{color:#7fa8e8}
+.hero .sub{font-size:14px;color:#c7d2e6;max-width:640px;margin-top:12px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.tag{font-size:11.5px;font-weight:500;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:4px 11px;border-radius:999px;color:#dde6f4}
+.brandline{position:absolute;top:24px;right:26px;text-align:right;font-family:'Archivo';font-weight:700;font-size:15px;color:#fff}
+.brandline span{color:var(--red)}
+.brandline small{display:block;font-weight:400;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#9fb3d6;margin-top:2px}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9fb3d6;text-decoration:none;margin-bottom:14px;opacity:.75;transition:opacity .2s}
+.back-link:hover{opacity:1}
+.sec-head{display:flex;align-items:baseline;gap:12px;margin:32px 0 16px}
+.sec-head h2{font-family:'Archivo';font-size:21px;font-weight:700;color:var(--navy)}
+.sec-num{font-family:'Archivo';font-weight:800;color:var(--red);font-size:14px}
+.sec-line{flex:1;height:1px;background:var(--hair)}
+.profile-hero{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);border-left:6px solid #0891B2;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:28px 0 14px}
+.ph-left{display:flex;align-items:center;gap:16px}
+.ph-avatar{width:52px;height:52px;border-radius:50%;background:#0891B2;display:flex;align-items:center;justify-content:center;font-family:'Archivo';font-weight:800;font-size:16px;color:#fff;flex-shrink:0}
+.ph-name{font-family:'Archivo';font-weight:800;font-size:19px;color:var(--navy)}
+.ph-title{font-size:12.5px;color:var(--muted);margin-top:2px}
+.access-badge{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:999px;background:#ecfdf5;color:#065f46;display:inline-block;margin-top:5px}
+.ph-counts{display:flex;gap:16px;align-items:center}
+.ph-count-item{text-align:center}
+.ph-num{font-family:'Archivo';font-weight:800;font-size:28px;color:var(--navy);display:block;line-height:1}
+.ph-lbl{font-size:11px;color:var(--muted)}
+.ph-count-item.total .ph-num{color:var(--red)}
+.domain-box{background:#eaf1fe;border:1px solid #c3d8f7;border-radius:10px;padding:12px 16px;font-size:13px;color:var(--ink);line-height:1.55;margin-bottom:10px}
+.domain-box b{color:#1a56db}
+.voice-box{background:var(--paper);border:1px solid var(--hair);border-radius:10px;padding:13px 16px;font-size:12.5px;color:var(--ink);line-height:1.6;margin-bottom:14px}
+.voice-box b{color:var(--navy)}
+.topic-section{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:14px 18px;margin-bottom:14px}
+.topic-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.topic-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.topic-tag{font-size:11.5px;font-weight:600;background:#ecfdf5;color:#065f46;border:1px solid #c8efde;padding:3px 10px;border-radius:999px}
+.avoid-tag{font-size:11.5px;font-weight:600;background:#fbeee7;color:#C2410C;border:1px solid #f3d9c9;padding:3px 10px;border-radius:999px}
+.glance-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:12px}
+.glance-card{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:14px 16px}
+.glance-card .v{font-family:'Archivo';font-weight:800;font-size:26px;color:var(--navy);line-height:1}
+.glance-card .l{font-size:11.5px;color:var(--muted);margin-top:4px}
+.mixbar{display:flex;height:10px;border-radius:999px;overflow:hidden;border:1px solid var(--hair);margin-bottom:8px}
+.mixleg{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--muted);margin-bottom:18px}
+.mixleg b{display:inline-flex;align-items:center;gap:5px;font-weight:500;color:var(--ink)}
+.dot{width:9px;height:9px;border-radius:3px;display:inline-block}
+.status-bar{display:flex;align-items:center;flex-wrap:wrap;gap:6px;background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:12px 18px;margin-bottom:14px}
+.sl-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+.sl-item{display:inline-flex;align-items:center;gap:6px;background:var(--paper);border:1px solid var(--hair);border-radius:999px;padding:4px 12px}
+.sl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.orange-flag{background:#fff7ed;border:1px solid #fde8cc;border-radius:var(--radius);padding:14px 18px;margin-bottom:20px;font-size:13px;line-height:1.6}
+.orange-flag b{color:#b45309}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px;margin-bottom:32px}
+.card{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);overflow:hidden;border-top:5px solid;display:flex;flex-direction:column}
+.card .top{padding:11px 14px 8px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.wk-pill{font-size:9.5px;font-weight:700;background:var(--navy-soft);color:#c7d2e6;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.day-label{font-family:'Archivo';font-weight:700;font-size:12px;color:var(--navy);background:var(--paper);border:1px solid var(--hair);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.pill{font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 7px;border-radius:999px;color:#fff;white-space:nowrap}
+.art-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;background:#ede9fe;color:#6D28D9;border:1px solid #ddd6fe}
+.vid-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;background:#fbeee7;color:#C2410C;border:1px solid #f3d9c9}
+.fmt{font-size:10px;font-weight:600;color:var(--navy);background:var(--paper);border:1px solid var(--hair);padding:3px 8px;border-radius:6px;white-space:nowrap}
+.card .body{padding:4px 14px 12px;flex:1}
+.card h3{font-family:'Archivo';font-size:14.5px;font-weight:700;line-height:1.25;margin:7px 0 10px}
+.field{margin-bottom:8px}
+.field .lab{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.field p{font-size:12.5px;line-height:1.5;color:var(--ink)}
+.field.hook p{font-style:italic;color:var(--navy);font-weight:500}
+.dep{margin-top:8px;font-size:11px;color:#C2410C;background:#fbeee7;border:1px solid #f3d9c9;padding:6px 10px;border-radius:8px;display:flex;gap:6px;align-items:flex-start}
+.dep b{font-weight:700;white-space:nowrap}
+.card-status{display:flex;align-items:center;gap:7px;padding:9px 14px;border-top:1px solid var(--hair);cursor:pointer;user-select:none}
+.card-status:hover{filter:brightness(.96)}
+.s-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.s-label{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.rm-block{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);border-top:5px solid;overflow:hidden;margin-bottom:14px}
+.rm-header{font-family:'Archivo';font-weight:800;font-size:15px;color:var(--navy);padding:14px 18px;border-bottom:1px solid var(--hair);background:var(--paper)}
+.rm-row{display:grid;grid-template-columns:220px 1fr;gap:14px;padding:12px 18px;border-bottom:1px solid var(--hair);align-items:start;font-size:12.5px}
+.rm-row:last-child{border-bottom:none}
+.rm-tag{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.06em;padding-top:2px}
+.rm-title{font-family:'Archivo';font-weight:700;font-size:13px;color:var(--navy);margin-bottom:3px}
+.rm-desc{font-size:12px;color:var(--muted);line-height:1.5}
+.foot{background:var(--navy);color:#cdd8ea;padding:28px 0 36px;margin-top:22px}
+.foot h2{color:#fff;font-size:18px;margin-bottom:12px;font-weight:700}
+.foot ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.foot li{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:11px 14px;font-size:12px}
+.foot li b{color:#fff;font-family:'Archivo';display:block;margin-bottom:3px}
+.foot .fin{margin-top:18px;font-size:11px;color:#8ea3c6}
+@media print{body{background:#fff}.hero,.foot{-webkit-print-color-adjust:exact;print-color-adjust:exact}.card,.rm-block{break-inside:avoid}}
+</style></head><body>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+const app = initializeApp({
+  apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
+  authDomain:"sayitsocial-calendar.firebaseapp.com",
+  projectId:"sayitsocial-calendar",
+  storageBucket:"sayitsocial-calendar.firebasestorage.app",
+  messagingSenderId:"232081824561",
+  appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
+});
+const db = getFirestore(app);
+const CID = "rcsl-jashgor-m1";
+
+window._fbSaveStatus = async (postId, status) => {
+  try { await setDoc(doc(db,"campaigns",CID,"posts",postId),{status},{merge:true}); }
+  catch(e) { console.warn("Firestore save failed:",e); }
+};
+
+onSnapshot(collection(db,"campaigns",CID,"posts"), snap => {
+  snap.forEach(d => {
+    const data = d.data();
+    if(!data.status) return;
+    const s = STATUSES.find(x => x.key === data.status);
+    if(!s) return;
+    document.querySelectorAll('[data-id="'+d.id+'"]').forEach(el => {
+      el.dataset.status = s.key;
+      el.style.background = s.bg;
+      el.querySelector('.s-dot').style.background = s.dot;
+      el.querySelector('.s-label').style.color = s.txt;
+      el.querySelector('.s-label').textContent = s.label;
+    });
+  });
+});
+</script>
+
+<header class="hero"><div class="wrap">
+<a class="back-link" href="../index.html">← Back to Hub</a>
+<div class="brandline">Say It <span>Social</span><small>Strategize · Innovate · Socialize</small></div>
+<div class="kicker">CXO LinkedIn Calendar · Riddhi Group / VCSL · Months 1–3</div>
+<h1>Jash Gor<br><span class="accent">LinkedIn Calendar — Month 1 + Roadmap</span></h1>
+<p class="sub">5 posts across Month 1. Three lanes — technology, youth entrepreneurship, and business growth. Content spread across 3 months. Posting days: Tue / Sat.</p>
+<div class="meta">
+<span class="tag">Riddhi Group / Veracity level</span>
+<span class="tag">1 video · 2 articles · 2 text posts = 5 total</span>
+<span class="tag">Tue / Sat posting days</span>
+<span class="tag">Access confirmed</span>
+</div></div></header>
+
+<div class="wrap">
+
+<div class="profile-hero">
+ <div class="ph-left">
+  <div class="ph-avatar">JG</div>
+  <div>
+   <div class="ph-name">Jash Gor</div>
+   <div class="ph-title">Director, VCSL · Riddhi Group</div>
+   <a href="https://www.linkedin.com/in/jash-gor-630a51224/" target="_blank" style="font-size:12px;color:#0A66C2;text-decoration:none;display:block;margin-top:3px">linkedin.com/in/jash-gor-630a51224</a>
+   <span class="access-badge">✓ Access confirmed</span>
+  </div>
+ </div>
+ <div class="ph-counts">
+  <div class="ph-count-item"><span class="ph-num">1</span><span class="ph-lbl">Video</span></div>
+  <div class="ph-count-item"><span class="ph-num">2</span><span class="ph-lbl">Articles</span></div>
+  <div class="ph-count-item"><span class="ph-num">2</span><span class="ph-lbl">Posts</span></div>
+  <div class="ph-count-item total"><span class="ph-num">5</span><span class="ph-lbl">Total M1</span></div>
+ </div>
+</div>
+
+<div class="domain-box"><b>Content domain:</b> Riddhi Group / Veracity — technology and innovation in logistics, youth entrepreneurship and leadership, business growth and strategic partnerships. Posts are at the group or Veracity level — not RCSL-specific. The next-generation voice that bridges the group's operational depth with modern business thinking.</div>
+
+<div class="voice-box"><b>Voice brief:</b> Young, forward-looking, internationally educated, building something real inside an established group. Technology lane is trend-aware and opinionated — not just "we use AI." Youth lane is honest and specific, not generic motivation. Growth lane is the practitioner's view on partnerships and market opportunity. Month 1 = introduce the voice, establish tech credibility, plant the youth angle. Month 2 = deepen technology, first market intelligence piece. Month 3 = flagship entrepreneurship article, legacy close.</div>
+
+<div class="topic-section">
+ <div class="topic-label">Primary topics — all 3 months</div>
+ <div class="topic-list">
+  <span class="topic-tag">Technology in logistics &amp; supply chain</span>
+  <span class="topic-tag">Youth entrepreneurship &amp; leadership</span>
+  <span class="topic-tag">Strategic partnerships</span>
+  <span class="topic-tag">Veracity / Riddhi Group growth</span>
+  <span class="topic-tag">Supply chain market intelligence</span>
+  <span class="topic-tag">Intrapreneurship — building inside a group</span>
+ </div>
+ <div class="topic-label">Avoid</div>
+ <div class="topic-list">
+  <span class="avoid-tag">RCSL-specific content (wrong brand lane)</span>
+  <span class="avoid-tag">Generic motivational posts without specifics</span>
+  <span class="avoid-tag">Political or religious opinions</span>
+  <span class="avoid-tag">Personal lifestyle content</span>
+  <span class="avoid-tag">Technical platform detail without context</span>
+ </div>
+</div>
+
+<div class="sec-head"><span class="sec-num">01</span><h2>Month 1 — Foundation Phase</h2><span class="sec-line"></span></div>
+
+<div class="glance-row">
+ <div class="glance-card"><div class="v">5</div><div class="l">Total posts Month 1</div></div>
+ <div class="glance-card"><div class="v">1</div><div class="l">Video</div></div>
+ <div class="glance-card"><div class="v">2</div><div class="l">LinkedIn Articles</div></div>
+ <div class="glance-card"><div class="v">2</div><div class="l">Text posts</div></div>
+ <div class="glance-card"><div class="v">2</div><div class="l">Technology posts</div></div>
+ <div class="glance-card"><div class="v">2</div><div class="l">Youth &amp; Entrep.</div></div>
+</div>
+<div class="mixbar"><span style="width:40%;background:#0891B2;display:block;height:100%"></span><span style="width:40%;background:#C2410C;display:block;height:100%"></span><span style="width:20%;background:#0E7C66;display:block;height:100%"></span></div>
+<div class="mixleg"><b><span class="dot" style="background:#0891B2"></span>Technology · 2</b><b><span class="dot" style="background:#C2410C"></span>Youth &amp; Entrepreneurship · 2</b><b><span class="dot" style="background:#0E7C66"></span>Growth &amp; Partnerships · 1</b></div>
+
+<div class="status-bar">
+ <span class="sl-label">Status:</span>
+ <span class="sl-item"><span class="sl-dot" style="background:#9ca3af"></span><span style="color:#6b7280;font-weight:700;font-size:11px;letter-spacing:.06em">NOT STARTED</span></span>
+ <span class="sl-item"><span class="sl-dot" style="background:#f59e0b"></span><span style="color:#d97706;font-weight:700;font-size:11px;letter-spacing:.06em">IN PROGRESS</span></span>
+ <span class="sl-item"><span class="sl-dot" style="background:#06b6d4"></span><span style="color:#0891b2;font-weight:700;font-size:11px;letter-spacing:.06em">READY TO POST</span></span>
+ <span class="sl-item"><span class="sl-dot" style="background:#22c55e"></span><span style="color:#16a34a;font-weight:700;font-size:11px;letter-spacing:.06em">POSTED</span></span>
+ <span style="font-size:11px;color:var(--muted);margin-left:6px">Click any card to update</span>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px">
+ <div class="sched-item sched-w1" style="background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:12px 14px;position:relative;padding-left:18px"><div style="position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:var(--radius) 0 0 var(--radius);background:#C2410C"></div><div style="font-family:'Archivo';font-weight:700;font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Week 1 · 1 post</div><div style="font-size:12px;color:var(--ink);line-height:1.5;margin-bottom:4px"><span style="display:inline-block;font-size:9.5px;font-weight:700;padding:1px 6px;border-radius:999px;color:#fff;margin-right:4px;vertical-align:middle;background:#C2410C">Tue</span>Video — youth leadership intro</div></div>
+ <div class="sched-item sched-w2" style="background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:12px 14px;position:relative;padding-left:18px"><div style="position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:var(--radius) 0 0 var(--radius);background:#6D28D9"></div><div style="font-family:'Archivo';font-weight:700;font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Week 2 · 2 posts</div><div style="font-size:12px;color:var(--ink);line-height:1.5;margin-bottom:4px"><span style="display:inline-block;font-size:9.5px;font-weight:700;padding:1px 6px;border-radius:999px;color:#fff;margin-right:4px;vertical-align:middle;background:#0891B2">Tue</span>Article — tech in logistics</div><div style="font-size:12px;color:var(--ink);line-height:1.5;margin-bottom:4px"><span style="display:inline-block;font-size:9.5px;font-weight:700;padding:1px 6px;border-radius:999px;color:#fff;margin-right:4px;vertical-align:middle;background:#C2410C">Sat</span>Growing up in Riddhi Group</div></div>
+ <div class="sched-item sched-w3" style="background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:12px 14px;position:relative;padding-left:18px"><div style="position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:var(--radius) 0 0 var(--radius);background:#0E7C66"></div><div style="font-family:'Archivo';font-weight:700;font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Week 3 · 1 post</div><div style="font-size:12px;color:var(--ink);line-height:1.5;margin-bottom:4px"><span style="display:inline-block;font-size:9.5px;font-weight:700;padding:1px 6px;border-radius:999px;color:#fff;margin-right:4px;vertical-align:middle;background:#0E7C66">Tue</span>Article — strategic partnerships</div></div>
+ <div class="sched-item sched-w4" style="background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:12px 14px;position:relative;padding-left:18px"><div style="position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:var(--radius) 0 0 var(--radius);background:#C2410C"></div><div style="font-family:'Archivo';font-weight:700;font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Week 4 · 1 post</div><div style="font-size:12px;color:var(--ink);line-height:1.5;margin-bottom:4px"><span style="display:inline-block;font-size:9.5px;font-weight:700;padding:1px 6px;border-radius:999px;color:#fff;margin-right:4px;vertical-align:middle;background:#0891B2">Tue</span>Tech gap in supply chains</div></div>
+</div>
+
+<div class="orange-flag"><b>⚠ Before any post goes live:</b> Week 1 video — Jash must be briefed on 3–4 key talking points before filming. Keep it natural, not scripted · Week 2 Tuesday article — Veracity-level claims only. No RCSL-specific stats unless framed at group level · Week 3 Tuesday article — partnership examples should be anonymized unless client has cleared public mention · Coordinate the Hywa vehicle milestone post (already drafted separately) with Week 4 content — do not publish on the same day</div>
+
+<div class="cards">
+
+<div class="card" style="border-top-color:#C2410C">
+<div class="top"><span class="wk-pill">Week 1</span><span class="day-label">Tuesday</span><span class="pill" style="background:#C2410C">Youth &amp; Entrepreneurship</span><span class="vid-badge">▶ Video</span><span class="fmt">Video · 60s</span></div>
+<div class="body">
+<h3>Building a serious B2B company at 25 — what nobody tells you about leading at this age</h3>
+<div class="field hook"><div class="lab">Opening line</div><p>Everyone tells you to be confident. Nobody tells you what to do when you're not.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>60s direct-to-camera video. Jash introduces himself — not with a bio, but with an honest observation about what it actually means to drive growth and partnerships at a young age inside a serious, established group. The "young leader, real problems" entry post. Establishes him as credible and self-aware, not just ambitious.</p></div>
+<div class="field"><div class="lab">Format &amp; visual</div><p>Vertical 60s. Conversational setting. Lower-third: Jash Gor · Director, VCSL · Riddhi Group. Authentic over polished.</p></div>
+<div class="dep"><b>Needs:</b><span>Jash: comfortable on camera. Keep it natural — no script, just key points agreed in advance.</span></div>
+</div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="jash-m1-01" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div>
+</div>
+
+<div class="card" style="border-top-color:#0891B2">
+<div class="top"><span class="wk-pill">Week 2</span><span class="day-label">Tuesday</span><span class="pill" style="background:#0891B2">Technology</span><span class="art-badge">✍ Article</span><span class="fmt">LinkedIn Article</span></div>
+<div class="body">
+<h3>What technology is actually doing to Indian logistics — and what most companies are missing</h3>
+<div class="field hook"><div class="lab">Opening line</div><p>Everyone is talking about AI in logistics. Most are still using WhatsApp to manage their fleet.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>600–800 word article. Jash's perspective on the gap between the technology narrative in Indian logistics and the ground reality — where the real transformation is happening, what Veracity and Riddhi Group are doing differently, and what enterprise clients should be demanding from logistics partners in 2026. Forward-looking, opinionated, data-informed. His flagship tech piece.</p></div>
+<div class="field"><div class="lab">Format &amp; visual</div><p>Article cover: logistics + technology visual, Veracity/Riddhi Group branded.</p></div>
+<div class="dep"><b>Needs:</b><span>SIS drafts framework. Jash adds real market observations and approves. Veracity-level claims only — no RCSL-specific stats without group framing.</span></div>
+</div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="jash-m1-02" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div>
+</div>
+
+<div class="card" style="border-top-color:#C2410C">
+<div class="top"><span class="wk-pill">Week 2</span><span class="day-label">Saturday</span><span class="pill" style="background:#C2410C">Youth &amp; Entrepreneurship</span><span class="fmt">Text post</span></div>
+<div class="body">
+<h3>What growing up inside Riddhi Group taught me about building businesses that last</h3>
+<div class="field hook"><div class="lab">Opening line</div><p>I didn't just learn business from textbooks. I learned it by watching what breaks at scale.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>200-word post. Jash on specific lessons from growing up in the Riddhi Group environment — what he observed about operations, accountability, and client trust that no MBA covers. Personal and honest, not a family business PR post. Bridges his personal story with business credibility without being self-promotional.</p></div>
+<div class="field"><div class="lab">Format &amp; visual</div><p>Text-only.</p></div>
+<div class="dep"><b>Needs:</b><span>Jash: 2–3 real, specific observations. SIS shapes into post copy.</span></div>
+</div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="jash-m1-03" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div>
+</div>
+
+<div class="card" style="border-top-color:#0E7C66">
+<div class="top"><span class="wk-pill">Week 3</span><span class="day-label">Tuesday</span><span class="pill" style="background:#0E7C66">Growth &amp; Partnerships</span><span class="art-badge">✍ Article</span><span class="fmt">LinkedIn Article</span></div>
+<div class="body">
+<h3>Why strategic partnerships are the fastest way to scale a logistics business in India — and the most misunderstood</h3>
+<div class="field hook"><div class="lab">Opening line</div><p>Most companies call a vendor relationship a partnership. They are not the same thing.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>600–800 word article. Jash on the difference between transactional vendor relationships and genuine strategic partnerships — what makes a partnership work at Veracity's scale, how the group evaluates and builds them, and what enterprise clients should look for when choosing a logistics partner. His core business development domain, written with genuine insight.</p></div>
+<div class="field"><div class="lab">Format &amp; visual</div><p>Article cover: partnership/logistics visual, Veracity branded.</p></div>
+<div class="dep"><b>Needs:</b><span>SIS drafts. Jash adds real partnership examples (anonymized if needed) and approves.</span></div>
+</div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="jash-m1-04" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div>
+</div>
+
+<div class="card" style="border-top-color:#0891B2">
+<div class="top"><span class="wk-pill">Week 4</span><span class="day-label">Tuesday</span><span class="pill" style="background:#0891B2">Technology</span><span class="fmt">Text post</span></div>
+<div class="body">
+<h3>The technology gap I see every week in Indian supply chains — and what it costs companies</h3>
+<div class="field hook"><div class="lab">Opening line</div><p>The problem is not that companies don't have data. It is that they don't trust it.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>200-word post. Jash on a specific, recurring technology gap he observes in supply chain conversations — data trust, system integration, or real-time visibility. Counter-intuitive and specific. Positions him as someone who thinks deeply about technology and operations, not just someone who talks about it.</p></div>
+<div class="field"><div class="lab">Format &amp; visual</div><p>Text post. Optional: one supporting data-angle graphic.</p></div>
+<div class="dep"><b>Needs:</b><span>Jash: the real gap he observes. SIS writes from that.</span></div>
+</div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="jash-m1-05" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div>
+</div>
+
+</div>
+
+<div class="sec-head"><span class="sec-num">02</span><h2>Month 2 — Depth Phase (Roadmap)</h2><span class="sec-line"></span></div>
+<p style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6">Full detail added 2–4 weeks before Month 2 based on Month 1 performance. Directional outline confirmed.</p>
+<div class="rm-block" style="border-top-color:#0E7C66">
+<div class="rm-header">Month 2 — Depth Phase (Roadmap)</div>
+<div class="rm-row"><span class="rm-tag">Tech · Text post</span><div><div class="rm-title">GPS tracking, AI rostering, real-time dashboards — what Veracity's tech stack actually does</div><div class="rm-desc">Jash goes specific on Veracity's technology. The "here's what our tech looks like in practice" post. Complements Alpit's philosophical tech angle with operational specifics from Veracity's scale.</div></div></div>
+<div class="rm-row"><span class="rm-tag">Youth · Text post</span><div><div class="rm-title">The hardest part of being a young leader in a family business — and how I handle it</div><div class="rm-desc">Honest post on the specific challenge of leading within an established family business as the next generation. Real, not generic. Builds the youth entrepreneur credibility.</div></div></div>
+<div class="rm-row"><span class="rm-tag">Growth · LinkedIn Article</span><div><div class="rm-title">India's logistics market in 2026 — where the real growth opportunity is</div><div class="rm-desc">Jash's market intelligence piece. Where logistics demand is growing fastest, what enterprise clients need that the market isn't supplying, and how Veracity is positioned.</div></div></div>
+<div class="rm-row"><span class="rm-tag">Tech · Text post</span><div><div class="rm-title">What I learned from 3 supply chain technology conversations this month</div><div class="rm-desc">Jash shares 3 real observations from business development conversations — what clients are asking for, what the market is getting wrong, what the next 2 years look like.</div></div></div>
+<div class="rm-row"><span class="rm-tag">Milestone · Text post</span><div><div class="rm-title">Veracity's asset expansion — what the 5 new Hywa vehicles in Singrauli mean for where we are going</div><div class="rm-desc">Milestone post building on the fleet expansion story. Jash frames the Singrauli fleet addition as a signal of Veracity's next growth phase.</div></div></div>
+</div>
+
+<div class="sec-head"><span class="sec-num">03</span><h2>Month 3 — Market Intelligence &amp; Legacy (Roadmap)</h2><span class="sec-line"></span></div>
+<p style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6">Month 3 closes the first quarter. The intrapreneurship article is the flagship piece of the entire 3-month arc for Jash.</p>
+<div class="rm-block" style="border-top-color:#6D28D9">
+<div class="rm-header">Month 3 — Market Intelligence &amp; Legacy (Roadmap)</div>
+<div class="rm-row"><span class="rm-tag">Youth · LinkedIn Article</span><div><div class="rm-title">Building new business inside an established group — the intrapreneurship playbook</div><div class="rm-desc">Jash's flagship personal leadership article. What it actually means to build new things within Riddhi Group — the advantages, the constraints, the discipline required. His most differentiated content piece across the 3 months.</div></div></div>
+<div class="rm-row"><span class="rm-tag">Tech · Text post</span><div><div class="rm-title">The supply chain technology investment every enterprise company should make in 2026 — but most won't</div><div class="rm-desc">Counter-intuitive technology recommendation from Jash. Opinionated, specific, not a sales pitch. Builds thought leadership credibility.</div></div></div>
+<div class="rm-row"><span class="rm-tag">Growth · Text post</span><div><div class="rm-title">What makes a logistics partnership last beyond the first contract</div><div class="rm-desc">Jash on partnership longevity — what separates transactional relationships from strategic ones at Veracity's level.</div></div></div>
+<div class="rm-row"><span class="rm-tag">Youth · Text post</span><div><div class="rm-title">What I wish I had known at 22 starting in B2B</div><div class="rm-desc">Engagement post for the youth entrepreneur audience. Real lessons, not platitudes. High-share format for the young professional community.</div></div></div>
+<div class="rm-row"><span class="rm-tag">Milestone · Text post</span><div><div class="rm-title">Veracity at the end of Quarter 1 — where we are and where we are going</div><div class="rm-desc">Quarter-close milestone post. Jash reflects on Veracity's Q1 progress and signals the next phase. Forward-looking and grounded.</div></div></div>
+</div>
+
+</div>
+
+<footer class="foot"><div class="wrap">
+<h2>Key notes across all 3 months</h2>
+<ul>
+<li><b>Three distinct lanes</b>Technology, youth entrepreneurship, and business growth. Each post clearly belongs to one lane. No post tries to do all three at once.</li>
+<li><b>Youth lane is honest, not generic</b>The entrepreneurship content works because it is specific and candid — not "believe in yourself" but "here is what nobody tells you about leading at this age." Generic motivation gets ignored. Real observations earn followers.</li>
+<li><b>Technology lane is forward-looking</b>Jash's tech angle is trend-aware and opinionated. He spots gaps, makes predictions, challenges the market narrative. This is what differentiates him from a company spokesperson.</li>
+<li><b>Veracity / Riddhi Group level only</b>No RCSL-specific content in Jash's calendar. When referencing group achievements, frame at the group or Veracity level.</li>
+<li><b>Hywa milestone post</b>Already drafted separately. Coordinate timing with Month 1 Week 4 content — they should not publish on the same day.</li>
+</ul>
+<p class="fin">Prepared by Say It Social for Riddhi Corporate Services Limited · Jash Gor LinkedIn Calendar · Months 1–3 · Riddhi Group / Veracity level · Technology / Youth Entrepreneurship / Growth &amp; Partnerships.</p>
+</div></footer>
+
+<script>
+const STATUSES=[
+ {key:'not-started',label:'NOT STARTED',bg:'#f0f1f3',dot:'#9ca3af',txt:'#6b7280'},
+ {key:'in-progress',label:'IN PROGRESS',bg:'#fff7ed',dot:'#f59e0b',txt:'#d97706'},
+ {key:'ready',label:'READY TO POST',bg:'#ecfeff',dot:'#06b6d4',txt:'#0891b2'},
+ {key:'posted',label:'POSTED',bg:'#f0fdf4',dot:'#22c55e',txt:'#16a34a'},
+];
+function cycleStatus(el){
+ const cur=el.dataset.status;
+ const idx=STATUSES.findIndex(s=>s.key===cur);
+ const next=STATUSES[(idx+1)%STATUSES.length];
+ el.dataset.status=next.key;el.style.background=next.bg;
+ el.querySelector('.s-dot').style.background=next.dot;
+ el.querySelector('.s-label').style.color=next.txt;
+ el.querySelector('.s-label').textContent=next.label;
+ const postId=el.dataset.id;
+ if(postId && window._fbSaveStatus) window._fbSaveStatus(postId, next.key);
+}
+</script>
+</body></html>
