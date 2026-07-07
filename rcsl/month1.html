@@ -21,12 +21,13 @@ h1,h2,h3{font-family:'Archivo',-apple-system,Segoe UI,sans-serif;letter-spacing:
 .brandline{position:absolute;top:26px;right:28px;text-align:right;font-family:'Archivo';font-weight:700;font-size:15px;color:#fff}
 .brandline span{color:var(--red)}
 .brandline small{display:block;font-weight:400;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#9fb3d6;margin-top:3px}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9fb3d6;text-decoration:none;margin-bottom:14px;opacity:.75;transition:opacity .2s}
+.back-link:hover{opacity:1}
 .section{padding:30px 0}
 .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:18px}
 .sec-head h2{font-size:21px;font-weight:700;color:var(--navy)}
 .sec-head .num{font-family:'Archivo';font-weight:800;color:var(--red);font-size:14px}
 .sec-head .line{flex:1;height:1px;background:var(--hair)}
-/* platform summary */
 .ps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
 .ps-card{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:16px 18px;display:grid;grid-template-columns:12px 1fr auto;grid-template-rows:auto auto;gap:6px 12px;align-items:start}
 .ps-dot{width:12px;height:12px;border-radius:50%;margin-top:4px;grid-row:1;grid-column:1}
@@ -40,7 +41,6 @@ h1,h2,h3{font-family:'Archivo',-apple-system,Segoe UI,sans-serif;letter-spacing:
 .ps-badge{font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:999px}
 .ps-badge.rights{background:#f0f1f3;color:var(--muted)}
 .ps-badge.spoc{background:#eaf1fe;color:#1a56db}
-/* stats */
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px}
 .stat{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:14px 16px}
 .stat .v{font-family:'Archivo';font-weight:800;font-size:26px;color:var(--navy);line-height:1}
@@ -100,11 +100,56 @@ h1,h2,h3{font-family:'Archivo',-apple-system,Segoe UI,sans-serif;letter-spacing:
 @media print{body{background:#fff}.hero,.foot,.week-head{-webkit-print-color-adjust:exact;print-color-adjust:exact}.card,.week{break-inside:avoid}}
 </style></head><body>
 
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+const app = initializeApp({
+  apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
+  authDomain:"sayitsocial-calendar.firebaseapp.com",
+  projectId:"sayitsocial-calendar",
+  storageBucket:"sayitsocial-calendar.firebasestorage.app",
+  messagingSenderId:"232081824561",
+  appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
+});
+const db = getFirestore(app);
+const CID = "rcsl-month1";
+
+window._fbSaveStatus = async (postId, status) => {
+  try { await setDoc(doc(db,"campaigns",CID,"posts",postId),{status},{merge:true}); }
+  catch(e) { console.warn("Firestore save failed:",e); }
+};
+
+onSnapshot(collection(db,"campaigns",CID,"posts"), snap => {
+  snap.forEach(d => {
+    const data = d.data();
+    if(!data.status) return;
+    document.querySelectorAll('[data-id="'+d.id+'"]').forEach(el => {
+      // Update card-status bar
+      const statusMap = {
+        'not-started': {bg:'#f0f1f3',dot:'#9ca3af',txt:'#6b7280',label:'NOT STARTED'},
+        'in-progress': {bg:'#fff7ed',dot:'#f59e0b',txt:'#d97706',label:'IN PROGRESS'},
+        'ready':       {bg:'#ecfeff',dot:'#06b6d4',txt:'#0891b2',label:'READY TO POST'},
+        'posted':      {bg:'#f0fdf4',dot:'#22c55e',txt:'#16a34a',label:'POSTED'},
+      };
+      const s = statusMap[data.status];
+      if(!s) return;
+      el.dataset.status = data.status;
+      el.style.background = s.bg;
+      const dot = el.querySelector('.s-dot');
+      const lbl = el.querySelector('.s-label');
+      if(dot) dot.style.background = s.dot;
+      if(lbl) { lbl.style.color = s.txt; lbl.textContent = s.label; }
+    });
+  });
+});
+</script>
+
 <header class="hero"><div class="wrap">
+<a class="back-link" href="../index.html">← Back to Hub</a>
 <div class="brandline">Say It <span>Social</span><small>Strategize · Innovate · Socialize</small></div>
 <div class="kicker">Company Content Calendar · Pilot — Month 1 · Updated Spotlight</div>
 <h1>Riddhi Corporate Services<br><span class="accent">Month 1 — Foundation Phase</span></h1>
-<p class="sub">Spotlight updated: Transportation & 3PL → Project Management. Content strategy, pillars, and platform counts unchanged. CXO calendar is separate.</p>
+<p class="sub">Spotlight updated: Transportation &amp; 3PL → Project Management. Content strategy, pillars, and platform counts unchanged. CXO calendar is separate.</p>
 <div class="meta">
 <span class="tag">LinkedIn · 6 posts</span>
 <span class="tag">Instagram + Facebook · 13 each</span>
@@ -117,32 +162,17 @@ h1,h2,h3{font-family:'Archivo',-apple-system,Segoe UI,sans-serif;letter-spacing:
 <div class="wrap">
 
 <section class="section"><div class="sec-head"><span class="num">01</span><h2>Platform breakdown</h2><span class="line"></span></div>
-<div class="ps-grid"><div class="ps-card">
-<div class="ps-dot" style="background:#0A66C2"></div>
-<div class="ps-info"><div class="ps-name">LinkedIn</div><div class="ps-formats">1 video · 5 posts</div></div>
-<div class="ps-right"><div class="ps-total">6</div><div class="ps-label">posts</div></div>
-<div class="ps-meta"><span class="ps-badge rights">Content Admin</span><span class="ps-badge spoc">SPOC: SIS</span></div>
-</div><div class="ps-card">
-<div class="ps-dot" style="background:#C13584"></div>
-<div class="ps-info"><div class="ps-name">Instagram + Facebook</div><div class="ps-formats">2 Reels · 8 statics · 3 Stories</div></div>
-<div class="ps-right"><div class="ps-total">13</div><div class="ps-label">posts</div></div>
-<div class="ps-meta"><span class="ps-badge rights">Editor Rights</span><span class="ps-badge spoc">SPOC: SIS</span></div>
-</div><div class="ps-card">
-<div class="ps-dot" style="background:#1DA1F2"></div>
-<div class="ps-info"><div class="ps-name">Twitter / X</div><div class="ps-formats">1 video · 5 photo posts</div></div>
-<div class="ps-right"><div class="ps-total">6</div><div class="ps-label">posts</div></div>
-<div class="ps-meta"><span class="ps-badge rights">Not required</span><span class="ps-badge spoc">SPOC: Client IT — SIS hands over copy-ready briefs</span></div>
-</div><div class="ps-card">
-<div class="ps-dot" style="background:#FF0000"></div>
-<div class="ps-info"><div class="ps-name">YouTube</div><div class="ps-formats">3 Shorts · 1 Long-form</div></div>
-<div class="ps-right"><div class="ps-total">4</div><div class="ps-label">posts</div></div>
-<div class="ps-meta"><span class="ps-badge rights">Editor Rights</span><span class="ps-badge spoc">SPOC: SIS</span></div>
-</div></div>
-</section>
+<div class="ps-grid">
+<div class="ps-card"><div class="ps-dot" style="background:#0A66C2"></div><div class="ps-info"><div class="ps-name">LinkedIn</div><div class="ps-formats">1 video · 5 posts</div></div><div class="ps-right"><div class="ps-total">6</div><div class="ps-label">posts</div></div><div class="ps-meta"><span class="ps-badge rights">Content Admin</span><span class="ps-badge spoc">SPOC: SIS</span></div></div>
+<div class="ps-card"><div class="ps-dot" style="background:#C13584"></div><div class="ps-info"><div class="ps-name">Instagram + Facebook</div><div class="ps-formats">2 Reels · 8 statics · 3 Stories</div></div><div class="ps-right"><div class="ps-total">13</div><div class="ps-label">posts</div></div><div class="ps-meta"><span class="ps-badge rights">Editor Rights</span><span class="ps-badge spoc">SPOC: SIS</span></div></div>
+<div class="ps-card"><div class="ps-dot" style="background:#1DA1F2"></div><div class="ps-info"><div class="ps-name">Twitter / X</div><div class="ps-formats">1 video · 5 photo posts</div></div><div class="ps-right"><div class="ps-total">6</div><div class="ps-label">posts</div></div><div class="ps-meta"><span class="ps-badge rights">Not required</span><span class="ps-badge spoc">SPOC: Client IT — SIS hands over copy-ready briefs</span></div></div>
+<div class="ps-card"><div class="ps-dot" style="background:#FF0000"></div><div class="ps-info"><div class="ps-name">YouTube</div><div class="ps-formats">3 Shorts · 1 Long-form</div></div><div class="ps-right"><div class="ps-total">4</div><div class="ps-label">posts</div></div><div class="ps-meta"><span class="ps-badge rights">Editor Rights</span><span class="ps-badge spoc">SPOC: SIS</span></div></div>
+</div></section>
 
 <section class="section"><div class="sec-head"><span class="num">02</span><h2>The month at a glance</h2><span class="line"></span></div>
 <div class="stats"><div class="stat"><div class="v">30</div><div class="l">Total calendar entries</div></div><div class="stat"><div class="v">44</div><div class="l">Total posts published (IG+FB counted separately)</div></div><div class="stat"><div class="v">6</div><div class="l">LinkedIn</div></div><div class="stat"><div class="v">13</div><div class="l">Instagram + Facebook (each)</div></div><div class="stat"><div class="v">6</div><div class="l">Twitter / X</div></div><div class="stat"><div class="v">4</div><div class="l">YouTube</div></div></div>
-<div class="mixbar"><span style="width:43%;background:#0E7C66"></span><span style="width:27%;background:#C2410C"></span><span style="width:10%;background:#1B4D8E"></span><span style="width:20%;background:#475569"></span></div><div class="mixleg"><b><span class="dot" style="background:#0E7C66"></span>Project Mgmt Spotlight · 13</b><b><span class="dot" style="background:#C2410C"></span>People & Culture · 8</b><b><span class="dot" style="background:#1B4D8E"></span>Proof & Performance · 3</b><b><span class="dot" style="background:#475569"></span>Milestones · 6</b></div>
+<div class="mixbar"><span style="width:43%;background:#0E7C66"></span><span style="width:27%;background:#C2410C"></span><span style="width:10%;background:#1B4D8E"></span><span style="width:20%;background:#475569"></span></div>
+<div class="mixleg"><b><span class="dot" style="background:#0E7C66"></span>Project Mgmt Spotlight · 13</b><b><span class="dot" style="background:#C2410C"></span>People &amp; Culture · 8</b><b><span class="dot" style="background:#1B4D8E"></span>Proof &amp; Performance · 3</b><b><span class="dot" style="background:#475569"></span>Milestones · 6</b></div>
 </section>
 
 <section class="section"><div class="sec-head"><span class="num">03</span><h2>Post status</h2><span class="line"></span></div>
@@ -151,385 +181,173 @@ h1,h2,h3{font-family:'Archivo',-apple-system,Segoe UI,sans-serif;letter-spacing:
 </section>
 
 <section class="section"><div class="sec-head"><span class="num">04</span><h2>Week 0 — set-up (before first post)</h2><span class="line"></span></div>
-<div class="setup"><div class="row"><div class="chk"></div><div><h4>LinkedIn — Content Admin access</h4><p>SIS needs Content Admin rights on the RCSL LinkedIn company page before any posts go live.</p></div></div><div class="row"><div class="chk"></div><div><h4>Instagram + Facebook — Editor rights</h4><p>SIS needs Editor rights on both IG and FB. Pages to be linked via Meta Business Suite for simultaneous posting. Confirmed handles: IG @riddhicorporate · FB facebook.com/share/1Lpfw3TaGC</p></div></div><div class="row"><div class="chk"></div><div><h4>YouTube — channel revival + Editor access</h4><p>Existing but dormant channel. Refresh banner, About section, playlists. Brand intro film to be pinned as channel trailer on upload.</p></div></div><div class="row"><div class="chk"></div><div><h4>Twitter / X — copy handover process</h4><p>Handle confirmed: @RCSLIndia. RCSL Client IT team handles posting. SIS delivers copy-ready briefs 48 hours before each post.</p></div></div><div class="row"><div class="chk"></div><div><h4>ShiftEaze demo / visual asset</h4><p>The ShiftEaze command-centre dashboard screenshot (from the website) is a key visual asset for the spotlight. Confirm if RCSL can share a higher-res version or a screen recording for social use.</p></div></div><div class="row"><div class="chk"></div><div><h4>Project Management case proof</h4><p>Mundra Port deployment (1,000+ operators, 6 terminals, ShiftEaze live) is the strongest proof point. Confirm if this can be referenced publicly with or without naming Mundra/Adani. Determines whether the proof posts run named or anonymized.</p></div></div><div class="row"><div class="chk"></div><div><h4>Video shoot — project management sites</h4><p>Week 2 Reel and YouTube Short require on-site footage from a port or cement plant project. Coordinate site access and filming permissions before Week 1 ends.</p></div></div><div class="row"><div class="chk"></div><div><h4>8-services tour video — Month opener</h4><p>The very first post of Month 1 (LinkedIn, IGFB, Twitter — all same video). A 45–60s tour across all 8 RCSL services. Needs one visual beat per service: Project Management, Logistics, Warehouse Management, HRMS & Payroll, Turnkey Projects, SLA-Based Manpower, Procurement, Auditing. Confirm which services have existing footage/imagery vs which need stock or graphic treatment. This must be ready before Week 1 — it is the calendar's opening post.</p></div></div><div class="row"><div class="chk"></div><div><h4>Brand intro film — pre-production</h4><p>2–3 min brand intro film: RCSL overview, scale, project management capability, ShiftEaze, people on the ground. No client names without clearance. Script to be approved before shoot.</p></div></div></div>
-</section>
+<div class="setup">
+<div class="row"><div class="chk"></div><div><h4>LinkedIn — Content Admin access</h4><p>SIS needs Content Admin rights on the RCSL LinkedIn company page before any posts go live.</p></div></div>
+<div class="row"><div class="chk"></div><div><h4>Instagram + Facebook — Editor rights</h4><p>SIS needs Editor rights on both IG and FB. Pages to be linked via Meta Business Suite for simultaneous posting. Confirmed handles: IG @riddhicorporate · FB facebook.com/share/1Lpfw3TaGC</p></div></div>
+<div class="row"><div class="chk"></div><div><h4>YouTube — channel revival + Editor access</h4><p>Existing but dormant channel. Refresh banner, About section, playlists. Brand intro film to be pinned as channel trailer on upload.</p></div></div>
+<div class="row"><div class="chk"></div><div><h4>Twitter / X — copy handover process</h4><p>Handle confirmed: @RCSLIndia. RCSL Client IT team handles posting. SIS delivers copy-ready briefs 48 hours before each post.</p></div></div>
+<div class="row"><div class="chk"></div><div><h4>ShiftEaze demo / visual asset</h4><p>The ShiftEaze command-centre dashboard screenshot (from the website) is a key visual asset for the spotlight. Confirm if RCSL can share a higher-res version or a screen recording for social use.</p></div></div>
+<div class="row"><div class="chk"></div><div><h4>Project Management case proof</h4><p>Mundra Port deployment (1,000+ operators, 6 terminals, ShiftEaze live) is the strongest proof point. Confirm if this can be referenced publicly with or without naming Mundra/Adani. Determines whether the proof posts run named or anonymized.</p></div></div>
+<div class="row"><div class="chk"></div><div><h4>Video shoot — project management sites</h4><p>Week 2 Reel and YouTube Short require on-site footage from a port or cement plant project. Coordinate site access and filming permissions before Week 1 ends.</p></div></div>
+<div class="row"><div class="chk"></div><div><h4>8-services tour video — Month opener</h4><p>The very first post of Month 1 (LinkedIn, IGFB, Twitter — all same video). A 45–60s tour across all 8 RCSL services. Needs one visual beat per service. This must be ready before Week 1 — it is the calendar's opening post.</p></div></div>
+<div class="row"><div class="chk"></div><div><h4>Brand intro film — pre-production</h4><p>2–3 min brand intro film: RCSL overview, scale, project management capability, ShiftEaze, people on the ground. No client names without clearance. Script to be approved before shoot.</p></div></div>
+</div></section>
 
 <section class="section"><div class="sec-head"><span class="num">05</span><h2>The calendar</h2><span class="line"></span></div>
-<div class="week"><div class="week-head"><span class="wk">Week 1</span><span class="focus">Open the month with a full services overview (all 8), then launch into the Project Management spotlight. Establish ShiftEaze as the tech differentiator.</span></div><div class="cards"><div class="card" style="border-top-color:#6D28D9;">
-<div class="top">
- <span class="day-label">Monday</span>
- <span class="pill" style="background:#6D28D9">Brand Intro</span>
- <span class="fmt-badge vid">▶ Video · 45–60s</span>
- <span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
- <span style="font-size:10px;background:#ede9fe;color:#6D28D9;border:1px solid #ddd6fe;padding:3px 8px;border-radius:6px;font-weight:700">★ Month opener</span>
-</div>
-<div class="body"><h3>Everything RCSL does, in one video — the full services tour</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>Most companies need one partner for ops. We built ourselves to be that partner — across 8 services.</p></div>
-<div class="field"><div class="lab">Content direction</div><p>The very first post of Month 1 — sets context before any service-specific spotlight begins. A fast-paced 45–60s tour across all 8 RCSL services: Project Management, Logistics, Warehouse Management, HRMS & Payroll, Turnkey Projects, SLA-Based Manpower, Procurement, and Auditing. One quick visual beat per service, stat overlay per beat. Closes with: "This month, we go deep on Project Management." Sets up the spotlight that follows from this point onward.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>45–60s vertical or square, 8 fast cuts (one per service, ~5–6s each), bold service-name overlay per cut, navy/red grade, RCSL logo open + close. Final 5s teases the Project Management spotlight.</p></div><div class="dep"><b>Asset / Action:</b><span>Footage or graphic per service (8 visual beats needed). Flag any asset gaps to SIS by end of Week 0.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
-<div class="top">
- <span class="day-label">Wednesday</span>
- <span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span>
- <span class="fmt-badge">Static post · Carousel</span>
- <span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
-</div>
-<div class="body"><h3>Plan. Execute. Deliver. — RCSL's Project Management model</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>A project without real-time visibility isn't managed. It's hoped for.</p></div>
-<div class="field"><div class="lab">Content direction</div><p>5-slide carousel. RCSL's 5-phase project management framework: Discovery → Resource Planning → Execution → Milestone Monitoring → Delivery. One slide per phase, one key action per phase. Positions RCSL as a structured, accountable project partner.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>5-slide carousel, navy/white, one phase per slide, icon-led, clean.</p></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#6D28D9;">
-<div class="top">
- <span class="day-label">Tuesday</span>
- <span class="pill" style="background:#6D28D9">Brand Intro</span>
- <span class="fmt-badge vid">▶ Reel · 45–60s</span>
- <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
- <span style="font-size:10px;background:#ede9fe;color:#6D28D9;border:1px solid #ddd6fe;padding:3px 8px;border-radius:6px;font-weight:700">★ Month opener</span>
-</div>
-<div class="body"><h3>Everything RCSL does, in one video — the full services tour</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>Warehousing. Logistics. Payroll. Manpower. Auditing. One company does it all.</p></div>
-<div class="field"><div class="lab">Content direction</div><p>Launch Reel for the month — a fast-paced tour across all 8 RCSL services (Project Management, Logistics, Warehouse Management, HRMS & Payroll, Turnkey Projects, SLA-Based Manpower, Procurement, Auditing). One quick visual beat per service. Closes with a tease for the Project Management spotlight that follows this month. CTA: follow.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>9:16, 8 fast cuts (~5–6s each), bold service-name overlay per cut, punchy pacing, RCSL logo open + close.</p></div><div class="dep"><b>Asset / Action:</b><span>Footage or graphic per service (8 visual beats). Same source asset as the LinkedIn/Twitter version — repurpose, don't re-shoot.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
-<div class="top">
- <span class="day-label">Thursday</span>
- <span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span>
- <span class="fmt-badge">Static · single image</span>
- <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
-</div>
-<div class="body"><h3>Two project domains. One execution standard.</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>Cement Plant · Port Operations</p></div>
-<div class="field"><div class="lab">Content direction</div><p>Graphic introducing RCSL's two project domains. Clean, bold, visual hierarchy. First impression for new followers arriving from the Reel.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Navy background, two domain tiles with icon per domain, RCSL red accents.</p></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
-<div class="top">
- <span class="day-label">Friday</span>
- <span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span>
- <span class="fmt-badge">Static · Carousel</span>
- <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
-</div>
-<div class="body"><h3>What is AI-powered rostering — and why does it matter for large projects?</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>The right person, right place, right shift. Without guesswork.</p></div>
-<div class="field"><div class="lab">Content direction</div><p>3-slide educational carousel. What ShiftEaze does, the problem it solves (manual rostering gaps), and why it matters at scale. Buyer-friendly, not technical. CTA: learn more.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Clean illustrated carousel, icon-led, light background.</p></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
-<div class="top">
- <span class="day-label">Saturday</span>
- <span class="pill" style="background:#C2410C">People & Culture</span>
- <span class="fmt-badge story">◎ Story</span>
- <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
-</div>
-<div class="body"><h3>Behind the project — swipe to see</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p></p></div>
-<div class="field"><div class="lab">Content direction</div><p>Story sequence: 3 frames — a project site in action, the team coordinating, a "follow us" close. Casual and real.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>3 Story frames, branded but lightweight.</p></div><div class="dep"><b>Asset / Action:</b><span>RCSL: site or team photos from a project location.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#6D28D9;">
-<div class="top">
- <span class="day-label">Monday</span>
- <span class="pill" style="background:#6D28D9">Brand Intro</span>
- <span class="fmt-badge vid">▶ Video post</span>
- <span class="chan" style="color:#1DA1F2"><i style="background:#1DA1F2"></i>Twitter / X</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: Client IT</span>
- <span style="font-size:10px;background:#ede9fe;color:#6D28D9;border:1px solid #ddd6fe;padding:3px 8px;border-radius:6px;font-weight:700">★ Month opener</span>
-</div>
-<div class="body"><h3>Everything RCSL does, in one video — the full services tour</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>8 services. 1 partner. This is RCSL. #WorkSimplified #RCSL</p></div>
-<div class="field"><div class="lab">Content direction</div><p>Same 45–60s services-tour video as LinkedIn, shared natively. Caption as a punchy services list. Hashtags: #ProjectManagement #Logistics #Warehousing #HRMS #Manpower #RCSL #WorkSimplified</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Same video asset as LinkedIn — no re-edit needed.</p></div><div class="dep"><b>Asset / Action:</b><span>Same asset as LinkedIn video.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
-<div class="top">
- <span class="day-label">Friday</span>
- <span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span>
- <span class="fmt-badge">Photo post</span>
- <span class="chan" style="color:#1DA1F2"><i style="background:#1DA1F2"></i>Twitter / X</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: Client IT</span>
-</div>
-<div class="body"><h3>From cement plants to port terminals — RCSL manages it all.</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>Two project domains. AI-powered rostering. Real-time milestone tracking. #ProjectManagement #PortOperations #RCSL</p></div>
-<div class="field"><div class="lab">Content direction</div><p>Domain overview graphic post. Two domains in a clean visual card. Client IT posts.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Single graphic: 2 domain icons + one-line each.</p></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
-<div class="top">
- <span class="day-label">Thursday</span>
- <span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span>
- <span class="fmt-badge short">⚡ YouTube Short</span>
- <span class="chan" style="color:#FF0000"><i style="background:#FF0000"></i>YouTube</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
-</div>
-<div class="body"><h3>What is AI-powered project management? — 45 seconds</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>Manual rostering causes project delays. Here's the fix.</p></div>
-<div class="field"><div class="lab">Content direction</div><p>First Short — ShiftEaze explainer. What the problem is (manual rostering at scale), what ShiftEaze does, why it matters. Repurposed from IG carousel content, reformatted for YouTube Shorts.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Vertical 9:16, 45s max, captions on, RCSL end-card.</p></div><div class="dep"><b>Asset / Action:</b><span>Repurpose from IG carousel — no new shoot needed.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div></div></div><div class="week"><div class="week-head"><span class="wk">Week 2</span><span class="focus">Operations proof content. First project case story. Site footage goes live.</span></div><div class="cards"><div class="card" style="border-top-color:#1B4D8E;">
-<div class="top">
- <span class="day-label">Monday</span>
- <span class="pill" style="background:#1B4D8E">Proof & Performance</span>
- <span class="fmt-badge">Static post · Carousel</span>
- <span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
-</div>
-<div class="body"><h3>Managing 1,000+ operators across 6 terminals — how ShiftEaze makes it work</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>At this scale, a manual roster is not a plan. It's a risk.</p></div>
-<div class="field"><div class="lab">Content direction</div><p>Proof carousel: the Mundra Port deployment — scale, problem, ShiftEaze solution, outcome. Anonymized or named depending on client clearance. Format: challenge / approach / result. CTA: facing a similar challenge?</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Case-study carousel, metric-forward, navy/white.</p></div><div class="dep"><b>Asset / Action:</b><span>Confirm Mundra/Adani name-use clearance. Anonymize if not cleared.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
-<div class="top">
- <span class="day-label">Friday</span>
- <span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span>
- <span class="fmt-badge">Static post · Carousel</span>
- <span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
-</div>
-<div class="body"><h3>Milestone accountability — how RCSL tracks project delivery phase by phase</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>We don't wait for quarter-end reviews. Neither should your projects.</p></div>
-<div class="field"><div class="lab">Content direction</div><p>Carousel on RCSL's milestone & KPI management — live dashboards, phase-wise digital reports, automated escalation protocols, monthly KPI reconciliation with LD computation. Buyer-facing explainer.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Clean, process-visual carousel. Dashboard screenshot as one slide if cleared.</p></div><div class="dep"><b>Asset / Action:</b><span>ShiftEaze dashboard visual (confirm clearance for public use).</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
-<div class="top">
- <span class="day-label">Wednesday</span>
- <span class="pill" style="background:#C2410C">People & Culture</span>
- <span class="fmt-badge vid">▶ Reel · day-in-the-life</span>
- <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
-</div>
-<div class="body"><h3>A shift at a project site — start to finish</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>05:30. The command centre checks in. The site comes alive.</p></div>
-<div class="field"><div class="lab">Content direction</div><p>Day-in-the-life Reel at a project site — documentary style. Shift start, operator check-in, dashboard view, site activity. Authentic and human. CTA: this could be your project.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Time-stamped Reel overlays, on-ground footage, 9:16.</p></div><div class="dep"><b>Asset / Action:</b><span>RCSL: site access + footage from one project location (port or cement plant).</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
-<div class="top">
- <span class="day-label">Monday</span>
- <span class="pill" style="background:#C2410C">People & Culture</span>
- <span class="fmt-badge">Static · Carousel</span>
- <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
-</div>
-<div class="body"><h3>People of RCSL — #1</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>Meet the people managing India's most complex project sites.</p></div>
-<div class="field"><div class="lab">Content direction</div><p>Launch of the People of RCSL series. One person from a project management role — shift supervisor, site coordinator, or operations lead. Role, one line in their own words. CTA: tag someone who'd thrive here.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>People of RCSL portrait frame + pull-quote slide.</p></div><div class="dep"><b>Asset / Action:</b><span>RCSL: employee consent, name, role, photo, one quote.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
-<div class="top">
- <span class="day-label">Saturday</span>
- <span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span>
- <span class="fmt-badge story">◎ Story</span>
- <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
-</div>
-<div class="body"><h3>How ShiftEaze works — tap through</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p></p></div>
-<div class="field"><div class="lab">Content direction</div><p>Story series: 3 frames explaining ShiftEaze simply — what it is, what it does at a project site, the result. Educational, tap-through format.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>3 Story frames, branded, icon-led.</p></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
-<div class="top">
- <span class="day-label">Tuesday</span>
- <span class="pill" style="background:#C2410C">People & Culture</span>
- <span class="fmt-badge">Photo post</span>
- <span class="chan" style="color:#1DA1F2"><i style="background:#1DA1F2"></i>Twitter / X</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: Client IT</span>
-</div>
-<div class="body"><h3>The team behind the terminals. #PeopleOfRCSL #Operations #RCSL</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>Project management at scale starts with the people on the ground. #WorkSimplified #ProjectManagement</p></div>
-<div class="field"><div class="lab">Content direction</div><p>People-led photo post. An on-site team photo with a short proud caption. Client IT posts.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Strong on-ground team photo, RCSL frame overlay.</p></div><div class="dep"><b>Asset / Action:</b><span>RCSL: team photo from a project site.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
-<div class="top">
- <span class="day-label">Thursday</span>
- <span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span>
- <span class="fmt-badge">Photo post</span>
- <span class="chan" style="color:#1DA1F2"><i style="background:#1DA1F2"></i>Twitter / X</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: Client IT</span>
-</div>
-<div class="body"><h3>Live dashboards. Zero compliance gaps. Phase-by-phase accountability. #ShiftEaze #ProjectManagement</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>This is how RCSL manages projects at port scale. #RCSL #Operations #AI</p></div>
-<div class="field"><div class="lab">Content direction</div><p>ShiftEaze/tech capability photo post. Dashboard visual or site photo with tech overlay. Short, credible, factual.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>ShiftEaze dashboard image or site-tech composite graphic.</p></div><div class="dep"><b>Asset / Action:</b><span>ShiftEaze screenshot (confirm clearance).</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
-<div class="top">
- <span class="day-label">Wednesday</span>
- <span class="pill" style="background:#C2410C">People & Culture</span>
- <span class="fmt-badge short">⚡ YouTube Short</span>
- <span class="chan" style="color:#FF0000"><i style="background:#FF0000"></i>YouTube</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
-</div>
-<div class="body"><h3>People of RCSL — Project Management — 60 seconds</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>The operators keeping India's ports and plants running.</p></div>
-<div class="field"><div class="lab">Content direction</div><p>Short: People of RCSL from a project management context. A quick 45–60s cut introducing the series, focused on project site roles.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Vertical, 60s max, captions on, employee consent confirmed.</p></div><div class="dep"><b>Asset / Action:</b><span>Repurpose from IG People of RCSL content.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div></div></div><div class="week"><div class="week-head"><span class="wk">Week 3</span><span class="focus">Near-full cadence. LinkedIn Article live. YouTube Short #3. Brand film nears completion.</span></div><div class="cards"><div class="card" style="border-top-color:#0E7C66;">
-<div class="top">
- <span class="day-label">Monday</span>
- <span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span>
- <span class="fmt-badge art">✍ LinkedIn Article</span>
- <span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
-</div>
-<div class="body"><h3>Why large-scale project management in India needs AI — not just more managers</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>At 500+ people on a single project site, a WhatsApp group is not a management system.</p></div>
-<div class="field"><div class="lab">Content direction</div><p>600–800 word article. RCSL's perspective on AI-powered project management vs traditional manual approaches — what breaks at scale, what ShiftEaze solves, what enterprise clients should demand from a project partner. No client names without clearance. CTA: follow, share, enquire.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Article cover: project site visual, RCSL branded. Author: RCSL company page.</p></div><div class="dep"><b>Asset / Action:</b><span>SIS drafts; RCSL reviews and approves before publishing.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
-<div class="top">
- <span class="day-label">Tuesday</span>
- <span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span>
- <span class="fmt-badge">Static · single image</span>
- <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
-</div>
-<div class="body"><h3>Zero-gap compliance — what it means on a project site</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>Every permit. Every checklist. Every incident. Captured digitally. Time-stamped.</p></div>
-<div class="field"><div class="lab">Content direction</div><p>Compliance-angle graphic. RCSL's digital safety and compliance management on project sites — permit-to-work, incident reporting, audit trail. Positions RCSL above unorganised competitors.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Bold infographic: 3 compliance pillars with one-line each. Navy/white.</p></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
-<div class="top">
- <span class="day-label">Thursday</span>
- <span class="pill" style="background:#C2410C">People & Culture</span>
- <span class="fmt-badge">Static · Carousel</span>
- <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
-</div>
-<div class="body"><h3>People of RCSL — #2</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>From the control room to the cargo floor.</p></div>
-<div class="field"><div class="lab">Content direction</div><p>Second People of RCSL spotlight. Different role from #1 — aim for variety across site functions.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Same series frame.</p></div><div class="dep"><b>Asset / Action:</b><span>RCSL: employee consent, name, role, photo, one quote.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
-<div class="top">
- <span class="day-label">Saturday</span>
- <span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span>
- <span class="fmt-badge story">◎ Story</span>
- <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
-</div>
-<div class="body"><h3>Did you know? — Project Management facts</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p></p></div>
-<div class="field"><div class="lab">Content direction</div><p>3 quick-fire facts about project management at RCSL's scale. Educational, tap-through.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>3 Story frames, stat-led, branded.</p></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#1B4D8E;">
-<div class="top">
- <span class="day-label">Wednesday</span>
- <span class="pill" style="background:#1B4D8E">Proof & Performance</span>
- <span class="fmt-badge">Photo post</span>
- <span class="chan" style="color:#1DA1F2"><i style="background:#1DA1F2"></i>Twitter / X</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: Client IT</span>
-</div>
-<div class="body"><h3>Project delivery, at scale. Every phase tracked. Every milestone accountable. #RCSL #ProjectManagement</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>Phase-wise KPI tracking. Live dashboards. Automated escalation. This is how large projects get delivered on time. #ShiftEaze #Operations</p></div>
-<div class="field"><div class="lab">Content direction</div><p>Proof-aligned photo post. Milestone/KPI graphic card. Client IT posts.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Milestone graphic: phase flow + accountability statement.</p></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#0E7C66;">
-<div class="top">
- <span class="day-label">Thursday</span>
- <span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span>
- <span class="fmt-badge short">⚡ YouTube Short</span>
- <span class="chan" style="color:#FF0000"><i style="background:#FF0000"></i>YouTube</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
-</div>
-<div class="body"><h3>Port operations, managed by RCSL — 60 seconds</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>Cargo handling. Vessel turnaround. Gang operations. SLA governance.</p></div>
-<div class="field"><div class="lab">Content direction</div><p>Third Short: port project domain showcase. Quick cuts from a port project site. Visual credibility for the Port Operations domain.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Vertical, 60s max, port footage, text overlays, RCSL end-card.</p></div><div class="dep"><b>Asset / Action:</b><span>RCSL: port site footage.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div></div></div><div class="week"><div class="week-head"><span class="wk">Week 4</span><span class="focus">Full cadence. Brand intro film goes live on YouTube. PR activity. Month wrap.</span></div><div class="cards"><div class="card" style="border-top-color:#475569;">
-<div class="top">
- <span class="day-label">Monday</span>
- <span class="pill" style="background:#475569">Milestones</span>
- <span class="fmt-badge">Static post · Carousel</span>
- <span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
-</div>
-<div class="body"><h3>Month one: the Project Management story, so far</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>New here? Here's what we've shared — and what's coming in Month 2.</p></div>
-<div class="field"><div class="lab">Content direction</div><p>Month-end recap carousel. Best-of-month content highlights, spotlight summary, signals Month 2 service theme. CTA: follow.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Recap carousel: best-of-month visuals + Month 2 teaser.</p></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
-<div class="top">
- <span class="day-label">Monday</span>
- <span class="pill" style="background:#C2410C">People & Culture</span>
- <span class="fmt-badge">Static · Carousel</span>
- <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
-</div>
-<div class="body"><h3>People of RCSL — #3</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>Every project runs on people. Meet more of ours.</p></div>
-<div class="field"><div class="lab">Content direction</div><p>Third People of RCSL spotlight. Aim for a different vertical within project management (e.g. cement plant vs port).</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Same series frame.</p></div><div class="dep"><b>Asset / Action:</b><span>RCSL: employee consent, name, role, photo, one quote.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#475569;">
-<div class="top">
- <span class="day-label">Thursday</span>
- <span class="pill" style="background:#475569">Milestones</span>
- <span class="fmt-badge">Static · single image</span>
- <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
-</div>
-<div class="body"><h3>Month 1 — a look back</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>4 weeks. 5 channels. One spotlight: Project Management.</p></div>
-<div class="field"><div class="lab">Content direction</div><p>Month-end recap graphic. Post count, spotlight theme, milestones. Signals the brand is consistent and active.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Clean stat/recap graphic, RCSL branded.</p></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#C2410C;">
-<div class="top">
- <span class="day-label">Saturday</span>
- <span class="pill" style="background:#C2410C">People & Culture</span>
- <span class="fmt-badge story">◎ Story</span>
- <span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
-</div>
-<div class="body"><h3>We're hiring — project management roles</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p></p></div>
-<div class="field"><div class="lab">Content direction</div><p>Hiring Story. 3 frames: "we're growing," open project management roles (site coordinators, operators, supervisors, engineers), "DM us" CTA.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>3 Story frames, bold type, RCSL brand colours.</p></div><div class="dep"><b>Asset / Action:</b><span>RCSL: current open roles + project locations.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#475569;">
-<div class="top">
- <span class="day-label">Tuesday</span>
- <span class="pill" style="background:#475569">Milestones</span>
- <span class="fmt-badge">Photo post</span>
- <span class="chan" style="color:#1DA1F2"><i style="background:#1DA1F2"></i>Twitter / X</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: Client IT</span>
-</div>
-<div class="body"><h3>Month 1 done. Project Management spotlight complete. Month 2 coming. #RCSL #WorkSimplified</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>6 posts. 5 channels. One goal: making RCSL's project management capability visible. #ProjectManagement #Operations</p></div>
-<div class="field"><div class="lab">Content direction</div><p>Month-end recap photo post. Clean "we showed up" graphic with the month in numbers.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Recap graphic: platform icons + post counts.</p></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#1B4D8E;border:2px dashed #e7e9ef;border-top:5px dashed #1B4D8E;">
-<div class="top">
- <span class="day-label">Thursday</span>
- <span class="pill" style="background:#1B4D8E">Proof & Performance</span>
- <span class="fmt-badge">PR Activity</span>
- <span class="chan" style="color:#C8102E"><i style="background:#C8102E"></i>PR Activity</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
-</div>
-<div class="body"><h3>Month 1 PR — to be briefed by RCSL</h3><div class="pr-block">📋 Placeholder — RCSL to brief SIS. Suggested angle: ShiftEaze port deployment story if Mundra name-use is cleared.</div><div class="dep"><b>Asset / Action:</b><span>RCSL to brief SIS. Suggested story angle noted above.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div><div class="card" style="border-top-color:#475569;">
-<div class="top">
- <span class="day-label">Wednesday</span>
- <span class="pill" style="background:#475569">Milestones</span>
- <span class="fmt-badge long">🎬 Long-form · Brand intro film</span>
- <span class="chan" style="color:#FF0000"><i style="background:#FF0000"></i>YouTube</span>
- <span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span>
-</div>
-<div class="body"><h3>Riddhi Corporate Services — Who We Are</h3>
-<div class="field hook"><div class="lab">Hook / opening</div><p>Work Simplified.</p></div>
-<div class="field"><div class="lab">Content direction</div><p>2–3 minute brand introduction film. RCSL's story, scale, and project management capability — the evergreen channel anchor. Covers: who RCSL is, scale across India, project management as the Month 1 spotlight (ShiftEaze, port and cement plant domains), the people on the ground. No client names without clearance. Scripted VO. Pinned as channel trailer on upload.</p></div>
-<div class="field"><div class="lab">Visual brief</div><p>Professional video: site footage (port and cement plant), team visuals, ShiftEaze dashboard. Clean VO. RCSL logo open + close.</p></div><div class="dep"><b>Asset / Action:</b><span>RCSL: full shoot required. SIS: script + production brief. Script approval before shoot.</span></div></div>
-<div class="card-status" onclick="cycleStatus(this)" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div></div></div>
-</section>
 
-</div>
+<!-- WEEK 1 -->
+<div class="week"><div class="week-head"><span class="wk">Week 1</span><span class="focus">Open the month with a full services overview (all 8), then launch into the Project Management spotlight. Establish ShiftEaze as the tech differentiator.</span></div><div class="cards">
+
+<div class="card" style="border-top-color:#6D28D9;"><div class="top"><span class="day-label">Monday</span><span class="pill" style="background:#6D28D9">Brand Intro</span><span class="fmt-badge vid">▶ Video · 45–60s</span><span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span><span style="font-size:10px;background:#ede9fe;color:#6D28D9;border:1px solid #ddd6fe;padding:3px 8px;border-radius:6px;font-weight:700">★ Month opener</span></div>
+<div class="body"><h3>Everything RCSL does, in one video — the full services tour</h3><div class="field hook"><div class="lab">Hook / opening</div><p>Most companies need one partner for ops. We built ourselves to be that partner — across 8 services.</p></div><div class="field"><div class="lab">Content direction</div><p>The very first post of Month 1 — sets context before any service-specific spotlight begins. A fast-paced 45–60s tour across all 8 RCSL services: Project Management, Logistics, Warehouse Management, HRMS &amp; Payroll, Turnkey Projects, SLA-Based Manpower, Procurement, and Auditing. One quick visual beat per service, stat overlay per beat. Closes with: "This month, we go deep on Project Management."</p></div><div class="field"><div class="lab">Visual brief</div><p>45–60s vertical or square, 8 fast cuts, bold service-name overlay per cut, navy/red grade, RCSL logo open + close.</p></div><div class="dep"><b>Asset / Action:</b><span>Footage or graphic per service (8 visual beats needed). Flag any asset gaps to SIS by end of Week 0.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-01" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#0E7C66;"><div class="top"><span class="day-label">Wednesday</span><span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span><span class="fmt-badge">Static post · Carousel</span><span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span></div>
+<div class="body"><h3>Plan. Execute. Deliver. — RCSL's Project Management model</h3><div class="field hook"><div class="lab">Hook / opening</div><p>A project without real-time visibility isn't managed. It's hoped for.</p></div><div class="field"><div class="lab">Content direction</div><p>5-slide carousel. RCSL's 5-phase project management framework: Discovery → Resource Planning → Execution → Milestone Monitoring → Delivery. One slide per phase, one key action per phase. Positions RCSL as a structured, accountable project partner.</p></div><div class="field"><div class="lab">Visual brief</div><p>5-slide carousel, navy/white, one phase per slide, icon-led, clean.</p></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-02" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#6D28D9;"><div class="top"><span class="day-label">Tuesday</span><span class="pill" style="background:#6D28D9">Brand Intro</span><span class="fmt-badge vid">▶ Reel · 45–60s</span><span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span><span style="font-size:10px;background:#ede9fe;color:#6D28D9;border:1px solid #ddd6fe;padding:3px 8px;border-radius:6px;font-weight:700">★ Month opener</span></div>
+<div class="body"><h3>Everything RCSL does, in one video — the full services tour</h3><div class="field hook"><div class="lab">Hook / opening</div><p>Warehousing. Logistics. Payroll. Manpower. Auditing. One company does it all.</p></div><div class="field"><div class="lab">Content direction</div><p>Launch Reel for the month — a fast-paced tour across all 8 RCSL services. One quick visual beat per service. Closes with a tease for the Project Management spotlight. CTA: follow.</p></div><div class="field"><div class="lab">Visual brief</div><p>9:16, 8 fast cuts (~5–6s each), bold service-name overlay per cut, punchy pacing, RCSL logo open + close.</p></div><div class="dep"><b>Asset / Action:</b><span>Same source asset as LinkedIn/Twitter — repurpose, don't re-shoot.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-03" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#0E7C66;"><div class="top"><span class="day-label">Thursday</span><span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span><span class="fmt-badge">Static · single image</span><span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span></div>
+<div class="body"><h3>Two project domains. One execution standard.</h3><div class="field hook"><div class="lab">Hook / opening</div><p>Cement Plant · Port Operations</p></div><div class="field"><div class="lab">Content direction</div><p>Graphic introducing RCSL's two project domains. Clean, bold, visual hierarchy. First impression for new followers arriving from the Reel.</p></div><div class="field"><div class="lab">Visual brief</div><p>Navy background, two domain tiles with icon per domain, RCSL red accents.</p></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-04" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#0E7C66;"><div class="top"><span class="day-label">Friday</span><span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span><span class="fmt-badge">Static · Carousel</span><span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span></div>
+<div class="body"><h3>What is AI-powered rostering — and why does it matter for large projects?</h3><div class="field hook"><div class="lab">Hook / opening</div><p>The right person, right place, right shift. Without guesswork.</p></div><div class="field"><div class="lab">Content direction</div><p>3-slide educational carousel. What ShiftEaze does, the problem it solves (manual rostering gaps), and why it matters at scale. Buyer-friendly, not technical.</p></div><div class="field"><div class="lab">Visual brief</div><p>Clean illustrated carousel, icon-led, light background.</p></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-05" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#C2410C;"><div class="top"><span class="day-label">Saturday</span><span class="pill" style="background:#C2410C">People &amp; Culture</span><span class="fmt-badge story">◎ Story</span><span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span></div>
+<div class="body"><h3>Behind the project — swipe to see</h3><div class="field"><div class="lab">Content direction</div><p>Story sequence: 3 frames — a project site in action, the team coordinating, a "follow us" close. Casual and real.</p></div><div class="field"><div class="lab">Visual brief</div><p>3 Story frames, branded but lightweight.</p></div><div class="dep"><b>Asset / Action:</b><span>RCSL: site or team photos from a project location.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-06" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#6D28D9;"><div class="top"><span class="day-label">Monday</span><span class="pill" style="background:#6D28D9">Brand Intro</span><span class="fmt-badge vid">▶ Video post</span><span class="chan" style="color:#1DA1F2"><i style="background:#1DA1F2"></i>Twitter / X</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: Client IT</span><span style="font-size:10px;background:#ede9fe;color:#6D28D9;border:1px solid #ddd6fe;padding:3px 8px;border-radius:6px;font-weight:700">★ Month opener</span></div>
+<div class="body"><h3>Everything RCSL does, in one video — the full services tour</h3><div class="field hook"><div class="lab">Hook / opening</div><p>8 services. 1 partner. This is RCSL. #WorkSimplified #RCSL</p></div><div class="field"><div class="lab">Content direction</div><p>Same 45–60s services-tour video as LinkedIn, shared natively. Caption as a punchy services list. Hashtags: #ProjectManagement #Logistics #Warehousing #HRMS #Manpower #RCSL #WorkSimplified</p></div><div class="dep"><b>Asset / Action:</b><span>Same asset as LinkedIn video.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-07" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#0E7C66;"><div class="top"><span class="day-label">Friday</span><span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span><span class="fmt-badge">Photo post</span><span class="chan" style="color:#1DA1F2"><i style="background:#1DA1F2"></i>Twitter / X</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: Client IT</span></div>
+<div class="body"><h3>From cement plants to port terminals — RCSL manages it all.</h3><div class="field hook"><div class="lab">Hook / opening</div><p>Two project domains. AI-powered rostering. Real-time milestone tracking. #ProjectManagement #PortOperations #RCSL</p></div><div class="field"><div class="lab">Content direction</div><p>Domain overview graphic post. Two domains in a clean visual card. Client IT posts.</p></div><div class="field"><div class="lab">Visual brief</div><p>Single graphic: 2 domain icons + one-line each.</p></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-08" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#0E7C66;"><div class="top"><span class="day-label">Thursday</span><span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span><span class="fmt-badge short">⚡ YouTube Short</span><span class="chan" style="color:#FF0000"><i style="background:#FF0000"></i>YouTube</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span></div>
+<div class="body"><h3>What is AI-powered project management? — 45 seconds</h3><div class="field hook"><div class="lab">Hook / opening</div><p>Manual rostering causes project delays. Here's the fix.</p></div><div class="field"><div class="lab">Content direction</div><p>First Short — ShiftEaze explainer. What the problem is, what ShiftEaze does, why it matters. Repurposed from IG carousel content, reformatted for YouTube Shorts.</p></div><div class="field"><div class="lab">Visual brief</div><p>Vertical 9:16, 45s max, captions on, RCSL end-card.</p></div><div class="dep"><b>Asset / Action:</b><span>Repurpose from IG carousel — no new shoot needed.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-09" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+</div></div>
+
+<!-- WEEK 2 -->
+<div class="week"><div class="week-head"><span class="wk">Week 2</span><span class="focus">Operations proof content. First project case story. Site footage goes live.</span></div><div class="cards">
+
+<div class="card" style="border-top-color:#1B4D8E;"><div class="top"><span class="day-label">Monday</span><span class="pill" style="background:#1B4D8E">Proof &amp; Performance</span><span class="fmt-badge">Static post · Carousel</span><span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span></div>
+<div class="body"><h3>Managing 1,000+ operators across 6 terminals — how ShiftEaze makes it work</h3><div class="field hook"><div class="lab">Hook / opening</div><p>At this scale, a manual roster is not a plan. It's a risk.</p></div><div class="field"><div class="lab">Content direction</div><p>Proof carousel: the Mundra Port deployment — scale, problem, ShiftEaze solution, outcome. Anonymized or named depending on client clearance. Format: challenge / approach / result.</p></div><div class="field"><div class="lab">Visual brief</div><p>Case-study carousel, metric-forward, navy/white.</p></div><div class="dep"><b>Asset / Action:</b><span>Confirm Mundra/Adani name-use clearance. Anonymize if not cleared.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-10" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#0E7C66;"><div class="top"><span class="day-label">Friday</span><span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span><span class="fmt-badge">Static post · Carousel</span><span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span></div>
+<div class="body"><h3>Milestone accountability — how RCSL tracks project delivery phase by phase</h3><div class="field hook"><div class="lab">Hook / opening</div><p>We don't wait for quarter-end reviews. Neither should your projects.</p></div><div class="field"><div class="lab">Content direction</div><p>Carousel on RCSL's milestone &amp; KPI management — live dashboards, phase-wise digital reports, automated escalation protocols, monthly KPI reconciliation with LD computation. Buyer-facing explainer.</p></div><div class="field"><div class="lab">Visual brief</div><p>Clean, process-visual carousel. Dashboard screenshot as one slide if cleared.</p></div><div class="dep"><b>Asset / Action:</b><span>ShiftEaze dashboard visual (confirm clearance for public use).</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-11" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#C2410C;"><div class="top"><span class="day-label">Wednesday</span><span class="pill" style="background:#C2410C">People &amp; Culture</span><span class="fmt-badge vid">▶ Reel · day-in-the-life</span><span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span></div>
+<div class="body"><h3>A shift at a project site — start to finish</h3><div class="field hook"><div class="lab">Hook / opening</div><p>05:30. The command centre checks in. The site comes alive.</p></div><div class="field"><div class="lab">Content direction</div><p>Day-in-the-life Reel at a project site — documentary style. Shift start, operator check-in, dashboard view, site activity. Authentic and human.</p></div><div class="field"><div class="lab">Visual brief</div><p>Time-stamped Reel overlays, on-ground footage, 9:16.</p></div><div class="dep"><b>Asset / Action:</b><span>RCSL: site access + footage from one project location (port or cement plant).</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-12" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#C2410C;"><div class="top"><span class="day-label">Monday</span><span class="pill" style="background:#C2410C">People &amp; Culture</span><span class="fmt-badge">Static · Carousel</span><span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span></div>
+<div class="body"><h3>People of RCSL — #1</h3><div class="field hook"><div class="lab">Hook / opening</div><p>Meet the people managing India's most complex project sites.</p></div><div class="field"><div class="lab">Content direction</div><p>Launch of the People of RCSL series. One person from a project management role — shift supervisor, site coordinator, or operations lead. Role, one line in their own words. CTA: tag someone who'd thrive here.</p></div><div class="dep"><b>Asset / Action:</b><span>RCSL: employee consent, name, role, photo, one quote.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-13" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#0E7C66;"><div class="top"><span class="day-label">Saturday</span><span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span><span class="fmt-badge story">◎ Story</span><span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span></div>
+<div class="body"><h3>How ShiftEaze works — tap through</h3><div class="field"><div class="lab">Content direction</div><p>Story series: 3 frames explaining ShiftEaze simply — what it is, what it does at a project site, the result. Educational, tap-through format.</p></div><div class="field"><div class="lab">Visual brief</div><p>3 Story frames, branded, icon-led.</p></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-14" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#C2410C;"><div class="top"><span class="day-label">Tuesday</span><span class="pill" style="background:#C2410C">People &amp; Culture</span><span class="fmt-badge">Photo post</span><span class="chan" style="color:#1DA1F2"><i style="background:#1DA1F2"></i>Twitter / X</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: Client IT</span></div>
+<div class="body"><h3>The team behind the terminals. #PeopleOfRCSL #Operations #RCSL</h3><div class="field hook"><div class="lab">Hook / opening</div><p>Project management at scale starts with the people on the ground. #WorkSimplified #ProjectManagement</p></div><div class="field"><div class="lab">Content direction</div><p>People-led photo post. An on-site team photo with a short proud caption.</p></div><div class="dep"><b>Asset / Action:</b><span>RCSL: team photo from a project site.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-15" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#0E7C66;"><div class="top"><span class="day-label">Thursday</span><span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span><span class="fmt-badge">Photo post</span><span class="chan" style="color:#1DA1F2"><i style="background:#1DA1F2"></i>Twitter / X</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: Client IT</span></div>
+<div class="body"><h3>Live dashboards. Zero compliance gaps. Phase-by-phase accountability. #ShiftEaze #ProjectManagement</h3><div class="field hook"><div class="lab">Hook / opening</div><p>This is how RCSL manages projects at port scale. #RCSL #Operations #AI</p></div><div class="field"><div class="lab">Content direction</div><p>ShiftEaze/tech capability photo post. Dashboard visual or site photo with tech overlay.</p></div><div class="dep"><b>Asset / Action:</b><span>ShiftEaze screenshot (confirm clearance).</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-16" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#C2410C;"><div class="top"><span class="day-label">Wednesday</span><span class="pill" style="background:#C2410C">People &amp; Culture</span><span class="fmt-badge short">⚡ YouTube Short</span><span class="chan" style="color:#FF0000"><i style="background:#FF0000"></i>YouTube</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span></div>
+<div class="body"><h3>People of RCSL — Project Management — 60 seconds</h3><div class="field hook"><div class="lab">Hook / opening</div><p>The operators keeping India's ports and plants running.</p></div><div class="field"><div class="lab">Content direction</div><p>Short: People of RCSL from a project management context. A quick 45–60s cut introducing the series, focused on project site roles.</p></div><div class="dep"><b>Asset / Action:</b><span>Repurpose from IG People of RCSL content.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-17" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+</div></div>
+
+<!-- WEEK 3 -->
+<div class="week"><div class="week-head"><span class="wk">Week 3</span><span class="focus">Near-full cadence. LinkedIn Article live. YouTube Short #3. Brand film nears completion.</span></div><div class="cards">
+
+<div class="card" style="border-top-color:#0E7C66;"><div class="top"><span class="day-label">Monday</span><span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span><span class="fmt-badge art">✍ LinkedIn Article</span><span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span></div>
+<div class="body"><h3>Why large-scale project management in India needs AI — not just more managers</h3><div class="field hook"><div class="lab">Hook / opening</div><p>At 500+ people on a single project site, a WhatsApp group is not a management system.</p></div><div class="field"><div class="lab">Content direction</div><p>600–800 word article. RCSL's perspective on AI-powered project management vs traditional manual approaches — what breaks at scale, what ShiftEaze solves, what enterprise clients should demand from a project partner.</p></div><div class="field"><div class="lab">Visual brief</div><p>Article cover: project site visual, RCSL branded.</p></div><div class="dep"><b>Asset / Action:</b><span>SIS drafts; RCSL reviews and approves before publishing.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-18" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#0E7C66;"><div class="top"><span class="day-label">Tuesday</span><span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span><span class="fmt-badge">Static · single image</span><span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span></div>
+<div class="body"><h3>Zero-gap compliance — what it means on a project site</h3><div class="field hook"><div class="lab">Hook / opening</div><p>Every permit. Every checklist. Every incident. Captured digitally. Time-stamped.</p></div><div class="field"><div class="lab">Content direction</div><p>Compliance-angle graphic. RCSL's digital safety and compliance management on project sites — permit-to-work, incident reporting, audit trail. Positions RCSL above unorganised competitors.</p></div><div class="field"><div class="lab">Visual brief</div><p>Bold infographic: 3 compliance pillars with one-line each. Navy/white.</p></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-19" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#C2410C;"><div class="top"><span class="day-label">Thursday</span><span class="pill" style="background:#C2410C">People &amp; Culture</span><span class="fmt-badge">Static · Carousel</span><span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span></div>
+<div class="body"><h3>People of RCSL — #2</h3><div class="field hook"><div class="lab">Hook / opening</div><p>From the control room to the cargo floor.</p></div><div class="field"><div class="lab">Content direction</div><p>Second People of RCSL spotlight. Different role from #1 — aim for variety across site functions.</p></div><div class="dep"><b>Asset / Action:</b><span>RCSL: employee consent, name, role, photo, one quote.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-20" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#0E7C66;"><div class="top"><span class="day-label">Saturday</span><span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span><span class="fmt-badge story">◎ Story</span><span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span></div>
+<div class="body"><h3>Did you know? — Project Management facts</h3><div class="field"><div class="lab">Content direction</div><p>3 quick-fire facts about project management at RCSL's scale. Educational, tap-through.</p></div><div class="field"><div class="lab">Visual brief</div><p>3 Story frames, stat-led, branded.</p></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-21" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#1B4D8E;"><div class="top"><span class="day-label">Wednesday</span><span class="pill" style="background:#1B4D8E">Proof &amp; Performance</span><span class="fmt-badge">Photo post</span><span class="chan" style="color:#1DA1F2"><i style="background:#1DA1F2"></i>Twitter / X</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: Client IT</span></div>
+<div class="body"><h3>Project delivery, at scale. Every phase tracked. Every milestone accountable. #RCSL #ProjectManagement</h3><div class="field hook"><div class="lab">Hook / opening</div><p>Phase-wise KPI tracking. Live dashboards. Automated escalation. This is how large projects get delivered on time. #ShiftEaze #Operations</p></div><div class="field"><div class="lab">Content direction</div><p>Proof-aligned photo post. Milestone/KPI graphic card. Client IT posts.</p></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-22" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#0E7C66;"><div class="top"><span class="day-label">Thursday</span><span class="pill" style="background:#0E7C66">Project Mgmt Spotlight</span><span class="fmt-badge short">⚡ YouTube Short</span><span class="chan" style="color:#FF0000"><i style="background:#FF0000"></i>YouTube</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span></div>
+<div class="body"><h3>Port operations, managed by RCSL — 60 seconds</h3><div class="field hook"><div class="lab">Hook / opening</div><p>Cargo handling. Vessel turnaround. Gang operations. SLA governance.</p></div><div class="field"><div class="lab">Content direction</div><p>Third Short: port project domain showcase. Quick cuts from a port project site. Visual credibility for the Port Operations domain.</p></div><div class="dep"><b>Asset / Action:</b><span>RCSL: port site footage.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-23" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+</div></div>
+
+<!-- WEEK 4 -->
+<div class="week"><div class="week-head"><span class="wk">Week 4</span><span class="focus">Full cadence. Brand intro film goes live on YouTube. PR activity. Month wrap.</span></div><div class="cards">
+
+<div class="card" style="border-top-color:#475569;"><div class="top"><span class="day-label">Monday</span><span class="pill" style="background:#475569">Milestones</span><span class="fmt-badge">Static post · Carousel</span><span class="chan" style="color:#0A66C2"><i style="background:#0A66C2"></i>LinkedIn</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span></div>
+<div class="body"><h3>Month one: the Project Management story, so far</h3><div class="field hook"><div class="lab">Hook / opening</div><p>New here? Here's what we've shared — and what's coming in Month 2.</p></div><div class="field"><div class="lab">Content direction</div><p>Month-end recap carousel. Best-of-month content highlights, spotlight summary, signals Month 2 service theme. CTA: follow.</p></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-24" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#C2410C;"><div class="top"><span class="day-label">Monday</span><span class="pill" style="background:#C2410C">People &amp; Culture</span><span class="fmt-badge">Static · Carousel</span><span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span></div>
+<div class="body"><h3>People of RCSL — #3</h3><div class="field hook"><div class="lab">Hook / opening</div><p>Every project runs on people. Meet more of ours.</p></div><div class="field"><div class="lab">Content direction</div><p>Third People of RCSL spotlight. Aim for a different vertical within project management (e.g. cement plant vs port).</p></div><div class="dep"><b>Asset / Action:</b><span>RCSL: employee consent, name, role, photo, one quote.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-25" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#475569;"><div class="top"><span class="day-label">Thursday</span><span class="pill" style="background:#475569">Milestones</span><span class="fmt-badge">Static · single image</span><span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span></div>
+<div class="body"><h3>Month 1 — a look back</h3><div class="field hook"><div class="lab">Hook / opening</div><p>4 weeks. 5 channels. One spotlight: Project Management.</p></div><div class="field"><div class="lab">Content direction</div><p>Month-end recap graphic. Post count, spotlight theme, milestones. Signals the brand is consistent and active.</p></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-26" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#C2410C;"><div class="top"><span class="day-label">Saturday</span><span class="pill" style="background:#C2410C">People &amp; Culture</span><span class="fmt-badge story">◎ Story</span><span class="chan" style="color:#C13584"><i style="background:#C13584"></i>Instagram + Facebook</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span></div>
+<div class="body"><h3>We're hiring — project management roles</h3><div class="field"><div class="lab">Content direction</div><p>Hiring Story. 3 frames: "we're growing," open project management roles (site coordinators, operators, supervisors, engineers), "DM us" CTA.</p></div><div class="dep"><b>Asset / Action:</b><span>RCSL: current open roles + project locations.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-27" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#475569;"><div class="top"><span class="day-label">Tuesday</span><span class="pill" style="background:#475569">Milestones</span><span class="fmt-badge">Photo post</span><span class="chan" style="color:#1DA1F2"><i style="background:#1DA1F2"></i>Twitter / X</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: Client IT</span></div>
+<div class="body"><h3>Month 1 done. Project Management spotlight complete. Month 2 coming. #RCSL #WorkSimplified</h3><div class="field hook"><div class="lab">Hook / opening</div><p>6 posts. 5 channels. One goal: making RCSL's project management capability visible. #ProjectManagement #Operations</p></div><div class="field"><div class="lab">Content direction</div><p>Month-end recap photo post. Clean "we showed up" graphic with the month in numbers.</p></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-28" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#1B4D8E;border:2px dashed #e7e9ef;border-top:5px dashed #1B4D8E;"><div class="top"><span class="day-label">Thursday</span><span class="pill" style="background:#1B4D8E">Proof &amp; Performance</span><span class="fmt-badge">PR Activity</span><span class="chan" style="color:#C8102E"><i style="background:#C8102E"></i>PR Activity</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span></div>
+<div class="body"><h3>Month 1 PR — to be briefed by RCSL</h3><div class="pr-block">📋 Placeholder — RCSL to brief SIS. Suggested angle: ShiftEaze port deployment story if Mundra name-use is cleared.</div><div class="dep"><b>Asset / Action:</b><span>RCSL to brief SIS. Suggested story angle noted above.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-29" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+<div class="card" style="border-top-color:#475569;"><div class="top"><span class="day-label">Wednesday</span><span class="pill" style="background:#475569">Milestones</span><span class="fmt-badge long">🎬 Long-form · Brand intro film</span><span class="chan" style="color:#FF0000"><i style="background:#FF0000"></i>YouTube</span><span class="spoc-tag" style="background:#e8f0fe;color:#1a56db">SPOC: SIS</span></div>
+<div class="body"><h3>Riddhi Corporate Services — Who We Are</h3><div class="field hook"><div class="lab">Hook / opening</div><p>Work Simplified.</p></div><div class="field"><div class="lab">Content direction</div><p>2–3 minute brand introduction film. RCSL's story, scale, and project management capability — the evergreen channel anchor. Covers: who RCSL is, scale across India, project management as the Month 1 spotlight (ShiftEaze, port and cement plant domains), the people on the ground. No client names without clearance. Scripted VO. Pinned as channel trailer on upload.</p></div><div class="dep"><b>Asset / Action:</b><span>RCSL: full shoot required. SIS: script + production brief. Script approval before shoot.</span></div></div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="rcsl-m1-30" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div></div>
+
+</div></div>
+
+</section></div>
 
 <footer class="foot"><div class="wrap"><h2>Key notes — Project Management spotlight</h2><ul>
-<li><b>ShiftEaze name-use</b>ShiftEaze is RCSL's in-house AI rostering platform. Confirm whether it can be named publicly in social posts or whether it should be referred to generically as "our AI workforce management platform" until the website launch is official.</li>
+<li><b>ShiftEaze name-use</b>Confirm whether it can be named publicly in social posts or referred to generically as "our AI workforce management platform" until website launch is official.</li>
 <li><b>Mundra Port / Adani — name-use clearance</b>The strongest proof point (1,000+ operators, 6 terminals) involves a named client. Until per-client clearance is confirmed, all proof posts run anonymized: "a major port operator" or "a leading port terminal group."</li>
 <li><b>Twitter handle confirmed: @RCSLIndia</b>All Twitter/X copy briefs go to the Client IT team for posting from this handle.</li>
 <li><b>Social handles confirmed</b>IG: @riddhicorporate · FB: facebook.com/share/1Lpfw3TaGC · Twitter: @RCSLIndia · LinkedIn: linkedin.com/company/riddhi-corporate-services-limited</li>
 <li><b>YouTube brand film</b>Script must be approved before the shoot. ShiftEaze dashboard and project site footage are key visual assets for the film.</li>
 <li><b>CXO LinkedIn calendar</b>Separate document. Not included in these post counts. CXO content on Project Management will need to be aligned — recommend briefing Nehal and Umesh on the Project Management spotlight angle for their Month 1 posts.</li>
 </ul>
-<p class="fin">Prepared by Say It Social for Riddhi Corporate Services Limited · Month 1 — Foundation Phase · Spotlight: Project Management · Revised from Transportation & 3PL per client direction.</p>
+<p class="fin">Prepared by Say It Social for Riddhi Corporate Services Limited · Month 1 — Foundation Phase · Spotlight: Project Management · Revised from Transportation &amp; 3PL per client direction.</p>
 </div></footer>
+
 <script>
 const STATUSES=[
  {key:'not-started',label:'NOT STARTED',bg:'#f0f1f3',dot:'#9ca3af',txt:'#6b7280'},
@@ -546,6 +364,8 @@ function cycleStatus(el){
  el.querySelector('.s-dot').style.background=next.dot;
  el.querySelector('.s-label').style.color=next.txt;
  el.querySelector('.s-label').textContent=next.label;
+ const postId = el.dataset.id;
+ if(postId && window._fbSaveStatus) window._fbSaveStatus(postId, next.key);
 }
 </script>
 </body></html>
