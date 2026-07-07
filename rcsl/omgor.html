@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Om Gor — LinkedIn Calendar Month 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#15233f;--navy-soft:#22335a;--ink:#1d2433;--muted:#5d6577;--hair:#e7e9ef;--paper:#f6f7fa;--white:#fff;--red:#c8102e;--radius:12px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'IBM Plex Sans',-apple-system,Segoe UI,sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px 60px}
+h1,h2,h3{font-family:'Archivo',-apple-system,Segoe UI,sans-serif;letter-spacing:-.01em}
+.hero{background:var(--navy);color:#fff;padding:44px 0 38px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;top:-60px;right:-40px;width:280px;height:280px;border:36px solid rgba(255,255,255,.04);transform:rotate(45deg)}
+.kicker{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#9fb3d6;font-weight:600;margin-bottom:10px}
+.hero h1{font-size:36px;line-height:1.04;font-weight:800}
+.hero h1 .accent{color:#7fa8e8}
+.hero .sub{font-size:14px;color:#c7d2e6;max-width:640px;margin-top:12px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.tag{font-size:11.5px;font-weight:500;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:4px 11px;border-radius:999px;color:#dde6f4}
+.brandline{position:absolute;top:24px;right:26px;text-align:right;font-family:'Archivo';font-weight:700;font-size:15px;color:#fff}
+.brandline span{color:var(--red)}
+.brandline small{display:block;font-weight:400;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#9fb3d6;margin-top:2px}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9fb3d6;text-decoration:none;margin-bottom:14px;opacity:.75;transition:opacity .2s}
+.back-link:hover{opacity:1}
+.profile-hero{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);border-left:6px solid #C2410C;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:28px 0 14px}
+.ph-left{display:flex;align-items:center;gap:16px}
+.ph-avatar{width:52px;height:52px;border-radius:50%;background:#C2410C;display:flex;align-items:center;justify-content:center;font-family:'Archivo';font-weight:800;font-size:16px;color:#fff;flex-shrink:0}
+.ph-name{font-family:'Archivo';font-weight:800;font-size:19px;color:var(--navy)}
+.ph-title{font-size:12.5px;color:var(--muted);margin-top:2px}
+.access-badge{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:999px;background:#fbeee7;color:#C2410C;display:inline-block;margin-top:5px}
+.ph-counts{display:flex;gap:18px;align-items:center}
+.ph-count-item{text-align:center}
+.ph-num{font-family:'Archivo';font-weight:800;font-size:28px;color:var(--navy);display:block;line-height:1}
+.ph-lbl{font-size:11px;color:var(--muted)}
+.ph-count-item.total .ph-num{color:var(--red)}
+.domain-box{background:#eaf1fe;border:1px solid #c3d8f7;border-radius:10px;padding:12px 16px;font-size:13px;color:var(--ink);line-height:1.55;margin-bottom:10px}
+.domain-box b{color:#1a56db}
+.voice-box{background:var(--paper);border:1px solid var(--hair);border-radius:10px;padding:13px 16px;font-size:12.5px;color:var(--ink);line-height:1.6;margin-bottom:10px}
+.voice-box b{color:var(--navy)}
+.cadence-tag{display:inline-flex;align-items:center;gap:6px;background:var(--white);border:1px solid var(--hair);border-radius:999px;padding:5px 14px;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:14px}
+.topic-section{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:14px 18px;margin-bottom:20px}
+.topic-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.topic-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.topic-tag{font-size:11.5px;font-weight:600;background:#ecfdf5;color:#065f46;border:1px solid #c8efde;padding:3px 10px;border-radius:999px}
+.avoid-tag{font-size:11.5px;font-weight:600;background:#fbeee7;color:#C2410C;border:1px solid #f3d9c9;padding:3px 10px;border-radius:999px}
+.glance-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:14px}
+.glance-card{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:14px 16px}
+.glance-card .v{font-family:'Archivo';font-weight:800;font-size:26px;color:var(--navy);line-height:1}
+.glance-card .l{font-size:11.5px;color:var(--muted);margin-top:4px}
+.mixbar{display:flex;height:10px;border-radius:999px;overflow:hidden;border:1px solid var(--hair);margin-bottom:8px}
+.mixleg{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--muted);margin-bottom:20px}
+.mixleg b{display:inline-flex;align-items:center;gap:5px;font-weight:500;color:var(--ink)}
+.dot{width:9px;height:9px;border-radius:3px;display:inline-block}
+.status-bar{display:flex;align-items:center;flex-wrap:wrap;gap:6px;background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:12px 18px;margin-bottom:18px}
+.sl-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+.sl-item{display:inline-flex;align-items:center;gap:6px;background:var(--paper);border:1px solid var(--hair);border-radius:999px;padding:4px 12px}
+.sl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.orange-flag{background:#fff7ed;border:1px solid #fde8cc;border-radius:var(--radius);padding:14px 18px;margin-bottom:24px;font-size:13px;line-height:1.6}
+.orange-flag b{color:#b45309}
+.schedule-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px}
+.sched-item{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:12px 14px;position:relative}
+.sched-item:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:var(--radius) 0 0 var(--radius)}
+.sched-w1:before{background:#C2410C}
+.sched-w2:before{background:#1B4D8E}
+.sched-w3:before{background:#6D28D9}
+.sched-w4:before{background:#0E7C66}
+.sched-wk{font-family:'Archivo';font-weight:700;font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.sched-post{font-size:12px;color:var(--ink);line-height:1.5;margin-bottom:4px;padding-left:2px}
+.sched-post:last-child{margin-bottom:0}
+.sched-pill{display:inline-block;font-size:9.5px;font-weight:700;padding:1px 6px;border-radius:999px;color:#fff;margin-right:4px;vertical-align:middle}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px;margin-bottom:32px}
+.card{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);overflow:hidden;border-top:5px solid;display:flex;flex-direction:column}
+.card .top{padding:11px 14px 8px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.wk-pill{font-size:9.5px;font-weight:700;background:var(--navy-soft);color:#c7d2e6;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.day-label{font-family:'Archivo';font-weight:700;font-size:12px;color:var(--navy);background:var(--paper);border:1px solid var(--hair);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.pill{font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 7px;border-radius:999px;color:#fff;white-space:nowrap}
+.vid-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;background:#fbeee7;color:#C2410C;border:1px solid #f3d9c9}
+.art-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;background:#ede9fe;color:#6D28D9;border:1px solid #ddd6fe}
+.fmt{font-size:10px;font-weight:600;color:var(--navy);background:var(--paper);border:1px solid var(--hair);padding:3px 8px;border-radius:6px;white-space:nowrap}
+.card .body{padding:4px 14px 12px;flex:1}
+.card h3{font-family:'Archivo';font-size:14.5px;font-weight:700;line-height:1.25;margin:7px 0 10px}
+.field{margin-bottom:8px}
+.field .lab{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.field p{font-size:12.5px;line-height:1.5;color:var(--ink)}
+.field.hook p{font-style:italic;color:var(--navy);font-weight:500}
+.dep{margin-top:8px;font-size:11px;color:#C2410C;background:#fbeee7;border:1px solid #f3d9c9;padding:6px 10px;border-radius:8px;display:flex;gap:6px;align-items:flex-start}
+.dep b{font-weight:700;white-space:nowrap}
+.card-status{display:flex;align-items:center;gap:7px;padding:9px 14px;border-top:1px solid var(--hair);cursor:pointer;user-select:none}
+.card-status:hover{filter:brightness(.96)}
+.s-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.s-label{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.foot{background:var(--navy);color:#cdd8ea;padding:28px 0 36px;margin-top:22px}
+.foot h2{color:#fff;font-size:18px;margin-bottom:12px;font-weight:700}
+.foot ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.foot li{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:11px 14px;font-size:12px}
+.foot li b{color:#fff;font-family:'Archivo';display:block;margin-bottom:3px}
+.foot .fin{margin-top:18px;font-size:11px;color:#8ea3c6}
+@media print{body{background:#fff}.hero,.foot{-webkit-print-color-adjust:exact;print-color-adjust:exact}.card{break-inside:avoid}}
+</style></head><body>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+const app = initializeApp({
+  apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
+  authDomain:"sayitsocial-calendar.firebaseapp.com",
+  projectId:"sayitsocial-calendar",
+  storageBucket:"sayitsocial-calendar.firebasestorage.app",
+  messagingSenderId:"232081824561",
+  appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
+});
+const db = getFirestore(app);
+const CID = "rcsl-omgor-m1";
+
+window._fbSaveStatus = async (postId, status) => {
+  try { await setDoc(doc(db,"campaigns",CID,"posts",postId),{status},{merge:true}); }
+  catch(e) { console.warn("Firestore save failed:",e); }
+};
+
+onSnapshot(collection(db,"campaigns",CID,"posts"), snap => {
+  snap.forEach(d => {
+    const data = d.data();
+    if(!data.status) return;
+    const s = STATUSES.find(x => x.key === data.status);
+    if(!s) return;
+    document.querySelectorAll('[data-id="'+d.id+'"]').forEach(el => {
+      el.dataset.status = s.key;
+      el.style.background = s.bg;
+      el.querySelector('.s-dot').style.background = s.dot;
+      el.querySelector('.s-label').style.color = s.txt;
+      el.querySelector('.s-label').textContent = s.label;
+    });
+  });
+});
+</script>
+
+<header class="hero"><div class="wrap">
+<a class="back-link" href="../index.html">← Back to Hub</a>
+<div class="brandline">Say It <span>Social</span><small>Strategize · Innovate · Socialize</small></div>
+<div class="kicker">CXO LinkedIn Calendar · Riddhi Group · Month 1</div>
+<h1>Om Gor<br><span class="accent">LinkedIn Calendar — Month 1</span></h1>
+<p class="sub">6 posts across 4 weeks. New business, group milestones, and technology capability — all at the Riddhi Group level. One strong post per week, two in Week 1 and Week 3.</p>
+<div class="meta">
+<span class="tag">Riddhi Group level — not RCSL or VCSL only</span>
+<span class="tag">1 video · 1 article · 4 text posts = 6 total</span>
+<span class="tag">Access needed</span>
+</div></div></header>
+
+<div class="wrap">
+
+<div class="profile-hero">
+ <div class="ph-left">
+  <div class="ph-avatar">OG</div>
+  <div>
+   <div class="ph-name">Om Gor</div>
+   <div class="ph-title">New Business Initiatives · Riddhi Group</div>
+   <a href="https://www.linkedin.com/in/omgor/" target="_blank" style="font-size:12px;color:#0A66C2;text-decoration:none;display:block;margin-top:3px">linkedin.com/in/omgor</a>
+   <span class="access-badge">⚠ Access needed</span>
+  </div>
+ </div>
+ <div class="ph-counts">
+  <div class="ph-count-item"><span class="ph-num">1</span><span class="ph-lbl">Video</span></div>
+  <div class="ph-count-item"><span class="ph-num">1</span><span class="ph-lbl">Article</span></div>
+  <div class="ph-count-item"><span class="ph-num">4</span><span class="ph-lbl">Posts</span></div>
+  <div class="ph-count-item total"><span class="ph-num">6</span><span class="ph-lbl">Total</span></div>
+ </div>
+</div>
+
+<div class="domain-box"><b>Content domain:</b> Riddhi Group — new business opportunities and acquisitions, new vertical development, group-wide milestones (RCSL + VCSL + Be Utopian), and technology capability. Speaks above individual entities. Never sounds like a second RCSL or Veracity page.</div>
+
+<div class="voice-box"><b>Voice brief:</b> The group's growth and innovation voice. Forward-looking, strategic, builder-minded. Month 1 is a foundation month — 6 carefully chosen posts that establish the voice, introduce the group story, and plant the seeds of all three content lanes. The content establishes who Om is. He does not need to announce it.</div>
+
+<div class="cadence-tag">🗓 2 posts Week 1 · 1 post Week 2 · 2 posts Week 3 · 1 post Week 4</div>
+
+<div class="topic-section">
+ <div class="topic-label">Primary topics</div>
+ <div class="topic-list">
+  <span class="topic-tag">New business opportunities</span>
+  <span class="topic-tag">New vertical development</span>
+  <span class="topic-tag">Group-wide milestones</span>
+  <span class="topic-tag">Technology capability</span>
+  <span class="topic-tag">Riddhi Group growth narrative</span>
+ </div>
+ <div class="topic-label">Avoid</div>
+ <div class="topic-list">
+  <span class="avoid-tag">Culture-only content</span>
+  <span class="avoid-tag">RCSL-specific claims without group framing</span>
+  <span class="avoid-tag">VCSL-specific claims without group framing</span>
+  <span class="avoid-tag">Political or religious content</span>
+  <span class="avoid-tag">Generic motivational posts</span>
+ </div>
+</div>
+
+<div class="glance-row">
+ <div class="glance-card"><div class="v">6</div><div class="l">Total posts this month</div></div>
+ <div class="glance-card"><div class="v">3</div><div class="l">Group Milestone posts</div></div>
+ <div class="glance-card"><div class="v">1</div><div class="l">New Business posts</div></div>
+ <div class="glance-card"><div class="v">1</div><div class="l">Technology posts</div></div>
+ <div class="glance-card"><div class="v">1</div><div class="l">Riddhi Group posts</div></div>
+</div>
+<div class="mixbar"><span style="width:17%;background:#0E7C66;display:block;height:100%"></span><span style="width:50%;background:#1B4D8E;display:block;height:100%"></span><span style="width:17%;background:#6D28D9;display:block;height:100%"></span><span style="width:17%;background:#C2410C;display:block;height:100%"></span></div>
+<div class="mixleg"><b><span class="dot" style="background:#0E7C66"></span>New Business · 1</b><b><span class="dot" style="background:#1B4D8E"></span>Group Milestone · 3</b><b><span class="dot" style="background:#6D28D9"></span>Technology · 1</b><b><span class="dot" style="background:#C2410C"></span>Riddhi Group · 1</b></div>
+
+<div class="status-bar">
+ <span class="sl-label">Status:</span>
+ <span class="sl-item"><span class="sl-dot" style="background:#9ca3af"></span><span style="color:#6b7280;font-weight:700;font-size:11px;letter-spacing:.06em">NOT STARTED</span></span>
+ <span class="sl-item"><span class="sl-dot" style="background:#f59e0b"></span><span style="color:#d97706;font-weight:700;font-size:11px;letter-spacing:.06em">IN PROGRESS</span></span>
+ <span class="sl-item"><span class="sl-dot" style="background:#06b6d4"></span><span style="color:#0891b2;font-weight:700;font-size:11px;letter-spacing:.06em">READY TO POST</span></span>
+ <span class="sl-item"><span class="sl-dot" style="background:#22c55e"></span><span style="color:#16a34a;font-weight:700;font-size:11px;letter-spacing:.06em">POSTED</span></span>
+ <span style="font-size:11px;color:var(--muted);margin-left:6px">Click any card to update</span>
+</div>
+
+<div class="schedule-bar">
+ <div class="sched-item sched-w1"><div class="sched-wk">Week 1 · 2 posts</div><div class="sched-post"><span class="sched-pill" style="background:#C2410C">Mon</span>Video — Group milestone opener</div><div class="sched-post"><span class="sched-pill" style="background:#0E7C66">Fri</span>New business evaluation framework</div></div>
+ <div class="sched-item sched-w2"><div class="sched-wk">Week 2 · 1 post</div><div class="sched-post"><span class="sched-pill" style="background:#1B4D8E">Wed</span>Veracity 1.44 Cr MT milestone</div></div>
+ <div class="sched-item sched-w3"><div class="sched-wk">Week 3 · 2 posts</div><div class="sched-post"><span class="sched-pill" style="background:#C2410C">Mon</span>LinkedIn Article — new verticals</div><div class="sched-post"><span class="sched-pill" style="background:#6D28D9">Fri</span>20+ in-house tech platforms</div></div>
+ <div class="sched-item sched-w4"><div class="sched-wk">Week 4 · 1 post</div><div class="sched-post"><span class="sched-pill" style="background:#1B4D8E">Mon</span>Month 1 milestone roundup</div></div>
+</div>
+
+<div class="orange-flag"><b>⚠ Before any post goes live:</b> Confirm access to Om's LinkedIn profile · Confirm ShiftEaze name-use clearance (Week 3 Friday) · Coordinate Veracity milestone post (Week 2 Wednesday) with Jash's Hywa vehicle post — must not land on the same day · Week 4 Monday milestone roundup requires real Month 1 data from across entities — compile before drafting</div>
+
+<div class="cards">
+
+<div class="card" style="border-top-color:#1B4D8E">
+<div class="top"><span class="wk-pill">Week 1</span><span class="day-label">Monday</span><span class="pill" style="background:#1B4D8E">Group Milestone</span><span class="vid-badge">▶ Video</span><span class="fmt">Video · 60s</span></div>
+<div class="body">
+<h3>Riddhi Group — what we have built, and where we are going</h3>
+<div class="field hook"><div class="lab">Opening line</div><p>Numbers speak before names do.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>60s direct-to-camera video. Om opens with Riddhi Group's scale — entities, geographies, verticals, momentum — then pivots to what's being built next. The group story told from the perspective of someone building its next chapter. No bio. No career history. The content IS the introduction.</p></div>
+<div class="field"><div class="lab">Format &amp; visual</div><p>Vertical 60s. Office or operations setting. Lower-third: Om Gor · New Business Initiatives · Riddhi Group.</p></div>
+<div class="dep"><b>Needs:</b><span>Om: key group stats confirmed before shoot. Comfortable on camera.</span></div>
+</div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="om-m1-01" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div>
+</div>
+
+<div class="card" style="border-top-color:#0E7C66">
+<div class="top"><span class="wk-pill">Week 1</span><span class="day-label">Friday</span><span class="pill" style="background:#0E7C66">New Business</span><span class="fmt">Text post</span></div>
+<div class="body">
+<h3>The question I ask before pursuing any new business opportunity for Riddhi Group</h3>
+<div class="field hook"><div class="lab">Opening line</div><p>Not "can we do this?" but "should we be the ones doing this — and can we do it better than anyone else?"</p></div>
+<div class="field"><div class="lab">Content direction</div><p>200-word post on Riddhi Group's new business evaluation framework. What makes the group enter a new vertical vs walk away. Disciplined and strategic — establishes Om as a thoughtful builder, not an opportunist.</p></div>
+<div class="field"><div class="lab">Format &amp; visual</div><p>Text-only.</p></div>
+<div class="dep"><b>Needs:</b><span>Om: approve the framework — must reflect real group decision-making logic.</span></div>
+</div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="om-m1-02" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div>
+</div>
+
+<div class="card" style="border-top-color:#1B4D8E">
+<div class="top"><span class="wk-pill">Week 2</span><span class="day-label">Wednesday</span><span class="pill" style="background:#1B4D8E">Group Milestone</span><span class="fmt">Text post</span></div>
+<div class="body">
+<h3>Veracity has transported 1.44 Crore MT. What this milestone means for Riddhi Group.</h3>
+<div class="field hook"><div class="lab">Opening line</div><p>1.44 Crore MT. That is not a logistics number. That is a trust number.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>200-word group-level reflection on Veracity's 1.44 Cr MT milestone — what it means for VCSL, what it signals about Riddhi Group's logistics capability, and how it connects to the group's broader infrastructure ambitions. Frames from the group lens, not the entity lens.</p></div>
+<div class="field"><div class="lab">Format &amp; visual</div><p>Text post. Can reference the 5 new Hywa Singrauli fleet addition as part of the expansion context.</p></div>
+<div class="dep"><b>Needs:</b><span>Coordinate timing with Jash's Hywa vehicle post — must not land on the same day.</span></div>
+</div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="om-m1-03" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div>
+</div>
+
+<div class="card" style="border-top-color:#C2410C">
+<div class="top"><span class="wk-pill">Week 3</span><span class="day-label">Monday</span><span class="pill" style="background:#C2410C">Riddhi Group</span><span class="art-badge">✍ Article</span><span class="fmt">LinkedIn Article</span></div>
+<div class="body">
+<h3>Building new business verticals inside Riddhi Group — what the next 3 years look like</h3>
+<div class="field hook"><div class="lab">Opening line</div><p>The group that built RCSL and Veracity is not done building.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>600–800 word article. Om's strategic view on Riddhi Group's new business direction — the verticals being evaluated, the approach to acquisitions, how technology enables faster vertical entry, and why the group's operational DNA is its biggest advantage when entering new markets. Month 1's flagship content piece.</p></div>
+<div class="field"><div class="lab">Format &amp; visual</div><p>Article cover: group or operations visual, Riddhi Group branded.</p></div>
+<div class="dep"><b>Needs:</b><span>SIS drafts framework. Om adds real strategic direction and approves. No confidential deal detail — directional and philosophical only.</span></div>
+</div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="om-m1-04" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div>
+</div>
+
+<div class="card" style="border-top-color:#6D28D9">
+<div class="top"><span class="wk-pill">Week 3</span><span class="day-label">Friday</span><span class="pill" style="background:#6D28D9">Technology</span><span class="fmt">Text post</span></div>
+<div class="body">
+<h3>Riddhi Group has built 20+ technology platforms in-house. Most people do not know that.</h3>
+<div class="field hook"><div class="lab">Opening line</div><p>We did not buy our tech stack. We built it.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>200-word post introducing the group's in-house technology story — ShiftEaze, RicRoot, PayEaze, EAS, RTrue, RProc — as evidence of a group that thinks differently about operations. Om frames from the new business lens: proprietary tech is the moat that makes new verticals defensible from day one.</p></div>
+<div class="field"><div class="lab">Format &amp; visual</div><p>Text post. Optional: platform icons grid graphic.</p></div>
+<div class="dep"><b>Needs:</b><span>Confirm which platform names are cleared for public mention. ShiftEaze clearance check especially.</span></div>
+</div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="om-m1-05" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div>
+</div>
+
+<div class="card" style="border-top-color:#1B4D8E">
+<div class="top"><span class="wk-pill">Week 4</span><span class="day-label">Monday</span><span class="pill" style="background:#1B4D8E">Group Milestone</span><span class="fmt">Text post</span></div>
+<div class="body">
+<h3>Riddhi Group — Month 1 milestones worth sharing</h3>
+<div class="field hook"><div class="lab">Opening line</div><p>A group is only as strong as the momentum it builds, week by week.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>200-word month-end milestone roundup. Group-level achievements across entities in Month 1 — RCSL project management scale, Veracity fleet expansion, technology deployments, new business progress. Positions Om as the group's milestone voice going forward.</p></div>
+<div class="field"><div class="lab">Format &amp; visual</div><p>Text post. Optional: clean milestone summary graphic with entity reference.</p></div>
+<div class="dep"><b>Needs:</b><span>Compile real Month 1 milestones from across entities before drafting. Coordinate with Jash, Nehal, Umesh on what can be mentioned publicly.</span></div>
+</div>
+<div class="card-status" onclick="cycleStatus(this)" data-id="om-m1-06" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div>
+</div>
+
+</div>
+</div>
+
+<footer class="foot"><div class="wrap">
+<h2>Key notes</h2>
+<ul>
+<li><b>Riddhi Group level — always</b>Om speaks for the group, not for RCSL or VCSL individually. When referencing entity achievements, always frame from the group lens.</li>
+<li><b>6 posts, not more</b>This is a deliberate foundation cadence. Quality over frequency. Each post earns its place.</li>
+<li><b>Article in Week 3 is the flagship</b>The LinkedIn Article is the most important piece of Month 1. SIS drafts the framework — Om must add real strategic content and approve before publishing.</li>
+<li><b>Coordinate with Jash</b>Jash and Om may both reference Veracity milestones. Coordinate timing so posts complement rather than duplicate.</li>
+<li><b>Month 2 onwards</b>Once the voice is established, expand to 8–10 posts per month and go deeper on each lane.</li>
+</ul>
+<p class="fin">Prepared by Say It Social for Riddhi Corporate Services Limited · Om Gor LinkedIn Calendar · Month 1 · 6 posts · Riddhi Group level · New Business / Milestones / Technology.</p>
+</div></footer>
+
+<script>
+const STATUSES=[
+ {key:'not-started',label:'NOT STARTED',bg:'#f0f1f3',dot:'#9ca3af',txt:'#6b7280'},
+ {key:'in-progress',label:'IN PROGRESS',bg:'#fff7ed',dot:'#f59e0b',txt:'#d97706'},
+ {key:'ready',label:'READY TO POST',bg:'#ecfeff',dot:'#06b6d4',txt:'#0891b2'},
+ {key:'posted',label:'POSTED',bg:'#f0fdf4',dot:'#22c55e',txt:'#16a34a'},
+];
+function cycleStatus(el){
+ const cur=el.dataset.status;
+ const idx=STATUSES.findIndex(s=>s.key===cur);
+ const next=STATUSES[(idx+1)%STATUSES.length];
+ el.dataset.status=next.key;el.style.background=next.bg;
+ el.querySelector('.s-dot').style.background=next.dot;
+ el.querySelector('.s-label').style.color=next.txt;
+ el.querySelector('.s-label').textContent=next.label;
+ const postId=el.dataset.id;
+ if(postId && window._fbSaveStatus) window._fbSaveStatus(postId, next.key);
+}
+</script>
+</body></html>
