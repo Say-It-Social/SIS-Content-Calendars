@@ -20,15 +20,13 @@ h1,h2,h3{font-family:'Archivo',-apple-system,Segoe UI,sans-serif;letter-spacing:
 .brandline{position:absolute;top:24px;right:26px;text-align:right;font-family:'Archivo';font-weight:700;font-size:15px;color:#fff}
 .brandline span{color:var(--red)}
 .brandline small{display:block;font-weight:400;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#9fb3d6;margin-top:2px}
-.back-link{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9fb3d6;text-decoration:none;margin-bottom:14px;opacity:.75;transition:opacity .2s}
-.back-link:hover{opacity:1}
 .sec-head{display:flex;align-items:baseline;gap:12px;margin:32px 0 16px}
 .sec-head h2{font-family:'Archivo';font-size:21px;font-weight:700;color:var(--navy)}
 .sec-num{font-family:'Archivo';font-weight:800;color:var(--red);font-size:14px}
 .sec-line{flex:1;height:1px;background:var(--hair)}
-.profile-hero{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);border-left:6px solid #0E7C66;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:28px 0 14px}
+.profile-hero{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);border-left:6px solid #1B4D8E;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:28px 0 14px}
 .ph-left{display:flex;align-items:center;gap:16px}
-.ph-avatar{width:52px;height:52px;border-radius:50%;background:#0E7C66;display:flex;align-items:center;justify-content:center;font-family:'Archivo';font-weight:800;font-size:16px;color:#fff;flex-shrink:0}
+.ph-avatar{width:52px;height:52px;border-radius:50%;background:#1B4D8E;display:flex;align-items:center;justify-content:center;font-family:'Archivo';font-weight:800;font-size:16px;color:#fff;flex-shrink:0}
 .ph-name{font-family:'Archivo';font-weight:800;font-size:19px;color:var(--navy)}
 .ph-title{font-size:12.5px;color:var(--muted);margin-top:2px}
 .access-badge{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:999px;background:#ecfdf5;color:#065f46;display:inline-block;margin-top:5px}
@@ -60,6 +58,16 @@ h1,h2,h3{font-family:'Archivo',-apple-system,Segoe UI,sans-serif;letter-spacing:
 .sl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .orange-flag{background:#fff7ed;border:1px solid #fde8cc;border-radius:var(--radius);padding:14px 18px;margin-bottom:20px;font-size:13px;line-height:1.6}
 .orange-flag b{color:#b45309}
+.schedule-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px}
+.sched-item{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:12px 14px;position:relative;padding-left:18px}
+.sched-item:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:var(--radius) 0 0 var(--radius)}
+.sched-w1:before{background:#1B4D8E}
+.sched-w2:before{background:#6D28D9}
+.sched-w3:before{background:#0E7C66}
+.sched-w4:before{background:#C2410C}
+.sched-wk{font-family:'Archivo';font-weight:700;font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.sched-post{font-size:12px;color:var(--ink);line-height:1.5;margin-bottom:4px}
+.sched-pill{display:inline-block;font-size:9.5px;font-weight:700;padding:1px 6px;border-radius:999px;color:#fff;margin-right:4px;vertical-align:middle}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px;margin-bottom:32px}
 .card{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);overflow:hidden;border-top:5px solid;display:flex;flex-direction:column}
 .card .top{padding:11px 14px 8px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
@@ -77,17 +85,17 @@ h1,h2,h3{font-family:'Archivo',-apple-system,Segoe UI,sans-serif;letter-spacing:
 .field.hook p{font-style:italic;color:var(--navy);font-weight:500}
 .dep{margin-top:8px;font-size:11px;color:#C2410C;background:#fbeee7;border:1px solid #f3d9c9;padding:6px 10px;border-radius:8px;display:flex;gap:6px;align-items:flex-start}
 .dep b{font-weight:700;white-space:nowrap}
-.rm-block{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);border-top:5px solid;overflow:hidden;margin-bottom:14px}
-.rm-header{font-family:'Archivo';font-weight:800;font-size:15px;color:var(--navy);padding:14px 18px;border-bottom:1px solid var(--hair);background:var(--paper)}
-.rm-row{display:grid;grid-template-columns:200px 1fr;gap:14px;padding:12px 18px;border-bottom:1px solid var(--hair);align-items:start;font-size:12.5px}
-.rm-row:last-child{border-bottom:none}
-.rm-tag{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.06em;padding-top:2px}
-.rm-title{font-family:'Archivo';font-weight:700;font-size:13px;color:var(--navy);margin-bottom:3px}
-.rm-desc{font-size:12px;color:var(--muted);line-height:1.5}
 .card-status{display:flex;align-items:center;gap:7px;padding:9px 14px;border-top:1px solid var(--hair);cursor:pointer;user-select:none}
 .card-status:hover{filter:brightness(.96)}
 .s-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .s-label{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.rm-block{background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);border-top:5px solid;overflow:hidden;margin-bottom:14px}
+.rm-header{font-family:'Archivo';font-weight:800;font-size:15px;color:var(--navy);padding:14px 18px;border-bottom:1px solid var(--hair);background:var(--paper)}
+.rm-row{display:grid;grid-template-columns:220px 1fr;gap:14px;padding:12px 18px;border-bottom:1px solid var(--hair);align-items:start;font-size:12.5px}
+.rm-row:last-child{border-bottom:none}
+.rm-tag{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.06em;padding-top:2px}
+.rm-title{font-family:'Archivo';font-weight:700;font-size:13px;color:var(--navy);margin-bottom:3px}
+.rm-desc{font-size:12px;color:var(--muted);line-height:1.5}
 .foot{background:var(--navy);color:#cdd8ea;padding:28px 0 36px;margin-top:22px}
 .foot h2{color:#fff;font-size:18px;margin-bottom:12px;font-weight:700}
 .foot ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
@@ -97,229 +105,213 @@ h1,h2,h3{font-family:'Archivo',-apple-system,Segoe UI,sans-serif;letter-spacing:
 @media print{body{background:#fff}.hero,.foot{-webkit-print-color-adjust:exact;print-color-adjust:exact}.card,.rm-block{break-inside:avoid}}
 </style></head><body>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, doc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-const app = initializeApp({
-  apiKey:"AIzaSyB54GIV9wfMaHqBs5Hy9Cy10Gu9kCqG33U",
-  authDomain:"sayitsocial-calendar.firebaseapp.com",
-  projectId:"sayitsocial-calendar",
-  storageBucket:"sayitsocial-calendar.firebasestorage.app",
-  messagingSenderId:"232081824561",
-  appId:"1:232081824561:web:0131d5e91d96ce8ea9ae10"
-});
-const db = getFirestore(app);
-const CID = "rcsl-nehalkargatia-m1";
-
-window._fbSaveStatus = async (postId, status) => {
-  try { await setDoc(doc(db,"campaigns",CID,"posts",postId),{status},{merge:true}); }
-  catch(e) { console.warn("Firestore save failed:",e); }
-};
-
-onSnapshot(collection(db,"campaigns",CID,"posts"), snap => {
-  snap.forEach(d => {
-    const data = d.data();
-    if(!data.status) return;
-    const s = STATUSES.find(x => x.key === data.status);
-    if(!s) return;
-    document.querySelectorAll('[data-id="'+d.id+'"]').forEach(el => {
-      el.dataset.status = s.key;
-      el.style.background = s.bg;
-      el.querySelector('.s-dot').style.background = s.dot;
-      el.querySelector('.s-label').style.color = s.txt;
-      el.querySelector('.s-label').textContent = s.label;
-    });
-  });
-});
-</script>
-
 <header class="hero"><div class="wrap">
-<a class="back-link" href="../index.html">← Back to Hub</a>
 <div class="brandline">Say It <span>Social</span><small>Strategize · Innovate · Socialize</small></div>
-<div class="kicker">CXO LinkedIn Calendar · Riddhi Corporate Services Limited · Months 1–3</div>
-<h1>Nehal Kargatia<br><span class="accent">LinkedIn Calendar — Month 1 + Roadmap</span></h1>
-<p class="sub">5 posts across Month 1. Three lanes — RCSL operations, compliance &amp; workforce, and technology. Content spread across 3 months. Posting days: Tue / Thu / Sat.</p>
+<div class="kicker">CXO LinkedIn Calendar · RCSL · Month 1 · Rebuilt</div>
+<h1>Nehal Kargatia<br><span class="accent">LinkedIn Calendar — Month 1</span></h1>
+<p class="sub">4 posts. 2 articles + 2 text posts. Project Management is the content thread throughout — told through a mix of company capability and CEO perspective. Not self-centric. Not company brochure. Both.</p>
 <div class="meta">
-<span class="tag">RCSL — company page level</span>
-<span class="tag">0 videos · 2 articles · 3 text posts = 5 total</span>
-<span class="tag">Tue / Thu / Sat posting days</span>
-<span class="tag">Access confirmed</span>
+<span class="tag">RCSL primary · Project Management spotlight</span>
+<span class="tag">0 videos · 2 articles · 2 text posts = 4 total</span>
+<span class="tag">Mon / Wed posting days</span>
+<span class="tag">Access needed</span>
 </div></div></header>
 
 <div class="wrap">
 
-<div class="profile-hero">
+<div class="profile-hero" style="border-left-color:#0E7C66">
  <div class="ph-left">
-  <div class="ph-avatar">NK</div>
+  <div class="ph-avatar" style="background:#0E7C66">NK</div>
   <div>
    <div class="ph-name">Nehal Kargatia</div>
-   <div class="ph-title">CEO · Riddhi Corporate Services Limited</div>
-   <a href="https://www.linkedin.com/in/nehal-kargatia/" target="_blank" style="font-size:12px;color:#0A66C2;text-decoration:none;display:block;margin-top:3px">linkedin.com/in/nehal-kargatia</a>
-   <span class="access-badge">✓ Access confirmed</span>
+   <div class="ph-title">CEO, RCSL · Director, VCSL</div>
+   <a href="https://www.linkedin.com/in/nehal-kargatia/" target="_blank"
+      style="font-size:12px;color:#0A66C2;text-decoration:none;display:block;margin-top:3px">
+     linkedin.com/in/nehal-kargatia
+   </a>
+   <span class="access-badge" style="background:#fbeee7;color:#C2410C">⚠ Access needed</span>
   </div>
  </div>
  <div class="ph-counts">
   <div class="ph-count-item"><span class="ph-num">0</span><span class="ph-lbl">Videos</span></div>
   <div class="ph-count-item"><span class="ph-num">2</span><span class="ph-lbl">Articles</span></div>
-  <div class="ph-count-item"><span class="ph-num">3</span><span class="ph-lbl">Posts</span></div>
-  <div class="ph-count-item total"><span class="ph-num">5</span><span class="ph-lbl">Total M1</span></div>
+  <div class="ph-count-item"><span class="ph-num">2</span><span class="ph-lbl">Posts</span></div>
+  <div class="ph-count-item total"><span class="ph-num">4</span><span class="ph-lbl">Total</span></div>
  </div>
 </div>
 
-<div class="domain-box"><b>Content domain:</b> Riddhi Corporate Services Limited — CEO-level operational leadership, compliance as competitive advantage, workforce formalisation in B2B services, technology enabling enterprise-grade operations, and RCSL's scale across 28 states and 300+ locations. Nehal's voice is the RCSL CEO voice — distinct from Alpit's group MD lane.</div>
+<div class="domain-box">
+<b>Content domain:</b> RCSL — Project Management as the Month 1 spotlight.
+All 4 posts connect to Project Management from two angles: company capability
+(what RCSL does, how ShiftEaze works, the port deployment proof) and CEO perspective
+(what Nehal sees as the opportunity, the industry gap, the execution discipline
+required). 50/50 split between company and CEO voice.
+</div>
 
-<div class="voice-box"><b>Voice brief:</b> The RCSL CEO operator voice. Built on compliance, scale, and accountability. Nehal's content is practitioner-led — specific, grounded, and credibility-first. Not a company spokesperson, not a thought leader for thought leadership's sake. The person who actually runs RCSL day to day. Month 1 = establish the compliance-as-moat position, introduce RCSL's scale, plant the technology angle. Month 2 = workforce formalisation and operations depth. Month 3 = CEO reflection and forward signal.</div>
+<div class="voice-box">
+<b>Voice brief:</b> The professional CEO who is close to the operations, not above them.
+Nehal's posts should feel like someone who has looked hard at RCSL's project management
+capability and has a genuine view on what it means — for clients, for the industry,
+and for RCSL's position. Previous version was too self-centric (CEO journey, CEO role,
+CEO priorities). This version leads with the company and the industry, and uses Nehal's
+CEO lens to add perspective — not to talk about himself.
+</div>
 
 <div class="topic-section">
- <div class="topic-label">Primary topics — all 3 months</div>
+ <div class="topic-label">Content mix — Month 1</div>
  <div class="topic-list">
-  <span class="topic-tag">Compliance as competitive advantage</span>
-  <span class="topic-tag">Workforce formalisation in B2B</span>
-  <span class="topic-tag">RCSL operational scale</span>
-  <span class="topic-tag">Technology in enterprise services</span>
-  <span class="topic-tag">CEO operating philosophy</span>
-  <span class="topic-tag">28 states · 300+ locations</span>
+  <span class="topic-tag">RCSL Project Management capability</span>
+  <span class="topic-tag">ShiftEaze — AI rostering at scale</span>
+  <span class="topic-tag">Port operations deployment proof</span>
+  <span class="topic-tag">Enterprise execution systems</span>
+  <span class="topic-tag">CEO perspective on the PM opportunity</span>
+  <span class="topic-tag">Industry gap — planning vs execution</span>
  </div>
- <div class="topic-label">Avoid</div>
+ <div class="topic-label">What changed from previous version</div>
  <div class="topic-list">
-  <span class="avoid-tag">Riddhi Group level content (Alpit's lane)</span>
-  <span class="avoid-tag">VCSL / Veracity content</span>
-  <span class="avoid-tag">Generic motivational posts</span>
-  <span class="avoid-tag">Personal lifestyle content</span>
-  <span class="avoid-tag">Political or religious opinions</span>
+  <span class="avoid-tag">Removed: "90 days as CEO" self-reflection posts</span>
+  <span class="avoid-tag">Removed: "3 things I'm prioritising" CEO-agenda posts</span>
+  <span class="avoid-tag">Removed: "What I have learned in my first few months as CEO"</span>
+  <span class="avoid-tag">Removed: CEO-centric client commitment posts</span>
  </div>
 </div>
-
-<div class="sec-head"><span class="sec-num">01</span><h2>Month 1 — Foundation Phase</h2><span class="sec-line"></span></div>
 
 <div class="glance-row">
- <div class="glance-card"><div class="v">5</div><div class="l">Total posts Month 1</div></div>
+ <div class="glance-card"><div class="v">4</div><div class="l">Total posts Month 1</div></div>
  <div class="glance-card"><div class="v">2</div><div class="l">LinkedIn Articles</div></div>
- <div class="glance-card"><div class="v">3</div><div class="l">Text posts</div></div>
- <div class="glance-card"><div class="v">2</div><div class="l">Compliance posts</div></div>
- <div class="glance-card"><div class="v">1</div><div class="l">Technology posts</div></div>
+ <div class="glance-card"><div class="v">2</div><div class="l">Text posts</div></div>
+ <div class="glance-card"><div class="v">50%</div><div class="l">Company content</div></div>
+ <div class="glance-card"><div class="v">50%</div><div class="l">CEO perspective</div></div>
 </div>
-<div class="mixbar"><span style="width:40%;background:#C8102E;display:block;height:100%"></span><span style="width:30%;background:#0E7C66;display:block;height:100%"></span><span style="width:20%;background:#6D28D9;display:block;height:100%"></span><span style="width:10%;background:#1B4D8E;display:block;height:100%"></span></div>
-<div class="mixleg"><b><span class="dot" style="background:#C8102E"></span>Compliance &amp; Workforce · 2</b><b><span class="dot" style="background:#0E7C66"></span>RCSL Operations · 2</b><b><span class="dot" style="background:#6D28D9"></span>Technology · 1</b></div>
+<div class="mixbar"><span style="width:25%;background:#0E7C66;display:block;height:100%"></span><span style="width:25%;background:#1B4D8E;display:block;height:100%"></span><span style="width:25%;background:#6D28D9;display:block;height:100%"></span><span style="width:25%;background:#C2410C;display:block;height:100%"></span></div>
+<div class="mixleg"><b><span class="dot" style="background:#0E7C66"></span>RCSL & Company · 1</b><b><span class="dot" style="background:#1B4D8E"></span>CEO Perspective · 1</b><b><span class="dot" style="background:#6D28D9"></span>Project Management · 1</b><b><span class="dot" style="background:#C2410C"></span>Industry Voice · 1</b></div>
 
 <div class="status-bar">
- <span class="sl-label">Status:</span>
- <span class="sl-item"><span class="sl-dot" style="background:#9ca3af"></span><span style="color:#6b7280;font-weight:700;font-size:11px;letter-spacing:.06em">NOT STARTED</span></span>
- <span class="sl-item"><span class="sl-dot" style="background:#f59e0b"></span><span style="color:#d97706;font-weight:700;font-size:11px;letter-spacing:.06em">IN PROGRESS</span></span>
- <span class="sl-item"><span class="sl-dot" style="background:#06b6d4"></span><span style="color:#0891b2;font-weight:700;font-size:11px;letter-spacing:.06em">READY TO POST</span></span>
- <span class="sl-item"><span class="sl-dot" style="background:#22c55e"></span><span style="color:#16a34a;font-weight:700;font-size:11px;letter-spacing:.06em">POSTED</span></span>
+ <span class="sl-label">Status:</span><span class="sl-item"><span class="sl-dot" style="background:#9ca3af"></span><span style="color:#6b7280;font-weight:700;font-size:11px;letter-spacing:.06em">NOT STARTED</span></span><span class="sl-item"><span class="sl-dot" style="background:#f59e0b"></span><span style="color:#d97706;font-weight:700;font-size:11px;letter-spacing:.06em">IN PROGRESS</span></span><span class="sl-item"><span class="sl-dot" style="background:#06b6d4"></span><span style="color:#0891b2;font-weight:700;font-size:11px;letter-spacing:.06em">READY TO POST</span></span><span class="sl-item"><span class="sl-dot" style="background:#22c55e"></span><span style="color:#16a34a;font-weight:700;font-size:11px;letter-spacing:.06em">POSTED</span></span>
  <span style="font-size:11px;color:var(--muted);margin-left:6px">Click any card to update</span>
 </div>
 
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px">
- <div style="background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:12px 14px;position:relative;padding-left:18px"><div style="position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:var(--radius) 0 0 var(--radius);background:#C8102E"></div><div style="font-family:'Archivo';font-weight:700;font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Week 1 · 1 post</div><div style="font-size:12px;color:var(--ink);line-height:1.5;margin-bottom:4px"><span style="display:inline-block;font-size:9.5px;font-weight:700;padding:1px 6px;border-radius:999px;color:#fff;margin-right:4px;background:#C8102E">Tue</span>RCSL at scale — 28 states</div></div>
- <div style="background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:12px 14px;position:relative;padding-left:18px"><div style="position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:var(--radius) 0 0 var(--radius);background:#0E7C66"></div><div style="font-family:'Archivo';font-weight:700;font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Week 2 · 2 posts</div><div style="font-size:12px;color:var(--ink);line-height:1.5;margin-bottom:4px"><span style="display:inline-block;font-size:9.5px;font-weight:700;padding:1px 6px;border-radius:999px;color:#fff;margin-right:4px;background:#0E7C66">Tue</span>Article — compliance as moat</div><div style="font-size:12px;color:var(--ink);line-height:1.5;margin-bottom:4px"><span style="display:inline-block;font-size:9.5px;font-weight:700;padding:1px 6px;border-radius:999px;color:#fff;margin-right:4px;background:#C8102E">Thu</span>What enterprise clients ask</div></div>
- <div style="background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:12px 14px;position:relative;padding-left:18px"><div style="position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:var(--radius) 0 0 var(--radius);background:#6D28D9"></div><div style="font-family:'Archivo';font-weight:700;font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Week 3 · 1 post</div><div style="font-size:12px;color:var(--ink);line-height:1.5;margin-bottom:4px"><span style="display:inline-block;font-size:9.5px;font-weight:700;padding:1px 6px;border-radius:999px;color:#fff;margin-right:4px;background:#6D28D9">Sat</span>Article — tech enabling compliance</div></div>
- <div style="background:var(--white);border:1px solid var(--hair);border-radius:var(--radius);padding:12px 14px;position:relative;padding-left:18px"><div style="position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:var(--radius) 0 0 var(--radius);background:#0E7C66"></div><div style="font-family:'Archivo';font-weight:700;font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Week 4 · 1 post</div><div style="font-size:12px;color:var(--ink);line-height:1.5;margin-bottom:4px"><span style="display:inline-block;font-size:9.5px;font-weight:700;padding:1px 6px;border-radius:999px;color:#fff;margin-right:4px;background:#C8102E">Tue</span>Workforce formalisation</div></div>
+ <div class="sched-item sched-w1">
+  <div class="sched-wk">Week 1 · 1 post</div>
+  <div class="sched-post"><span class="sched-pill" style="background:#0E7C66">Mon</span>Article — RCSL PM model</div>
+ </div>
+ <div class="sched-item sched-w2">
+  <div class="sched-wk">Week 2 · 1 post</div>
+  <div class="sched-post"><span class="sched-pill" style="background:#0E7C66">Wed</span>Client retention — 15 years of experience</div>
+ </div>
+ <div class="sched-item sched-w3">
+  <div class="sched-wk">Week 3 · 1 post</div>
+  <div class="sched-post"><span class="sched-pill" style="background:#C2410C">Mon</span>Article — industry PM gap</div>
+ </div>
+ <div class="sched-item sched-w4">
+  <div class="sched-wk">Week 4 · 1 post</div>
+  <div class="sched-post"><span class="sched-pill" style="background:#6D28D9">Mon</span>1,000+ operators proof point</div>
+ </div>
 </div>
 
-<div class="orange-flag"><b>⚠ Before any post goes live:</b> Week 2 Tuesday article — every compliance claim must be validated by Nehal before publishing. RCSL-specific data only (not group level) · Week 3 Saturday article — confirm which technology platforms (PayEaze, EAS, RicRoot) are cleared for public naming · Week 4 Tuesday — formalisation statistics to be sourced and verified before drafting. No client names without explicit clearance throughout.</div>
+<div class="orange-flag">
+<b>⚠ Before any post goes live:</b>
+Access to Nehal's LinkedIn profile needed before anything can be scheduled ·
+ShiftEaze name clearance required for Week 1 article and Week 4 post ·
+Mundra / port terminal client reference — anonymize unless Adani name-use is explicitly cleared ·
+Week 2 text post — Nehal must share real client retention observations from his experience. SIS shapes but cannot draft from scratch ·
+Company secretary awareness for any forward-looking statements (Week 2)
+</div>
 
-<div class="cards">
-
-<div class="card" style="border-top-color:#C8102E">
-<div class="top"><span class="wk-pill">Week 1</span><span class="day-label">Tuesday</span><span class="pill" style="background:#C8102E">RCSL Operations</span><span class="fmt">Text post</span></div>
+<div class="cards"><div class="card" style="border-top-color:#0E7C66">
+<div class="top">
+ <span class="wk-pill">Week 1</span>
+ <span class="day-label">Monday</span>
+ <span class="pill" style="background:#0E7C66">RCSL & Company</span>
+ <span class="art-badge">✍ Article</span>
+ <span class="fmt">LinkedIn Article</span>
+</div>
 <div class="body">
-<h3>RCSL operates across 28 states, 300+ locations, and 8 service lines. Here is what ties it together.</h3>
-<div class="field hook"><div class="lab">Opening line</div><p>Scale without a system is just chaos with a larger footprint.</p></div>
-<div class="field"><div class="lab">Content direction</div><p>200-word post introducing RCSL at scale from the CEO's perspective. What it means to run an operation this distributed — 28 states, 300+ locations, multiple service lines — and what the one operating principle is that makes it work. Sets context for everything that follows in Month 1. CEO-level, not company brochure.</p></div>
-<div class="field"><div class="lab">Format &amp; visual</div><p>Text-only. Optional: clean India map graphic showing RCSL's presence.</p></div>
-<div class="dep"><b>Needs:</b><span>Nehal: approve the core operating principle — must reflect real RCSL leadership logic.</span></div>
+<h3>How RCSL manages large-scale projects — the model behind the execution</h3>
+<div class="field hook"><div class="lab">Opening line</div><p>Managing a project with 1,000+ people across multiple terminals is not a logistics problem. It is a systems problem.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>600–800 word article. RCSL's project management capability explained from the CEO's lens — the 5-phase framework (Discovery → Resource Planning → Execution → Milestone Monitoring → Delivery), ShiftEaze's role in AI-powered rostering at port scale, and how RCSL's compliance-first approach makes it a different kind of project partner. 60% company capability, 40% Nehal's strategic perspective on why project management is RCSL's strongest differentiator in 2026. The Month 1 flagship piece.</p></div>
+<div class="field"><div class="lab">Format & visual</div><p>Article cover: project management / port operations visual, RCSL branded. Nehal byline.</p></div>
+<div class="dep"><b>Needs:</b><span>SIS drafts. Nehal adds his CEO perspective on 2-3 key points and approves. ShiftEaze name clearance required. Mundra/Adani reference to be anonymized unless cleared.</span></div>
 </div>
-<div class="card-status" onclick="cycleStatus(this)" data-id="nehal-m1-01" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started"
+ style="background:#f0f1f3;cursor:pointer;">
+ <span class="s-dot" style="background:#9ca3af"></span>
+ <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+</div></div><div class="card" style="border-top-color:#1B4D8E">
+<div class="top">
+ <span class="wk-pill">Week 2</span>
+ <span class="day-label">Wednesday</span>
+ <span class="pill" style="background:#0E7C66">RCSL & Company</span>
+ 
+ <span class="fmt">Text post</span>
 </div>
-
-<div class="card" style="border-top-color:#0E7C66">
-<div class="top"><span class="wk-pill">Week 2</span><span class="day-label">Tuesday</span><span class="pill" style="background:#0E7C66">Compliance &amp; Workforce</span><span class="art-badge">✍ Article</span><span class="fmt">LinkedIn Article</span></div>
 <div class="body">
-<h3>Why 100% compliance is not a cost for RCSL — it is the product</h3>
-<div class="field hook"><div class="lab">Opening line</div><p>Most companies treat compliance as a checkbox. We built our entire business model around it.</p></div>
-<div class="field"><div class="lab">Content direction</div><p>700–900 word article. Nehal on RCSL's compliance-first operating philosophy — how it started, why it became the strategic differentiator as enterprise clients tightened vendor standards, and what 100% compliance posture means in practice across 28 states. The flagship Month 1 piece. Ends with the moat argument: as regulations tighten, organised operators pull further ahead.</p></div>
-<div class="field"><div class="lab">Format &amp; visual</div><p>Article cover: RCSL operations visual, red/navy branded.</p></div>
-<div class="dep"><b>Needs:</b><span>SIS drafts. Nehal validates every compliance claim — must reflect real RCSL operating practice. Approves before publishing.</span></div>
+<h3>RCSL has clients who have been with us for over a decade. Here is what actually keeps them.</h3>
+<div class="field hook"><div class="lab">Opening line</div><p>Clients don't stay because of contracts. They stay because the ground never lets them down.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>200-word post. Nehal draws on RCSL's 15+ year client retention story — what he has observed and experienced about why enterprise clients stay with RCSL across years and through leadership changes. Not generic advice on client retention. Specific: the compliance consistency, the on-ground accountability, the single point of contact discipline, the technology that gives clients visibility at any hour. Told as practitioner experience — "in my experience working with enterprise clients, here is what we have learned keeps them." Company-first, Nehal's voice as the lens.</p></div>
+<div class="field"><div class="lab">Format & visual</div><p>Text-only. Strong enough without a visual.</p></div>
+<div class="dep"><b>Needs:</b><span>Nehal: 2–3 real client retention observations from his experience. SIS shapes into post copy — this requires genuine input from Nehal, not a generic draft.</span></div>
 </div>
-<div class="card-status" onclick="cycleStatus(this)" data-id="nehal-m1-02" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started"
+ style="background:#f0f1f3;cursor:pointer;">
+ <span class="s-dot" style="background:#9ca3af"></span>
+ <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+</div></div><div class="card" style="border-top-color:#C2410C">
+<div class="top">
+ <span class="wk-pill">Week 3</span>
+ <span class="day-label">Monday</span>
+ <span class="pill" style="background:#C2410C">Industry Voice</span>
+ <span class="art-badge">✍ Article</span>
+ <span class="fmt">LinkedIn Article</span>
 </div>
-
-<div class="card" style="border-top-color:#C8102E">
-<div class="top"><span class="wk-pill">Week 2</span><span class="day-label">Thursday</span><span class="pill" style="background:#C8102E">RCSL Operations</span><span class="fmt">Text post</span></div>
 <div class="body">
-<h3>The real question enterprise clients ask before they sign with RCSL — and the answer they are not expecting</h3>
-<div class="field hook"><div class="lab">Opening line</div><p>They ask "can you scale?" We answer "we already have."</p></div>
-<div class="field"><div class="lab">Content direction</div><p>200-word post. Nehal on what the real pre-contract question is — not capability, but accountability. How RCSL has responded to that question consistently across enterprise clients. Positions RCSL as the operator that walks in with proof, not promises.</p></div>
-<div class="field"><div class="lab">Format &amp; visual</div><p>Text-only.</p></div>
-<div class="dep"><b>Needs:</b><span>Nehal: the real question she hears most. SIS shapes the post from that.</span></div>
+<h3>Why enterprise project management in India is broken — and what organised operators are doing differently</h3>
+<div class="field hook"><div class="lab">Opening line</div><p>Most large projects in India don't fail because of bad planning. They fail because of bad execution systems.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>600–800 word article. Nehal's industry perspective on the gap between project planning and ground-level execution in Indian enterprise operations — why unorganised operators consistently fail at scale, what the organised operator model (RCSL's compliance, technology, and process discipline) does differently, and what enterprise clients should be demanding from their project management partners. 70% industry insight, 30% RCSL positioning. The thought leadership piece that earns credibility with procurement heads and CXO peers.</p></div>
+<div class="field"><div class="lab">Format & visual</div><p>Article cover: enterprise operations / project management visual, RCSL branded.</p></div>
+<div class="dep"><b>Needs:</b><span>SIS drafts. Nehal adds the CEO industry perspective and approves. No client names without clearance.</span></div>
 </div>
-<div class="card-status" onclick="cycleStatus(this)" data-id="nehal-m1-03" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started"
+ style="background:#f0f1f3;cursor:pointer;">
+ <span class="s-dot" style="background:#9ca3af"></span>
+ <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+</div></div><div class="card" style="border-top-color:#6D28D9">
+<div class="top">
+ <span class="wk-pill">Week 4</span>
+ <span class="day-label">Monday</span>
+ <span class="pill" style="background:#6D28D9">Project Management</span>
+ 
+ <span class="fmt">Text post</span>
 </div>
-
-<div class="card" style="border-top-color:#6D28D9">
-<div class="top"><span class="wk-pill">Week 3</span><span class="day-label">Saturday</span><span class="pill" style="background:#6D28D9">Technology</span><span class="art-badge">✍ Article</span><span class="fmt">LinkedIn Article</span></div>
 <div class="body">
-<h3>How technology is making compliance at scale possible — and why it changes what enterprise outsourcing means</h3>
-<div class="field hook"><div class="lab">Opening line</div><p>You cannot manually maintain compliance across 300+ locations. You need a system that does not forget.</p></div>
-<div class="field"><div class="lab">Content direction</div><p>600–800 word article. Nehal on how RCSL's technology platforms — PayEaze for payroll compliance, EAS for audit trail, RicRoot for workforce management — are what make compliance at 28-state scale operationally possible. The CEO lens on technology: not a product pitch, but the "this is how we built what we built" story. Ties the compliance-as-moat position to the technology infrastructure behind it.</p></div>
-<div class="field"><div class="lab">Format &amp; visual</div><p>Article cover: technology + compliance visual, RCSL branded.</p></div>
-<div class="dep"><b>Needs:</b><span>Confirm which platforms (PayEaze, EAS, RicRoot) are cleared for public naming. SIS drafts, Nehal approves.</span></div>
+<h3>RCSL's Project Management capability — what 1,000+ operators across 6 port terminals actually looks like</h3>
+<div class="field hook"><div class="lab">Opening line</div><p>It is not the number that matters. It is the system that makes the number possible.</p></div>
+<div class="field"><div class="lab">Content direction</div><p>200-word post. Nehal presents RCSL's port operations project management milestone — 1,000+ operators rebadged, ShiftEaze managing 24×7 shifts across 6 terminals, face-recognition attendance, phase-wise HRMS rollout. Company-led, but written from the CEO's perspective: what this deployment tells him about RCSL's readiness for the next scale of project. Closes Month 1 with a concrete proof point.</p></div>
+<div class="field"><div class="lab">Format & visual</div><p>Text post. ShiftEaze dashboard visual or port operations imagery if cleared.</p></div>
+<div class="dep"><b>Needs:</b><span>ShiftEaze name clearance required. Port terminal/Mundra reference anonymized unless cleared. Company secretary awareness for any financial or operational claims.</span></div>
 </div>
-<div class="card-status" onclick="cycleStatus(this)" data-id="nehal-m1-04" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div>
-</div>
-
-<div class="card" style="border-top-color:#0E7C66">
-<div class="top"><span class="wk-pill">Week 4</span><span class="day-label">Tuesday</span><span class="pill" style="background:#0E7C66">Compliance &amp; Workforce</span><span class="fmt">Text post</span></div>
-<div class="body">
-<h3>India's workforce formalisation story — what RCSL sees from the ground across 28 states</h3>
-<div class="field hook"><div class="lab">Opening line</div><p>The informal workforce is not a problem to be solved. It is a transition to be managed — and that requires an organised operator.</p></div>
-<div class="field"><div class="lab">Content direction</div><p>200-word post. Nehal's ground-level view on workforce formalisation across the states RCSL operates in — what is actually changing, at what pace, and what it means for enterprise clients that choose compliant, organised operators vs unorganised alternatives. Positions RCSL as the operator built for where India is going, not just where it is.</p></div>
-<div class="field"><div class="lab">Format &amp; visual</div><p>Text-only.</p></div>
-<div class="dep"><b>Needs:</b><span>Formalisation statistics to be verified before drafting. Nehal: real on-ground observation to anchor the post.</span></div>
-</div>
-<div class="card-status" onclick="cycleStatus(this)" data-id="nehal-m1-05" data-status="not-started" style="background:#f0f1f3;cursor:pointer;"><span class="s-dot" style="background:#9ca3af"></span><span class="s-label" style="color:#6b7280">NOT STARTED</span></div>
-</div>
-
-</div>
-
-<div class="sec-head"><span class="sec-num">02</span><h2>Month 2 — Depth Phase (Roadmap)</h2><span class="sec-line"></span></div>
-<p style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6">Full detail added 2–4 weeks before Month 2. Directional outline confirmed.</p>
-<div class="rm-block" style="border-top-color:#0E7C66">
-<div class="rm-header">Month 2 — Depth Phase</div>
-<div class="rm-row"><span class="rm-tag">Compliance · Text post</span><div><div class="rm-title">The 5 compliance gaps that most B2B operators don't talk about — and that RCSL built systems to close</div><div class="rm-desc">Specific, practitioner-led. Nehal on the real gaps RCSL encounters in the market — the ones that give organised operators their moat.</div></div></div>
-<div class="rm-row"><span class="rm-tag">Operations · LinkedIn Article</span><div><div class="rm-title">Running 8 service lines across 28 states — what it actually takes to build a consistent operational standard</div><div class="rm-desc">The CEO operating philosophy article. Nehal on the discipline required to deliver consistent service quality at this scale. Her most personal and credibility-building content piece.</div></div></div>
-<div class="rm-row"><span class="rm-tag">Workforce · Text post</span><div><div class="rm-title">What I wish enterprise clients understood about workforce compliance before they signed their last contract</div><div class="rm-desc">Nehal's candid post on the gaps clients don't know to ask about. High-engagement format for the compliance and HR community on LinkedIn.</div></div></div>
-<div class="rm-row"><span class="rm-tag">Tech · Text post</span><div><div class="rm-title">How PayEaze processes payroll for thousands of workers across multiple states — and why that matters for clients</div><div class="rm-desc">Nehal goes deeper on one specific technology platform — PayEaze. CEO lens: why RCSL built it, what problem it solves for clients, what the alternative looks like.</div></div></div>
-<div class="rm-row"><span class="rm-tag">Operations · Text post</span><div><div class="rm-title">RCSL Month 1 — a CEO's view of how we started the year</div><div class="rm-desc">Month-end milestone post. Nehal reflects on Month 1 from the CEO seat — operational achievements, new client milestones, what's coming in Month 2.</div></div></div>
-</div>
-
-<div class="sec-head"><span class="sec-num">03</span><h2>Month 3 — CEO Reflection &amp; Forward Signal (Roadmap)</h2><span class="sec-line"></span></div>
-<p style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6">Month 3 closes the first quarter. The CEO reflection piece is the flagship of Nehal's 3-month arc.</p>
-<div class="rm-block" style="border-top-color:#6D28D9">
-<div class="rm-header">Month 3 — CEO Reflection &amp; Forward Signal</div>
-<div class="rm-row"><span class="rm-tag">CEO · LinkedIn Article</span><div><div class="rm-title">What running RCSL across 28 states has taught me about building a scalable B2B services company</div><div class="rm-desc">Nehal's CEO flagship article. Honest, specific, practitioner-led reflections on what it takes to build at RCSL's scale. No generic leadership wisdom — real operating lessons.</div></div></div>
-<div class="rm-row"><span class="rm-tag">Compliance · Text post</span><div><div class="rm-title">India's compliance landscape in 2026 — what tightening regulations mean for enterprise B2B operators</div><div class="rm-desc">Nehal on where compliance is heading, what it means for organised vs unorganised operators, and why RCSL is built for the direction India is going.</div></div></div>
-<div class="rm-row"><span class="rm-tag">Operations · Text post</span><div><div class="rm-title">The client conversation that changed how I think about what RCSL should be building next</div><div class="rm-desc">A real, specific enterprise conversation that shaped Nehal's thinking. Personal, credible, and grounded. The kind of post that earns peer respect on LinkedIn.</div></div></div>
-<div class="rm-row"><span class="rm-tag">Workforce · Text post</span><div><div class="rm-title">What the next 12 months look like for workforce formalisation in India — a CEO's ground-level forecast</div><div class="rm-desc">Forward-looking workforce market perspective from Nehal. Positions her as a voice the compliance and HR community wants to follow.</div></div></div>
-<div class="rm-row"><span class="rm-tag">CEO · Text post</span><div><div class="rm-title">Quarter 1 done. What RCSL learned, built, and is taking into Q2.</div><div class="rm-desc">Quarter-close CEO reflection. Honest, operational, forward-looking. The right close to Nehal's first quarter on LinkedIn.</div></div></div>
-</div>
+<div class="card-status" onclick="cycleStatus(this)" data-status="not-started"
+ style="background:#f0f1f3;cursor:pointer;">
+ <span class="s-dot" style="background:#9ca3af"></span>
+ <span class="s-label" style="color:#6b7280">NOT STARTED</span>
+</div></div></div>
 
 </div>
 
 <footer class="foot"><div class="wrap">
-<h2>Key notes across all 3 months</h2>
+<h2>Key notes</h2>
 <ul>
-<li><b>CEO voice, not company spokesperson</b>Nehal's content works because it is her perspective — specific, operational, candid. The moment it reads like a press release, it loses its value.</li>
-<li><b>Compliance is the core lane</b>Every piece of content connects back to compliance, operational standards, or what it means to be an organised operator. This is what differentiates Nehal's voice from every other logistics and B2B services CEO on LinkedIn.</li>
-<li><b>RCSL lane only</b>No group-level content (Alpit's lane), no Veracity content (Jash/Rishi's lane). Nehal speaks for RCSL and for RCSL's market position.</li>
-<li><b>2 LinkedIn Articles in Month 1</b>Articles are the highest-credibility format for a CEO profile. Both are distinct — the compliance-as-moat piece and the technology-enabling-compliance piece. Together they build the full picture of how RCSL operates.</li>
-<li><b>Coordination with Alpit</b>Nehal's RCSL-specific content complements Alpit's group-level content. Where Alpit talks about the group's philosophy, Nehal goes deep on RCSL's operating practice. They should not post on the same topic on the same day.</li>
+<li><b>Project Management runs through all 4 posts</b>Every post connects to the Month 1 spotlight. Week 1 explains the model, Week 2 gives the CEO's view on the opportunity, Week 3 makes the industry argument, Week 4 closes with a concrete proof point. One coherent content arc across the month.</li>
+<li><b>50/50 company and CEO</b>Week 1 and Week 4 are company-led — Nehal's perspective adds context but the post is about RCSL's capability. Week 2 and Week 3 are CEO-led — Nehal's voice and observations carry the post, but they connect to the company and the industry, not to his personal journey.</li>
+<li><b>No self-centric posts</b>The previous calendar had too many posts about Nehal's CEO experience. This version leads with the company and uses the CEO lens to add credibility — not to tell Nehal's story.</li>
+<li><b>Week 2 post requires Nehal's genuine input</b>The CEO observation post cannot be ghostwritten. SIS needs Nehal to share 2–3 real observations from his early months before any drafting begins.</li>
+<li><b>Coordinates with RCSL company page</b>Week 1 article and Week 4 post both align with the company page's Project Management spotlight. RCSL company page should reshare both once live.</li>
 </ul>
-<p class="fin">Prepared by Say It Social for Riddhi Corporate Services Limited · Nehal Kargatia LinkedIn Calendar · Months 1–3 · RCSL CEO · Compliance / Workforce / Operations / Technology.</p>
+<p class="fin">Prepared by Say It Social for Riddhi Corporate Services Limited ·
+Nehal Kargatia LinkedIn Calendar · Month 1 · Rebuilt ·
+RCSL CEO · Project Management spotlight · Company + CEO mix.</p>
 </div></footer>
-
 <script>
 const STATUSES=[
  {key:'not-started',label:'NOT STARTED',bg:'#f0f1f3',dot:'#9ca3af',txt:'#6b7280'},
@@ -335,8 +327,6 @@ function cycleStatus(el){
  el.querySelector('.s-dot').style.background=next.dot;
  el.querySelector('.s-label').style.color=next.txt;
  el.querySelector('.s-label').textContent=next.label;
- const postId=el.dataset.id;
- if(postId && window._fbSaveStatus) window._fbSaveStatus(postId, next.key);
 }
 </script>
 </body></html>
